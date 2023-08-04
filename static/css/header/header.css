@@ -1,0 +1,104 @@
+.header-base {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 200;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+}
+
+.header-inner {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  min-width: 280px;
+  width: 100%;
+}
+
+.logo {
+  height: 55px;
+}
+
+.logo-link {
+  display: block;
+  width: 103px;
+  height: 100%;
+  background: url("https://t1.kakaocdn.net/together_image/svg/logo_pc.svg") center center / contain no-repeat;
+}
+
+.mobile-search-link {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 55px;
+  padding-left: 11px;
+  padding-right: 21px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.logo-text {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0px, 0px, 0px, 0px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  color: transparent;
+}
+
+.menu {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.menu-list {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.list-item-container {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+}
+
+.home {
+  height: 100%;
+  border-bottom: 2px solid rgb(57, 57, 57);
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px){
+  .home {
+      margin: 0px 11px;
+  }
+}

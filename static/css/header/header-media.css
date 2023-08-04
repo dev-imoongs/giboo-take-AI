@@ -1,0 +1,56 @@
+/* min-width: 768px */
+@media only screen and (min-width: 768px){
+  .header-base {
+    height: 70px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .header-inner {
+      -webkit-box-align: center;
+      align-items: center;
+      width: 1120px;
+      height: 100%;
+      margin: 0px auto;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .logo {
+      height: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .logo-link {
+      width: 115px;
+      background-image: url("https://t1.kakaocdn.net/together_image/svg/logo_pc.svg");
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .menu {
+      -webkit-box-pack: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      margin-left: 51px;
+      height: 100%;
+  }
+}
+
+
+/* max-width : 767px */
+@media only screen and (max-width: 767px){
+  .header-base {
+      top: -56px;
+      min-height: 94px;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .header-inner {
+      flex-wrap: wrap;
+  }
+}
+
