@@ -1,0 +1,28 @@
+.group_givetop {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 65px 0 38px;
+    text-align: center;
+}
+
+.list_fund .wrap_state .state_end {
+    background-color: #999;
+}
+
+.group_givetop .tit_givetop {
+    display: block;
+    font-weight: 400;
+    font-size: 28px;
+    color: #444;
+    font-family: KakaoBig Bold;
+}
+
+@media (max-width: 767px){
+.group_givetop {
+    width: auto;
+    padding: 32px 0 20px;
+}
+.group_givetop .tit_givetop {
+    font-size: 18px;
+}
+}
