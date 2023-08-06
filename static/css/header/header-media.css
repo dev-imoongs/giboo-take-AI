@@ -1,0 +1,193 @@
+/* min-width: 768px */
+@media only screen and (min-width: 768px){
+  .header-base {
+    height: 70px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .header-inner {
+    -webkit-box-align: center;
+    align-items: center;
+    width: 1120px;
+    height: 100%;
+    margin: 0px auto;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .logo {
+    height: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .logo-link {
+    width: 115px;
+    background-image: url("https://t1.kakaocdn.net/together_image/svg/logo_pc.svg");
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-nav-item {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .menu {
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 1 0 auto;
+    margin-left: 51px;
+    height: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .home {
+    margin: 0px 11px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .header-menu {
+    margin: 0px 11px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .menu-item-link {
+    padding: 0px 14px;
+    font-family: "KakaoBig Bold";
+    font-size: 16px;
+    color: rgb(68, 68, 68);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .new-badge {
+    top: 24px;
+    right: 6px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .more-button {
+    padding: 0px 14px;
+    font-family: "KakaoBig Bold";
+    font-size: 16px;
+    color: rgb(68, 68, 68);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-util-menu {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    min-width: 186px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-new-badge {
+    min-width: 16px;
+    height: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .pc-search-link {
+    height: auto;
+    margin-left: 5px;
+    padding: 6px;
+    order: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-search-icon {
+      width: 22px;
+      height: 22px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* max-width : 767px */
+@media only screen and (max-width: 767px){
+  .header-base {
+    top: -56px;
+    min-height: 94px;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .menu {
+    -webkit-box-pack: center;
+    justify-content: center;
+    order: 2;
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 1px solid rgb(238, 238, 238);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu-list {
+    overflow-x: auto;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .home:first-of-type {
+    margin-left: 13px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .new-badge {
+    top: 7px;
+    right: 2px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .more {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pc-util-menu {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pc-search-link {
+    display: none !important;
+  }
+}

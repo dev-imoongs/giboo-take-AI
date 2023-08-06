@@ -1,0 +1,354 @@
+/* 기본 */
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+a {
+  color: #444;
+}
+
+a, a:active, a:hover {
+  text-decoration: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+dl, li, menu, ol, ul {
+  list-style: none;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+
+/* 공지사항 탭 */
+.wrap-tab {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: #f7f8f9;
+}
+
+.wrap-tab .list-tab {
+  display: flex;
+  justify-content: center;
+}
+
+.wrap-tab .list-tab .on .link-tab {
+  position: relative;
+  z-index: 1;
+  color: #202020;
+  
+}
+
+.wrap-tab .list-tab li {
+  padding: 0 24px;
+  text-align: center;
+}
+
+
+.wrap-tab .list-tab .link-tab {
+  display: block;
+  height: 60px;
+  font-size: 15px;
+  color: #888;
+  font-family: KakaoBig Bold;
+}
+
+.wrap-tab .list-tab .txt-tab {
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  padding: 18px 16px 0;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+/* 컨텐츠 목록 */
+.cont-join .contents-group {
+  padding-bottom: 100px;
+}
+
+.contents-group {
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+dl, li, menu, ol, ul {
+  list-style: none;
+}
+
+.contents-group .list-official li {
+  padding: 29px 0 35px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.link-official {
+  display: block;
+}
+
+.contents-group .link-official .subject-official {
+  padding-top: 0;
+}
+
+.contents-group .link-official .subject-official {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.link-official .subject-official {
+  padding-top: 16px;
+}
+
+.link-official .subject-official, .view-head .subject-official {
+  display: block;
+  font-weight: 400;
+  font-family: KakaoBig Bold;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+.contents-group .link-official .icon-pin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 9px;
+  background: url(//t1.kakaocdn.net/together_image/common/ico_pin.svg) no-repeat 50%;
+  vertical-align: middle;
+}
+
+.contents-group .link-official .notice-target {
+  padding-right: 7px;
+}
+
+.contents-group .link-official .date-official, .contents-group .link-official .notice-target {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.link-official .notice-target {
+  padding-top: 6px;
+}
+
+.link-official .notice-target, .view-head .notice-target {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.contents-group .link-official .date-official {
+  padding-top: 6px;
+}
+
+.link-official .bar-official, .link-official .cmt-official, 
+.link-official .data-official, .link-official .date-official, 
+.list-nanum .link-official .bar-official {
+  padding-top: 4px;
+  color: #666;
+}
+
+.link-official .date-official, .view-head .date-official {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.link-official .subject-official, .view-head .subject-official {
+  display: block;
+  font-weight: 400;
+  font-family: KakaoBig Bold;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+@media (max-width: 767px)
+{body, html {
+    min-width: 280px;
+    margin-bottom: -150px;
+}
+}
+
+@media (max-width: 767px)
+{.total-main {
+    margin-bottom: -150px;
+    padding: 0 0 200px;
+    overflow: hidden;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab {
+    height: 42px;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab li {
+    height: 100%;
+    padding: 0 4px;
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .on .link-tab {
+    font-family: KakaoBig Bold;
+}
+}
+
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab .link-tab {
+    height: 100%;
+    font-size: 13px;
+    font-family: KakaoBig Regular;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab li {
+    height: 100%;
+    padding: 0 4px;
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab .txt-tab {
+    height: 100%;
+    padding: 11px 8px 0;
+}
+}
+
+@media (max-width: 767px)
+{.cont-join .contents-group {
+    padding-bottom: 10px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group {
+    width: 100%;
+    padding-top: 20px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .list-official {
+    margin: 0 14px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .list-official li {
+    padding: 18px 0 23px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .link-official .subject-official {
+    padding-top: 4px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .list-official {
+    margin: 0 14px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .link-official .icon-pin {
+    margin-right: 1px;
+    background-size: 10px 10px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .link-official .notice-target {
+  padding-right: 5px;
+}
+}
+
+
+@media (max-width: 767px)
+{.link-official .notice-target {
+    padding-top: 4px;
+}
+}
+
+@media (max-width: 767px)
+{.contents-group .link-official .date-official {
+    padding-top: 4px;
+}
+}
+
+
+
+@media (max-width: 767px)
+{.link-official .subject-official, .view-head .subject-official {
+    font-size: 16px;
+    line-height: 21px;
+}
+}
+
+@media (max-width: 767px)
+{.link-official .notice-target, .view-head .notice-target {
+    font-size: 11px;
+    line-height: 17px;
+    color: #666;
+}
+}
+
+@media (max-width: 767px)
+{.link-official .bar-official, .link-official .cmt-official, .link-official .date-official, .view-head .date-official {
+    font-size: 11px;
+    line-height: 17px;
+    color: #666;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .on .link-tab {
+    font-family: KakaoBig Bold;
+}
+}
