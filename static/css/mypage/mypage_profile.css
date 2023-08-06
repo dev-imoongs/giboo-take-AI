@@ -1,0 +1,235 @@
+body, html {
+  min-width: 1140px;
+}
+
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+  background-color: initial;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#whole-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
+}
+
+#dkContent, #rootContent {
+  flex-grow: 1;
+  min-height: calc(100vh - (70px + 250px));
+}
+
+#dkContent {
+  position: relative;
+  margin: 0 0 -212px;
+}
+
+#mArticle {
+  padding: 0 0 250px;
+}
+
+.wrap_project {
+  background-color: #fff;
+}
+
+.wrap_profile .box_cont {
+  width: 800px;
+}
+
+.wrap_project .box_cont {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.wrap_profile .box_cont .list_write {
+  margin: 11px 50px 7px;
+}
+
+.wrap_project .box_cont .list_write {
+  position: relative;
+  margin: 10px 0 26px;
+  font-size: 16px;
+}
+
+/* user profile image */
+.wrap_profile .cont_thumb {
+  margin-top: 55px;
+}
+
+.cont_thumb .file_upload {
+  position: relative;
+  width: 117px;
+  height: 117px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  background-color: #fafafa;
+}
+
+.tf_attach {
+  display: none;
+}
+
+.cont_thumb .img_thumb {
+  float: left;
+  width: 117px;
+  height: 117px;
+  margin: -1px 0 0 -1px;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+}
+
+.img_thumb {
+  display: block;
+}
+
+.file_upload .lab_photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 118px;
+  height: 118px;
+  border-radius: 100px;
+}
+
+.file_upload .img_thumb+.lab_photo {
+  background: none;
+}
+
+.file_upload .img_thumb+.lab_photo .ico_photo {
+  margin-top: 76px;
+  background-position: -200px -88px;
+}
+
+.file_upload .ico_photo {
+  width: 30px;
+  height: 25px;
+  margin: 46px auto 0;
+  background-position: -544px -72px;
+}
+
+.ico_together, .ico_together2 {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+.ico_together {
+  background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
+}
+
+.cont_thumb .file_upload .btn_del {
+  position: absolute;
+  top: 11px;
+  left: 230px;
+  margin: 0 -100px;
+  font-size: 16px;
+  color: #444;
+  text-decoration: underline;
+}
+
+/* 카카오톡 프로필 정보 불러오기 - 정보 입력란*/
+.wrap_profile .list_write dt {
+  width: 150px;
+}
+
+.box_cont .list_write dt {
+  position: absolute;
+  left: 0;
+  width: 170px;
+  margin-top: 36px;
+  font-family: KakaoBig Bold,sans-serif;
+}
+
+.wrap_profile .list_write .item_btn {
+  padding: 10px 190px 45px;
+}
+
+.wrap_profile .list_write dd {
+  padding-left: 150px;
+}
+
+.box_cont .list_write dd {
+  position: relative;
+  min-height: 44px;
+  padding: 26px 0 20px 170px;
+}
+
+.wrap_profile .btn_katalk,
+.wrap_profile .btn_step_type .link_step {
+  width: 100%;
+}
+
+.btn_katalk {
+  display: block;
+  position: relative;
+  width: 345px;
+  height: 49px;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 50px;
+  background-color: #ffe100;
+  text-align: center;
+}
+
+.btn_katalk .ico_katalk {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  margin: -2px 10px 0 0;
+  background-position: -344px -104px;
+  vertical-align: middle;
+}
+
+.box_cont .list_write .group_tf {
+  overflow: hidden;
+  position: relative;
+}
+
+.box_cont .list_write .tf_write {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.tf_write {
+  float: left;
+  height: 44px;
+  padding: 9px 13px;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  font-size: 16px;
+  color: #444;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.box_cont .list_write .info_append {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  padding-right: 2px;
+  font-size: 14px;
+  color: #959595;
+}
+
+.box_cont .info_append .txt_num {
+  color: #444;
+}

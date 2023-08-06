@@ -1,0 +1,387 @@
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #444;
+}
+
+ul, li {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  vertical-align: middle;
+  font-size: 100%;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: initial;
+  cursor: pointer;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+}
+
+
+/* Wrap css */
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+#dkWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
+  }
+
+#dkHead {
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid #eee;
+  background-color: #124;
+}
+
+#dkContent, #rootContent {
+  flex-grow: 1;
+  min-height: calc(100vh - (70px + 250px));
+}
+
+#dkContent {
+  position: relative;
+  margin: 0 0 -212px;
+}
+
+.cont_mypage #mArticle {
+  padding-bottom: 212px;
+  padding: 0 0 250px;
+}
+
+.donate_cont {
+  width: 700px;
+  margin: 0 auto;
+  padding-bottom: 90px;
+}
+
+.group_profile {
+  position: relative;
+  min-height: 190px;
+  padding-top: 34px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  background: url(//t1.kakaocdn.net/together_image/bg_mypage.png) 98% 18px no-repeat;
+  background-size: 215px 160px;
+}
+/* 프로필 이름 */
+.group_profile .area_name {
+  display: inline-block;
+  max-width: 550px;
+  vertical-align: top;
+}
+
+.group_profile .area_name .txt_name, .group_profile .area_name .txt_nick {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 400;
+  font-family: KakaoBig Bold,sans-serif;
+}
+
+.group_profile .area_name .txt_nick {
+  max-width: 465px;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  font-size: 18px;
+}
+
+.group_profile .area_name .txt_name {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 36px;
+  line-height: 1.4;
+}
+
+.group_profile .area_name .box_name {
+  display: inline-block;
+  position: relative;
+  max-width: 465px;
+}
+
+/* 프로필 뱃지 */
+.group_profile .area_thumb {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.group_profile .area_thumb .link_badge {
+  position: absolute;
+  left: -15px;
+  width: 40px;
+  height: 40px;
+}
+
+.group_profile .area_thumb .img_thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.group_profile .area_thumb .link_thumb {
+  display: block;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+/* 기부내역 타이틀 & 셀렉트박스 */
+.tit_section {
+  padding-top: 26px;
+  font-weight: 400;
+  font-size: 24px;
+  display: block;
+  line-height: 26px;
+  color: #444;
+  font-family: KakaoBig Bold,sans-serif;
+  box-sizing: border-box;
+}
+
+.area_doselect {
+  padding-top: 19px;
+}
+
+.area_doselect .box_select .inner_box {
+  float: left;
+  width: 160px;
+}
+
+.area_doselect .box_select:after {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  content: "";
+}
+
+.opt_comm {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  font-size: 12px;
+  line-height: 44px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.area_doselect .opt_comm .opt_select {
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  display: block;
+  z-index: 10;
+  top: 0;
+  height: 100%;
+  color: #444;
+  width: 100%;
+  border: 0;
+  background: none;
+  -webkit-appearance: none;
+  opacity: .01;
+}
+
+option {
+  font-weight: normal;
+  display: block;
+  white-space-collapse: collapse;
+  text-wrap: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+
+.opt_comm .box_arrow {
+  position: absolute;
+  right: 0;
+  width: 29px;
+  height: 44px;
+  background-color: #fff;
+}
+
+.opt_comm .ico_arrow {
+  width: 12px;
+  height: 8px;
+  margin: 17px 0 0 7px;
+  background-position: -236px -116px;
+}
+
+.ico_together {
+  background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
+}
+
+.ico_together, .ico_together2 {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+.opt_comm .select_option {
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  color: #444;
+  margin: 0 30px 0 12px;
+  right: 0;
+  padding: 0;
+  line-height: 44px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.area_doselect .box_select .inner_box+.inner_box {
+  margin-left: 6px;
+}
+
+/* 기부 내역 리스트 */
+/* 기부 내역 리스트 - 일자 */
+.area_receipt {
+  padding-top: 40px;
+}
+
+.tit_area {
+  display: block;
+  padding-top: 27px;
+  padding-bottom: 12px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #444;
+  font-family: KakaoBig Bold,sans-serif;
+}
+
+.area_receipt .tit_area:first-child {
+  padding-top: 0;
+}
+
+.tit_area .emph_num {
+  color: #999;
+  font-weight: 400;
+  font-family: KakaoBig Regular,sans-serif;
+}
+
+/* 기부내역 리스트 - 기부 게시글 리스트 */
+.area_receipt .box_receipt:first-of-type {
+  margin-top: 0;
+}
+
+.area_receipt .box_receipt {
+  overflow: hidden;
+  position: relative;
+  margin-top: 19px;
+  padding: 20px 40px 30px;
+  box-shadow: 1px 0 0 0 #e5e5e5, 0 1px 0 0 #e5e5e5, 1px 1px 0 0 #e5e5e5, inset 1px 0 0 0 #e5e5e5, inset 0 1px 0 0 #e5e5e5;
+  font-size: 15px;
+  text-align: center;
+}
+
+.list_receipt.list_donate {
+  margin-top: -20px;
+  margin-bottom: -20px;
+  clear: both;
+}
+
+.list_receipt.list_donate li:first-child {
+  border-top: 0;
+}
+
+.list_receipt li {
+  position: relative;
+  padding: 19px 0 25px;
+  border-top: 1px dashed #e5e5e5;
+  line-height: 24px;
+  color: #444;
+  text-align: left;
+}
+
+.list_receipt .item_donate .tit_sum {
+  max-width: 510px;
+  color: #999;
+  
+}
+
+.list_receipt .link_sum {
+  color: #999;
+}
+
+.list_receipt .donate_numinfo {
+  overflow: hidden;
+  padding-top: 6px;
+}
+
+.list_receipt .num_sumprice {
+  overflow: hidden;
+  float: left;
+  max-width: 350px;
+  font-weight: 400;
+  font-size: 24px;
+  font-family: KakaoBig Bold,sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.list_receipt .txt_sumprice {
+    float: left;
+    padding: 4px 0 0 5px;
+}
+
+.list_receipt .box_link {
+  position: absolute;
+  right: -7px;
+  top: 25px;
+  min-width: 91px;
+  text-align: center;
+}
+
+/* 더보기 */
+
+.list_more {
+  padding: 14px 0 0;
+  text-align: center;
+}
+
+.link_round {
+  display: inline-block;
+  height: 40px;
+  padding: 0 17px;
+  border: 1px solid #e7e7e7;
+  border-radius: 20px;
+  font-size: 13px;
+  line-height: 38px;
+  font-family: KakaoBig Regular,sans-serif;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.link_round.link_other2 {
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 38px;
+}

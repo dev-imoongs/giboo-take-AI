@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../static/css/common.css">
+  <link rel="stylesheet" href="../../static/css/mypage/mypage_service_settings.css">
+</head>
+
+<body>
+  <div id="dkWrap" class="together_top">
+    <!-- 헤더 -->
+    <header>
+      <div id="dkHead"></div>
+    </header>
+    <!-- 메인 -->
+    <span id="rootContent">
+      <ng-component>
+        <div id="dkContent" class="cont_declare">
+          <div id="mArticle">
+            <div class="wrap_svcset">
+              <div class="svc_set">
+                <strong class="tit_set">서비스 설정</strong>
+                <ul class="list_set">
+                  <li>
+                    <a class="btn_set link_set" href="/preferences/profile">
+                      <strong class="txt_set">프로필 수정</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn_set link_set" href="/teams/create">
+                      <strong class="txt_set">프로젝트팀 추가</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn_set link_set" href="/my/badges">
+                      <strong class="txt_set">내 기부 스탬프 보기</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn_set link_set" href="/preferences/service-agreement">
+                      <strong class="txt_set">서비스 이용 동의</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn_set link_set" href="/preferences/third-party-agreement">
+                      <strong class="txt_set">개인정보 제 3자 제공 동의</strong>
+                      </a>
+                    </li>
+                  <li>
+                    <a class="link_set" href="">
+                      <strong class="txt_set">카카오같이가치 탈퇴</strong>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="svc_set">
+                <strong class="tit_set">함께해요, 같이가치</strong>
+                <ul class="list_set">
+                  <li><a href="http://plus.kakao.com/home/@%EC%B9%B4%EC%B9%B4%EC%98%A4%EA%B0%99%EC%9D%B4%EA%B0%80%EC%B9%98"
+                    class="btn_set link_set" target="_blank">
+                    <span class="ico_social social_on ico_kakaotalk"></span
+                      ><strong class="txt_set">카카오톡으로 소식 받기</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://story.kakao.com/ch/k_together" class="btn_set link_set" target="_blank">
+                      <span class="ico_social social_on ico_kakaostory"></span>
+                      <strong class="txt_set">카카오스토리 페이지 가기</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/kakao.together" class="btn_set link_set" target="_blank">
+                      <span class="ico_social social_on ico_facebook"></span>
+                      <strong class="txt_set">페이스북 페이지 가기</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/together_kakao" class="btn_set link_set"target="_blank">
+                      <span class="ico_social social_on ico_instagram"></span>
+                      <strong class="txt_set">인스타그램 페이지 가기</strong>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 모금함이 이미 있는경우 탈퇴 시도시 등장하는 모달 -->
+        <!-- <modal>
+          <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF" style="position: fixed; display: none; top: 25%; margin-left: -192px;">
+            <modal-content>
+              <div class="inner_together_layer inner_together_layer8">
+                <div class="layer_body">
+                  <p class="desc_together">
+                    <span class="txt_desc">현재 진행 중인 모금함이 있어 탈퇴가 불가능합니다.<br>
+                      모금함을 삭제하시거나, 고객센터를 통해<br>
+                      모금함 담당자 변경 후 탈퇴해주세요.
+                    </span>
+                  </p>
+                  <a class="link_together" href="https://cs.kakao.com/requests?category=204&amp;locale=ko&amp;service=72">고객센터 문의하기</a>
+                  <div class="wrap_btn wrap_btn_type">
+                    <button class="btn_set btn_type1"> 확인 </button>
+                  </div>
+                </div>
+                <div class="layer_foot">
+                  <button type="button" class="btn_close">
+                    <span class="ico_together">닫기</span>
+                  </button>
+                </div>
+              </div>
+            </modal-content>
+          </div>
+        </modal>
+        <modal>
+          <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF" style="position: fixed; display: none; top: 25%; margin-left: -192px;">
+            <modal-content>
+              <div class="inner_together_layer inner_together_layer8">
+                <div class="layer_body">
+                  <p class="desc_together">
+                    <span class="txt_desc">마스터로 등록된 프로젝트 팀이 있습니다.<br>
+                      마스터 권한을 위임하시거나,<br>
+                      프로젝트 팀 운영을 종료하셔야 탈퇴가 가능합니다.
+                    </span>
+                  </p>
+                  <a class="link_together"  href="https://cs.kakao.com/requests?category=204&amp;locale=ko&amp;service=72">고객센터 문의하기</a>
+                  <div class="wrap_btn wrap_btn_type">
+                    <button class="btn_set btn_type1"> 확인 </button>
+                  </div>
+                </div>
+                <div class="layer_foot">
+                  <button type="button" class="btn_close">
+                    <span class="ico_together">닫기</span>
+                  </button>
+                </div>
+              </div>
+            </modal-content></div>
+        </modal> -->
+      </ng-component>
+    </span>
+  </div>
+</body>
+
+</html>
