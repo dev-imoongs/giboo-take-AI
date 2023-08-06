@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/css/common.css" />
+    <link rel="stylesheet" href="../../static/css/header/header.css" />
+    <link rel="stylesheet" href="../../static/css/header/header-media.css" />
+    <title>header</title>
+  </head>
+  <body>
+    <header id="header" class="header-base">
+      <div class="header-inner">
+        <!-- 로고 -->
+        <h1 class="logo">
+          <a href="" class="logo-link"></a>
+        </h1>
+        <!-- 반응형 돋보기-->
+        <a href="" class="mobile-nav-item mobile-search-link">
+          <div aria-hidden="true">
+            <svg class="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+              <g fill="#202020" fill-rule="nonzero">
+                <path d="M18 3c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15C3 9.716 9.716 3 18 3zm0 3C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"></path>
+                <path d="M26.94 27.05a1.5 1.5 0 0 1 2.007-.103l.114.103 9.434 9.435a1.5 1.5 0 0 1-2.007 2.224l-.114-.103-9.435-9.434a1.5 1.5 0 0 1 0-2.122z"></path>
+              </g>
+            </svg>
+          </div>
+        </a>
+        <!-- 반응형 사이드바 버튼 -->
+        <button type="button" class="mobile-nav-item mobile-menu-button">
+          <svg class="mobile-menu-button-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <g transform="translate(2 5)" fill="#22272b" fill-rule="evenodd">
+              <rect width="36" height="3" rx="1.5"></rect>
+              <rect y="14" width="36" height="3" rx="1.5"></rect>
+              <rect y="27" width="36" height="3" rx="1.5"></rect>
+            </g>
+          </svg>
+          <!-- 로그인 후 알림 -->
+          <span class="mobile-menu-new-badge">1</span>
+        </button>
+        <!-- 사이드바 오픈 class open추가하여 조정하기-->
+        <div class="side-menu-drawer">
+          <div class="drawer-container">
+            <div class="drawer-body">
+              <!-- 로그인 전 -->
+              <button class="side-menu-login-button">
+                <span class="side-menu-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
+                <span class="side-menu-user-info">
+                  <strong class="login-text">로그인</strong>
+                </span>
+              </button>
+              <!-- 로그인 후 -->
+              <a href="" class="side-menu-user-link">
+                <span class="side-menu-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
+                <div class="side-menu-user-info">
+                  <strong class="side-menu-user-nickname">*****</strong>
+                  <span class="side-menu-user-text">댓글만 써도 기부가 돼요!</span>
+                </div>
+              </a>
+              <ul class="side-user-menu-list">
+                <!-- 로그인 전에는 모금제안만 보여주기(나머지 li제거됨)-->
+                <li class="side-menu-link-list">
+                  <a href="" class="side-menu-user-link">알림
+                    <span class="side-menu-new-badge">1</span>
+                  </a>
+                </li>
+                <li class="side-menu-link-list">
+                  <a href="" class="side-menu-user-link">마이페이지</a>
+                </li>
+                <li class="side-menu-link-list">
+                  <a href="" class="side-menu-user-link">모금 제안</a>
+                </li>
+              </ul>
+              <!-- 사이드바 item container -->
+              <nav class="side-container">
+                <ul class="side-menu-item-list">
+                  <li class="side-menu-item">
+                    <a class="side-menu-item-link">
+                      <i class="side-menu-item-icon item1"></i>
+                      같이기부
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item2"></i>
+                      모두의행동
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item3"></i>
+                      안녕지수
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item4"></i>
+                      Big 5 진단
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item5"></i>
+                      프로모션
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item6"></i>
+                      나눔캠페인
+                    </a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item7"></i>
+                      마음챙김</a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item8"></i>
+                      힐링사운드</a>
+                  </li>
+                  <li class="side-menu-item">
+                    <a href="" class="side-menu-item-link">
+                      <i class="side-menu-item-icon item9"></i>
+                      같이툰
+                    </a>
+                  </li>
+                </ul>
+                <ul class="side-submenu-list">
+                  <li
+                    class="side-submenu-item">
+                    <a href="" class="submenu-item-link">공지사항</a>
+                  </li>
+                  <li
+                    class="side-submenu-item">
+                    <a href="" class="submenu-item-link">매거진</a>
+                  </li>
+                  <li
+                    class="side-submenu-item">
+                    <a href="" class="submenu-item-link">about 같이가치</a>
+                  </li>
+                  <li
+                    class="side-submenu-item">
+                    <a href="" class="submenu-item-link">고객지원</a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- 로그인 전 -->
+              <div class="side-menu-addition-container">
+                <span class="side-menu-addition-text">
+                  댓글, 응원, 공유하면 카카오가
+                  <br> 
+                  대신 기부
+                </span>
+                <a href="" class="side-menu-link-button">지금참여!</a>
+              </div>
+              <!-- 로그인 후 -->
+              <div class="side-menu-addition-container">
+                <span class="side-menu-addition-text">
+                  카카오같이가치 소식을
+                  <br>
+                  가장 먼저 받아보세요!
+                </span>
+                <button type="button" class="side-menu-channel-button">
+                  <svg class="channel-button-svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 18">
+                    <g fill="#000" fill-rule="evenodd">
+                      <path d="M13.771 10.93h-1.13V8.38c0-.588-.34-.903-.866-.903-.587 0-.963.36-.963 1.087v2.366h-1.13V4.692h1.13v2.346c.271-.411.71-.613 1.304-.613.482 0 .876.158 1.182.482.316.324.473.763.473 1.332v2.691zm-8.12-1.064c.833 0 1.546-.5 1.76-1.271h1.232c-.3 1.485-1.455 2.458-2.992 2.458-1.787 0-3.203-1.334-3.203-3.19 0-1.857 1.416-3.191 3.203-3.191 1.553 0 2.714.993 3.001 2.503H7.424c-.187-.821-.925-1.333-1.773-1.333-1.201 0-2 .858-2 2.02 0 1.163.908 2.004 2 2.004zM8.5 0C3.805 0 0 3.524 0 7.871c0 3.21 1.343 4.743 3.183 6.14l.009.004v3.768c0 .178.202.28.345.174L6.76 15.56l.07.03c.54.1 1.098.152 1.67.152 4.694 0 8.5-3.524 8.5-7.87C17 3.523 13.194 0 8.5 0zM26 7.07h-2.57V4.5h-1.86v2.57H19v1.86h2.57v2.57h1.86V8.93H26z"></path>
+                    </g>
+                  </svg>
+                  <span class="channel-button-text">채널추가</span>
+                </button>
+              </div>
+              <button type="button" class="side-menu-logout-button">로그아웃</button>
+              <button type="button" class="side-menu-close-button">
+                <svg class="side-menu-close-svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+                  <path d="M29.37.41a1.5 1.5 0 0 1 2.12 0l.1.1a1.5 1.5 0 0 1 0 2.12L18.22 16l13.37 13.37a1.5 1.5 0 0 1 0 2.12l-.1.1a1.5 1.5 0 0 1-2.12 0L16 18.22 2.63 31.59a1.5 1.5 0 0 1-2.007.103L.51 31.59l-.099-.1a1.5 1.5 0 0 1 0-2.12L13.78 16 .41 2.63a1.5 1.5 0 0 1 0-2.12l.1-.1a1.5 1.5 0 0 1 2.12 0L16 13.78z" fill="#202020" fill-rule="evenodd">
+                  </path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="drawer-layer"></div>
+        </div>
+        <!-- 사이드바 끝 -->
+
+        <!-- 헤더메뉴 -->
+        <nav class="menu">
+          <ul class="menu-list">
+            <li class="list-item-container home">
+              <a href="" class="menu-item-link">홈</a>
+            </li>
+            <li class="list-item-container header-menu">
+              <a href="" class="menu-item-link"
+                >늘해랑
+                <!-- 메뉴알림뱃지 핑크닷-->
+                <i class="new-badge"></i>
+              </a>
+            </li>
+            <li class="list-item-container header-menu">
+              <a href="" class="menu-item-link">늘하장</a>
+            </li>
+            <li class="list-item-container header-menu">
+              <a href="" class="menu-item-link">소개</a>
+            </li>
+            <li class="list-item-container header-menu">
+              <a href="" class="menu-item-link">공지사항</a>
+            </li>
+            <li class="list-item-container header-menu more">
+              <button class="more-button">더보기</button>
+              <!-- 더보기 눌렀을 때 메뉴리스트 display로 조정하기-->
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link">프로모션</a>
+                </li>
+                <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link">매거진</a>
+                </li>
+                <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link">about 같이가치</a>
+                </li>
+                <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link">공지사항</a>
+                </li>
+                <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link">고객지원</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="pc-util-menu">
+          <a href="" class="util-button write">작성하기</a>
+          <!-- 로그인 후 없어짐 아래 div활성화-->
+          <a href="" class="util-button login">로그인</a>
+          <!-- 로그인 후 활성화 div -->
+          <div class="pc-user-util-menu">
+            <!-- 로그인 후 button태그 생성 -->
+            <button type="button" class="pc-user-button">
+              <span class="pc-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
+              <span class="pc-new-badge">1</span>
+            </button>
+            <ul class="pc-user-sub-menu">
+              <li class="pc-user-sub-menu-list">
+                <a href="" class="pc-user-sub-menu-link">알림</a>
+              </li>
+              <li class="pc-user-sub-menu-list">
+                <a href="" class="pc-user-sub-menu-link">마이페이지</a>
+              </li>
+              <li class="pc-user-sub-menu-list">
+                <a href="" class="pc-user-sub-menu-link">설정</a>
+              </li>
+              <li class="pc-user-sub-menu-list">
+                <button class="logout-button">
+                  로그아웃
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- pc돋보기 -->
+        <a href="" class="pc-search-link">
+          <div aria-hidden="true">
+            <svg class="pc-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+              <g fill="#202020" fill-rule="nonzero">
+                <path d="M18 3c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15C3 9.716 9.716 3 18 3zm0 3C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"></path>
+                <path d="M26.94 27.05a1.5 1.5 0 0 1 2.007-.103l.114.103 9.434 9.435a1.5 1.5 0 0 1-2.007 2.224l-.114-.103-9.435-9.434a1.5 1.5 0 0 1 0-2.122z"></path>
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </header>
+  </body>
+</html>
