@@ -27,7 +27,7 @@ body, button, input, select, td, textarea, th {
   color: #444;
 }
 
-#dkWrap {
+#whole-wrap {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,39 +35,29 @@ body, button, input, select, td, textarea, th {
   min-height: 100vh;
   }
 
-#dkHead {
-  left: 0;
-  right: 0;
-  z-index: 99999;
-  box-sizing: border-box;
-  width: 100%;
-  height: 70px;
-  border-bottom: 1px solid #eee;
-  background-color: #124;
-}
 
-#dkContent, #rootContent {
+#main-content, #root-content {
   flex-grow: 1;
   min-height: calc(100vh - (70px + 250px));
 }
 
-#dkContent {
+#main-content {
   position: relative;
   margin: 0 0 -212px;
 }
 
-.cont_mypage #mArticle {
+.cont-mypage #article {
   padding-bottom: 212px;
   padding: 0 0 250px;
 }
 
-.mycmt_cont {
+.mypage-cont {
   width: 700px;
   margin: 0 auto;
   padding-bottom: 90px;
 }
 /* 프로필 */
-.group_profile {
+.group-profile {
   position: relative;
   min-height: 190px;
   padding-top: 34px;
@@ -77,13 +67,14 @@ body, button, input, select, td, textarea, th {
   background-size: 215px 160px;
 }
 /* 프로필 이름 */
-.group_profile .area_name {
+.group-profile .area-name {
   display: inline-block;
   max-width: 550px;
   vertical-align: top;
 }
 
-.group_profile .area_name .txt_name, .group_profile .area_name .txt_nick {
+.group-profile .area-name .txt-name,
+ .group-profile .area-name .txt-nick {
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -91,46 +82,46 @@ body, button, input, select, td, textarea, th {
   font-family: KakaoBig Bold,sans-serif;
 }
 
-.group_profile .area_name .txt_nick {
+.group-profile .area-name .txt-nick {
   max-width: 465px;
   text-overflow: ellipsis;
   word-wrap: normal;
   font-size: 18px;
 }
 
-.group_profile .area_name .txt_name {
+.group-profile .area-name .txt-name {
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
   font-size: 36px;
   line-height: 1.4;
 }
 
-.group_profile .area_name .box_name {
+.group-profile .area-name .box-name {
   display: inline-block;
   position: relative;
   max-width: 465px;
 }
 
 /* 프로필 뱃지 */
-.group_profile .area_thumb {
+.group-profile .area-thumb {
   position: absolute;
   top: 40px;
   right: 40px;
 }
 
-.group_profile .area_thumb .link_badge {
+.group-profile .area-thumb .link-badge {
   position: absolute;
   left: -15px;
   width: 40px;
   height: 40px;
 }
 
-.group_profile .area_thumb .img_thumb {
+.group-profile .area-thumb .img-thumb {
   width: 100%;
   height: 100%;
 }
 
-.group_profile .area_thumb .link_thumb {
+.group-profile .area-thumb .link-thumb {
   display: block;
   overflow: hidden;
   width: 100px;
@@ -141,7 +132,7 @@ body, button, input, select, td, textarea, th {
 
 /* 댓글 목록 */
 /* 댓글 목록 - 댓글 개수 */
-.tit_section {
+.tit-section {
   display: block;
   font-weight: 400;
   font-size: 21px;
@@ -151,55 +142,55 @@ body, button, input, select, td, textarea, th {
   box-sizing: border-box;
 }
 
-.tit_section.section_type6 {
+.tit-section.section-type6 {
   padding-top: 26px;
   font-weight: 400;
   font-size: 24px;
 }
 
-.tit_section .color_g1 {
+.tit-section .color-g1 {
   padding-left: 5px;
   color: #dc287c;
 }
 /* 댓글 목록 - 댓글 디스플레이 */
-.group_commentlist .list_cmt {
+.group-commentlist .list-cmt {
   padding-top: 10px;
   padding-bottom: 17px;
   background-color: #fff;
 }
 
-.group_commentlist .list_cmt li:first-of-type {
+.group-commentlist .list-cmt li:first-of-type {
   padding-top: 30px;
 }
 
-.group_commentlist .list_cmt li {
+.group-commentlist .list-cmt li {
   padding: 35px 0 0;
   background: none;
 }
 
-.group_commentlist .list_cmt .cmt_info {
+.group-commentlist .list-cmt .cmt-info {
   position: relative;
   top: -7px;
   margin-left: 0;
 }
 
-.cmt_type3 .list_cmt .info_append {
+.cmt-type3 .list-cmt .info-append {
   padding-left: 5px;
   display: block;
 }
 
-.cmt_type3 .list_cmt .info_append .emph_sign {
+.cmt-type3 .list-cmt .info-append .emph-sign {
   padding-right: 4px;
   font-size: 14px;
   color: #999;
   font-family: KakaoBig Bold,sans-serif;
 }
 
-.cmt_type3 .list_cmt .link_fund, .cmt_type3 .list_cmt .link_nickname {
+.cmt-type3 .list-cmt .link-fund, .cmt-type3 .list-cmt .link-nickname {
     font-family: KakaoBig Bold,sans-serif;
 }
 
-.group_commentlist .list_cmt .txt_cmt {
+.group-commentlist .list-cmt .txt-cmt {
   margin-top: 5px;
   color: #444;
   padding: 13px 14px 17px;
@@ -210,35 +201,30 @@ body, button, input, select, td, textarea, th {
   display: block;
 }
 
-.list_cmt .txt_cmt .desc_cmt {
+.list-cmt .txt-cmt .desc-cmt {
   display: block;
   line-height: 22px;
   white-space: pre-line;
 }
-/* 이모션 팩은 댓글에 이모티콘 쓰는 기능 없으면 빼도 됨 */
-.list_cmt .txt_cmt .emoticon_pack {
-  display: block;
-  white-space: normal;
-}
-/* /이모션 팩 */
-.cmt_type3 .list_cmt .txt_cmt+.info_append {
+
+.cmt-type3 .list-cmt .txt-cmt+.info-append {
   padding-top: 2px;
   text-align: right;
 }
 
-.cmt_type3 .list_cmt .info_append {
+.cmt-type3 .list-cmt .info-append {
   padding-left: 5px;
   display: block;
 }
 
-.cmt_type3 .list_cmt .txt_time {
+.cmt-type3 .list-cmt .txt-time {
   padding-left: 7px;
   font-size: 14px;
   color: #999;
   float: left;
 }
 
-.list_cmt .btn_like {
+.list-cmt .btn-like {
   overflow: visible;
   position: relative;
   padding-left: 20px;
@@ -246,11 +232,11 @@ body, button, input, select, td, textarea, th {
   vertical-align: 0;
 }
 
-.list_cmt .on.btn_like {
+.list-cmt .on.btn-like {
   color: #444;
 }
 
-.list_cmt .on.btn_like .ico_like {
+.list-cmt .on.btn-like .ico-like {
   background-position: 0 -1609px;
   width: 26px;
   height: 26px;
@@ -264,12 +250,12 @@ body, button, input, select, td, textarea, th {
   animation-iteration-count: 1;
 }
 
-.list_cmt .btn_like .ico_like{
-  background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
-  background-size: 600px 1800px;
+.list-cmt .btn-like .ico-like{
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
+    background-size: 600px 1800px;
 }
 
-.list_cmt .btn_like .ico_like {
+.list-cmt .btn-like .ico-like {
   display: inline-block;
   overflow: hidden;
   position: absolute;
@@ -282,35 +268,35 @@ body, button, input, select, td, textarea, th {
   vertical-align: top;
 }
 
-.list_cmt .btn_like .num_like {
+.list-cmt .btn-like .num-like {
   margin-left: 1px;
   font-family: KakaoBig Bold,sans-serif;
 }
 
-.list_cmt .btn_delete:hover, .list_cmt .btn_report:hover {
+.list-cmt .btn-delete:hover, .list-cmt .btn-report:hover {
   text-decoration: underline;
 }
 
-.list_cmt .btn_delete, .list_cmt .btn_report {
+.list-cmt .btn-delete, .list-cmt .btn-report {
   margin-left: 19px;
   font-size: 14px;
   color: #9f9f9f;
   vertical-align: 0;
 }
 
-.list_cmt .txt_cmt+.info_append:after {
+.list-cmt .txt-cmt+.info-append:after {
   content: "";
   display: table;
   clear: both;
 }
 
 /* 더보기 */
-.list_more {
+.list-more {
   padding: 23px 0 0;
   text-align: center;
 }
 
-.link_round {
+.link-round {
   display: inline-block;
   height: 40px;
   padding: 0 17px;
@@ -323,9 +309,206 @@ body, button, input, select, td, textarea, th {
   vertical-align: top;
 }
 
-.link_round.link_other2 {
+.link-round.link-other2 {
   padding: 0 20px;
   font-size: 15px;
   line-height: 38px;
 }
 
+@media (max-width: 767px){
+  body, html {
+      min-width: 280px;
+  }
+
+  #main-content {
+      margin-bottom: -150px;
+  }
+
+  .cont-mypage #article{
+      padding-bottom: 150px;
+  }
+
+  .mypage-cont {
+      width: auto;
+      padding-bottom: 30px;
+  }
+  /* 유저 프로필 */
+  .group-profile {
+      min-height: 145px;
+      padding: 31px 15px;
+      background: url(https://t1.kakaocdn.net/together_image/m320/bg_mypage.png) 103% 8px no-repeat;
+      background-size: 172px 132px;
+  }
+
+  .group-profile .area-name {
+      max-width: 65%;
+      min-width: 65%;
+  }
+
+  .group-profile .area-name .txt-nick {
+      max-width: 80%;
+      font-size: 14px;
+  }
+
+  .group-profile .area-name .box-name {
+      max-width: 88%;
+  }
+
+  .group-profile .area-name .txt-name {
+      display: -webkit-box;
+      max-height: 62px;
+      white-space: normal;
+      word-wrap: break-word;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: 26px;
+      word-break: break-all;
+      line-height: 1.2;
+  }
+
+  .group-profile .area-thumb {
+      top: 31px;
+      right: 20px;
+  }
+
+  .group-profile .area-thumb .link-badge {
+      width: 30px;
+      height: 30px;
+  }
+
+  .group-profile .area-thumb .link-thumb {
+      width: 80px;
+      height: 80px;
+  }
+
+  .group-profile .area-setting {
+      height: auto;
+      padding-top: 12px;
+  }
+
+  .group-profile .area-setting .link-setting {
+      padding: 0;
+      font-size: 13px;
+  }
+  /* 댓글 목록 */
+  .group-commentlist {
+    margin: 0 14px;
+  }
+
+  .group-commentlist .tit-section.section-type6 {
+    padding-top: 15px;
+  }
+
+  .tit-section.section-type6 {
+    padding-top: 3px;
+    font-size: 18px;
+  }
+
+  .tit-section {
+    padding-left: 0;
+    font-size: 16px;
+  }
+
+  .group-commentlist .list-cmt {
+    padding-top: 20px;
+    padding-bottom: 26px;
+  }
+
+  .group-commentlist .list-cmt li:first-of-type {
+    padding-top: 9px;
+  }
+
+  .group-commentlist .list-cmt li {
+    padding: 17px 0 0;
+  }
+
+  .cmt-type3 .list-cmt li {
+    padding: 15px 0 0;
+  }
+
+  .list-cmt .cmt-info {
+    margin-left: 49px;
+  }
+
+  .cmt-type3 .list-cmt .info-append {
+    padding-left: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .group-commentlist .list-cmt .info-append .emph-sign,
+  .group-commentlist .list-cmt .info-append .link-fund {
+    font-size: 12px;
+  }
+
+  .list-cmt .info-append .emph-sign,
+  .list-cmt .tit-nickname,
+    .list-cmt .txt-money {
+    font-size: 15px;
+  }
+
+  .group-commentlist .list-cmt .txt-cmt {
+    margin-top: 2px;
+  }
+
+  .cmt-type3 .list-cmt .txt-cmt {
+    margin-top: 3px;
+    padding: 9px 12px 12px;
+    border-radius: 5px;
+  }
+
+  .list-cmt .txt-cmt .desc-cmt {
+    line-height: 20px;
+  }
+
+  .cmt-type3 .list-cmt .txt-time {
+    padding-left: 0;
+    font-size: 12px;
+  }
+
+  .list-cmt .txt-time {
+    font-size: 12px;
+  }
+
+  .list-cmt .btn-like {
+    padding-left: 15px;
+    font-size: 12px;
+  }
+
+  .list-cmt .btn-like .ico-like {
+    width: 16px;
+    height: 14px;
+    margin: 3px 3px 0 0;
+    background-position: -246px -1044px;
+  }
+
+  .list-cmt .on.btn-like .ico-like {
+    width: 22px;
+    height: 21px;
+    background-position: -42px -1384px;
+  }
+
+  .list-cmt .btn-like .ico-like {
+    background-image: url(//t1.kakaocdn.net/together_image/m640/ico_together_201008.png);
+    background-size: 290px 1500px;
+  }
+
+  .cmt-type3 .list-cmt .btn-delete,
+  .cmt-type3 .list-cmt .btn-report {
+    margin-right: 2px;
+    margin-left: 9px;
+    font-size: 12px;
+  }
+
+  .list-cmt .btn-delete, .list-cmt .btn-report {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  /* 더보기 */
+  .group-commentlist .list-more {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+
+}

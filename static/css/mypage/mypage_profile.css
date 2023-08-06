@@ -10,6 +10,8 @@ body, button, input, select, td, textarea, th {
 }
 
 button {
+  margin: 0;
+  padding: 0;
   border: 0;
   border-radius: 0;
   background-color: initial;
@@ -29,49 +31,49 @@ a {
   min-height: 100vh;
 }
 
-#dkContent, #rootContent {
+#main-content, #root-content {
   flex-grow: 1;
   min-height: calc(100vh - (70px + 250px));
 }
 
-#dkContent {
+#main-content {
   position: relative;
   margin: 0 0 -212px;
 }
 
-#mArticle {
+#article {
   padding: 0 0 250px;
 }
 
-.wrap_project {
+.wrap-project {
   background-color: #fff;
 }
 
-.wrap_profile .box_cont {
+.wrap-profile .box-cont {
   width: 800px;
 }
 
-.wrap_project .box_cont {
+.wrap-project .box-cont {
   width: 700px;
   margin: 0 auto;
 }
 
-.wrap_profile .box_cont .list_write {
+.wrap-profile .box-cont .list-write {
   margin: 11px 50px 7px;
 }
 
-.wrap_project .box_cont .list_write {
+.wrap-project .box-cont .list-write {
   position: relative;
   margin: 10px 0 26px;
   font-size: 16px;
 }
 
 /* user profile image */
-.wrap_profile .cont_thumb {
+.wrap-profile .cont-thumb {
   margin-top: 55px;
 }
 
-.cont_thumb .file_upload {
+.cont-thumb .file-upload {
   position: relative;
   width: 117px;
   height: 117px;
@@ -81,11 +83,11 @@ a {
   background-color: #fafafa;
 }
 
-.tf_attach {
+.tf-attach {
   display: none;
 }
 
-.cont_thumb .img_thumb {
+.cont-thumb .img-thumb {
   float: left;
   width: 117px;
   height: 117px;
@@ -94,11 +96,11 @@ a {
   border-radius: 100px;
 }
 
-.img_thumb {
+.img-thumb {
   display: block;
 }
 
-.file_upload .lab_photo {
+.file-upload .lab-photo {
   position: absolute;
   top: 0;
   left: 0;
@@ -107,23 +109,23 @@ a {
   border-radius: 100px;
 }
 
-.file_upload .img_thumb+.lab_photo {
+.file-upload .img-thumb+.lab-photo {
   background: none;
 }
 
-.file_upload .img_thumb+.lab_photo .ico_photo {
+.file-upload .img-thumb+.lab-photo .ico-photo {
   margin-top: 76px;
   background-position: -200px -88px;
 }
 
-.file_upload .ico_photo {
+.file-upload .ico-photo {
   width: 30px;
   height: 25px;
   margin: 46px auto 0;
   background-position: -544px -72px;
 }
 
-.ico_together, .ico_together2 {
+.ico-together, .ico-together2 {
   display: block;
   overflow: hidden;
   font-size: 0;
@@ -131,11 +133,16 @@ a {
   text-indent: -9999px;
 }
 
-.ico_together {
+.btn-katalk .ico-katalk {
+  background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
+  background-size: 600px 1800px;
+}
+
+.ico-together {
   background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
 }
 
-.cont_thumb .file_upload .btn_del {
+.cont-thumb .file-upload .btn-del {
   position: absolute;
   top: 11px;
   left: 230px;
@@ -145,12 +152,8 @@ a {
   text-decoration: underline;
 }
 
-/* 카카오톡 프로필 정보 불러오기 - 정보 입력란*/
-.wrap_profile .list_write dt {
-  width: 150px;
-}
-
-.box_cont .list_write dt {
+/* 카카오톡 프로필 정보 불러오기 - 닉네임*/
+.box-cont .list-write dt {
   position: absolute;
   left: 0;
   width: 170px;
@@ -158,26 +161,30 @@ a {
   font-family: KakaoBig Bold,sans-serif;
 }
 
-.wrap_profile .list_write .item_btn {
+.wrap-profile .list-write dt {
+  width: 150px;
+}
+
+.wrap-profile .list-write .item-btn {
   padding: 10px 190px 45px;
 }
 
-.wrap_profile .list_write dd {
-  padding-left: 150px;
-}
-
-.box_cont .list_write dd {
+.box-cont .list-write dd {
   position: relative;
   min-height: 44px;
   padding: 26px 0 20px 170px;
 }
 
-.wrap_profile .btn_katalk,
-.wrap_profile .btn_step_type .link_step {
+.wrap-profile .list-write dd {
+  padding-left: 150px;
+}
+
+.wrap-profile .btn-katalk,
+.wrap-profile .btn-step-type .link-step {
   width: 100%;
 }
 
-.btn_katalk {
+.btn-katalk {
   display: block;
   position: relative;
   width: 345px;
@@ -189,7 +196,7 @@ a {
   text-align: center;
 }
 
-.btn_katalk .ico_katalk {
+.btn-katalk .ico-katalk {
   display: inline-block;
   width: 44px;
   height: 44px;
@@ -198,17 +205,17 @@ a {
   vertical-align: middle;
 }
 
-.box_cont .list_write .group_tf {
+.box-cont .list-write .group-tf {
   overflow: hidden;
   position: relative;
 }
 
-.box_cont .list_write .tf_write {
+.box-cont .list-write .tf-write {
   width: 100%;
   border-radius: 2px;
 }
 
-.tf_write {
+.tf-write {
   float: left;
   height: 44px;
   padding: 9px 13px;
@@ -221,7 +228,7 @@ a {
   outline: none;
 }
 
-.box_cont .list_write .info_append {
+.box-cont .list-write .info-append {
   position: absolute;
   top: -1px;
   right: 0;
@@ -230,6 +237,937 @@ a {
   color: #959595;
 }
 
-.box_cont .info_append .txt_num {
+.box-cont .info-append .txt-num {
   color: #444;
+}
+
+.wrap-profile .bg-dashline {
+  width: 700px;
+  margin: 0 auto;
+  height: 1px;
+  background: url(//t1.kakaocdn.net/together_image/common/bg_line.png) repeat-x 0 0;
+}
+
+/* 정보 입력란 */
+/* 연락처, 이메일 */
+.phone-item .btn-number {
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.btn-number {
+  display: block;
+  height: 44px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 43px;
+  color: #444;
+}
+
+.wrap-profile .phone-item .box-output {
+  min-width: 99px;
+}
+
+.phone-item .box-output {
+  line-height: 43px;
+}
+
+.phone-item .box-output, .phone-item .btn-modify {
+  display: inline-block;
+  height: 44px;
+  font-size: 16px;
+  color: #444;
+  vertical-align: top;
+}
+
+.phone-item .btn-modify {
+  float: none;
+  width: 96px;
+  margin-left: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  line-height: 44px;
+  box-sizing: border-box;
+}
+
+.phone-item .btn-del {
+  display: inline-block;
+  margin: 11px 0 0 30px;
+  font-size: 16px;
+  color: #444;
+  text-decoration: underline;
+  vertical-align: top;
+}
+
+/* 연락처 입력 모달 */
+/* element.style {
+  position: fixed;
+  display: block;
+  top: 25%;
+  margin-left: -192px;
+} */
+
+.ngdialog-content {
+  overflow: hidden;
+  position: absolute;
+  z-index: 999999;
+  top: 50%;
+  left: 50%;
+}
+
+.inner-together-layer2 {
+  width: 392px;
+}
+
+.inner-together-layer {
+  background-color: #fff;
+}
+
+.inner-together-layer .write-phone {
+  margin: 0 22px 28px;
+  padding-top: 53px;
+  background: #fff;
+}
+
+.inner-together-layer .wrap-phone {
+  margin: 0 22px 20px;
+  padding-top: 28px;
+  background: url(//t1.kakaocdn.net/together_image/common/bg_line.png) repeat-x 0 0;
+}
+
+.inner-together-layer .wrap-phone .list-write {
+  margin: 0;
+}
+
+.inner-together-layer .write-phone dt {
+  width: auto;
+  padding-bottom: 20px;
+  line-height: 28px;
+}
+
+.inner-together-layer .wrap-phone dt {
+  position: static;
+  margin-top: 0;
+  padding-bottom: 22px;
+  font-size: 16px;
+  color: #626262;
+}
+
+.inner-together-layer .list-write dd {
+  position: relative;
+  padding: 0;
+}
+
+.inner-together-layer .wrap-phone .info-phone {
+  height: 44px;
+}
+
+.inner-together-layer .wrap-phone .info-phone .group-tf:first-child {
+  width: 60px;
+}
+
+.inner-together-layer .wrap-phone .info-phone .group-tf {
+  width: 120px;
+}
+
+.inner-together-layer .wrap-phone .group-tf {
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.inner-together-layer .wrap-phone .list-write .tf-write {
+  width: 100%;
+}
+
+.inner-together-layer .wrap-phone .dash-among .inner-among {
+  width: 11px;
+  height: 2px;
+  margin: 20px 6px 0 7px;
+}
+
+.inner-together-layer .wrap-phone .btn-certify {
+  width: 100%;
+  height: 44px;
+  margin: 12px 0;
+  border: 1px solid #ea7eb0;
+  border-radius: 2px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #dc287c;
+  background-color: #fdf4f8;
+  box-sizing: border-box;
+}
+
+.inner-together-layer .wrap-phone .group-tf .txt-lab {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #cacaca;
+  cursor: text;
+}
+
+.inner-together-layer .write-phone+.wrap-btn-type {
+  margin: 0 22px;
+}
+
+.inner-together-layer2 .wrap-btn-type {
+  overflow: hidden;
+}
+
+.inner-together-layer .wrap-btn-type {
+  margin: 0 30px;
+}
+
+.inner-together-layer .wrap-btn {
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.inner-together-layer .wrap-btn-type .btn-set:last-child {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.inner-together-layer2 .wrap-btn .btn-set {
+  text-align: center;
+}
+
+.inner-together-layer .wrap-btn-type .btn-set {
+  width: 100%;
+  margin: 0 0 12px;
+}
+
+.inner-together-layer .wrap-btn .btn-type1 {
+  background-color: #dc287c;
+}
+
+.inner-together-layer .wrap-btn .btn-set {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  height: 48px;
+  margin: 0 4px;
+  vertical-align: top;
+  color: #fff;
+  font-size: 16px;
+  line-height: 49px;
+}
+/* 모달 띄울때 주변 opacity 조절 */
+.dimmed-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  background-color: #000;
+  opacity: .3;
+  filter: alpha(opacity=30);
+}
+
+/* 나이, 지역*/
+.pack-select {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.pack-select .box-select:first-of-type {
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+.pack-select .box-select {
+  float: left;
+  width: 230px;
+  padding-left: 4px;
+  box-sizing: border-box;
+}
+
+.opt-comm {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  font-size: 12px;
+  line-height: 44px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.opt-comm .opt-select, .opt-comm .select-option {
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.opt-comm .select-option {
+  overflow: hidden;
+  right: 0;
+  margin: 0 30px 0 12px;
+  padding: 0;
+  line-height: 44px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.group-schproject .opt-comm .box-arrow,
+ .opt-comm .opt-select {
+  height: 100%;
+}
+
+.opt-comm .opt-select {
+  display: block;
+  z-index: 10;
+  top: 0;
+  height: 44px;
+  width: 100%;
+  border: 0;
+  background: none;
+  -webkit-appearance: none;
+  opacity: .01;
+  filter: alpha(opacity=0);
+}
+
+.opt-comm .box-arrow {
+  position: absolute;
+  right: 0;
+  width: 29px;
+  height: 44px;
+  background-color: #fff;
+}
+
+.opt-comm .ico-arrow {
+  width: 12px;
+  height: 8px;
+  margin: 17px 0 0 7px;
+  background-position: -236px -116px;
+}
+/* 성별 */
+.group-gender {
+  overflow: hidden;
+  width: 551px;
+}
+
+.choice-btn:first-child {
+  width: 181px;
+  margin-left: 0;
+}
+
+.choice-btn:nth-child(2) {
+  width: 178px;
+}
+
+.choice-btn:nth-child(3) {
+  width: 195px;
+}
+
+.choice-btn {
+  float: left;
+  margin: 0 -1px;
+}
+
+.choice-comm {
+  display: block;
+  position: relative;
+}
+
+.choice-comm .inp-comm {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  outline: none;
+  opacity: .01;
+  filter: alpha(opacity=1);
+}
+
+.group-tf .choice-comm.choice-btn .lab-comm {
+  padding: 0;
+}
+
+.choice-btn .inp-comm:checked+.lab-comm {
+  position: relative;
+  z-index: 1;
+  border-color: #dc287c;
+  color: #fff;
+  background-color: #dc287c;
+}
+
+.list-write .choice-comm .lab-comm {
+  padding: 0 0 0 42px;
+}
+
+.choice-btn:first-child .lab-comm {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.choice-comm .lab-comm {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 34px;
+  color: #959595;
+  vertical-align: top;
+}
+
+.choice-btn .lab-comm {
+  display: block;
+  height: 44px;
+  border: 1px solid #e0e0e0;
+  line-height: 45px;
+  color: #444;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.wrap-project .box-cont:after {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  content: "";
+}
+
+/* 약관 동의 */
+.policy-regs {
+  padding: 0;
+}
+
+.box-cont .policy-regs dt, .policy-regs dt {
+  margin-top: 36px;
+}
+
+.policy-regs .info-policy:first-of-type {
+  padding-top: 36px;
+}
+
+.policy-regs .info-policy .choice-comm {
+  margin-top: 0;
+}
+
+.info-policy .btn-view, .info-policy .choice-comm {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.choice-checkbox .ico-checkbox {
+  background-position: -311px -71px;
+}
+
+.choice-checkbox .inp-comm:checked+.lab-comm .ico-checkbox,
+ .choice-checkbox .lab-comm .ico-choiced {
+  background-position: -275px -71px;
+}
+
+.choice-checkbox .lab-comm {
+  padding-left: 44px;
+  color: #444;
+}
+
+.choice-comm .ico-together {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+}
+
+.choice-comm .ico-together {
+  background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
+  background-size: 600px 1800px;
+}
+
+.emph-color {
+  color: #429ce1!important;
+}
+
+.info-policy .btn-view {
+  margin-left: 7px;
+  font-size: 16px;
+  line-height: 34px;
+  color: #dc287c;
+  text-decoration: underline;
+}
+
+.info-policy .btn-view:hover {
+  text-decoration: none;
+}
+
+.info-policy .btn-view, .info-policy .choice-comm {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.group-tf .ico-warn, .ico-warn {
+  display: none;
+}
+
+/* 내용보기 펼쳐짐 */
+.info-policy .area-policy {
+  display: none;
+  width: 100%;
+  clear: both;
+}
+
+.info-policy .open-policy {
+  display: block;
+  padding-bottom: 20px;
+}
+
+
+.info-policy .txt-effort {
+  display: block;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #444;
+  clear: both;
+}
+
+.info-policy .box-policy {
+  margin-top: 16px;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+}
+
+.info-policy .box-policy .tit-policy:first-child {
+  border-top: 0;
+}
+
+.info-policy .box-policy .tit-policy {
+  display: block;
+  padding: 10px 16px;
+  border-top: 1px solid #e0e0e0;
+  font-weight: 400;
+  font-size: 13px;
+  color: #444;
+  background-color: #fafafa;
+}
+
+.info-policy .box-policy .desc-policy {
+  padding: 11px 16px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 13px;
+  line-height: 22px;
+  color: #626262;
+}
+
+.info-policy .txt-policy {
+  display: block;
+  padding-top: 7px;
+  font-size: 13px;
+  line-height: 22px;
+  color: #959595;
+}
+
+.info-policy .link-policy {
+  display: inline-block;
+  border-bottom: 1px solid #dc287c;
+  line-height: 14px;
+  color: #dc287c;
+  vertical-align: initial;
+}
+
+.wrap-project .box-cont:after {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  content: "";
+}
+
+/* 저장하기 버튼 */
+.wrap-profile .btn-step-type {
+  width: 700px;
+  margin: 40px auto 60px;
+  overflow: hidden;
+}
+
+.btn-step-type .link-step {
+  display: block;
+  width: 395px;
+  height: 60px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 60px;
+  color: #fff;
+  background-color: #dc287c;
+  text-align: center;
+  border-radius: 5px;
+}
+/* 미디어 쿼리 */
+@media (max-width: 767px){
+body, html {
+    min-width: 280px;
+}
+
+#main-content {
+  margin-bottom: -150px;
+}
+
+#article {
+  padding: 0 0 200px;
+}
+
+.wrap-profile .cont-thumb {
+  margin-top: 30px;
+}
+
+.cont-thumb .file-upload,
+.file-upload .btn-photo,
+ .file-upload .lab-photo {
+  width: 94px;
+  height: 94px;
+}
+
+.img-thumb {
+  width: 100%;
+}
+
+.cont-thumb .img-thumb {
+  float: none;
+  width: 94px;
+  height: 94px;
+}
+
+.wrap-profile .cont-thumb .file-upload,
+ .wrap-profile .cont-thumb .img-thumb,
+  .wrap-profile .file-upload .btn-photo,
+   .wrap-profile .file-upload .lab-photo {
+  width: 80px;
+  height: 80px;
+}
+
+.wrap-profile .file-upload .ico-photo {
+  width: 21px;
+  height: 18px;
+  margin-top: 31px;
+  background-position: -96px -232px;
+}
+
+.file-upload .img-thumb+.lab-photo .ico-photo {
+  margin-top: 60px;
+  background-position: -70px -232px;
+}
+
+.wrap-profile .file-upload .img-thumb+.lab-photo .ico-photo {
+  margin-top: 52px;
+  background-position: -118px -232px;
+}
+
+.ico-together,
+.btn-katalk .ico-katalk,
+.choice-comm .ico-together {
+  background-image: url(//t1.kakaocdn.net/together_image/m640/ico_together_201008.png);
+  background-size: 290px 1500px;
+
+}
+
+.cont-thumb .file-upload .btn-del {
+  top: 4px;
+  left: 143px;
+  margin: 0 -50px;
+  font-size: 14px;
+}
+
+.wrap-profile .box-cont {
+  width: 100%;
+}
+
+.wrap-project .box-cont .list-write {
+  margin-bottom: 23px;
+}
+
+.wrap-profile .box-cont .list-write {
+  margin: 9px 0 5px;
+}
+
+.box-cont .list-write dd {
+  min-height: 40px;
+  padding: 10px 0 21px;
+}
+
+.wrap-profile .list-write dd
+, .wrap-profile .list-write dd.phone-item {
+  padding: 10px 17px 14px 100px;
+}
+
+.wrap-profile .list-write .item-btn {
+  margin: 0 9px;
+  padding: 17px 0 25px;
+}
+
+.wrap-profile .btn-katalk {
+  width: 100%;
+  height: 44px;
+  font-size: 14px;
+  line-height: 44px;
+}
+
+.btn-katalk .ico-katalk {
+  width: 33px;
+  height: 33px;
+  margin-right: 5px;
+  background-position: -226px -184px;
+}
+
+.box-cont .list-write dt {
+  position: static;
+  width: auto;
+  margin: 0 0 -2px 12px;
+  font-size: 14px;
+}
+
+.wrap-profile .list-write dt {
+  position: absolute;
+  width: auto;
+  margin-left: 17px;
+  margin-top: 17px;
+}
+
+.wrap-profile .box-cont .list-write .group-tf {
+  margin: 0 auto;
+}
+
+.tf-write {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  padding: 9px 9px 11px;
+}
+
+.box-cont .list-write .info-append {
+  top: -10px;
+  right: 11px;
+  font-size: 12px;
+  right: 17px;
+}
+
+.wrap-profile .bg-dashline {
+  width: auto;
+}
+
+.btn-number {
+  height: 40px;
+  font-size: 14px;
+  line-height: 39px;
+}
+
+.wrap-profile .list-write .btn-number {
+  margin-top: 0;
+}
+
+.phone-item .box-output {
+  height: 40px;
+  margin-left: 0;
+  font-size: 14px;
+  line-height: 37px;
+}
+
+.wrap-profile .phone-item .box-output {
+  font-size: 11px;
+}
+
+.phone-item .btn-modify {
+  width: 62px;
+  height: 40px;
+  margin-left: 18px;
+  font-size: 14px;
+  line-height: 39px;
+}
+
+.phone-item .btn-del {
+  margin: 10px 0 0 8px;
+  font-size: 14px;
+}
+
+.wrap-profile .list-write .pack-select {
+  margin-bottom: -4px;
+}
+
+.pack-select .box-select {
+  float: none;
+  width: 100%;
+  padding: 0;
+}
+
+.pack-select .box-select:first-of-type {
+  padding: 0;
+}
+
+.opt-comm {
+  height: 40px;
+  border-radius: 3px;
+  -webkit-border-radius: 2px;
+}
+
+.opt-comm .select-option {
+  margin-right: 23px;
+  font-size: 14px;
+  color: #444;
+  line-height: 39px;
+}
+
+.opt-comm .opt-select {
+  padding: 0 26px 0 10px;
+  font-size: 14px;
+}
+
+.group-schproject .opt-comm .box-arrow,
+ .opt-comm .opt-select {
+  height: 100%;
+}
+
+.opt-comm .box-arrow {
+  height: 40px;
+  background: none;
+}
+
+.opt-comm .ico-arrow {
+  top: 15px;
+  right: 9px;
+  width: 10px;
+  height: 7px;
+  margin-top: 15px;
+  background-position: -132px -342px;
+}
+
+.group-gender {
+  width: auto;
+}
+
+.choice-btn:first-child,
+ .choice-btn:nth-child(2),
+  .choice-btn:nth-child(3) {
+  width: 33.5%;
+}
+
+.choice-comm .lab-comm {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.choice-btn .lab-comm {
+  height: 40px;
+  line-height: 41px;
+}
+
+.pack-select.select-type2 .box-select:first-of-type {
+  padding-right: 3px;
+}
+
+.pack-select.select-type2 .box-select {
+  float: left;
+  width: 50%;
+  padding-left: 2px;
+}
+
+.wrap-profile .box-cont .policy-regs {
+  margin: 0 8px;
+}
+
+.list-write.policy-regs dt {
+  display: block;
+  position: static;
+  margin: 0;
+  padding: 24px 0 0 16px;
+  font-size: 15px;
+}
+
+.list-write .info-policy {
+  margin: 0 9px;
+}
+
+.policy-regs .info-policy:first-of-type {
+  padding: 15px 0 0 0;
+  min-height: auto;
+}
+
+.info-policy .choice-comm {
+  display: inline-block;
+  min-height: 22px;
+  margin-top: 0;
+}
+
+.list-write .choice-comm .lab-comm {
+  padding: 1px 0 0 28px;
+}
+
+.choice-checkbox .ico-checkbox {
+  width: 22px;
+  height: 22px;
+  background-position: -220px -20px;
+}
+
+.choice-checkbox .inp-comm:checked+.lab-comm .ico-checkbox {
+  background-position: -245px -20px;
+}
+
+.policy-regs .info-policy .emph-color {
+  padding-top: 0;
+  padding-left: 0;
+  font-size: 14px;
+}
+
+.info-policy .btn-view {
+  margin: -1px 0 0 6px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.info-policy .open-policy {
+  padding-bottom: 15px;
+}
+
+.info-policy .txt-effort {
+  font-size: 14px;
+  color: #626262;
+}
+
+.info-policy .box-policy {
+  font-size: 15px;
+}
+
+.info-policy .box-policy .desc-policy {
+  padding: 10px 9px 12px;
+  line-height: 22px;
+}
+
+.info-policy .txt-policy {
+  padding: 10px 9px 12px;
+}
+
+.wrap-profile .btn-step-type {
+  width: auto;
+  margin-top: 25px;
+  margin-bottom: 0;
+  padding: 0 9px;
+}
+
+.btn-step-type .link-step {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  line-height: 51px;
+  border-radius: 0;
+}
+
 }

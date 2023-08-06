@@ -10,68 +10,78 @@
 <body>
   <div id="whole-wrap">
     <header></header>
-    <main id="rootContent">
+    <main id="root-content">
       <section-component>
-        <div id="dkContent" class="cont_declare">
-          <div id="mArticle">
-            <div class="wrap_project wrap_profile">
-              <div class="cont_thumb">
-                <div class="file_upload">
-                  <img profileimagecheck="" alt="프로필" class="img_thumb" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar01.png">
-                  <label class="lab_photo">
-                    <span class="ico_together ico_photo">사진첨부</span>
+        <div id="main-content">
+          <div id="article">
+            <div class="wrap-project wrap-profile">
+              <div class="cont-thumb">
+                <div class="file-upload">
+                  <img alt="프로필" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">
+                  <label class="lab-photo">
+                    <span class="ico-together ico-photo">사진첨부</span>
                   </label>
                   <!-- 이미지가 업로드 되지 않은 상태면 display:none; -->
-                  <button type="button" class="btn_del">
+                  <button type="button" class="btn-del">
                     삭제 
                   </button>
                   <!-- /이미지가 업로드 되지 않은 상태면 display:none; -->
                 </div>
-                <input type="file" id="profileInput" class="tf_attach" accept="image/*">
+                <input type="file" id="profileInput" class="tf-attach" accept="image/*">
               </div>
-              <div class="box_cont">
-                <dl class="list_write">
-                  <dd class="item_btn">
-                    <button type="button" class="btn_katalk">
-                      <span class="ico_together ico_katalk">
+              <div class="box-cont">
+                <dl class="list-write">
+                  <dd class="item-btn">
+                    <button type="button" class="btn-katalk">
+                      <span class="ico-together ico-katalk">
                       </span>카카오톡 프로필 정보 불러오기 
                     </button>
                   </dd>
                   <dt>닉네임</dt>
                   <dd>
-                    <div class="group_tf">
-                      <input classoutline="" type="text" id="subTitle" maxlength="20" class="tf_write ng-untouched ng-pristine ng-valid">
+                    <!-- input 클릭 하면 tf_active class 생기고 입력이 가능하게 됨 -->
+                    <div class="group-tf">
+                      <input classoutline="" type="text" id="subTitle" maxlength="20" class="tf-write ">
                     </div>
-                    <div class="info_append">
-                      <span class="txt_num">3/</span>
+                    <div class="info-append">
+                      <!-- 닉네임 글자수 맞춰서 텍스트에 넣어줘야함 -->
+                      <span class="txt-num">0/</span>
                       20 
                     </div>
                   </dd>
-                  <div class="bg_dashline"></div>
+                  <div class="bg-dashline"></div>
                   <profile-edit>
                     <dt> 연락처 </dt>
-                    <dd class="phone_item">
-                      <div class="group_tf">
-                        <div class="box_output"> 01029237309 </div>
-                        <button type="button" class="btn_modify"> 변경 </button>
-                        <button type="button" class="btn_del"> 삭제 </button>
+                    <!-- 연락처가 입력되어 있지 않을경우 -->
+                    <dd class="phone-item">
+                      <div class="group-tf">
+                        <button type="button" class="btn-number"> 휴대폰 번호 입력 </button>
+                      </div>
+                    </dd>
+                    <!-- 연락처가 입력되어있을경우 -->
+                    <dt> 연락처 </dt>
+                    <dd class="phone-item">
+                      <div class="group-tf">
+                        <div class="box-output"> 01000000000 </div>
+                        <button type="button" class="btn-modify"> 변경 </button>
+                        <button type="button" class="btn-del"> 삭제 </button>
                       </div>
                     </dd>
                     <dt> 이메일 </dt>
-                    <dd class="phone_item">
-                      <div class="group_tf">
-                        <div class="box_output"> b7309@naver.com </div>
-                        <button type="button" class="btn_modify"> 변경 </button>
+                    <dd class="phone-item">
+                      <div class="group-tf">
+                        <div class="box-output"> ****@naver.com </div>
+                        <button type="button" class="btn-modify"> 변경 </button>
                       </div>
                     </dd>
                     <dt> 나이 </dt>
                     <dd>
-                      <div class="pack_select">
-                        <div class="box_select">
-                          <div class="opt_comm">
-                            <span class="select_option select_on">1994년생</span>
-                            <select id="opAge" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
-                              <option value="" class="select_option"> 선택안함 </option>
+                      <div class="pack-select">
+                        <div class="box-select">
+                          <div class="opt-comm">
+                            <span class="select-option select-on">선택</span>
+                            <select id="opAge" class="opt-select ">
+                              <option value="" class="select-option"> 선택안함 </option>
                               <option value="15">2009년생</option>
                               <option value="16">2008년생</option>
                               <option value="17">2007년생</option>
@@ -129,8 +139,8 @@
                               <option value="69">1955년생</option>
                               <option value="70">70대</option>
                             </select>
-                            <span class="box_arrow">
-                              <span class="ico_together ico_arrow"></span>
+                            <span class="box-arrow">
+                              <span class="ico-together ico-arrow"></span>
                             </span>
                           </div>
                         </div>
@@ -138,28 +148,28 @@
                     </dd>
                     <dt> 성별 </dt>
                     <dd>
-                      <div class="group_tf group_gender">
-                        <span class="choice_comm choice_btn">
-                          <input type="radio" id="genderChk1" name="genderChk" class="inp_comm ng-untouched ng-pristine ng-valid">
-                          <label for="genderChk1" class="lab_comm">남자</label>
+                      <div class="group-tf group-gender">
+                        <span class="choice-comm choice-btn">
+                          <input type="radio" id="genderChk1" name="genderChk" class="inp-comm">
+                          <label for="genderChk1" class="lab-comm">남자</label>
                         </span>
-                        <span class="choice_comm choice_btn">
-                          <input type="radio" id="genderChk2" name="genderChk" class="inp_comm ng-untouched ng-pristine ng-valid">
-                          <label for="genderChk2" class="lab_comm">여자</label>
+                        <span class="choice-comm choice-btn">
+                          <input type="radio" id="genderChk2" name="genderChk" class="inp-comm">
+                          <label for="genderChk2" class="lab-comm">여자</label>
                         </span>
-                        <span class="choice_comm choice_btn">
-                          <input type="radio" id="genderChk3" name="genderChk" class="inp_comm ng-untouched ng-pristine ng-valid">
-                          <label for="genderChk3" class="lab_comm">선택안함</label>
+                        <span class="choice-comm choice-btn">
+                          <input type="radio" checked="True" id="genderChk3" name="genderChk" class="inp-comm">
+                          <label for="genderChk3" class="lab-comm">선택안함</label>
                         </span>
                       </div>
                     </dd>
                     <dt> 지역 </dt>
                     <dd>
-                      <div class="pack_select select_type2 del_type">
-                        <div class="box_select">
-                          <div class="opt_comm">
-                            <span class="select_option select_on">경기</span>
-                            <select name="parentRegion" id="selectTarget" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
+                      <div class="pack-select select-type2">
+                        <div class="box-select">
+                          <div class="opt-comm">
+                            <span class="select-option select-on">시, 도 선택</span>
+                            <select name="parentRegion" id="selectTarget" class="opt-select">
                               <option value="">시, 도 선택</option>
                               <option value="11"> 서울 </option>
                               <option value="26"> 부산 </option>
@@ -180,16 +190,16 @@
                               <option value="50"> 제주 </option>
                               <option value="99"> 해외 </option>
                             </select>
-                            <span class="box_arrow">
-                              <span class="ico_together ico_arrow"></span>
+                            <span class="box-arrow">
+                              <span class="ico-together ico-arrow"></span>
                             </span>
                           </div>
                         </div>
-                        <div class="box_select">
-                          <div class="opt_comm">
-                            <span class="select_option"></span>
-                            <span class="select_option select_on">부천시</span>
-                            <select name="region" id="selectRegion" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
+                        <div class="box-select">
+                          <div class="opt-comm">
+                            <span class="select-option"></span>
+                            <span class="select-option select-on">시,군,구 지역선택</span>
+                            <select name="region" id="selectRegion" class="opt-select ">
                               <option value="">시,군,구 지역선택</option>
                               <option value="41110"> 수원시 </option>
                               <option value="41111"> 수원시 장안구 </option>
@@ -240,8 +250,8 @@
                               <option value="41820"> 가평군 </option>
                               <option value="41830"> 양평군 </option>
                             </select>
-                            <span class="box_arrow">
-                              <span class="ico_together ico_arrow"></span>
+                            <span class="box-arrow">
+                              <span class="ico-together ico-arrow"></span>
                             </span>
                           </div>
                         </div>
@@ -252,52 +262,52 @@
                       <modal>
                         <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF" style="position: fixed; display: none; top: 25%; margin-left: -192px;">
                           <modal-content>
-                            <div class="inner_together_layer inner_together_layer2">
-                              <div class="layer_head">
+                            <div class="inner-together-layer inner-together-layer2">
+                              <div class="layer-head">
                               </div>
-                              <div class="layer_body">
-                                <form novalidate="" class="form_phone ng-untouched ng-pristine ng-valid">
+                              <div class="layer-body">
+                                <form novalidate="" class="form-phone ">
                                   <fieldset>
-                                    <div class="wrap_phone write_phone">
-                                      <dl class="list_write">
+                                    <div class="wrap-phone write-phone">
+                                      <dl class="list-write">
                                         <dt> 같이가치와 연락가능한 휴대폰 번호를 입력해주세요.<br>
                                           입력하신 휴대폰 번호로 발송된 인증번호를 입력 후 확인 버튼 클릭 시 휴대폰 번호가 즉시 변경됩니다. 
                                         </dt>
                                         <dd>
-                                          <div class="info_phone">
-                                            <div class="group_tf">
-                                              <input type="text" id="phoneNum1" maxlength="3" name="first" numberonly="" class="tf_write ng-untouched ng-pristine ng-valid">
+                                          <div class="info-phone">
+                                            <div class="group-tf">
+                                              <input type="text" id="phoneNum1" maxlength="3" name="first" numberonly="" class="tf-write ">
                                             </div>
-                                            <span class="dash_among">
-                                              <span class="inner_among"></span>
+                                            <span class="dash-among">
+                                              <span class="inner-among"></span>
                                             </span>
-                                            <div class="group_tf">
-                                              <input type="text" id="phoneNum2" maxlength="4" name="middle" numberonly="" class="tf_write ng-untouched ng-pristine ng-valid">
+                                            <div class="group-tf">
+                                              <input type="text" id="phoneNum2" maxlength="4" name="middle" numberonly="" class="tf-write ">
                                             </div>
-                                            <span class="dash_among">
-                                              <span class="inner_among"></span>
+                                            <span class="dash-among">
+                                              <span class="inner-among"></span>
                                             </span>
-                                            <div class="group_tf">
-                                              <input type="text" id="phoneNum3" maxlength="4" name="last" numberonly="" class="tf_write ng-untouched ng-pristine ng-valid">
+                                            <div class="group-tf">
+                                              <input type="text" id="phoneNum3" maxlength="4" name="last" numberonly="" class="tf-write ">
                                             </div>
                                           </div>
-                                          <button type="button" freezebutton="" class="btn_certify"> 인증번호  받기 </button>
-                                          <div class="group_tf">
-                                            <label for="certifyNum" class="txt_lab">인증번호 4자리 입력</label>
-                                            <input numberonly="" type="text" min="0" id="certifyNum" name="otpCode" class="tf_write ng-untouched ng-pristine" maxlength="100" disabled="">
+                                          <button type="button" class="btn-certify"> 인증번호  받기 </button>
+                                          <div class="group-tf">
+                                            <label for="certifyNum" class="txt-lab">인증번호 4자리 입력</label>
+                                            <input numberonly="" type="text" min="0" id="certifyNum" name="otpCode" class="tf-write ng-untouched ng-pristine" maxlength="100" disabled="">
                                           </div>
                                         </dd>
                                       </dl>
                                     </div>
-                                    <div class="wrap_btn wrap_btn_type">
-                                      <button type="button" class="btn_set btn_type1"> 확인 </button>
+                                    <div class="wrap-btn wrap-btn-type">
+                                      <button type="button" class="btn-set btn-type1"> 확인 </button>
                                     </div>
                                   </fieldset>
                                 </form>
                               </div>
-                              <div class="layer_foot">
-                                <button type="button" class="btn_close">
-                                  <span class="ico_together">닫기</span>
+                              <div class="layer-foot">
+                                <button type="button" class="btn-close">
+                                  <span class="ico-together">닫기</span>
                                 </button>
                               </div>
                             </div>
@@ -309,42 +319,42 @@
                       <modal>
                         <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF" style="position: fixed; display: none; top: 25%; margin-left: -192px;">
                           <modal-content>
-                            <div class="inner_together_layer inner_together_layer2">
-                              <div class="layer_head">
+                            <div class="inner-together-layer inner-together-layer2">
+                              <div class="layer-head">
                               </div>
-                              <div class="layer_body">
-                                <form novalidate="" class="form_phone ng-untouched ng-pristine ng-valid">
+                              <div class="layer-body">
+                                <form novalidate="" class="form-phone ">
                                   <fieldset>
-                                    <div class="wrap_phone write_phone">
-                                      <dl class="list_write">
+                                    <div class="wrap-phone write-phone">
+                                      <dl class="list-write">
                                         <dt> 같이가치와 연락가능한 이메일 입력해주세요.<br>
                                           입력하신 이메일 주소로 발송된 인증번호를 입력 후<br>
                                           확인 버튼 클릭 시 이메일 주소가 즉시 변경됩니다. 
                                         </dt>
                                         <dd>
-                                          <div class="info_phone" style="width: 100%;">
-                                            <div class="group_tf" style="width: 100%;">
-                                              <label for="certifyEmail1" class="txt_lab">이메일 주소를 입력하세요</label>
-                                              <input type="text" id="certifyEmail1" name="personal_email" class="tf_write ng-untouched ng-pristine ng-valid" maxlength="200">
+                                          <div class="info-phone" style="width: 100%;">
+                                            <div class="group-tf" style="width: 100%;">
+                                              <label for="certifyEmail1" class="txt-lab">이메일 주소를 입력하세요</label>
+                                              <input type="text" id="certifyEmail1" name="personal-email" class="tf-write " maxlength="200">
                                             </div>
                                           </div>
-                                          <button type="button" freezebutton="" class="btn_certify"> 인증번호  받기 </button>
-                                          <div class="group_tf">
-                                            <label for="certifyEmail2" class="txt_lab">인증번호를 입력하세요</label>
-                                            <input type="text" id="certifyEmail2" name="otpCode" class="tf_write ng-untouched ng-pristine ng-valid" maxlength="100">
+                                          <button type="button" class="btn-certify"> 인증번호  받기 </button>
+                                          <div class="group-tf">
+                                            <label for="certifyEmail2" class="txt-lab">인증번호를 입력하세요</label>
+                                            <input type="text" id="certifyEmail2" name="otpCode" class="tf-write " maxlength="100">
                                           </div>
                                         </dd>
                                       </dl>
                                     </div>
-                                    <div class="wrap_btn wrap_btn_type">
-                                      <button type="submit" class="btn_set btn_type1"> 확인 </button>
+                                    <div class="wrap-btn wrap-btn-type">
+                                      <button type="submit" class="btn-set btn-type1"> 확인 </button>
                                     </div>
                                   </fieldset>
                                 </form>
                               </div>
-                              <div class="layer_foot">
-                                <button type="button" class="btn_close">
-                                  <span class="ico_together">닫기</span>
+                              <div class="layer-foot">
+                                <button type="button" class="btn-close">
+                                  <span class="ico-together">닫기</span>
                                 </button>
                               </div>
                             </div>
@@ -355,26 +365,46 @@
                   </profile-edit>
                 </dl>
               </div>
-              <div class="bg_dashline"></div>
-              <div class="box_cont">
-                <dl class="list_write policy_regs">
+              <div class="bg-dashline"></div>
+              <div class="box-cont">
+                <dl class="list-write policy-regs">
                   <dt>약관 동의</dt>
-                  <dd class="info_policy sign_warn">
-                    <span class="choice_comm choice_checkbox">
-                      <input type="checkbox" id="checkPolicy" name="chk" class="inp_comm ng-valid ng-dirty ng-touched">
-                      <label for="checkPolicy" class="lab_comm">
-                        <span class="ico_together ico_checkbox"></span>
+                  <dd class="info-policy">
+                    <span class="choice-comm choice-checkbox">
+                      <input type="checkbox" id="checkPolicy" name="chk" class="inp-comm ng-valid ng-dirty ng-touched">
+                      <label for="checkPolicy" class="lab-comm">
+                        <span class="ico-together ico-checkbox"></span>
                         개인정보 수집 및 이용 동의 
-                        <em class="emph_color">(필수)</em>
+                        <em class="emph-color">(필수)</em>
                         </label>
                       </span>
-                      <button type="button" class="btn_view"> 내용보기 </button>
-                      <span class="ico_together ico_warn">미입력 경고</span>
+                      <!-- 내용보기 누르면 아래 내용 펼쳐짐 -->
+                      <!-- default값은 hidden 속성을 줌 -->
+                      <button type="button" class="btn-view"> 내용보기 </button>
+                      <span class="ico-together ico-warn">미입력 경고</span>
+                      <div class="area-policy open-policy">
+                        <p class="txt-effort">
+                           기부앤테이크의 서비스는 아래의 목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 처리하는데 최선을 다합니다. 
+                        </p>
+                        <div class="box-policy">
+                          <strong class="tit-policy">목적</strong>
+                          <p class="desc-policy">서비스내 이용자 식별 및 회원관리</p>
+                          <strong class="tit-policy">항목</strong>
+                          <p class="desc-policy">카카오계정, 프로필사진, 닉네임</p>
+                          <strong class="tit-policy">보유기간</strong>
+                          <p class="desc-policy">회원 탈퇴 시 지체없이 파기</p>
+                        </div>
+                        <p class="txt-policy"> 서비스 제공을 위해 필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스 이용이 가능합니다. 
+                          <br> 더 자세한 내용에 대해서는 
+                          <a href="javascript:void(0)" target="_blank" class="link-policy">개인정보처리방침</a>
+                          을 참고하시기 바랍니다. 
+                        </p>
+                      </div>
                     </dd>
                   </dl>
               </div>
-              <div class="btn_step_type">
-                <button type="button" class="link_step link_type3"> 저장하기 </button>
+              <div class="btn-step-type">
+                <button type="button" class="link-step link-type3"> 저장하기 </button>
               </div>
             </div>
           </div>
