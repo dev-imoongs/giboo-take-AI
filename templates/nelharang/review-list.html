@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../static/css/common.css" />
     <link rel="stylesheet" href="../../static/css/nelharang/list.css" />
-    <title>늘해랑 : 모집/펀딩</title>
+    <link rel="stylesheet" href="../../static/css/nelharang/review-list.css" />
+    <title>늘해랑 : 리뷰</title>
   </head>
   <body>
     <div class="wrap">
@@ -17,12 +18,12 @@
             <!--상단 탭 헤더-->
             <div class="list-header">
               <ul class="list-tab">
-                <li class="on">
+                <li >
                   <a href="#" class="link-tab">
                     <span class="txt-tab">모금중</span>
                   </a>
                 </li>
-                <li>
+                <li class="on">
                   <a href="#" class="link-tab">
                     <span class="txt-tab">모금후기</span>
                   </a>
@@ -35,8 +36,14 @@
               </ul>
             </div>
 
+            <div class="group_givetop">
+                <strong class="tit_givetop">
+                    응원, 공유하면 기부되는 가장 쉬운 나눔
+                </strong>
+            </div>
+
             <!--카테고리 리스트-->
-            <div class="group-catelist">
+            <!-- <div class="group-catelist">
               <div class="inner-catelist">
                 <ul class="list-cate">
                   <li class="on">
@@ -195,7 +202,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
 
             <!--펀딩 리스트-->
             <div class="group_fundlist">
@@ -213,12 +220,6 @@
                       for="sort1"
                       class="lab_sort"
                       >최신순</label
-                    ></span
-                  ><span class="box_sorting"
-                    ><input type="radio" class="inp_sort" name="sort2" /><label
-                      for="sort2"
-                      class="lab_sort"
-                      >종료임박순</label
                     ></span
                   >
                 </span>
@@ -249,7 +250,7 @@
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
-                          <span class="state_gage state_ing" style="width: 95%"></span>
+                          <span class="state_gage state_end" style="width: 95%"></span>
                         </span>
                       </span>
                       <span class="price_goal">3,027,899원</span>
@@ -276,7 +277,7 @@
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
-                          <span class="state_gage state_ing" style="width: 95%"></span>
+                          <span class="state_gage state_end" style="width: 95%"></span>
                         </span>
                       </span>
                       <span class="price_goal">3,027,899원</span>
@@ -303,7 +304,7 @@
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
-                          <span class="state_gage state_ing" style="width: 95%"></span>
+                          <span class="state_gage state_end" style="width: 95%"></span>
                         </span>
                       </span>
                       <span class="price_goal">3,027,899원</span>
@@ -330,7 +331,7 @@
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
-                          <span class="state_gage state_ing" style="width: 95%"></span>
+                          <span class="state_gage state_end" style="width: 95%"></span>
                         </span>
                       </span>
                       <span class="price_goal">3,027,899원</span>
@@ -346,5 +347,5 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="../../static/js/nelharang/list.js"></script>
+  <script src="../../static/js/nelharang/review-list.js"></script>
 </html>
