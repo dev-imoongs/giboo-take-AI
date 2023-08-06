@@ -1,0 +1,903 @@
+.header-base {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 200;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+}
+
+.header-inner {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  min-width: 280px;
+  width: 100%;
+}
+
+.logo {
+  height: 55px;
+}
+
+.logo-link {
+  display: block;
+  width: 103px;
+  height: 100%;
+  background: url("https://t1.kakaocdn.net/together_image/svg/logo_pc.svg") center center / contain no-repeat;
+}
+
+/* 반응형 돋보기 */
+.mobile-search-link {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 55px;
+  padding-left: 11px;
+  padding-right: 21px;
+}
+
+.mobile-search-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+  opacity: 1;
+}
+
+/* 반응형 사이드바 버튼 */
+.mobile-menu-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin: 0px;
+  font-family: "KakaoBig Bold";
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 12px;
+  position: relative;
+  order: -1;
+  height: 55px;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.mobile-menu-button-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: top;
+  opacity: 1;
+}
+
+.mobile-menu-new-badge {
+  position: absolute;
+  top: 11px;
+  left: 33px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+  box-sizing: border-box;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 9px;
+  background-color: rgb(220, 40, 124);
+}
+
+/* 사이드메뉴바 CSS */
+.side-menu-drawer {
+  overflow: hidden;
+  position: fixed;
+  inset: 0px;
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  clip: rect(0px, 0px, 0px, 0px);
+  clip-path: inset(50%);
+}
+
+/* 모바일 사이드바 오픈시 CSS */
+.side-menu-drawer.open {
+  z-index: 300;
+  visibility: visible;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  opacity: 1;
+  clip: auto;
+  clip-path: none;
+}
+
+.drawer-container {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  transition: transform 300ms ease-out 0s;
+  height: 100%;
+  max-width: 290px;
+  min-width: 280px;
+  padding: 15px 0px;
+  transform: translateX(0px);
+}
+
+/* 사이드바 로그인전 user-info부분 */
+.side-menu-login-button {
+  display: inline-flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 0px 14px 16px;
+  border: none;
+  margin: 0px;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.login-text {
+  color: rgb(68, 68, 68);
+  font-size: 16px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 2;
+  letter-spacing: -0.3px;
+}
+
+/* 사이드바 로그인 후 user-info부분 */
+.side-menu-user-link {
+  display: inline-flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  border: none;
+  padding: 0px 14px 16px;
+  text-decoration: none;
+  color: transparent;
+}
+
+.side-menu-user-profile {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: url("https://t1.kakaocdn.net/together_image/common/avatar/avatar.png") 50% 50% / cover no-repeat;
+}
+
+.side-menu-user-profile::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.side-menu-user-info {
+  padding-left: 11px;
+  padding-right: 40px;
+  display: block;
+  overflow: hidden;
+  text-align: left;
+}
+
+.side-menu-user-nickname {
+  color: rgb(68, 68, 68);
+  font-size: 16px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  letter-spacing: -0.3px;
+  line-height: 1.5;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.side-menu-user-text {
+  color: rgb(220, 40, 124);
+  font-size: 13px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.side-user-menu-list {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: rgb(244, 245, 247);
+}
+
+.side-menu-link-list {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.side-menu-user-link {
+  color: rgb(68, 68, 68);
+  font-size: 13px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 15px 10px 17px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.side-menu-new-badge {
+  margin-left: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+  box-sizing: border-box;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 9px;
+  background-color: rgb(220, 40, 124);
+}
+
+.side-container {
+  padding: 0px 20px;
+}
+
+.side-menu-item-list {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0px -14px;
+  padding: 17px 0px 22px;
+}
+
+.side-menu-item {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+  width: 33.33%;
+  margin: 10px 0px;
+}
+
+.side-menu-item-link {
+  text-align: center;
+  color: rgb(68, 68, 68);
+  font-size: 12px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.09;
+  letter-spacing: -0.3px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.side-menu-item-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0px auto 3px;
+}
+
+.item1 {
+background: url("https://t1.kakaocdn.net/together_image/svg/fundraisings.svg") 0px 0px / contain no-repeat;
+}
+.item2 {
+background: url("https://t1.kakaocdn.net/together_image/svg/action.svg") 0px 0px / contain no-repeat;
+}
+.item3 {
+background: url("https://t1.kakaocdn.net/together_image/svg/hello.svg") 0px 0px / contain no-repeat;
+}
+.item4 {
+background: url("https://t1.kakaocdn.net/together_image/svg/big5.svg") 0px 0px / contain no-repeat;
+}
+.item5 {
+background: url("https://t1.kakaocdn.net/together_image/svg/promotion.svg") 0px 0px / contain no-repeat;
+}
+.item6 {
+background: url("https://t1.kakaocdn.net/together_image/svg/campaign.svg") 0px 0px / contain no-repeat;
+}
+.item7 {
+background: url("https://t1.kakaocdn.net/together_image/svg/heart.svg") 0px 0px / contain no-repeat;
+}
+.item8 {
+background: url("https://t1.kakaocdn.net/together_image/svg/sound.svg") 0px 0px / contain no-repeat;
+}
+.item9 {
+background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px / contain no-repeat;
+}
+
+.side-submenu-list {
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid rgb(232, 232, 232);
+  padding: 10px 0px 14px;
+}
+
+.side-submenu-item {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+  width: 50%;
+}
+
+.submenu-item-link {
+  padding: 6px 10px 3px;
+  text-align: left;
+  color: rgb(68, 68, 68);
+  font-size: 14px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.67;
+  letter-spacing: -0.3px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.side-menu-addition-container {
+  padding-left: 30px;
+  padding-right: 20px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.side-menu-addition-text {
+  color: rgb(153, 153, 153);
+  font-size: 12px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  letter-spacing: -0.3px;
+  line-height: 1.33;
+}
+
+/* 로그인 전 */
+.side-menu-link-button {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 90px;
+  height: 40px;
+  border-radius: 22px;
+  line-height: 1.5;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: rgb(220, 40, 124);
+  font-size: 13px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+}
+
+/* 로그인 후 */
+.side-menu-channel-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid rgb(255, 229, 0);
+  margin: 0px;
+  font-family: "KakaoBig Bold";
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 229, 0);
+  cursor: pointer;
+  padding: 0px 16px;
+  font-size: 13px;
+  width: 102px;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.channel-button-svg-icon {
+  width: 26px;
+  height: 18px;
+  vertical-align: top;
+  opacity: 1;
+}
+
+.channel-button-text {
+  margin-top: -1px;
+  margin-left: 5px;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1;
+}
+
+.side-menu-logout-button {
+  box-sizing: border-box;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid rgb(232, 232, 232);
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  padding: 0px 16px;
+  font-size: 13px;
+  display: flex;
+  height: 38px;
+  border-radius: 20px;
+  margin: 23px auto 0px;
+  font-weight: normal;
+  font-family: "KakaoBig Regular";
+  color: rgb(68, 68, 68);
+  box-shadow: none;
+}
+
+.side-menu-close-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin: 0px;
+  font-family: "KakaoBig Bold";
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  cursor: pointer;
+  height: auto;
+  font-size: 12px;
+  position: absolute;
+  top: 12px;
+  right: 0px;
+  padding: 20px;
+}
+
+.side-menu-close-svg-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
+  opacity: 1;
+}
+
+.drawer-layer {
+  position: fixed;
+  inset: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 300ms ease-out 0s;
+  opacity: 0;
+}
+
+.side-menu-drawer.open .drawer-layer {
+  opacity: 1;
+}
+
+/* 헤더메뉴 */
+.menu {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.menu-list {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.list-item-container {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+}
+
+.home {
+  height: 100%;
+  border-bottom: 2px solid rgb(57, 57, 57);
+  box-sizing: border-box;
+}
+
+.header-menu {
+  height: 100%;
+  border-bottom: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.menu-item-link {
+  color: rgb(32, 32, 32);
+  font-size: 14px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 6px 10px 10px;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.new-badge {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgb(255, 90, 114);
+}
+
+.more-button {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 6px 10px 10px;
+  letter-spacing: normal;
+  line-height: 1.5;
+  margin: 0px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+/* display로 조정하기 */
+.more-menu-list {
+  display: none;
+  display: block;
+  margin: 0px;
+  position: absolute;
+  padding: 12px 0px;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 10px;
+  text-align: left;
+  background-color: rgb(248, 249, 250);
+  top: 71px;
+  left: 14px;
+  width: 160px;
+}
+
+.more-menu-list::before {
+  left: 11px;
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 19px;
+  height: 12px;
+  background: url("https://t1.kakaocdn.net/together_image/svg/bg_bubble_tail.svg") center center / contain no-repeat;
+}
+
+.more-menu-item {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+}
+
+.more-menu-item-link {
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  letter-spacing: -0.3px;
+  display: inline-flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 6px 19px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(68, 68, 68);
+  text-decoration: none;
+}
+
+/* 로그인전 유틸버튼 */
+.pc-util-menu {
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.util-button {
+  color: rgb(32, 32, 32);
+  font-size: 12px;
+  font-style: normal;
+  font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  line-height: 1.09;
+  letter-spacing: -0.3px;
+}
+
+.write {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 34px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 17px;
+  margin: 0px 10px;
+  padding-left: 17px;
+  padding-right: 17px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.login {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 34px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 17px;
+  margin: 0px 10px;
+  padding-left: 17px;
+  padding-right: 17px;
+  line-height: 1.5;
+  text-decoration: none;
+  min-width: auto;
+}
+
+/* 로그인 후 헤더 프로필 */
+.pc-user-util-menu {
+  position: relative;
+  display: flex;
+}
+
+.pc-user-button{
+  box-sizing: border-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: "KakaoBig Bold";
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0px 7px 0px 8px;
+  padding: 0px;
+}
+
+.pc-user-profile {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  background: url("https://t1.kakaocdn.net/together_image/common/avatar/avatar.png") 50% 50% / cover no-repeat;
+}
+
+.pc-user-profile::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.pc-new-badge {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  border-radius: 9px;
+  background-color: rgb(220, 40, 124);
+}
+
+.pc-user-sub-menu {
+  margin: 0px;
+  position: absolute;
+  padding: 12px 0px;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 10px;
+  text-align: left;
+  background-color: rgb(248, 249, 250);
+  display: block;
+  top: 51px;
+  right: -10px;
+  width: 130px;
+}
+
+.pc-user-sub-menu::before {
+  right: 24px;
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 19px;
+  height: 12px;
+  background: url("https://t1.kakaocdn.net/together_image/svg/bg_bubble_tail.svg") center center / contain no-repeat;
+}
+
+.pc-user-sub-menu-list {
+  display: list-item;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.54;
+  letter-spacing: -0.1px;
+}
+
+.pc-user-sub-menu-link {
+  font-style: normal;
+  font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+  overflow-wrap: break-word;
+  letter-spacing: -0.3px;
+  display: inline-flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 6px 19px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(68, 68, 68);
+  text-decoration: none;
+}
+
+.logout-button {
+  display: inline-flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  border: none;
+  margin: 0px;
+  padding: 6px 19px;
+  font-family: "KakaoBig Bold";
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(68, 68, 68);
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.pc-search-link {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.pc-search-icon {
+  vertical-align: top;
+  opacity: 1;
+}
