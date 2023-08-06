@@ -1,0 +1,421 @@
+/* 기본 */
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+a {
+  color: #444;
+}
+
+a, a:active, a:hover {
+  text-decoration: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+dl, li, menu, ol, ul {
+  list-style: none;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+
+/* 공지사항 탭 */
+.wrap-tab {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: #f7f8f9;
+}
+
+.wrap-tab .list-tab {
+  display: flex;
+  justify-content: center;
+}
+.wrap-tab .list-tab .on .link-tab {
+  position: relative;
+  z-index: 1;
+  color: #202020;
+}
+
+.wrap-tab .list-tab li {
+  padding: 0 24px;
+  text-align: center;
+}
+
+
+.wrap-tab .list-tab .link-tab {
+  display: block;
+  height: 60px;
+  font-size: 15px;
+  color: #888;
+  font-family: KakaoBig Bold;
+}
+
+.wrap-tab .list-tab .txt-tab {
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  padding: 18px 16px 0;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+/* 상세 메인 */
+.view-head {
+  display: table;
+  width: 700px;
+  margin: 0 auto;
+  padding: 31px 0 25px;
+}
+
+.view-head .notice-target {
+  padding-top: 11px;
+}
+
+.link-official .notice-target, .view-head .notice-target {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.view-head .subject-official {
+  padding-top: 7px;
+}
+
+.link-official .subject-official, .view-head .subject-official {
+  display: block;
+  font-weight: 400;
+  font-family: KakaoBig Bold;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+.view-head .date-official {
+  padding-top: 3px;
+}
+
+.link-official .date-official, .view-head .date-official {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.wrap-view .view-body {
+  padding-top: 44px;
+}
+
+.view-body {
+  overflow: hidden;
+  width: 700px;
+  margin: 0 auto;
+  border-top: 1px solid #e5e5e5;
+}
+
+.view-body p:first-child {
+  margin-top: 3px;
+}
+
+.hello-research .cont-subject img, .wrap-view .view-body img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+/* 채널추가부분 */
+
+.wrap-view .view-foot {
+  width: 700px;
+  margin: 52px auto 10px;
+}
+
+.notice-view .plusfriend-wrap {
+  padding-top: 60px;
+}
+
+.plusfriend-wrap {
+  padding: 23px 0;
+}
+
+.notice-view .plusfriend-wrap .info-plusfriend {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.plusfriend-wrap .info-plusfriend {
+  display: inline-block;
+  padding-top: 1px;
+  color: #999;
+  line-height: 22px;
+  text-align: left;
+  white-space: pre-line;
+  vertical-align: top;
+  font-size: 13px;
+}
+
+.plusfriend-wrap .btn-plusfriend {
+  display: inline-block;
+  width: 113px;
+  height: 45px;
+  margin-left: 20px;
+  border-radius: 6px;
+  background-color: #ffe500;
+  vertical-align: top;
+}
+
+.plusfriend-wrap .btn-plusfriend .ico-plusfriend {
+  display: inline-block;
+  width: 26px;
+  height: 18px;
+  margin-top: 2px;
+  margin-right: 4px;
+  background-position: -160px -220px;
+  vertical-align: top;
+}
+
+.icon-giventake, .txt-together {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+.icon-giventake {
+  background: url(//t1.kakaocdn.net/together_image/common/ico_together3_221018.png) no-repeat 0 0;
+}
+
+.plusfriend-wrap .btn-plusfriend .plusfriend-txt {
+  display: inline-block;
+  font-size: 15px;
+  font-family: KakaoBig Regular,sans-serif;
+  vertical-align: top;
+  line-height: 1.2;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+  background-color: initial;
+  cursor: pointer;
+}
+
+.cont-etc .group-banner, .cont-memory .group-banner, .cont-mind .group-banner, .cont-prm .group-banner, .cont-project .group-banner, .cont-tayo .group-banner, .cont-yearbest .group-banner {
+  margin-top: 60px;
+}
+
+.group-banner {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.link-banner {
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.link-banner .img-banner {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 2px;
+  vertical-align: top;
+}
+
+@media (max-width: 767px)
+{body, html {
+    min-width: 280px;
+    margin-bottom: -150px;
+}
+}
+
+@media (max-width: 767px)
+{.total-main {
+    margin-bottom: -150px;
+    padding: 0 0 200px;
+    overflow: hidden;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab {
+    height: 42px;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab li {
+    height: 100%;
+    padding: 0 4px;
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .on .link-tab {
+    font-family: KakaoBig Bold;
+}
+}
+
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab .link-tab {
+    height: 100%;
+    font-size: 13px;
+    font-family: KakaoBig Regular;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab li {
+    height: 100%;
+    padding: 0 4px;
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+}
+
+@media (max-width: 767px)
+{.wrap-tab .list-tab .txt-tab {
+    height: 100%;
+    padding: 11px 8px 0;
+}
+}
+
+/* 메인 컨텐츠 */
+@media (max-width: 767px)
+{.view-head {
+    width: 100%;
+    padding: 20px 14px 17px;
+    box-sizing: border-box;
+}
+}
+@media (max-width: 767px)
+{.view-head .notice-target {
+    padding-top: 0;
+}
+}
+@media (max-width: 767px)
+{.view-head .notice-target {
+    padding-top: 0;
+}
+}
+@media (max-width: 767px)
+{.view-head .date-official, .view-head .subject-official {
+    padding-top: 3px;
+}
+}
+@media (max-width: 767px)
+{.link-official .subject-official, .view-head .subject-official {
+    font-size: 16px;
+    line-height: 21px;
+}
+}
+
+@media (max-width: 767px)
+{.view-head .date-official, .view-head .subject-official {
+    padding-top: 3px;
+}
+}
+@media (max-width: 767px)
+{.link-official .bar-official, .link-official .cmt-official, .link-official .date-official, .view-head .date-official {
+    font-size: 11px;
+    line-height: 17px;
+    color: #666;
+}
+}
+@media (max-width: 767px)
+{.wrap-view .view-body {
+    padding-top: 30px;
+}
+}
+@media (max-width: 767px)
+{.view-body {
+    width: auto;
+    margin: 0 14px;
+}
+}
+@media (max-width: 767px)
+{.view-body p:first-child {
+    margin-top: -5px;
+}
+}
+@media (max-width: 767px)
+{.wrap-view .view-foot {
+    width: 100%;
+    margin: 26px auto 5px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+}
+@media (max-width: 767px)
+{.view-foot .name-writer {
+    padding-top: 29px;
+    font-size: 14px;
+    line-height: 23px;
+}
+}
+@media (max-width: 767px)
+{.cont-etc .group-banner, .cont-memory .group-banner, .cont-mind .group-banner, .cont-prm .group-banner, .cont-project .group-banner, .cont-tayo .group-banner, .cont-yearbest .group-banner {
+    margin-top: 30px;
+}
+}
+@media (max-width: 767px)
+{.group-banner {
+    width: auto;
+    margin: 0 14px;
+}
+}
+@media (max-width: 767px)
+{.link-banner {
+    border-radius: 10px;
+}
+}
+@media (max-width: 767px)
+{.link-banner .img-banner {
+    width: auto;
+    height: auto;
+    pointer-events: none;
+}}
+
+@media (max-width: 767px)
+{.wrap-tab .on .link-tab {
+    font-family: KakaoBig Bold;
+}
+}
+
