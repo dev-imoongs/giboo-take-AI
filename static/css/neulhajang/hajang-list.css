@@ -1,0 +1,13 @@
+.page-container {
+  box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+}
+
+.wrap-container {
+  background-color: rgb(243, 243, 243);
+}
+
+.branding-container {
+  margin: 0px auto;
+  padding-top: 30px;
+}
