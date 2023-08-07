@@ -10,3 +10,11 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
