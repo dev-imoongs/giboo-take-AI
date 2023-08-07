@@ -155,7 +155,8 @@
                         <div class="inner_mark_pack">
                           <!--left로 퍼센트조정-->
                           <span class="mark_point" style="left: 90%">
-                            <span class="ico_chart txt_result"><span class="num_per"> 90 </span><span class="txt_per">%</span>
+                            <span class="ico_chart txt_result"
+                              ><span class="num_per"> 90 </span><span class="txt_per">%</span>
                             </span>
                           </span>
                         </div>
@@ -517,9 +518,56 @@
           </div>
         </span>
 
+        <!--모달 백그라운드-->
+        <div class="dimmed_layer"></div>
         <!--모달들 위치-->
+
+        <!--상단 뱃지 모달 (해당 봉사 참여나 기부참여시 얻을 수 있는 뱃지 목록)-->
+        <div
+          class="ngdialog-content opened_modal"
+          id="modalON"
+          style="position: fixed; display: block; top: 25%; margin-left: -192px"
+        >
+          <modal-content
+            ><div class="inner_together_layer inner_together_layer2">
+              <div class="layer_body">
+                <div class="wrap_ktbadge">
+                  <strong class="tit_badge"
+                    >당신은 같이가치의 히어로!<br />기부하고 다양한 스탬프를 모아보세요.</strong
+                  ><img
+                    class="thumb_badge"
+                    src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
+                    alt="힘내라 힘"
+                  /><span class="screen_out">스탬프명</span
+                  ><strong class="name_badge">힘내라 힘</strong
+                  ><span class="screen_out">스탬프설명</span>
+                  <p class="txt_badge">
+                    의식주 걱정없이 살아가는 세상을 만들어요. '기본 생활 지원' 프로젝트에
+                    기부해보세요.
+                  </p>
+                </div>
+                <plus-friend-button
+                  ><div class="cont_plusfriend">
+                    <!----><span class="info_plusfriend"
+                      >카카오같이가치 채널을 추가하면<br />기부한 모금함의 소식을 알려드려요.</span
+                    ><!----><button type="button" class="btn_plusfriend">
+                      <span class="ico_together3 ico_plusfriend"></span
+                      ><span class="txt_plusfriend">채널 추가</span>
+                    </button>
+                  </div></plus-friend-button
+                ><!---->
+              </div>
+              <div class="layer_foot">
+                <button type="button" class="btn_close">
+                  <span class="ico_together">닫기</span>
+                </button>
+              </div>
+            </div>
+            <!----></modal-content
+          >
+        </div>
         <!--하단 토스트 메세지-->
-        <div id="toast-container" class="toast-bottom-center" style="display: none;">
+        <div id="toast-container" class="toast-bottom-center" style="display: none">
           <div toastcomp="" class="toast toast-success">
             <div class="toaster-icon icon-success"></div>
             <div class="toast-content">

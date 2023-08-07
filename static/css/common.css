@@ -90,3 +90,16 @@ menu, ol, ul {
     color: #48a2ab;
     background-color: #eff8f9
 }
+
+
+/*모달 백그라운드 height 100%시 등장*/
+.dimmed_layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    background-color: #000;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
