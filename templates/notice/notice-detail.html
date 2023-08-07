@@ -6,6 +6,7 @@
   <title>"공지사항 타이틀"</title>
   <link rel="stylesheet" href="/static/css/notice/notice-detail.css">
   <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon" >
 </head>
 <body>
   <!-- 메인 -->
@@ -19,17 +20,17 @@
               <span class="txt-tab">전체</span>
             </a>
             </li>
-            <li>
+            <li class="">
               <a class="link-tab" href="javascript:void(0);">
                 <span class="txt-tab">공지탭1</span>
               </a>
             </li>
-              <li>
+              <li class="">
                 <a class="link-tab" href="javascript:void(0);">
                   <span class="txt-tab">공지탭2</span>
                 </a>
               </li>
-                <li>
+                <li class="">
                   <a class="link-tab" href="javascript:void(0);">
                     <span class="txt-tab">공지탭3</span>
                   </a>
@@ -91,4 +92,22 @@
           
 
 </body>
+<script>
+// on 위치 변경
+const tabLinks = document.querySelectorAll('.link-tab');
+tabLinks.forEach((link, index) => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 클릭 동작 방지
+
+    tabLinks.forEach((tabLink, tabIndex) => {
+      if (tabIndex === index) {
+        tabLink.parentElement.classList.add('on');
+      } else {
+        tabLink.parentElement.classList.remove('on');
+      }
+    });
+  });
+});
+
+</script>
 </html>
