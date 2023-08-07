@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지:기부앤테이크</title>
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_main.css" />
-    <link rel="stylesheet" href="../../static/css/common.css" />
+    <link rel="stylesheet" href="../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_main.css"/>
   </head>
   <body>
     <div id="whole-wrap">
@@ -293,8 +293,56 @@
           </div>
         </main-section>
       </main>
+      <footer></footer>
+      <!-- height 100%시 모달 등장 -->
+      <div class="dimmed_layer"></div>
     </div>
+    <modal>
+        <!-- 모달 꺼지면 id modalOFF display:none -->
+        <div tabindex="0" role="dialog" class="dialog-content opened-modal"
+         id="modalOFF" style="display: none">
+            <modal-content class="modal-delete">
+              <div class="inner-together-layer inner-together-layer2">
+                <div class="layer-body">
+                  <p class="desc-together">
+                    <span class="txt-desc"></span>
+                  </p>
+                  <div class="wrap-btn">
+                    <a href="javascript:void(0)" class="btn-set btn-type1">확인</a>
+                    <a href="javascript:void(0)" class="btn-set btn-type2">취소</a>
+                  </div>
+                </div>
+              </div>
+            </modal-content>
+            <modal-content class="modal-badge">
+              <div class="inner-together-layer inner-together-layer2">
+                  <div class="layer-body">
+                      <div class="wrap-badge">
+                          <!-- 뱃지 이미지 샘플 -->
+                          <img class="thumb-badge"
+                               src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png"
+                               alt="진짜 나를 발견왕">
+                          <strong class="name-badge">뱃지 이름</strong>
+                          <p class="txt-badge">뱃지 내용입니다.
+                              뱃지 내용입니다.
+                              뱃지 내용입니다.
+                          </p>
+                          <a class="link-look" href="javascript:void(0)"> 뱃지링크입니다. </a>
+                      </div>
+                  </div>
+                  <div class="layer-foot">
+                      <button type="button" class="btn-close">
+                          <span class="ico-together">닫기</span>
+                      </button>
+                  </div>
+              </div>
+            </modal-content>
+        </div>
+    </modal>
+
   </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../static/js/mypage/mypage_main.js"></script>
 </html>
 
 

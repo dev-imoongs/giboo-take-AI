@@ -65,7 +65,6 @@ ul {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
 }
 
 li {
@@ -649,7 +648,7 @@ body {
 }
 
 .ico-together {
-    background: url(//t1.kakaocdn.net/together_image/common/ico-together_201008.png) no-repeat 0 0;
+    background: url(https://t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
     font-size: 0;
     line-height: 0;
     text-indent: -9999px;
@@ -770,6 +769,139 @@ body {
 .group-badge-type02 .list-more {
     padding-top: 0;
     text-align: center;
+}
+/*모달*/
+.dialog-content {
+  overflow: hidden;
+  z-index: 999999;
+  left: 50%;
+  position: fixed;
+  display: none;
+  top: 25%;
+  margin-left: -192px;
+}
+.inner-together-layer {
+    background-color: #fff;
+}
+
+.inner-together-layer2 {
+    width: 392px;
+}
+
+.inner-together-layer .desc-together {
+    display: table;
+    width: 100%;
+    height: 128px;
+    padding-top: 30px;
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+}
+
+.inner-together-layer .desc-together .txt-desc {
+    display: block;
+    display: table-cell;
+    padding: 20px 25px;
+    vertical-align: middle;
+    line-height: 28px;
+    word-break: break-all;
+    white-space: pre-line
+}
+
+.inner-together-layer .wrap-btn {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-set {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 48px;
+    margin: 0 4px;
+    vertical-align: top;
+    color: #fff;
+    font-size: 16px;
+    line-height: 49px;
+}
+
+.inner-together-layer .wrap-btn .btn-type1 {
+    background-color: #dc287c;
+}
+
+.inner-together-layer2 .wrap-btn .btn-set {
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-type2 {
+    background-color: #949494;
+}
+
+.modal-badge,
+.modal-delete {
+    display: none;
+}
+
+
+.inner-together-layer .wrap-badge {
+    padding: 60px 24px 56px;
+    text-align: center;
+}
+
+.inner-together-layer .wrap-badge .thumb-badge {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0px auto 9px;
+}
+
+.inner-together-layer .wrap-badge .name-badge {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(68, 68, 68);
+}
+
+.inner-together-layer .wrap-badge .txt-badge {
+    font-size: 16px;
+    color: rgb(130, 130, 130);
+    line-height: 24px;
+    white-space: pre-line;
+}
+
+.inner-together-layer .wrap-badge .link-look {
+    display: inline-block;
+    margin: 21px 0px 5px;
+    border-bottom: 1px solid rgb(21, 21, 21);
+    font-size: 17px;
+    line-height: 20px;
+    color: rgb(68, 68, 68);
+}
+
+.inner-together-layer .layer-foot {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.inner-together-layer .layer-foot .btn-close {
+    display: block;
+    overflow: hidden;
+}
+
+.inner-together-layer .layer-foot .ico-together {
+    width: 17px;
+    height: 17px;
+    margin: 22px;
+    background-position: -184px 0px;
+}
+
+
+.ico-together, .ico-together2 {
+    display: block;
+    overflow: hidden;
+    font-size: 0px;
+    line-height: 0;
+    text-indent: -9999px;
 }
 
 @media (max-width: 767px){
@@ -1039,7 +1171,7 @@ body, html {
 }
 
 .ico-together {
-    background-image: url(//t1.kakaocdn.net/together_image/m320/ico-together_201008.png);
+    background-image: url(//t1.kakaocdn.net/together_image/m640/ico_together_201008.png);
     background-size: 290px 1500px;
 }
 
@@ -1120,4 +1252,58 @@ body, html {
 .group-badge-type02 .list-badge li:nth-child(n+4) {
     display: none;
 }
+  /* 모달 */
+  .dialog-content {
+    margin-left: -140px;
+  }
+
+  .inner-together-layer {
+    width: 280px;
+  }
+
+  .inner-together-layer .desc-together {
+    height: 100px;
+    padding-top: 13px;
+    font-size: 14px;
+  }
+
+  .inner-together-layer .desc-together .txt-desc {
+    padding: 22px 15px;
+    line-height: 21px;
 }
+
+  .inner-together-layer .wrap-btn {
+    padding-bottom: 20px;
+}
+
+  .wrap-btn {
+    margin: 0 9px;
+}
+
+  .inner-together-layer .wrap-btn .btn-set {
+    width: 122px;
+    height: 44px;
+    margin: 0 3px;
+    font-size: 14px;
+    line-height: 45px;
+}
+
+  .inner-together-layer .wrap-btn .btn-set {
+    width: 122px;
+    height: 44px;
+    margin: 0 3px;
+    font-size: 14px;
+    line-height: 45px;
+}
+
+  .inner-together-layer .layer-foot .ico-together {
+    width: 12px;
+    height: 12px;
+    margin: 15px;
+    background-position: -100px -20px;
+}
+
+
+}
+
+

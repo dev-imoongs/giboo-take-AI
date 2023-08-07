@@ -218,6 +218,94 @@ h3 {
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
+/* 모달 */
+.dialog-content {
+  overflow: hidden;
+  z-index: 999999;
+  left: 50%;
+  position: fixed;
+  display: none;
+  top: 25%;
+  margin-left: -192px;
+}
+
+.inner-together-layer2 {
+    width: 392px;
+}
+
+.inner-together-layer {
+    background-color: rgb(255, 255, 255);
+}
+
+.inner-together-layer .wrap-badge {
+    padding: 60px 24px 56px;
+    text-align: center;
+}
+
+.inner-together-layer .wrap-badge .thumb-badge {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0px auto 9px;
+}
+
+.inner-together-layer .wrap-badge .name-badge {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(68, 68, 68);
+}
+
+.inner-together-layer .wrap-badge .txt-badge {
+    font-size: 16px;
+    color: rgb(130, 130, 130);
+    line-height: 24px;
+    white-space: pre-line;
+}
+
+.inner-together-layer .wrap-badge .link-look {
+    display: inline-block;
+    margin: 21px 0px 5px;
+    border-bottom: 1px solid rgb(21, 21, 21);
+    font-size: 17px;
+    line-height: 20px;
+    color: rgb(68, 68, 68);
+}
+
+.inner-together-layer .layer-foot {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.inner-together-layer .layer-foot .btn-close {
+    display: block;
+    overflow: hidden;
+}
+
+.inner-together-layer .layer-foot .ico-together {
+    width: 17px;
+    height: 17px;
+    margin: 22px;
+    background-position: -184px 0px;
+}
+
+.ico-together {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) 0px 0px no-repeat;
+}
+
+.ico-together, .ico-together2 {
+    display: block;
+    overflow: hidden;
+    font-size: 0px;
+    line-height: 0;
+    text-indent: -9999px;
+}
+button {
+    border: 0px;
+    border-radius: 0px;
+    background-color: initial;
+    cursor: pointer;
+}
 
 @media (max-width: 767px){
 body, html {
@@ -342,5 +430,59 @@ body, html {
 
 .group-badge .link-badge .num-badge {
   font-size: 11px;
+}
+
+.dialog-content {
+    margin-left: -140px;
+}
+
+.inner-together-layer {
+    width: 280px;
+}
+
+.inner-together-layer .wrap-badge {
+    padding: 38px 12px 33px;
+}
+
+.inner-together-layer .wrap-badge .thumb-badge {
+    margin: 0 auto 9px;
+}
+
+.inner-together-layer .wrap-badge .name-badge {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.inner-together-layer .wrap-badge .txt-badge {
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.inner-together-layer .wrap-badge .link-look {
+    margin: 12px 0 5px;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.inner-together-layer .layer-foot {
+    z-index: 10;
+}
+
+.inner-together-layer .layer-foot .btn-close {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+}
+
+.inner-together-layer .layer-foot .ico-together {
+    width: 12px;
+    height: 12px;
+    margin: 15px;
+    background-position: -100px -20px;
+}
+
+.ico-together {
+    background-image: url(//t1.kakaocdn.net/together_image/m640/ico_together_201008.png);
+    background-size: 290px 1500px;
 }
 }
