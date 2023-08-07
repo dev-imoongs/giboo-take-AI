@@ -1694,9 +1694,11 @@ button {
     vertical-align: top;
 }
 
-.fund_float .btn_cheer:after {
+.fund_float .btn_cheer:after { 
     right: 0;
-}
+}   
+
+
 
 
 @media (max-width: 767px){
