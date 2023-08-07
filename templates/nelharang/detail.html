@@ -14,8 +14,8 @@
         <!-- <header></header> -->
 
         <span class="rootContent">
-          <dov class="cont_project">
-            <article class="mArticle">
+          <div id="dkContent" class="cont_project">
+            <article id="mArticle" class="mArticle">
               <!--상단 타이틀 부분-->
               <div class="wrap_visual">
                 <div class="cont_visual">
@@ -155,8 +155,7 @@
                         <div class="inner_mark_pack">
                           <!--left로 퍼센트조정-->
                           <span class="mark_point" style="left: 90%">
-                            <span class="ico_chart txt_result">
-                              <span class="num_per"> 90 </span>
+                            <span class="ico_chart txt_result"><span class="num_per"> 90 </span><span class="txt_per">%</span>
                             </span>
                           </span>
                         </div>
@@ -515,10 +514,22 @@
                 </button>
               </div>
             </article>
-          </dov>
+          </div>
         </span>
 
         <!--모달들 위치-->
+        <!--하단 토스트 메세지-->
+        <div id="toast-container" class="toast-bottom-center" style="display: none;">
+          <div toastcomp="" class="toast toast-success">
+            <div class="toaster-icon icon-success"></div>
+            <div class="toast-content">
+              <div class="toast-title"></div>
+              <div class="toast-message">
+                <div>최소 2글자 이상 입력해주세요</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- <footer></footer> -->
       </div>
