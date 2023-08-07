@@ -19,7 +19,7 @@ menu, ol, ul {
     font-family: KakaoBig Bold;
     font-style: normal;
     font-weight: 400;
-    src: url(./font/KakaoBigBold.woff2) format('woff2'),
+    src: url(./font/kakaoBigBold.woff2) format('woff2'),
       url(./font/KakaoBigBold.woff) format('woff');
   }
   @font-face {
