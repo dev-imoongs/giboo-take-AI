@@ -23,25 +23,25 @@ menu, ol, ul {
     font-family: KakaoBig Bold;
     font-style: normal;
     font-weight: 400;
-    src: url(./font/KakaoBigBold.woff2) format('woff2'),
-      url(./font/KakaoBigBold.woff) format('woff');
+    src: url(/static/css/font/KakaoBigBold.woff2) format('woff2'),
+      url(/static/css/font/KakaoBigBold.woff) format('woff');
   }
   @font-face {
     font-family: KakaoBig Regular;
     font-style: normal;
     font-weight: 400;
-    src: url(./font/KakaoBigRegular.woff2)
+    src: url(/static/css/font/KakaoBigRegular.woff2)
         format('woff2'),
-      url(./font/KakaoBigRegular.woff)
+      url(/static/css/font/KakaoBigRegular.woff)
         format('woff');
   }
   @font-face {
     font-family: grandma_kja;
     font-style: normal;
     font-weight: 400;
-    src: url(./font/Together-KwonJungae.otf)
+    src: url(/static/css/font/Together-KwonJungae.otf)
         format('opentype'),
-      url(./font/Together-KwonJungae.woff)
+      url(/static/css/font/Together-KwonJungae.woff)
         format('woff');
   }
 
