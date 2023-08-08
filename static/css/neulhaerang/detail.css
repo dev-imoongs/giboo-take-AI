@@ -344,12 +344,25 @@ button, input, select, textarea {
     text-align: center;
 }
 
+.warn_zzi{
+    width: 100% !important;
+    font-size: 12px !important;
+    color: #f70000 !important;
+}
+.warn_zzi:first-of-type{
+    margin-top: 5px !important;
+}
 .link_hash {
     display: inline-block;
     margin: 3px 1px 3px 2px;
     padding: 7px 16px 9px 15px;
     border-radius: 25px;
     font-size: 15px;
+}
+.give_take{
+    margin-top: 20px !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
 }
 
 .cont_project .info_state {
@@ -549,7 +562,7 @@ button, input, select, textarea {
     overflow: hidden;
     position: relative;
     float: left;
-    width: 254px;
+    width: 150px;
     height: 30px;
     font-size: 17px;
     line-height: 30px;
@@ -561,7 +574,7 @@ button, input, select, textarea {
     overflow: hidden;
     position: relative;
     float: right;
-    width: 140px;
+    width: 240px;
     height: 30px;
     font-size: 17px;
     line-height: 30px;
@@ -588,7 +601,7 @@ button, input, select, textarea {
     overflow: hidden;
     position: relative;
     float: left;
-    width: 254px;
+    width: 165px;
     height: 30px;
     font-size: 17px;
     line-height: 30px;
@@ -600,7 +613,7 @@ button, input, select, textarea {
     overflow: hidden;
     position: relative;
     float: right;
-    width: 140px;
+    width: 220px;
     height: 30px;
     font-size: 17px;
     line-height: 30px;
@@ -2046,7 +2059,7 @@ button {
     margin-top: 1px;
 }
 .detail_fund dt {
-    width: 186px;
+    width: 140px;
     height: 24px;
     font-size: 15px;
     line-height: 24px;
@@ -2058,7 +2071,7 @@ button {
     line-height: 20px;
 }
 .detail_fund dd {
-    width: 114px;
+    width: 152px;
     height: 24px;
     font-size: 15px;
     line-height: 24px;
@@ -2375,6 +2388,12 @@ button {
 .cmt_type3 .wrap_sort {
     padding-top: 2px;
     padding-right: 0;
+}
+.warn_zzi{
+    width: 100%; !important;
+}
+.warn_zzi:first-of-type{
+    margin-top: 5px !important;
 }
 .cmt_type3 .wrap_sort .lab_sort {
     font-size: 13px;
@@ -2990,6 +3009,395 @@ button {
 
 
 
+@media only all and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 767px), only all and (min-device-pixel-ratio:1.5) and (max-width: 767px), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 767px), only screen and (min-resolution: 1.5dppx) and (max-width: 767px) {
+    .ico_together {
+        background-image: url(//t1.kakaocdn.net/together_image/m640/ico_together_201008.png);
+        background-size: 290px 1500px;
+    }
+}
+
+
+.inner_modal {
+    display: flex;
+    position: relative;
+    width: 440px;
+    min-height: 200px;
+    max-height: 95vh;
+    background-color: #fff;
+    flex-direction: column;
+}
+
+
+.inner_modal .tit_head {
+    display: flex;
+    height: 60px;
+    padding: 0 50px;
+    border-bottom: 1px solid #eee;
+    font-family: KakaoBig Bold;
+    font-size: 19px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -.15px;
+}
+
+.inner_modal .layer_body {
+    overflow: auto;
+    letter-spacing: -.3px;
+}
+
+.inner_modal .info_profile {
+    display: flex;
+    overflow: hidden;
+    padding: 20px;
+    align-items: center;
+}
+
+.inner_modal .info_profile .thumb_img {
+    float: left;
+    width: 67px;
+    height: 50px;
+    margin-right: 16px;
+    border-radius: 6px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    flex-shrink: 0;
+}
+
+.inner_modal .info_profile .area_info {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.inner_modal .info_profile .tit_info {
+    display: block;
+    overflow: hidden;
+    color: #202020;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    letter-spacing: -.15px;
+}
+
+.inner_modal .info_profile .txt_sponsor {
+    padding-top: 4px;
+    color: #888;
+    font-size: 13px;
+}
+.inner_modal .wrap_fund {
+    padding: 0 20px;
+}
+.inner_modal .box_input_num {
+    display: flex;
+    position: relative;
+    padding: 32px 0 16px;
+    justify-content: end;
+    align-items: center;
+    border-bottom: 2px solid #444;
+    color: #202020;
+    font-family: KakaoBig Bold;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -.8px;
+}
+.inner_modal .box_input_num:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: calc(100% + 40px);
+    height: 6px;
+    background-color: #f4f4f4;
+}
+
+.inner_modal .box_input_num .tf_g {
+    color: #202020;
+    font-family: KakaoBig Bold;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -.8px;
+    text-align: right;
+    outline: none;
+    caret-color: #3f4dce;
+}
+.inner_modal .box_input_num .txt_unit {
+    padding-left: 4px;
+}
+
+.inner_modal .box_input_num .btn_reset {
+    margin-left: 17px;
+}
+
+.inner_modal .ico_close_round {
+    display: block;
+    width: 19px;
+    height: 19px;
+    background: url(//t1.kakaocdn.net/together_image/svg/ico_close_round.svg) no-repeat 50%/cover;
+}
+
+
+.inner_modal .box_digit {
+    display: grid;
+    padding-top: 16px;
+    grid-gap: 5px;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 40px;
+}
+
+.inner_modal .box_digit .btn_digit {
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.inner_modal .txt_info {
+    padding-top: 10px;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.inner_modal .wrap_textarea {
+    padding-top: 26px;
+}
+
+.box_tf {
+    box-shadow: 0 1px 4px 0 #0000001a;
+    border: 1px solid #c9c9c9;
+    background-color: #fff;
+}
+
+.wrap_textarea .box_tf {
+    display: flex;
+    height: 110px;
+    padding: 8px 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.inner_modal .wrap_textarea .box_tf {
+    border-radius: 6px;
+}
+
+.tf_g {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: initial;
+}
+
+.wrap_textarea .box_tf .tf_g {
+    font-size: 15px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    caret-color: #3f4dce;
+}
+
+.wrap_textarea .box_tf .box_util {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.wrap_textarea .txt_inp_limit {
+    color: #999;
+    font-size: 13px;
+}
+
+.wrap_textarea .txt_inp_limit .num_now {
+    color: #444;
+}
+
+.inner_modal .group_choice {
+    padding-top: 14px;
+}
+.inner_modal .group_choice .choice_checkbox {
+    padding: 16px 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+.choice_g {
+    display: block;
+    position: relative;
+}
+
+.choice_g .inp_g {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    -webkit-appearance: none;
+}
+
+.inner_modal .group_choice .inp_g {
+    right: -20px;
+    left: auto;
+    width: 60px;
+    height: 100%;
+}
+.choice_g .lab_g {
+    color: #444;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inner_modal .choice_checkbox .lab_g {
+    display: inline-flex;
+}
+.choice_g .ico_check {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(//t1.kakaocdn.net/together_image/svg/ico_check.svg) no-repeat 50%/cover;
+}
+
+
+.inner_modal .group_choice .ico_check {
+    position: absolute;
+    right: 0;
+}
+.inner_modal .list_msg {
+    padding: 20px 0;
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.inner_modal .list_msg li {
+    display: flex;
+    align-items: center;
+}
+.inner_modal .list_msg li:before {
+    display: block;
+    width: 3px;
+    height: 3px;
+    margin: 0 8px 0 3px;
+    border-radius: 50%;
+    background-color: #999;
+    content: "";
+}
+
+.inner_modal .wrap_btns {
+    display: flex;
+    padding: 0 20px 20px;
+    align-items: center;
+}
+.inner_modal .wrap_btns .btn_set {
+    width: 100%;
+    height: 46px;
+    border-radius: 6px;
+    background-color: #ff4050e6;
+    color: #fff;
+    font-family: KakaoBig Bold;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.inner_modal .btn_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 21px 20px;
+}
+
+.ir_pm {
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.ir_pm, .ir_wa {
+    display: block;
+    overflow: hidden;
+}
+
+.inner_modal .ico_close {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(//t1.kakaocdn.net/together_image/svg/ico_close.svg) no-repeat 50%/cover;
+}
+
+
+.choice_g .choice_g .lab_choiced .ico_check, .choice_g .inp_g:checked+.lab_g .ico_check {
+    background-image: url(//t1.kakaocdn.net/together_image/svg/ico_check_on_230711.svg);
+}
+
+
+
+@media (max-width: 767px) {
+    .inner_modal .info_profile .thumb_img {
+        width: 75px;
+        height: 56px;
+        margin-right: 15px;
+    }
+    .inner_modal .info_profile .tit_info {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    line-height: 1.33;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+    .inner_modal .info_profile .txt_sponsor {
+    font-size: 12px;
+}
+    .inner_modal .box_input_num .btn_reset {
+    margin-left: 12px;
+}
+    .inner_modal .ico_close_round {
+    width: 16px;
+    height: 16px;
+}
+    .inner_modal .box_digit {
+    grid-gap: 8px;
+    gap: 8px;
+    grid-template-rows: 35px 35px;
+}
+    .inner_modal .box_digit .btn_digit {
+    font-size: 13px;
+}
+    .inner_modal .txt_info {
+    font-size: 12px;
+}
+    .wrap_textarea .box_tf .tf_g {
+    font-size: 16px;
+}
+    .inner_modal .group_choice {
+    padding-top: 15px;
+}
+    .inner_modal .group_choice .choice_checkbox {
+    padding: 15px 0;
+}
+    .inner_modal .list_msg {
+    font-size: 12px;
+    line-height: 1.75;
+}
+    .inner_modal .list_msg li:before {
+    margin: 0 7px 0 0;
+}
+    .inner_modal .wrap_btns {
+    padding: 0 20px 40px;
+}
+    .inner_modal .btn_close {
+    padding: 19px 20px 20px;
+}
+    .ir_pm {
+    font-size: 1px;
+    color: #0000;
+}
+
+}
 
 
 
