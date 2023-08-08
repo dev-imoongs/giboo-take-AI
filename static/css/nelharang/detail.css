@@ -251,7 +251,7 @@ button, input, select, textarea {
     background: #fff;
     width: 100%;
     /* transform: translateX(-100%); 이부분 js*/
-    transition-duration: 500ms;
+    /*transition-duration: 500ms;*/
     white-space: normal;
     position: absolute;
 }
@@ -2715,4 +2715,285 @@ button {
 .toast .toast-message>div {
     white-space: pre-line;
 }
+
+
+
+
+
+
+.ngdialog-content {
+    overflow: hidden;
+    position: absolute;
+    z-index: 999999;
+    top: 50%;
+    left: 50%;
+}
+
+.inner_together_layer2 {
+    width: 392px;
+}
+
+
+.inner_together_layer {
+    background-color: #fff;
+}
+
+
+.inner_together_layer .wrap_ktbadge {
+    padding: 60px 24px 56px;
+    text-align: center;
+}
+
+.inner_together_layer .wrap_ktbadge .tit_badge {
+    display: block;
+    margin-top: -4px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+}
+.inner_together_layer .wrap_ktbadge .thumb_badge {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 9px;
+}
+
+.inner_together_layer .wrap_ktbadge .txt_badge {
+    font-size: 16px;
+    color: #828282;
+    line-height: 24px;
+    white-space: pre-line;
+}
+
+
+
+.inner_together_layer .cont_plusfriend {
+    margin-top: -10px;
+    padding: 0 24px 27px;
+}
+
+.cont_plusfriend .info_plusfriend {
+    display: inline-block;
+    padding-top: 1px;
+    color: #999;
+    line-height: 22px;
+    text-align: left;
+    white-space: pre-line;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+
+
+.inner_together_layer .cont_plusfriend .info_plusfriend {
+    padding-left: 6px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+
+.cont_plusfriend .btn_plusfriend {
+    display: inline-block;
+    width: 113px;
+    height: 45px;
+    margin-left: 20px;
+    border-radius: 6px;
+    background-color: #ffe500;
+    vertical-align: top;
+}
+
+.inner_together_layer .cont_plusfriend .btn_plusfriend {
+    margin-top: -2px;
+    margin-left: 14px;
+}
+
+
+
+.ico_together3 {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together3_221018.png) no-repeat 0 0;
+}
+
+
+.ico_together3, .txt_together {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+
+.cont_plusfriend .btn_plusfriend .ico_plusfriend {
+    display: inline-block;
+    width: 26px;
+    height: 18px;
+    margin-top: 2px;
+    margin-right: 4px;
+    background-position: -160px -220px;
+    vertical-align: top;
+}
+
+.cont_plusfriend .btn_plusfriend .txt_plusfriend {
+    display: inline-block;
+    font-size: 15px;
+    font-family: KakaoBig Regular,sans-serif;
+    vertical-align: top;
+    line-height: 1.2;
+}
+
+
+.inner_together_layer .layer_foot {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.inner_together_layer .layer_foot .btn_close {
+    display: block;
+    overflow: hidden;
+}
+.inner_together_layer .layer_foot .ico_together {
+    width: 17px;
+    height: 17px;
+    margin: 22px;
+    background-position: -184px 0;
+}
+
+
+@media (max-width: 767px){
+.inner_together_layer {
+    width: 280px;
+}
+
+    .inner_together_layer .wrap_ktbadge {
+    padding: 38px 12px 33px;
+}
+    .inner_together_layer .wrap_ktbadge .tit_badge {
+    margin-top: -3px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 21px;
+}
+    .inner_together_layer .wrap_ktbadge .thumb_badge {
+    margin: 0 auto 9px;
+}
+.inner_together_layer .wrap_ktbadge .name_badge {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.inner_together_layer .wrap_ktbadge .txt_badge {
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.inner_together_layer .cont_plusfriend {
+    position: relative;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.inner_together_layer .cont_plusfriend .info_plusfriend {
+    padding-top: 48px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+.inner_together_layer .cont_plusfriend .btn_plusfriend {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+
+.cont_plusfriend .btn_plusfriend .ico_plusfriend {
+    margin-top: 1px;
+    margin-right: 3px;
+    background-position: -110px -147px;
+}
+
+
+
+.cont_plusfriend .btn_plusfriend .txt_plusfriend {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.inner_together_layer .layer_foot {
+    z-index: 10;
+}
+.inner_together_layer .layer_foot .btn_close {
+    width: 42px;
+    height: 42px;
+}
+.inner_together_layer .layer_foot .ico_together {
+    width: 12px;
+    height: 12px;
+    margin: 15px;
+    background-position: -100px -20px;
+}
+}
+
+
+.inner_together_layer2 {
+    width: 392px;
+}
+
+
+.inner_together_layer .desc_together {
+    display: table;
+    width: 100%;
+    height: 128px;
+    padding-top: 30px;
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+}
+.inner_together_layer .desc_together .txt_desc {
+    display: table-cell;
+    padding: 20px 25px;
+    vertical-align: middle;
+    line-height: 28px;
+    word-break: break-all;
+}
+
+.inner_together_layer .wrap_btn {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.inner_together_layer .wrap_btn .btn_set {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 48px;
+    margin: 0 4px;
+    vertical-align: top;
+    color: #fff;
+    font-size: 16px;
+    line-height: 49px;
+}
+.inner_together_layer .wrap_btn .btn_type1 {
+    background-color: #dc287c;
+}
+.inner_together_layer2 .wrap_btn .btn_set {
+    text-align: center;
+}
+
+.inner_together_layer .wrap_btn .btn_type2 {
+    background-color: #949494;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
