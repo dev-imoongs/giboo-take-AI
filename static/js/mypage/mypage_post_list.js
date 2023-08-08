@@ -37,7 +37,3 @@ $('.lab_sort').on('click',(e)=>{
     $('.box_sorting').removeClass('sort_on')
     $target.parent().addClass('sort_on')
 })
-
-
-
-$('.nav-neulhajang')
