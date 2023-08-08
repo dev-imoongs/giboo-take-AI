@@ -53,25 +53,27 @@
                   <profile-edit>
                     <dt> 연락처 </dt>
                     <!-- 연락처가 입력되어 있지 않을경우 -->
+                      <!--
                     <dd class="phone-item">
                       <div class="group-tf">
                         <button type="button" class="btn-number"> 휴대폰 번호 입력 </button>
                       </div>
                     </dd>
+                      -->
                     <!-- 연락처가 입력되어있을경우 -->
                     <dt> 연락처 </dt>
                     <dd class="phone-item">
                       <div class="group-tf">
                         <div class="box-output"> 01000000000 </div>
-                        <button type="button" class="btn-modify"> 변경 </button>
-                        <button type="button" class="btn-del"> 삭제 </button>
+       <!--                 <button type="button" class="btn-modify"> 변경 </button>
+                        <button type="button" class="btn-del"> 삭제 </button>    -->
                       </div>
                     </dd>
                     <dt> 이메일 </dt>
                     <dd class="phone-item">
                       <div class="group-tf">
                         <div class="box-output"> ****@naver.com </div>
-                        <button type="button" class="btn-modify"> 변경 </button>
+          <!--              <button type="button" class="btn-modify"> 변경 </button>    -->
                       </div>
                     </dd>
                     <dt> 나이 </dt>
@@ -79,7 +81,8 @@
                       <div class="pack-select">
                         <div class="box-select">
                           <div class="opt-comm">
-                            <span class="select-option select-on">선택</span>
+                            <span id="select-age" class="select-option select-on">선택</span>
+                              <!-- option 선택시 select_on 생기며 (스타일은 없음) select-option에 텍스트 입력됨 -->
                             <select id="opAge" class="opt-select ">
                               <option value="" class="select-option"> 선택안함 </option>
                               <option value="15">2009년생</option>
@@ -168,7 +171,7 @@
                       <div class="pack-select select-type2">
                         <div class="box-select">
                           <div class="opt-comm">
-                            <span class="select-option select-on">시, 도 선택</span>
+                            <span id="select-parentRegion" class="select-option select-on">시, 도 선택</span>
                             <select name="parentRegion" id="selectTarget" class="opt-select">
                               <option value="">시, 도 선택</option>
                               <option value="11"> 서울 </option>
@@ -198,7 +201,7 @@
                         <div class="box-select">
                           <div class="opt-comm">
                             <span class="select-option"></span>
-                            <span class="select-option select-on">시,군,구 지역선택</span>
+                            <span id="select-region" class="select-option select-on">시,군,구 지역선택</span>
                             <select name="region" id="selectRegion" class="opt-select ">
                               <option value="">시,군,구 지역선택</option>
                               <option value="41110"> 수원시 </option>
@@ -257,7 +260,7 @@
                         </div>
                       </div>
                     </dd>
-                    <!-- 모달 -->
+                    <!-- 모달 -->   <!--
                     <update-phone-modal>
                       <modal>
                         <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF" style="position: fixed; display: none; top: 25%; margin-left: -192px;">
@@ -361,7 +364,7 @@
                           </modal-content>
                         </div>
                       </modal>
-                    </update-email-modal>
+                    </update-email-modal>    -->
                   </profile-edit>
                 </dl>
               </div>
@@ -412,6 +415,46 @@
       </section-component>
     </main>
     <footer></footer>
+    <!-- height 100%시 모달 등장 -->
+    <div class="dimmed_layer"></div>
   </div>
+  <modal>
+    <!-- 모달 꺼지면 id modalOFF display:none -->
+    <div tabindex="0" role="dialog" class="dialog-content opened-modal"
+     id="modalOFF" style="display: none">
+        <modal-content class="modal-delete">
+          <div class="inner-together-layer inner-together-layer2">
+            <div class="layer-body">
+              <p class="desc-together">
+                <span class="txt-desc">프로필 이미지가 삭제됩니다.<br>정말 삭제하시겠습니까?</span>
+              </p>
+              <div class="wrap-btn">
+                <a href="javascript:void(0)" class="btn-set btn-type1">확인</a>
+                <a href="javascript:void(0)" class="btn-set btn-type2">취소</a>
+              </div>
+            </div>
+          </div>
+        </modal-content>
+        <modal-content class="modal-policy">
+            <div class="inner-together-layer inner-together-layer2">
+                <div class="layer-body">
+                    <p class="desc-together">
+                        <span class="txt-desc">개인정보 수집 및 이용에 대한 동의를 확인해주세요.</span>
+                    </p>
+                    <div class="wrap-btn wrap-btn-type">
+                        <a class="btn-set btn-type1 btn-confirm">확인</a>
+                    </div>
+                </div>
+                <div class="layer-foot">
+                    <button type="button" class="btn-close">
+                        <span class="ico-together">닫기</span>
+                    </button>
+                </div>
+            </div>
+        </modal-content>
+    </div>
+  </modal>
 </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../static/js/mypage/mypage_profile.js"></script>
 </html>

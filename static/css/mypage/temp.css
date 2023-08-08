@@ -1,0 +1,112 @@
+/*모달*/
+.dialog-content {
+  overflow: hidden;
+  z-index: 999999;
+  left: 50%;
+  position: fixed;
+  display: none;
+  top: 25%;
+  margin-left: -192px;
+}
+.inner-together-layer {
+    background-color: #fff;
+}
+
+.inner-together-layer2 {
+    width: 392px;
+}
+
+.inner-together-layer .desc-together {
+    display: table;
+    width: 100%;
+    height: 128px;
+    padding-top: 30px;
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+}
+
+.inner-together-layer .desc-together .txt-desc {
+    display: block;
+    display: table-cell;
+    padding: 20px 25px;
+    vertical-align: middle;
+    line-height: 28px;
+    word-break: break-all;
+    white-space: pre-line
+}
+
+.inner-together-layer .wrap-btn {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-set {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 48px;
+    margin: 0 4px;
+    vertical-align: top;
+    color: #fff;
+    font-size: 16px;
+    line-height: 49px;
+}
+
+.inner-together-layer .wrap-btn .btn-type1 {
+    background-color: #dc287c;
+}
+
+.inner-together-layer2 .wrap-btn .btn-set {
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-type2 {
+    background-color: #949494;
+}
+
+
+/*미디어 쿼리*/
+  /* 모달 */
+  .dialog-content {
+    margin-left: -140px;
+  }
+
+  .inner-together-layer {
+    width: 280px;
+  }
+
+  .inner-together-layer .desc-together {
+    height: 100px;
+    padding-top: 13px;
+    font-size: 14px;
+  }
+
+  .inner-together-layer .desc-together .txt-desc {
+    padding: 22px 15px;
+    line-height: 21px;
+}
+
+  .inner-together-layer .wrap-btn {
+    padding-bottom: 20px;
+}
+
+  .wrap-btn {
+    margin: 0 9px;
+}
+
+  .inner-together-layer .wrap-btn .btn-set {
+    width: 122px;
+    height: 44px;
+    margin: 0 3px;
+    font-size: 14px;
+    line-height: 45px;
+}
+
+  .inner-together-layer .wrap-btn .btn-set {
+    width: 122px;
+    height: 44px;
+    margin: 0 3px;
+    font-size: 14px;
+    line-height: 45px;
+}
