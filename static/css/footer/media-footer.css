@@ -1,0 +1,247 @@
+/* min-width: 768px */
+@media only screen and (min-width: 768px) {
+    .footer {
+        height: 250px;
+        padding: 46px 0px 88px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-inner-container {
+        align-items: flex-end;
+        width: 1120px;
+        margin: 0px auto;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .pc-footer-logo-link {
+        top: -2px;
+        left: 0px;
+        width: 114px;
+        height: 18px;
+        background-image: url("https://t1.kakaocdn.net/together_image/svg/footer_logo_pc.svg");
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .pc-footer-info-container {
+        flex-direction: row;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-copyright-hyperlink {
+        order: -1;
+        width: auto;
+        margin-right: 20px;
+        margin-bottom: 0px;
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-copyright-text {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-menu-list-item {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-list-item-text {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-menu-list li::after {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-list {
+        margin-bottom: 0px;
+        margin-right: -4px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-list li:first-child {
+        margin-left: 28px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-item-text {
+        width: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-icon-kakaotalk {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-icon-kakaostory {
+        width: 12px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-icon-facebook {
+        width: 12px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-sns-icon-instagram {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer {
+        -webkit-box-align: center;
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer-propose {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer-items-text {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer-copyright-hyperlink {
+        width: auto;
+        margin-right: 20px;
+        margin-bottom: 0px;
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer-copyright-text {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-footer-logo-link {
+        top: -2px;
+        left: 0px;
+        width: 114px;
+        height: 18px;
+        background-image: url("https://t1.kakaocdn.net/together_image/svg/footer_logo_pc.svg");
+    }
+}
+
+
+@media only screen and (min-width: 768px){
+    .footer-sns-list {
+        margin-bottom: 0px;
+        margin-right: -4px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .footer-sns-list li:first-child {
+        margin-left: 28px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .sns-item {
+        width: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-sns-item-kakaotalk {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-sns-item-kakaostory {
+        width: 12px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-sns-item-facebook {
+        width: 12px;
+        height: 22px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-sns-item-instagram {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* max-width: 767px */
+@media only screen and (max-width: 767px) {
+    .pc-footer-logo-link {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .pc-footer-propose-container {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .pc-footer-info-container {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .mobile-footer-menu-list li::after {
+        width: 1px;
+        height: 8px;
+        background-color: rgb(68, 68, 68);
+    }
+}
+
+
+
