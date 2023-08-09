@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../../static/css/common.css"/>
-    <link rel="stylesheet" href="/static/css/nelharang/detail.css"/>
+    <link rel="stylesheet" href="../../static/css/neulhaerang/detail.css">
     <title>늘해랑 : 상세보기</title>
 </head>
 <body>
@@ -248,18 +248,18 @@
                   </div>
                     <!--기부금 상세정보-->
                   <dl class="detail_fund">
-                    <dt class="tit_fund">직접기부 (195명)</dt>
-                    <dd class="txt_fund">1,807,890원</dd>
-                    <dt class="tit_fund">참여기부 (5,985명)</dt>
-                    <dd class="txt_fund">598,500원</dd>
+                    <dt class="tit_fund give_take">기부하고 별찌받자!</dt>
+                    <dd class="txt_fund"></dd>
                   </dl>
                   <dl class="detail_fund fund_belong">
-                    <dt class="tit_fund">ㄴ 응원기부 (4,200명)</dt>
-                    <dd class="txt_fund">420,000원</dd>
-                    <dt class="tit_fund">ㄴ 공유기부 (288명)</dt>
-                    <dd class="txt_fund">28,800원</dd>
-                    <dt class="tit_fund">ㄴ 댓글기부 (1,497명)</dt>
-                    <dd class="txt_fund">149,700원</dd>
+                    <dt class="tit_fund">ㄴ 최고의 기부천사 (1명)</dt>
+                    <dd class="txt_fund">아이와 함께 만든 비즈 팔찌</dd>
+                    <dt class="tit_fund">ㄴ 감동의 기부천사 (10명)</dt>
+                    <dd class="txt_fund">아이와 함께 만든 비즈 반지</dd>
+                    <dt class="tit_fund">ㄴ 은은한 기부천사(100명)</dt>
+                    <dd class="txt_fund">아이의 손글씨 편지</dd>
+                      <dt class="txt_fund warn_zzi">(익명 기부시 별찌 대상자에서 제외됩니다.)</dt>
+                      <dt class="txt_fund warn_zzi">(같은 금액 기부시 먼저 기부한 천사가 기부천사가 됩니다.)</dt>
                   </dl>
                   <dl class="detail_fund"></dl>
                 </div>
@@ -403,7 +403,7 @@
                             <!--이모티콘 누를시 내가가진 이모티콘이 나옴-->
                             <!-- <div class="emoticon_layer" style="display: none"></div> -->
 
-                          <span class="txt_limit"><span class="num_now">0/</span>500 </span
+                          <span class="txt_limit"><span class="num_now comment_num">0/</span>500 </span
                           ><button type="button" class="btn_comment">등록</button>
                         </fieldset>
                       </div>
@@ -579,10 +579,10 @@
                   ><span class="txt_float txt_cheer"
                 >응원<span class="num_active">4,218</span></span
                 ></button
-                ><button type="button" class="btn_g">
+                ><button type="button" class="btn_g btn_participate">
                   <span class="ico_together ico_share"></span
                   ><span class="txt_float txt_share"
-              >공유<span class="num_active">288</span></span
+              >동참<span class="num_active">20/30</span></span
               ></button
               ><button type="button" class="btn_g btn_give">
                   <span class="ico_give"></span><span class="txt_float txt_give">기부하기</span>
@@ -642,7 +642,7 @@
             </modal-content
             >
         </div>
-        <!--댓글 삭제 모달 , 로그인 모달-->
+        <!--댓글 삭제 모달 -->
         <div class="ngdialog-content comment_delete_modal" id="modalON"
              style="position: fixed; display: none; top: 25%; margin-left: -192px;">
             <modal-content>
@@ -656,7 +656,8 @@
                 </div>
             </modal-content>
         </div>
-         <div class="ngdialog-content need_login_modal" id="modalON"
+        <!--, 로그인 모달-->
+        <div class="ngdialog-content need_login_modal" id="modalON"
              style="position: fixed; display: none; top: 25%; margin-left: -192px;">
             <modal-content>
                 <div class="inner_together_layer inner_together_layer2">
@@ -669,7 +670,101 @@
                 </div>
             </modal-content>
         </div>
+        <!--, 동참 모달-->
+        <div class="ngdialog-content participate_modal" id="modalON"
+             style="position: fixed; display: none; top: 25%; margin-left: -192px;">
+            <modal-content>
+                <div class="inner_together_layer inner_together_layer2">
+                    <div class="layer_body"><p class="desc_together"><span class="txt_desc"
+                                                                           style="white-space: pre-line;">당신은 천사입니다.<br>봉사활동에 동참하시겠습니까?</span>
+                    </p>
+                        <div class="wrap_btn"><a href="javascript:void(0)" class="btn_set btn_type1">확인</a><a
+                                href="javascript:void(0)" class="btn_set btn_type2">취소</a></div>
+                    </div>
+                </div>
+            </modal-content>
+        </div>
 
+        <!--기부하기 모달-->
+        <donation-modal>
+            <modal>
+                <div class="ngdialog-content fund_modal" id="modalON"
+                     style="position: fixed; display: none; inset: 0px; margin-left: 0px; align-items: center; justify-content: center;">
+                    <modal-content>
+                        <div class="inner_modal">
+                            <div class="layer_head"><strong class="tit_head">기부하기</strong></div>
+                            <div class="layer_body">
+                                <div class="info_profile">
+                                    <div kagetype="c360" class="thumb_img"
+                                         style="background-image: url(&quot;https://mud-kage.kakaocdn.net/dn/bHhaxG/btsmGgN5xJu/kr3waBaWbEkCER8fswpA41/c360.jpg&quot;);"></div>
+                                    <div class="area_info"><strong class="tit_info">‘라면 한 끼’가 전부인 어르신에게 '한 끼'의
+                                        의미</strong>
+                                        <p class="txt_sponsor"> (복) 불국토 수영구 노인복지관 </p></div>
+                                </div>
+                                <form name="form"
+                                      class="form_manage ng-pristine ng-valid ng-touched ng-submitted">
+                                    <fieldset>
+                                        <div class="wrap_fund">
+                                            <div class="box_input_num"><input type="text" inputmode="numeric"
+                                                                              id="tfWrite"
+                                                                              name="amount" placeholder="0"
+                                                                              class="tf_g ng-pristine ng-valid ng-touched"><em
+                                                    class="txt_unit">원</em>
+                                                <button class="btn_reset" type="button"><span class="ico_close_round"></span></button>
+                                            </div>
+
+                                            <div class="box_digit">
+                                                <button type="button" data-don="5000" class="btn_digit"> + 5천원</button>
+                                                <button type="button" data-don="10000" class="btn_digit"> + 1만원</button>
+                                                <button type="button" data-don="30000" class="btn_digit"> + 3만원</button>
+                                                <button type="button" data-don="50000" class="btn_digit"> + 5만원</button>
+                                                <button type="button" data-don="100000" class="btn_digit"> + 10만원
+                                                </button>
+                                                <button type="button" data-don="500000" class="btn_digit"> + 50만원
+                                                </button>
+                                                <button type="button" data-don="1000000" class="btn_digit"> + 100만원
+                                                </button>
+                                                <button type="button" data-don="직접입력" class="btn_digit"> 직접입력
+                                                </button>
+                                            </div>
+                                            <p class="txt_info"> 무통장은 3천원, 기타 결제는 1천원부터 가능합니다. </p><!----><!----><!---->
+                                            <div class="wrap_textarea">
+                                                <div class="box_tf"><textarea id="tfReply" cols="30" rows="10"
+                                                                              name="comment"
+                                                                              maxlength="300"
+                                                                              placeholder="응원하는 따뜻한 한마디를 남겨주세요."
+                                                                              class="tf_g ng-pristine ng-valid ng-touched"></textarea>
+                                                    <div class="box_util"><span class="txt_inp_limit"><span
+                                                            class="num_now give_num">0</span>/300</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="group_choice"><span
+                                                    class="choice_g choice_checkbox"><input type="checkbox"
+                                                                                            id="checkAnonymous"
+                                                                                            name="anonymous"
+                                                                                            class="inp_g ng-untouched ng-pristine ng-valid"
+                                                                                            value="true"><label
+                                                    for="checkAnonymous" class="lab_g"><span class="info_choice">익명으로 기부하기</span><span
+                                                    class="ico_check"></span></label></span></div>
+                                            <ul class="list_msg">
+                                                <li>결제 수수료는 카카오가 대신 부담합니다.</li>
+                                                <li>기부 완료 알림은 카카오톡으로 발송해드려요.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="wrap_btns">
+                                            <button type="button" class="btn_set"> 기부하기</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="layer_foot">
+                                <button type="button" class="btn_close"><span class="ico_close ir_pm">닫기</span></button>
+                            </div>
+                        </div>
+                    </modal-content>
+                </div>
+            </modal>
+        </donation-modal>
 
         <!--하단 토스트 메세지-->
         <div id="toast-container" class="toast-bottom-center" style="display: none">

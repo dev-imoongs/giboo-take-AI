@@ -34,6 +34,21 @@ $(".comment_delete_modal .btn_type2").on("click",e=>{
     $comment_delete_modal.removeClass("opened_modal")
 })
 
+//동참하기 모달
+const $participate_modal = $(".participate_modal")
+const $btn_participate =$(".btn_participate")
+$btn_participate.on("click",e=>{
+    $dimedLayer.css("height","100%")
+    $participate_modal.show()
+    $participate_modal.addClass("opened_modal")
+})
+
+$(".participate_modal .btn_type2").on("click",e=>{
+    $dimedLayer.css('height', "");
+    $participate_modal.hide();
+    $participate_modal.removeClass("opened_modal")
+})
+
 //로그인 모달
 const $need_login_modal = $(".need_login_modal")
 
@@ -44,7 +59,7 @@ const show_need_login_modal = function (){
     $need_login_modal.addClass("opened_modal")
 }
 
-//로그인 검사로직 false라면 로그인 모달 띄우기
+// 로그인 검사로직 false라면 로그인 모달 띄우기
 $(".btn_give").on("click",e=>{
     show_need_login_modal()
 })
@@ -55,6 +70,45 @@ $(".need_login_modal .btn_type2").on("click",e=>{
     $need_login_modal.hide();
     $need_login_modal.removeClass("opened_modal")
 })
+
+
+
+
+//기부하기 버튼 모달
+const $fund_modal =$(".fund_modal")
+$(".btn_give").on("click",e=>{
+    $fund_modal.css("display","flex")
+    $dimedLayer.css("height","100%")
+    $fund_modal.addClass("opend_modal")
+})
+
+$(".btn_close").on("click",e=>{
+    $fund_modal.hide()
+    $dimedLayer.css("height","")
+    $fund_modal.removeClass("opend_modal")
+})
+
+const $moneyInput= $(".box_input_num .tf_g")
+$(".btn_reset").on("click",e=>{
+    $moneyInput.val("")
+})
+
+$(".btn_digit").each((i,btn)=>{
+    $(btn).on("click",e=>{
+        let money = btn.dataset.don
+        if(money ==="직접입력"){
+            $moneyInput.val("")
+            $moneyInput.focus()
+            return
+        }
+            $moneyInput.val(Number($moneyInput.val())+Number(money))
+    })
+})
+
+$(".box_tf .tf_g").on("input",e=>{
+    $(".give_num").text($(".box_tf .tf_g").val().length)
+})
+
 
 
 
@@ -93,13 +147,23 @@ let $btn_plan_isClicked =false
 $btn_plan.on("click",e=>{
     if($btn_plan_isClicked) return
     $btn_plan_isClicked = true
-    //오픈
-    if($(".slide-togle").css("display")==="none"){
-        $(".info_plan .ico_arr").css("background-position","-237px -116px")
+    if(document.body.offsetWidth<=767){
+        if($(".slide-togle").css("display")==="none"){
+        $(".info_plan .ico_arr").css("background-position","-132px -342px")
+        }else{
+        //클로즈
+        $(".info_plan .ico_arr").css("background-position","-132px -350px")
+        }
     }else{
+        if($(".slide-togle").css("display")==="none"){
+
+        $(".info_plan .ico_arr").css("background-position","-237px -116px")
+        }else{
         //클로즈
         $(".info_plan .ico_arr").css("background-position","-248px -116px")
+        }
     }
+
 
     $(".slide-togle").slideToggle()
     setTimeout(()=>$btn_plan_isClicked=false,500)
@@ -107,14 +171,14 @@ $btn_plan.on("click",e=>{
 
 
 //댓글 등록
-const $num_now = $(".num_now")
+const $comment_num = $(".comment_num")
 const $tf_cmt = $(".tf_cmt")
 const $toast = $(".toast-bottom-center")
 
 //댓글 숫자 제한
 $tf_cmt.on("input",e=>{
     console.log($tf_cmt.text())
-    $num_now.text($tf_cmt.val().length + "/")
+    $comment_num.text($tf_cmt.val().length + "/")
 })
 
 //등록 눌렀을때 확인
@@ -133,6 +197,10 @@ $btn_comment.on("click",e=>{
         },2000)
     }
 })
+
+
+
+
 
 
 
