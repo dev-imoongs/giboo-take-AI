@@ -1,0 +1,353 @@
+body {
+    background-color: #fff;
+}
+
+body, html {
+    min-width: 1140px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    border: 0;
+    border-radius: 0;
+    background-color: initial;
+    cursor: pointer;
+}
+
+#dkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100vh;
+}
+
+#dkContent, #rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+#dkContent {
+    position: relative;
+    margin: 0 0 -212px;
+}
+
+#mArticle {
+    padding: 0 0 250px;
+}
+
+.wrap_tab {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #f7f8f9;
+}
+
+.wrap_tab .list_tab {
+    display: flex;
+    justify-content: center;
+}
+
+.wrap_tab .list_tab li {
+    padding: 0 24px;
+    text-align: center;
+}
+
+.wrap_tab .list_tab .link_tab {
+    display: block;
+    height: 60px;
+    font-size: 15px;
+    color: #888;
+    font-family: KakaoBig Bold;
+}
+
+.wrap_tab .list_tab .txt_tab {
+    display: inline-block;
+    position: relative;
+    height: 60px;
+    padding: 18px 16px 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.wrap_tab .on .link_tab {
+    position: relative;
+    z-index: 1;
+    color: #202020;
+}
+
+/*모금 대상 선택*/
+.group_apply .area_form {
+    width: 700px;
+    margin: 50px auto 0;
+}
+
+.group_apply .tit_head {
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    box-sizing: border-box;
+}
+
+.group_apply .tit_head .ico_new {
+    display: inline-block;
+    margin: 5px 0 0 1px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #dc287c;
+    line-height: 0;
+    text-indent: -9999px;
+    vertical-align: top;
+}
+
+.group_tf .ico_warn, .ico_warn {
+    display: none;
+}
+
+.ico_together, .ico_together2 {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.ico_together {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
+}
+
+.group_apply .sub_head {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 23px;
+    color: #444;
+}
+
+.group_apply .desc_form {
+    margin-top: 16px;
+}
+
+.area_form .box_select {
+    overflow: hidden;
+}
+
+.opt_comm {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    font-size: 12px;
+    line-height: 44px;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.area_form .box_select .opt_comm {
+    float: left;
+    width: 197px;
+    height: 44px;
+    font-size: 16px;
+    line-height: 42px;
+}
+
+.area_form .box_select .opt_comm+.opt_comm {
+    margin-left: 12px;
+}
+
+.opt_comm .select_option {
+    overflow: hidden;
+    right: 0;
+    margin: 0 30px 0 12px;
+    padding: 0;
+    line-height: 44px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.opt_comm .opt_select, .opt_comm .select_option {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.opt_comm .opt_select {
+    display: block;
+    z-index: 10;
+    top: 0;
+    height: 44px;
+    width: 100%;
+    border: 0;
+    background: none;
+    -webkit-appearance: none;
+    opacity: .01;
+    filter: alpha(opacity=0);
+}
+
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+
+.opt_comm .box_arrow {
+    position: absolute;
+    right: 0;
+    width: 29px;
+    height: 44px;
+    background-color: #fff;
+}
+
+.opt_comm .ico_arrow {
+    width: 12px;
+    height: 8px;
+    margin: 17px 0 0 7px;
+    background-position: -236px -116px;
+}
+
+.group_apply .desc_list {
+    margin-top: 11px;
+}
+
+.area_form .txt_standard, .group_apply .list_agree li {
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.emph_sign {
+    color: #dc287c;
+}
+
+.area_form .tit_head a.txt_sign {
+    line-height: 16px;
+    text-decoration: underline;
+}
+.group_apply .area_form .emph_color {
+    margin-left: 6px;
+}
+.group_apply .area_form .txt_sign {
+    font-family: KakaoBig Regular,sans-serif;
+    font-size: 14px;
+}
+.emph_color {
+    color: #429ce1!important;
+}
+
+.group_apply .desc_form .choice_comm2 {
+    margin-top: 8px;
+}
+
+.choice_comm2 {
+    display: block;
+    position: relative;
+}
+
+input:checked[type=checkbox] {
+    background-color: #666;
+    -webkit-appearance: checkbox;
+}
+
+.choice_comm2 .inp_comm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    outline: none;
+    -webkit-appearance: none;
+    opacity: 0;
+    filter: alpha(opacity=1);
+}
+
+.choice_comm2 .lab_comm {
+    display: inline-block;
+    padding-left: 44px;
+    line-height: 32px;
+    font-size: 16px;
+    color: #444;
+    vertical-align: top;
+}
+
+.ico_together2 {
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together2_rtn_210820.png);
+    background-size: 500px 1150px;
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together2_210820.png) no-repeat 0 0;
+}
+
+.choice_comm2 .ico_together2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+}
+
+.choice_comm2 .ico_checkbox {
+    background-position: -290px -835px;
+}
+
+.choice_comm2 .inp_comm:checked+.lab_comm .ico_checkbox {
+    background-position: -255px -835px;
+}
+
+.btn_step {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 99998;
+    width: 100%;
+    height: 106px;
+}
+
+.btn_static {
+    position: relative!important;
+    padding-bottom: 10px;
+}
+
+.btn_float {
+    left: 50%;
+    bottom: 10px;
+    width: 700px;
+    height: auto;
+    margin-left: -350px;
+}
+
+.btn_float.btn_static {
+    z-index: 20;
+    padding: 20px 0 0;
+}
+
+.btn_step .link_step {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin-top: 50px;
+    font-size: 17px;
+    line-height: 60px;
+    color: #fff;
+    text-align: center;
+}
+
+.btn_step .link_type3 {
+    background-color: #dc287c;
+}
+
+.btn_float .link_step {
+    border-radius: 5px;
+}
