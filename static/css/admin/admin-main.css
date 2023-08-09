@@ -1,0 +1,167 @@
+body {
+    margin: 10px 10px 10px 10px;
+
+}
+
+
+ul, li, dl, dt, dd {
+    list-style-type: none;
+}
+
+select, input, li, img {
+    vertical-align: top;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 12px;
+    text-decoration: none;
+}
+form, ul, ol, dl, table, div, h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.index .article_box .news_cont .news_list ul {
+    padding: 8px 18px 7px;
+    border: 1px solid #dadada;
+    background-color: #fff;
+}
+ul, li, dl, dt, dd {
+    list-style-type: none;
+}
+form, ul, ol, dl, table, div, h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul ul {
+    list-style-type: circle;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+h3 {
+    display: block;
+    font-size: 20px;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+
+
+.index .article_box .news_cont {
+    float: left;
+    margin-top: 2px;
+    width: 1250px;
+}
+
+.index .article_box .news_cont .news_list {
+    position: relative;
+    float: left;
+    width: 420px;
+    margin-right: 10px;
+}
+
+.title-flex {
+    display: flex;
+}
+
+.view {
+    margin-top: 25px;
+    margin-left: 290px;
+}
+
+.index .article_box .news_cont .news_list ul li:first-child {
+    border-top: none;
+}
+
+.index .article_box .news_cont .news_list ul li {
+    padding: 5px 0;
+    overflow: hidden;
+    border-top: 1px solid #ececec;
+}
+.index .article_box .news_cont ul li {
+    padding-left: 10px;
+}
+
+.name-text {
+    width: 70px;
+    overflow: hidden;
+}
+
+.email-text {
+    width: 210px;
+    overflow: hidden;
+    margin-right: 5px;
+}
+.id-text {
+    width: 120px;
+    overflow: hidden;
+}
+
+.title {
+    display: flex;
+}
+
+.notice-date {
+    width: 70px;
+}
+
+.notice-content {
+    width: 300px;
+}
+
+.post-writer {
+    width: 70px;
+    margin-right: 5px;
+}
+
+.post-title {
+    width: 300px;
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.post-date {
+    width: 70px;
+}
+
+.plus-icon {
+    width: 20px;
+    padding-bottom: 1px;
+}
+.name-text, .email-text, .id-text, .notice-date, .notice-content, .post-writer, .post-title, .post-date {
+    cursor: pointer;
+}
