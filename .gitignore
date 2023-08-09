@@ -19,5 +19,5 @@ __pycache__
 db.sqlite3
 media
 
-
+.idea/
 *.idea
