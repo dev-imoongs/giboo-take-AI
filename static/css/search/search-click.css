@@ -1,0 +1,330 @@
+.group_tagcover {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 40px 0;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.group_tagcover .info_tag {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 320px;
+    border-radius: 15px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.group_tagcover .tag_img:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: initial;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#30000000,endColorstr=#30000000);
+    background-color: #0000004d;
+}
+
+.group_tagcover .info_tag .cont_tag {
+    position: relative;
+    padding-bottom: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.group_tagcover .info_tag .tit_tag {
+    font-weight: 400;
+    font-size: 44px;
+    font-family: KakaoBig Bold,sans-serif;
+    line-height: 48px;
+}
+
+.group_tagcover .info_tag .txt_tag {
+    display: block;
+    margin-top: 13px;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.group_tagstate {
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.group_tagstate .cont_tagstate {
+    margin: 0 auto 40px;
+    text-align: center;
+    color: #202020;
+}
+
+.group_tagstate .total_state {
+    display: block;
+    padding-bottom: 7px;
+    font-size: 36px;
+    font-family: KakaoBig Bold;
+    font-weight: 400;
+}
+.group_tagstate .join_state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #444;
+}
+.group_tagstate .box_profiles {
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.group_tagstate .box_profiles img {
+    float: left;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+
+.group_tagstate .box_profiles img:first-child {
+    position: relative;
+    margin-right: -5px;
+    z-index: 1;
+}
+
+.group_tagstate .join_state .emph_txt {
+    font-family: KakaoBig Bold;
+}
+
+address, caption, cite, code, dfn, em, var {
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+.group_taglist {
+    position: relative;
+    width: 1000px;
+    margin: 48px auto 0;
+}
+.tit_section {
+    display: block;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    box-sizing: border-box;
+}
+
+
+.group_taglist .tit_section.section_type5 {
+    position: static;
+}
+
+.emph_sign {
+    color: #dc287c;
+}
+
+.sort_cate {
+    overflow: hidden;
+    width: 1000px;
+    height: 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cont_search .sort_cate {
+    margin-top: 52px;
+    text-align: right;
+}
+
+.cont_search .group_taglist .sort_cate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+}
+.sort_cate .inner_sort_cate {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+}
+
+.cont_search .sort_cate .inner_sort_cate {
+    padding: 0 18px;
+}
+
+.group_taglist .sort_cate .inner_sort_cate {
+    padding-right: 4px;
+}
+
+.sort_cate .box_sorting {
+    float: left;
+    position: relative;
+}
+
+.box_sorting .inp_sort {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: .01;
+}
+.box_sorting .lab_sort {
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.group_taglist .sort_cate .lab_sort {
+    font-size: 18px;
+}
+
+.sort_on .inp_sort+.lab_sort {
+    font-family: KakaoBig Bold;
+    color: #444;
+}
+
+.box_sorting .inp_sort:checked+.lab_sort {
+    font-family: KakaoBig Bold;
+    color: #444;
+}
+
+.box_sorting .inp_sort:checked+.lab_sort:before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: #444;
+    content: "";
+}
+
+.group_taglist .box_sorting .inp_sort:checked+.lab_sort:before, .group_taglist .sort_on .inp_sort+.lab_sort:before {
+    background-color: #dc287c;
+}
+
+
+.group_taglist .sort_cate .box_sorting+.box_sorting {
+    margin-left: 13px;
+}
+
+
+@media (max-width: 767px){
+#mArticle {
+    padding: 0 0 200px;
+}
+.cont_search #mArticle {
+    margin-bottom: 60px;
+    padding-bottom: 219px;
+}
+.group_tagcover {
+    width: 100%;
+    border-radius: 0;
+    padding-top: 0;
+}
+.group_tagcover .info_tag {
+    height: 180px;
+    border-radius: 0;
+}
+.group_tagcover .info_tag .cont_tag {
+    padding-bottom: 0;
+}
+.group_tagcover .info_tag .tit_tag {
+    font-size: 26px;
+    line-height: 28px;
+}
+.group_tagcover .info_tag .txt_tag {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 18px;
+}
+.group_tagstate {
+    width: 100%;
+    padding: 0 28px;
+    box-sizing: border-box;
+}
+.group_tagstate .total_state {
+    padding-bottom: 8px;
+    font-size: 26px;
+}
+.group_tagstate .join_state {
+    font-size: 16px;
+}
+.group_tagstate .join_state {
+    font-size: 16px;
+}
+.group_tagstate .box_profiles {
+    margin-right: 7px;
+}
+.group_tagstate .box_profiles img {
+    width: 19px;
+    height: 19px;
+}
+.group_taglist {
+    width: 100%;
+    margin-top: 40px;
+}
+.cont_search .tit_section {
+    padding: 0 14px;
+    font-size: 17px;
+}
+.cont_search .sort_cate {
+    width: auto;
+    margin: 25px 0 0;
+}
+.cont_search .group_taglist .sort_cate {
+    padding-top: 4px;
+}
+.cont_search .sort_cate .inner_sort_cate {
+    margin-top: -2px;
+    padding: 0 20px;
+}
+.cont_search .group_taglist .sort_cate .box_sorting {
+    margin-left: 6px;
+}
+.group_taglist .box_sorting .lab_sort {
+    padding-left: 12px;
+    font-size: 15px;
+}
+.box_sorting .inp_sort:checked+.lab_sort:before, .sort_on .inp_sort+.lab_sort:before {
+    top: 8px;
+    width: 4px;
+    height: 4px;
+}
+.group_taglist .box_sorting .inp_sort:checked+.lab_sort:before, .group_taglist .sort_on .inp_sort+.lab_sort:before {
+    top: 10px;
+}
+.list_fund {
+    margin: -10px 7px 0;
+}
+.group_taglist .list_fund {
+    margin-top: -6px;
+}
+.list_fund li {
+    width: 50%;
+    margin: 0;
+}
+.list_fund li:nth-child(2n-1) {
+    clear: both;
+}
+
+}
+

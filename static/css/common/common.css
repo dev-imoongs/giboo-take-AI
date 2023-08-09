@@ -24,8 +24,8 @@ menu, ol, ul {
     font-style: normal;
     font-weight: 400;
 
-    src: url(/static/css/font/KakaoBigBold.woff2) format('woff2'),
-    url(/static/css/font/KakaoBigBold.woff) format('woff');
+    src: url(/static/css/common/font/KakaoBigBold.woff2) format('woff2'),
+    url(/static/css/common/font/KakaoBigBold.woff) format('woff');
 }
 
 @font-face {
@@ -33,16 +33,16 @@ menu, ol, ul {
     font-family: KakaoBig Regular;
     font-style: normal;
     font-weight: 400;
-    src: url(/static/css/font/KakaoBigRegular.woff2) format('woff2'),
-    url(/static/css/font/KakaoBigRegular.woff) format('woff');
+    src: url(/static/css/common/font/KakaoBigRegular.woff2) format('woff2'),
+    url(/static/css/common/font/KakaoBigRegular.woff) format('woff');
 }
 
 @font-face {
     font-family: grandma_kja;
     font-style: normal;
     font-weight: 400;
-    src: url(/static/css/font/Together-KwonJungae.otf) format('opentype'),
-    url(/static/css/font/Together-KwonJungae.woff) format('woff');
+    src: url(/static/css/common/font/Together-KwonJungae.otf) format('opentype'),
+    url(/static/css/common/font/Together-KwonJungae.woff) format('woff');
 }
 
 .hash_type1 {
