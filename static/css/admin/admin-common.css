@@ -1,0 +1,193 @@
+tr {
+	border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+	line-height: 50px;
+}
+
+table th, table td {
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.checkbox-line {
+	line-height: 1px;
+}
+
+table td {
+	font-weight: 300;
+}
+
+table {
+	text-align : center;
+	width: 900px;
+	border-collapse: collapse;
+}
+
+.board-info-box {
+    border: 1px solid #dadada;
+    background: #fff;
+	width: 940px;
+}
+
+.info-title-box-flex {
+	display: flex;
+    position: fixed;
+	justify-content: flex-start;
+}
+
+.info-title-box {
+	width: 1px;
+	height: 55px;
+	border-radius: 3px;
+	background: #fff;
+}
+
+.info-table {
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.board-info-title-box {
+	padding: 20px 27px 0;
+}
+
+.board-info-title-box {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.select-name {
+	padding-top : 20px;
+	padding-left: 5px;
+}
+.delete-box-layout{
+	display: flex;
+	margin-right: 100px;
+}
+
+.admin-search-box{
+	margin: 5px 5px 0px 5px;
+	position: absolute;
+	border: 1px ridge lightgray;
+	border-radius: 5px;
+}
+
+input::placeholder {
+ 	color: lightgray;
+ 	font-style: italic;
+	font-size: 12px;
+}
+
+.search-icon {
+	width: 25px;
+	position: absolute;
+	margin: 5px 5px 5px 155px;
+	cursor: pointer;
+}
+
+.delete-box {
+	text-align: right;
+padding: 0px 0px 2px 650px;
+}
+
+.delete-button {
+    font-family: 'KakaoBig Regular';
+    border: #dadada;
+    width: 107px;
+    height: 30px;
+    background-color: #fff;
+    font-weight: bold;
+	cursor: pointer;
+}
+
+.container-margin {
+	margin: 40px 100px 0px;
+}
+
+.board-info-box-layout {
+	margin-top: 30px;
+}
+
+.page-button-box-layout {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.page-button-box {
+	display: flex;
+	justify-content:center;
+	width: 940px;
+}
+
+.page-button-active {
+	width: 23px;
+	height: 23px;
+	background-color: darkgrey;
+	color : #fff;
+	border-radius: 1.5px;
+}
+
+.page-button {
+	width: 20px;
+	cursor: pointer;
+}
+
+.page-button-box {
+	font-size: 13px;
+}
+
+.page-button-margin {
+	margin:0 auto;
+}
+
+.page-button-margin div {
+	margin-top: 3px;
+}
+
+.right-button {
+	margin-left: 10px;
+	cursor : pointer;
+	width: 15px;
+}
+
+.left-button {
+	margin-right: 10px;
+	width: 15px;
+	cursor: pointer;
+}
+
+a.paging {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 15px;
+    color: #7d7d7d;
+    font-size: 15px;
+}
+
+.paging-border-blue {
+	color: #0206af;
+    border: 1px solid #0206af;
+}
+
+div#paging-wrap {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.green, .red, .yellow {
+margin: -13px 0px 0px -8px;
+    position: absolute;
+}
+.icon-wrap .yellow, .icon-wrap .green, .icon-wrap .red {
+	width: 16px;
+}
+
+.checkbox {
+	margin: 10px 10px 10px 10px;
+}
+
+.title-txt {
+	font-size: 25px;
+}
