@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>step 2. 사업계획</title>
+  <link rel="stylesheet" href="../../../static/css/mypage/write/write_step2.css">
+  <link rel="stylesheet" href="../../../static/css/common/common.css">
+</head>
+
+<body>
+  <div id="dkWrap" class="together_top">
+    <header></header>
+    <span id="rootContent">
+      <ng-component>
+        <div id="dkContent" class="cont_suggest">
+          <div id="mArticle">
+            <div class="wrap_tab">
+              <ul class="list_tab">
+                <li class="">
+                  <a href="#" class="link_tab">
+                    <span class="txt_tab">1. 나의 다짐</span>
+                  </a>
+                </li>
+                <li class="on">
+                  <a href="#" class="link_tab">
+                    <span class="txt_tab"> 2. 사업계획</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="link_tab">
+                    <span class="txt_tab">3. 모금스토리</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ng-component>
+              <div data-tiara-layer="step_2" class="wrap_suggest">
+                <form novalidate="" name="form" class="form_project ng-invalid ng-touched ng-dirty">
+                  <fieldset>
+                    <div class="form_cont">
+                      <div class="group_apply">
+                        <div class="area_form">
+                          <strong class="tit_head">희망모금기간
+                            <span class="ico_new">new</span>
+                          </strong>
+                          <p class="sub_head"> 기부할 수 있는 모금기간을 알려주세요.
+                            <br>심사가 완료된 뒤 모금이 시작되며, 설정한 모금기간에 맞춰 자동 종료됩니다.
+                          </p>
+                          <div class="desc_form pack_radio">
+                            <span class="choice_comm2 choice2_radio">
+                              <input type="radio" name="fundraising_period"
+                                class="inp_comm" id="checkPeriod0">
+                              <label class="lab_comm lab_choiced" for="checkPeriod0">
+                                <span class="ico_together2 ico_radio"></span>
+                                30일
+                              </label>
+                            </span>
+                            <span class="choice_comm2 choice2_radio">
+                              <input type="radio" name="fundraising_period"
+                                class="inp_comm" id="checkPeriod1">
+                              <label class="lab_comm" for="checkPeriod1">
+                                <span class="ico_together2 ico_radio"></span>
+                                60일
+                              </label>
+                            </span>
+                            <span class="choice_comm2 choice2_radio">
+                              <input type="radio" name="fundraising_period"
+                                class="inp_comm" id="checkPeriod2">
+                              <label class="lab_comm" for="checkPeriod2">
+                                <span class="ico_together2 ico_radio"></span>
+                                90일
+                              </label>
+                            </span>
+                            <span class="ico_together ico_warn">미입력 경고</span>
+                          </div>
+                        </div>
+                        <div class="area_form">
+                          <strong class="tit_head">사업기간
+                            <span class="ico_new">new</span>
+                          </strong>
+                          <p class="sub_head"> 기부금을 통해 실제 사업을 실행하는 날짜입니다.
+                            <br> 모금 중에는 사업을 진행할 수 없습니다.
+                            <br> 모금액 입금 받기 전 지출한 내용은 정산되지 않습니다.
+                            <br> 사업시작일은 모금검토 및 모금, 입금기간을 고려하여,
+                            <br> 선택한 희망모금기간에 15일을 더하여 설정할 수 있습니다.
+                          </p>
+                          <div class="desc_form list_write">
+                            <div class="group_calendar">
+                              <div class="group_tf">
+                                <button cancel-bubble="" type="button" value="시작일 설정" class="btn_calendar">
+                                  <span>2023년 09월 24일</span>
+                                  <span class="ico_together">캘린더 레이어 펼치기</span>
+                                </button>
+                              </div>
+                              <span class="tilde_among">~</span>
+                              <div class="group_tf">
+                                <button cancel-bubble="" type="button" value="종료일 설정" class="btn_calendar">
+                                  <span>종료일 설정</span>
+                                  <span class="ico_together">캘린더 레이어 펼치기</span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="area_form">
+                          <strong class="tit_head">모금액 사용 계획
+                              <span class="ico_new">new</span>
+                              <a href="#" onclick="return false;"
+                                 class="txt_sign emph_color">
+                                  힌트보기
+                              </a>
+                          </strong>
+                          <p class="sub_head"> 세부 내역을 구체적으로 기입해주세요.
+                              <br>아래 사항 위반 시 심사를 통해 환수 조치 될 수 있습니다.
+                              <br>
+                              <br>
+                              <span class="txt_use"> - 사용계획을 허위로 기재하거나 근거가 불충분한 경우
+                                  <br> - 동일한 스토리 및 예산 항목으로 이중 모금 진행 시
+                                  <br> - 모금액을 입금 받기 전 과거 지출한 내용을 포함한 경우
+                              </span>
+                          </p>
+                          <div class="desc_form pack_plan">
+                            <div class="group_tf ng-scope" id="planBox0">
+                              <div class="cont_tf">
+                                  <input type="text" classoutline="" placeholder="사용용도 및 산출근거"
+                                         title="모금액 사용용도 및 산출근거"
+                                         class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">
+                              </div>
+                              <div class="amount_tf">
+                                  <input type="number" classoutline="" numberonly="" step="500"
+                                         min="0" placeholder="금액(원)" title="모금액 산출 금액(원)"
+                                         class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">
+                              </div>
+                                <button type="button" class="btn_line_txt"> 삭제 </button>
+                            </div>
+                            <div class="pack_btn">
+                                <button type="button" class="btn_add">
+                                    <span class="ico_add">
+                                        <span class="ico_social"></span>
+                                    </span>
+                                    <span class="txt_add">지출항목추가</span>
+                                </button>
+                            </div>
+                            <div class="box_sum">
+                                <span class="tit_sum">목표금액 :</span>
+                                <span class="total_sum">
+                                    <em class="emph_sign ng-binding">0원</em>
+                                </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="area_form">
+                            <strong class="tit_head">목표금액 미달 시 대안
+                                <span class="ico_new">new</span>
+                            </strong>
+                          <p class="sub_head"> 목표 금액이 미달될 때를 대비한 계획을 알려주세요.
+                              <br>참여자들에게 프로젝트 진행에 대한 신뢰감을 높일 수 있습니다.
+                          </p>
+                          <div class="desc_form info_description">
+                            <div class="group_tf">
+                              <div class="inner_group">
+                                  <textarea required="" classoutline="" name="plan_comment"
+                                            id="tfIntro" cols="30" rows="10"
+                                            class="tf_write ng-untouched ng-pristine ng-invalid">
+                                  </textarea>
+                              </div>
+                            </div>
+                            <div class="info_append">
+                                <span class="txt_num">0/</span>
+                                1000
+                            </div>
+                          </div>
+                        </div>
+                        <div class="area_form">
+                          <div class="tit_head">심사기관에게 하고 싶은 말</div>
+                          <div class="desc_form info_description">
+                            <div class="group_tf">
+                              <div class="inner_group">
+                                <textarea id="planDetail" name="planDetail" classoutline=""
+                                  title="심사기관에게 하고 싶은말" class="tf_write ng-untouched ng-pristine ng-valid"></textarea>
+                              </div>
+                            </div>
+                            <div class="info_append">
+                              <span class="txt_num">0/</span>1000 </div>
+                          </div>
+                        </div>
+                        <div class="area_form"><strong class="tit_head">약관 동의 <span class="ico_new">new</span><span
+                              class="ico_together ico_warn">미입력 경고</span></strong>
+                          <div class="desc_form info_policy"><span class="choice_comm2"><input id="checkPolicy"
+                                name="chk" type="checkbox"
+                                class="inp_comm ng-untouched ng-pristine ng-invalid ng-valid"><label for="checkPolicy"
+                                class="lab_comm"><span class="ico_together2 ico_checkbox"></span> 개인정보 제 3자 제공
+                                동의</label></span>
+                            <div class="area_policy open_policy"><render-static-html
+                                filename="fundraising-propose-collect-agreement.html"><span>
+                                  <p class="txt_effort">
+                                    기부앤테이크 서비스는 아래의 목적으로 개인정보를 수집
+                                    및 이용하며, 회원의 개인정보를 안전하게 취급하는데 최선을 다합니다.
+                                  </p>
+                                  <strong class="txt_service">서비스 기본기능의 제공 (필수)</strong>
+                                  <div class="box_policy">
+                                    <strong class="tit_policy">개인정보 제공받는 자</strong>
+                                    <p class="desc_policy">
+                                      <em>기부앤테이크</em>
+                                    </p>
+                                    <strong class="tit_policy">목적</strong>
+                                    <p class="desc_policy"><em>제안 접수 및 검토, 프로젝트 모금함 관리</em></p>
+                                    <strong class="tit_policy">항목</strong>
+                                    <p class="desc_policy">
+                                      1) 담당자 정보 (카카오계정, 연락처, 이메일, 닉네임)<br>
+                                    </p>
+                                    <strong class="tit_policy">보유기간</strong>
+                                    <p class="desc_policy">
+                                      <em>
+                                        프로젝트 모금함 종료시까지 보관 후 삭제<br class="pc_linefeed">
+                                        (모금함 미개설의 경우 심사 후 지체없이 파기함)
+                                      </em>
+                                    </p>
+                                  </div>
+                                  <p class="txt_policy">
+                                    위 동의를 거부 할 권리가 있으며, 동의를 거부할 경우 서비스 이용이 제한됩니다.
+                                    <br>더 자세한 내용에 대해서는
+                                    <a class="link_policy" href="javascript:void(0)"
+                                      target="_blank">개인정보처리방침</a>을 참고하시기 바랍니다.
+                                  </p>
+                                </span></render-static-html></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn_step btn_float btn_static">
+                      <button type="button" class="link_step link_type3"> 다음 단계로 </button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div><hint-project-content>
+                <modal>
+                  <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF"
+                    style="position: fixed; display: none; top: 100px; margin-left: -205px;"><modal-content>
+                      <div class="inner_hint_layer inner_hint_layer1"><strong class="screen_out">프로젝트 모금함 작성 힌트</strong>
+                        <div class="layer_body">
+                          <div class="wrap_tabhint">
+                            <ul role="tablist" class="tab_hint tab_type2">
+                              <li class="on"><a href="javascript:;" role="tab" class="link_hint"
+                                  aria-selected.true="true">1. 제목/사진</a></li>
+                              <li><a href="javascript:;" role="tab" class="link_hint" aria-selected.true="false">2.
+                                  사업계획</a></li>
+                              <li><a href="javascript:;" role="tab" class="link_hint" aria-selected.true="false">3.
+                                  스토리</a></li>
+                            </ul>
+                          </div>
+                          <div class="body_hint"><span class="screen_out">제목/사진 작성 팁</span>
+                            <p class="txt_method"> 대표이미지와 제목은 모금함의 얼굴로 첫인상을 좌우해요.<br>SNS 공유 시에도 대표 정보로 공유됩니다. </p>
+                            <div class="box_example"><strong class="tit_example">1. 모금함의 주제가 잘 드러나게 해주세요.</strong>
+                              <p class="desc_example"> 딱딱한 사업계획서 느낌의 제목보다 기부자의 흥미를 끌 수 있는 재미있는 제목이 좋아요. </p>
+                              <ul class="list_thumb">
+                                <li><img src="//t1.kakaocdn.net/together_image/hint_fundex1.jpg"
+                                    alt="독거노인을 위한 가스타이머 설치 사업 by.같이가치요정" class="img_example"></li>
+                                <li><span class="ico_together2 ico_change">적절한 제목으로 개선후</span><img
+                                    src="//t1.kakaocdn.net/together_image/hint_fundex2.jpg"
+                                    alt="독거 어르신들에게 가장 위험한건 뭘까요? by.같이가치요정" class="img_example"></li>
+                              </ul>
+                              <p class="desc_example"> 의미 없는 단체사진보다는 모금 주제가 드러난 이미지가 좋아요. </p>
+                              <ul class="list_thumb">
+                                <li><img src="//t1.kakaocdn.net/together_image/hint_fundex3.jpg"
+                                    alt="노숙인에게 더 혹독한 겨울 by.같이가치요정" class="img_example"></li>
+                                <li><span class="ico_together2 ico_change">주제가 드러난 이미지로 개선후</span><img
+                                    src="//t1.kakaocdn.net/together_image/hint_fundex4.jpg"
+                                    alt="노숙인에게 더 혹독한 겨울 by.같이가치요정" class="img_example"></li>
+                              </ul>
+                            </div>
+                            <div class="box_example"><strong class="tit_example">2. 가독성을 고려해주세요.</strong>
+                              <p class="desc_example"> 대표이미지에 텍스트가 있으면 제목과 겹쳐서 알아보기 힘들어요. </p>
+                              <ul class="list_thumb">
+                                <li><img src="//t1.kakaocdn.net/together_image/hint_fundex5.jpg"
+                                    alt="댓글이 있는 지방선거 함께 만들어요 by.같이가치요정" class="img_example"></li>
+                                <li><span class="ico_together2 ico_change">이미지의 가독성 개선후</span><img
+                                    src="//t1.kakaocdn.net/together_image/hint_fundex6.jpg"
+                                    alt="일 안하는 국회의원 끌어내릴 수 있을까? by.같이가치요정" class="img_example"></li>
+                              </ul>
+                            </div>
+                            <div class="box_example"><strong class="tit_example">3. 긍정적인 변화를 강조하면 좋아요.</strong>
+                              <p class="desc_example"> 비참하고 부정적인 제목이나 이미지보다는 우리가 함께 만들어갈 긍정적인 변화를 강조하는 것이 기부자의 마음을 움직일 수
+                                있어요. </p>
+                            </div><span class="screen_out">작성시 주의사항</span>
+                            <ul class="list_caution">
+                              <li> 환부나 장애를 지나치게 강조한 이미지나 제목은 조심! <br>지나치게 자극적이고 불편한 사진이나 글은 오히려 사람들에게 해당 이슈를 외면하게 하는
+                                부작용이 생길 수 있어요. </li>
+                            </ul>
+                          </div>
+                          
+                          <div class="layer_foot"><button type="button" class="btn_close"><span
+                                class="ico_together2">닫기</span></button></div>
+                        </div>
+                      </div>
+                    </modal-content></div>
+                </modal>
+              </hint-project-content>
+              <div class="calendar_g"
+                style="position: absolute; z-index: 10; left: 50%; margin-left: -140px; display: none; top: 475px;">
+                <date-picker>
+                  <div>
+                    <div class="angular-date-picker">
+                      <div class="_month area_month"><strong class="tit_calendar"><span
+                            class="ico_together ico_calendar"></span>2023년 9월 </strong><button type="button"
+                          class="_previous btn_page btn_prev"><span class="ico_together ico_prev">이전
+                            달</span></button><button type="button" class="_next btn_page btn_next"><span
+                            class="ico_together ico_next">다음 달</span></button></div>
+                      <div ng-click="pickDay($event)" class="_days">
+                        <div class="day_week">
+                          <div class="_day-of-week" title="월"> 월 </div>
+                          <div class="_day-of-week" title="화"> 화 </div>
+                          <div class="_day-of-week" title="수"> 수 </div>
+                          <div class="_day-of-week" title="목"> 목 </div>
+                          <div class="_day-of-week" title="금"> 금 </div>
+                          <div class="_day-of-week" title="토"> 토 </div>
+                          <div class="_day-of-week" title="일"> 일 </div>
+                        </div><button class="_day -padding"><span class="txt_day"> 28 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 29 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 30 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 31 </span></button><button
+                          class="_day"><span class="txt_day"> 1 </span></button>
+                        <button class="_day"><span class="txt_day"> 2 </span></button><button
+                          class="_day"><span class="txt_day"> 3 </span></button><button
+                          class="_day"><span class="txt_day"> 4 </span></button><button class="_day"><span
+                            class="txt_day"> 5 </span></button>
+                        <button class="_day"><span class="txt_day"> 6 </span></button><button
+                          class="_day"><span class="txt_day"> 7 </span></button><button class="_day"><span
+                            class="txt_day"> 8 </span></button>
+                        <button class="_day"><span class="txt_day"> 9 </span></button><button
+                          class="_day"><span class="txt_day"> 10 </span></button><button
+                          class="_day"><span class="txt_day"> 11 </span></button><button class="_day"><span
+                            class="txt_day"> 12 </span></button><button class="_day"><span class="txt_day"> 13
+                          </span></button><button class="_day"><span class="txt_day"> 14
+                          </span></button><button class="_day"><span class="txt_day"> 15
+                          </span></button><button class="_day"><span class="txt_day"> 16
+                          </span></button><button class="_day"><span class="txt_day"> 17
+                          </span></button><button class="_day"><span class="txt_day"> 18
+                          </span></button><button class="_day"><span class="txt_day"> 19
+                          </span></button><button class="_day"><span class="txt_day"> 20
+                          </span></button><button class="_day"><span class="txt_day"> 21
+                          </span></button><button class="_day"><span class="txt_day"> 22
+                          </span></button><button class="_day"><span class="txt_day"> 23
+                          </span></button><button class="_day -selected"><span class="txt_day"> 24
+                          </span></button><button class="_day"><span class="txt_day"> 25
+                          </span></button><button class="_day"><span class="txt_day"> 26
+                          </span></button><button class="_day"><span class="txt_day"> 27
+                          </span></button><button class="_day"><span class="txt_day"> 28
+                          </span></button><button class="_day"><span class="txt_day"> 29
+                          </span></button><button class="_day"><span class="txt_day"> 30
+                          </span></button><button class="_day -padding"><span class="txt_day"> 1
+                          </span></button><button class="_day -padding"><span class="txt_day"> 2
+                          </span></button><button class="_day -padding"><span class="txt_day"> 3 </span></button>
+                        <button class="_day -padding"><span class="txt_day"> 4 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 5 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 6 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 7 </span></button><button
+                          class="_day -padding"><span class="txt_day"> 8 </span></button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </date-picker>
+              </div>
+              <div class="calendar_g"
+                style="position: absolute; z-index: 10; left: 50%; margin-left: -140px; display: none; top: 475px;">
+                <date-picker>
+                  <div>
+                    <div class="angular-date-picker">
+                      <div class="_month area_month"><strong class="tit_calendar"><span
+                            class="ico_together ico_calendar"></span>2023년 8월 </strong><button type="button"
+                          class="_previous btn_page btn_prev"><span class="ico_together ico_prev">이전
+                            달</span></button><button type="button" class="_next btn_page btn_next"><span
+                            class="ico_together ico_next">다음 달</span></button></div>
+                      <div ng-click="pickDay($event)" class="_days">
+                        <div class="day_week">
+                          <div class="_day-of-week" title="월"> 월 </div>
+                          <div class="_day-of-week" title="화"> 화 </div>
+                          <div class="_day-of-week" title="수"> 수 </div>
+                          <div class="_day-of-week" title="목"> 목 </div>
+                          <div class="_day-of-week" title="금"> 금 </div>
+                          <div class="_day-of-week" title="토"> 토 </div>
+                          <div class="_day-of-week" title="일"> 일 </div>
+                        </div>
+                        <button class="_day -padding">
+                          <span class="txt_day"> 31 </span>
+                        </button><button
+                          class="_day"><span class="txt_day"> 1 </span></button>
+                        <button class="_day"><span class="txt_day"> 2 </span></button><button
+                          class="_day"><span class="txt_day"> 3 </span></button><button class="_day"><span
+                            class="txt_day"> 4 </span></button>
+                        <button class="_day"><span class="txt_day"> 5 </span></button><button
+                          class="_day"><span class="txt_day"> 6 </span></button><button
+                          class="_day"><span class="txt_day"> 7 </span></button><button class="_day"><span
+                            class="txt_day"> 8 </span></button>
+                        <button class="_day -today"><span class="txt_day"> 9 </span></button><button
+                          class="_day"><span class="txt_day"> 10 </span></button><button class="_day"><span
+                            class="txt_day"> 11 </span></button><button class="_day"><span class="txt_day"> 12
+                          </span></button><button class="_day"><span class="txt_day"> 13
+                          </span></button><button class="_day"><span class="txt_day"> 14
+                          </span></button><button class="_day"><span class="txt_day"> 15
+                          </span></button><button class="_day"><span class="txt_day"> 16
+                          </span></button><button class="_day"><span class="txt_day"> 17
+                          </span></button><button class="_day"><span class="txt_day"> 18
+                          </span></button><button class="_day"><span class="txt_day"> 19
+                          </span></button><button class="_day"><span class="txt_day"> 20
+                          </span></button><button class="_day"><span class="txt_day"> 21
+                          </span></button><button class="_day"><span class="txt_day"> 22
+                          </span></button><button class="_day"><span class="txt_day"> 23
+                          </span></button><button class="_day"><span class="txt_day"> 24
+                          </span></button><button class="_day"><span class="txt_day"> 25
+                          </span></button><button class="_day"><span class="txt_day"> 26
+                          </span></button><button class="_day"><span class="txt_day"> 27
+                          </span></button><button class="_day"><span class="txt_day"> 28
+                          </span></button><button class="_day"><span class="txt_day"> 29
+                          </span></button><button class="_day"><span class="txt_day"> 30
+                          </span></button><button class="_day"><span class="txt_day"> 31
+                          </span></button><button class="_day -padding"><span class="txt_day"> 1
+                          </span></button><button class="_day -padding"><span class="txt_day"> 2 </span></button>
+                        <button class="_day -padding"><span class="txt_day"> 3
+                          </span></button><button class="_day -padding"><span class="txt_day"> 4
+                          </span></button><button class="_day -padding"><span class="txt_day"> 5
+                          </span></button><button class="_day -padding"><span class="txt_day"> 6
+                          </span></button><button class="_day -padding"><span class="txt_day"> 7
+                          </span></button><button class="_day -padding"><span class="txt_day"> 8
+                          </span></button><button class="_day -padding"><span class="txt_day"> 9
+                          </span></button><button class="_day -padding"><span class="txt_day"> 10
+                          </span></button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </date-picker>
+              </div><update-phone-modal>
+                <modal>
+                  <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF"
+                    style="position: fixed; display: none; top: 25%; margin-left: -192px;"><modal-content>
+                      <div class="inner_together_layer inner_together_layer2">
+                        <div class="layer_head"><strong class="screen_out">휴대폰 번호 변경</strong></div>
+                        <div class="layer_body">
+                          <form novalidate="" class="form_phone ng-untouched ng-pristine ng-valid">
+                            <fieldset>
+                              <legend class="screen_out">휴대폰번호 변경 양식</legend>
+                              <div class="wrap_phone write_phone">
+                                <dl class="list_write">
+                                  <dt> 같이가치와 연락가능한 휴대폰 번호를 입력해주세요.<br>입력하신 휴대폰 번호로 발송된 인증번호를 입력 후 확인 버튼 클릭 시 휴대폰 번호가 즉시
+                                    변경됩니다. </dt>
+                                  <dd>
+                                    <div class="info_phone">
+                                      <div class="group_tf"><label for="phoneNum1" class="screen_out">전화번호
+                                          앞자리</label><input type="text" id="phoneNum1" maxlength="3" name="first"
+                                          numberonly="" class="tf_write ng-untouched ng-pristine ng-valid"></div><span
+                                        class="dash_among"><span class="inner_among"></span></span>
+                                      <div class="group_tf"><label for="phoneNum2" class="screen_out">전화번호
+                                          중간자리</label><input type="text" id="phoneNum2" maxlength="4" name="middle"
+                                          numberonly="" class="tf_write ng-untouched ng-pristine ng-valid"></div><span
+                                        class="dash_among"><span class="inner_among"></span></span>
+                                      <div class="group_tf"><label for="phoneNum3" class="screen_out">전화번호
+                                          끝자리</label><input type="text" id="phoneNum3" maxlength="4" name="last"
+                                          numberonly="" class="tf_write ng-untouched ng-pristine ng-valid"></div>
+                                    </div><button type="button" freezebutton="" class="btn_certify"> 인증번호 받기 </button>
+                                    <div class="group_tf"><label for="certifyNum" class="txt_lab">인증번호 4자리
+                                        입력</label><input numberonly="" type="text" min="0" id="certifyNum"
+                                        name="otpCode" class="tf_write ng-untouched ng-pristine" maxlength="100"
+                                        disabled=""></div>
+                                  </dd>
+                                </dl>
+                              </div>
+                              <div class="wrap_btn wrap_btn_type"><button type="button" class="btn_set btn_type1"> 확인
+                                </button></div>
+                            </fieldset>
+                          </form>
+                        </div>
+                        <div class="layer_foot"><button type="button" class="btn_close"><span
+                              class="ico_together">닫기</span></button></div>
+                      </div>
+                      
+                    </modal-content></div>
+                </modal>
+              </update-phone-modal><update-email-modal>
+                <modal>
+                  <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF"
+                    style="position: fixed; display: none; top: 25%; margin-left: -192px;"><modal-content>
+                      <div class="inner_together_layer inner_together_layer2">
+                        <div class="layer_head"><strong class="screen_out">이메일 변경하기</strong></div>
+                        <div class="layer_body">
+                          <form novalidate="" class="form_phone ng-untouched ng-pristine ng-valid">
+                            <fieldset>
+                              <legend class="screen_out">이메 변경 양식</legend>
+                              <div class="wrap_phone write_phone">
+                                <dl class="list_write">
+                                  <dt> 같이가치와 연락가능한 이메일 입력해주세요.<br>입력하신 이메일 주소로 발송된 인증번호를 입력 후<br>확인 버튼 클릭 시 이메일 주소가 즉시
+                                    변경됩니다. </dt>
+                                  <dd>
+                                    <div class="info_phone" style="width: 100%;">
+                                      <div class="group_tf" style="width: 100%;"><label for="certifyEmail1"
+                                          class="txt_lab">이메일 주소를 입력하세요</label><input type="text" id="certifyEmail1"
+                                          name="personal_email" class="tf_write ng-untouched ng-pristine ng-valid"
+                                          maxlength="200"></div>
+                                    </div><button type="button" freezebutton="" class="btn_certify"> 인증번호 받기 </button>
+                                    <div class="group_tf"><label for="certifyEmail2" class="txt_lab">인증번호를
+                                        입력하세요</label><input type="text" id="certifyEmail2" name="otpCode"
+                                        class="tf_write ng-untouched ng-pristine ng-valid" maxlength="100"></div>
+                                  </dd>
+                                </dl>
+                              </div>
+                              <div class="wrap_btn wrap_btn_type"><button type="submit" class="btn_set btn_type1"> 확인
+                                </button></div>
+                            </fieldset>
+                          </form>
+                        </div>
+                        <div class="layer_foot"><button type="button" class="btn_close"><span
+                              class="ico_together">닫기</span></button></div>
+                      </div>
+                    </modal-content></div>
+                </modal>
+              </update-email-modal>
+              
+            </ng-component>
+          </div>
+        </div>
+        <modal>
+          <div tabindex="-1" role="dialog" class="ngdialog-content" id="modalOFF"
+            style="position: fixed; display: none; top: 25%; margin-left: -192px;"><modal-content>
+              <div class="inner_together_layer inner_together_layer1">
+                <div class="layer_body">
+                  <p id="ngdialog7-aria-describedby" class="desc_together"><span class="txt_desc"> 잠깐! 에 작성 중
+                      저장하신<br><span class="emph_sign">'모금함'</span>이 있습니다. </span></p>
+                  <div class="wrap_btn wrap_btn_type"><button class="btn_set btn_type1"> 이어서 작성하기 </button></div>
+                  <div class="wrap_btn wrap_btn_type2"><button class="btn_set btn_type2"> 새로 작성하기 </button><span
+                      class="txt_noti">(과거 저장 내역은 삭제됩니다.)</span></div>
+                </div>
+                <div class="layer_foot"><button class="btn_close"><span
+                      class="ico_together ngdialog-close">닫기</span></button></div>
+              </div>
+            </modal-content></div>
+        </modal>
+      </ng-component>
+      </span>
+    <footer></footer>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../../../static/js/mypage/write/write_step2.js"></script>
+</html>
