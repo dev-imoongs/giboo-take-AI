@@ -1,0 +1,211 @@
+body, html {
+  min-width: 1140px;
+  margin: 0;
+  padding: 0;
+}
+
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #444;
+}
+
+ul, li {
+  list-style: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: initial;
+  cursor: pointer;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+}
+
+/* Wrap css */
+body, button, input, select, td, textarea, th {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+  color: #444;
+}
+
+#whole-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
+}
+
+#dkHead {
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid #eee;
+  background-color: #124;
+}
+
+#main-content, #oot-content {
+  flex-grow: 1;
+  min-height: calc(100vh - (70px + 250px));
+}
+
+#main-content {
+  position: relative;
+  margin: 0 0 -212px;
+}
+
+#article {
+  padding: 0 0 250px;
+}
+
+.wrap-svcset {
+  overflow: hidden;
+  width: 740px;
+  margin: 40px auto 140px;
+}
+
+/* 서비스 설정 */
+.wrap-svcset .svc-set {
+  float: left;
+  width: 330px;
+  margin: 0 20px;
+}
+
+.wrap-svcset .tit-set {
+  display: block;
+  padding: 19px 0 21px;
+  border-bottom: 1px solid #eaeaea;
+  font-weight: 400;
+  font-size: 20px;
+  color: #00adb7;
+}
+
+.wrap-svcset .list-set li {
+  height: 69px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.wrap-svcset .list-set .link-set {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  font-size: 16px;
+  line-height: 69px;
+  color: #444;
+}
+
+.wrap-svcset .list-set .txt-set {
+  font-weight: 400;
+}
+
+/* 외부 페이지로 가기 */
+
+.wrap-svcset .svc-set+.svc-set .tit-set {
+  color: #dc287c;
+}
+
+.ico-social {
+  float: left;
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+  border-radius: 60px;
+  font-size: 0;
+  line-height: 0;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-indent: -9999px;
+}
+
+.wrap-svcset .list-set .link-set .ico-kakaotalk {
+  /* 이미지1 */
+  background-image: url(//t1.kakaocdn.net/together_image/svg/ico_kakaotalk.svg); 
+  margin: 13px 12px 0 0;
+}
+
+.wrap-svcset .list-set .link-set .ico-kakaostory {
+  /* 이미지2 */
+  background-image: url(//t1.kakaocdn.net/together_image/svg/ico_kakaostory.svg);
+  margin: 13px 12px 0 0;
+}
+
+.wrap-svcset .list-set .link-set .ico-facebook {
+  /* 이미지3 */
+  background-image: url(//t1.kakaocdn.net/together_image/svg/ico_facebook.svg);
+  margin: 13px 12px 0 0;
+}
+
+.wrap-svcset .list-set .link-set .ico-instagram {
+  /* 이미지4 */
+  background-image: url(//t1.kakaocdn.net/together_image/svg/ico_instagram.svg);
+  margin: 13px 12px 0 0;
+}
+
+@media (max-width: 767px) {
+#main-content {
+  margin-bottom: -150px;
+}
+
+#article {
+  padding: 0px 0px 200px;
+}
+
+.wrap-svcset {
+  width: auto;
+  margin-top: 16px;
+  margin-bottom: 15px;
+}
+
+.wrap-svcset .svc-set {
+  float: none;
+  width: auto;
+  margin: 0px;
+}
+
+.wrap-svcset .tit-set {
+  padding: 11px 14px;
+  font-size: 16px;
+}
+
+.wrap-svcset .list-set li {
+  height: 43px;
+}
+
+.wrap-svcset .list-set .link-set {
+  padding: 0px 14px;
+  font-size: 13px;
+  line-height: 43px;
+}
+
+/* 함께해요 같이가치 */
+.wrap-svcset .list-set li {
+  height: 43px;
+}
+
+.wrap-svcset .list-set .link-set {
+  padding: 0px 14px;
+  font-size: 13px;
+  line-height: 43px;
+}
+
+.wrap-svcset .list-set .link-set .ico-social {
+  width: 28px;
+  height: 28px;
+  margin: 8px 10px 0px 0px;
+}
+}

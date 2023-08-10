@@ -4,7 +4,82 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb754655-29e4-47fa-806c-9caac628256a" name="Changes" comment="" />
+    <list default="true" id="cb754655-29e4-47fa-806c-9caac628256a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/admin/admin-main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/admin/sidemenu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/common/common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/KakaoBigBold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/KakaoBigBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/KakaoBigRegular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/KakaoBigRegular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/Together-KwonJungae.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/font/Together-KwonJungae.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/footer/footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/footer/media-footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/header/header-media.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/header/header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_badge.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_donate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_post_list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_reply.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_service_settings.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/mypage_sign-out.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/mypage/temp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/neulhaerang/detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/neulhaerang/list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/neulhaerang/review-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/neulhajang/hajang-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/neulhajang/media-hajang-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/notice/notice-detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/notice/notice.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/admin/arrow_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/admin/plus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/mypage/nelhajang_thumbnail01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/admin/sidemenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/mypage/mypage_badge.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/mypage/mypage_main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/mypage/mypage_post_list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/mypage/mypage_profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/mypage/mypage_reply.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/nelharang/detail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/nelharang/list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/nelharang/review-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/admin-main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/side-bar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/footer/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/header/header-backup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/header/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/header/logined-header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_badge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_donate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_post_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_reply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_sevice_settings.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/mypage_sign-out.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mypage/temp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/nelharang/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/nelharang/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/nelharang/review-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/neulhajang/hajang-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice/notice-detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice/notice.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/css.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workspace/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/js.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rmsid.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +107,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "templates/main",
+    "git-widget-placeholder": "Merging templates/main",
     "last_opened_file_path": "C:/kdt_0900_kbr/Django/workspace/view",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",

@@ -1,0 +1,585 @@
+body, html {
+    min-width: 1140px;
+    margin: 0;
+    padding: 0;
+}
+
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+a, a:active, a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: #444;
+        cursor: pointer;
+
+}
+
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+    color: #444;
+}
+
+body {
+    background: #fff;
+}
+
+div.wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100vh;
+}
+
+main{
+        flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+div.main-content{
+        position: relative;
+    margin: 0 0 -212px;
+    min-height: calc(100vh - (70px + 250px));
+}
+div.article{
+        padding: 0 0 250px;
+}
+
+div.list-header{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #f7f8f9;
+}
+
+
+ul.list-tab{
+    display: flex;
+    justify-content: center;
+}
+
+ul.list-tab li{
+       padding: 0 24px;
+    text-align: center;
+}
+
+ul.list-tab li.on a.link-tab{
+    position: relative;
+    z-index: 1;
+    color: #202020;
+}
+
+ul.list-tab li a.link-tab{
+        display: block;
+    height: 60px;
+    font-size: 15px;
+    color: #888;
+    font-family: KakaoBig Bold;
+}
+
+ul.list-tab li a.link-tab .txt-tab{
+    display: inline-block;
+    position: relative;
+    height: 60px;
+    padding: 18px 16px 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+
+div.group-catelist{
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.inner-catelist{
+        display: inline-block;
+}
+
+ul.list-cate{
+    overflow: hidden;
+    padding: 57px 17px 48px;
+    text-align: center;
+}
+ul.list-cate li{
+        float: left;
+    width: 80px;
+}
+ul.list-cate li .link-cate{
+        display: block;
+}
+
+ul.list-cate .on svg{
+    filter: saturate(100%);
+}
+ul.list-cate .on svg img{
+    filter: none;
+}
+ul.list-cate .on .txt-cate{
+    color: #444;
+}
+ul.list-cate .txt-cate{
+    display: block;
+    padding-top: 5px;
+    font-size: 13px;
+    color: #bbb;
+    font-family: KakaoBig Bold,sans-serif;
+}
+
+ul.list-cate svg{
+    width: 34px;
+    height: 34px;
+    filter: saturate(0);
+}
+
+ul.list-cate svg img{
+    filter: url(#filtersThumb);
+    filter: grayscale(1);
+}
+.group_fundlist {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto 100px;
+}
+
+.group_fundlist .sort_cate {
+    text-align: right;
+}
+
+.sort_cate {
+    overflow: hidden;
+    width: 1000px;
+    height: 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sort_cate .inner_sort_cate {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+}
+
+
+.group_fundlist .sort_cate .box_sorting {
+    margin-left: 27px;
+}
+
+.sort_cate .box_sorting {
+    float: left;
+    position: relative;
+}
+
+.box_sorting .inp_sort {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: .01;
+}
+
+
+.box_sorting .lab_sort {
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.sort_on .inp_sort+.lab_sort:before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: #444;
+    content: "";
+}
+
+.sort_on .inp_sort+.lab_sort {
+    font-family: KakaoBig Bold;
+    color: #444;
+}
+
+.group_fundlist .list_fund {
+    margin-top: -25px;
+}
+
+
+.list_fund {
+    overflow: hidden;
+    margin-top: -24px;
+    margin-left: -19px;
+}
+
+
+.list_fund li {
+    float: left;
+    position: relative;
+    width: 236px;
+    margin: 40px 0 0 18px;
+}
+.list_fund .link_pack {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.list_fund .box_thumb {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.list_fund .img_thumb {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 134px;
+    border-radius: 10px;
+    /* background-image: url(//t1.kakaocdn.net/together_image/bg_topic2.jpg);  기본이미지*/
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    transition: .2s;
+}
+
+.list_fund .box_together {
+    display: block;
+    position: relative;
+    height: auto;
+    padding-top: 13px;
+    color: #444;
+    background-color: #fff;
+    white-space: normal;
+    box-sizing: border-box;
+}
+
+.list_fund .box_together .bundle_tit {
+    display: block;
+    height: 73px;
+}
+
+.list_fund .box_together .tit_together {
+    display: -webkit-box;
+    max-height: 50px;
+    font-size: 15px;
+    line-height: 23px;
+}
+
+.box_together .tit_together {
+    display: block;
+    font-weight: 400;
+    font-size: 19px;
+    color: #444;
+}
+
+.ellipsis_type1, .ellipsis_type2 {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.list_fund .box_together .txt_proposer {
+    display: block;
+    overflow: hidden;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #999;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+.list_fund .wrap_state {
+    float: left;
+    position: relative;
+    width: calc(100% - 132px);
+    height: 2px;
+    margin-top: 22px;
+}
+
+.list_fund .wrap_state .state_bar {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #ebebeb;
+}
+
+.list_fund .wrap_state .state_gage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    border-radius: 1px;
+}
+.list_fund .wrap_state .state_ing {
+    background-color: #e35396;
+}
+
+
+.img_thumb {
+    display: block;
+}
+
+.tag_bundle {
+    position: absolute;
+    top: -123px;
+    left: 10px;
+    max-width: 200px;
+}
+
+.list_fund .tag_state {
+    overflow: hidden;
+    border-radius: 12px;
+    line-height: 23px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.tag_state_default {
+    background-color: #444;
+}
+.tag_state {
+    display: inline-block;
+    float: left;
+    height: 24px;
+    margin-right: 2px;
+    padding: 0 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #fff;
+}
+
+.list_fund .price_give, .list_fund .price_goal {
+    display: block;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    text-align: right;
+}
+
+.list_fund .price_goal {
+    overflow: hidden;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+
+
+
+@media (max-width: 767px){
+
+
+    body, html {
+        min-width: 280px;
+    }
+
+.main-content {
+    margin-bottom: -150px;
+}
+
+.article{
+    padding: 0 0 200px;
+}
+div.list-header{
+    height: 42px;
+}
+
+ul.list-tab{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+ul.list-tab li{
+    height: 100%;
+    padding: 0 4px;
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+
+ul.list-tab li a.link-tab{
+    height: 100%;
+    font-size: 13px;
+    font-family: KakaoBig Regular;
+}
+
+ul.list-tab .on .link-tab{
+    font-family: KakaoBig Bold;
+}
+
+ul.list-tab li a.link-tab .txt-tab{
+    height: 100%;
+    padding: 11px 8px 0;
+}   
+
+div.group-catelist {
+    overflow: hidden;
+    width: auto;
+    height: 104px;
+}
+div.inner-catelist{
+    display: block;
+    overflow-x: visible;
+    overflow-y: hidden;
+    width: auto;
+}
+
+ul.list-cate {
+    width: 665px;
+    padding: 30px 9px 35px;
+}
+
+ul.list-cate li {
+    width: 55px;
+}
+ul.list-cate svg{
+    width: 26px;
+    height: 26px;
+}
+ul.list-cate .txt-cate {
+    padding-top: 0;
+    font-size: 12px;
+}
+
+.group_fundlist {
+    width: auto;
+    margin-bottom: 0;
+}
+.sort_cate {
+    width: 100%;
+}
+.group_fundlist .sort_cate .inner_sort_cate {
+    padding-right: 16px;
+}
+
+.group_fundlist .sort_cate .box_sorting {
+    margin-left: 12px;
+}
+.group_fundlist .box_sorting .lab_sort {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+.box_sorting .inp_sort:checked+.lab_sort:before, .sort_on .inp_sort+.lab_sort:before {
+    top: 8px;
+    width: 4px;
+    height: 4px;
+}
+
+.group_fundlist .list_fund {
+    margin-top: -15px;
+}
+
+.list_fund {
+    margin: -10px 7px 0;
+}
+
+.list_fund li:nth-child(2n-1) {
+    clear: both;
+}
+
+.list_fund li {
+    width: 50%;
+    margin: 0;
+}
+
+.list_fund .link_pack {
+    width: auto;
+    margin: 22px 7px 12px;
+}
+.list_fund .box_thumb {
+    border-radius: 10px;
+}
+
+.list_fund .img_thumb {
+    height: 94px;
+    border-radius: 10px;
+}
+
+.list_fund .box_together {
+    height: auto;
+    padding-top: 9px;
+    line-height: 20px;
+}
+
+.list_fund .box_together .bundle_tit {
+    height: 62px;
+    padding: 0;
+}
+
+
+.list_fund .box_together .tit_together {
+    max-height: 42px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.tag_bundle {
+    top: -89px;
+    left: 5px;
+}
+.list_fund .box_together .txt_proposer {
+    margin-top: 4px;
+    font-size: 11px;
+}
+.list_fund .wrap_state {
+    width: calc(100% - 108px);
+    height: 4px;
+    margin-top: 15px;
+    margin-left: 1px;
+}
+
+.list_fund .price_goal {
+    margin: 7px 1px 0 0;
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media (min-width: 768px){
+.group_catalog .link_official:hover .img_thumb, .group_topslide .slide_pannel:hover .img_thumb, .group_withyou .list_slide li:hover .area_thumb, .list_fund .link_pack:hover .img_thumb {
+    transform: scale(1.1);
+}
+}

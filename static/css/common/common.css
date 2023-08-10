@@ -1,0 +1,109 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, menu, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+
+body, th, td, input, select, textarea, button {
+    font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+}
+
+
+menu, ol, ul {
+    list-style: none;
+}
+
+@font-face {
+    font-family: KakaoBig Bold;
+    font-style: normal;
+    font-weight: 400;
+
+    src: url(/static/css/font/KakaoBigBold.woff2) format('woff2'),
+    url(/static/css/font/KakaoBigBold.woff) format('woff');
+}
+
+@font-face {
+
+    font-family: KakaoBig Regular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/css/font/KakaoBigRegular.woff2) format('woff2'),
+    url(/static/css/font/KakaoBigRegular.woff) format('woff');
+}
+
+@font-face {
+    font-family: grandma_kja;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/static/css/font/Together-KwonJungae.otf) format('opentype'),
+    url(/static/css/font/Together-KwonJungae.woff) format('woff');
+}
+
+.hash_type1 {
+    color: #6e7abd;
+    background-color: #f0f1f8
+}
+
+.hash_type2 {
+    color: #b67a69;
+    background-color: #f8f1f0
+}
+
+.hash_type3 {
+    color: #678c3f;
+    background-color: #f2f7ed
+}
+
+.hash_type4 {
+    color: #b77d00;
+    background-color: #fdf8ea
+}
+
+.hash_type5 {
+    color: #3888bb;
+    background-color: #ebf3f8
+}
+
+.hash_type6 {
+    color: #d36a54;
+    background-color: #fbf0ee
+}
+
+.hash_type7 {
+    color: #48af71;
+    background-color: #ecf7f1
+}
+
+.hash_type8 {
+    color: #bc77a9;
+    background-color: #f8f1f6
+}
+
+.hash_type9 {
+    color: #6c6c6c;
+    background-color: #f4f4f4
+}
+
+.hash_type10 {
+    color: #48a2ab;
+    background-color: #eff8f9
+}
+
+
+/*모달 백그라운드 height 100%시 등장*/
+.dimmed_layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    background-color: #000;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}

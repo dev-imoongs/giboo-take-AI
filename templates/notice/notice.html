@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항</title>
+  <link rel="stylesheet" href="/static/css/notice/notice.css">
+  <link rel="stylesheet" href="../../static/css/common/common.css">
+  <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <!-- 메인 -->
+  <span class="main-wrap">
+    <div class="total-main">
+      <!-- 공지사항 탭 -->
+      <div class="wrap-tab">
+        <ul class="list-tab">
+          <li class="on">
+            <a class="link-tab" href="javascript:void(0);">
+              <span class="txt-tab">전체</span>
+            </a>
+            </li>
+            <li>
+              <a class="link-tab" href="javascript:void(0);">
+                <span class="txt-tab">공지탭1</span>
+              </a>
+            </li>
+              <li>
+                <a class="link-tab" href="javascript:void(0);">
+                  <span class="txt-tab">공지탭2</span>
+                </a>
+              </li>
+                <li>
+                  <a class="link-tab" href="javascript:void(0);">
+                    <span class="txt-tab">공지탭3</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          <!-- 공지사항 탭 끝 -->
+          <!-- 컨텐츠 목록 시작 -->
+            <div class="contents-group">
+              <ul class="list-official">
+                <li>
+                  <a class="link-official" href="javascript:void(0);">
+                    <strong class="subject-official">
+                      <span class="icon-pin">
+                      </span>"고정 공지사항 타이틀1"
+                    </strong>
+                      <span class="notice-target">"안내 타겟"</span>
+                      <span class="date-official">
+                        "2023.00.00" 
+                      </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-official" href="javascript:void(0);">
+                        <strong class="subject-official">
+                          <span class="icon-pin">
+                          </span>"고정 공지사항 타이틀2"
+                        </strong>
+                          <span class="notice-target">"안내 타겟"</span>
+                          <span class="date-official">
+                            "2023.00.00" 
+                          </span>
+                            </a>
+                          </li>
+                      <div class="list-more"></div>
+                    <li>
+                      <a class="link-official" href="javascript:void(0);">
+                        <strong class="subject-official">"공지사항 타이틀1"
+                        </strong>
+                        <span class="notice-target">"안내 타겟"</span>
+                        <span class="date-official">
+                      "2023.00.00"
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- 컨텐츠 목록 끝 -->
+      
+          </div>
+        </span>
+
+
+
+</body>
+<script>
+  // on 위치 변경
+const tabLinks = document.querySelectorAll('.link-tab');
+tabLinks.forEach((link, index) => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 클릭 동작 방지
+
+    tabLinks.forEach((tabLink, tabIndex) => {
+      if (tabIndex === index) {
+        tabLink.parentElement.classList.add('on');
+      } else {
+        tabLink.parentElement.classList.remove('on');
+      }
+    });
+  });
+});
+</script>
+</html>
+
+
+<!-- 미디어쿼리 도움받아야함 -->

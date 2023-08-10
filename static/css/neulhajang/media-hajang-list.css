@@ -1,0 +1,470 @@
+/* min-width: 768px */
+@media only screen and (min-width: 768px) {
+  .page-container {
+    min-height: calc(100vh - 320px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .wrap-container {
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-section {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 1120px;
+    padding-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-title {
+    width: 326px;
+    height: 86px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-introduce-item {
+    gap: 0px 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-icon-people {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-count-text {
+    height: 52px;
+    border-radius: 28px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .brandig-icon-action-people {
+    width: 94px;
+    border-radius: 28px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-introduce-link-button {
+    font-weight: 600;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-introduce-link-text {
+    height: 52px;
+    border-radius: 28px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .branding-introduce-link-arrow-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-introduce-item {
+    gap: 0px 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-icon-people {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-count-text {
+    height: 52px;
+    border-radius: 28px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-icon-action-people {
+    width: 94px;
+    border-radius: 28px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-introduce-modal-button {
+    font-weight: 600;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-introduce-modal-text {
+    height: 52px;
+    border-radius: 28px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-branding-introduce-modal-arrow-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .action-card-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 1140px;
+    margin: 0px auto;
+    padding: 0px 0px 17px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-base {
+    margin: 20px 10px 42px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: none;
+    width: calc(25% - 20px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-header {
+    overflow: hidden;
+    height: 265px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .action-card-section .card-base:first-of-type {
+    flex-shrink: 0;
+    width: calc(50% - 20px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .action-card-section .card-base:first-of-type .card-header {
+    height: 330px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-thumbnail {
+    background-image: url("https://t1.kakaocdn.net/together_action_prod/admin/20230730/093c371…?type=thumb&opt=S1100x660"),
+                      url("https://t1.kakaocdn.net/together_image/common/no_image.png");
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-thumbnail::after {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-top-label {
+    top: 13px;
+    left: 13px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-content {
+    position: relative;
+    padding-left: 2px;
+    padding-right: 0px;
+    margin-top: -26px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-title {
+    padding: 43px 0px 15px;
+    font-family: "KakaoBig Regular";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    color: rgb(32, 32, 32);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .action-card-section .card-base:first-of-type .card-title {
+    overflow: hidden;
+    box-sizing: border-box;
+    font-size: 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .card-bottom-label-container {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .card-botton-label-count-text {
+    margin-right: 2px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-description {
+    height: auto;
+    padding: 0px;
+    background-color: transparent;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .mobile-card-mission-text {
+      display: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-action-result-banner-wrap {
+      margin-bottom: 0px;
+      display: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-action-result-button {
+      height: 100px;
+      font-size: 14px;
+      line-height: 2;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-action-result-text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-action-result-money {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-project-active-button {
+    height: 100px;
+    margin-bottom: 0px;
+    padding: 20px 26px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-project-active-button-title {
+    padding-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-project-active-button-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-project-active-button-text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobile-project-active-inner-button {
+    top: 18px;
+    right: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-button-container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 1120px;
+    margin: 0px auto;
+    padding: 20px 0px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-button {
+    width: calc(50% - 10px);
+    height: 100px;
+    margin-bottom: 0px;
+    padding: 20px 26px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-button-title {
+    padding-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-button-icon m{
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-button-text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-line-change {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-project-active-inner-button {
+    top: 18px;
+    right: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-action-result-banner-wrap {
+    width: calc(50% - 10px);
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-action-result-button {
+    height: 100px;
+    font-size: 14px;
+    line-height: 2;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-action-result-text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pc-action-result-money {
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* max-width: 767px */
+@media only screen and (max-width: 767px) {
+  .branding-section {
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .branding-title {
+    margin-left: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .branding-introduce {
+    flex-wrap: nowrap;
+    width: max-content;
+    margin-top: 30px;
+    animation: 20s linear 0s infinite normal none running animationInfinite;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .branding-introduce-item {
+    padding: 0px 3px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mobile-branding-introduce-item {
+    padding: 0px 3px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .card-bottom-label-container {
+    padding: 0px 20px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pc-project-active-button-container {
+    display: none !important;
+  }
+}
