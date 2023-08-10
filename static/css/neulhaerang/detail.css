@@ -1,6 +1,11 @@
 fieldset, img {
     border: 0;
 }
+
+address, caption, cite, code, dfn, em, var {
+    font-style: normal;
+    font-weight: 400;
+}
 blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
     margin: 0;
     padding: 0;
@@ -395,6 +400,32 @@ button, input, select, textarea {
     font-size: 17px;
     text-align: center;
 }
+
+.box_info {
+    display: table;
+    width: 698px;
+    min-height: 48px;
+    margin: 20px auto 0;
+    font-size: 17px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.box_info .desc_info {
+    display: table-cell;
+    padding: 14px 20px 17px;
+    border: 1px solid #e5e5e5;
+    color: #444;
+    vertical-align: middle;
+}
+.emph_give {
+    color: #097bdd;
+}
+.box_info .desc_info .txt_g {
+    display: block;
+}
+
+
 .chart_fund {
     position: absolute;
     left: 0;

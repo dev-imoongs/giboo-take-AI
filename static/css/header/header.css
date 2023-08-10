@@ -651,7 +651,7 @@ background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px 
   border-radius: 10px;
   text-align: left;
   background-color: rgb(248, 249, 250);
-  top: 71px;
+  top: 70px;
   left: 14px;
   width: 160px;
 }
@@ -900,4 +900,16 @@ background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px 
 .pc-search-icon {
   vertical-align: top;
   opacity: 1;
+}
+
+.more-menu-item-link:hover .more-menu-txt {
+    text-decoration: underline;
+}
+
+.pc-user-sub-menu-link:hover .sub-menu-txt{
+  text-decoration: underline;
+}
+
+.logout-button:hover .sub-menu-txt{
+  text-decoration: underline;
 }
