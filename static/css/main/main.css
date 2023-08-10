@@ -1,0 +1,232 @@
+.page-container {
+    box-sizing: border-box;
+    min-height: calc(100vh - 244px);
+    background-color: rgb(243, 243, 243);
+}
+
+.main-branding-section {
+    margin: 0px auto;
+    padding-top: 22px;
+}
+
+.main-branding-title {
+    -webkit-font-smoothing: antialiased;
+    white-space: pre-line;
+    color: rgb(32, 32, 32);
+    font-size: 21px;
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    letter-spacing: -0.5px;
+    line-height: 1.67;
+}
+
+.main-branding-introduce {
+    overflow: hidden;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.main-branding-introduce-item {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 0px 6px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.main-branding-introduce-item > * {
+    flex-shrink: 0;
+}
+
+.main-branding-introduce-item-donation {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_home_donation.png") center center / cover no-repeat;
+}
+
+.main-branding-introduce-text-item {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+    color: rgb(136, 136, 136);
+    font-size: 15px;
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    line-height: 1.57;
+    letter-spacing: -0.3px;
+}
+
+.main-branding-introduce-pic-item {
+    overflow: hidden;
+    width: 90px;
+    height: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/bg_home_hands.png") center center / cover no-repeat;
+}
+
+.main-branding-introduce-item-together {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_action_people.png") center center / cover no-repeat;
+}
+
+.main-branding-introduce-link {
+    position: relative;
+    height: 100%;
+    border-radius: 28px;
+    padding: 0px;
+    box-shadow: none;
+    background: transparent;
+    text-decoration: none;
+}
+
+.branding-introduce-item-arrow {
+    margin-left: -10px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_home_arrow_220831.png") center center / cover no-repeat;
+}
+
+.mobile-branding-introduce-item {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 0px 6px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.mobile-branding-introduce-item > * {
+    flex-shrink: 0;
+}
+
+.mobile-branding-introduce-item-donation {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_home_donation.png") center center / cover no-repeat;
+}
+
+.mobile-branding-introduce-text-item {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+    color: rgb(136, 136, 136);
+    font-size: 15px;
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    line-height: 1.57;
+    letter-spacing: -0.3px;
+}
+
+.mobile-branding-introduce-pic-item {
+    overflow: hidden;
+    width: 90px;
+    height: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/bg_home_hands.png") center center / cover no-repeat;
+}
+
+.mobile-branding-introduce-item-together {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_action_people.png") center center / cover no-repeat;
+}
+
+.mobile-branding-introduce-link {
+    position: relative;
+    height: 100%;
+    border-radius: 28px;
+    padding: 0px;
+    box-shadow: none;
+    background: transparent;
+    text-decoration: none;
+}
+
+.mobile-branding-introduce-text-item {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 255, 255);
+    -webkit-font-smoothing: antialiased;
+    color: rgb(136, 136, 136);
+    font-size: 15px;
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    line-height: 1.57;
+    letter-spacing: -0.3px;
+}
+
+.mobile-branding-introduce-item-arrow {
+    margin-left: -10px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background: url("https://t1.kakaocdn.net/together_image/common/ico_home_arrow_220831.png") center center / cover no-repeat;
+}
+
+.content-container {
+    display: flex;
+    margin: 29px auto 0px;
+}
+
+.main-story-item {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    width: auto;
+    height: 0px;
+    padding-bottom: 100%;
+    border-radius: 10px;
+    background: url("https://t1.kakaocdn.net/together_action_prod/admin/20230801/657b96d7e3bb4f39aa7f6bf614ab7365") center center / cover no-repeat rgb(245, 245, 244);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px;
+    text-decoration: none;
+}

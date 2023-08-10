@@ -1,0 +1,212 @@
+@media only screen and (min-width: 768px) {
+    .page-container {
+        min-height: calc(100vh - 320px);
+        background-color: rgb(247, 247, 247);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-section {
+        display: flex;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 1120px;
+        padding-top: 49px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-title {
+        font-size: 26px;
+        line-height: 1.69;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-introduce-item {
+        gap: 0px 10px;
+        padding-bottom: 6px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-introduce-item-donation {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) m{
+    .main-branding-introduce-text-item {
+        height: 52px;
+        border-radius: 28px;
+        padding-left: 24px;
+        padding-right: 24px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-introduce-pic-item {
+        width: 94px;
+        height: 52px;
+        border-radius: 28px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-introduce-item-together {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-branding-introduce-item-together {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .branding-introduce-item-arrow {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-item {
+        gap: 0px 10px;
+        padding-bottom: 6px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-item-donation {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) m{
+    .mobile-branding-introduce-text-item {
+        height: 52px;
+        border-radius: 28px;
+        padding-left: 24px;
+        padding-right: 24px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-pic-item {
+        width: 94px;
+        height: 52px;
+        border-radius: 28px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-item-together {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-text-item {
+        height: 52px;
+        border-radius: 28px;
+        padding-left: 24px;
+        padding-right: 24px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .mobile-branding-introduce-item-arrow {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .content-container {
+        width: 1120px;
+        margin-top: 32px;
+        padding-bottom: 46px;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-section {
+        width: 700px;
+    }
+}
+
+
+
+
+
+/* max-width: 767px */
+@media only screen and (max-width: 767px) {
+    .main-branding-section {
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .main-branding-title {
+        padding: 0px 20px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .main-branding-introduce {
+    flex-wrap: nowrap;
+    width: max-content;
+    margin-top: 11px;
+    animation: 20s linear 0s infinite normal none running animationInfinite;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+   .main-branding-introduce-item {
+       padding: 0px 3px;
+   }
+}
+
+@media only screen and (max-width: 767px) {
+    .mobile-branding-introduce-item {
+        padding: 0px 3px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .content-container {
+        overflow: hidden;
+        width: 100%;
+        padding: 0px 20px 20px;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+   .main-story-item {
+       margin-bottom: 20px;
+   }
+}
+
