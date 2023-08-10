@@ -6,6 +6,13 @@ body, html {
     min-width: 1140px;
 }
 
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+    color: #444;
+}
+
 ul {
     list-style-type: none;
 }
