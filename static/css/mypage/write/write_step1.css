@@ -79,6 +79,10 @@ button {
     color: #202020;
 }
 
+.wrap_suggest, .wrap_suggest .form_cont {
+    padding-bottom: 80px;
+}
+
 /*모금 대상 선택*/
 .group_apply .area_form {
     width: 700px;
@@ -122,6 +126,8 @@ button {
 .ico_together {
     background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
 }
+
+
 
 .group_apply .sub_head {
     margin-top: 8px;
@@ -285,7 +291,6 @@ input:checked[type=checkbox] {
 .ico_together2 {
     background-image: url(//t1.kakaocdn.net/together_image/common/ico_together2_rtn_210820.png);
     background-size: 500px 1150px;
-    background: url(//t1.kakaocdn.net/together_image/common/ico_together2_210820.png) no-repeat 0 0;
 }
 
 .choice_comm2 .ico_together2 {
@@ -320,11 +325,10 @@ input:checked[type=checkbox] {
 }
 
 .btn_float {
-    left: 50%;
     bottom: 10px;
     width: 700px;
     height: auto;
-    margin-left: -350px;
+    margin: 0 auto;
 }
 
 .btn_float.btn_static {
@@ -337,7 +341,6 @@ input:checked[type=checkbox] {
     position: relative;
     width: 100%;
     height: 60px;
-    margin-top: 50px;
     font-size: 17px;
     line-height: 60px;
     color: #fff;
@@ -350,4 +353,33 @@ input:checked[type=checkbox] {
 
 .btn_float .link_step {
     border-radius: 5px;
+}
+
+.btn_float:after {
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    content: "";
+}
+
+.opt_comm.sign_warn {
+    border: 1px solid #90c6ef;
+    background-color: #ecf5fc;
+}
+
+.opt_comm.sign_warn .box_arrow {
+    background-color: #ecf5fc;
+}
+
+.sign_warn .ico_warn {
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
+    background-size: 600px 1800px;
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 22px;
+    height: 22px;
+    background-position: -527px -155px;
 }
