@@ -8,30 +8,30 @@
 	position: fixed;
 	top: 0px;
 	bottom: 0;
-	z-index: 99;
-	width: 250px;
-	background-color: rgba(4,41,15,0.98);
+	width: 18%;
+	background-color: rgba(4,39,10,1);
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
+	box-shadow: 4px 4px 4px 4px #afafaf;
 }
-
+/*background-image: linear-gradient(to right, rgba(4,23,10,0.98) 10%, rgba(10,50,15,0.98)99%);*/
 
 .menu-bar li span {
 	margin: 10px;
 }
 
 .menu-bar .menu .menu-flex {
-	font-size: 20px;
+	font-size: 16px;
 	color: #fff;
 	display: flex;
 	justify-content: flex-start;
-	margin: 20px 45px 0px;
+	margin: 20px 35px 0px;
 }
 
 .menus .select-menu {
 	font-size: 15px;
 	color: #fff;
-	margin-left: 67px;
+	margin-left: 55px;
 	;
 }
 
@@ -44,7 +44,7 @@
 	display: flex;
 	justify-content: flex-start;
 	position: relative;
-	font-size: 21px;
+	font-size: 20px;
 	color: #fff;
 	height: 32px;
 }
@@ -86,7 +86,7 @@
 
 .menu-name {
 	color: #fff;
-	font-size: 30px;
+	font-size: 25px;
 	margin-top: 6px;
 	font-weight: bold;
 }
