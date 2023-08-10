@@ -47,13 +47,13 @@
 
 @media only screen and (min-width: 768px) {
   .home {
-    margin: 0px 11px;
+    margin: 0px 20px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .header-menu {
-    margin: 0px 11px;
+    margin: 0px 20px;
   }
 }
 
@@ -154,7 +154,7 @@
   .menu-list {
     overflow-x: auto;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: nowrap;
     width: 100%;
     white-space: nowrap;
@@ -191,3 +191,40 @@
     display: none !important;
   }
 }
+
+@media only screen and (min-width: 767px) {
+  .side-menu-drawer{
+    display: none;
+  }
+}
+
+
+ @keyframes slidein {
+        0% {
+            left: -300px
+        }
+
+        to {
+            left: 0
+        }
+    }
+
+    @keyframes slideout {
+        0% {
+            left: 0
+        }
+
+        to {
+            left: -300px
+        }
+    }
+
+@media (max-width: 767px) {
+  .drawer-container {
+    animation-duration: .3s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+  }
+}
+
