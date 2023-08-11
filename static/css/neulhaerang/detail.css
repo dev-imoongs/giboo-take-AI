@@ -3431,8 +3431,158 @@ button {
 }
 
 
+.info_story .story_rellink {
+    margin-bottom: 26px;
+    font-size: 17px;
+    line-height: 28px;
+    color: #444;
+}
 
 
 
+.info_story .tit_rellink {
+    display: block;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: KakaoBig Bold,sans-serif;
+}
 
+
+.info_story .list_ref {
+    padding-top: 6px;
+}
+
+
+.info_story .list_ref li:before {
+    padding-right: 4px;
+    font-size: 17px;
+    line-height: 30px;
+    content: "-";
+}
+
+.info_story .list_ref .link_ref {
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.info_story .txt_line {
+    border-bottom: 1px solid #444;
+}
+
+
+@media (max-width: 767px){
+.info_story .story_rellink {
+    margin-bottom: 35px;
+    padding-left: 1px;
+    font-size: 14px;
+    line-height: 22px;
+}
+.info_story .tit_rellink {
+    font-size: 17px;
+    line-height: 28px;
+}
+.info_story .list_ref {
+    padding-top: 3px;
+}
+
+.info_story .list_ref .link_ref, .info_story .list_ref li:before {
+    font-size: 14px;
+    line-height: 24px;
+}
+.info_story .list_ref .link_ref, .info_story .list_ref li:before {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+
+}
+
+.pack_type2.fund_end .txt_result, .pack_type2.fund_fail .txt_result {
+    right: -18px;
+}
+
+.wrap_tab2 {
+    margin-top: 24px;
+}
+
+.wrap_tab2 .list_tab {
+    overflow: hidden;
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wrap_tab2 .list_tab li {
+    display: inline-block;
+}
+
+.wrap_tab2 .list_tab .link_tab {
+    display: block;
+    position: relative;
+    padding: 0 12px 0 19px;
+    font-size: 20px;
+    font-family: KakaoBig Bold,sans-serif;
+    color: #444;
+}
+
+.wrap_tab2 .list_tab .txt_tab {
+    position: relative;
+}
+
+.wrap_tab2 .list_tab li {
+    display: inline-block;
+}
+
+.wrap_tab2 .on .link_tab {
+    color: #dc287c;
+}
+
+.wrap_tab2  .list_tab .on .link_tab:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #333;
+    content: "";
+}
+
+.wrap_tab2 .list_tab .txt_tab {
+    position: relative;
+}
+
+.reward{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 1000;
+    margin-top: 83px;
+}
+
+
+.info_goal .tit_goal{
+    font-weight: 1000;
+}
+
+.fund_float .btn_cheer:after, .fund_float .btn_g:last-of-type:after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 1px;
+    height: 35px;
+    background-color: #555;
+}
+
+.fund_float .btn_off .txt_float {
+    color: #999;
+}
+
+.fund_float .btn_off {
+    pointer-events: none;
+}
+
+.fund_float .btn_off:last-of-type:after {
+    left: 0;
+}
 

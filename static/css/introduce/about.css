@@ -1,0 +1,324 @@
+#dkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100vh;
+}
+
+#dkContent, #rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+#dkContent {
+    position: relative;
+    margin: 0 0 -212px;
+}
+#dkContent, #rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+#mArticle {
+    padding: 0 0 250px;
+}
+.wrap_tab {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #f7f8f9;
+}
+
+
+.wrap_tab .list_tab {
+    display: flex;
+    justify-content: center;
+}
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+
+.wrap_tab .list_tab li {
+    padding: 0 24px;
+    text-align: center;
+}
+
+.wrap_tab .on .link_tab {
+    position: relative;
+    z-index: 1;
+    color: #202020;
+}
+.wrap_tab .list_tab .link_tab {
+    display: block;
+    height: 60px;
+    font-size: 15px;
+    color: #888;
+    font-family: KakaoBig Bold;
+}
+a, a:active, a:hover {
+    text-decoration: none;
+}
+a {
+    color: #444;
+}
+a {
+    cursor: pointer;
+}
+
+.wrap_tab .list_tab .txt_tab {
+    display: inline-block;
+    position: relative;
+    height: 60px;
+    padding: 18px 16px 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.wrap_tab .on .link_tab {
+    position: relative;
+    z-index: 1;
+    color: #202020;
+}
+
+.wrap_introduce .cont_platform {
+    padding-bottom: 285px;
+    background-color: #5dcfd0;
+    background-image: url(//t1.kakaocdn.net/together_image/common/bg_handinhand.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    text-align: center;
+}
+
+.wrap_introduce .cont_platform .txt_post {
+    display: block;
+    padding-top: 53px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 46px;
+    color: #fff;
+}
+
+.cont_success {
+    position: relative;
+    margin-bottom: 28px;
+    background-color: #65ba5d;
+}
+
+.slide_success {
+    overflow: hidden;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.slide_success .inner_slide {
+    width: 100%;
+    height: 270px;
+}
+
+.slide_success .list_slide {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.slide_success .slide_pannel {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* transform: translateX(0%); */
+    /* transition-duration: 500ms; */
+    white-space: normal;
+    position: absolute;
+}
+
+.slide_success .slide_pannel .link_slide {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 700px 270px;
+}
+
+.slide_success .slide_paging {
+    position: absolute;
+    left: 0;
+    bottom: -34px;
+    width: 100%;
+    text-align: center;
+}
+
+.slide_success .slide_paging .inner_paging {
+    display: inline-block;
+}
+
+.slide_success .slide_paging em.num_page {
+    background-color: #65ba5d;
+}
+.slide_success .slide_paging .num_page {
+    float: left;
+    overflow: hidden;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    font-size: 0;
+    line-height: 0;
+    background-color: #ebebeb;
+    text-indent: -9999px;
+}
+address, caption, cite, code, dfn, em, var {
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+.slide_success .slide_paging .num_page {
+    float: left;
+    overflow: hidden;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    font-size: 0;
+    line-height: 0;
+    background-color: #ebebeb;
+    text-indent: -9999px;
+}
+
+.slide_success .btn_prev {
+    margin-left: -450px;
+}
+.slide_success .btn_slide {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 100px;
+    height: 100%;
+}
+
+.slide_success .ico_prev {
+    background-position: 0 -55px;
+}
+.slide_success .ico_together2 {
+    width: 23px;
+    height: 43px;
+    margin: 0 auto;
+}
+@media only all and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 768px), only all and (min-device-pixel-ratio:1.5) and (min-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 768px), only screen and (min-resolution: 1.5dppx) and (min-width: 768px){
+.ico_together2, .ico_together2.ico_favicon {
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together2_rtn_210820.png);
+    background-size: 500px 1150px;
+}
+}
+.ico_together2 {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together2_210820.png) no-repeat 0 0;
+}
+.ico_together, .ico_together2 {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.slide_success .btn_next {
+    margin-left: 350px;
+}
+
+.slide_success .ico_next {
+    background-position: -25px -55px;
+}
+
+
+.wrap_introduce .cont_contribute {
+    width: 800px;
+    margin: 0 auto;
+    padding-bottom: 45px;
+}
+
+.wrap_introduce .cont_contribute .tit_contribute {
+    display: block;
+    padding: 75px 0 23px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 46px;
+    color: #444;
+}
+
+.wrap_introduce .cont_contribute .txt_contribute {
+    padding-top: 10px;
+    font-size: 18px;
+    color: #444;
+}
+
+.emph_sign {
+    color: #dc287c;
+}
+address, caption, cite, code, dfn, em, var {
+    font-style: normal;
+    font-weight: 400;
+}
+
+.line_mobile, .mo_linefeed {
+    display: none;
+}
+
+.wrap_introduce .cont_contribute+.wrap_btn {
+    margin-bottom: 77px;
+}
+.wrap_introduce .wrap_btn {
+    text-align: center;
+}
+
+.wrap_introduce .wrap_btn .btn_type2 {
+    background-color: #434343;
+}
+.wrap_introduce .wrap_btn .btn_begin {
+    display: inline-block;
+    width: 340px;
+    height: 44px;
+    margin: 0 4px;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 44px;
+    color: #fff;
+    background-color: #434343;
+    vertical-align: top;
+}
+.wrap_introduce .wrap_btn .btn_type1 {
+    background-color: #dc287c;
+}
+
+
+.wrap_introduce .list_motive {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px 0 55px;
+}
+
+.wrap_introduce .list_motive dt {
+    padding-top: 25px;
+    font-size: 18px;
+    color: #444;
+}
+
+.wrap_introduce .list_motive dd {
+    padding-top: 3px;
+    font-size: 16px;
+    line-height: 28px;
+    color: #666;
+}
+button {
+    border: 0;
+    border-radius: 0;
+    background-color: initial;
+    cursor: pointer;
+}
+

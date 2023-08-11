@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../static/css/common/common.css" />
     <link rel="stylesheet" href="../../static/css/neulhaerang/detail.css" />
-    <title>늘해랑 : 상세보기</title>
+    <link rel="stylesheet" href="../../static/css/neulhaerang/review-detail.css" />
+    <title>늘해랑 : 후기</title>
   </head>
   <body>
     <app>
@@ -45,27 +46,19 @@
               </div>
               <!--본문-->
               <div class="wrap_subject">
-                <!--검토중, 미선정 나타내는 칸-->
-                <div class="box_info">
-                  <p class="desc_info">
-                    <em class="emph_give">모금 검토중</em>
-                    <span class="txt_g" style="white-space: pre-line"
-                      >이 모금은 심사파트너 기관에서 검토중입니다. 모금이 시작되면
-                      응원해주세요!</span
-                    >
-                  </p>
-                </div>
-
-                <!--후기 작성시 링크 생성-->
                 <div id="lnb_menu" class="wrap_tab2">
-                  <ul class="list_tab">
-                    <li class="on">
-                      <a class="link_tab" href="/fundraisings/96287/story"
+                  <ul  class="list_tab">
+                    <li>
+                      <a
+                        class="link_tab"
+                        href="/fundraisings/96287/story"
                         ><span class="txt_tab">스토리</span></a
                       >
                     </li>
-                    <li>
-                      <a class="link_tab" href="/fundraisings/96287/epilogue"
+                    <li  class="on">
+                      <a
+                        class="link_tab"
+                        href="/fundraisings/96287/epilogue"
                         ><span class="inner_tab"><span class="txt_tab">모금후기</span></span></a
                       >
                     </li>
@@ -214,6 +207,14 @@
                     어르신들에게 온전히 전달할 수 있도록 하겠습니다. 뜨거운 여름, 어르신들의 한 끼
                     식사에 풍요로움 '한 움큼' 어떠신가요?
                   </p>
+
+
+                  <!--별찌모음-->
+                  <div class="reward">기부 펀딩 별찌</div>
+
+
+
+
                   <div class="photo_slide">
                     <!--사진들-->
                     <div class="inner_photo">
@@ -306,15 +307,7 @@
                     <ul class="list_ref">
                       <li>
                         <a class="link_ref" href="http://www.haeundaejangsan.or.kr/" target="_blank"
-                          ><span class="txt_line">봉사 참가자용 오픈카톡</span></a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="link_ref"
-                          href="https://www.youtube.com/@user-oj6yq2yq8i"
-                          target="_blank"
-                          ><span class="txt_line">기부천사 오픈카톡</span></a
+                          ><span class="txt_line">별찌 수령자 전용 오픈카톡</span></a
                         >
                       </li>
                     </ul>
@@ -340,7 +333,7 @@
                   <!--모금액 퍼센트이미지-->
                   <!--100%완료시 fund_end 추가-->
                   <!--100%완료못하고 기간 종료시 fund_fail 추가-->
-                  <div id="animate-area" class="chart_fund pack_type2">
+                  <div id="animate-area" class="chart_fund pack_type2 fund_fail">
                     <span class="progress_road">
                       <span class="mark_pack">
                         <div class="inner_mark_pack">
@@ -413,13 +406,17 @@
                       <dl class="story_date">
                         <dt class="tit_date">모금기간 :</dt>
                         <dd class="txt_date">2023.07.07 ~ 2023.08.07</dd>
+                        <dt class="tit_date">봉사기간 :</dt>
+                        <dd class="txt_date">2023.07.07 ~ 2023.08.07</dd>
+                        <dt class="tit_date">후기작성 :</dt>
+                        <dd class="txt_date">2023.07.07</dd>
                       </dl>
                       <!--모금액 사용 계획-->
                       <div class="info_plan">
                         <button type="button" class="btn_plan">
                           <!-- 누르면바뀜   background-position: -248px -116px;-->
                           <span class="ico_together ico_arr"></span
-                          ><span>모금액, 이렇게 사용됩니다</span>
+                          ><span>모금액, 이렇게 사용했습니다</span>
                         </button>
                         <!--토글 슬라이드 모금액-->
                         <div class="slide-togle" style="display: none">
@@ -436,23 +433,45 @@
                                 ></span
                               >
                             </li>
+                            <li>
+                                <span class="num_plan"> 2.</span>
+                                <span class="txt_plan">
+                                  <span class="txt_expense"> 보양식 식재료 6,750원×200명×2회 </span
+                                  ><span class="emph_sign"
+                                    ><span class="num_type">2,700,000</span>원</span
+                                  ></span
+                                >
+                              </li>
+                              <li>
+                                <span class="num_plan"> 3.</span>
+                                <span class="txt_plan">
+                                  <span class="txt_expense"> 보양식 식재료 6,750원×200명×2회 </span
+                                  ><span class="emph_sign"
+                                    ><span class="num_type">2,700,000</span>원</span
+                                  ></span
+                                >
+                              </li>
+                              <li>
+                                <span class="num_plan"> 4.</span>
+                                <span class="txt_plan">
+                                  <span class="txt_expense"> 보양식 식재료 6,750원×200명×2회 </span
+                                  ><span class="emph_sign"
+                                    ><span class="num_type">2,700,000</span>원</span
+                                  ></span
+                                >
+                              </li>
                           </ul>
+
                           <div class="info_goal">
                             <strong class="tit_goal"
-                              >목표금액
+                              >총모금액
                               <span class="num_goal emph_sign"
                                 >2,700,000<span class="txt_per">원</span></span
                               ></strong
                             >
                           </div>
-                          <span class="info_detail"
-                            ><span>모금액 미달 시 이렇게 사용합니다!</span><br /><span
-                              class="txt_detail"
-                              style="word-break: break-all"
-                              >자부담 지원 예정</span
-                            ></span
-                          >
-                          <div data-tiara-layer="receipt_team" class="info_receipt">
+                         
+                          <div class="info_receipt">
                             <span class="receipt_group"
                               >기부금 영수증 발급 기관 : 한국사회복지관협회</span
                             >
@@ -703,22 +722,15 @@
                   <span class="ico_together ico_share"></span
                   ><span class="txt_float txt_share"
                     >동참<span class="num_active">20/30</span></span
-                  >
-                </button>
-                <!--기부 가능-->
-                <button type="button" class="btn_g btn_give">
-                  <span class="ico_give"></span><span class="txt_float txt_give">기부하기</span>
-                </button>
-
+                  ></button
+                >
                 <!--기부 종료료-->
-                <!-- <button
+                <button
                   type="button"
                   class="btn_g btn_off"
                 >
                   <span><span class="txt_float txt_end"> 기부종료 </span></span>
-                </button> -->
-
-
+                </button>
 
               </div>
             </article>
@@ -916,7 +928,7 @@
                             </button>
                           </div>
                           <p class="txt_info">무통장은 3천원, 기타 결제는 1천원부터 가능합니다.</p>
-
+                          <!----><!----><!---->
                           <div class="wrap_textarea">
                             <div class="box_tf">
                               <textarea
@@ -988,4 +1000,5 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="/static/js/nelharang/detail.js"></script>
+  <script src="/static/js/nelharang/review-detail.js"></script>
 </html>
