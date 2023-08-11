@@ -157,10 +157,10 @@ $btn_plan.on("click",e=>{
     }else{
         if($(".slide-togle").css("display")==="none"){
 
-        $(".info_plan .ico_arr").css("background-position","-237px -116px")
+        $(".info_plan .ico_arr").css("background-position","-248px -116px")
         }else{
         //클로즈
-        $(".info_plan .ico_arr").css("background-position","-248px -116px")
+        $(".info_plan .ico_arr").css("background-position","-237px -116px")
         }
     }
 
@@ -220,7 +220,6 @@ $btn_comment.on("click",e=>{
 $photoUls = $("ul.list_photo")
 $photoUls.each((idx, photoul) => {
     $photos = $(photoul).children("li")
-    console.log($photos)
     $pagingSlide = $(".paging_slide").eq(idx)
 
     //ul태그안에 사진을 양옆으로 한개씩 더 넣었다고 가정할 때

@@ -1,0 +1,303 @@
+.wrap_introduce .stat_intro {
+    background-color: #65ba5d;
+}
+
+.wrap_introduce .list_total {
+    overflow: hidden;
+    width: 780px;
+    margin: 50px auto 38px;
+}
+
+.wrap_introduce .list_total li {
+    overflow: hidden;
+    float: left;
+    width: 260px;
+    height: 256px;
+    text-align: center;
+}
+
+.wrap_introduce .list_total .thumb_stat {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.wrap_introduce .list_total .tit_total {
+    display: block;
+    padding-top: 11px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #444;
+}
+
+.wrap_introduce .list_total .num_total {
+    display: block;
+    font-size: 24px;
+    color: #dc287c;
+}
+
+.wrap_introduce .cont_stat_yearly {
+    background-color: #f7f8f9;
+}
+
+.wrap_introduce .inner_yearly_box {
+    display: flex;
+    align-items: center;
+    width: 800px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.wrap_introduce .inner_yearly_box .tit_stat {
+    font-weight: 400;
+    font-size: 19px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+}
+
+.wrap_introduce .inner_yearly_box .sort_stat {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.wrap_introduce .inner_yearly_box .box_select {
+    flex-shrink: 0;
+    width: 140px;
+}
+.wrap_introduce .inner_yearly_box .sort_stat .opt_comm {
+    vertical-align: top;
+}
+.opt_comm {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    font-size: 12px;
+    line-height: 44px;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.opt_comm .opt_select, .opt_comm .select_option {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: #444;
+}
+.opt_comm .select_option {
+    overflow: hidden;
+    right: 0;
+    margin: 0 30px 0 12px;
+    padding: 0;
+    line-height: 44px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+.opt_comm .opt_select {
+    display: block;
+    z-index: 10;
+    top: 0;
+    height: 44px;
+    width: 100%;
+    border: 0;
+    background: none;
+    -webkit-appearance: none;
+    opacity: .01;
+    filter: alpha(opacity=0);
+}
+.opt_comm .opt_select, .opt_comm .select_option {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+
+.opt_comm .box_arrow {
+    position: absolute;
+    right: 0;
+    width: 29px;
+    height: 44px;
+    background-color: #fff;
+}
+
+.opt_comm .ico_arrow {
+    width: 12px;
+    height: 8px;
+    margin: 17px 0 0 7px;
+    background-position: -236px -116px;
+}
+
+.wrap_introduce .inner_yearly_box .txt_year {
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 44px;
+}
+
+.wrap_introduce .cont_stat {
+    width: 800px;
+    margin: 0 auto 115px;
+}
+
+.wrap_introduce .box_graph {
+    float: left;
+    width: 400px;
+    padding: 44px 0 9px;
+    text-align: center;
+}
+
+.wrap_introduce .box_graph .info_item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wrap_introduce .box_graph .item_point {
+    float: left;
+    margin: 0 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.wrap_introduce .box_graph .point_color1 {
+    background-color: #dc287c;
+}
+.wrap_introduce .box_graph .mark_point {
+    float: left;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    margin: 3px 4px 0 0;
+    border-radius: 50%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.wrap_introduce .box_graph .point_color2 {
+    background-color: #f7d14f;
+}
+
+.wrap_introduce .box_graph .point_color3 {
+    background-color: #7969cc;
+}
+
+.chartjs-render-monitor {
+    animation: chartjs-render-animation 0.001s;
+}
+.wrap_introduce .box_graph .tit_graph {
+    display: block;
+    padding-top: 18px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #444;
+}
+
+.wrap_introduce .box_graph .num_total {
+    color: #dc287c;
+}
+
+.wrap_introduce .box_graph .item_point {
+    float: left;
+    margin: 0 6px;
+    font-size: 14px;
+    color: #444;
+}
+.wrap_introduce .box_graph .point_color4 {
+    background-color: #0276da;
+}
+
+
+.wrap_introduce .box_graph .point_color5 {
+    background-color: #19aab6;
+}
+
+.wrap_introduce .list_fundbest {
+    margin-top: 12px;
+    padding-top: 17px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.wrap_introduce .list_fundbest li {
+    display: inline-block;
+    width: 100%;
+    height: 90px;
+    padding: 5px 0;
+    vertical-align: top;
+}
+
+.wrap_introduce .list_fundbest .link_thumb {
+    float: left;
+    position: relative;
+    width: 160px;
+    height: 90px;
+}
+
+.wrap_introduce .list_fundbest .img_thumb {
+    width: 160px;
+    height: 90px;
+}
+
+.wrap_introduce .list_fundbest .link_thumb:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 1px solid #0000001a;
+    box-sizing: border-box;
+    content: "";
+}
+
+.wrap_introduce .list_fundbest .info_best {
+    display: table;
+    height: 90px;
+    padding: 0 21px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.wrap_introduce .list_fundbest .inner_info {
+    display: table-cell;
+    padding-bottom: 6px;
+    vertical-align: middle;
+}
+
+.wrap_introduce .list_fundbest .tit_best {
+    display: block;
+    font-weight: 400;
+}
+
+.wrap_introduce .list_fundbest .link_best {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 54px;
+    color: #444;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.wrap_introduce .list_fundbest .num_total {
+    color: #dc287c;
+}
+
+.wrap_introduce .list_fundbest .num_total .txt_num {
+    color: #444;
+}
+

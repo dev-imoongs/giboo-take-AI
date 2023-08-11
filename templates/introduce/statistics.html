@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/css/common/common.css" />
+    <link rel="stylesheet" href="../../static/css/introduce/about.css" />
+    <link rel="stylesheet" href="../../static/css/introduce/giboo-suggestion.css" />
+    <link rel="stylesheet" href="../../static/css/introduce/statistics.css" />
+    <title>기부 통계</title>
+  </head>
+  <body>
+    <div id="dkWrap" class="together_top">
+      <!--header-->
+      <span id="rootContent"
+        ><ng-component
+          ><div id="dkContent" class="cont_introduce">
+            <div id="mArticle">
+              <div class="wrap_introduce">
+                <div class="wrap_tab">
+                  <ul class="list_tab tab_type4">
+                    <li>
+                      <a class="link_tab" href="/auroville/together"
+                        ><span class="txt_tab">같이가치?</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="link_tab" href="/auroville/donate"
+                        ><span class="txt_tab">기부&amp;제안</span></a
+                      >
+                    </li>
+                    <li class="on">
+                      <a class="link_tab" href="/auroville/statistics"
+                        ><span class="txt_tab">기부 통계</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="link_tab" href="/auroville/partner"
+                        ><span class="txt_tab">파트너기관</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <ng-component>
+                  <div class="cont_intro stat_intro">
+                    <p class="desc_intro">
+                      카카오같이가치에 모인 착한 마음들 <br />우리가 함께 만드는 변화는
+                      무궁무진합니다
+                    </p>
+                  </div>
+                  <ul class="list_total">
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat1.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">총 기부금</strong
+                      ><span class="num_total">68,828,318,669</span>
+                    </li>
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat2_221018.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">같이가치 모금함</strong
+                      ><span class="num_total">16,513개</span>
+                    </li>
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat3.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">프로젝트당 모금액</strong
+                      ><span class="num_total">6,852,009원</span>
+                    </li>
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat4_221018.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">함께 기부한 마음</strong
+                      ><span class="num_total">54,808,783건</span>
+                    </li>
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat5_201203.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">내 마음 살펴보기</strong
+                      ><span class="num_total">13,589,658건</span>
+                    </li>
+                    <li>
+                      <img
+                        src="//t1.kakaocdn.net/together_image/thumb_stat6.png"
+                        class="thumb_stat"
+                      /><strong class="tit_total">함께 봉사한 시간</strong
+                      ><span class="num_total">34,154시간</span>
+                    </li>
+                  </ul>
+                  <yearly-statistics
+                    ><div class="cont_stat_yearly">
+                      <div class="inner_yearly_box">
+                        <h5 class="tit_stat">연도별 현황</h5>
+                        <div class="sort_stat">
+                          <div class="box_select">
+                            <div class="inner_box">
+                              <div class="opt_comm">
+                                <span class="select_option select_on">2023</span
+                                ><select
+                                  id="selectedYear"
+                                  class="opt_select ng-valid ng-dirty ng-touched"
+                                >
+                                  <option value="2008">2008</option>
+                                  <option value="2009">2009</option>
+                                  <option value="2010">2010</option>
+                                  <option value="2011">2011</option>
+                                  <option value="2012">2012</option>
+                                  <option value="2013">2013</option>
+                                  <option value="2014">2014</option>
+                                  <option value="2015">2015</option>
+                                  <option value="2016">2016</option>
+                                  <option value="2017">2017</option>
+                                  <option value="2018">2018</option>
+                                  <option value="2019">2019</option>
+                                  <option value="2020">2020</option>
+                                  <option value="2021">2021</option>
+                                  <option value="2022">2022</option>
+                                  <option value="2023">2023</option></select
+                                ><span class="box_arrow"
+                                  ><span class="ico_together ico_arrow"></span
+                                ></span>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="txt_year">(2023. 01. 01 ~ 2023. 12. 31)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-tiara-layer="yearly" class="cont_stat">
+                      <div class="box_graph" style="display: block">
+                        <div class="chartjs-size-monitor">
+                          <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+                          <div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+                        </div>
+                        <span class="info_item"
+                          ><span class="item_point"
+                            >사용자기부금<span class="mark_point point_color1">49%</span></span
+                          ><span class="item_point"
+                            >카카오기부금<span class="mark_point point_color2">35%</span></span
+                          ><span class="item_point"
+                            >파트너기부금<span class="mark_point point_color3">16%</span></span
+                          ></span
+                        ><canvas id="myChart"
+                          basechart width="600" height="600"
+                          width="400"
+                          height="400"
+                          style="
+                            -webkit-tap-highlight-color: transparent;
+                            width: 400px;
+                            height: 400px;
+                            display: block;
+                          "
+                          class="chartjs-render-monitor"
+                        ></canvas
+                        ><strong class="tit_graph"
+                          >총 기부금 <span class="num_total">9,838,641,114원</span></strong
+                        >
+                      </div>
+
+                      <div class="box_graph" style="display: block">
+                        <div class="chartjs-size-monitor">
+                          <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+                          <div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+                        </div>
+                        <span class="info_item"
+                          ><span class="item_point"
+                            >결제<span class="mark_point point_color1">5%</span></span
+                          ><span class="item_point"
+                            >댓글<span class="mark_point point_color2">24%</span></span
+                          ><span class="item_point"
+                            >응원<span class="mark_point point_color3">50%</span></span
+                          ><span class="item_point"
+                            >공유<span class="mark_point point_color4">4%</span></span
+                          ><span class="item_point"
+                            >프로모션<span class="mark_point point_color5">16%</span></span
+                          ></span
+                        ><canvas
+                          width="400"
+                          height="400"
+                          style="
+                            -webkit-tap-highlight-color: transparent;
+                            width: 400px;
+                            height: 400px;
+                            display: block;
+                          "
+                          class="chartjs-render-monitor"
+                        ></canvas
+                        ><strong class="tit_graph"
+                          >총 참여건수 <span class="num_total">5,589,527건</span></strong
+                        >
+                      </div>
+                      <strong class="tit_stat">올해의 기부금 많은 모금함 top5</strong>
+                      <ol data-tiara-layer="fundraisings" class="list_fundbest">
+                        <li>
+                          <a class="link_thumb" href="/fundraisings/102648"
+                            ><img
+                              class="img_thumb"
+                              src="https://mud-kage.kakaocdn.net/dn/gvFvi/btrYqzqvlTC/sr6d1eB8ekFZqM96bmgKk0/c203.jpg" /></a
+                          ><span class="info_best"
+                            ><span class="inner_info"
+                              ><strong class="tit_best"
+                                ><a class="link_best" href="/fundraisings/102648"
+                                  >최악의 지진 튀르키예·시리아 강타</a
+                                ></strong
+                              ><span class="num_total"
+                                >1,186,145,273원 <span class="txt_num">(242,794명)</span></span
+                              ></span
+                            ></span
+                          >
+                        </li>
+                        <li>
+                          <a class="link_thumb" href="/fundraisings/102699"
+                            ><img
+                              class="img_thumb"
+                              src="https://mud-kage.kakaocdn.net/dn/bs3gJx/btrYqv9VU92/mOeklnvzIyEAgj170o8tl0/c203.jpg" /></a
+                          ><span class="info_best"
+                            ><span class="inner_info"
+                              ><strong class="tit_best"
+                                ><a class="link_best" href="/fundraisings/102699"
+                                  >튀르키예·시리아에 지진보다 더 큰 희망의 울림을!</a
+                                ></strong
+                              ><span class="num_total"
+                                >1,178,084,200원 <span class="txt_num">(106,607명)</span></span
+                              ></span
+                            ></span
+                          >
+                        </li>
+                        <li>
+                          <a class="link_thumb" href="/fundraisings/107772"
+                            ><img
+                              class="img_thumb"
+                              src="https://mud-kage.kakaocdn.net/dn/by0ZLO/btsnEj4OznU/XXBPIJB2Vnhxh4TLsV7Pm1/c203.jpg" /></a
+                          ><span class="info_best"
+                            ><span class="inner_info"
+                              ><strong class="tit_best"
+                                ><a class="link_best" href="/fundraisings/107772"
+                                  >폭우와 태풍으로 삶의 터전을 잃은 이웃을 도와주세요</a
+                                ></strong
+                              ><span class="num_total"
+                                >704,808,121원 <span class="txt_num">(65,880명)</span></span
+                              ></span
+                            ></span
+                          >
+                        </li>
+                        <li>
+                          <a class="link_thumb" href="/fundraisings/102788"
+                            ><img
+                              class="img_thumb"
+                              src="https://mud-kage.kakaocdn.net/dn/C1xVG/btrYEio9uKq/kS0kv8dOd4cgZTahGDk1g0/c203.jpg" /></a
+                          ><span class="info_best"
+                            ><span class="inner_info"
+                              ><strong class="tit_best"
+                                ><a class="link_best" href="/fundraisings/102788"
+                                  >튀르키예와 시리아는 지금, 도움이 필요합니다</a
+                                ></strong
+                              ><span class="num_total"
+                                >530,030,900원 <span class="txt_num">(123,107명)</span></span
+                              ></span
+                            ></span
+                          >
+                        </li>
+                        <li>
+                          <a class="link_thumb" href="/fundraisings/102655"
+                            ><img
+                              class="img_thumb"
+                              src="https://mud-kage.kakaocdn.net/dn/ceTbf8/btrYfZXNt3M/Piuw8f5XAfKLBeGjgNnjIK/c203.jpg" /></a
+                          ><span class="info_best"
+                            ><span class="inner_info"
+                              ><strong class="tit_best"
+                                ><a class="link_best" href="/fundraisings/102655"
+                                  >튀르키예와 시리아를 삼킨 대지진 여러분의 도움이 필요합니다</a
+                                ></strong
+                              ><span class="num_total"
+                                >388,813,900원 <span class="txt_num">(152,517명)</span></span
+                              ></span
+                            ></span
+                          >
+                        </li>
+                      </ol>
+                    </div></yearly-statistics
+                  ></ng-component
+                >
+              </div>
+            </div>
+          </div></ng-component
+        ></span
+      >
+      <!--footer-->
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="
+  https://cdn.jsdelivr.net/npm/chart.js@4.3.3/dist/chart.umd.min.js
+  "></script>
+  <script src="/static/js/introduce/statistics.js"></script>
+</html>

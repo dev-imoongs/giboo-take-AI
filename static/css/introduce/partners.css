@@ -1,0 +1,199 @@
+.wrap_introduce .partner_intro {
+    background-color: #097bdd;
+}
+
+.wrap_introduce .cont_intro+.tit_define {
+    margin-top: 55px;
+}
+.wrap_introduce .tit_define {
+    display: block;
+    width: 800px;
+    margin: 74px auto 0;
+    font-weight: 400;
+    font-size: 24px;
+    color: #444;
+}
+
+.wrap_introduce .list_define {
+    width: 800px;
+    margin: 6px auto 72px;
+}
+.wrap_introduce .list_define li {
+    padding-left: 10px;
+    font-size: 16px;
+    color: #626262;
+    line-height: 30px;
+}
+
+.wrap_introduce .list_define .ico_dot {
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 11px 7px 0 -10px;
+    background-color: #626262;
+    vertical-align: top;
+}
+
+
+.wrap_introduce .desc_define {
+    width: 800px;
+    margin: 9px auto 0;
+    font-size: 16px;
+    color: #626262;
+}
+
+.wrap_introduce .desc_define+.col_type1 {
+    padding-top: 0;
+}
+.wrap_introduce .desc_define+.list_intro {
+    padding-top: 10px;
+}
+.wrap_introduce .list_intro {
+    overflow: hidden;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.wrap_introduce .col_type1 li, .wrap_introduce .col_type1 li:first-child {
+    margin-top: 28px;
+}
+.wrap_introduce .list_intro li:first-child {
+    margin-top: 18px;
+}
+.wrap_introduce .col_type1 li {
+    float: left;
+    width: 50%;
+}
+.wrap_introduce .list_intro li {
+    overflow: hidden;
+    margin-top: 26px;
+}
+
+.wrap_introduce .col_type1 .ico_together {
+    margin-top: 3px;
+}
+.wrap_introduce .list_intro .ico_kind13 {
+    background-position: -256px -760px;
+}
+.wrap_introduce .list_intro .ico_together {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.wrap_introduce .info_intro {
+    display: table;
+    overflow: hidden;
+    min-height: 60px;
+    font-size: 16px;
+    color: #626262;
+    line-height: 31px;
+}
+
+.wrap_introduce .col_type1 .inner_info {
+    line-height: 27px;
+}
+.wrap_introduce .info_intro .inner_info {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.wrap_introduce .col_type1 .tit_intro {
+    margin-bottom: 4px;
+}
+.wrap_introduce .info_intro .tit_intro {
+    display: block;
+    font-weight: 400;
+    font-size: 18px;
+    color: #444;
+}
+
+.wrap_introduce .col_type1 li:nth-child(2n) .ico_together {
+    margin-left: 8px;
+}
+.wrap_introduce .col_type1 .ico_together {
+    margin-top: 3px;
+}
+.wrap_introduce .list_intro .ico_kind14 {
+    background-position: -320px -760px;
+}
+
+.wrap_introduce .col_type1 .ico_together {
+    margin-top: 3px;
+}
+.wrap_introduce .list_intro .ico_kind15 {
+    background-position: -384px -760px;
+}
+
+.wrap_introduce .col_type1 li:nth-child(2n) .ico_together {
+    margin-left: 8px;
+}
+.wrap_introduce .col_type1 .ico_together {
+    margin-top: 3px;
+}
+.wrap_introduce .list_intro .ico_kind16 {
+    background-position: -448px -760px;
+}
+
+
+.wrap_introduce .list_partner {
+    width: 800px;
+    margin: 0 auto 80px;
+}
+
+.wrap_introduce .list_partner li:first-child {
+    padding-top: 26px;
+}
+.wrap_introduce .list_partner li {
+    overflow: hidden;
+    padding: 29px 0 5px;
+}
+
+.wrap_introduce .list_partner .img_logo {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #0003;
+    border-radius: 60px;
+    margin: 3px 12px 0 10px;
+    box-sizing: border-box;
+}
+.wrap_introduce .list_partner .info_partner {
+    display: block;
+    overflow: hidden;
+    font-size: 15px;
+    color: #626262;
+}
+
+
+.wrap_introduce .list_partner .tit_partner {
+    display: block;
+    font-weight: 400;
+    color: #1878c9;
+}
+
+.wrap_introduce .list_partner .link_detail:hover {
+    text-decoration: underline;
+}
+.wrap_introduce .list_partner .link_detail {
+    display: block;
+    margin-top: 2px;
+    font-size: 14px;
+    color: #444;
+}
+
+.wrap_introduce .list_partner .link_detail:hover {
+    text-decoration: underline;
+}
+
+.wrap_introduce .list_partner .ico_arrow {
+    display: inline-block;
+    float: none;
+    width: 5px;
+    height: 9px;
+    margin: 6px 0 0 4px;
+    background-position: -500px -216px;
+    vertical-align: top;
+}
+
