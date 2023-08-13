@@ -1,0 +1,180 @@
+body, html {
+    min-width: 1140px;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #444;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: initial;
+  cursor: pointer;
+  line-height: 1.5;
+  font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+}
+
+.happy_cont {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.group_meditation {
+    width: 700px;
+    padding: 66px 0 30px;
+    margin: 0 auto;
+}
+
+.group_meditation .list_meditation {
+    overflow: hidden;
+}
+
+.group_meditation .list_meditation li {
+    float: left;
+    width: 25%;
+    min-height: 263px;
+    text-align: center;
+}
+
+.group_meditation .list_meditation .link_meditation {
+    display: block;
+}
+
+.group_meditation .link_meditation .thumb_img {
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+}
+
+.group_meditation .list_meditation .tit_meditation {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    width: 120px;
+    max-height: 40px;
+    margin: 17px auto 0;
+    line-height: 1.2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: KakaoBig Bold,sans-serif;
+    text-overflow: ellipsis;
+}
+
+.group_meditation .list_meditation .txt_option {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* 프로필 */
+.group-profile {
+  position: relative;
+  min-height: 190px;
+  padding-top: 34px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  background: url(//t1.kakaocdn.net/together_image/bg_mypage.png) 98% 18px no-repeat;
+  background-size: 215px 160px;
+}
+/* 프로필 이름 */
+.group-profile .area-name {
+  display: inline-block;
+  max-width: 550px;
+  vertical-align: top;
+}
+
+.group-profile .area-name .txt-name,
+ .group-profile .area-name .txt-nick {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 400;
+  font-family: KakaoBig Bold,sans-serif;
+}
+
+.group-profile .area-name .txt-nick {
+  max-width: 465px;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  font-size: 18px;
+}
+
+.group-profile .area-name .txt-name {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 36px;
+  line-height: 1.4;
+}
+
+.group-profile .area-name .box-name {
+  display: inline-block;
+  position: relative;
+  max-width: 465px;
+}
+
+/* 프로필 뱃지 */
+.group-profile .area-thumb {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.group-profile .area-thumb .link-badge {
+  position: absolute;
+  left: -15px;
+  width: 40px;
+  height: 40px;
+}
+
+.group-profile .area-thumb .img-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.group-profile .area-thumb .link-thumb {
+  display: block;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.list-more {
+  padding: 23px 0 0;
+  text-align: center;
+}
+
+.link-round {
+  display: inline-block;
+  height: 40px;
+  padding: 0 17px;
+  border: 1px solid #e7e7e7;
+  border-radius: 20px;
+  font-size: 13px;
+  line-height: 38px;
+  font-family: KakaoBig Regular,sans-serif;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.link-round.link-other2 {
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 38px;
+}
