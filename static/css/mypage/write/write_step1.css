@@ -86,7 +86,9 @@ button {
     color: #202020;
 }
 
-.wrap_suggest, .wrap_suggest .form_cont {
+.wrap_suggest, .wrap_suggest .form_cont1,
+.wrap_suggest, .wrap_suggest .form_cont2,
+.wrap_suggest, .wrap_suggest .form_cont3 {
     padding-bottom: 80px;
 }
 

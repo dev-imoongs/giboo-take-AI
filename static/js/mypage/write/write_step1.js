@@ -28,7 +28,7 @@ const toastMsg = function (text) {
 // 위에서 return 되서 아래거까지 한번에 안나옴
 $('.link_step').on('click', () => {
     let condition1 = $('.select_option').text() == '카테고리'
-    let condition2 = $('.inp_comm').filter((i, v) => $(v).prop('checked')).length !== 3
+    let condition2 = $('.form_cont1 .inp_comm').filter((i, v) => $(v).prop('checked')).length !== 3
     // 각 조건이 true if문을 수행하고
     if (condition1) {
         $('.opt_comm').addClass('sign_warn')

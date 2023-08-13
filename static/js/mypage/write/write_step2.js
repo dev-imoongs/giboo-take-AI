@@ -83,6 +83,8 @@ $(document).ready(function () {
             $calendar1.show()
 
         }
+
+
     });
 
     $(document).on('keyup', (e) => {
@@ -248,7 +250,6 @@ $calBody.addEventListener('click', (e) => {
     }
     let day = Number(e.target.textContent);
     console.log(day)
-    console.log(new Date().getMonth())
     loadDate(day, e.target.cellIndex);
     e.target.classList.add('day-active');
     init.activeDTag = e.target;
