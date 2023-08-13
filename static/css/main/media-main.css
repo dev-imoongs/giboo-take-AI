@@ -356,6 +356,12 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .neulhearang-tag-card-container .tab-panel .space {
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
     .tab-panel-content-card-link {
         position: relative;
         flex-direction: column;
@@ -458,6 +464,149 @@
         box-sizing: border-box;
     }
 }
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-slider-control {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-paging-button-list {
+        position: relative;
+        top: 20px;
+        -webkit-box-pack: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-paging-button-list li + li {
+        margin-left: 6px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-slide-title {
+        padding-top: 16px;
+        max-height: 56px;
+        font-size: 18px;
+        line-height: 1.56;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-slide-description{
+        max-height: 135px;
+        padding-top: 11px;
+        line-height: 1.92;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-rectangle-banner {
+        width: 360px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-rectangle-banner-link {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-rectangle-banner-text-container {
+        padding: 35px 26px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-rectangle-banner-title-text {
+        width: 210px;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-rectangle-banner-subtext {
+        width: 195px;
+        font-size: 14px;
+        line-height: 1.15;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-list-container {
+        margin-bottom: 30px;
+        padding: 38px 26px 29px;
+        border-radius: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-list-title-text {
+        padding: 14px 0px 19px;
+        line-height: 1.61;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-list-item-thumbnail {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-list-media-item-thumbnail {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .giboo-n-take-news-container {
+        margin-bottom: 30px;
+        padding: 38px 26px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .news-title {
+        padding: 14px 0px 19px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .item-container {
+        padding: 15px 12px 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .news-item-title {
+        line-height: 1.61;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .news-item-icon {
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .item-container-signature-color {
+        padding: 15px 12px 12px;
+    }
+}
+
+
 
 
 
@@ -631,6 +780,13 @@
     }
 }
 
+@media only screen and (max-width: 767px){
+    .neulhearang-review-paging-button-list {
+        position: absolute;
+        top: -20px;
+        right: 0px;
+    }
+}
 
 
 
