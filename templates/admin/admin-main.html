@@ -6,17 +6,115 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/admin/admin-main.css">
-    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/common/common.css">
+    <link rel="stylesheet" href="/static/css/admin/side-bar.css">
     <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon">
     <title>관리자페이지 메인</title>
 </head>
 <body>
-<!--{% include 'templates/admin/admin-main.html' %}-->
+<!-- 사이드 바 -->
+    <div id="side-bar">
+        <div class="side-menu">
+            <div>
+                <div class="menu-title-layout">
+                    <div class="menu-title">
+                        <div class="menu-name">
+                            MENU
+                        </div>
+                    </div>
+                </div>
+                <ul class="menu-bar">
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--1-->
+                                <span>게시판 관리</span>
+                            </a>
+                            <div class="triangle-button">
+
+                                <img src="/static/image/admin/arrow_icon.png"
+                                     class="icon triangle-icon triangle">
+                            </div>
+                        </div>
+
+                        <ul class="menus1 menus" style="display: none;">
+                            <!-- <li class="select-menu">
+                                <a href="adminPage-boardList.jsp">
+                                    <span>전체 게시판</span>
+                                </a>
+                            </li> -->
+                            <li class="select-menu">
+                                <a>
+                                    <span>늘해랑 게시판</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>늘하장 게시판</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>후기 게시판</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--2-->
+                                <span>공지사항 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                                <img src="/static/image/admin/arrow_icon.png"
+                                     class="icon triangle-icon triangle">
+                            </div>
+                        </div>
+                        <ul class="menus2 menus" style="display:none;">
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 목록</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 작성</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 수정</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>문의사항 목록</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--3-->
+                                <span>회원정보</span>
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+<!-- 사이드 바 끝-->
 <div class="index">
-<div class="article-box">
-<ul class="news-cont">
+<div class="notice-box">
+<ul class="notice-cont">
 <!--    회원정보     -->
-        <li class="news-list">
+        <li class="notice-list">
             <div class="title-flex">
                 <h3 class="h3-title1">회원정보</h3>
                 <a href="javascript:void(0);" class="view"><img class="plus-icon"  src="../../static/image/admin/plus.svg"></a>
@@ -79,7 +177,7 @@
         </ul>
 </li>
 <!--    공지사항 관리    -->
-        <li class="news-list">
+        <li class="notice-list">
             <div class="title-flex">
                 <h3 class="h3-title1">공지사항</h3>
                 <a href="javascript:void(0);" class="view" ><img class="plus-icon"  src="../../static/image/admin/plus.svg"></a>
@@ -136,7 +234,7 @@
         </ul>
 </li>
 <!--    늘해랑     -->
-        <li class="news-list">
+        <li class="notice-list">
             <div class="title-flex">
                 <h3 class="h3-title2">늘해랑</h3>
                 <a href="javascript:void(0);" class="view"><img class="plus-icon"  src="../../static/image/admin/plus.svg"></a>
@@ -199,7 +297,7 @@
         </ul>
 </li>
 <!--    늘하장      -->
-        <li class="news-list">
+        <li class="notice-list">
             <div class="title-flex">
                 <h3 class="h3-title2">늘하장</h3>
                 <a href="javascript:void(0);" class="view"><img class="plus-icon"  src="../../static/image/admin/plus.svg"></a>
@@ -265,4 +363,6 @@
 </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/static/js/admin/side-bar.js"></script>
 </html>
