@@ -434,6 +434,11 @@ a {
     background-position: -290px -835px;
 }
 
+.choice_comm2 {
+    display: block;
+    position: relative;
+}
+
 .info_policy .txt_effort {
     display: block;
     padding-top: 15px;
@@ -784,6 +789,10 @@ a {
     line-height: 20px;
 }
 
+.inner_hint_layer1 .list_caution {
+    padding: 0 10px;
+}
+
 .inner_hint_layer1 .list_caution li {
     margin-left: 7px;
     font-size: 12px;
@@ -792,7 +801,329 @@ a {
     text-indent: -7px;
 }
 
+.inner_hint_layer1 .list_caution li+li {
+    margin-top: 3px;
+}
+
 .inner_hint_layer1 .list_caution li:before {
     content: "*";
     margin-right: 2px;
 }
+
+.inner_hint_layer1 .story_hint .txt_method+.txt_caution {
+    margin-top: -7px;
+    margin-bottom: 22px;
+}
+
+.inner_hint_layer1 .box_example .list_example {
+    display: table;
+    padding: 0 10px;
+    margin-top: 8px;
+    table-layout: fixed;
+}
+
+.inner_hint_layer1 .box_example .list_example dt {
+    display: table-cell;
+    width: 61px;
+    font-size: 13px;
+    font-family: KakaoBig Bold,sans-serif;
+    vertical-align: top;
+}
+
+.inner_hint_layer1 .box_example .list_example dd {
+    display: table-cell;
+    color: #666;
+    font-size: 13px;
+    vertical-align: top;
+    word-break: keep-all;
+}
+
+.inner_hint_layer1 .box_example .list_example:nth-of-type(3) {
+    margin-top: 12px;
+}
+
+.choice_comm2 .inp_comm:checked+.lab_comm .ico_checkbox {
+    background-position: -255px -835px;
+}
+
+input:checked[type=checkbox] {
+    background-color: #666;
+    -webkit-appearance: checkbox;
+}
+
+.opt_comm.sign_warn {
+    border: 1px solid #90c6ef;
+    background-color: #ecf5fc;
+}
+
+.opt_comm.sign_warn .box_arrow {
+    background-color: #ecf5fc;
+}
+
+.sign_warn .ico_warn {
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together_rtn_190917v2.png);
+    background-size: 600px 1800px;
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 22px;
+    height: 22px;
+    background-position: -527px -155px;
+}
+
+/* 캘린더 */
+/**, *:before, *:after {*/
+/*  box-sizing: inherit;*/
+/*}*/
+/*.clearfix:after {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  clear: both;*/
+/*  float: none;*/
+/*}*/
+
+/*!* ======== Calendar ======== *!*/
+/*.my-calendar {*/
+/*  width: 700px;*/
+/*  margin: 30px;*/
+/*  padding: 20px 20px 10px;*/
+/*  text-align: center;*/
+/*  font-weight: 800;*/
+/*  border: 1px solid #ddd;*/
+/*  cursor: default;*/
+/*}*/
+/*.my-calendar .clicked-date {*/
+/*  border-radius: 25px;*/
+/*  margin-top: 36px;*/
+/*  float: left;*/
+/*  width: 42%;*/
+/*  padding: 46px 0 26px;*/
+/*  background: #ddd;*/
+/*}*/
+/*.my-calendar .calendar-box {*/
+/*  float: right;*/
+/*  width: 58%;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*.clicked-date .cal-day {*/
+/*  font-size: 24px;*/
+/*}*/
+/*.clicked-date .cal-date {*/
+/*  font-size: 130px;*/
+/*}*/
+
+/*.ctr-box {*/
+/*  padding: 0 16px;*/
+/*  margin-bottom: 20px;*/
+/*  font-size: 20px;*/
+/*}*/
+/*.ctr-box .btn-cal {*/
+/*  position: relative;*/
+/*  float: left;*/
+/*  width: 25px;*/
+/*  height: 25px;*/
+/*  margin-top: 5px;*/
+/*  font-size: 16px;*/
+/*  cursor: pointer;*/
+/*  border: none;*/
+/*  background: none;*/
+/*}*/
+/*.ctr-box .btn-cal:after {*/
+/*  content: '<';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  line-height: 25px;*/
+/*  font-weight: bold;*/
+/*  font-size: 20px;*/
+/*}*/
+/*.ctr-box .btn-cal.next {*/
+/*  float: right;*/
+/*}*/
+/*.ctr-box .btn-cal.next:after {*/
+/*  content: '>';*/
+/*}*/
+
+/*.cal-table {*/
+/*  width: 100%;*/
+/*}*/
+/*.cal-table th {*/
+/*  width: 14.2857%;*/
+/*  padding-bottom: 5px;*/
+/*  font-size: 16px;*/
+/*  font-weight: 900;*/
+/*}*/
+/*.cal-table td {*/
+/*  padding: 3px 0;*/
+/*  height: 50px;*/
+/*  font-size: 15px;*/
+/*  vertical-align: middle;*/
+/*}*/
+/*.cal-table td.day {*/
+/*  position: relative;*/
+/*  cursor: pointer;*/
+/*}*/
+/*.cal-table td.today {*/
+/*  background: #ffd255;*/
+/*  border-radius: 50%;*/
+/*  color: #fff;*/
+/*}*/
+/*.cal-table td.day-active {*/
+/*  background: #ff8585;*/
+/*  border-radius: 50%;*/
+/*  color: #fff;*/
+/*}*/
+/*.cal-table td.has-event:after {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  bottom: 0;*/
+/*  width: 100%;*/
+/*  height: 4px;*/
+/*  background: #FFC107;*/
+/*}*/
+
+/* 캘린더 */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
+}
+
+/* ======== Calendar ======== */
+.my-calendar {
+  position: absolute;
+  width: 360px;
+  margin: 15px;
+  top: 482px;
+  left: 1px;
+  padding: 10px 10px 10px;
+  text-align: center;
+  font-weight: 800;
+  border: 1px solid #ddd;
+  cursor: default;
+  background-color: #fff;
+}
+
+.my-calendar .clicked-date {
+  border-radius: 25px;
+  margin-top: 36px; /* 절반 크기로 조정 */
+  float: left;
+  width: 40%; /* 절반 크기로 조정 */
+  padding: 23px 0 13px; /* 절반 크기로 조정 */
+  background: #ddd;
+}
+
+.my-calendar .calendar-box {
+  float: right;
+  width: 55%; /* 절반 크기로 조정 */
+  padding-left: 15px; /* 절반 크기로 조정 */
+  padding-top: 10px;
+}
+
+.clicked-date .cal-day {
+  font-size: 12px; /* 절반 크기로 조정 */
+}
+
+.clicked-date .cal-date {
+  font-size: 65px; /* 절반 크기로 조정 */
+}
+
+.ctr-box {
+  padding: 0 8px; /* 절반 크기로 조정 */
+  margin-bottom: 10px; /* 절반 크기로 조정 */
+  font-size: 10px; /* 절반 크기로 조정 */
+}
+
+.ctr-box .btn-cal {
+  position: relative;
+  float: left;
+  width: 12.5px; /* 절반 크기로 조정 */
+  height: 12.5px; /* 절반 크기로 조정 */
+  margin-top: 2.5px; /* 절반 크기로 조정 */
+  font-size: 8px; /* 절반 크기로 조정 */
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.ctr-box .btn-cal:after {
+  content: '<';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 12.5px; /* 절반 크기로 조정 */
+  font-weight: bold;
+  font-size: 10px; /* 절반 크기로 조정 */
+}
+
+.ctr-box .btn-cal.next {
+  float: right;
+}
+
+.ctr-box .btn-cal.next:after {
+  content: '>';
+}
+
+.cal-table {
+  width: 100%;
+}
+
+.cal-table th {
+  width: 14.2857%;
+  padding-bottom: 2.5px; /* 절반 크기로 조정 */
+  font-size: 8px; /* 절반 크기로 조정 */
+  font-weight: 900;
+}
+
+.cal-table td {
+  padding: 1.5px 0; /* 절반 크기로 조정 */
+  height: 25px; /* 절반 크기로 조정 */
+  font-size: 7.5px; /* 절반 크기로 조정 */
+  vertical-align: middle;
+}
+
+.cal-table td.day {
+  position: relative;
+  cursor: pointer;
+}
+
+.cal-table td.today {
+  background: #ffd255;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.cal-table td.day-active {
+  background: #ff8585;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.cal-table td.has-event:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px; /* 절반 크기로 조정 */
+  background: #FFC107;
+}
+
+
+
+
+

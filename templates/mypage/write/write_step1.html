@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>step 1. 나의 다짐</title>
   <link rel="stylesheet" href="../../../static/css/common/common.css">
+    <link rel="stylesheet" href="../../../static/css/neulhaerang/detail.css">
   <link rel="stylesheet" href="../../../static/css/mypage/write/write_step1.css">
 </head>
 <body>
@@ -43,9 +44,8 @@
                                             <div class="area_form">
                                                 <strong class="tit_head">카테고리 선택
                                                     <span class="ico_new">new</span>
-                                                    <span class="ico_together ico_warn">미입력 경고</span>
                                                 </strong>
-                                                <p class="sub_head"> 모금함 개설 후 변경 불가! 신중하게 선택해주세요. </p>
+                                                <p class="sub_head"> 늘해랑 개설 후 변경 불가! 신중하게 선택해주세요. </p>
                                                 <div class="desc_form box_select">
                                                     <div class="opt_comm">
                                                         <span class="select_option select_on">카테고리</span>
@@ -70,11 +70,11 @@
                                                 </div>
                                             </div>
                                             <div class="area_form">
-                                                <strong class="tit_head">모금 진행 일정과 과정</strong>
+                                                <strong class="tit_head">늘해랑 진행 일정과 과정</strong>
                                                 <div class="desc_form desc_list">
                                                     <ol class="list_agree">
-                                                        <li>1. 모금 제안</li>
-                                                        <li> 2. 모금 검토
+                                                        <li>1. 늘해랑 제안</li>
+                                                        <li> 2. 늘해랑 검토
                                                             <em class="emph_sign">(평균 1~2주 소요)</em>
                                                         </li>
                                                         <li>3. 모금 오픈 (최대 3개월 진행)</li>
@@ -163,6 +163,17 @@
             </modal>
         </ng-component>
     </span>
+    <div id="toast-container" class="toast-bottom-center" style="display: none">
+        <div class="toast toast-success">
+            <div class="toaster-icon icon-success"></div>
+            <div class="toast-content">(
+                <div class="toast-title"></div>
+                <div class="toast-message">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -903,6 +903,110 @@ body {
     line-height: 0;
     text-indent: -9999px;
 }
+/* 토스트 */
+
+#toast-container {
+    position: fixed;
+    z-index: 100000002;
+    width: 100%;
+}
+.toast-bottom-center {
+    bottom: 76px;
+}
+.toast {
+    position: relative;
+    left: 50%;
+    z-index: 100;
+    margin-left: -400px;
+    margin-top: 10px;
+}
+
+.toaster-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.toast-title {
+    font-weight: 700;
+}
+.toast .toast-message {
+    width: 760px;
+    padding: 13px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #000000b3;
+    text-align: center;
+    letter-spacing: -.05em;
+}
+
+
+.toast .toast-message>div {
+    white-space: pre-line;
+}
+
+/* 별찌 */
+.group_meditation {
+    width: 700px;
+    padding: 10px 0 0px;
+    margin: 0 auto;
+}
+
+.group_meditation .list_meditation {
+    overflow: hidden;
+    padding: 10px 40px 5px;
+}
+
+.group_meditation .list_meditation li {
+    float: left;
+    width: 25%;
+    min-height: 263px;
+    text-align: center;
+}
+
+.group_meditation .list_meditation .link_meditation {
+    display: block;
+}
+
+.group_meditation .link_meditation .thumb_img {
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+}
+
+.group_meditation .list_meditation .tit_meditation {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    width: 120px;
+    max-height: 40px;
+    margin: 17px auto 0;
+    line-height: 1.2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: KakaoBig Bold,sans-serif;
+    text-overflow: ellipsis;
+}
+
+.group_meditation .list_meditation .txt_option {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
 
 @media (max-width: 767px){
 body, html {
@@ -1302,6 +1406,38 @@ body, html {
     margin: 15px;
     background-position: -100px -20px;
 }
+
+  .group_meditation {
+      position: relative;
+      width: auto;
+      margin: auto 0;
+  }
+
+  .group_meditation .link_meditation .thumb_img {
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+}
+
+  .group_meditation .list_meditation li {
+    float: left;
+    width: 50%;
+    min-height: 263px;
+    text-align: center;
+}
+
+    .group_meditation .list_meditation li:nth-child(3),
+    .group_meditation .list_meditation li:nth-child(4){
+        display: none;
+}
+
+
 
 
 }
