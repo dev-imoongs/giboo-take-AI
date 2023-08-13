@@ -39,7 +39,7 @@
     }
 }
 
-@media only screen and (min-width: 768px) m{
+@media only screen and (min-width: 768px) {
     .main-branding-introduce-text-item {
         height: 52px;
         border-radius: 28px;
@@ -98,7 +98,7 @@
     }
 }
 
-@media only screen and (min-width: 768px) m{
+@media only screen and (min-width: 768px) {
     .mobile-branding-introduce-text-item {
         height: 52px;
         border-radius: 28px;
@@ -156,6 +156,313 @@
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .main-story-item {
+        width: 700px;
+        margin-bottom: 30px;
+        padding-bottom: 250px;
+        border-radius: 12px;
+        background-image: url("https://t1.kakaocdn.net/together_action_prod/admin/20230804/7359e393c6fb46db9a912dda297babc2");
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-story-item::before {
+        background-image: linear-gradient(308deg, rgba(0, 0, 0, 0) 45%, rgb(54, 53, 56) 73%);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-story-item-content-cover {
+        padding: 38px 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cover-story-item-title-text {
+        padding-top: 3px;
+        font-family: "KakaoBig Regular";
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card {
+        height: 250px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card-thumbnail {
+        width: 250px;
+        height: 100%;
+        border-radius: 12px 0px 0px 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card-content {
+        padding: 0px 30px;
+        margin-top: -8px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card-title {
+        padding-top: 3px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card-subtext {
+        padding-top: 11px;
+        line-height: 23px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-funding-card-label {
+        margin-top: 15px;
+        align-self: flex-start;
+        order: 4;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhajang-card-banner-container {
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .slider-container {
+        width: 700px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .paging-button-list {
+        right: 38px;
+        bottom: 30px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .paging-button-list li {
+        margin-left: 6px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .slide-card-wrap {
+        height: 250px;
+        border-radius: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card-thumbnail {
+        width: 250px;
+        height: 100%;
+        border-radius: 12px 0px 0px 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card-content {
+        position: relative;
+        padding: 0px 30px;
+        margin-top: -8px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card-title {
+        padding-top: 3px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card-subtext {
+        padding-top: 11px;
+        line-height: 23px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .card-label {
+        margin-top: 15px;
+        color: rgb(187, 107, 255);
+        font-size: 13px;
+        letter-spacing: -0.3px;
+        align-self: flex-start;
+        order: 4;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-tag-card-container {
+        position: relative;
+        margin-bottom: 30px;
+        padding: 40px 30px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .tag-tab-list {
+        overflow: hidden;
+        position: absolute;
+        right: 30px;
+        top: 54px;
+        max-width: 500px;
+        margin: 0px -3px;
+        padding: 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tag-tab-list .tab-button {
+        height: 30px;
+        padding: 0px 8px;
+        border-color: rgba(255, 255, 255, 0.3);
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tag-tab-list .active {
+        border-color: rgba(255, 255, 255, 0.7);
+        height: 30px;
+        padding: 0px 8px;
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel {
+        display: flex;
+        overflow: hidden;
+        margin-top: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel-content-card {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel-content-card-link {
+        position: relative;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel-content-card-thumbnail {
+        width: 100%;
+        height: 130px;
+        border-radius: 6px 6px 0px 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel-content-card-text-wrap {
+        width: 100%;
+        height: 70px;
+        padding: 14px;
+        border-radius: 0px 0px 6px 6px;
+        background-color: rgb(68, 68, 68);
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tab-panel-content-card-label {
+        height: 24px;
+        position: absolute;
+        left: 0px;
+        top: 106px;
+        padding: 0px 12px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-section {
+        width: 360px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .aside-epilogue-container {
+        margin-bottom: 30px;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donation {
+        padding: 34px 26px 29px;
+        border-radius: 12px 12px 0px 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donation-title-subtext {
+        padding-top: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donation-image-box {
+        right: 31px;
+        top: 39px;
+        width: 64px;
+        height: 80px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donate-box {
+        height: 60px;
+        padding: 0px 20px;
+        margin-top: 41px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donate-title {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .total-donate-money {
+        font-size: 18px;
+        letter-spacing: -0.18px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .neulhearang-review-container {
+        height: 281px;
+        padding: 31px 26px 46px;
+        border-radius: 0px 0px 12px 12px;
+        box-sizing: border-box;
+    }
+}
+
+
+
+
+
 
 
 
@@ -163,6 +470,7 @@
 /* max-width: 767px */
 @media only screen and (max-width: 767px) {
     .main-branding-section {
+
         overflow: hidden;
     }
 }
@@ -209,4 +517,132 @@
        margin-bottom: 20px;
    }
 }
+
+@media only screen and (max-width: 767px) {
+    .cover-story-item-label-text {
+        display: flex;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 50px;
+        padding: 0px 20px;
+        background-color: rgb(32, 32, 32);
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .neulhearang-funding-card-link {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .neulhearang-funding-card-label {
+        position: absolute;
+        left: 20px;
+        top: -45px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .slide-card-link {
+        position: relative;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-thumbnail {
+        position: relative;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-thumbnail::before {
+        display: block;
+        position: absolute;
+        inset: 0px;
+        background-image: linear-gradient(133deg, rgba(0, 0, 0, 0.8) 23%, rgba(0, 0, 0, 0) 59%);
+        border-radius: 10px;
+        content: "";
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-content {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-title {
+        display: block;
+        width: 252px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-subtext {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-tag {
+        color: rgb(255, 255, 255);
+        opacity: 0.8;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-label {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 50px;
+        padding: 0px 20px;
+        border-radius: 0px 0px 10px 10px;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .tab-panel-content-card {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .tab-panel-content-card-label {
+        height: auto;
+        padding: 3px 0px 0px;
+        background-color: transparent;
+        color: rgb(136, 136, 136);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
