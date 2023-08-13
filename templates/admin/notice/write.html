@@ -124,6 +124,16 @@
                                 <input class="write-text write-input" type="text" placeholder="공지사항 제목을 적어주세요." name = "title">
                             </div>
                         </div>
+                                                <div class="notice-write">
+                            <div class="write-title">안내 타겟</div>
+                            <div class="write-sec">
+                                <select name="안내 타겟" class="sel-notice-target" id="">
+                                    <option value="제안자 안내">제안자 안내</option>
+                                    <option value="서비스 안내">서비스 안내</option>
+                                    <option value="캠페인 안내">캠페인 안내</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="notice-write">
                             <div class="write-title">내용</div>
                             <div class="write-sec">
@@ -153,7 +163,7 @@
                     <!-- 작성하기 btn -->
                     <div class="write-btn-wrap">
                         <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0)">목록</a></button>
-                        <button type="submit" class="btn btn-write">작성하기</button>
+                        <button type="button" class="btn btn-write">작성하기</button>
                     </div>
                 </form>
 
@@ -173,3 +183,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/static/js/admin/side-bar.js"></script>
 </html>
+
+

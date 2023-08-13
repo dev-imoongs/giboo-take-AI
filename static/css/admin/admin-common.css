@@ -80,7 +80,7 @@ input::placeholder {
 .search-icon {
 	width: 25px;
 	position: absolute;
-	margin: 5px 5px 5px 155px;
+    margin: 0.3% 1% 1% 11.1%;
 	cursor: pointer;
 }
 
@@ -186,6 +186,7 @@ margin: -13px 0px 0px -8px;
 
 .checkbox {
 	margin: 10px 10px 10px 10px;
+
 }
 
 .title-txt {
