@@ -13,6 +13,7 @@
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
 	box-shadow: 4px 4px 4px 4px #afafaf;
+	z-index: 9999;
 }
 /*background-image: linear-gradient(to right, rgba(4,23,10,0.98) 10%, rgba(10,50,15,0.98)99%);*/
 
@@ -125,6 +126,3 @@
 	font-weight: 700; */
 }
 
-.info-title-box {
-	z-index: 1000;
-}

@@ -6,11 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지 문의 게시판</title>
     <link rel="stylesheet" href="../../../static/css/common/common.css">
+    <link rel="stylesheet" href="/static/css/admin/side-bar.css">
     <link rel="stylesheet" href="/static/css/admin/admin-common.css">
     <link rel="icon" href="/static/image/favicon.png">
 </head>
 
 <body>
+<!-- 사이드 바 -->
+    <div id="side-bar">
+        <div class="side-menu">
+            <div>
+                <div class="menu-title-layout">
+                    <div class="menu-title">
+                        <div class="menu-name">
+                            MENU
+                        </div>
+                    </div>
+                </div>
+                <ul class="menu-bar">
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--1-->
+                                <span>게시판 관리</span>
+                            </a>
+                            <div class="triangle-button">
+
+                                <img src="/static/image/admin/arrow_icon.png"
+                                     class="icon triangle-icon triangle">
+                            </div>
+                        </div>
+
+                        <ul class="menus1 menus" style="display: none;">
+                            <!-- <li class="select-menu">
+                                <a href="adminPage-boardList.jsp">
+                                    <span>전체 게시판</span>
+                                </a>
+                            </li> -->
+                            <li class="select-menu">
+                                <a>
+                                    <span>늘해랑 게시판</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>늘하장 게시판</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>후기 게시판</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--2-->
+                                <span>공지사항 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                                <img src="/static/image/admin/arrow_icon.png"
+                                     class="icon triangle-icon triangle">
+                            </div>
+                        </div>
+                        <ul class="menus2 menus" style="display:none;">
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 목록</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 작성</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>공지사항 수정</span>
+                                </a>
+                            </li>
+                            <li class="select-menu">
+                                <a>
+                                    <span>문의사항 목록</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu">
+                        <div class="menu-flex">
+                            <a>
+                <!--3-->
+                                <span>회원정보</span>
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+<!-- 사이드 바 끝-->
         <div class="wrap">
             <div class="container">
                 <div class="container-margin">
@@ -152,19 +251,6 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-$(document).ready(function() {
-  $("#selectAll").click(function() {
-    $(".subCheckbox").prop("checked", this.checked);
-  });
-
-  $(".subCheckbox").click(function() {
-    if ($(".subCheckbox:checked").length === $(".subCheckbox").length) {
-      $("#selectAll").prop("checked", true);
-    } else {
-      $("#selectAll").prop("checked", false);
-    }
-  });
-});
-</script>
+<script src="/static/js/admin/select-all.js"></script>
+<script src="/static/js/admin/side-bar.js"></script>
 </html>
