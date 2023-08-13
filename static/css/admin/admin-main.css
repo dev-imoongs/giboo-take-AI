@@ -27,7 +27,7 @@ form, ul, ol, dl, table, div, h1, h2, h3, h4 {
     padding: 0;
 }
 
-.index .article-box .news-cont .news-list ul {
+.index .notice-box .notice-cont .notice-list ul {
     padding: 7px 18px 3px;
     border: 1px solid #dadada;
     background-color: #fff;
@@ -53,13 +53,13 @@ ul {
     padding-inline-start: 40px;
 }
 
-.index .article-box .news-cont {
+.index .notice-box .notice-cont {
     float: left;
-    margin-top: 2px;
     width: 1250px;
+    margin: 5% 1% 1% 25%;
 }
 
-.index .article-box .news-cont .news-list {
+.index .notice-box .notice-cont .notice-list {
     position: relative;
     float: left;
     width: 470px;
@@ -75,16 +75,16 @@ ul {
     margin-left: 290px;
 }
 
-.index .article-box .news-cont .news-list ul li:first-child {
+.index .notice-box .notice-cont .notice-list ul li:first-child {
     border-top: none;
 }
 
-.index .article-box .news-cont .news-list ul li {
+.index .notice-box .notice-cont .notice-list ul li {
     padding: 5px 0;
     overflow: hidden;
     border-top: 1px solid #ececec;
 }
-.index .article-box .news-cont ul li {
+.index .notice-box .notice-cont ul li {
     padding-left: 10px;
 }
 
