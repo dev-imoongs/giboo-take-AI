@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>관리자 페이지 공지사항 작성</title>
-    <link rel="stylesheet" href="/static/css/admin/admin-write.css">
+    <title>Title</title>
     <link rel="stylesheet" href="/../static/css/common/common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="icon" href="/static/image/favicon.png">
-
+    <link rel="stylesheet" href="/static/css/admin/notice-form.css">
 </head>
 <body>
-
 <!-- 사이드 바 -->
     <div id="side-bar">
         <div class="side-menu">
@@ -109,51 +106,53 @@
     </div>
 <!-- </div> -->
 <!-- 사이드 바 끝-->
-
-<!-- 작성폼 -->
+        <!--mainScreen 공지사항 작성하기-->
         <div class="mainContent">
 
             <div class="content-wrap">
-                <h2 class="title-name-a">공지사항 작성</h2>
+                <h2 class="title-h2">늘하장 상세</h2>
                 <!-- [S] 공지사항 등록 -->
-                <form action="">
+                <form action="" method="post">
                     <div class="con-write-wrap">
                         <div class="notice-write">
-                            <div class="write-title">제목</div>
+                            <div class="write-title">늘하장 제목</div>
                             <div class="write-sec">
-                                <input class="write-text write-input" type="text" placeholder="공지사항 제목을 적어주세요." name = "title">
+                                <input class="write-text write-input" type="text" readonly>
                             </div>
                         </div>
                         <div class="notice-write">
-                            <div class="write-title">내용</div>
+                            <div class="write-title">늘하장 주제</div>
                             <div class="write-sec">
-                                <textarea class="write-text write-notice" type="text" placeholder="공지사항 내용을 적어주세요." name ="content"></textarea>
+                                <input class="write-text write-input" type="text" readonly>
+                            </div>
+                        </div>
+                        <div class="notice-write">
+                            <div class="write-title">작성자</div>
+                            <div class="write-sec">
+                                <input class="write-text write-input" type="text" readonly>
                             </div>
                         </div>
 
+<!-- 여기부터 필요없을시 삭제 -->
                         <div class="notice-write">
-                            <div class="write-title">첨부파일</div>
-                            <div class="write-sec notice-img-sec">
-                                <div class="notice-images-list">
-                                    <div class="notice-img thum-img"></div>
-                                    <div class="notice-img">
-                                        <div class="cancel">X</div>
-                                    </div>
-                                </div>
-                                <label for="attach">
-                                    <div class="search-notice-img">찾아보기</div>
-                                </label>
-                                <input type="file" id="attach" style="display: none;" name= "upload" >
+                            <div class="write-title">늘하장 기간</div>
+                            <div class="write-sec">
+                                <input class="write-text write-input" type="text" readonly>
                             </div>
                         </div>
+
+<!-- 여기까지 삭제 -->
+
+
+
                     </div>
                     <!-- [E] 공지사항 등록 -->
 
 
-                    <!-- 작성하기 btn -->
+                    <!-- 버튼 테스트용 링크들은 수정 필요 -->
                     <div class="write-btn-wrap">
-                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0)">목록</a></button>
-                        <button type="submit" class="btn btn-write">작성하기</button>
+                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">늘하장 목록</a></button>
+                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">늘하장 작성페이지</a></button>
                     </div>
                 </form>
 
@@ -162,14 +161,15 @@
 
         </div>
 
-
+    </section>
     <!-- [E] mainSidebar -->
 
 
-
-<!-- [E] wrap -->
-
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/static/js/admin/sidemenu.js"></script>
-</html>
+
+
+
+
