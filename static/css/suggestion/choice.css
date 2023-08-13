@@ -1,0 +1,149 @@
+#dkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100vh;
+}
+
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+
+
+#dkContent, #rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+#dkContent {
+    position: relative;
+    margin: 0 0 -212px;
+}
+
+#dkContent, #rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
+.cont_setting #mArticle, .cont_suggest #mArticle {
+    padding-bottom: 250px;
+}
+
+#mArticle {
+    padding: 0 0 250px;
+}
+
+.wrap_fundmake {
+    position: relative;
+    width: 1000px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.wrap_fundmake .inner_fundmake {
+    overflow: hidden;
+    width: 50%;
+    
+}
+
+.wrap_fundmake .suggest_fundmake {
+    height: 380px;
+    padding: 28px 0 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+.ico_together, .ico_together2 {
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.ico_together2 {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together2_210820.png) no-repeat 0 0;
+}
+
+@media only all and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 768px), only all and (min-device-pixel-ratio:1.5) and (min-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 768px), only screen and (min-resolution: 1.5dppx) and (min-width: 768px){
+.ico_together2, .ico_together2.ico_favicon {
+    background-image: url(//t1.kakaocdn.net/together_image/common/ico_together2_rtn_210820.png);
+    background-size: 500px 1150px;
+}
+}
+.wrap_fundmake .ico_together2 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wrap_fundmake .ico_project {
+    width: 80px;
+    height: 80px;
+    background-position: -185px -875px;
+}
+
+.wrap_fundmake .tit_fundmake {
+    display: block;
+    margin-bottom: 7px;
+    margin-top: 22px;
+    font-weight: 400;
+    font-size: 22px;
+    font-family: KakaoBig Bold,sans-serif;
+    color: #444;
+}
+
+.wrap_fundmake .desc_fundmake {
+    font-size: 15px;
+    color: #444;
+}
+
+.wrap_fundmake .list_fundmake {
+    margin-top: 21px;
+}
+
+.wrap_fundmake .list_fundmake li {
+    font-size: 15px;
+    line-height: 23px;
+    color: #444;
+}
+
+.wrap_fundmake .list_fundmake li {
+    font-size: 15px;
+    line-height: 23px;
+    color: #444;
+}
+
+.wrap_fundmake .link_guide {
+    border-bottom: 1px solid #444;
+}
+a, a:active, a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: #444;
+}
+
+
+.wrap_fundmake .link_fundmake {
+    display: inline-block;
+    width: 148px;
+    height: 58px;
+    margin-top: 22px;
+    border-radius: 60px;
+    font-size: 16px;
+    font-family: KakaoBig Bold,sans-serif;
+    line-height: 58px;
+    color: #444;
+    border: 1px solid #e8e8e8;
+}
+
+.behave{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://t1.kakaocdn.net/together_image/svg/action.svg) !important;
+}

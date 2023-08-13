@@ -168,67 +168,58 @@
         <nav class="menu">
           <ul class="menu-list">
             <li class="list-item-container home">
-              <a href="" class="menu-item-link">홈</a>
+              <a href="" class="menu-item-link">홈
+              <!-- 메뉴알림뱃지 핑크닷-->
+                <i class="new-badge"></i></a>
             </li>
             <li class="list-item-container header-menu">
               <a href="" class="menu-item-link"
                 >늘해랑
-                <!-- 메뉴알림뱃지 핑크닷-->
-                <i class="new-badge"></i>
+                
               </a>
             </li>
             <li class="list-item-container header-menu">
               <a href="" class="menu-item-link">늘하장</a>
             </li>
-            <li class="list-item-container header-menu">
-              <a href="" class="menu-item-link">소개</a>
-            </li>
-            <li class="list-item-container header-menu">
-              <a href="" class="menu-item-link">공지사항</a>
-            </li>
+            
             <li class="list-item-container header-menu more">
               <button class="more-button">더보기</button>
               <!-- 더보기 눌렀을 때 메뉴리스트 display로 조정하기-->
-              <ul class="more-menu-list">
-                <li class="more-menu-item">
-                  <a href="" class="more-menu-item-link">프로모션</a>
+              <ul class="more-menu-list" style="display:none;">
+               
+                  <li class="more-menu-item">
+                  <a href="" class="more-menu-item-link"><span class="more-menu-txt">about 기부&테이크</span> </a>
                 </li>
                 <li class="more-menu-item">
-                  <a href="" class="more-menu-item-link">매거진</a>
+                  <a href="" class="more-menu-item-link"><span class="more-menu-txt">공지사항</span></a>
                 </li>
                 <li class="more-menu-item">
-                  <a href="" class="more-menu-item-link">about 같이가치</a>
-                </li>
-                <li class="more-menu-item">
-                  <a href="" class="more-menu-item-link">공지사항</a>
-                </li>
-                <li class="more-menu-item">
-                  <a href="" class="more-menu-item-link">고객지원</a>
+                  <a href="" class="more-menu-item-link"><span class="more-menu-txt">고객지원</span></a>
                 </li>
               </ul>
             </li>
           </ul>
         </nav>
         <div class="pc-util-menu">
-          <a href="" class="util-button write">작성하기</a>
+          <a href="" class="util-button write">제안하기</a>
           <div class="pc-user-util-menu">
             <button type="button" class="pc-user-button">
               <span class="pc-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
               <span class="pc-new-badge">1</span>
             </button>
-            <ul class="pc-user-sub-menu">
+            <ul class="pc-user-sub-menu" style="display: none">
               <li class="pc-user-sub-menu-list">
-                <a href="" class="pc-user-sub-menu-link">알림</a>
+                <a href="" class="pc-user-sub-menu-link"><span class="sub-menu-txt">알림</span></a>
               </li>
               <li class="pc-user-sub-menu-list">
-                <a href="" class="pc-user-sub-menu-link">마이페이지</a>
+                <a href="" class="pc-user-sub-menu-link"><span class="sub-menu-txt">마이페이지</span></a>
               </li>
               <li class="pc-user-sub-menu-list">
-                <a href="" class="pc-user-sub-menu-link">설정</a>
+                <a href="" class="pc-user-sub-menu-link"><span class="sub-menu-txt">설정</span></a>
               </li>
               <li class="pc-user-sub-menu-list">
                 <button class="logout-button">
-                  로그아웃
+                  <span class="sub-menu-txt">로그아웃</span>
                 </button>
               </li>
             </ul>
@@ -247,4 +238,6 @@
       </div>
     </header>
   </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="/static/js/header/logined-header.js"></script>
 </html>
