@@ -1,10 +1,23 @@
 // 힌트보기 눌렀을때 모달창 띄우기, body_hint에 나올 글 초기값 설정
-$('.btn_hint').on('click', () => {
+$('.btn_hint1').on('click', () => {
     $('#modalOFF').attr('id', 'modalON')
     $('.dimmed_layer').css('height', '100%');
     $('.dialog-content').css('display', 'block');
     $('.body_hint').hide()
-    $('.body_hint').eq(1).show()
+    console.log($('.list_tab').children())
+    $('.tab_hint').children().removeClass('on')
+    $('.tab_hint').children().eq(0).addClass('on')
+    $('.body_hint').eq(0).show()
+})
+// 힌트보기 눌렀을때 모달창 띄우기, body_hint에 나올 글 초기값 설정
+$('.btn_hint2').on('click', () => {
+    $('#modalOFF').attr('id', 'modalON')
+    $('.dimmed_layer').css('height', '100%');
+    $('.dialog-content').css('display', 'block');
+    $('.body_hint').hide()
+    $('.tab_hint').children().removeClass('on')
+    $('.tab_hint').children().eq(2).addClass('on')
+    $('.body_hint').eq(2).show()
 })
 
 //  모달창 안에 들어가서 탭 눌렀을때 해당 글은 보여주고 외에는 숨기는 기능
@@ -22,13 +35,64 @@ $('.btn_close').on("click", () => {
     $('.dialog-content').css('display', 'none');
 })
 
+// 개설 완료 버튼 눌렀을 때 이벤트
+$('.link_step3').on('click',(e)=>{                    
+    if($('.front_pack').find('.txt_num').text() == 0){
+        toastMsg('제목을 입력해주세요.')
+        $('span.inner_tit').focus()
+        return
+    }
+
+    if($('.cont_visual').hasClass('no_img')){
+        toastMsg('대표사진을 선택해주세요.')
+        return 
+    }
+
+    let innerTitFlag = false
+    $('input[placeholder="소제목"]').each((i,v)=>{
+        if(!$(v).val()){
+            $(v).focus()
+            innerTitFlag =true
+        }
+    
+    })
+    if(innerTitFlag){ 
+        toastMsg('소제목을 입력해주세요.')    
+        return
+    }
+  
+    $('textarea[placeholder="본문"]').each((i,v)=>{
+        if(!$(v).val()){
+            $(v).focus()
+            innerTitFlag =true
+        }
+    
+    })
+    if(innerTitFlag){ 
+        toastMsg('본문을 입력해주세요.')    
+        return
+    }
+    if(!$('input[placeholder="http://"]').val()){
+        toastMsg('참가자들을 위한 오픈채팅 링크를 걸어주세요')
+         return
+    }
+    $('.add_byeol input').each((i,v)=>{
+        if(!$(v).val()){
+            innerTitFlag = true
+            $(v).focus()
+            toastMsg('별찌 목록을 최소 1개 이상 작성해주세요')
+        }
+
+    })
+    if(innerTitFlag) return
+})
+
 $(document).ready(function () {
     function updateIDs(e) {
         $index = $(e.target).closest('.thumb_photo').prev().find('.txt_num')
-        console.log($index)
         $index.each((i,v)=>$(v).text(i+1))
     }
-
+// keyup 되었을때 textarea 글자 수 계산
     $(document).on('keyup', (e) => {
         $titLength = $(e.target).parent().parent().prev()
         $txtLength = $(e.target).parent().parent().next()
@@ -49,6 +113,15 @@ $(document).ready(function () {
         // 삭제버튼
         if($(e.target).hasClass('btn_del')){
             if($(e.target).parent().is('.inner_media')){
+                let index = $(e.target).closest('.thumb_photo').prev().find('li.on').index()
+                let addInput = `<input type="text" name="caption" classoutline="" maxlength="30" readonly
+                class="tf_write ng-dirty ng-touched" style="display: none;"
+                placeholder="이미지 설명을 입력하세요.">`
+
+                $(e.target).closest('.thumb_photo').next().find('input').eq(index).remove()
+                $(addInput).insertAfter($(e.target).closest('.thumb_photo').next().find('input').last())
+                
+                $(e.target).closest('.thumb_photo').next().find('input').last().show()
                 $(e.target).closest('.thumb_photo').prev().find('li.on').remove()
                 $addContent = '<li>\n' +
                     '  <div class="ico_together photo_preview">\n' +
@@ -61,22 +134,25 @@ $(document).ready(function () {
                 $(e.target).closest('.desc_photo').removeClass('media_on')
             }
 
-            console.log($(e.target))
             if($(e.target).parent().is('.inner_group,.area_caption')){
 
                 $(e.target).closest('dd').remove()
             }
+
+
         }
 
         if ($(e.target).hasClass('img_photo')||$(e.target).hasClass('btn_photo')) {
             $(e.target).closest('.list_photo').children().removeClass('on')
             $(e.target).closest('li').addClass('on')
-            // $(e.target).closest('ul').find('.img_photo').each((i,v)=>{
-            //     console.log(i)
-            // })
+            let index = $(e.target).closest('li').index()
+            $(e.target).closest('.photo_gallery').next().next().find('input').hide()
+            $(e.target).closest('.photo_gallery').next().next().find('input').eq(index).show()
+            $(e.target).closest('.photo_gallery').next().next().find('input').eq(index).trigger('keyup')
+
             if ($(e.target).is('button')) {
                 $(e.target).closest('.desc_photo').removeClass('media_on')
-            } else if ($(e.target).is('img')) {
+            }else if($(e.target).is('img')) { 
                 $thumbImg = $(e.target).attr('src')
                 $(e.target).closest('.desc_photo').addClass('media_on')
                 $(e.target).closest('.photo_gallery').next().find('.img_photo').attr("src", $thumbImg)
@@ -84,7 +160,6 @@ $(document).ready(function () {
         }
 
         if ($(e.target).hasClass('tf_write')) {
-            console.log($(e.target))
             $(e.target).addClass('tf_active')
         } else {
             $('.tf_write').removeClass('tf_active')
@@ -122,117 +197,194 @@ $('.btn-maintext').on('click',()=>{
 })
 // 이미지 추가
 $('.btn-addimg').on('click',()=>{
-    $addContent = '<dd class="desc_media desc_photo">\n' +
-        '  <photo-box>\n' +
-        '    <div class="info_group">\n' +
-        '      <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png" alt="" class="img_blank mo_show">\n' +
-        '      <div class="media_info">\n' +
-        '        <div class="inner_info">\n' +
-        '          <p class="txt_size"> 이미지 사이즈\n' +
-        '            <br>최소 : 가로 640px, 세로 360px\n' +
-        '          </p>\n' +
-        '          <div class="info_attach">\n' +
-        '            <label for="attachImage">\n' +
-        '              <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>\n' +
-        '            </label>\n' +
-        '            <input type="file" id="attachImage" ngfileselect="" maxsize="10MB" class="tf_attach" accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">\n' +
-        '          </div>\n' +
-        '        </div>\n' +
-        '      </div>\n' +
-        '    </div>\n' +
-        '    <div class="photo_gallery">\n' +
-        '      <ul class="list_photo">\n' +
-        '        <li class="">\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">1</span>\n' +
-        '            <button type="button" class="btn_photo">\n' +
-        '            </button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li class="">\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">2</span>\n' +
-        '            <button type="button" class="btn_photo">\n' +
-        '            </button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li class="">\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">3</span>\n' +
-        '            <button type="button" class="btn_photo">\n' +
-        '            </button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">4</span>\n' +
-        '            <button type="button" class="btn_photo">\n' +
-        '            </button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">5</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">6</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">7</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">8</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">9</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '        <li>\n' +
-        '          <div class="ico_together photo_preview">\n' +
-        '            <span class="txt_num">10</span>\n' +
-        '            <button type="button" class="btn_photo"></button>\n' +
-        '          </div>\n' +
-        '        </li>\n' +
-        '      </ul>\n' +
-        '    </div>\n' +
-        '    <div class="thumb_photo">\n' +
-        '      <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png" class="img_blank mo_show">\n' +
-        '      <div class="inner_media">\n' +
-        '        <img alt="1번째 이미지 확대보기" class="img_photo" src="">\n' +
-        '        <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제\n' +
-        '        </button>\n' +
-        '      </div>\n' +
-        '    </div>\n' +
-        '    <div class="area_caption">\n' +
-        '      <div class="group_tf">\n' +
-        '        <input type="text" name="caption" classoutline="" maxlength="30" class="tf_write ng-dirty ng-touched ng-valid" id="albumTitle2" placeholder="이미지 설명을 입력하세요.">\n' +
-        '      </div>\n' +
-        '      <div class="info_append">\n' +
-        '        <span class="txt_num">0/</span>\n' +
-        '        30\n' +
-        '      </div>\n' +
-        '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
-        '    </div>\n' +
-        '  </photo-box>\n' +
-        '</dd>'
+    $addContent = `<dd class="desc_media desc_photo">
+    <photo-box>
+      <div class="info_group">
+        <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
+             alt=""
+             class="img_blank mo_show">
+        <div class="media_info">
+          <div class="inner_info">
+            <p class="txt_size"> 이미지 사이즈
+              <br>최소 : 가로 640px, 세로 360px
+            </p>
+            <div class="info_attach">
+              <label for="attachImage">
+                <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>
+              </label>
+              <input type="file" id="attachImage" ngfileselect=""
+                     maxsize="10MB" class="tf_attach"
+                     accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photo_gallery">
+        <ul class="list_photo">
+          <li class="on">
+            <div class="ico_together photo_preview">
+              <span class="txt_num">1</span>
+              <button type="button" class="btn_photo">
+
+              </button>
+            </div>
+          </li>
+          <li class="">
+            <div class="ico_together photo_preview">
+              <span class="txt_num">2</span>
+              <button type="button" class="btn_photo">
+
+              </button>
+            </div>
+          </li>
+          <li class="">
+            <div class="ico_together photo_preview">
+              <span class="txt_num">3</span>
+              <button type="button" class="btn_photo">
+                
+              </button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">4</span>
+              <button type="button" class="btn_photo">
+                <!-- 이 안에 img 태그로 들어감 -->
+              </button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">5</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">6</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">7</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">8</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">9</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+          <li>
+            <div class="ico_together photo_preview">
+              <span class="txt_num">10</span>
+              <button type="button" class="btn_photo"></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="thumb_photo">
+        <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
+             class="img_blank mo_show">
+        <div class="inner_media">
+          <!-- src경로에 click한 이미지 경로로 바꿔줘야함 -->
+          <img alt="1번째 이미지 확대보기" class="img_photo"
+               src="">
+          <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제
+          </button>
+        </div>
+      </div>
+      <div class="area_caption">
+        <div class="group_tf">
+           <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid"
+                 placeholder="이미지 설명을 입력하세요.">
+                <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                 <input type="text" name="caption" classoutline="" maxlength="30" readonly
+                 class="tf_write ng-dirty ng-touched ng-valid" style="display: none;"
+                 placeholder="이미지 설명을 입력하세요.">
+                
+                              
+        </div>
+        <div class="info_append">
+          <span class="txt_num">0/</span>
+          30
+        </div>
+        <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>
+      </div>
+    </photo-box>
+  </dd>`
     $($addContent).insertAfter($('.add-form').children().last())
 })
 
+// 별찌목록 추가 기능
+$('.box_open .list_write .relate_url').last().find('button.box_add').on('click',(e)=>{
+    $addContent = '<div class="add_link add_byeol">\n' +
+                    '  <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>\n' +
+                    '      <input placeholder="기부자에게 제공할 별찌를 입력해주세요."\n' +
+                    '              type="text"\n' +
+                    '              class="tf_link ng-untouched ng-pristine ng-valid"\n' +
+                    '              id="relateTitle0" focus="false" blur="true">\n' +
+                    '  </div>\n' +
+                    '  <div class="group_tf">\n' +
+                    '      <label class="lab_link" for="relateUrl0">인원\n' +
+                    '      </label>\n' +
+                    '      <input\n' +
+                    '          placeholder="00명" type="text"\n' +
+                    '          class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"\n' +
+                    '          focus="false"\n' +
+                    '          blur="true">\n' +
+                    ' <button type="button" class="ico_together2 btn_del byeol_del"> 내용삭제 </button>\n' +
+                    '  </div>\n' +
+                    '</div>'
 
-// 파일 추가하는 기능
+    if($('#byeoljji-list .add_link').length < 3){
+        $($addContent).insertAfter($('.box_open .list_write .relate_url').last().children().last())
+    }else{
+        toastMsg('별찌를 3개 이상 추가할 수 없습니다.')
+    }
+})
+
+
+
+
+
+
+
+// cont_visual
+
+
 
 // line:264 아래로 갈 시에 btn_static 클래스 추가 (소제목, 본문, 이미지추가 버튼 fixed 위치)
 

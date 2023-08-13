@@ -99,7 +99,7 @@ button {
 
 /* 본문 */
 
-.wrap_project {
+.form_cont3 {
     background-color: #fff;
 }
 
@@ -152,7 +152,8 @@ button {
     content: "";
 }
 
-.form_project .wrap_visual .btn_hint {
+.form_project .wrap_visual .btn_hint1,
+.form_project .wrap_visual .btn_hint2 {
     position: absolute;
     left: 50%;
     top: 30px;
@@ -162,7 +163,8 @@ button {
     background: none;
 }
 
-.wrap_project .btn_hint {
+.form_cont3 .btn_hint1,
+.form_cont3 .btn_hint2 {
     display: inline-block;
     height: 24px;
     padding: 0 12px;
@@ -281,28 +283,28 @@ button {
     background-position: -92px -54px;
 }
 
-.wrap_project .box_cont {
+.form_cont3 .box_cont {
     width: 700px;
     margin: 0 auto;
 }
 
-.wrap_project .box_cont .cont_tit {
+.form_cont3 .box_cont .cont_tit {
     position: relative;
     padding: 0 0 23px 170px;
     background: url(//t1.kakaocdn.net/together_image/common/bg_line.png) repeat-x 0 100%;
 }
 
-.wrap_project .box_cont .posting_sign {
+.form_cont3 .box_cont .posting_sign {
     height: 44px;
 }
 
-.wrap_project .box_cont_suggest .cont_tit {
+.form_cont3 .box_cont_suggest .cont_tit {
     height: auto;
     padding: 0 0 0 150px;
     background: none;
 }
 
-.wrap_project .cont_tit .tit_box {
+.form_cont3 .cont_tit .tit_box {
     position: absolute;
     left: 0;
     width: 170px;
@@ -312,7 +314,7 @@ button {
     color: #444;
 }
 
-.wrap_project .box_cont_suggest .tit_box {
+.form_cont3 .box_cont_suggest .tit_box {
     width: 150px;
     margin-top: 27px;
     font-size: 20px;
@@ -322,21 +324,23 @@ button {
     color: #429ce1!important;
 }
 
-.posting_sign .btn_hint {
+.posting_sign .btn_hint1,
+.posting_sign .btn_hint2 {
     margin-top: 20px;
 }
 
-.wrap_project .box_cont_suggest .btn_hint {
+.form_cont3 .box_cont_suggest .btn_hint1,
+.form_cont3 .box_cont_suggest .btn_hint2 {
     margin-top: 31px;
 }
 
-.wrap_project .box_cont .list_write {
+.form_cont3 .box_cont .list_write {
     position: relative;
     margin: 10px 0 26px;
     font-size: 16px;
 }
 
-.wrap_project .box_cont_suggest .list_write {
+.form_cont3 .box_cont_suggest .list_write {
     margin: 0 0 65px;
 }
 
@@ -743,12 +747,12 @@ button {
     background-color: #f1f1f1;
 }
 
-.wrap_project .box_open .list_write {
+.form_cont3 .box_open .list_write {
     margin-top: 0;
     margin-bottom: 7px;
 }
 
-.wrap_project .box_cont:after {
+.form_cont3 .box_cont:after {
     display: block;
     visibility: hidden;
     height: 0;
@@ -925,7 +929,7 @@ button {
     padding: 9px 13px 9px 55px;
     border: 1px solid #e0e0e0;
     font-size: 16px;
-    color: #cacaca;
+    color: #444;
     background-color: #fafafa;
     box-sizing: border-box;
 }
@@ -938,7 +942,7 @@ button {
     overflow: hidden;
 }
 /* 개설완료 버튼 */
-.btn_step .link_step {
+.btn_step .link_step3 {
     float: left;
     position: relative;
     width: 100%;
@@ -954,7 +958,7 @@ button {
     background-color: #434343;
 }
 
-.btn_float .link_step {
+.btn_float .link_step3 {
     margin: 0;
     border-radius: 5px 0 0 5px;
 }
@@ -963,11 +967,11 @@ button {
     background-color: #dc287c;
 }
 
-.btn_float .link_step+.link_step {
+.btn_float .link_step3+.link_step {
     border-radius: 0;
 }
 
-.btn_float .link_step:last-child {
+.btn_float .link_step3:last-child {
     border-radius: 5px;
 }
 
@@ -1267,4 +1271,18 @@ button {
 
 .inner_hint_layer1 .box_example .list_example:nth-of-type(3) {
     margin-top: 12px;
+}
+
+.list_write .relate_url:last-child {
+    padding-top: 3px;
+}
+
+.byeol_del {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 30px;
+    height: 30px;
+    background-position: -136px -22px;
+    
 }

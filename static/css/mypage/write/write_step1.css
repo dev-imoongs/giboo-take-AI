@@ -345,7 +345,7 @@ input:checked[type=checkbox] {
     padding: 20px 0 0;
 }
 
-.btn_step .link_step {
+.btn_step .link_step1 {
     float: left;
     position: relative;
     width: 100%;
@@ -360,7 +360,7 @@ input:checked[type=checkbox] {
     background-color: #dc287c;
 }
 
-.btn_float .link_step {
+.btn_float .link_step1 {
     border-radius: 5px;
 }
 

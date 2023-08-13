@@ -26,7 +26,7 @@ const toastMsg = function (text) {
 // 2. checked가 3개가 아니면 해당 위치에 경고 class 추가
 
 // 위에서 return 되서 아래거까지 한번에 안나옴
-$('.link_step').on('click', () => {
+$('.link_step1').on('click', (e) => {
     let condition1 = $('.select_option').text() == '카테고리'
     let condition2 = $('.form_cont1 .inp_comm').filter((i, v) => $(v).prop('checked')).length !== 3
     // 각 조건이 true if문을 수행하고
@@ -42,7 +42,17 @@ $('.link_step').on('click', () => {
         toastMsg('모금검토기준 약관 사항을 동의해주세요.')
         return
     }
+    $('.link_tab').closest('li').removeClass('on')
+    let $topIndex = $(e.target).closest('.form_cont').index()
+    $('.form_cont').hide()
+    $('.link_tab').eq($topIndex+1).parent().addClass('on')
+    $('.form_cont').eq($topIndex+1).show()
+    window.scrollTo(0,0)
 
+})
+// 확인용 페이지 띄우기
+$('.link_tab').on('click',(e)=>{
+    $('.form_cont').eq($(e.target).parent().parent().index()).show()
 })
 
 // 체크박스 3개 체크시 경고 아이콘 class 제거
@@ -52,3 +62,5 @@ $('.inp_comm').on('change',()=>{
         $('.desc_form').parent().removeClass('sign_warn')
     }
 })
+
+// 상단탭 클릭시 li
