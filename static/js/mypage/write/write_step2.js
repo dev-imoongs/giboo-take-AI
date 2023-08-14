@@ -86,6 +86,8 @@ $(document).ready(function () {
             $('calendar').hide()
             $('calendar').eq($calendarIdx).show()
 
+        }else{
+            $('calendar').hide()
         }
 
     });
