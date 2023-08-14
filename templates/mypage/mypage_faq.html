@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>문의하기:기부앤테이크</title>
+    <link rel="stylesheet" href="../../static/css/mypage/mypage-faq.css">
+</head>
+<body>
+<header></header>
+<div class="total-wrap">
+<div class="wrap group_shadow">
+<article class="cont_public " id="mArticle">
+    <h3 class="tit_public"> 문의하기 </h3>
+    <span class="txt_required">*필수입력 사항</span>
+
+
+    <!-- request -->
+
+    <div class="question_cont">
+        <form id="request" action="/requests" enctype="multipart/form-data" method="post" novalidate="novalidate">
+            <input type="hidden" id="serviceId" name="serviceId" value="72">
+            <input type="hidden" id="categoryId" name="categoryId" value="">
+            <input type="hidden" id="locale" name="locale" value="ko">
+            <fieldset>
+
+
+                <input type="hidden" id="loginStatus" value="true">
+
+
+                <dl class="info_question">
+                    <dt>
+                        <label class="lab_info" for="subject">
+                            문의 제목 *
+                        </label>
+                    </dt>
+                    <dd>
+                        <div class="wrap_item wrap_id">
+                            <span class="txt_placeholder">제목을 입력해 주세요(20자 이내)</span>
+                            <input autocomplete="off" class="inp_info blur_event" id="subject" name="subject"
+                                   aria-required="true" type="text" maxlength="20">
+                        </div>
+                    </dd>
+                </dl>
+
+                <dl class="info_question">
+                    <dt>
+                        <label class="lab_info" for="contents">
+                            문의 내용
+                        </label>
+                    </dt>
+                    <dd>
+                        <div class="wrap_item wrap_tf click_event">
+                            <textarea class="inp_info tf_info" cols="24" id="contents" name="contents"
+                                      required="required" rows="6" style="line-height: normal"
+                                      aria-required="true"></textarea>
+                        </div>
+                    </dd>
+                </dl>
+
+
+                <!-- 동의 안내 영역-->
+
+                <!-- 만 14세 미만 동의 안내 -->
+
+                <!-- // 만 14세 미만 동의 안내 -->
+
+                <div class="info_agree" id="info_agree">
+                    <h4 class="tit_agree">개인정보 수집·이용에 대한 안내</h4>
+
+                    <strong class="desc_agree_sub">(필수) 개인정보 수집·이용에 대한 안내</strong>
+                    <p class="desc_agree">(주)카카오는 이용자 문의를 처리하기 위해 다음과 같이 개인정보를 수집 및 이용하며, 이용자의 개인정보를 안전하게 취급하는데 최선을 다하고
+                        있습니다.</p>
+
+                    <table class="tbl_privacy">
+                        <caption class="ir_caption">개인정보 수집·이용에 대한 안내</caption>
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width:270px;">수집항목</th>
+                            <th scope="col" style="width:220px;" class="tbl_border_left">수집목적</th>
+                            <th scope="col" style="width:260px;" class="tbl_border_left">보유기간</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>이메일 주소, 휴대폰 번호</td>
+                            <td class="tbl_border_left" rowspan="1">문의・요청・불편사항 확인 및 처리결과 회신</td>
+                            <td class="tbl_border_left txt_bold">3년간 보관 후 지체없이 파기</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <p class="desc_agree">위 동의를 거부 할 권리가 있으며, 동의를 거부하실 경우 문의 처리 및 결과 회신이 제한됩니다.</p>
+
+                    <p class="desc_more">더 자세한 내용에 대해서는 <a class="link_blue" href="http://www.kakao.com/ko/privacy"
+                                                           target="_blank">카카오 개인정보처리방침</a>을 참고하시기 바랍니다.</p>
+
+                    <div class="wrap_check">
+            <span class="item_check">
+              <input class="inp_check agreement" id="agree" name="agree" type="checkbox">
+              <label class="lab_check" for="agree"><span class="ico_cs required_check"></span>위 내용에 동의합니다.</label>
+            </span>
+                    </div>
+
+
+                </div>
+
+
+                <div class="wrap_btn">
+                    <button class="btn_cs btn_cs2" type="button">
+                        문의접수
+                    </button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- //request -->
+</article>
+</div>
+<footer></footer>
+</div>
+</body>
+</html>
