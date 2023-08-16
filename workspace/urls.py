@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from main.views import MainView
+
 urlpatterns = [
     path('admin/', include('admin.urls')),
     path('search/', include('search.urls')),
@@ -28,6 +30,8 @@ urlpatterns = [
     path('admin/', include('admin.urls')),
     path('main/', include('main.urls')),
     path('member/', include('member.urls')),
+    path('customer-center/', include('customer_center.urls')),
+    path('',MainView.as_view()),
     path('static_app/', include('static_app.urls')),
     path('neulhaerang_review/', include('neulhaerang_review.urls'))
 
