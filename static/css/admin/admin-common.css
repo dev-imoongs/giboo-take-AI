@@ -86,13 +86,13 @@ input::placeholder {
 
 .delete-box {
 	text-align: right;
-padding: 0px 0px 2px 650px;
+	padding: 0px 0px 2px 650px;
 }
 
 .delete-button {
     font-family: 'KakaoBig Regular';
     border: #dadada;
-    width: 107px;
+    width: 120px;
     height: 30px;
     background-color: #fff;
     font-weight: bold;
