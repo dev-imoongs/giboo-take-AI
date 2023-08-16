@@ -48,19 +48,16 @@ $(document).ready(function () {
 
 
     $(".pack_btn .btn_add").on('click', () => {
-        $addContent = '<div class="group_tf ng-scope">\n' +
-                      '  <div class="cont_tf">\n' +
-                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거"\n' +
-                      '              title="모금액 사용용도 및 산출근거" autocomplete="off"\n' +
-                      '              class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
-                      '  </div>\n' +
-                      '  <div class="amount_tf">\n' +
-                      '      <input type="number" classoutline="" numberonly="" step="500"\n' +
-                      '              min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off"\n' +
-                      '              class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">\n' +
-                      '  </div>\n' +
-                      '    <button type="button" class="btn_line_txt"> 삭제 </button>\n' +
-                      '</div>'
+        $addContent = '<div class="desc_form pack_plan">\n' +
+                        '  <div class="group_tf ng-scope" id="planBox0">\n' +
+                        '    <div class="cont_tf">\n' +
+                        '        <input type="text" classoutline="" placeholder="미션 내용"\n' +
+                        '                title="미션 내용" autocomplete="off"\n' +
+                        '                class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
+                        '    </div>\n' +
+                        '      <button type="button" class="btn_line_txt"> 삭제 </button>\n' +
+                        '  </div>\n' +
+                        '</div>'
         $($addContent).insertAfter($(".ng-scope").last());
         updateIDs();
     });
