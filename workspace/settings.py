@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'neulhaerang_review',
+    'static_app',
     'member',
     'admin',
     'main',
@@ -84,9 +86,19 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        # MySQL 모듈 경로
+        "ENGINE": "django.db.backends.mysql",
+        # DATABASE 이름
+        "NAME": "django",
+        # 계정 이름
+        "USER": "app",
+        # 비밀번호
+        "PASSWORD": "1234",
+        # MySQL 서버가 실행 중인 서버 IP 또는 도메인
+        "HOST": "13.125.161.117",
+        # 포트번호
+        "PORT": "3306"
     }
 }
 
@@ -119,7 +131,7 @@ TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # {% static '경로' %}로 사용하면 경로 앞에 /static을 붙인다.
