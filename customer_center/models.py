@@ -15,14 +15,17 @@ class Inquery(Period):
         db_table = 'tbl_inquery'
 
 
-class Inquery_response(Period):
+class InqueryResponse(Period):
     response_content = models.TextField(null=False, blank=False)
     admin = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
     inquery = models.ForeignKey(Inquery, null=False, on_delete=models.DO_NOTHING)
-
+    class Meta:
+        db_table = 'tbl_inquery_response'
 
 class Alram(Period):
     message = models.TextField(null=False, blank=False)
     isChecked = models.CharField(max_length=30, null=False, blank=False)
     page_link = models.CharField(max_length=200, null=True, blank=False)
     member = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
+    class Meta:
+        db_table = 'tbl_alram'
