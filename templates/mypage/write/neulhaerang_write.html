@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>step 1. 나의 다짐</title>
+    <title>늘해랑:기부앤테이크</title>
     <link rel="stylesheet" href="../../../static/css/common/common.css">
     <link rel="stylesheet" href="../../../static/css/neulhaerang/detail.css">
     <link rel="stylesheet" href="../../../static/css/mypage/write/write_step1.css">
@@ -244,6 +244,22 @@
                                 <span class="total_sum">
                                     <em class="emph_sign ng-binding">0원</em>
                                 </span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 모집인원 입력란-->
+                        <div class="area_form">
+                          <strong class="tit_head">최대 모집 인원
+                              <span class="ico_new">new</span>
+                          </strong>
+                          <p class="sub_head"> 최대로 모집할 인원을 입력해주세요.</p>
+                          <div class="desc_form pack_plan">
+                            <div class="group_tf" id="planBox0">
+                              <div class="participants_count_tf">
+                                  <input type="text" classoutline="" numberonly=""
+                                         min="0" placeholder="모집 인원 설정" title="모집 인원" autocomplete="off"
+                                         class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -562,6 +578,25 @@
                       <div class="bg_line"></div>
                       <div class="box_cont box_cont_suggest box_open">
                         <dl class="list_write">
+                          <!-- 태그 목록 -->
+                          <dd id="tag-list" class="relate_url url_on">
+                            <div class="group_tf"><button type="button" class="box_add btn_add"><span
+                                    class="ico_together ico_link"></span>태그 추가(최대 10개)</button></div>
+                            <div class="add_link add_tag">
+                              <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>
+                                  <input placeholder="추가할 태그명을 입력해주세요"
+                                         type="text" autocomplete="off"
+                                         class="tf_link ng-untouched ng-pristine ng-valid"
+                                         id="relateTitle0" focus="false" blur="true">
+                              </div>
+                              <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>
+                            </div>
+                          </dd>
+                          <!--해쉬 태그 -->
+                          <div class="hash_group">
+                            <a href="#" class="link_hash hash_type1"></a>
+                          </div>
+                            <!-- 오픈 채팅방 링크 -->
                           <dd class="relate_url url_on">
                             <div class="group_tf"><button type="button" class="box_add btn_add"><span
                                     class="ico_together ico_link"></span>관련 링크</button></div>

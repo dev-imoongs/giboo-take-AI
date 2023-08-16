@@ -306,6 +306,13 @@ a {
     padding-left: 5px;
 }
 
+.group_tf .participants_count_tf {
+    position: relative;
+    float: left;
+    width: 180px;
+    box-sizing: border-box;
+}
+
 .btn_line_txt, .dot_required {
     display: inline-block;
     vertical-align: top;

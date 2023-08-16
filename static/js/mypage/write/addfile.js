@@ -9,7 +9,7 @@ $(".btn_select").on('click',(e)=>{
 $representingImgInput.on('change',(eChange)=>{
   const reader = new FileReader();
 
-  reader.readAsDataURL(eChange.target.files[0]);
+  reader.readAsDataURL(eChange.target.files[0])
   reader.addEventListener('load',(eLoad)=>{
     $('.cont_visual').removeClass('no_img')
     const path = eLoad.target.result;

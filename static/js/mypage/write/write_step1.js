@@ -50,10 +50,10 @@ $('.link_step1').on('click', (e) => {
     window.scrollTo(0,0)
 
 })
-// 확인용 페이지 띄우기
-// $('.link_tab').on('click',(e)=>{
-//     $('.form_cont').eq($(e.target).parent().parent().index()).show()
-// })
+// 확인용 상단탭 눌러서 해당 페이지 띄우기
+$('.link_tab').on('click',(e)=>{
+    $('.form_cont').eq($(e.target).parent().parent().index()).show()
+})
 
 // 체크박스 3개 체크시 경고 아이콘 class 제거
 $('.inp_comm').on('change',()=>{

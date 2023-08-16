@@ -98,7 +98,7 @@ $(document).ready(function () {
     }
     //최대 최소 범위 내 난수 생성하는 함수
 
-// keyup 되었을때 textarea 글자 수 계산
+// input 되었을때 textarea 글자 수 계산
     $(document).on('input', (e) => {
         $titLength = $(e.target).parent().parent().prev()
         $txtLength = $(e.target).parent().parent().next()
@@ -147,17 +147,19 @@ $(document).ready(function () {
 
 
             // 별찌목록에 있는 삭제버튼을 눌렀을 경우 (별찌목록 부모가 add_byeol을 갖고있음)
-            if($(e.target).parent().hasClass('add_byeol')){
-                if($('#byeoljji-list .add_byeol').length > 1) {
-                    $(e.target).parent().remove()
+            if($(e.target).parent().hasClass('byeoljji_count')){
+                let index = $(e.target).closest('.byeoljji_count').prev().prev().find('li.on').index()
+                if($('.photo_gallery .list_photo li').length > 1) {
+
                 }else{
                     toastMsg('기부자에게 제공 할 별찌 목록을 최소 1개 이상 입력해야합니다.')
                     return
                 }
             }
+
             // 태그목록에 있는 삭제버튼을 눌렀을 경우 (태그목록 부모가 add_tag을 갖고있음)
             if($(e.target).parent().hasClass('add_tag')){
-                index = $(e.target).parent().index()
+                let index = $(e.target).parent().index()
                 $('.list_write .hash_group').children().eq(index-1).remove()
                 $(e.target).parent().remove()
             }
@@ -408,33 +410,6 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
     }
 })
 
-// 별찌목록 추가 기능
-$('.box_open .list_write .relate_url').last().find('button.box_add').on('click',(e)=>{
-    $addContent = '<div class="add_link add_byeol">\n' +
-                    '  <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>\n' +
-                    '      <input placeholder="기부자에게 제공할 별찌를 입력해주세요."\n' +
-                    '              type="text" autocomplete="off"\n' +
-                    '              class="tf_link ng-untouched ng-pristine ng-valid"\n' +
-                    '              id="relateTitle0" focus="false" blur="true">\n' +
-                    '  </div>\n' +
-                    '  <div class="group_tf">\n' +
-                    '      <label class="lab_link" for="relateUrl0">인원\n' +
-                    '      </label>\n' +
-                    '      <input\n' +
-                    '          placeholder="00명" type="text"\n' +
-                    '          class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"\n' +
-                    '          focus="false" autocomplete="off"\n' +
-                    '          blur="true">\n' +
-                    '  </div>\n' +
-                    ' <button type="button" class="ico_together2 btn_del byeol_del"> 내용삭제 </button>\n' +
-                    '</div>'
-
-    if($('#byeoljji-list .add_link').length < 3){
-        $($addContent).insertAfter($('.box_open .list_write .relate_url').last().children().last())
-    }else{
-        toastMsg('별찌를 3개 이상 추가할 수 없습니다.')
-    }
-})
 
 
 // line:264 아래로 갈 시에 btn_static 클래스 추가 (소제목, 본문, 이미지추가 버튼 fixed 위치)

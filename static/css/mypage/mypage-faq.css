@@ -347,6 +347,10 @@ fieldset {
     cursor: pointer;
 }
 
+.info_agree .checked .ico_cs {
+    background-position: -28px -20px;
+}
+
 .cont_public .wrap_btn {
     clear: both;
     overflow: hidden;
