@@ -55,5 +55,7 @@ class MypageSignOutView(View):
     def get(self, request):
         return render(request, 'mypage/mypage-sign-out.html')
 
-
+class MypageReplyView(View):
+    def get(self, request):
+        return render(request, 'mypage/mypage-reply.html')
 

@@ -28,7 +28,7 @@
                     </div>
                   </div>
                   <div class="area-thumb">
-                    <a class="link-badge" href="javascript:void(0)">
+                    <a class="link-badge" href={% url 'mypage:badge' %}>
                       <span class="badge-thumb">
                         <img
                           class="img-thumb"
@@ -36,7 +36,7 @@
                         />
                       </span>
                     </a>
-                    <a class="link-thumb" href="javascript:void(0)">
+                    <a class="link-thumb" href={% url 'mypage:profile' %}>
                       <span class="profile-thumb">
                         <img
                           alt="프로필 사진"
@@ -47,7 +47,7 @@
                     </a>
                   </div>
                   <div class="area-setting">
-                    <a class="link-setting" href="javascript:void(0)">
+                    <a class="link-setting" href={% url 'mypage:service-setting' %}>
                       설정
                     </a>
                   </div>
@@ -83,7 +83,7 @@
                     <div class="area-moreinfo">
                       <ul class="list-moreinfo">
                         <li>
-                          <a class="link-more" href="javascript:void(0)"> 기부내역 </a>
+                          <a class="link-more" href={% url 'mypage:donate' %}> 기부내역 </a>
                         </li>
                         <!-- <li>
                           <a class="link-more" href="javascript:void(0)">
@@ -106,10 +106,10 @@
                   <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
                   <user-actions>
-                    <a href="javascript:void(0)" class="group-shadow group-action-before">
+                    <a class="group-shadow group-action-before" href={% url 'neulhajang:list' %} >
                       <strong class="title-action">
-                        "더 나은 세상을 위해"<br />
-                        "함께 할 수 있는 일이 있어요!"
+                        더 나은 세상을 위해<br />
+                        함께 할 수 있는 일이 있어요!
                       </strong>
                       <p class="desc-action">지금 늘하장이 진행중입니다.</p>
                       <span class="box-thumbnail">
@@ -132,7 +132,7 @@
                         <ul class="list-actions">
                           <li>
                             <div class="action-content-card">
-                              <a class="link-action-card" href="javascript:void(0)">
+                              <a class="link-action-card" href={% url 'neulhaerang:detail' %}>
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" 
                                   src="https://t1.kakaocdn.net/together_action_prod/action/20230805/q4yw7g3e3bkm_9a35522ca6184e31a73e697b9b305717?type=thumb&amp;opt=S100x100">
@@ -148,7 +148,7 @@
                           </li>
                           <li>
                             <div class="action-content-card">
-                              <a class="link-action-card" href="javascript:void(0)">
+                              <a class="link-action-card" href="{% url 'neulhaerang:detail' %}">
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">
                                 </span>
@@ -164,7 +164,7 @@
                         </ul>
                       </actions-list>
                       <div class="list-more">
-                        <a class="link-round" href="javascript:void(0)"> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:post-list' %}> 더보기 </a>
                       </div>
                     </div>
                   </user-actions>
@@ -180,7 +180,7 @@
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href="javascript:void(0)"> 어르신께 맛있는 김치를~ "밥상 위 작은 기적" </a>
+                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 어르신께 맛있는 김치를~ "밥상 위 작은 기적" </a>
                             </span>
                             <span class="txt-comment">
                               <span class="desc-comment">응원합니다</span>
@@ -201,7 +201,7 @@
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href="javascript:void(0)"> 게시글 제목</a>
+                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 게시글 제목</a>
                             </span>
                             <span class="txt-comment">
                               <span class="desc-comment">댓글 내용</span>
@@ -221,9 +221,7 @@
                         </li>
                       </ul>
                       <div class="list-more">
-                        <button type="button" class="link-round link-other2">
-                          더보기 
-                        </button>
+                        <a class="link-round" href={% url 'mypage:mypage-reply' %}> 더보기 </a>
                       </div>
                     </div>
                   </user-comments>
@@ -282,9 +280,7 @@
                         </li>
                       </ul>
                       <div class="list-more">
-                        <button type="button" class="link-round">
-                          더보기
-                        </button>
+                        <a class="link-round" href={% url 'mypage:badge' %}> 더보기 </a>
                       </div>
                     </div>
                   </user-badge-list>
@@ -311,7 +307,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href="javascript:void(0)">
+                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -320,7 +316,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href="javascript:void(0)">
+                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -329,7 +325,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href="javascript:void(0)">
+                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
