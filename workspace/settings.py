@@ -86,25 +86,6 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-DATABASES = {
-    "default": {
-        # MySQL 모듈 경로
-        "ENGINE": "django.db.backends.mysql",
-        # DATABASE 이름
-        "NAME": "django",
-        # 계정 이름
-        "USER": "app",
-        # 비밀번호
-        "PASSWORD": "1234",
-        # MySQL 서버가 실행 중인 서버 IP 또는 도메인
-        "HOST": "127.0.0.1",
-        # 13.125.161.117
-        # 포트번호
-        "PORT": "3306"
-    }
-}
-
-
 # DATABASES = {
 #     "default": {
 #         # MySQL 모듈 경로
