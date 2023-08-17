@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fqrt8pb0$&!l20k8$8(+fx7zg&d@u59ja5q-1lr(ac+*ik4#z)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,22 +86,22 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-# DATABASES = {
-#     "default": {
-#         # MySQL 모듈 경로
-#         "ENGINE": "django.db.backends.mysql",
-#         # DATABASE 이름
-#         "NAME": "django",
-#         # 계정 이름
-#         "USER": "app",
-#         # 비밀번호
-#         "PASSWORD": "1234",
-#         # MySQL 서버가 실행 중인 서버 IP 또는 도메인
-#         "HOST": "13.125.161.117",
-#         # 포트번호
-#         "PORT": "3306"
-#     }
-# }
+DATABASES = {
+    "default": {
+        # MySQL 모듈 경로
+        "ENGINE": "django.db.backends.mysql",
+        # DATABASE 이름
+        "NAME": "django",
+        # 계정 이름
+        "USER": "app",
+        # 비밀번호
+        "PASSWORD": "1234",
+        # MySQL 서버가 실행 중인 서버 IP 또는 도메인
+        "HOST": "13.125.161.117",
+        # 포트번호
+        "PORT": "3306"
+    }
+}
 
 
 
