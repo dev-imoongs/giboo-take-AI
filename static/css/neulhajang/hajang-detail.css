@@ -329,17 +329,6 @@
     font-size: 16px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .provider-information {
     order: 1;
     flex-direction: column;
@@ -590,9 +579,10 @@
     background-image: none;
 }
 
-.action-like-icon:empty {
+/* css완전 변경 후 */
+/*.action-like-icon:empty {
     background-position-x: 100%;
-}
+}*/
 
 .action-count-label {
     margin-left: -8px;
@@ -694,6 +684,10 @@
     letter-spacing: -0.3px;
 }
 
+
+
+
+/* 미션탭 */
 .tab-panel {
     box-sizing: border-box;
     width: 1120px;
@@ -943,3 +937,116 @@
     vertical-align: top;
     opacity: 1;
 }
+
+
+
+
+
+
+
+/* 인증탭 */
+
+
+/* 새소식탭 */
+
+
+
+/* 카드리스트 */
+.detail-section-container {
+    box-sizing: border-box;
+    width: 1120px;
+    margin: 0px auto;
+    padding-right: 420px;
+    order: 1;
+}
+
+.tags-section-base {
+    border-top: 0px;
+    padding: 0px 0px 38px;
+}
+
+.tag-cloud-container {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.tag-link {
+    box-sizing: border-box;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 34px;
+    border-radius: 17px;
+    text-decoration: none;
+    background-color: rgb(32, 32, 32);
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-style: normal;
+    font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    margin-right: 6px;
+    margin-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hashtag {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+}
+
+.active-action-section-base {
+    border-top: 0px;
+    padding: 0px 0px 40px;
+}
+
+.active-action-section-title {
+    margin-bottom: -5px;
+    padding-top: 0px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(32, 32, 32);
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    line-height: 2;
+    letter-spacing: -0.3px;
+}
+
+.active-action-card-group {
+    margin: 0px -10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-card-base {
+    width: calc(25% - 20px);
+    margin: 20px 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.content-card-inner {
+    flex-direction: column;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content-card-thumbnail {
+    padding-bottom: 116.251%;
+    width: 100%;
+    height: 0px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    position: relative;
+}
+
