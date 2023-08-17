@@ -14,11 +14,3 @@ class NeulhaerangListView(View):
         return render(request,'neulhaerang/list.html')
 
 
-class NeulhaerangReviewDetailView(View):
-    def get(self,request):
-        return render(request,'neulhaerang/review-detail.html')
-
-
-class NeulhaerangReviewListView(View):
-    def get(self,request):
-        return render(request,'neulhaerang/review-list.html')
