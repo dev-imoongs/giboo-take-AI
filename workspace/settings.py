@@ -85,6 +85,7 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 # DATABASES = {
 #     "default": {
 #         # MySQL 모듈 경로
@@ -101,6 +102,7 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 #         "PORT": "3306"
 #     }
 # }
+
 
 
 # Password validation
