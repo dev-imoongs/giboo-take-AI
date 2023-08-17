@@ -5,12 +5,13 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../../static/css/common/common.css"/>
-    <link rel="stylesheet" href="../../static/css/neulhaerang/list.css"/>
+    <link rel="stylesheet" href="{% static '/css/common/common.css'%}" />
+    <link rel="stylesheet" href="{% static '/css/neulhaerang/list.css'%}" />
     <title>늘해랑 : 모집/펀딩</title>
 </head>
 <body>
 <div class="wrap">
+    {% include 'header/header.html' %}
     <!-- <header></header> -->
     <main>
         <div class="main-content">
@@ -24,7 +25,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="link-tab">
+                            <a href="{% url 'neulhaerang:review' %}" class="link-tab">
                                 <span class="txt-tab">모금후기</span>
                             </a>
                         </li>
