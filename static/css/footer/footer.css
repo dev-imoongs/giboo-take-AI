@@ -3,6 +3,7 @@
     height: 150px;
     padding: 27px 20px 29px;
     background-color: rgb(32, 32, 32);
+    position: relative;
 }
 
 .footer-inner-container {

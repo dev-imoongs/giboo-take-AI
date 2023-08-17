@@ -5,13 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/common/common.css" />
-    <link rel="stylesheet" href="/css/neulhaerang/list.css" />
-    <link rel="stylesheet" href="/css/neulhaerang/review-list.css" />
+    <link rel="stylesheet" href="{% static '/css/common/common.css'%}" />
+    <link rel="stylesheet" href="{% static '/css/neulhaerang/list.css'%}" />
+    <link rel="stylesheet" href="{% static '/css/neulhaerang/review-list.css'%}" />
     <title>늘해랑 : 리뷰</title>
   </head>
   <body>
     <div class="wrap">
+        {% include 'header/header.html' %}
       <!-- <header></header> -->
       <main>
         <div class="main-content">
@@ -20,7 +21,7 @@
             <div class="list-header">
               <ul class="list-tab">
                 <li >
-                  <a href="#" class="link-tab">
+                  <a href="{% url 'neulhaerang:list' %}" class="link-tab">
                     <span class="txt-tab">모금중</span>
                   </a>
                 </li>
@@ -228,7 +229,7 @@
               <!--카드배너 리스트-->
               <div class="list_fund">
                 <li class="listcard">
-                  <a href="#" class="link_pack">
+                  <a href="{% url 'neulhaerang_review:review/detail' %}" class="link_pack">
                     <span class="box_thumb">
                       <span
                         kagetype="c203"
@@ -344,7 +345,7 @@
           </div>
         </div>
       </main>
-      <!-- <footer></footer> -->
+        {% include 'footer/footer.html' %}
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

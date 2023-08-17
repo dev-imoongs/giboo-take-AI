@@ -25,5 +25,5 @@ class Member(Period):
 
     class Meta:
         db_table = 'tbl_member'
-
+        ordering = ["-id"]
 

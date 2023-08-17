@@ -14,3 +14,4 @@ class Notice(Period):
 
     class Meta:
         db_table = 'tbl_notice'
+        ordering = ["-id"]

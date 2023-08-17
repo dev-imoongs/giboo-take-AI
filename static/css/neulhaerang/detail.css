@@ -3565,7 +3565,7 @@ button {
     font-weight: 1000;
 }
 
-.fund_float .btn_cheer:after, .fund_float .btn_g:last-of-type:after {
+.fund_float .btn_cheer:after {
     content: "";
     position: absolute;
     top: 10px;
