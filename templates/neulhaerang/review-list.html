@@ -12,6 +12,7 @@
   </head>
   <body>
     <div class="wrap">
+        {% include 'header/header.html' %}
       <!-- <header></header> -->
       <main>
         <div class="main-content">
@@ -20,7 +21,7 @@
             <div class="list-header">
               <ul class="list-tab">
                 <li >
-                  <a href="#" class="link-tab">
+                  <a href="{% url 'neulhaerang:list' %}" class="link-tab">
                     <span class="txt-tab">모금중</span>
                   </a>
                 </li>

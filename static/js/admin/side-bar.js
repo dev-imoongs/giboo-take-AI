@@ -1,3 +1,4 @@
+
 $(".triangle-button").each((i, e) => {
 
     let index = i;
@@ -5,7 +6,7 @@ $(".triangle-button").each((i, e) => {
     let $menus = $($(".menus")[index]);
     let checkSlide;
 
-    $dom.on("click", function(e) {
+    $dom.closest(".menu-flex").on("click", function(e) {
        e.preventDefault();
        console.log($menus);
 

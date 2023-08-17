@@ -21,3 +21,4 @@ class CustomerCenterListView(View):
 class InqueryWriteView(View):
     def get(self,request):
         return render(request, 'customer-center/inquery-write.html')
+
