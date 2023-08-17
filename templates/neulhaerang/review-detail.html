@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../static/css/common/common.css" />
-    <link rel="stylesheet" href="../../static/css/neulhaerang/detail.css" />
-    <link rel="stylesheet" href="../../static/css/neulhaerang/review-detail.css" />
+    <link rel="stylesheet" href="{% static '/css/common/common.css'%}" />
+    <link rel="stylesheet" href="{% static '/css/neulhaerang/detail.css'%}" />
+    <link rel="stylesheet" href="{% static '/css/neulhaerang/review-detail.css'%}" />
     <title>늘해랑 : 후기</title>
   </head>
   <body>
     <app>
       <div class="dkwrap">
         <!-- <header></header> -->
-
+        {% include 'header/header.html' %}
         <span class="rootContent">
           <div id="dkContent" class="cont_project">
             <article id="mArticle" class="mArticle">
@@ -50,9 +50,10 @@
                 <div id="lnb_menu" class="wrap_tab2">
                   <ul  class="list_tab">
                     <li>
+                        <!-- href="/fundraisings/96287/story" -->
                       <a
                         class="link_tab"
-                        href="/fundraisings/96287/story"
+                        href="{% url 'neulhaerang:detail' %}"
                         ><span class="txt_tab">스토리</span></a
                       >
                     </li>
@@ -471,7 +472,7 @@
                               ></strong
                             >
                           </div>
-                         
+
                           <div class="info_receipt">
                             <span class="receipt_group"
                               >기부금 영수증 발급 기관 : 한국사회복지관협회</span
@@ -994,12 +995,12 @@
             </div>
           </div>
         </div>
-
+        {% include 'footer/footer.html' %}
         <!-- <footer></footer> -->
       </div>
     </app>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="/static/js/nelharang/detail.js"></script>
-  <script src="/static/js/nelharang/review-detail.js"></script>
+  <script src="{% static '/js/nelharang/detail.js'%}"></script>
+  <script src="{% static '/js/nelharang/review-detail.js'%}"></script>
 </html>

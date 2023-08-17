@@ -30,8 +30,6 @@ urlpatterns = [
     path('main/', include('main.urls')),
     path('member/', include('member.urls')),
     path('customer-center/', include('customer_center.urls')),
-    path('',MainView.as_view()),
     path('static_app/', include('static_app.urls')),
     path('neulhaerang_review/', include('neulhaerang_review.urls'))
-
 ]
