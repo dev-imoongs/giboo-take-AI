@@ -24,6 +24,7 @@ class Neulhaerang(Period):
 
     class Meta:
         db_table = 'tbl_neulhaerang'
+        ordering = ["-id"]
 
 class BusinessPlan(Period):
     plan_name = models.TextField(null=False, blank=False)
@@ -32,7 +33,7 @@ class BusinessPlan(Period):
 
     class Meta:
         db_table = 'tbl_business_plan'
-
+        ordering = ["-id"]
 
 class NeulhaerangTag(Period):
     tag_name = models.CharField(max_length=50,null=False, blank=False)
@@ -41,7 +42,7 @@ class NeulhaerangTag(Period):
 
     class Meta:
         db_table = 'tbl_neulhaerang_tag'
-
+        ordering = ["-id"]
 
 class NeulhaerangInnerTitle(Period):
     inner_title_text = models.TextField(null=False, blank=False)
@@ -50,6 +51,7 @@ class NeulhaerangInnerTitle(Period):
 
     class Meta:
         db_table = 'tbl_neulhaerang_inner_title'
+        ordering = ["-id"]
 
 class NeulhaerangInnerContent(Period):
     inner_content_text = models.TextField(null=False, blank=False)
@@ -58,6 +60,7 @@ class NeulhaerangInnerContent(Period):
 
     class Meta:
         db_table = 'tbl_neulhaerang_inner_content'
+        ordering = ["-id"]
 
 class NeulhaerangInnerPhotos(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulharang/inner-photo/')
@@ -68,6 +71,7 @@ class NeulhaerangInnerPhotos(Period):
 
     class Meta:
         db_table = 'tbl_neulhaerang_inner_photos'
+        ordering = ["-id"]
 
 class NeulhaerangDonation(Period):
     donation_amount = models.IntegerField(null=False, blank=False, default=0)
@@ -77,11 +81,15 @@ class NeulhaerangDonation(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_neulhaerang_donation'
+        ordering = ["-id"]
+
 class NeulhaerangParticipants(Period):
     neulhaerang = models.ForeignKey(Neulhaerang, null=False, blank=False, on_delete=models.DO_NOTHING)
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_neulhaerang_participants'
+        ordering = ["-id"]
+
 class NeulhaerangReply(Period):
     reply_content = models.CharField(max_length=1000, null=False, blank=False)
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
@@ -89,11 +97,14 @@ class NeulhaerangReply(Period):
     donation = models.ForeignKey(NeulhaerangDonation, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_neulhaerang_reply'
+        ordering = ["-id"]
+
 class ReplyLike(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
     neulhaerang_reply = models.ForeignKey(NeulhaerangReply, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_reply_like'
+        ordering = ["-id"]
 
 class Byeoljji(Period):
     byeoljji_name = models.CharField(max_length=100, null=False, blank=False)
@@ -103,6 +114,7 @@ class Byeoljji(Period):
     neulhaerang = models.ForeignKey(Neulhaerang, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_byeoljji'
+        ordering = ["-id"]
 
 class MemberByeoljji(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
@@ -110,3 +122,4 @@ class MemberByeoljji(Period):
 
     class Meta:
         db_table = 'tbl_member_byeoljji'
+        ordering = ["-id"]

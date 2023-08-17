@@ -119,7 +119,7 @@ let scrollFlag = false
 $(window).on("scroll",e=> {
     if(scrollFlag)return
     scrollFlag = true
-    if (window.innerHeight + window.scrollY + 250 >= document.body.scrollHeight) {
+    if (window.innerHeight + window.scrollY + 400 >= document.body.scrollHeight) {
 
         $fund_float.addClass("btn_static")
     } else {

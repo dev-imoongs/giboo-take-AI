@@ -12,6 +12,7 @@
   <body>
     <app>
       <div class="dkwrap">
+        {% include 'header/header.html' %}
         <!-- <header></header> -->
         <span class="rootContent">
           <div id="dkContent" class="cont_project">
@@ -65,7 +66,8 @@
                       >
                     </li>
                     <li>
-                      <a class="link_tab" href="/fundraisings/96287/epilogue"
+                        <!-- href="/fundraisings/96287/epilogue" -->
+                      <a class="link_tab" href="{% url 'neulhaerang_review:review/detail' %}"
                         ><span class="inner_tab"><span class="txt_tab">모금후기</span></span></a
                       >
                     </li>
@@ -981,6 +983,7 @@
             </div>
           </div>
         </div>
+        {% include 'footer/footer.html' %}
 
         <!-- <footer></footer> -->
       </div>

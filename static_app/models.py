@@ -20,4 +20,5 @@ class MemberBadge(Period):
     badge = models.ForeignKey(Badge, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_member_badge'
+        ordering = ["-id"]
 

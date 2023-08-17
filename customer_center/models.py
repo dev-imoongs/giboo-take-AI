@@ -12,7 +12,7 @@ class Inquery(Period):
     member = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_inquery'
-
+        ordering = ["-id"]
 
 class InqueryResponse(Period):
     response_content = models.TextField(null=False, blank=False)
@@ -20,6 +20,8 @@ class InqueryResponse(Period):
     inquery = models.ForeignKey(Inquery, null=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_inquery_response'
+        ordering = ["-id"]
+
 
 class Alram(Period):
     message = models.TextField(null=False, blank=False)
@@ -28,3 +30,4 @@ class Alram(Period):
     member = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_alram'
+        ordering = ["-id"]

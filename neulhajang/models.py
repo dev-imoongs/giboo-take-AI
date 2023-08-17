@@ -24,6 +24,7 @@ class Neulhajang(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang'
+        ordering = ["-id"]
 
 class InnerPhoto(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/innerphoto/')
@@ -33,6 +34,7 @@ class InnerPhoto(Period):
 
     class Meta:
         db_table = 'tbl_inner_photo'
+        ordering = ["-id"]
 
 class NeulhajangMission(Period):
     mission_order = models.IntegerField(null=False, blank=False, default=0)
@@ -41,6 +43,7 @@ class NeulhajangMission(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_mission'
+        ordering = ["-id"]
 
 class NeulhajangInnerContent(Period):
     inner_content_text = models.TextField(null=False, blank=False)
@@ -49,6 +52,7 @@ class NeulhajangInnerContent(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_inner_content'
+        ordering = ["-id"]
 
 class NeulhajangInnerTitle(Period):
     inner_title_text = models.TextField(null=False, blank=False)
@@ -57,6 +61,7 @@ class NeulhajangInnerTitle(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_inner_title'
+        ordering = ["-id"]
 
 class NeulhajangCommitment(Period):
     inner_title_text = models.TextField(null=False, blank=False)
@@ -64,6 +69,7 @@ class NeulhajangCommitment(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_commitment'
+        ordering = ["-id"]
 
 class CommitmentInnerPhotos(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/commitment_innerphoto/')
@@ -73,6 +79,7 @@ class CommitmentInnerPhotos(Period):
 
     class Meta:
         db_table = 'tbl_commitment_inner_photos'
+        ordering = ["-id"]
 
 class CommitmentInnerContent(Period):
     inner_content_text = models.TextField(null=False, blank=False)
@@ -81,6 +88,7 @@ class CommitmentInnerContent(Period):
 
     class Meta:
         db_table = 'tbl_commitment_inner_content'
+        ordering = ["-id"]
 
 class CommitmentInnerTitle(Period):
     inner_title_text = models.TextField(null=False, blank=False)
@@ -89,6 +97,7 @@ class CommitmentInnerTitle(Period):
 
     class Meta:
         db_table = 'tbl_commitment_inner_title'
+        ordering = ["-id"]
 
 class NeulhajangLike(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
@@ -96,6 +105,7 @@ class NeulhajangLike(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_like'
+        ordering = ["-id"]
 
 class NeulhajangAuthenticationFeed(Period):
     feedContent = models.TextField(null=False, blank=False)
@@ -105,9 +115,12 @@ class NeulhajangAuthenticationFeed(Period):
 
     class Meta:
         db_table = 'tbl_neulhajang_authentication_feed'
+        ordering = ["-id"]
+
 class AuthenticationFeedLike(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
     authentication_feed = models.ForeignKey(NeulhajangAuthenticationFeed, null=False, blank=False, on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'tbl_authentication_feed_like'
+        ordering = ["-id"]
