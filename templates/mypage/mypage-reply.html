@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my 댓글:기부앤테이크</title>
+  <link rel="stylesheet" href="../../static/css/common/common.css">
+  <link rel="stylesheet" href="../../static/css/mypage/mypage_reply.css">
+</head>
+    <body>
+      <div id="whole-wrap">
+        <!-- 헤더 -->
+        <header></header>
+        <main id="root-content">
+          <main-section>
+            <div id="main-content" class="cont-mypage">
+              <div id="article">
+                <div class="mypage-cont">
+                  <!-- 프로필 -->
+                  <div class="group-profile">
+                    <div class="area-name">
+                      <div class="link-myprofile">
+                        <strong class="txt-nick">기부천사</strong>
+                        <div class="box-name">
+                          <strong class="txt-name"> (계정ID) b73** </strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="area-thumb">
+                      <a class="link-badge" href="javascript:void(0)">
+                        <span class="badge-thumb">
+                          <img class="img-thumb" src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png">
+                        </span>
+                      </a>
+                      <a class="link-thumb" href="javascript:void(0)">
+                        <span class="profile-thumb">
+                          <img class="img-thumb" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png">
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- 댓글 목록 -->
+                  <component-section>
+                    <div class="group-commentlist cmt-type3 #comment">
+                      <h3 class="tit-section section-type6"> 댓글
+                        <span class="color-g1">11</span>
+                      </h3>
+                      <ul class="list-cmt">
+                        <!-- 댓글 1 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                 게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <!-- 몇시간 전, 하루 지나면 2023년 00월 00일  -->
+                              <span class="txt-time">15분 전</span>
+                              <like-comment>
+                                <!-- class=on 추가되어 있으면 좋아요 누른것-->
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">1</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 2 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                 게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">15분 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 3 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                 게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">16분 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 4 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                 게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 5 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 6 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 7 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 8 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 9 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                        <!-- 댓글 10 -->
+                        <li>
+                          <div class="cmt-info">
+                            <span class="info-append">
+                              <em class="emph-sign">모금함</em>
+                              <a class="link-fund" href="javascript:void(0)">
+                                게시글 제목 </a>
+                            </span>
+                            <span class="txt-cmt">
+                              <span class="desc-cmt">댓글 내용</span>
+                            </span>
+                            <span class="info-append">
+                              <span class="txt-time">17시간 전</span>
+                              <like-comment>
+                                <button type="button" freezebutton="" class="btn-like on">
+                                  <span class="ico-together ico-like"></span>
+                                  &nbsp;좋아요&nbsp;
+                                  <span class="num-like">3</span>
+                                </button>
+                              </like-comment>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </span>
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="list-more">
+                        <button type="button" class="link-round link-other2">
+                          더보기
+                        </button>
+                      </div>
+                    </div>
+                  </component-section>
+                </div>
+              </div>
+            </div>
+          </main-section>
+          <!-- 푸터 -->
+          <footer></footer>
+          <!-- height 100%시 모달 등장 -->
+          <div class="dimmed_layer"></div>
+        </main>
+      </div>
+      <modal>
+        <!-- 모달 꺼지면 id modalOFF display:none -->
+        <div tabindex="0" role="dialog" class="dialog-content opened-modal"
+         id="modalOFF" style="display: none">
+        <modal-content>
+          <div class="inner-together-layer inner-together-layer2">
+            <div class="layer-body">
+              <p class="desc-together">
+                <span class="txt-desc">댓글 삭제시 복구가 불가능합니다.<br>정말 삭제하시겠습니까?
+                </span>
+              </p>
+              <div class="wrap-btn">
+                <a href="javascript:void(0)" class="btn-set btn-type1">확인</a>
+                <a href="javascript:void(0)" class="btn-set btn-type2">취소</a>
+              </div>
+            </div>
+          </div>
+        </modal-content>
+        </div>
+      </modal>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../static/js/mypage/mypage_reply.js"></script>
+</html>

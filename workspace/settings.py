@@ -25,14 +25,24 @@ SECRET_KEY = 'django-insecure-fqrt8pb0$&!l20k8$8(+fx7zg&d@u59ja5q-1lr(ac+*ik4#z)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'neulhaerang_review',
+    'static_app',
+    'member',
+    'admin',
+    'main',
+    'customer_center',
+    'mypage',
+    'neulhajang',
+    'neulhaerang',
+    'notice',
+    'search',
     'workspace',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -75,12 +85,24 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+# DATABASES = {
+#     "default": {
+#         # MySQL 모듈 경로
+#         "ENGINE": "django.db.backends.mysql",
+#         # DATABASE 이름
+#         "NAME": "django",
+#         # 계정 이름
+#         "USER": "app",
+#         # 비밀번호
+#         "PASSWORD": "1234",
+#         # MySQL 서버가 실행 중인 서버 IP 또는 도메인
+#         "HOST": "13.125.161.117",
+#         # 포트번호
+#         "PORT": "3306"
+#     }
+# }
+
 
 
 # Password validation
@@ -107,22 +129,25 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = '/static/'
+# {% static '경로' %}로 사용하면 경로 앞에 /static을 붙인다.
+STATIC_URL = 'static/'
+# /static으로 요청이 들어오면 실제 static 경로를 찾아준다.
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'static'
 ]
 
-STATIC_ROOT = os.path.join("staticfiles")
+# 파일 접근 시
+MEDIA_URL = '/upload/'
+
+# 파일 업로드 시
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

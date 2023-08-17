@@ -6,6 +6,13 @@ body, html {
     min-width: 1140px;
 }
 
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: KakaoBig Regular,Malgun Gothic,맑은 고딕,Apple SD Gothic Neo,dotum,돋움,sans-serif;
+    color: #444;
+}
+
 ul {
     list-style-type: none;
 }
@@ -79,7 +86,9 @@ button {
     color: #202020;
 }
 
-.wrap_suggest, .wrap_suggest .form_cont {
+.wrap_suggest, .wrap_suggest .form_cont1,
+.wrap_suggest, .wrap_suggest .form_cont2,
+.wrap_suggest, .wrap_suggest .form_cont3 {
     padding-bottom: 80px;
 }
 
@@ -178,10 +187,14 @@ button {
     overflow: hidden;
     right: 0;
     margin: 0 30px 0 12px;
-    padding: 0;
+    padding: 0px;
     line-height: 44px;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+select {
+    padding: 0 0 0 0.8em;
 }
 
 .opt_comm .opt_select, .opt_comm .select_option {
@@ -336,7 +349,7 @@ input:checked[type=checkbox] {
     padding: 20px 0 0;
 }
 
-.btn_step .link_step {
+.btn_step .link_step1 {
     float: left;
     position: relative;
     width: 100%;
@@ -351,7 +364,7 @@ input:checked[type=checkbox] {
     background-color: #dc287c;
 }
 
-.btn_float .link_step {
+.btn_float .link_step1 {
     border-radius: 5px;
 }
 
@@ -383,3 +396,8 @@ input:checked[type=checkbox] {
     height: 22px;
     background-position: -527px -155px;
 }
+
+
+
+
+

@@ -27,7 +27,6 @@ a {
     padding: 70px 12px;
    background-color: white;
    box-sizing : border-box;
-   box-shadow: 1px 1px 5px #c4c4c4;
 }
 
 .table-wrap .count-btns-wrap {
@@ -117,7 +116,7 @@ a {
 }
 
 .btn-write, .btn-list {
-   width : 120px;
+    width: 140px;
 }
 
 
@@ -145,6 +144,11 @@ ul {
    display : flex;
    border-bottom: 1px solid #c4c4c4;
 }
+
+.notice-write2 {
+    height: 100px;
+}
+
 .qna-info-list .qna-list:nth-child(5) {
    border: 0;
 }

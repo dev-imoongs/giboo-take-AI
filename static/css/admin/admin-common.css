@@ -80,19 +80,19 @@ input::placeholder {
 .search-icon {
 	width: 25px;
 	position: absolute;
-	margin: 5px 5px 5px 155px;
+    margin: 0.3% 1% 1% 11.1%;
 	cursor: pointer;
 }
 
 .delete-box {
 	text-align: right;
-padding: 0px 0px 2px 650px;
+	padding: 0px 0px 2px 650px;
 }
 
 .delete-button {
     font-family: 'KakaoBig Regular';
     border: #dadada;
-    width: 107px;
+    width: 120px;
     height: 30px;
     background-color: #fff;
     font-weight: bold;
@@ -186,6 +186,7 @@ margin: -13px 0px 0px -8px;
 
 .checkbox {
 	margin: 10px 10px 10px 10px;
+
 }
 
 .title-txt {
