@@ -10,7 +10,6 @@ class Inquery(Period):
     inquery_content = models.TextField(null=False, blank=False)
     response_status = models.CharField(max_length=50, null=False, blank=False)
     member = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
-
     class Meta:
         db_table = 'tbl_inquery'
 
