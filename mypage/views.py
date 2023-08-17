@@ -8,52 +8,52 @@ from django.views import View
 
 class MypageBadgeView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_badge.html')
+        return render(request, 'mypage/mypage-badge.html')
 
 
 class MypageByeoljjiView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_byeoljji.html')
+        return render(request, 'mypage/mypage-byeoljji.html')
 
 
 class MypageDonateView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_donate.html')
+        return render(request, 'mypage/mypage-donate.html')
 
 
 class MypageMainView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_main.html')
+        return render(request, 'mypage/mypage-main.html')
 
 
 class MypageOthersLinkView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_otherslink.html')
+        return render(request, 'mypage/mypage-otherslink.html')
 
 
 class MypagePostListView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_post_list.html')
+        return render(request, 'mypage/mypage-post-list.html')
 
 
 class MypageProfileView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_profile.html')
+        return render(request, 'mypage/mypage-profile.html')
 
 
 class MypageReplyView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_reply.html')
+        return render(request, 'mypage/mypage-reply.html')
 
 
 class MypageServiceSettingView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage_sevice_settings.html')
+        return render(request, 'mypage/mypage-sevice-settings.html')
 
 
 class MypageSignOutView(View):
     def get(self, request):
-        return render(request, 'mypage/mypage_sign-out.html')
+        return render(request, 'mypage/mypage-sign-out.html')
 
 
 
