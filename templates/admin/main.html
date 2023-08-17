@@ -31,22 +31,23 @@
                     <li>
                         <div class="text">
                             <div class="title">
-                                <div class="name-text">이름</div>
+                                <div class="name-text">번호</div>
                                 <div class="email-text">이메일</div>
-                                <div class="id-text">아이디</div>
+                                <div class="id-text">닉네임</div>
                             </div>
                         </div>
                     </li>
-
-                    <li>
-                        <div class="text">
-                            <div class="title">
-                                <div class="name-text">이서호</div>
-                                <div class="email-text">dev.panda@gmail.com</div>
-                                <div class="id-text">dev.panda</div>
+                    {% for member in recent_five_members %}
+                        <li>
+                            <div class="text">
+                                <div class="title">
+                                    <div class="name-text">{{ member.id}}</div>
+                                    <div class="email-text">{{ member.member_email }}</div>
+                                    <div class="id-text">{{ member.member_nickname }}</div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
             <!--    공지사항 관리    -->
@@ -60,20 +61,25 @@
                     <li>
                         <div class="text">
                             <div class="title">
-                                <div class="notice-date">날짜</div>
-                                <div class="notice-content">공지사항 내용</div>
+                                <div class="notice-content">번호</div>
+                                <div class="notice-content">제목</div>
+                                <div class="notice-content">타입</div>
+                                <div class="notice-date">등록날짜</div>
                             </div>
                         </div>
                     </li>
-
-                    <li>
-                        <div class="text">
-                            <div class="title">
-                                <div class="notice-date">23.00.00</div>
-                                <div class="notice-content">공지사항은 팀장 임웅빈에게 문의바랍니다.</div>
+                    {% for notice in recent_five_notices %}
+                        <li>
+                            <div class="text">
+                                <div class="title">
+                                    <div class="notice-content">{{ notice.id }}</div>
+                                    <div class="notice-content">{{ notice.notice_title }}</div>
+                                    <div class="notice-content">{{ notice.type }}</div>
+                                    <div class="notice-date">{{ notice.created_date }}</div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
             <!--    늘해랑     -->
@@ -84,25 +90,29 @@
                                                                                    src="{% static 'image/admin/plus.svg' %}"></a>
                 </div>
                 <ul>
-                    <li>
-                        <div class="text">
-                            <div class="title">
-                                <div class="post-writer">작성자</div>
-                                <div class="post-title">늘해랑 제목</div>
-                                <div class="post-date">날짜</div>
-                            </div>
-                        </div>
-                    </li>
+
 
                     <li>
                         <div class="text">
                             <div class="title">
-                                <div class="post-writer">작성자</div>
-                                <div class="post-title">늘해랑 제목 많은 참여 바랍니다.</div>
-                                <div class="post-date">23.00.00</div>
+                                <div class="post-writer">주최자</div>
+                                <div class="post-title">제목</div>
+                                <div class="post-date">등록날짜</div>
                             </div>
                         </div>
                     </li>
+                    {% for neulhaerang in recent_five_neulhaerangs %}
+
+                        <li>
+                            <div class="text">
+                                <div class="title">
+                                    <div class="post-writer">{{ neulhaerang.member.member_nickname }}</div>
+                                    <div class="post-title">{{ neulhaerang.neulhaerang_title }}</div>
+                                    <div class="post-date">{{ neulhaerang.created_date }}</div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
             <!--    늘하장      -->
@@ -116,21 +126,24 @@
                     <li>
                         <div class="text">
                             <div class="title">
-                                <div class="post-writer">작성자</div>
-                                <div class="post-title">늘하장 제목</div>
+                                <div class="post-writer">주최자</div>
+                                <div class="post-title">제목</div>
                                 <div class="post-date">날짜</div>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="text">
-                            <div class="title">
-                                <div class="post-writer">작성자</div>
-                                <div class="post-title">늘하장 제목 많은 참여 바랍니다.</div>
-                                <div class="post-date">23.00.00</div>
+                    {% for neulhajang in recent_five_neulhajangs %}
+                        <li>
+                            <div class="text">
+                                <div class="title">
+                                    <div class="post-writer">{{ neulhajang.member.member_nickname }}</div>
+                                    <div class="post-title">{{ neulhajang.neulhajang_title }}</div>
+                                    <div class="post-date">{{ neulhajang.created_date }}</div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
+
 
                 </ul>
             </li>
