@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 
+from customer_center.models import Inquery
+from member.models import Member
+from neulhaerang.models import Neulhaerang
+from notice.models import Notice
+
 
 # Create your views here.
 
@@ -9,7 +14,25 @@ from django.views import View
 
 class AdminMainView(View):
     def get(self,request):
-        return render(request, 'admin/main.html')
+        recent_five_members = Member.objects.all()[0:5]
+        recent_five_notices = Notice.objects.all()[0:5]
+        recent_five_neulhaerangs = Neulhaerang.objects.all()[0:5]
+        recent_five_inqueries = Inquery.objects.all()[0:5]
+
+        datas = {
+            'recent_five_members':recent_five_members,
+            'recent_five_notices':recent_five_notices,
+            'recent_five_neulhaerangs':recent_five_neulhaerangs,
+            'recent_five_inqueries':recent_five_inqueries
+                 }
+
+
+
+        return render(request, 'admin/main.html',context=datas)
+
+
+
+
 
 
 class AdminInqueryListView(View):
