@@ -15,7 +15,7 @@ class Member(Period):
     donation_status = models.CharField(max_length=10, null=False, blank=False, default='open')
     total_donation_fund = models.IntegerField(null=False, default=0)
     total_donation_count = models.IntegerField(null=False, default=0)
-    donation_level = models.CharField(max_length=50, null=False, blank=False)
+    donation_level = models.CharField(max_length=50, null=False, blank=False, default='bronze')
     # static 기본이미지가 있고, choice가 유저일때 프로필 이미지가 null이면 기본이미지이다.
     # choice가 유저일떄 프로필 이미지가 있으면 프로필 이미지이다.
     # choice가 카카오면 로그인 할때마다 세션의 member_email랑 프로필 url을 담고, 그것을 사용한다.
