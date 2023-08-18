@@ -730,7 +730,7 @@
 }
 
 .mission-tab-together-document-text {
-    margin-top: -15px;
+    padding-top: 24px;
     line-height: 1.88;
     white-space: pre-wrap;
     font-size: 16px;
@@ -739,6 +739,7 @@
     font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
     overflow-wrap: break-word;
     letter-spacing: -0.3px;
+
 }
 
 .mission-tab-together-document-image {
@@ -820,6 +821,18 @@
     overflow-wrap: break-word;
     letter-spacing: -0.3px;
     line-height: 1.5;
+}
+
+.mission-tab-together-document-bullet-sub-title::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 6px;
+    border-radius: 1px;
+    margin-right: 14px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    background-color: rgb(32, 32, 32);
 }
 
 .mission-tab-together-document-note {
@@ -938,7 +951,7 @@
     opacity: 1;
 }
 
-
+.action-write-modal-base
 
 
 
