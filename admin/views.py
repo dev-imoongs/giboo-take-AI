@@ -1,3 +1,6 @@
+import math
+
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views import View
 
@@ -9,6 +12,22 @@ from notice.models import Notice
 
 
 # Create your views here.
+
+
+class Pagenation():
+    def __init__(self,page,row_count,obj,page_count):
+        self.page =page
+        self.row_count =row_count
+        self.offset = (page - 1) * row_count
+        self.limit = page * row_count
+        self.total = obj.objects.all().count()
+        self.page_count = page_count
+        self.end_page = math.ceil(page / page_count) * page_count
+        self.start_page = self.end_page - self.page_count + 1
+        self.real_end = math.ceil(self.total / self.row_count)
+        self.end_page = real_end if endPage > realEnd else endPage
+        pageUnit = (page - 1 // 5) + 1
+
 
 
 
@@ -26,31 +45,24 @@ class AdminMainView(View):
             'recent_five_neulhaerangs':recent_five_neulhaerangs,
             'recent_five_neulhajangs':recent_five_neulhajangs
                  }
-
-
-
         return render(request, 'admin/main.html',context=datas)
-
-
-
-
-
-
-class AdminInqueryListView(View):
-    def get(self,request):
-        return render(request,'admin/inquiry/list.html')
-
-
-
-class AdminInqueryWriteView(View):
-    def get(self,request):
-        return render(request,'admin/inquiry/write.html')
-
 
 
 
 class AdminMemberListView(View):
     def get(self,request):
+        if request.GET.get("page") is not None:
+            page = request.GET.get("page")
+        else :
+            page = 1
+
+
+
+        members = Member.objects.all();
+        rowCount= 5
+        paged_members = Paginator(members,rowCount).page(page)
+        print(paged_members.range)
+
         return render(request,'admin/member/list.html')
 
 
@@ -95,5 +107,18 @@ class AdminReviewListView(View):
 class AdminReviewDetailView(View):
     def get(self,request):
         return render(request,'admin/review/detail.html')
+
+
+class AdminInqueryListView(View):
+    def get(self,request):
+        return render(request,'admin/inquiry/list.html')
+
+
+
+class AdminInqueryWriteView(View):
+    def get(self,request):
+        return render(request,'admin/inquiry/write.html')
+
+
 
 
