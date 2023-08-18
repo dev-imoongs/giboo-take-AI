@@ -1,3 +1,16 @@
+let text
+let page = 1
+
+const showNeulhaerang =  (page)=>{
+
+    fetch(`/neulhaerang/list-api-view/?page=${page}`)
+        // .then(response => response.json())
+        .then(result => console.log(result))
+}
+
+showNeulhaerang(page)
+
+
 //카테고리 클릭
   $(".list-cate li").each((i,cate)=>{
     $(cate).on("click",e=>{
