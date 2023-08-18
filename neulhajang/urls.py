@@ -1,9 +1,9 @@
 from django.urls import path
 
-from neulhaerang.views import NeulhaerangListView
+from neulhajang.views import NeulhajangListView
 
 app_name = 'neulhajang'
 
 urlpatterns = [
-    path('list/', NeulhaerangListView.as_view(),name ='list')
+    path('list/', NeulhajangListView.as_view(),name ='list')
 ]
