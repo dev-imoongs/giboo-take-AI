@@ -12,6 +12,8 @@ class Category(models.Model):
 class Badge(models.Model):
     badge_name = models.CharField(max_length=100, null=False, blank=False)
     badge_content = models.TextField(null=False, blank=False)
+    badge_image = models.ImageField(null=False, blank=False)
+    category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_badge'
 
