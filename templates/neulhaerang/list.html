@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{% static '/css/neulhaerang/list.css'%}" />
+    <link rel="shortcut icon" href="{% static '/image/favicon_Test.png' %}">
     <title>늘해랑 : 모집/펀딩</title>
 </head>
 <body>
@@ -257,8 +258,10 @@
                 >
                 </span>
                     </div>
+
                     <!--카드배너 리스트-->
                     <div class="list_fund">
+                        {% for posts, fund_now in combined_data %}
                         <li class="listcard">
                             <a href="{% url 'neulhaerang:detail' %}" class="link_pack">
                     <span class="box_thumb">
@@ -277,20 +280,21 @@
                           ><span class="tag_state tag_state_default">종료임박</span
                           ></span
                           >
-                          안심하고 공익제보할 수 있는 사회를 만들어요 📢
+                          {{ posts.neulhaerang_title }}
                         </strong>
-                        <span class="txt_proposer"> 참여연대 </span>
+                        <span class="txt_proposer"> {{ posts.member.member_nickname }} </span>
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
                           <span class="state_gage state_ing" style="width: 95%"></span>
                         </span>
                       </span>
-                      <span class="price_goal">3,027,899원</span>
+                      <span class="price_goal">{{ fund_now.donation_amount__sum }}원</span>
                     </span>
                             </a>
                         </li>
-                        <li class="listcard">
+                        {% endfor %}
+                <!--        <li class="listcard">
                             <a href="#" class="link_pack">
                     <span class="box_thumb">
                       <span
@@ -371,6 +375,7 @@
                     </span>
                             </a>
                         </li>
+                    -->
                     </div>
                 </div>
             </div>
@@ -382,4 +387,12 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/nelharang/list.js"></script>
+<script>
+    let posts = "{{ posts|escapejs }}"
+    // let fund_now = {{ fund_now }}
+    temp = JSON.parse(posts)
+    console.log(temp)
+    // console.log(`fund_now${fund_now}`)
+
+</script>
 </html>
