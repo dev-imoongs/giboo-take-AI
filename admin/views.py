@@ -60,16 +60,12 @@ class AdminGetMembersByPagedAPIView(APIView):
     def get(self,request):
         page = int(request.GET.get("page"))
         pagenator = Pagenation(page=page, page_count=5, row_count=10, model=Member)
+
         members = MemberSerializer(pagenator.paged_models,many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
         datas = {
             "members":members,
-           # "has_next":pagenator.has_next,
-           # "has_prev":pagenator.has_prev,
-           #  "total":pagenator.total,
-           #  "start_page":pagenator.start_page,
-           #  "end_page":pagenator.end_page
             "pagenator" : serialized_pagenator
 
         }

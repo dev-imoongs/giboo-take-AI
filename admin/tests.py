@@ -16,6 +16,10 @@ class NoticeTest(TestCase):
     # Member.objects.bulk_create([
     #     Member(member_age=20,member_email='admin',member_status='NORMAL',member_role="ADMIN",member_nickname="admin1",member_gender="M")
     # ])
+
+    for i in range(100):
+        Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
+
     admin = Member.objects.get(id=6);
     #
     # for i in range(10):
@@ -34,11 +38,11 @@ class NoticeTest(TestCase):
     #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",volunteer_duration_start_date=datetime.now()
     #                                ,volunteer_duration_end_date=datetime.now(),category=category)
 
-    category = Category.objects.get(id=1)
-    for i in range(10):
-        Neulhajang.objects.create(member=member, neulhajang_title=f"늘하장 제목{i}",
-                                  neulhajang_duration_start_date=datetime.now(),neulhajang_duration_end_date=datetime.now(),
-                                  commitment_duration_end_date=datetime.now(),commitment_duration_start_date=datetime.now(),category=category)
+    # category = Category.objects.get(id=1)
+    # for i in range(10):
+    #     Neulhajang.objects.create(member=member, neulhajang_title=f"늘하장 제목{i}",
+    #                               neulhajang_duration_start_date=datetime.now(),neulhajang_duration_end_date=datetime.now(),
+    #                               commitment_duration_end_date=datetime.now(),commitment_duration_start_date=datetime.now(),category=category)
 
     # Category.objects.bulk_create([
     #     Category(category_name="어린이"),

@@ -16,5 +16,17 @@ class NeulhaerangSerializer(serializers.ModelSerializer):
 
 
 class PagenatorSerializer(serializers.Serializer):
-    class Meta:
-        fields = '__all__'
+
+    has_next = serializers.BooleanField()
+    has_prev = serializers.BooleanField()
+    total = serializers.IntegerField()
+    start_page = serializers.IntegerField()
+    end_page = serializers.IntegerField()
+    page_count =serializers.IntegerField()
+    # "has_next":pagenator.has_next,
+    # "has_prev":pagenator.has_prev,
+    #  "total":pagenator.total,
+    #  "start_page":pagenator.start_page,
+    #  "end_page":pagenator.end_page
+
+
