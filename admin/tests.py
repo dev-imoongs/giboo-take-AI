@@ -17,7 +17,7 @@ class NoticeTest(TestCase):
     #     Member(member_age=20,member_email='admin',member_status='NORMAL',member_role="ADMIN",member_nickname="admin1",member_gender="M")
     # ])
     admin = Member.objects.get(id=6);
-
+    #
     # for i in range(10):
     #     Notice.objects.create(
     #       notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="제안자",admin=admin
