@@ -2,7 +2,7 @@ from django.urls import path
 
 from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, MypageSignOutView, \
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
-    MypageReplyView
+    MypageReplyView, MemberChangeDonationStatusAPIView
 
 app_name = 'mypage'
 
@@ -16,5 +16,10 @@ urlpatterns = [
     path('profile/',MypageProfileView.as_view(),name = 'profile'),
     path('service-setting/',MypageServiceSettingView.as_view(),name = 'service-setting'),
     path('sign-out/',MypageSignOutView.as_view(),name = 'sign-out'),
-    path('mypage-reply/',MypageReplyView.as_view(),name = 'mypage-reply')
+    path('mypage-reply/',MypageReplyView.as_view(),name = 'mypage-reply'),
+
+
+
+    # APIView 연결하는곳
+    path('change-member-donation-status/',MemberChangeDonationStatusAPIView.as_view(),name= 'change-member-donation-status')
 ]
