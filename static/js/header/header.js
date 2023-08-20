@@ -19,3 +19,4 @@ const $mobileSideBarCloseBtn = $(".side-menu-close-button")
 $mobileSideBarCloseBtn.on("click",e=>{
     $mobileSideBar.removeClass("open")
 })
+

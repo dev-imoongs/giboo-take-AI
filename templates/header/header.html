@@ -41,12 +41,14 @@
         <div class="side-menu-drawer">
           <div class="drawer-container">
             <div class="drawer-body">
-              <button class="side-menu-login-button">
-                <span class="side-menu-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
-                <span class="side-menu-user-info">
-                  <strong class="login-text">로그인</strong>
-                </span>
-              </button>
+              <a href="javascript:loginWithKakao()">
+                <button class="side-menu-login-button">
+                  <span class="side-menu-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
+                  <span class="side-menu-user-info">
+                    <strong class="login-text">로그인</strong>
+                  </span>
+                </button>
+              </a>
               <ul class="side-user-menu-list">
                 <li class="side-menu-link-list">
                   <a href="" class="side-menu-user-link">모금 제안</a>
@@ -185,7 +187,7 @@
         </nav>
         <div class="pc-util-menu">
           <a href="" class="util-button write">제안하기</a>
-          <a href="" class="util-button login">로그인</a>
+          <a href="javascript:loginWithKakao()" class="util-button login">로그인</a>
         </div>
         <!-- pc돋보기 -->
         <a href="" class="pc-search-link">
@@ -203,4 +205,40 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/header/header.js'%}"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js" integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh" crossorigin="anonymous"></script>
+  <script>
+    // javascript APP KEY 설정
+    Kakao.init('c6fc16cf77bad1b72762e026c2fbf9fd');
+
+    function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:10000/member/oauth/redirect',
+    });
+  }
+
+  // 아래는 데모를 위한 UI 코드입니다.
+  displayToken()
+  function displayToken() {
+    var token = getCookie('authorize-access-token');
+
+    if(token) {
+      Kakao.Auth.setAccessToken(token);
+      Kakao.Auth.getStatusInfo()
+        .then(function(res) {
+          if (res.status === 'connected') {
+            document.getElementById('token-result').innerText
+              = 'login success, token: ' + Kakao.Auth.getAccessToken();
+          }
+        })
+        .catch(function(err) {
+          Kakao.Auth.setAccessToken(null);
+        });
+    }
+  }
+
+  function getCookie(name) {
+    var parts = document.cookie.split(name + '=');
+    if (parts.length === 2) { return parts[1].split(';')[0]; }
+  }
+  </script>
 </html>
