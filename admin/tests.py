@@ -17,8 +17,8 @@ class NoticeTest(TestCase):
     #     Member(member_age=20,member_email='admin',member_status='NORMAL',member_role="ADMIN",member_nickname="admin1",member_gender="M")
     # ])
 
-    for i in range(100):
-        Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
+    # for i in range(100):
+    #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
     admin = Member.objects.get(id=6);
     #

@@ -25,12 +25,30 @@
   })
 
 // 페이지네이터
-let text
+let category = "전체"
 let page = 1
+let sort = '추천순'
 
-const showNeulhaerang =  (page)=>{
+$('.lab_sort').each((i,v)=>{
+    $(v).on('click',()=>{
+        sort = $(v).text()
+        page=1
+        showNeulhaerang(page, category, sort)
+    })
+})
 
-    fetch(`/neulhaerang/list-api-view/?page=${page}`)
+
+$('.link-cate').each((i,v)=>{
+    $(v).on('click',()=>{
+        category = $(v).find('.txt-cate').text()
+        page=1
+        showNeulhaerang(page, category, sort)
+    })
+})
+
+const showNeulhaerang =  (page, category, sort,scroll)=>{
+
+    fetch(`/neulhaerang/list-api-view/?page=${page}&category=${category}&sort=${sort}`)
         .then(response => response.json())
         .then(result =>{
           let text = ""
@@ -38,24 +56,33 @@ const showNeulhaerang =  (page)=>{
           let pagenator= result.pagenator
 
           posts.forEach((post,i)=> {
+              let now_date = new Date()
+              let fund_end_date = new Date(post.fund_duration_end_date)
+              let timeDifference = Math.abs(fund_end_date.getTime() - now_date.getTime())
+              let dayDifference = Math.ceil(timeDifference / (1000*3600*24))
+
+              let percentage = Math.ceil(post.donation_amount_sum / post.target_amount *100)
+
+              console.log(post)
               const post_url = baseUrl.replace("0", neulhaerang_id=post.id);
               text += `<li class="listcard">
                     <a href="${post_url}" class="link_pack">
                     <span class="box_thumb">
-                      <span kagetype="c203" class="img_thumb" style="background-image: url('https://mud-kage.kakaocdn.net/dn/bf22U9/btsf2G0mHF9/PRklKTaLsSkb7ySBTOrkBK/c203.jpg');"></span>
+                      <span kagetype="c203" class="img_thumb" style="background-image: url(${post.thumbail_image});"></span>
                       </span>
                       <span class="box_together">
                       <span class="bundle_tit">
                         <strong class="tit_together ellipsis_type1">
-                          <span class="tag_bundle"><span class="tag_state tag_state_default">종료임박</span></span>
+                          ${dayDifference<=3 ?
+                  '<span class="tag_bundle"><span class="tag_state tag_state_default">종료임박</span></span>':''}
                             ${post.neulhaerang_title}
                         </strong>
                         <span class="txt_proposer"> ${post.member_nickname} </span>
-                        
+
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
-                          <span class="state_gage state_ing" style="width: 95%"></span>
+                          <span class="state_gage state_ing" style="width: ${percentage}%"></span>
                         </span>
                       </span>`;
                       if(post.donation_amount_sum !== null){
@@ -70,9 +97,16 @@ const showNeulhaerang =  (page)=>{
               </li>`
                       }
           })
-          $('.list_fund').html(text)
+            scroll? $('.list_fund').append(text): $('.list_fund').html(text)
+
   })
 }
 
-showNeulhaerang(page)
+showNeulhaerang(page, category, sort)
 
+window.addEventListener("scroll", ()=>{
+    if (window.innerHeight + window.scrollY >= document.body.clientHeight) {
+    page++
+    showNeulhaerang(page, category, sort,"scroll")
+}
+});
