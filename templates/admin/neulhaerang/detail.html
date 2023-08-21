@@ -10,11 +10,8 @@
     <link rel="icon" href="{% static 'image/favicon.png' %}">
 </head>
 <body>
-<!-- 사이드 바 -->
 {% include "admin/side-bar.html" %}
-<!-- </div> -->
-<!-- 사이드 바 끝-->
-<!--mainScreen 공지사항 작성하기-->
+
 <div class="mainContent">
 
     <div class="content-wrap">
@@ -25,45 +22,51 @@
                 <div class="notice-write">
                     <div class="write-title">늘해랑 제목</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.neulhaerang_title }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">늘해랑 주제</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.category.category_name }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">작성자</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.member.member_nickname }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">관리자에게 <br>하고싶은 말</div>
                     <div class="write-sec">
-                        <textarea style="height: 120px;" class="write-text write-notice" type="text"
-                                  readonly></textarea>
+                        <textarea style="height: 120px;" class="write-text write-notice" type="text" readonly
+                                  value="{{ neulhaerang.message_to_admin }}"></textarea>
                     </div>
                 </div>
                 <!-- 여기부터 필요없을시 삭제 -->
                 <div class="notice-write">
                     <div class="write-title">모금 기간</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.fund_duration_start_date }}~{{ neulhaerang.fund_duration_end_date }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">목표액</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.target_amount }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">모집 인원</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly>
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhaerang.participants_max_count }}">
                     </div>
                 </div>
                 <!-- 여기까지 삭제 -->
@@ -82,11 +85,16 @@
 
             <!-- 버튼 테스트용 링크들은 수정 필요 -->
             <div class="write-btn-wrap">
-                <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">늘해랑 목록</a>
-                </button>
-                <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">신청자 작성페이지</a>
-                </button>
-                <a href="http://www.naver.com">
+                <a class="go-list" href="/admin/neulhaerang/list?page={{ page }}&search={{ search }}">
+                    <button type="button" class="btn btn-list">늘해랑 목록
+                    </button>
+                </a>
+                <a target="_blank" class="go-list"
+                   href="{% url 'neulhaerang:detail' neulhaerang_id=neulhaerang.id %}">
+                    <button type="button" class="btn btn-list">실제 늘해랑
+                    </button>
+                </a>
+                <a href="">
                     <button type="button" id="refuseButton" class="btn btn-write">신청 거부</button>
                 </a>
                 <a class="go-list" href="http://www.naver.com">

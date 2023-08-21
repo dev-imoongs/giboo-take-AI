@@ -15,7 +15,7 @@ from neulhaerang.models import Neulhaerang
 from neulhajang.models import Neulhajang
 from notice.models import Notice
 from workspace.pagenation import Pagenation
-from workspace.serializers import MemberSerializer, PagenatorSerializer
+from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer
 
 
 # Create your views here.
@@ -53,7 +53,7 @@ class AdminGetMembersByPagedAPIView(APIView):
         page = int(request.GET.get("page"))
         search = request.GET.get("search")
 
-        if search != 'undefined':
+        if search :
             members_query_set = Member.objects.filter(member_nickname__contains=search).all()
         else:
             members_query_set = Member.objects.all()
@@ -63,10 +63,10 @@ class AdminGetMembersByPagedAPIView(APIView):
         members = MemberSerializer(pagenator.paged_models,many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
+
         datas = {
             "members":members,
             "pagenator" : serialized_pagenator
-
         }
 
 
@@ -91,14 +91,77 @@ class AdminChangeMemberStatusAPIView(APIView):
 
 
 
+
+
 class AdminNeulhaerangListView(View):
     def get(self,request):
-        return render(request,'admin/neulhaerang/list.html')
+        if request.GET.get("page"):
+            page = int(request.GET.get("page"))
+        else:
+            page = 1
+
+        if request.GET.get("search"):
+            search =request.GET.get("search")
+        else:
+            search=''
+
+        datas={
+            "page": page,
+            "search": search,
+        }
+        return render(request,'admin/neulhaerang/list.html',datas)
+
+
+class AdminGetNeulhearangsByPagedAPIView(APIView):
+    def get(self,request):
+        page = int(request.GET.get("page"))
+        search = request.GET.get("search")
+
+
+        if search :
+           neulhaerangs_query_set = Neulhaerang.objects.filter(neulhaerang_title__contains=search).all()
+        else:
+            neulhaerangs_query_set = Neulhaerang.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=neulhaerangs_query_set)
+
+        neulhaerangs = NeulhaerangSerializer(pagenator.paged_models,many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "neulhaerangs":neulhaerangs,
+            "pagenator" : serialized_pagenator
+
+        }
+
+
+        return Response(datas)
+
+
+class AdminDeleteNeulhaerangAPIView(APIView):
+    def post(self,request):
+        neulhaerang_ids = json.loads(request.body).get("neulhaerang_ids")
+        print(neulhaerang_ids)
+        neulhaerangs = Neulhaerang.objects.filter(id__in= neulhaerang_ids).delete()
+        return Response(True)
+
+
 
 
 class AdminNeulhaerangDetailView(View):
     def get(self,request):
-        return render(request,'admin/neulhaerang/detail.html')
+        nuelhaerang_id = request.GET.get("nuelhaerang_id")
+        page = request.GET.get("page")
+        search = request.GET.get("search")
+        neulhaerang = Neulhaerang.objects.filter(id=nuelhaerang_id)[0]
+
+        datas = {
+            "neulhaerang" : neulhaerang,
+            "page":page,
+            "search":search,
+        }
+
+        return render(request,'admin/neulhaerang/detail.html',datas)
 
 
 class AdminNeulhajangListView(View):
