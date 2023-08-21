@@ -84,12 +84,11 @@ const toastMsg = function (text) {
 
 // ~분전 관련 스크립트
 document.addEventListener("DOMContentLoaded", function () {
-    // 모든 .txt-time 요소를 찾음
+    // txt-time 클래스를 가진 요소를 모두 찾음
     let timeElements = document.querySelectorAll(".txt-time");
 
-    // 각 요소에 대해 시간을 계산하여 텍스트로 표시
-    timeElements.forEach(function (element) {
-        let timestamp = element.getAttribute("data-timestamp");
+    timeElements.forEach(function (timeElement) {
+        let timestamp = timeElement.getAttribute("data-timestamp");
         let currentTime = Math.floor(Date.now() / 1000); // 현재 시간(초)을 가져옴
         let timeDifference = currentTime - timestamp;
 
@@ -118,14 +117,17 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (months == 3) {
                 timeText = "세 달 전";
             } else {
-                timeText = element.getAttribute("data-timestamp");
+                // 일, 분, 시간, 어제에 해당하지 않을 경우에만 날짜를 표시
+                let date = new Date(timestamp * 1000);
+                timeText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
             }
         } else {
+            // 위의 모든 경우에 해당하지 않을 경우에도 날짜를 표시
             let date = new Date(timestamp * 1000);
             timeText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
         }
 
         // 텍스트를 업데이트
-        element.textContent = timeText;
+        timeElement.textContent = timeText;
     });
 });

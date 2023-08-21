@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import DeleteView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -29,6 +30,13 @@ class MypageByeoljjiView(View):
 class MypageDonateView(View):
     def get(self,request):
         return render(request, 'mypage/mypage-donate.html')
+
+# class MypageMainDeleteView(View):
+#     def get(self, request, review_reply_id):
+#         NeulhaerangReviewReply.objects.get(id=review_reply_id).delete(id=9)
+#         return redirect('neulhaerang_review:review/list')
+
+
 
 
 class MypageMainView(View):
@@ -69,6 +77,7 @@ class MypageMainView(View):
 
                    'volunteer_duration_start_date': neulhaerang.volunteer_duration_start_date,
                    'member_neulhaerang_count': neulhaerang_count,
+                   'member_neulhaerang_img': neulhaerang.thumbnail_image,
                    # 댓글 총 갯수 여기부터 하면됌 댓글, 리뷰 때려넣어놨음
                    'member_reply_count': total_reply,
                    # 'member_reply_review_content': reply_temp,

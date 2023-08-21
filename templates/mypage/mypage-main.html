@@ -136,7 +136,7 @@
                               <a class="link-action-card" href= >
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" 
-                                  src="https://t1.kakaocdn.net/together_action_prod/action/20230805/q4yw7g3e3bkm_9a35522ca6184e31a73e697b9b305717?type=thumb&amp;opt=S100x100">
+                                  src={{ member_neulhaerang_img }}>
                                 </span>
                                 <div class="info-action">
                                   <strong class="title-action">{{ title.neulhaerang_title }}</strong>
@@ -189,7 +189,7 @@
                               <span class="desc-comment">{{ reply_content.reply_content }}</span>
                             </span>
                             <span class="info-append">
-                              <span class="txt-time" data-timestamp="{{ reply_content.updated_date|date:"U" }}"></span>
+                               <span class="txt-time" data-timestamp="{{ reply_content.updated_date|date:"U" }}"></span>
                               <!--<like-comment>
                                 <button type="button" class="btn-like" >
                                   <span class="ico-together ico-like"></span>&nbsp;좋아요&nbsp;
