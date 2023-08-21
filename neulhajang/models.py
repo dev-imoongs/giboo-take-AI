@@ -26,14 +26,14 @@ class Neulhajang(Period):
         db_table = 'tbl_neulhajang'
         ordering = ["-id"]
 
-class InnerPhoto(Period):
+class NeulhajangInnerPhoto(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/innerphoto/')
     neulhajang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.CharField(max_length=300, null=False, blank=False)
     neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.DO_NOTHING)
 
     class Meta:
-        db_table = 'tbl_inner_photo'
+        db_table = 'tbl_neulhajang_inner_photo'
         ordering = ["-id"]
 
 class NeulhajangMission(Period):
