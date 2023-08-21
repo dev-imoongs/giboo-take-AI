@@ -52,7 +52,13 @@ class AdminGetMembersByPagedAPIView(APIView):
     def get(self,request):
         page = int(request.GET.get("page"))
         search = request.GET.get("search")
-        pagenator = Pagenation(page=page, page_count=5, row_count=10, model=Member)
+
+        if search != 'undefined':
+            members_query_set = Member.objects.filter(member_nickname__contains=search).all()
+        else:
+            members_query_set = Member.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=members_query_set)
 
         members = MemberSerializer(pagenator.paged_models,many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
