@@ -103,7 +103,7 @@
                       </ul>
                     </div>
                   </div>
-                  <!-- 늘해랑/늘하장 -->
+                      <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
                   <user-actions>
                     <a class="group-shadow group-action-before" href={% url 'neulhajang:list' %} >
@@ -175,31 +175,33 @@
                   <user-comments>
                     <div class="group-shadow group-comment comment-type3">
                       <h3 class="title-section section-type2"> 댓글
-                        <span class="color-g1">4</span>
+                        <span class="color-g1">{{ member_reply_count }}</span>
                       </h3>
                       <ul class="list-comment">
+                          {% for reply_content in www_reply_content %}
                         <li>
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 어르신께 맛있는 김치를~ "밥상 위 작은 기적" </a>
+                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> {{ reply_content.neulhaerang_review.review_title }} </a>
                             </span>
                             <span class="txt-comment">
-                              <span class="desc-comment">응원합니다</span>
+                              <span class="desc-comment">{{ reply_content.reply_content }}</span>
                             </span>
                             <span class="info-append">
                               <span class="txt-time">3시간 전</span>
-                              <like-comment>
+                              <!--<like-comment>
                                 <button type="button" class="btn-like" >
                                   <span class="ico-together ico-like"></span>&nbsp;좋아요&nbsp;
                                   <span class="num-like">2</span>
                                 </button>
-                              </like-comment>
+                              </like-comment> -->
                               <button type="button" class="btn-delete"> 삭제 </button>
                             </span>
                           </div>
                         </li>
-                        <li>
+                          {% endfor %}
+                       <!-- <li>
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
@@ -220,7 +222,7 @@
                               <button type="button" class="btn-delete"> 삭제 </button>
                             </span>
                           </div>
-                        </li>
+                        </li>-->
                       </ul>
                       <div class="list-more">
                         <a class="link-round" href={% url 'mypage:mypage-reply' %}> 더보기 </a>
