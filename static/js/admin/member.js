@@ -5,6 +5,7 @@ const showMembersByPaged =  (page)=>{
     fetch(`/admin/get-members-by-paged/?page=${page}`)
         .then(response => response.json())
         .then(result =>{
+            console.log(result)
             let text=''
             let pageText=''
            let members= result.members
@@ -29,9 +30,9 @@ const showMembersByPaged =  (page)=>{
                                 <td class="noticeId">
                                     ${member.id}
                                 </td>
-                                <td></td>
+                                <td>${member.member_email}</td>
                                 <td>
-                                   ${member.member_email}
+                                   ${member.member_nickname}
                                 </td>
                                 <td>
                                     ${member.created_date}
@@ -83,6 +84,7 @@ const showMembersByPaged =  (page)=>{
 
                 $(".page-button-box-layout").html(pageText)
                 pageBtnAddEvent(pagenator)
+                checkboxEvent()
 
         })
 }
@@ -106,3 +108,32 @@ const pageBtnAddEvent = (pagenator)=>{
         showMembersByPaged(page)
     })
 }
+
+
+//회원 선택 삭제
+$(".delete-button").on("click",e=>{
+    let member_ids = []
+    $(".subCheckbox").filter((i,checkbox)=> $(checkbox).prop("checked")).each((i,checkbox)=>{
+        let member_id = Number($(checkbox).closest(".checkbox-line").next().text())
+        member_ids.push(member_id)
+    })
+
+    let datas = {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            member_ids
+             }),
+    }
+
+    fetch("/admin/change-member-status/", datas)
+        .then(response=>response.json())
+        .then(result =>{
+            if(result){
+                showMembersByPaged(page)
+            }
+        })
+
+})
