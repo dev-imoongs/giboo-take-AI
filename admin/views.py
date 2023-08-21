@@ -1,10 +1,13 @@
 import json
 import math
+from datetime import timedelta
 
 from django.core import serializers
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils import timezone
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -162,6 +165,32 @@ class AdminNeulhaerangDetailView(View):
         }
 
         return render(request,'admin/neulhaerang/detail.html',datas)
+
+    def post(self,request):
+
+        request = request.POST
+        reason = request.get("refuse-reason")
+        page = request.get("page")
+        search = request.get("search")
+        neulhaerang_id = request.get("neulhaerang_id")
+        neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
+
+        print(request)
+        if reason:
+            pass
+            neulhaerang.neulhaerang_status = "미선정"
+            neulhaerang.rejected_message = reason
+            neulhaerang.save()
+
+        else:
+            neulhaerang.neulhaerang_status ="모금중"
+            neulhaerang.fund_duration_start_date=timezone.now().date()
+            # neulhaerang.fund_duration_end_date = timezone.now() + timedelta(days=)
+
+        next_url = reverse("admin:neulhaerang/list") +f"?page={page}&search={search}"
+        return redirect(next_url)
+
+
 
 
 class AdminNeulhajangListView(View):

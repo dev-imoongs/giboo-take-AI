@@ -17,7 +17,12 @@
     <div class="content-wrap">
         <h2 class="title-h2">늘해랑 신청 상세</h2>
         <!-- [S] 공지사항 등록 -->
-        <form action="" method="post">
+        <form action="/admin/neulhaerang/detail/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="page" value="{{ page }}">
+            <input type="hidden" name="search" value="{{ search }}">
+            <input type="hidden" name="neulhaerang_id" value="{{ neulhaerang.id }}">
+
             <div class="con-write-wrap">
                 <div class="notice-write">
                     <div class="write-title">늘해랑 제목</div>
@@ -73,7 +78,7 @@
                 <div class="notice-write">
                     <div class="write-title">늘해랑 <br>등록 거부 사유</div>
                     <div class="write-sec">
-                        <textarea style="height: 120px;" id="inputText" class="write-text write-notice" type="text"
+                        <textarea style="height: 120px;" id="inputText" name= "refuse-reason" class="write-text write-notice" type="text"
                                   placeholder="늘해랑 등록 거부시, 거부 사유를 적어주세요"></textarea>
                     </div>
                 </div>
@@ -94,10 +99,10 @@
                     <button type="button" class="btn btn-list">실제 늘해랑
                     </button>
                 </a>
-                <a href="/admin/neulhaerang/list?page={{ page }}&search={{ search }}">
+                <a>
                     <button type="button" id="refuseButton" class="btn btn-write">신청 거부</button>
                 </a>
-                <a class="go-list" href="http://www.naver.com">
+                <a class="go-list">
                     <button type="button" id="consentButton" class="btn btn-write"> 신청 수락</button>
                 </a>
             </div>
