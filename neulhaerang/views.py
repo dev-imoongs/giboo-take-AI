@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core import serializers
 from django.db.models import Sum, F, Count
 from django.shortcuts import render, redirect
@@ -102,6 +104,10 @@ class NeulhaerangAPIView(APIView):
 
 
 class TestView(View):
+    def get(self, request):
+        return render(request, 'neulhaerang/test.html')
     def post(self, request):
-
-        NeulhaerangInnerPhotos
+        file = request.FILES
+        # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
+        Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
+                                   ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))
