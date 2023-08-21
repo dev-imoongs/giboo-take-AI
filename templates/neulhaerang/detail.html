@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static '/css/common/common.css'%}"/>
     <link rel="stylesheet" href="{% static '/css/neulhaerang/detail.css'%}" />
+    <link rel="shortcut icon" href="{% static '/image/favicon_Test.png' %}">
     <title>늘해랑 : 상세보기</title>
   </head>
   <body>
@@ -22,9 +23,9 @@
                 <div class="cont_visual">
                   <div class="front_pack">
                     <!--타이틀-->
-                    <h4 class="tit_visual ellipsis_type1">삼복더위, 물러가계(鷄)!</h4>
+                    <h4 class="tit_visual ellipsis_type1">{{ post.neulhaerang_title }}</h4>
                     <!--주최자-->
-                    <span class="txt_sponsor ellipsis_g">by 내당노인복지관</span>
+                    <span class="txt_sponsor ellipsis_g">by {{ post.member.member_nickname }}</span>
                     <!--뱃지목록 (획득가능)-->
                     <div class="badge_group">
                       <button type="button" class="link_badge">
@@ -49,7 +50,7 @@
                 <!--검토중, 미선정 나타내는 칸-->
                 <div class="box_info">
                   <p class="desc_info">
-                    <em class="emph_give">모금 검토중</em>
+                    <em class="emph_give">모금 검토중: {{ post.neulhaerang_status }}</em>
                     <span class="txt_g" style="white-space: pre-line"
                       >이 모금은 심사파트너 기관에서 검토중입니다. 모금이 시작되면
                       응원해주세요!</span
@@ -75,230 +76,7 @@
                 </div>
 
                 <div class="cont_subject">
-                  <!--소제목-->
-                  <span class="tit_subject"> 어르신들에게 가혹한 폭염... </span>
-                  <!--내용-->
-                  <p class="desc_subject">
-                    평년 대비 여름철 기온이 높아지며 전국적으로 무더위를 대비하고 있는 가운데, 다른
-                    지역보다 유난히 덥고 습한 대구의 올해 여름 날씨는 작년 8월의 최고치인 36.2℃를
-                    웃도는 38℃까지 올라갈 것으로 예상되어 벌써부터 어르신들의 기력을 한층 더 꺾이게
-                    만듭니다. 1년 중 가장 더운 삼복 중 마지막이자 입추 후 첫째 경일인 '말복'에
-                    사람들은 더위를 이겨냄과 동시에 가을을 기운차게 보내기 위한 보양식을 챙겨
-                    먹습니다. 그중에서도 대표격인 삼계탕은 평소 고기를 섭취하지 못하는 어르신들의
-                    기운을 북돋아 줄 수 있으며 인삼, 마늘, 대추 등의 부재료는 각각 원기 회복, 면역
-                    체계 향상 등의 효능을 가지고 있어 노인에게 안성맞춤인 보양식입니다.
-                  </p>
-                  <!--사진 슬라이드-->
-                  <div class="photo_slide">
-                    <!--사진들-->
-                    <div class="inner_photo">
-                      <ul class="list_photo">
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/dGhrgZ/btslJ3ozDjt/Kp7MFxBdG5bqf2BgLa9wMK/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bxucvS/btslJdE1EYM/u0gLYcSfVmqQ5RTngyP0cK/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/dGhrgZ/btslJ3ozDjt/Kp7MFxBdG5bqf2BgLa9wMK/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bxucvS/btslJdE1EYM/u0gLYcSfVmqQ5RTngyP0cK/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
-                    <div class="paging_slide">
-                      <span class="num_paging">
-                        <span class="num_page">1</span>
-                        / 4
-                      </span>
-                      <button class="btn_prev" type="button">
-                        <span class="ico_together2 ico_prev">이전버트</span>
-                      </button>
-                      <button class="btn_next" type="button">
-                        <span class="ico_together2 ico_next">다음버튼</span>
-                      </button>
-                    </div>
-                  </div>
 
-                  <span class="tit_subject"
-                    >지친 기력 회복을 위하여 꼭 필요한 보양식, 하지만...</span
-                  >
-                  <p class="desc_subject">
-                    복지관 이용자의 큰 비중을 차지지하고 있는 독거어르신은 대체로 가족이 차려주는
-                    따뜻한 밥을 드시지 못하기 때문에 저희 경로식당의 '고봉밥 한 끼'가 하루 중 유일한
-                    식사인 경우가 많습니다. 대구광역시 서구는 총 인구 대비 노인 인구 증가 비율이
-                    가장 큰 상위 10개 시군구 중 하나로, 대구 내에서 평균 소득이 가장 낮습니다.
-                    대구광역시 서구에 위치하고 있는 내당노인복지관은 서울 지역 내 노인복지관 평균
-                    식대 4,000원, 대구 지역 내 노인복지관 평균 식대 1,650원보다도 적은 1,300원으로,
-                    최소한의 비용으로 최대한 영양가 높은 식단을 어르신들께 제공하고자 노력하고
-                    있습니다. 하지만 무더위로 바닥까지 기력이 떨어진 어르신들의 기운을 되찾아 줄
-                    대표 보양식 삼계탕은 보통 15,000원 정도에 사 먹을 수 있는데, 적을 때는
-                    1,300원으로 한 끼를 드시는 어르신들에게 너무도 큰 금액입니다.
-                  </p>
-                  <div class="photo_slide">
-                    <!--사진들-->
-                    <div class="inner_photo">
-                      <ul class="list_photo">
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bq1ezk/btslGzO5vrW/GQuNzSvOYR9B79FIDyh260/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">사진한개</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bq1ezk/btslGzO5vrW/GQuNzSvOYR9B79FIDyh260/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">사진한개</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bq1ezk/btslGzO5vrW/GQuNzSvOYR9B79FIDyh260/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">사진한개</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
-                    <div class="paging_slide">
-                      <span class="num_paging">
-                        <span class="num_page">1</span>
-                        / 4
-                      </span>
-                      <button class="btn_prev" type="button">
-                        <span class="ico_together2 ico_prev">이전버트</span>
-                      </button>
-                      <button class="btn_next" type="button">
-                        <span class="ico_together2 ico_next">다음버튼</span>
-                      </button>
-                    </div>
-                  </div>
-                  <span class="tit_subject"
-                    >여러분의 관심과 사랑이 합쳐져 완성할 '삼계탕 한 그릇'</span
-                  >
-                  <p class="desc_subject">
-                    카카오같이가치 기부자 여러분의 따스한 마음을, 따뜻한 반계탕을 드시게 될
-                    어르신들에게 온전히 전달할 수 있도록 하겠습니다. 뜨거운 여름, 어르신들의 한 끼
-                    식사에 풍요로움 '한 움큼' 어떠신가요?
-                  </p>
-                  <div class="photo_slide">
-                    <!--사진들-->
-                    <div class="inner_photo">
-                      <ul class="list_photo">
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/unxQz/btspnkHEpOY/gJvTKdYCk7i0OaGY8qQY51/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/da5KpY/btspxchIsaY/q73juCeCL7aSKiUCrEVTj0/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/bJ6gIq/btspxcvhB0D/gL6jxgvNUnbQcDX70KIMKK/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/Ephif/btspBACAuGF/ITBTKMHndy9JDe63FQKqmk/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/setz2/btspBAihFc4/1XbGskItJ3EDKMhcst5Bq0/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/unxQz/btspnkHEpOY/gJvTKdYCk7i0OaGY8qQY51/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                        <li>
-                          <span
-                            class="img_slide"
-                            style="
-                              background-image: url('https://mud-kage.kakaocdn.net/dn/da5KpY/btspxchIsaY/q73juCeCL7aSKiUCrEVTj0/c360.jpg');
-                            "
-                          ></span
-                          ><span class="txt_caption">내용</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
-                    <div class="paging_slide">
-                      <span class="num_paging">
-                        <span class="num_page">1</span>
-                        / 4
-                      </span>
-                      <button class="btn_prev" type="button">
-                        <span class="ico_together2 ico_prev">이전버트</span>
-                      </button>
-                      <button class="btn_next" type="button">
-                        <span class="ico_together2 ico_next">다음버튼</span>
-                      </button>
-                    </div>
-                  </div>
                 </div>
 
                 <div class="info_story">
@@ -323,21 +101,15 @@
                   </div>
                   <!--해시태그, 랜던값으로 색깔 지정-->
                   <div class="hash_group">
-                    <a href="#" class="link_hash hash_type1">#실버세대</a>
-                    <a href="#" class="link_hash hash_type2">#실버세대</a>
-                    <a href="#" class="link_hash hash_type3">#실버세대</a>
-                    <a href="#" class="link_hash hash_type4">#실버세대</a>
-                    <a href="#" class="link_hash hash_type5">#실버세대</a>
-                    <a href="#" class="link_hash hash_type6">#실버세대</a>
-                    <a href="#" class="link_hash hash_type7">#실버세대</a>
-                    <a href="#" class="link_hash hash_type8">#실버세대</a>
-                    <a href="#" class="link_hash hash_type9">#실버세대</a>
+                    {% for tag in tags %}
+                    <a href="#" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
+                    {% endfor %}
                   </div>
                 </div>
                 <!--목표금액,랭킹,기부 퍼센트-->
                 <div class="info_state">
-                  <span class="total_fund"> 2,406,390<span class="txt_won">원</span> </span>
-                  <span class="txt_goal">2,700,000원 목표</span>
+                  <span class="total_fund"></span>
+                  <span class="txt_goal"></span>
 
                   <!--모금액 퍼센트이미지-->
                   <!--100%완료시 fund_end 추가-->
@@ -399,7 +171,7 @@
                           </span>
                           <span class="info_suggester">
                             <span class="txt_suggester">프로젝트 주최자</span>
-                            <span class="name_suggester">내당노인복지관</span>
+                            <span class="name_suggester">{{ post.member.member_nickname }}</span>
                           </span>
                         </a>
                         <!--홈페이지, 인스타 등등-->
@@ -414,7 +186,7 @@
                       <!--모집,모금기간-->
                       <dl class="story_date">
                         <dt class="tit_date">모금기간 :</dt>
-                        <dd class="txt_date">2023.07.07 ~ 2023.08.07</dd>
+                        <dd class="txt_date">{{ post.fund_duration_start_date }} ~ {{ post.fund_duration_end_date }}</dd>
                       </dl>
                       <!--모금액 사용 계획-->
                       <div class="info_plan">
@@ -426,24 +198,16 @@
                         <!--토글 슬라이드 모금액-->
                         <div class="slide-togle" style="display: none">
                           <span class="plan_period">
-                            < 사업기간 : 2023. 08. 18 ~ 2023. 08. 31 >
+                            < 사업 예정기간 : {{ post.volunteer_duration_start_date }} ~ {{ post.volunteer_duration_end_date }} >
                           </span>
                           <ul class="list_plan">
-                            <li>
-                              <span class="num_plan"> 1.</span>
-                              <span class="txt_plan">
-                                <span class="txt_expense"> 보양식 식재료 6,750원×200명×2회 </span
-                                ><span class="emph_sign"
-                                  ><span class="num_type">2,700,000</span>원</span
-                                ></span
-                              >
-                            </li>
+
                           </ul>
                           <div class="info_goal">
                             <strong class="tit_goal"
                               >목표금액
                               <span class="num_goal emph_sign"
-                                >2,700,000<span class="txt_per">원</span></span
+                                ><span class="txt_per"></span></span
                               ></strong
                             >
                           </div>
@@ -451,7 +215,7 @@
                             ><span>모금액 미달 시 이렇게 사용합니다!</span><br /><span
                               class="txt_detail"
                               style="word-break: break-all"
-                              >자부담 지원 예정</span
+                              >자부담 지원 예정{{ post.target_amount_alternatives_plan }}</span
                             ></span
                           >
                           <div data-tiara-layer="receipt_team" class="info_receipt">
@@ -486,8 +250,8 @@
                 <div class="write_cmt">
                   <div class="inner_write">
                     <div class="info_append">
-                      <span class="txt_heading">카카오 지원 댓글 기부금 </span
-                      ><span class="emph_sign">149,800원</span>
+                 <!--     <span class="txt_heading">카카오 지원 댓글 기부금 </span
+                      ><span class="emph_sign">149,800원</span> -->
                     </div>
                     <a class="link_profile" href="#"
                       ><img
@@ -991,4 +755,18 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="/static/js/nelharang/detail.js"></script>
+  <script>
+      let test = "{{ contents|escapejs }}"
+      let amount ="{{ target_amount|escapejs }}"
+      let business_plan = "{{ business_plan|escapejs }}"
+      let amountSum = "{{ amount_sum }}"
+      const parsedAmountSum = JSON.parse(amountSum)
+      const parsedAmount = JSON.parse(amount)
+      const temp = JSON.parse(test)
+      const parsedPlan = JSON.parse(business_plan)
+      Function4(parsedAmountSum)
+      Function3(parsedPlan)
+      Function2(parsedAmount)
+      Function(temp)
+  </script>
 </html>

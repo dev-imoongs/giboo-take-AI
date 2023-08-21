@@ -59,7 +59,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=1 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -76,7 +76,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=2 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -93,7 +93,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=3 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -110,7 +110,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=4 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -127,7 +127,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=5 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -144,7 +144,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=6 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -161,7 +161,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=7 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -178,7 +178,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=8 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -195,7 +195,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=9 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -212,7 +212,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="#" class="link-cate"
+                                <a href="{% url 'neulhaerang:category-api-view' category_id=10 %}" class="link-cate"
                                 >
                                     <svg>
                                         <image
@@ -260,10 +260,9 @@
                     </div>
 
                     <!--카드배너 리스트-->
-                    <div class="list_fund">
-                        {% for posts, fund_now in combined_data %}
+                    <div class="list_fund"><!--
                         <li class="listcard">
-                            <a href="{% url 'neulhaerang:detail' %}" class="link_pack">
+                            <a href="" class="link_pack">
                     <span class="box_thumb">
                       <span
                               kagetype="c203"
@@ -280,20 +279,19 @@
                           ><span class="tag_state tag_state_default">종료임박</span
                           ></span
                           >
-                          {{ posts.neulhaerang_title }}
+
                         </strong>
-                        <span class="txt_proposer"> {{ posts.member.member_nickname }} </span>
+                        <span class="txt_proposer">  </span>
                       </span>
                       <span class="wrap_state">
                         <span class="state_bar">
                           <span class="state_gage state_ing" style="width: 95%"></span>
                         </span>
                       </span>
-                      <span class="price_goal">{{ fund_now.donation_amount__sum }}원</span>
+                      <span class="price_goal">원</span>
                     </span>
                             </a>
-                        </li>
-                        {% endfor %}
+                        </li>  -->
                 <!--        <li class="listcard">
                             <a href="#" class="link_pack">
                     <span class="box_thumb">
@@ -388,11 +386,15 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/nelharang/list.js"></script>
 <script>
+    const baseUrl = "{% url 'neulhaerang:detail' 0 %}"
+</script>
+<!--<script>
+
     let posts = "{{ posts|escapejs }}"
-    // let fund_now = {{ fund_now }}
+    let fund_now = {{ fund_now }}
     temp = JSON.parse(posts)
     console.log(temp)
-    // console.log(`fund_now${fund_now}`)
+    console.log(`fund_now${fund_now}`)
 
-</script>
+</script>-->
 </html>

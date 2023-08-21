@@ -293,24 +293,187 @@ const arrowBtnClickSlide = function (btn, prev) {
 
 }
 
-
-//왼쪽 클릭
-const $btn_prevs = $(".btn_prev")
-$btn_prevs.each((idx, btn_prev) => {
-    $(btn_prev).on("click", e => {
-        arrowBtnClickSlide(btn_prev, "prev")
+$(document).ready(()=>{
+    //왼쪽 클릭
+    const $btn_prevs = $(".btn_prev")
+    $btn_prevs.each((idx, btn_prev) => {
+        $(btn_prev).on("click", e => {
+            arrowBtnClickSlide(btn_prev, "prev")
+        })
     })
+
+
+    //오른쪽 클릭
+
+    const $btn_nexts = $(".btn_next")
+    $btn_nexts.each((idx, btn_next) => {
+        $(btn_next).on("click", e => {
+            arrowBtnClickSlide(btn_next)
+        })
 })
 
 
-//오른쪽 클릭
+function Function(temps) {
+    let addtext = ""
+    let multiImgflag = ""
+    temps.forEach((temp,i)=>{
+        console.log(temp)
+        if(temp.fields.neulhaerang_content_order !== multiImgflag) {
+            if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
+                addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`
+            } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
+                addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`
+            } else {
+                addtext += `<div class="photo_slide">
+                              <div class="inner_photo">
+                                <ul class="list_photo">
+                                <li>
+                                <span
+                                  class="img_slide"
+                                  style="
+                                    background-image: url(${temp.fields.inner_photo});
+                                  "
+                                ></span
+                                ><span class="txt_caption">${temp.fields.photo_explanation}</span>
+                              </li>
+                              </ul>
+                              </div>
+                            </div>`
+            }
+        }else{
+            addList = `<li>
+                        <span
+                          class="img_slide"
+                          style="
+                            background-image: url(${temp.fields.inner_photo});
+                          "
+                        ></span
+                        ><span class="txt_caption">${temp.fields.photo_explanation}</span>
+                      </li>`
+            $('.list_photo').append(addList)
+        }
+        multiImgflag = temp.fields.neulhaerang_content_order;
+        })
+    $('.cont_subject').html(addtext)
+}
 
-const $btn_nexts = $(".btn_next")
-$btn_nexts.each((idx, btn_next) => {
-    $(btn_next).on("click", e => {
-        arrowBtnClickSlide(btn_next)
-    })
+
 })
 
 
+// my_script.js
+// function Function(temps) {
+//     let addtext = ""
+//     let multiImgflag = ""
+//     temps.forEach((temp,i)=>{
+//         console.log(temp)
+//         if(temp.fields.neulhaerang_content_order !== multiImgflag) {
+//             if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
+//                 addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`
+//             } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
+//                 addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`
+//             } else {
+//                 addtext += `<div class="photo_slide">
+//                               <div class="inner_photo">
+//                                 <ul class="list_photo">
+//                                 <li>
+//                                 <span
+//                                   class="img_slide"
+//                                   style="
+//                                     background-image: url(${temp.fields.inner_photo});
+//                                   "
+//                                 ></span
+//                                 ><span class="txt_caption">${temp.fields.photo_explanation}</span>
+//                               </li>
+//                               </ul>
+//                               </div>
+//                             </div>`
+//             }
+//         }else{
+//             addtext += `<li>
+//                         <span
+//                           class="img_slide"
+//                           style="
+//                             background-image: url(${temp.fields.inner_photo});
+//                           "
+//                         ></span
+//                         ><span class="txt_caption">${temp.fields.photo_explanation}</span>
+//                       </li>`
+//
+//         }
+//         multiImgflag = temp.fields.neulhaerang_content_order;
+//         })
+//     $('.cont_subject').html(addtext)
+// }
 
+//
+
+function Function4(total_fund){
+        $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
+}
+
+function Function3(plans) {
+    addText = ""
+    plans.forEach((plan,i)=>{
+
+    addText += `<li>
+                  <span class="num_plan">${i+1}.</span>
+                  <span class="txt_plan">
+                    <span class="txt_expense">${plan.fields.plan_name}</span
+                    ><span class="emph_sign"
+                      ><span class="num_type"></span>${plan.fields.plan_amount.toLocaleString('ko-KR')}원</span
+                    ></span
+                  >
+                </li>`
+
+    })
+    $('.list_plan').html(addText)
+}
+
+function Function2(post){
+    const formattedAmount = post[0].fields.target_amount.toLocaleString('ko-KR');
+    $('.txt_goal').text(`${formattedAmount}원 목표`)
+    $('.num_goal').text(`${formattedAmount}원`)
+}
+function Function(temps) {
+    let addtext = "";
+    let multiImgflag = "";
+    temps.forEach((temp, i) => {
+        if (temp.fields.neulhaerang_content_order !== multiImgflag) {
+            if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
+                addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`;
+            } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
+                addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`;
+            } else {
+                addtext += `<div class="photo_slide">
+                              <div class="inner_photo">
+                                <ul class="list_photo">
+                                  <li>
+                                    <span class="img_slide"
+                                          style="background-image: url(${temp.fields.inner_photo});">
+                                    </span>
+                                    <span class="txt_caption">${temp.fields.photo_explanation}</span>
+                                  </li>`;
+
+                let j = i;
+                while (j < temps.length && temps[j].fields.neulhaerang_content_order == multiImgflag) {
+                    console.log('아아아ㅏㅇ')
+                    addtext += `<li>
+                                  <span class="img_slide"
+                                        style="background-image: url(${temps[j].fields.inner_photo});">
+                                  </span>
+                                  <span class="txt_caption">${temps[j].fields.photo_explanation}</span>
+                                </li>`;
+                    j++;
+                }
+                addtext += `</ul>
+                            </div>
+                          </div>`;
+
+            }
+       }
+        multiImgflag = temp.fields.neulhaerang_content_order;
+    });
+
+    $('.cont_subject').html(addtext);
+}
