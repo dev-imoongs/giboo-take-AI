@@ -10,7 +10,7 @@ class Notice(Period):
     notice_title = models.TextField(null=False, blank=False)
     notice_content = models.TextField(null=False, blank=False)
     notice_image = models.ImageField(null=True, blank=False, upload_to='notice/ype')
-    admin = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
+    admin = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_notice'

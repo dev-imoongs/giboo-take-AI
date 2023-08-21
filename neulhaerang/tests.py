@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
-    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag
+    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike
 
 
 # Create your tests here.
@@ -48,3 +48,28 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInne
     #         NeulhaerangTag(tag_name='흑흑', tag_type=7, neulhaerang_id=8),
     #
     #     ])
+
+    # NeulhaerangLike.objects.bulk_create([
+    #     NeulhaerangLike(member_id=1, neulhaerang_id=1),
+    #     NeulhaerangLike(member_id=2, neulhaerang_id=2),
+    #     NeulhaerangLike(member_id=3, neulhaerang_id=2),
+    #     NeulhaerangLike(member_id=4, neulhaerang_id=3),
+    #     NeulhaerangLike(member_id=5, neulhaerang_id=3),
+    #     NeulhaerangLike(member_id=6, neulhaerang_id=3),
+    #     NeulhaerangLike(member_id=7, neulhaerang_id=4),
+    #     NeulhaerangLike(member_id=8, neulhaerang_id=4),
+    #     NeulhaerangLike(member_id=1, neulhaerang_id=4),
+    #     NeulhaerangLike(member_id=2, neulhaerang_id=4),
+    #     NeulhaerangLike(member_id=3, neulhaerang_id=5),
+    #     NeulhaerangLike(member_id=4, neulhaerang_id=5),
+    #     NeulhaerangLike(member_id=5, neulhaerang_id=5),
+    #     NeulhaerangLike(member_id=6, neulhaerang_id=5),
+    #     NeulhaerangLike(member_id=7, neulhaerang_id=5),
+    #     NeulhaerangLike(member_id=8, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=1, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=2, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=3, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=4, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=5, neulhaerang_id=7),
+    #     NeulhaerangLike(member_id=6, neulhaerang_id=8),
+    # ])

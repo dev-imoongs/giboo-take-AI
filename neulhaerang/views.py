@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
-    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag
+    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer
 
@@ -25,7 +25,7 @@ class NeulhaerangDetailView(View):
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id)
 
         contents = list(inner_title_query) + list(content_query) + list(photo_query)
-        # print(contents)
+
         sorted_contents = sorted(contents, key=lambda item: item.neulhaerang_content_order)
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
@@ -75,17 +75,33 @@ class NeulhaerangListView(View):
 class NeulhaerangAPIView(APIView):
     def get(self, request):
         page = int(request.GET.get("page"))
-        pagenator = Pagenation(page=page, page_count=5, row_count=8, model=Neulhaerang)
+        category = request.GET.get("category")
+        sort = request.GET.get("sort")
+
+        if(category != '전체'):
+            neulhaerang = Neulhaerang.objects.all().filter(category__category_name=category)
+        else:
+            neulhaerang = Neulhaerang.objects.all()
+
+        if(sort == '추천순'):
+            neulhaerang = neulhaerang.annotate(neulhaerang=Count('neulhaeranglike')).order_by('-neulhaerang','-created_date')
+        elif(sort == '최신순'):
+            neulhaerang = neulhaerang.order_by('-created_date')
+        else:
+            neulhaerang = neulhaerang.order_by('-fund_duration_end_date','-created_date')
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
         datas = {
             "posts":posts,
-            "has_next":pagenator.has_next,
-            "has_prev":pagenator.has_prev,
-            "total":pagenator.total,
-            "start_page":pagenator.start_page,
-            "end_page":pagenator.end_page,
             "pagenator" : serialized_pagenator
         }
         return Response(datas)
+
+
+class TestView(View):
+    def post(self, request):
+
+        NeulhaerangInnerPhotos

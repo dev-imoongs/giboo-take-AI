@@ -12,7 +12,7 @@ class MemberSerializer(serializers.ModelSerializer):
 
 class NeulhaerangSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
-    donation_amount_sum = serializers.SerializerMethodField(read_only=True)
+    donation_amount_sum = serializers.SerializerMethodField(method_name='get_donation_amount_sum',read_only=True)
 
     def get_donation_amount_sum(self, neulhaerang):
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang).aggregate(Sum('donation_amount'))
