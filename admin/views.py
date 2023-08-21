@@ -44,14 +44,6 @@ class AdminMainView(View):
 
 class AdminMemberListView(View):
     def get(self,request):
-        if request.GET.get("page") is not None:
-            page = request.GET.get("page")
-        else :
-            page = 1
-
-
-
-
         return render(request,'admin/member/list.html')
 
 
@@ -74,6 +66,19 @@ class AdminGetMembersByPagedAPIView(APIView):
         return Response(datas)
 
 
+class AdminChangeMemberStatusAPIView(APIView):
+    def post(self,request):
+        member_ids = json.loads(request.body).get("member_ids")
+        members = Member.objects.filter(id__in = member_ids)
+
+        for member in members:
+            if member.member_status =="DELETED":
+                member.member_status = "NORMAL"
+                member.save()
+            else :
+                member.member_status ="DELETED"
+                member.save()
+        return Response(True)
 
 
 

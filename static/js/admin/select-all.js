@@ -1,5 +1,6 @@
-$(document).ready(function() {
-  $("#selectAll").click(function() {
+
+const checkboxEvent = ()=>{
+    $("#selectAll").click(function() {
     $(".subCheckbox").prop("checked", this.checked);
   });
 
@@ -10,4 +11,4 @@ $(document).ready(function() {
       $("#selectAll").prop("checked", false);
     }
   });
-});
+}
