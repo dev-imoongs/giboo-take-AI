@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지:기부앤테이크</title>
-    <link rel="stylesheet" href="../../static/css/common/common.css"/>
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_main.css"/>
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage_main.css' %}">
   </head>
   <body>
     <div id="whole-wrap">
@@ -133,7 +133,7 @@
                                   {% for title in www_neulhaerang_title %}
                           <li>
                             <div class="action-content-card">
-                              <a class="link-action-card" href={% url 'neulhaerang:detail' %}>
+                              <a class="link-action-card" href= >
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" 
                                   src="https://t1.kakaocdn.net/together_action_prod/action/20230805/q4yw7g3e3bkm_9a35522ca6184e31a73e697b9b305717?type=thumb&amp;opt=S100x100">
@@ -150,7 +150,7 @@
                             {% endfor %}
 {#                          <li>#}
 {#                            <div class="action-content-card">#}
-{#                              <a class="link-action-card" href="{% url 'neulhaerang:detail' %}">#}
+{#                              <a class="link-action-card" href=" ">#}
 {#                                <span class="thumb-action">#}
 {#                                  <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">#}
 {#                                </span>#}
@@ -183,13 +183,13 @@
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> {{ reply_content.neulhaerang_review.review_title }} </a>
+                              <a class="link-fund" href= > {{ reply_content.neulhaerang_review.review_title }} </a>
                             </span>
                             <span class="txt-comment">
                               <span class="desc-comment">{{ reply_content.reply_content }}</span>
                             </span>
                             <span class="info-append">
-                              <span class="txt-time">3시간 전</span>
+                              <span class="txt-time" data-timestamp="{{ reply_content.updated_date|date:"U" }}"></span>
                               <!--<like-comment>
                                 <button type="button" class="btn-like" >
                                   <span class="ico-together ico-like"></span>&nbsp;좋아요&nbsp;
@@ -205,7 +205,7 @@
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 게시글 제목</a>
+                              <a class="link-fund" href= > 게시글 제목</a>
                             </span>
                             <span class="txt-comment">
                               <span class="desc-comment">댓글 내용</span>
@@ -225,7 +225,7 @@
                         </li>-->
                       </ul>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:mypage-reply' %}> 더보기 </a>
+                        <a class="link-round" href=> 더보기 </a>
                       </div>
                     </div>
                   </user-comments>
@@ -298,7 +298,7 @@
                   <div class="inner_meditation">
                     <ul class="list_meditation">
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -310,7 +310,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -319,7 +319,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -328,7 +328,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>

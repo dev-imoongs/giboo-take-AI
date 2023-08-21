@@ -1,7 +1,10 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 
 import neulhaerang_review
 from member.models import Member
@@ -73,10 +76,9 @@ class MypageMainView(View):
                    # 'reply_title': review_title,
 
 
+
                    }
         return render(request, 'mypage/mypage-main.html', context)
-
-
 
 
 
@@ -123,3 +125,7 @@ class MemberChangeDonationStatusAPIView(APIView):
 
         member.save()
         return Response(True)
+
+class TimeReplyTimeView(APIView):
+    def get(self, request):
+        return render(request, 'mypage/mypage-main.html')
