@@ -1,8 +1,9 @@
 //페이지 네이션 구현
 let page=1
-const showMembersByPaged =  (page)=>{
+let search=""
+const showMembersByPaged =  (page,search)=>{
 
-    fetch(`/admin/get-members-by-paged/?page=${page}`)
+    fetch(`/admin/get-members-by-paged/?page=${page}&search=${search}`)
         .then(response => response.json())
         .then(result =>{
             console.log(result)
@@ -136,4 +137,12 @@ $(".delete-button").on("click",e=>{
             }
         })
 
+})
+
+
+//검색
+$(".search-icon").on("click",e=>{
+    search = $(".admin-search-box").val()
+    page = 1
+    showMembersByPaged(page,search)
 })

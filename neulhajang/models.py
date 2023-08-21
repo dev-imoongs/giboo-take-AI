@@ -19,8 +19,8 @@ class Neulhajang(Period):
     representing_tag = models.CharField(max_length=100, null=False, blank=False)
     participants_openchat_link = models.CharField(max_length=500,null=False, blank=False)
     neulhajang_status = models.CharField(max_length=100, null=False, blank=False)
-    member = models.ForeignKey(Member, null=False, on_delete=models.DO_NOTHING)
-    category = models.ForeignKey(Category, null=False, on_delete=models.DO_NOTHING)
+    member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, null=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang'
@@ -30,7 +30,7 @@ class NeulhajangInnerPhoto(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/innerphoto/')
     neulhajang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.CharField(max_length=300, null=False, blank=False)
-    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_inner_photo'
@@ -39,7 +39,7 @@ class NeulhajangInnerPhoto(Period):
 class NeulhajangMission(Period):
     mission_order = models.IntegerField(null=False, blank=False, default=0)
     mission_content = models.TextField(null=False, blank=False)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_mission'
@@ -48,7 +48,7 @@ class NeulhajangMission(Period):
 class NeulhajangInnerContent(Period):
     inner_content_text = models.TextField(null=False, blank=False)
     neulhajang_content_order = models.IntegerField(null=False,blank=False, default=0)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_inner_content'
@@ -57,7 +57,7 @@ class NeulhajangInnerContent(Period):
 class NeulhajangInnerTitle(Period):
     inner_title_text = models.TextField(null=False, blank=False)
     neulhajang_content_order = models.IntegerField(null=False,blank=False, default=0)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_inner_title'
@@ -65,7 +65,7 @@ class NeulhajangInnerTitle(Period):
 
 class NeulhajangCommitment(Period):
     inner_title_text = models.TextField(null=False, blank=False)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_commitment'
@@ -75,7 +75,7 @@ class CommitmentInnerPhotos(Period):
     inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/commitment_innerphoto/')
     photo_explanation = models.CharField(max_length=300, null=False, blank=False)
     commitment_content_order = models.IntegerField(null=False,blank=False, default=0)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_commitment_inner_photos'
@@ -84,7 +84,7 @@ class CommitmentInnerPhotos(Period):
 class CommitmentInnerContent(Period):
     inner_content_text = models.TextField(null=False, blank=False)
     commitment_content_order = models.IntegerField(null=False,blank=False, default=0)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_commitment_inner_content'
@@ -93,15 +93,15 @@ class CommitmentInnerContent(Period):
 class CommitmentInnerTitle(Period):
     inner_title_text = models.TextField(null=False, blank=False)
     commitment_content_order = models.IntegerField(null=False,blank=False, default=0)
-    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.DO_NOTHING)
+    neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_commitment_inner_title'
         ordering = ["-id"]
 
 class NeulhajangLike(Period):
-    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
-    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.DO_NOTHING)
+    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
+    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_like'
@@ -110,16 +110,16 @@ class NeulhajangLike(Period):
 class NeulhajangAuthenticationFeed(Period):
     feedContent = models.TextField(null=False, blank=False)
     feedPhoto = models.ImageField(null=False, blank=False, upload_to='neulhajang/feedphoto/')
-    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
-    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.DO_NOTHING)
+    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
+    neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_neulhajang_authentication_feed'
         ordering = ["-id"]
 
 class AuthenticationFeedLike(Period):
-    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
-    authentication_feed = models.ForeignKey(NeulhajangAuthenticationFeed, null=False, blank=False, on_delete=models.DO_NOTHING)
+    member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
+    authentication_feed = models.ForeignKey(NeulhajangAuthenticationFeed, null=False, blank=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'tbl_authentication_feed_like'
