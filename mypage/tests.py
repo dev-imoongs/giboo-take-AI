@@ -2,7 +2,7 @@ from django.test import TestCase
 
 import neulhaerang
 from member.models import Member
-from neulhaerang.models import NeulhaerangParticipants
+from neulhaerang.models import NeulhaerangParticipants, NeulhaerangReply
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 
 
@@ -32,6 +32,13 @@ from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 #     NeulhaerangReviewReply.objects.bulk_create([
 #         NeulhaerangReviewReply(member_id=1, neulhaerang_review_id=1),
 #         NeulhaerangReviewReply(member_id=1, neulhaerang_review_id=2),
+#
+#     ])
+
+# class NeulhaerangReply(TestCase):
+#     NeulhaerangReply.objects.bulk_create([
+#         NeulhaerangReply(reply_content='테스트 댓글입니다1', donation_id=, member_id=1, neulhaerang_id=1),
+#         NeulhaerangReply(reply_content='테스트 댓글입니다2', donation_id=, member_id=1, neulhaerang_id=2),
 #
 #     ])
 
