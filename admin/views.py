@@ -24,7 +24,7 @@ from workspace.serializers import MemberSerializer, PagenatorSerializer
 
 
 
-
+#메인 뷰
 class AdminMainView(View):
     def get(self,request):
         recent_five_members = Member.objects.all()[0:5]
@@ -51,7 +51,14 @@ class AdminMemberListView(View):
 class AdminGetMembersByPagedAPIView(APIView):
     def get(self,request):
         page = int(request.GET.get("page"))
-        pagenator = Pagenation(page=page, page_count=5, row_count=10, model=Member)
+        search = request.GET.get("search")
+
+        if search != 'undefined':
+            members_query_set = Member.objects.filter(member_nickname__contains=search).all()
+        else:
+            members_query_set = Member.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=members_query_set)
 
         members = MemberSerializer(pagenator.paged_models,many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
@@ -79,6 +86,7 @@ class AdminChangeMemberStatusAPIView(APIView):
                 member.member_status ="DELETED"
                 member.save()
         return Response(True)
+
 
 
 
