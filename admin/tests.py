@@ -17,8 +17,8 @@ class NoticeTest(TestCase):
     #     Member(member_age=20,member_email='admin',member_status='NORMAL',member_role="ADMIN",member_nickname="admin1",member_gender="M")
     # ])
 
-    for i in range(100):
-        Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
+    # for i in range(100):
+    #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
     admin = Member.objects.get(id=6);
     #
@@ -33,10 +33,10 @@ class NoticeTest(TestCase):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
 
 
-    # category = Category.objects.get(id=1)
+    category = Category.objects.get(id=1)
     # for i in range(10):
-    #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",volunteer_duration_start_date=datetime.now()
-    #                                ,volunteer_duration_end_date=datetime.now(),category=category)
+    Neulhaerang.objects.create(member=member,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
+                                   ,volunteer_duration_end_date=datetime.now(),category=category, thumbail_image='/static/image/mypage/giboo__takeLogo_white.png')
 
     # category = Category.objects.get(id=1)
     # for i in range(10):

@@ -439,6 +439,7 @@ function Function(temps) {
     let addtext = "";
     let multiImgflag = "";
     temps.forEach((temp, i) => {
+        console.log(temp)
         if (temp.fields.neulhaerang_content_order !== multiImgflag) {
             if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`;

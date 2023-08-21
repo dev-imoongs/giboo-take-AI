@@ -13,6 +13,5 @@ urlpatterns = [
 
     # api view
     path('list-api-view/', NeulhaerangAPIView.as_view(), name='list-api-view'),
-    path('list/<int:category_id>', NeulhaerangAPIView.as_view(), name='category-api-view'),
-
+    # path('list/<int:category_id>', NeulhaerangAPIView.as_view(), name='category-api-view'),
 ]
