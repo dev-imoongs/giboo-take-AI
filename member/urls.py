@@ -1,12 +1,15 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from member.views import LoginView, MyPageView
+from main.views import MainView
+from member.views import LoginView, LoginedView, LogoutView
 
 app_name = 'member'
 
 urlpatterns = [
     path('login/', TemplateView.as_view(template_name='header/header.html'), name='login'),
-    # path('mypage/', MyPageView.as_view('mypage/mypage-profile.html'), name='mypage'),
-    path('oauth/redirect', LoginView.as_view(), name='redirect')
+    path('logined/', LoginedView.as_view(), name='logined'),
+    path('oauth/redirect', LoginView.as_view(), name='redirect'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/success/', TemplateView.as_view(template_name='header/header.html'), name='reset')
 ]
