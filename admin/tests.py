@@ -27,14 +27,14 @@ class NoticeTest(TestCase):
     #       notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="제안자",admin=admin
     #        )
 
-    member = Member.objects.get(id=1)
+    member = Member.objects.get(id=3)
 
     # for i in range(10):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
 
 
     # category = Category.objects.get(id=1)
-    # for i in range(10):
+    # for i in range(100):
     #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",volunteer_duration_start_date=datetime.now()
     #                                ,volunteer_duration_end_date=datetime.now(),category=category)
 

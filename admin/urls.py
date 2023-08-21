@@ -3,9 +3,12 @@ from django.urls import path
 from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
     AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminReviewDetailView, AdminMainView, \
-    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView
+    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, AdminGetNeulhearangsByPagedAPIView, \
+    AdminDeleteNeulhaerangAPIView
 
 app_name = 'admin'
+
+
 
 urlpatterns = [
     path('main/', AdminMainView.as_view(), name='main'),
@@ -28,5 +31,8 @@ urlpatterns = [
     #rest api view
     path('get-members-by-paged/',AdminGetMembersByPagedAPIView.as_view(),name ='get-members-by-paged'),
     path('change-member-status/',AdminChangeMemberStatusAPIView.as_view()),
+    path('get-neulhaerangs-by-paged/', AdminGetNeulhearangsByPagedAPIView.as_view()),
+    path('delete-neulhaerangs/', AdminDeleteNeulhaerangAPIView.as_view()),
+
 
 ]
