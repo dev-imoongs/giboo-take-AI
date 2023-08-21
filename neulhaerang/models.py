@@ -94,7 +94,7 @@ class NeulhaerangReply(Period):
     reply_content = models.CharField(max_length=1000, null=False, blank=False)
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.DO_NOTHING)
     neulhaerang = models.ForeignKey(Neulhaerang, null=False, blank=False, on_delete=models.DO_NOTHING)
-    donation = models.ForeignKey(NeulhaerangDonation, null=False, blank=False, on_delete=models.DO_NOTHING)
+    donation = models.ForeignKey(NeulhaerangDonation, null=True, blank=False, on_delete=models.DO_NOTHING)
     class Meta:
         db_table = 'tbl_neulhaerang_reply'
         ordering = ["-id"]
