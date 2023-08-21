@@ -46,8 +46,16 @@ $('.btn-close').on("click", () => {
 
 // 비공개 버튼 클릭시 기부내역 비공개 공개로 하면 저장된 값을 불러와야함
 
+
+let firstPageFlag = false
 $('.btn-release').on("click", () => {
-    if ($('.btn-release').text() == '공개') {
+    if (firstPageFlag) return
+
+
+    fetch('/mypage/change-member-donation-status/').then(response =>{
+
+
+        if ($('.btn-release').text() == '공개') {
         $('.btn-release').text('비공개')
         toastMsg('기부내역을 비공개 합니다.')
     }else{
@@ -55,9 +63,12 @@ $('.btn-release').on("click", () => {
         $('.btn-release').text('공개')
         toastMsg('기부내역을 공개 합니다.')
         }
+    })
+
 })
+
 // 비공개 - 공개
-let firstPageFlag = false
+
 const toastMsg = function (text) {
     if (!firstPageFlag) {
         $('.toast-bottom-center').show()
