@@ -68,7 +68,7 @@ const showNeulhaerang =  (page, category, sort,scroll)=>{
               text += `<li class="listcard">
                     <a href="${post_url}" class="link_pack">
                     <span class="box_thumb">
-                      <span kagetype="c203" class="img_thumb" style="background-image: url(${post.thumbail_image});"></span>
+                      <span kagetype="c203" class="img_thumb" style="background-image: url(${post.thumbnail_image});"></span>
                       </span>
                       <span class="box_together">
                       <span class="bundle_tit">

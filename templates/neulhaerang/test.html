@@ -9,8 +9,10 @@
 </head>
 <body>
     <div>
-        <form action="{% url '' %}" method="post">
-        <input type="file">
+        <form action="{% url 'neulhaerang:test' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <input type="submit" value="완료">
         </form>
     </div>
 </body>
