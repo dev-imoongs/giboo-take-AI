@@ -3,7 +3,7 @@ from django.urls import path
 from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
     AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminReviewDetailView, AdminMainView, \
-    AdminGetMembersByPagedAPIView
+    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView
 
 app_name = 'admin'
 
@@ -26,6 +26,7 @@ urlpatterns = [
 
 
     #rest api view
-    path('get-members-by-paged/',AdminGetMembersByPagedAPIView.as_view(),name ='get-members-by-paged')
+    path('get-members-by-paged/',AdminGetMembersByPagedAPIView.as_view(),name ='get-members-by-paged'),
+    path('change-member-status/',AdminChangeMemberStatusAPIView.as_view()),
 
 ]
