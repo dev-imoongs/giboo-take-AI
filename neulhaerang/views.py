@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
     NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag
-from workspace.pagenation import Pagenation, CategoryPagenation
+from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer
 
 # Create your views here.
@@ -75,7 +75,7 @@ class NeulhaerangListView(View):
 class NeulhaerangAPIView(APIView):
     def get(self, request):
         page = int(request.GET.get("page"))
-        pagenator = CategoryPagenation(page=page, page_count=5, row_count=8, model=Neulhaerang)
+        pagenator = Pagenation(page=page, page_count=5, row_count=8, model=Neulhaerang)
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
