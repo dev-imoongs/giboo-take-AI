@@ -3,8 +3,10 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import neulhaerang_review
 from member.models import Member
-from neulhaerang.models import Neulhaerang
+from neulhaerang.models import Neulhaerang, NeulhaerangReply
+from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 
 
 # Create your views here.
@@ -35,14 +37,20 @@ class MypageMainView(View):
         neulhaerang = Neulhaerang.objects.get(id=1)
         member.total_donation_fund = '{:,}'.format(member.total_donation_fund)
         member.total_donation_count = '{:,}'.format(member.total_donation_count)
-        members = Member.objects.all()
-
+        # neulhaerang_review = NeulhaerangReview.objects.get(id=1)
+        # review_title = neulhaerang_review_reply.neulhaerang_review.neulhaerang_review_title
 
         temp = Neulhaerang.objects.filter(member_id=1)[0:2]
+        reply_temp = NeulhaerangReviewReply.objects.filter(member_id=1)[0:2]
+
         # print(abcd[i]['neulh'])
-       # temp.append(abcd.neulhaerang_title)
+        # temp.append(abcd.neulhaerang_title)
 
         neulhaerang_count = Neulhaerang.objects.filter(member_id=1).count()
+        reply_neulhaerang = NeulhaerangReply.objects.filter(member_id=1).count()
+        reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member_id=1).count()
+
+        total_reply = (reply_neulhaerang + reply_neulhaerang_review)
 
 
         context = {
@@ -58,8 +66,11 @@ class MypageMainView(View):
 
                    'volunteer_duration_start_date': neulhaerang.volunteer_duration_start_date,
                    'member_neulhaerang_count': neulhaerang_count,
-                   # 댓글 총 갯수 여기부터 하면됌 댓글, 리뷰 떄려넣어놨음
-                   # 'member_reply_count':
+                   # 댓글 총 갯수 여기부터 하면됌 댓글, 리뷰 때려넣어놨음
+                   'member_reply_count': total_reply,
+                   # 'member_reply_review_content': reply_temp,
+                   'www_reply_content': reply_temp,
+                   # 'reply_title': review_title,
 
 
                    }
