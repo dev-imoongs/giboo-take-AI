@@ -408,9 +408,9 @@ function Function(temps) {
 
 //
 
-function Function4(total_fund){
-        $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
-}
+// function Function4(total_fund){
+//         $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
+// }
 
 function Function3(plans) {
     addText = ""
@@ -430,16 +430,20 @@ function Function3(plans) {
     $('.list_plan').html(addText)
 }
 
-function Function2(post){
-    const formattedAmount = post[0].fields.target_amount.toLocaleString('ko-KR');
+function Function2(target_amounts, total_fund){
+    const formattedAmount = target_amounts[0].fields.target_amount.toLocaleString('ko-KR');
     $('.txt_goal').text(`${formattedAmount}원 목표`)
     $('.num_goal').text(`${formattedAmount}원`)
+    $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
+    let percentage = Math.ceil(total_fund / target_amounts[0].fields.target_amount * 100)
+    $('.mark_point').attr('style',`left:${percentage}%`)
+    $('.sign_graph').attr('style',`width:${percentage}%`)
+    $('.num_per').text(percentage)
 }
 function Function(temps) {
     let addtext = "";
     let multiImgflag = "";
     temps.forEach((temp, i) => {
-        console.log(temp)
         if (temp.fields.neulhaerang_content_order !== multiImgflag) {
             if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`;
@@ -451,7 +455,7 @@ function Function(temps) {
                                 <ul class="list_photo">
                                   <li>
                                     <span class="img_slide"
-                                          style="background-image: url(${temp.fields.inner_photo});">
+                                          style="background-image: url('/upload/${temp.fields.inner_photo}');">
                                     </span>
                                     <span class="txt_caption">${temp.fields.photo_explanation}</span>
                                   </li>`;
