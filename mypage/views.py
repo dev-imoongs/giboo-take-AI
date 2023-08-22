@@ -53,16 +53,20 @@ class MypageMainView(View):
         # neulhaerang_review = NeulhaerangReview.objects.get(id=1)
         # review_title = neulhaerang_review_reply.neulhaerang_review.neulhaerang_review_title
 
+        profile_badge = MemberBadge.objects.filter(member_id=1)[0:1].get().badge.badge_image
+
         temp = Neulhaerang.objects.filter(member_id=1)[0:2]
         reply_temp = NeulhaerangReviewReply.objects.filter(member_id=1)[0:2]
         badge_temp = MemberBadge.objects.filter(member_id=1)[0:5]
-        # byeoljji_temp = byeoljjis.objects.filter(member_id=1)[0:4]
+        byeoljji_temp = MemberByeoljji.objects.filter(member_id=1)[0:4]
         # print(abcd[i]['neulh'])
         # temp.append(abcd.neulhaerang_title)
 
         neulhaerang_count = Neulhaerang.objects.filter(member_id=1).count()
         reply_neulhaerang = NeulhaerangReply.objects.filter(member_id=1).count()
         reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member_id=1).count()
+        byeoljji_count = MemberByeoljji.objects.filter(member_id=1).count()
+        badge_count = MemberBadge.objects.filter(member_id=1).count()
 
         total_reply = (reply_neulhaerang + reply_neulhaerang_review)
 
@@ -72,6 +76,8 @@ class MypageMainView(View):
                    'www_neulhaerang_title': temp,
                    'member_nickname': member.member_nickname,
                    'donation_level': member.donation_level,
+                   'member_profile_image': member.profile_image,
+                   'member_profile_badge': profile_badge,
                    'donation_status': member.donation_status,
                    'total_donation_fund': member.total_donation_fund,
                    'total_donation_count': member.total_donation_count,
@@ -89,8 +95,9 @@ class MypageMainView(View):
 
                    # 뱃지
                    'www_badge_content': badge_temp,
-                   # 'www_byeoljji_content': byeoljji_temp,
-
+                   'www_byeoljji_content': byeoljji_temp,
+                   'byeoljji_count': byeoljji_count,
+                   'badge_count': badge_count,
 
                    }
         return render(request, 'mypage/mypage-main.html', context)

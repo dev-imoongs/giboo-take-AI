@@ -28,11 +28,11 @@
                     </div>
                   </div>
                   <div class="area-thumb">
-                    <a class="link-badge" href={% url 'mypage:badge' %}>
+                    <a class="link-badge-profile" href={% url 'mypage:badge' %}>
                       <span class="badge-thumb">
                         <img
                           class="img-thumb"
-                          src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png"
+                          src=/{{ member_profile_badge }}
                         />
                       </span>
                     </a>
@@ -41,7 +41,7 @@
                         <img
                           alt="프로필 사진"
                           class="img-thumb"
-                          src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png"
+                          src=/{{ member_profile_image }}
                         />
                       </span>
                     </a>
@@ -234,7 +234,7 @@
                     <div class="group-shadow group-badge group-badge-type02">
                       <h3 class="title-section section-type2">
                         뱃지
-                        <span class="color-g1">3</span>
+                        <span class="color-g1">{{ badge_count }}</span>
                       </h3>
                       <ul class="list-badge">
                           {% for badge in www_badge_content %}
@@ -293,7 +293,7 @@
                     <div class="group-shadow group-badge group-badge-type02">
                       <h3 class="title-section section-type2">
                         별찌
-                        <span class="color-g1">4</span>
+                        <span class="color-g1">{{ byeoljji_count }}</span>
                       </h3>
                                     <div class="group_meditation">
                   <div class="inner_meditation">
@@ -302,9 +302,9 @@
                       <li>
                           <a class="link_meditation" href= >
                               <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
+                                  <img class="thumb_img" src=/{{ byeoljji_contents.byeoljji.byeoljji_img }}>
                               </span>
-                              <strong class="tit_meditation">{{ byeoljji_contents.byeoljji_name}}</strong>
+                              <strong class="tit_meditation">{{ byeoljji_contents.byeoljji.byeoljji_name}}</strong>
                               <span class="txt_option">
                                   명상가 유정은
                                   3분
