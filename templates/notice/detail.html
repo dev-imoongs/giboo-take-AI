@@ -5,11 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>"공지사항 타이틀"</title>
-  <link rel="stylesheet" href="../../static/css/notice/notice-detail.css">
-  <link rel="stylesheet" href="../../static/css/common/common.css">
-  <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon" >
+  <link rel="stylesheet" href="{% static 'css/notice/notice-detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
+<!--  <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon" > -->
+  <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
 </head>
 <body>
+  {% if request.session.member_email %}
+  {% include 'header/logined-header.html' %}
+  {% else %}
+  {% include 'header/header.html' %}
+  {% endif %}
   <!-- 메인 -->
   <span class="main-wrap">
     <div class="total-main">
@@ -57,7 +63,7 @@
                 <br><br>
                 "그래, 노바! 아침에 이렇게 맛있는 식물들을 찾아냈어." 웅빈은 입안을 터져 나온 작은 나뭇잎 조각을 뱉으며 말했다.
                 <br><br>
-                
+
                 
             </p>
             <!-- 테스트 이미지 css 적용 완료 -->
@@ -91,7 +97,12 @@
       </div>
     </span>
           
-
+{% include 'footer/footer.html' %}
 </body>
-<script src="/static/js/notice/on.js"></script>
+<script src="{% static 'js/notice/on.js' %}"></script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>
