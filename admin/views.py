@@ -437,26 +437,37 @@ class AdminNoticeDetailView(View):
 
     def post(self, request):
         pass
-        # request = request.POST
-        # page = request.get("page")
-        # search = request.get("search")
-        # notice_id = request.get("notice_id")
-        # notice = Neulhajang.objects.get(id=notice_id)
-        #
-        # print(request)
-        # if reason:
-        #     pass
-        #     neulhajang.neulhajang_status = "미선정"
-        #     neulhajang.rejected_message = reason
-        #     neulhajang.save()
-        #
-        # else:
-        #     neulhajang.neulhajang_status = "행동중"
-        #     neulhajang.neulhajang_duration_start_date = timezone.now().date()
-        #     neulhajang.neulhajang_duration_end_date = timezone.now() + timedelta(days=neulhajang.neulhajang_duration)
-        #     neulhajang.save()
-        # next_url = reverse("admin:neulhajang/list") + f"?page={page}&search={search}"
-        # return redirect(next_url)
+
+        page = request.POST.get("page")
+        search = request.POST.get("search")
+        notice_id = request.POST.get("notice_id")
+
+        notice = Notice.objects.get(id=notice_id)
+
+        files = request.FILES
+
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        type = request.POST.get("type")
+        x_falg = request.POST.get("xFlag")
+
+        file = files.get("file")
+        if file:
+            notice.notice_image = file
+        elif x_falg=="true":
+            notice.notice_image=''
+
+
+        admin = Member.objects.get(member_email=request.session["member_email"])
+        notice.notice_title=title
+        notice.notice_content=content
+        notice.admin=admin
+        notice.type=type
+
+        notice.save()
+
+        next_url = reverse("admin:notice/list") + f"?page={page}&search={search}"
+        return redirect(next_url)
 
 
 

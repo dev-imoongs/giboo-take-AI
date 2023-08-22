@@ -36,10 +36,10 @@ class NoticeTest(TestCase):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
 
 
-    # category = Category.objects.get(id=1)
-    # for i in range(100):
-    #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",volunteer_duration_start_date=datetime.now()
-    #                                ,volunteer_duration_end_date=datetime.now(),category=category)
+    category = Category.objects.get(id=1)
+    for i in range(100):
+        Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",
+                                  category=category)
 
     # category = Category.objects.get(id=1)
     # for i in range(100):

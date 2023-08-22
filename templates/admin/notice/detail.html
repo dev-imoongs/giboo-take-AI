@@ -22,22 +22,39 @@
 
     <div class="content-wrap">
         <h2 class="title-name-a">공지사항 상세보기</h2>
+
         <!-- [S] 공지사항 등록 -->
-        <form action="">
+        <form action="/admin/notice/detail/" class="submit-productForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="xFlag" value="false">
+            <input type="hidden" name="page" value="{{ page }}">
+            <input type="hidden" name="search" value="{{ search }}">
+            <input type="hidden" name="notice_id" value="{{ notice.id }}">
             <div class="con-write-wrap">
                 <div class="notice-write">
                     <div class="write-title">제목</div>
                     <div class="write-sec">
-                        <input class="write-text write-input" type="text" placeholder="공지사항 제목을 적어주세요." name="title">
+                        <input class="write-text write-input" type="text" placeholder="공지사항 제목을 적어주세요." name="title" value="{{ notice.notice_title }}">
                     </div>
                 </div>
                 <div class="notice-write">
                     <div class="write-title">내용</div>
                     <div class="write-sec">
                         <textarea class="write-text write-notice" type="text" placeholder="공지사항 내용을 적어주세요."
-                                  name="content"></textarea>
+                                  name="content">{{ notice.notice_content }}</textarea>
                     </div>
                 </div>
+                  <div class="notice-write">
+                            <div class="write-title">안내 타겟</div>
+                            <div class="write-sec">
+                                <select name="type" class="sel-notice-target" id="">
+
+                                    <option value="주최자안내">주최자 안내</option>
+                                    <option value="서비스안내">서비스 안내</option>
+                                    <option value="참가자안내">참가자 안내</option>
+                                </select>
+                            </div>
+                        </div>
 
                 <div class="notice-write">
                     <div class="write-title">첨부파일</div>
@@ -51,7 +68,7 @@
                         <label for="attach">
                             <div class="search-notice-img">찾아보기</div>
                         </label>
-                        <input type="file" id="attach" style="display: none;" name="upload">
+                        <input type="file" id="attach" style="display: none;" name="file" class="file">
                     </div>
                 </div>
             </div>
@@ -60,8 +77,8 @@
 
             <!-- 수정하기 btn -->
             <div class="write-btn-wrap">
-                <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0)">목록</a></button>
-                <button type="button" class="btn btn-write">등록하기</button>
+                <button type="button" class="btn btn-list"><a class="go-list" href="/admin/notice/list/?page={{ page }}&search={{ search }}">공지사항 목록</a></button>
+                <button type="button" class="btn btn-write">수정하기</button>
             </div>
         </form>
 
@@ -79,4 +96,15 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{% static 'js/admin/side-bar.js' %}"></script>
+<script>
+    let image_url = "{{ notice.notice_image }}"
+    let type = "{{ notice.type }}"
+
+    $(".sel-notice-target").children().each((i,option)=>{
+        if($(option).val() == type){
+            $(option).attr("selected","selected")
+        }
+    })
+</script>
+<script src="{% static 'js/admin/notice-detail.js' %}"></script>
 </html>
