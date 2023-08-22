@@ -13,8 +13,11 @@
   </head>
   <body>
     <div class="wrap">
-        {% include 'header/header.html' %}
-      <!-- <header></header> -->
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
+    {% include 'header/header.html' %}
+    {% endif %}
       <main>
         <div class="main-content">
           <div class="article">
@@ -31,11 +34,11 @@
                     <span class="txt-tab">모금후기</span>
                   </a>
                 </li>
-                <li>
+           <!--     <li>
                   <a href="#" class="link-tab">
                     <span class="txt-tab">나눔캠페인</span>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </div>
 
@@ -229,8 +232,8 @@
               </div>
               <!--카드배너 리스트-->
               <div class="list_fund">
-                <li class="listcard">
-                  <a href="{% url 'neulhaerang_review:review/detail' %}" class="link_pack">
+            <!--    <li class="listcard">
+                  <a href="#" class="link_pack">
                     <span class="box_thumb">
                       <span
                         kagetype="c203"
@@ -244,7 +247,7 @@
                       <span class="bundle_tit">
                         <strong class="tit_together ellipsis_type1">
                           <span class="tag_bundle"
-                            ><span class="tag_state tag_state_default">종료임박</span
+                            ><span class="tag_state tag_state_default"></span
                             ></span
                           >
                           안심하고 공익제보할 수 있는 사회를 만들어요 📢
@@ -340,15 +343,23 @@
                       <span class="price_goal">3,027,899원</span>
                     </span>
                   </a>
-                </li>
+                </li> -->
               </div>
             </div>
           </div>
         </div>
       </main>
-        {% include 'footer/footer.html' %}
+      {% include 'footer/footer.html' %}
     </div>
   </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="/static/js/nelharang/review-list.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="{% static 'js/neulhaerang/review-list.js' %}"></script>
+<script>
+    const baseUrl2 = "{% url 'neulhaerang_review:review/detail' 0 %}"
+</script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>
