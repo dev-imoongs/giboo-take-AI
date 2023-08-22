@@ -11,5 +11,5 @@ urlpatterns = [
     path('logined/', LoginedView.as_view(), name='logined'),
     path('oauth/redirect', LoginView.as_view(), name='redirect'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('logout/success/', TemplateView.as_view(template_name='header/header.html'), name='reset')
+    path('logined/reset/', TemplateView.as_view(template_name='header/header.html'), name='reset')
 ]

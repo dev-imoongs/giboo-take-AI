@@ -41,6 +41,7 @@ class LoginView(View):
 
 class LoginedView(View):
     def get(self, request):
+        print(request.session['access_token'])
         member = Member.objects.get(member_email=request.session['member_email'])
         context = {'member': member}
         return render(template_name='header/logined-header.html', request=request, context=context)
@@ -48,14 +49,12 @@ class LoginedView(View):
 
 class LogoutView(View):
     def get(self, request):
-        token = request.session['access_token']
-        print(token)
+        print("로그아웃 성공")
+        access_token = request.session['access_token']
         headers = {
-            'Authorization': f'Bearer {token}',
+            'Authorization': f'Bearer {access_token}',
             'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
 
         response = requests.post('https://kapi.kakao.com/v1/user/logout', headers=headers)
-        print(response.json())
-
-        return redirect('member:main')
+        return redirect('member:reset')

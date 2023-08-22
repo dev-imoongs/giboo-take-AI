@@ -17,7 +17,7 @@
           <a href="" class="logo-link"></a>
         </h1>
         <!-- 반응형 돋보기-->
-        <a href="" class="mobile-nav-item mobile-search-link">
+        <a href="/search/form/" class="mobile-nav-item mobile-search-link">
           <div aria-hidden="true">
             <svg class="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
               <g fill="#202020" fill-rule="nonzero">
@@ -152,7 +152,7 @@
                   <span class="channel-button-text">채널추가</span>
                 </button>
               </div>
-              <button type="button" class="side-menu-logout-button" onclick="kakaoLogout()">로그아웃</button>
+              <button type="button" class="side-menu-logout-button" onclick="location.href='reset/'">로그아웃</button>
               <button type="button" class="side-menu-close-button">
                 <svg class="side-menu-close-svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
                   <path d="M29.37.41a1.5 1.5 0 0 1 2.12 0l.1.1a1.5 1.5 0 0 1 0 2.12L18.22 16l13.37 13.37a1.5 1.5 0 0 1 0 2.12l-.1.1a1.5 1.5 0 0 1-2.12 0L16 18.22 2.63 31.59a1.5 1.5 0 0 1-2.007.103L.51 31.59l-.099-.1a1.5 1.5 0 0 1 0-2.12L13.78 16 .41 2.63a1.5 1.5 0 0 1 0-2.12l.1-.1a1.5 1.5 0 0 1 2.12 0L16 13.78z" fill="#202020" fill-rule="evenodd">
@@ -174,10 +174,7 @@
                 <i class="new-badge"></i></a>
             </li>
             <li class="list-item-container header-menu">
-              <a href="" class="menu-item-link"
-                >늘해랑
-                
-              </a>
+              <a href="" class="menu-item-link">늘해랑</a>
             </li>
             <li class="list-item-container header-menu">
               <a href="" class="menu-item-link">늘하장</a>
@@ -202,7 +199,7 @@
           </ul>
         </nav>
         <div class="pc-util-menu">
-          <a href="" class="util-button write" onclick="location.href='member/logout/'">제안하기</a>
+          <a href="" class="util-button write">제안하기</a>
           <div class="pc-user-util-menu">
             <button type="button" class="pc-user-button">
               <span class="pc-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
@@ -219,14 +216,14 @@
                 <a href="" class="pc-user-sub-menu-link"><span class="sub-menu-txt">설정</span></a>
               </li>
               <li class="pc-user-sub-menu-list">
-                <button class="logout-button" onclick="kakaoLogout()">
+                <button class="logout-button" onclick="location.href='reset/'">
                   <span class="sub-menu-txt">로그아웃</span>
                 </button>
               </li>
             </ul>
           </div>
         </div>
-        <a href="" class="pc-search-link">
+        <a href="/search/form/" class="pc-search-link">
           <div aria-hidden="true">
             <svg class="pc-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
               <g fill="#202020" fill-rule="nonzero">
@@ -241,25 +238,4 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/header/logined-header.js'%}'"></script>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js" integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh" crossorigin="anonymous"></script>
-  <script>
-    Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
-  </script>
-
-  <button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
-
-  <script>
-    function kakaoLogout() {
-      Kakao.Auth.logout()
-        .then(function() {
-          deleteCookie();
-        })
-      redirectUri: 'http://localhost:10000/member/logout/success'
-    }
-
-    // 아래는 데모를 위한 UI 코드입니다.
-    function deleteCookie() {
-      document.cookie = 'authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
-  </script>
 </html>
