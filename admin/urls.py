@@ -37,7 +37,7 @@ urlpatterns = [
     path('get-neulhajangs-by-paged/', AdminGetNeulhajangsByPagedAPIView.as_view()),
     path('delete-neulhajangs/', AdminDeleteNeulhajangAPIView.as_view()),
     path('get-reviews-by-paged/', AdminGetReviewsByPagedAPIView.as_view()),
-    path('delete-reviews/', AdminDeleteReviewAPIView.as_view()),
+    # path('delete-reviews/', AdminDeleteReviewAPIView.as_view()),
 
 
 ]
