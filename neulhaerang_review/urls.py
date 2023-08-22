@@ -5,6 +5,6 @@ from neulhaerang_review.views import NeulhaerangReviewListView, NeulhaerangRevie
 app_name = 'neulhaerang_review'
 
 urlpatterns = [
-    path('review/list/', NeulhaerangReviewListView.as_view(),name='review/list'),
-    path('review/detail/', NeulhaerangReviewDetailView.as_view(),name='review/detail'),
+    path('list/', NeulhaerangReviewListView.as_view(),name='review/list'),
+    path('detail/', NeulhaerangReviewDetailView.as_view(),name='review/detail'),
 ]

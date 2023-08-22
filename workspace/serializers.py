@@ -5,6 +5,7 @@ from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReview
 from neulhajang.models import Neulhajang
+from notice.models import Notice
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -38,8 +39,16 @@ class NeulhajangSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='neulhaerang.member.member_nickname', read_only=True)
     neulhaerang_title = serializers.CharField(source='neulhaerang.neulhaerang_title', read_only=True)
+    neulhaerang_id = serializers.IntegerField(source='neulhaerang.id', read_only=True)
     class Meta:
         model = NeulhaerangReview
+        fields = '__all__'
+
+
+class NoticeSerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='admin.member_nickname', read_only=True)
+    class Meta:
+        model = Notice
         fields = '__all__'
 
 class PagenatorSerializer(serializers.Serializer):

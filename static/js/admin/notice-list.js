@@ -2,15 +2,15 @@
 
 page = page ? page :1
 search = search=='None' ? '' :search
-const showReviewsByPaged =  (page,search)=>{
+const shownoticesByPaged =  (page,search)=>{
 
-    fetch(`/admin/get-reviews-by-paged/?page=${page}&search=${search}`)
+    fetch(`/admin/get-notices-by-paged/?page=${page}&search=${search}`)
         .then(response => response.json())
         .then(result =>{
             console.log(result)
             let text=''
             let pageText=''
-           let reviews= result.reviews
+           let notices= result.notices
            let pagenator= result.pagenator
             text+=`   <thead>
                             <tr>
@@ -19,45 +19,36 @@ const showReviewsByPaged =  (page,search)=>{
                                 </th>
                                 <th>No</th>
                                 <th>작성자</th>
-                                <th style="font-weight: bold">후기 제목</th>
-                                <th style="font-weight: bold">늘해랑 제목</th>
+                                <th style="font-weight: bold">공지사항 제목</th>
                                 <th>작성 날짜</th>
+                                <th>공지 대상</th>
                             </tr>
                             </thead>`
-            reviews.forEach((review,i)=>{
+            notices.forEach((notice,i)=>{
                 text+=`<tr>
                                 <td class="checkbox-line">
                                     <input class="subCheckbox" type="checkbox" name="check">
                                 </td>
                                 <td class="noticeId">
-                                    ${review.id}
+                                    ${notice.id}
                                 </td>
-                                <td>${review.member_nickname}</td>
+                                <td>${notice.member_nickname}</td>
                                 <td>  
-                                    <a target="_blank" style="font-weight: bold;" 
-                                    href="/review/detail/?review_id=${review.id}"
-                                    >
-                                         ${review.review_title}
+                                    <a style="font-weight: bold;" href="/admin/notice/detail/?notice_id=${notice.id}&page=${page}&search=${search}">
+                                         ${notice.notice_title}
                                     </a>
                                   
                                 </td>
-                                  <td>  
-                                    <a style="font-weight: bold;" target="_blank" href="/neulhaerang/detail/${review.neulhaerang_id}"
-                                    >
-                                    
-                                         ${review.neulhaerang_title}
-                                    </a>
-                                  
-                                </td>
-                        
                                 <td>
-                                    ${review.created_date}
+                                    ${notice.created_date}
                                 </td>
-                               
+                                <td class="color-icon">
+                                    ${notice.type}
+                                </td>
                             </tr>`
             })
 
-            $(".review-table").html(text)
+            $(".notice-table").html(text)
 
             pageText+=`<div class="page-button-box">`
 
@@ -101,33 +92,33 @@ const showReviewsByPaged =  (page,search)=>{
         })
 }
 
-showReviewsByPaged(page,search)
+shownoticesByPaged(page,search)
 
 //하단 페이지 버튼 클릭시 이동
 const pageBtnAddEvent = (pagenator)=>{
     $(".page-button").each((i,btn)=>{
     $(btn).on("click",e=>{
         page = Number($(btn).find("span").text())
-        showReviewsByPaged(page,search)
+        shownoticesByPaged(page,search)
     })
 })
     $(".left-page-button").on("click",e=>{
         page = pagenator.start_page-1
-        showReviewsByPaged(page,search)
+        shownoticesByPaged(page,search)
     })
       $(".right-page-button").on("click",e=>{
         page = pagenator.end_page+1
-        showReviewsByPaged(page,search)
+        shownoticesByPaged(page,search)
     })
 }
 
 
 //게시판 선택 삭제
 $(".delete-button").on("click",e=>{
-    let review_ids = []
+    let notice_ids = []
     $(".subCheckbox").filter((i,checkbox)=> $(checkbox).prop("checked")).each((i,checkbox)=>{
         let member_id = Number($(checkbox).closest(".checkbox-line").next().text())
-        review_ids.push(member_id)
+        notice_ids.push(member_id)
     })
 
     let datas = {
@@ -136,15 +127,15 @@ $(".delete-button").on("click",e=>{
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-            review_ids
+            notice_ids
              }),
     }
 
-    fetch("/admin/delete-reviews/", datas)
+    fetch("/admin/delete-notices/", datas)
         .then(response=>response.json())
         .then(result =>{
             if(result){
-                showReviewsByPaged(page,search)
+                shownoticesByPaged(page,search)
             }
         })
 
@@ -155,5 +146,5 @@ $(".delete-button").on("click",e=>{
 $(".search-icon").on("click",e=>{
     search = $(".admin-search-box").val()
     page = 1
-    showReviewsByPaged(page,search)
+    shownoticesByPaged(page,search)
 })

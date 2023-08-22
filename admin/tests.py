@@ -21,7 +21,9 @@ class NoticeTest(TestCase):
     # for i in range(100):
     #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
-    admin = Member.objects.get(id=6);
+
+
+
     #
     # for i in range(10):
     #     Notice.objects.create(
@@ -57,8 +59,9 @@ class NoticeTest(TestCase):
     #     Category(category_name="동물"),
     #     Category(category_name="환경"),
     # ])
-    for i in range(20):
-        NeulhaerangReview.objects.create(review_title=f"리뷰 제목{i}",neulhaerang_id=i,)
+    # for i in range(20):
+        # # neulhaerang = Neulhaerang.objects.get(id=i+1)
+        # NeulhaerangReview.objects.create(review_title=f"리뷰 제목{i}",neulhaerang_id=i+1)
 
 
 
