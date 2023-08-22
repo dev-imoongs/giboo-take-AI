@@ -11,7 +11,11 @@
 </head>
 <body>
 <div class="wrap">
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
     {% include 'header/header.html' %}
+    {% endif %}
     <!-- <header></header> -->
     <main>
         <div class="main-content">
@@ -384,7 +388,7 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/static/js/nelharang/list.js"></script>
+<script src="/static/js/neulhaerang/list.js"></script>
 <script>
     const baseUrl = "{% url 'neulhaerang:detail' 0 %}"
 </script>

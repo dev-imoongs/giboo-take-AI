@@ -2,7 +2,7 @@ from django.db.models import Sum
 from rest_framework import serializers
 
 from member.models import Member
-from neulhaerang.models import Neulhaerang, NeulhaerangDonation
+from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangReply
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -25,6 +25,12 @@ class NeulhaerangSerializer(serializers.ModelSerializer):
 class NeulhaerangDonationSerializer(serializers.ModelSerializer):
     class Meta:
         model = NeulhaerangDonation
+        fields = '__all__'
+
+class NeulhaerangReplySerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    class Meta:
+        model = NeulhaerangReply
         fields = '__all__'
 
 class PagenatorSerializer(serializers.Serializer):

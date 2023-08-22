@@ -11,8 +11,7 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInne
     NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji, NeulhaerangParticipants, \
     NeulhaerangReply, ReplyLike
 from workspace.pagenation import Pagenation, Pagenation
-from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer
-
+from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReplySerializer
 
 
 class NeulhaerangDetailView(View):
@@ -113,17 +112,17 @@ class NeulhaerangAPIView(APIView):
         }
         return Response(datas)
 
-class NeulhaerangDetailAPIView(APIView):
+class NeulhaerangDetailReplyAPIView(APIView):
     def get(self, request):
         replyPage = int(request.GET.get('replyPage'))
-        replyCont = request.GET.get('replyCont')
+
         neulhaerang_id = request.GET.get('neulhaerangId')
-        replys = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id).order_by("-created_date")[0:5]
         # reply_likes = []
         # for reply in replys:
         #     ReplyLike.objects.all().filter(neulhaerang_reply_id=reply.id)
-        NeulhaerangReply.objects.create(member_id='1',neulhaerang_id=neulhaerang_id, reply_content=replyCont)
 
+        replys = NeulhaerangReplySerializer(replys_queryset,many=True).data
 
 
         datas = {
@@ -132,11 +131,20 @@ class NeulhaerangDetailAPIView(APIView):
 
         return Response(datas)
 
+class NeulhaerangDetailReplyWriteAPIView(APIView):
+    def get(self, request):
+        replyCont = request.GET.get('replyCont')
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        NeulhaerangReply.objects.create(member_id='1', neulhaerang_id=neulhaerang_id, reply_content=replyCont)
+        return Response(True)
+
+
+
 class TestView(View):
     def get(self, request):
         return render(request, 'neulhaerang/test.html')
     def post(self, request):
         file = request.FILES
         # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
-        Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
-                                   ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))
+        # Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
+        #                            ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))
