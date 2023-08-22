@@ -32,14 +32,14 @@
                     </div>
                 </div>
                 <div class="notice-write">
-                    <div class="write-title">늘해랑 주제</div>
+                    <div class="write-title">카테고리</div>
                     <div class="write-sec">
                         <input class="write-text write-input" type="text" readonly
                                value="{{ neulhaerang.category.category_name }}">
                     </div>
                 </div>
                 <div class="notice-write">
-                    <div class="write-title">작성자</div>
+                    <div class="write-title">주최자</div>
                     <div class="write-sec">
                         <input class="write-text write-input" type="text" readonly
                                value="{{ neulhaerang.member.member_nickname }}">
@@ -78,8 +78,13 @@
                 <div class="notice-write">
                     <div class="write-title">늘해랑 <br>등록 거부 사유</div>
                     <div class="write-sec">
-                        <textarea style="height: 120px;" id="inputText" name= "refuse-reason" class="write-text write-notice" type="text"
-                                  placeholder="늘해랑 등록 거부시, 거부 사유를 적어주세요"></textarea>
+                        <textarea style="height: 120px;" id="inputText" name="refuse-reason"
+                                  {% if neulhaerang.neulhaerang_status != "검토중" %}
+                                    readonly
+                                  {% endif %}
+
+                                  class="write-text write-notice" type="text"
+                                  placeholder="늘해랑 등록 거부시, 거부 사유를 적어주세요">{% if neulhaerang.neulhaerang_status == "미선정" %}{{ neulhaerang.rejected_message }}{% else %}{% endif %}</textarea>
                     </div>
                 </div>
 
@@ -99,12 +104,15 @@
                     <button type="button" class="btn btn-list">실제 늘해랑
                     </button>
                 </a>
-                <a>
-                    <button type="button" id="refuseButton" class="btn btn-write">신청 거부</button>
-                </a>
-                <a class="go-list">
-                    <button type="button" id="consentButton" class="btn btn-write"> 신청 수락</button>
-                </a>
+                {% if neulhaerang.neulhaerang_status == "검토중" %}
+                    <a>
+                        <button type="button" id="refuseButton" class="btn btn-write">신청 거부</button>
+                    </a>
+                    <a class="go-list">
+                        <button type="button" id="consentButton" class="btn btn-write"> 신청 수락</button>
+                    </a>
+                {% endif %}
+
             </div>
         </form>
 

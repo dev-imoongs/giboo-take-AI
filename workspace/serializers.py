@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
+from neulhajang.models import Neulhajang
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -25,6 +26,12 @@ class NeulhaerangSerializer(serializers.ModelSerializer):
 class NeulhaerangDonationSerializer(serializers.ModelSerializer):
     class Meta:
         model = NeulhaerangDonation
+        fields = '__all__'
+
+class NeulhajangSerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    class Meta:
+        model = Neulhajang
         fields = '__all__'
 
 class PagenatorSerializer(serializers.Serializer):

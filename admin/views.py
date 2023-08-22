@@ -18,7 +18,7 @@ from neulhaerang.models import Neulhaerang
 from neulhajang.models import Neulhajang
 from notice.models import Notice
 from workspace.pagenation import Pagenation
-from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer
+from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer, NeulhajangSerializer
 
 
 # Create your views here.
@@ -115,7 +115,7 @@ class AdminNeulhaerangListView(View):
         return render(request,'admin/neulhaerang/list.html',datas)
 
 
-class AdminGetNeulhearangsByPagedAPIView(APIView):
+class AdminGetNeulhaerangsByPagedAPIView(APIView):
     def get(self,request):
         page = int(request.GET.get("page"))
         search = request.GET.get("search")
@@ -144,7 +144,6 @@ class AdminGetNeulhearangsByPagedAPIView(APIView):
 class AdminDeleteNeulhaerangAPIView(APIView):
     def post(self,request):
         neulhaerang_ids = json.loads(request.body).get("neulhaerang_ids")
-        print(neulhaerang_ids)
         neulhaerangs = Neulhaerang.objects.filter(id__in= neulhaerang_ids).delete()
         return Response(True)
 
@@ -153,10 +152,10 @@ class AdminDeleteNeulhaerangAPIView(APIView):
 
 class AdminNeulhaerangDetailView(View):
     def get(self,request):
-        nuelhaerang_id = request.GET.get("nuelhaerang_id")
+        neulhaerang_id = request.GET.get("neulhaerang_id")
         page = request.GET.get("page")
         search = request.GET.get("search")
-        neulhaerang = Neulhaerang.objects.filter(id=nuelhaerang_id)[0]
+        neulhaerang = Neulhaerang.objects.filter(id=neulhaerang_id)[0]
 
         datas = {
             "neulhaerang" : neulhaerang,
@@ -185,8 +184,8 @@ class AdminNeulhaerangDetailView(View):
         else:
             neulhaerang.neulhaerang_status ="모금중"
             neulhaerang.fund_duration_start_date=timezone.now().date()
-            # neulhaerang.fund_duration_end_date = timezone.now() + timedelta(days=)
-
+            neulhaerang.fund_duration_end_date = timezone.now() + timedelta(days=neulhaerang.neulhaerang_duration)
+            neulhaerang.save()
         next_url = reverse("admin:neulhaerang/list") +f"?page={page}&search={search}"
         return redirect(next_url)
 
@@ -194,14 +193,98 @@ class AdminNeulhaerangDetailView(View):
 
 
 class AdminNeulhajangListView(View):
+    def get(self, request):
+        if request.GET.get("page"):
+            page = int(request.GET.get("page"))
+        else:
+            page = 1
+
+        if request.GET.get("search"):
+            search = request.GET.get("search")
+        else:
+            search = ''
+
+        datas = {
+            "page": page,
+            "search": search,
+        }
+        return render(request, 'admin/neulhajang/list.html', datas)
+
+
+
+
+
+class AdminGetNeulhajangsByPagedAPIView(APIView):
     def get(self,request):
-        return render(request,'admin/neulhajang/list.html')
+        page = int(request.GET.get("page"))
+        search = request.GET.get("search")
+
+
+        if search :
+           neulhajangs_query_set = Neulhajang.objects.filter(neulhajang_title__contains=search).all()
+        else:
+            neulhajangs_query_set = Neulhajang.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=neulhajangs_query_set)
+
+        neulhajangs = NeulhajangSerializer(pagenator.paged_models,many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "neulhajangs":neulhajangs,
+            "pagenator" : serialized_pagenator
+
+        }
+
+
+        return Response(datas)
+
+class AdminDeleteNeulhajangAPIView(APIView):
+    def post(self,request):
+        neulhajang_ids = json.loads(request.body).get("neulhajang_ids")
+        neulhajang = Neulhaerang.objects.filter(id__in= neulhajang_ids).delete()
+        return Response(True)
+
 
 
 class AdminNeulhajangDetailView(View):
-    def get(self,request):
-        return render(request,'admin/neulhajang/detail.html')
+    def get(self, request):
+        nuelhajang_id = request.GET.get("nuelhajang_id")
+        page = request.GET.get("page")
+        search = request.GET.get("search")
+        neulhajang = Neulhajang.objects.filter(id=nuelhajang_id)[0]
 
+        datas = {
+            "neulhajang": neulhajang,
+            "page": page,
+            "search": search,
+        }
+
+        return render(request, 'admin/neulhajang/detail.html', datas)
+
+    def post(self, request):
+
+        request = request.POST
+        reason = request.get("refuse-reason")
+        page = request.get("page")
+        search = request.get("search")
+        neulhajang_id = request.get("neulhajang_id")
+        neulhajang = Neulhajang.objects.get(id=neulhajang_id)
+
+        print(request)
+        if reason:
+            pass
+            neulhajang.neulhajang_status = "미선정"
+            neulhajang.rejected_message = reason
+            neulhajang.save()
+
+        else:
+            neulhajang.neulhajang_status = "모금중"
+            neulhajang.fund_duration_start_date = timezone.now().date()
+            neulhajang.fund_duration_end_date = timezone.now() + timedelta(days=neulhajang.neul)
+            neulhajang.save()
+        next_url = reverse("admin:nuelhajang/list") + f"?page={page}&search={search}"
+        return redirect(next_url)
 
 
 class AdminNoticeListView(View):

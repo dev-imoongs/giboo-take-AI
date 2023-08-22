@@ -3,8 +3,9 @@ from django.urls import path
 from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
     AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminReviewDetailView, AdminMainView, \
-    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, AdminGetNeulhearangsByPagedAPIView, \
-    AdminDeleteNeulhaerangAPIView
+    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, \
+    AdminDeleteNeulhaerangAPIView, AdminGetNeulhajangsByPagedAPIView, AdminDeleteNeulhajangAPIView, \
+    AdminGetNeulhaerangsByPagedAPIView
 
 app_name = 'admin'
 
@@ -31,8 +32,10 @@ urlpatterns = [
     #rest api view
     path('get-members-by-paged/',AdminGetMembersByPagedAPIView.as_view(),name ='get-members-by-paged'),
     path('change-member-status/',AdminChangeMemberStatusAPIView.as_view()),
-    path('get-neulhaerangs-by-paged/', AdminGetNeulhearangsByPagedAPIView.as_view()),
+    path('get-neulhaerangs-by-paged/', AdminGetNeulhaerangsByPagedAPIView.as_view()),
     path('delete-neulhaerangs/', AdminDeleteNeulhaerangAPIView.as_view()),
+    path('get-neulhajangs-by-paged/', AdminGetNeulhajangsByPagedAPIView.as_view()),
+    path('delete-neulhajangs/', AdminDeleteNeulhajangAPIView.as_view()),
 
 
 ]

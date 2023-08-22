@@ -2,15 +2,15 @@
 
 page = page ? page :1
 search = search=='None' ? '' :search
-const showNeulhaerangsByPaged =  (page,search)=>{
+const showNeulhajangsByPaged =  (page,search)=>{
 
-    fetch(`/admin/get-neulhaerangs-by-paged/?page=${page}&search=${search}`)
+    fetch(`/admin/get-neulhajangs-by-paged/?page=${page}&search=${search}`)
         .then(response => response.json())
         .then(result =>{
             console.log(result)
             let text=''
             let pageText=''
-           let neulhaerangs= result.neulhaerangs
+           let neulhajangs= result.neulhajangs
            let pagenator= result.pagenator
             text+=`   <thead>
                             <tr>
@@ -24,33 +24,33 @@ const showNeulhaerangsByPaged =  (page,search)=>{
                                 <th>상태</th>
                             </tr>
                             </thead>`
-            neulhaerangs.forEach((neulhaerang,i)=>{
+            neulhajangs.forEach((neulhajang,i)=>{
                 text+=`<tr>
                                 <td class="checkbox-line">
                                     <input class="subCheckbox" type="checkbox" name="check">
                                 </td>
                                 <td class="noticeId">
-                                    ${neulhaerang.id}
+                                    ${neulhajang.id}
                                 </td>
-                                <td>${neulhaerang.member_nickname}</td>
+                                <td>${neulhajang.member_nickname}</td>
                                 <td>  
-                                    <a style="font-weight: bold;" href="/admin/neulhaerang/detail/?neulhaerang_id=${neulhaerang.id}&page=${page}&search=${search}">
-                                         ${neulhaerang.neulhaerang_title}
+                                    <a style="font-weight: bold;" href="/admin/neulhajang/detail/?neulhajang_id=${neulhajang.id}&page=${page}&search=${search}">
+                                         ${neulhajang.neulhajang_title}
                                     </a>
                                   
                                 </td>
                                 <td>
-                                    ${neulhaerang.created_date}
+                                    ${neulhajang.created_date}
                                 </td>
                                 <td class="color-icon">
                                     <span class="icon-wrap">
-                                        <img class="green" src="${staticUrl}image/admin/${neulhaerang.neulhaerang_status =="검토중"? 'caution':neulhaerang.neulhaerang_status=="미선정"?'x-icon':'check'}.png">
+                                        <img class="green" src="${staticUrl}image/admin/${neulhajang.neulhajang_status =="검토중"? 'caution':neulhajang.neulhajang_status=="미선정"?'x-icon':'check'}.png">
                                     </span>
                                 </td>
                             </tr>`
             })
 
-            $(".neulhaerang-table").html(text)
+            $(".neulhajang-table").html(text)
 
             pageText+=`<div class="page-button-box">`
 
@@ -94,33 +94,33 @@ const showNeulhaerangsByPaged =  (page,search)=>{
         })
 }
 
-showNeulhaerangsByPaged(page,search)
+showNeulhajangsByPaged(page,search)
 
 //하단 페이지 버튼 클릭시 이동
 const pageBtnAddEvent = (pagenator)=>{
     $(".page-button").each((i,btn)=>{
     $(btn).on("click",e=>{
         page = Number($(btn).find("span").text())
-        showNeulhaerangsByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
 })
     $(".left-page-button").on("click",e=>{
         page = pagenator.start_page-1
-        showNeulhaerangsByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
       $(".right-page-button").on("click",e=>{
         page = pagenator.end_page+1
-        showNeulhaerangsByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
 }
 
 
 //게시판 선택 삭제
 $(".delete-button").on("click",e=>{
-    let neulhaerang_ids = []
+    let neulhajang_ids = []
     $(".subCheckbox").filter((i,checkbox)=> $(checkbox).prop("checked")).each((i,checkbox)=>{
         let member_id = Number($(checkbox).closest(".checkbox-line").next().text())
-        neulhaerang_ids.push(member_id)
+        neulhajang_ids.push(member_id)
     })
 
     let datas = {
@@ -129,15 +129,15 @@ $(".delete-button").on("click",e=>{
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-            neulhaerang_ids
+            neulhajang_ids
              }),
     }
 
-    fetch("/admin/delete-neulhaerangs/", datas)
+    fetch("/admin/delete-neulhajangs/", datas)
         .then(response=>response.json())
         .then(result =>{
             if(result){
-                showNeulhaerangsByPaged(page,search)
+                showNeulhajangsByPaged(page,search)
             }
         })
 
@@ -148,5 +148,5 @@ $(".delete-button").on("click",e=>{
 $(".search-icon").on("click",e=>{
     search = $(".admin-search-box").val()
     page = 1
-    showNeulhaerangsByPaged(page,search)
+    showNeulhajangsByPaged(page,search)
 })

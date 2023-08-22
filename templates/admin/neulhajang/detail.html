@@ -3,88 +3,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>관리자페이지 늘하장 상세</title>
-   <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin/side-bar.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin/notice-form.css' %}">
     <link rel="icon" href="{% static 'image/favicon.png' %}">
 </head>
 <body>
-<!-- 사이드 바 -->
-  {% include "admin/side-bar.html" %}
-<!-- </div> -->
-<!-- 사이드 바 끝-->
-        <!--mainScreen 공지사항 작성하기-->
-        <div class="mainContent">
+{% include "admin/side-bar.html" %}
 
-            <div class="content-wrap">
-                <h2 class="title-h2">늘하장 상세</h2>
-                <!-- [S] 공지사항 등록 -->
-                <form action="" method="post">
-                    <div class="con-write-wrap">
-                        <div class="notice-write notice-write2">
-                            <div class="write-title">늘하장 제목</div>
-                            <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
-                            </div>
-                        </div>
-                        <div class="notice-write notice-write2">
-                            <div class="write-title">늘하장 주제</div>
-                            <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
-                            </div>
-                        </div>
-                        <div class="notice-write notice-write2">
-                            <div class="write-title">작성자</div>
-                            <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
-                            </div>
-                        </div>
+<div class="mainContent">
 
-<!-- 여기부터 필요없을시 삭제 -->
-                        <div class="notice-write notice-write2">
-                            <div class="write-title">늘하장 기간</div>
-                            <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
-                            </div>
-                        </div>
+    <div class="content-wrap">
+        <h2 class="title-h2">늘하장 신청 상세</h2>
+        <!-- [S] 공지사항 등록 -->
+        <form action="/admin/neulhajang/detail/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="page" value="{{ page }}">
+            <input type="hidden" name="search" value="{{ search }}">
+            <input type="hidden" name="neulhajang_id" value="{{ neulhajang.id }}">
 
-                        <div class="notice-write">
-                            <div class="write-title">늘하장 작성글 상세보기 링크</div>
-                            <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
-                            </div>
-                        </div>
-<!-- 여기까지 삭제 -->
-
-
-
+            <div class="con-write-wrap">
+                <div class="notice-write">
+                    <div class="write-title">늘하장 제목</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.neulhajang_title }}">
                     </div>
-                    <!-- [E] 공지사항 등록 -->
-
-
-                    <!-- 버튼 테스트용 링크들은 수정 필요 -->
-                    <div class="write-btn-wrap">
-                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">늘하장 목록</a></button>
-                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">늘하장 작성페이지</a></button>
-                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0);">게시글 삭제</a></button>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">카테고리</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.category.category_name }}">
                     </div>
-                </form>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">주최자</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.member.member_nickname }}">
+                    </div>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">관리자에게 <br>하고싶은 말</div>
+                    <div class="write-sec">
+                        <textarea style="height: 120px;" class="write-text write-notice" type="text" readonly
+                                  value="{{ neulhajang.message_to_admin }}"></textarea>
+                    </div>
+                </div>
+                <!-- 여기부터 필요없을시 삭제 -->
+                <div class="notice-write">
+                    <div class="write-title">모금 기간</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.fund_duration_start_date }}~{{ neulhajang.fund_duration_end_date }}">
+                    </div>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">목표액</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.target_amount }}">
+                    </div>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">모집 인원</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.participants_max_count }}">
+                    </div>
+                </div>
+                <!-- 여기까지 삭제 -->
+                <div class="notice-write">
+                    <div class="write-title">늘하장 <br>등록 거부 사유</div>
+                    <div class="write-sec">
+                        <textarea style="height: 120px;" id="inputText" name="refuse-reason"
+                                  {% if neulhajang.neulhajang_status != "검토중" %}
+                                    readonly
+                                  {% endif %}
+
+                                  class="write-text write-notice" type="text"
+                                  placeholder="늘하장 등록 거부시, 거부 사유를 적어주세요">{% if neulhajang.neulhajang_status == "미선정" %}{{ neulhajang.rejected_message }}{% else %}{% endif %}</textarea>
+                    </div>
+                </div>
+
 
             </div>
+            <!-- [E] 공지사항 등록 -->
 
 
-        </div>
+            <!-- 버튼 테스트용 링크들은 수정 필요 -->
+            <div class="write-btn-wrap">
+                <a class="go-list" href="/admin/neulhajang/list?page={{ page }}&search={{ search }}">
+                    <button type="button" class="btn btn-list">늘하장 목록
+                    </button>
+                </a>
+                <a target="_blank" class="go-list"
+                   href="{% url 'neulhajang:detail' neulhajang_id=neulhajang.id %}">
+                    <button type="button" class="btn btn-list">실제 늘하장
+                    </button>
+                </a>
+                {% if neulhajang.neulhajang_status == "검토중" %}
+                    <a>
+                        <button type="button" id="refuseButton" class="btn btn-write">신청 거부</button>
+                    </a>
+                    <a class="go-list">
+                        <button type="button" id="consentButton" class="btn btn-write"> 신청 수락</button>
+                    </a>
+                {% endif %}
 
-    </section>
-    <!-- [E] mainSidebar -->
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+<!-- [E] mainSidebar -->
 
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{% static 'js/admin/side-bar.js' %}"></script>
+<script src="{% static 'js/admin/button.js' %}"></script>
+
+
 </html>
-
-
-
-
