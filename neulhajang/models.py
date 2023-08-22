@@ -15,7 +15,7 @@ class Neulhajang(Period):
     participants_target_amount = models.IntegerField(null=False, blank=False, default=0)
     promise_commit_content = models.TextField(null=False, blank=False)
     neulhajang_title = models.TextField(null=False, blank=False)
-    thumnail_image = models.ImageField(null=False, blank=False, upload_to='neulhajang/thumbnail/')
+    thumnail_image = models.ImageField(null=False, blank=False, upload_to='neulhajang/thumbnail/%Y/%m/%d')
     representing_tag = models.CharField(max_length=100, null=False, blank=False)
     participants_openchat_link = models.CharField(max_length=500,null=False, blank=False)
     neulhajang_status = models.CharField(max_length=100, null=False, blank=False)
@@ -28,7 +28,7 @@ class Neulhajang(Period):
         ordering = ["-id"]
 
 class NeulhajangInnerPhoto(Period):
-    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/innerphoto/')
+    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/innerphoto/%Y/%m/%d')
     neulhajang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.CharField(max_length=300, null=False, blank=False)
     neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.CASCADE)
@@ -73,7 +73,7 @@ class NeulhajangCommitment(Period):
         ordering = ["-id"]
 
 class CommitmentInnerPhotos(Period):
-    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/commitment_innerphoto/')
+    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhajang/commitment_innerphoto/%Y/%m/%d')
     photo_explanation = models.CharField(max_length=300, null=False, blank=False)
     commitment_content_order = models.IntegerField(null=False,blank=False, default=0)
     neulhajang = models.ForeignKey(Neulhajang,null=False, blank=False, on_delete=models.CASCADE)
@@ -110,7 +110,7 @@ class NeulhajangLike(Period):
 
 class NeulhajangAuthenticationFeed(Period):
     feedContent = models.TextField(null=False, blank=False)
-    feedPhoto = models.ImageField(null=False, blank=False, upload_to='neulhajang/feedphoto/')
+    feedPhoto = models.ImageField(null=False, blank=False, upload_to='neulhajang/feedphoto/%Y/%m/%d')
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
     neulhajang = models.ForeignKey(Neulhajang, null=False, blank=False, on_delete=models.CASCADE)
 

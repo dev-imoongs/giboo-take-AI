@@ -7,7 +7,7 @@ from workspace.models import Period
 
 class NeulhaerangReview(Period):
     review_title = models.TextField(null=False, blank=False)
-    thumbnail_image = models.ImageField(null=False, blank=False, upload_to='neulhaerang_review/thumbnail')
+    thumbnail_image = models.ImageField(null=False, blank=False, upload_to='neulhaerang_review/thumbnail/%Y/%m/%d')
     byeoljji_receiver_openchat_link = models.TextField(null=False, blank=False)
     neulhaerang = models.ForeignKey(Neulhaerang, null=False, blank=False, on_delete=models.CASCADE)
 
@@ -76,7 +76,7 @@ class ReviewInnerContent(Period):
         ordering = ["-id"]
 
 class ReviewInnerPhotos(Period):
-    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulharang/inner-photo/')
+    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhaerang_review/innerphoto/%Y/%m/%d')
     neulhaerang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.TextField(null=False, blank=False)
