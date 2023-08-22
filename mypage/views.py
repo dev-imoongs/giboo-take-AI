@@ -47,7 +47,7 @@ class MypageMainView(View):
     def get(self, request):
         member = Member.objects.get(id=1)
         neulhaerang = Neulhaerang.objects.get(id=1)
-        byeoljjis = MemberByeoljji.neulhaerang.byeoljji_set
+
         member.total_donation_fund = '{:,}'.format(member.total_donation_fund)
         member.total_donation_count = '{:,}'.format(member.total_donation_count)
         # neulhaerang_review = NeulhaerangReview.objects.get(id=1)
@@ -56,7 +56,7 @@ class MypageMainView(View):
         temp = Neulhaerang.objects.filter(member_id=1)[0:2]
         reply_temp = NeulhaerangReviewReply.objects.filter(member_id=1)[0:2]
         badge_temp = MemberBadge.objects.filter(member_id=1)[0:5]
-        byeoljji_temp = byeoljjis.objects.filter(member_id=1)[0:4]
+        # byeoljji_temp = byeoljjis.objects.filter(member_id=1)[0:4]
         # print(abcd[i]['neulh'])
         # temp.append(abcd.neulhaerang_title)
 
@@ -89,7 +89,7 @@ class MypageMainView(View):
 
                    # 뱃지
                    'www_badge_content': badge_temp,
-                   'www_byeoljji_content': byeoljji_temp,
+                   # 'www_byeoljji_content': byeoljji_temp,
 
 
                    }
