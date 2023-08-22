@@ -6,12 +6,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../static/css/common/common.css" />
-    <link rel="stylesheet" href="../../static/css/main/main.css" />
-    <link rel="stylesheet" href="../../static/css/main/media-main.css" />
+    <link rel="stylesheet" href="{% static 'css/common/common.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/main/main.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/main/media-main.css'%}" />
+    <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
     <title>main</title>
 </head>
 <body>
+{% if request.session.member_email %}
+{% include 'header/logined-header.html' %}
+{% else %}
+{% include 'header/header.html' %}
+{% endif %}
 <main id="main" class="page-container">
     <section class="main-branding-section">
         <h3 class="main-branding-title">당신의 착한 마음을<br>같이가치가 응원합니다❤️</h3>
@@ -471,5 +477,11 @@
         </section>
     </div>
 </main>
+{% include 'footer/footer.html' %}
 </body>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>

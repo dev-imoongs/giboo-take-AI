@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{% static '/css/neulhaerang/list.css'%}" />
-    <link rel="shortcut icon" href="{% static '/image/favicon_Test.png' %}">
+    <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
     <title>늘해랑 : 모집/펀딩</title>
 </head>
 <body>
@@ -393,9 +393,9 @@
     const baseUrl = "{% url 'neulhaerang:detail' 0 %}"
 </script>
 {% if request.session.member_email %}
-    <script src="/static/js/header/logined-header.js"></script>
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}
-    <script src="/static/js/header/header.js"></script>
+    <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
 <!--<script>
 

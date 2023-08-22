@@ -489,7 +489,7 @@ function Function(temps) {
                                           <span class="ico_together2 ico_next">다음버튼</span>
                                         </button>
                                       </div>`
-            if($('.paging_slide')){
+            if(!$('.paging_slide')){
                 $('.photo_slide').append(slideText)
             }
         }
