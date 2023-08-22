@@ -5,6 +5,7 @@ from django.test import TestCase
 from customer_center.models import Inquery
 from member.models import Member
 from neulhaerang.models import Neulhaerang
+from neulhaerang_review.models import NeulhaerangReview
 from neulhajang.models import Neulhajang
 from notice.models import Notice
 from static_app.models import Category
@@ -27,21 +28,21 @@ class NoticeTest(TestCase):
     #       notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="제안자",admin=admin
     #        )
 
-    member = Member.objects.get(id=1)
+    member = Member.objects.get(id=10)
 
     # for i in range(10):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
 
 
-    category = Category.objects.get(id=1)
-    # for i in range(10):
-    Neulhaerang.objects.create(member=member,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
-                                   ,volunteer_duration_end_date=datetime.now(),category=category, thumbail_image='/static/image/mypage/giboo__takeLogo_white.png')
+    # category = Category.objects.get(id=1)
+    # for i in range(100):
+    #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",volunteer_duration_start_date=datetime.now()
+    #                                ,volunteer_duration_end_date=datetime.now(),category=category)
 
     # category = Category.objects.get(id=1)
-    # for i in range(10):
+    # for i in range(100):
     #     Neulhajang.objects.create(member=member, neulhajang_title=f"늘하장 제목{i}",
-    #                               neulhajang_duration_start_date=datetime.now(),neulhajang_duration_end_date=datetime.now(),
+    #                               neulhajang_duration=60,neulhajang_status="검토중",
     #                               commitment_duration_end_date=datetime.now(),commitment_duration_start_date=datetime.now(),category=category)
 
     # Category.objects.bulk_create([
@@ -56,6 +57,8 @@ class NoticeTest(TestCase):
     #     Category(category_name="동물"),
     #     Category(category_name="환경"),
     # ])
+    for i in range(20):
+        NeulhaerangReview.objects.create(review_title=f"리뷰 제목{i}",neulhaerang_id=i,)
 
 
 
