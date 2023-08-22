@@ -50,7 +50,7 @@
                 <!--검토중, 미선정 나타내는 칸-->
                 <div class="box_info">
                   <p class="desc_info">
-                    <em class="emph_give">모금 검토중: {{ post.neulhaerang_status }}</em>
+                    <em class="emph_give">{{ post.neulhaerang_status }}</em>
                     <span class="txt_g" style="white-space: pre-line"
                       >이 모금은 심사파트너 기관에서 검토중입니다. 모금이 시작되면
                       응원해주세요!</span
@@ -85,18 +85,11 @@
                     <strong class="tit_rellink">관련 링크</strong>
                     <ul class="list_ref">
                       <li>
-                        <a class="link_ref" href="http://www.haeundaejangsan.or.kr/" target="_blank"
+                        <a class="link_ref" href="{{ post.participants_openchat_link }}" target="_blank"
                           ><span class="txt_line">봉사 참가자용 오픈카톡</span></a
                         >
                       </li>
-                      <li>
-                        <a
-                          class="link_ref"
-                          href="https://www.youtube.com/@user-oj6yq2yq8i"
-                          target="_blank"
-                          ><span class="txt_line">기부천사 오픈카톡</span></a
-                        >
-                      </li>
+
                     </ul>
                   </div>
                   <!--해시태그, 랜던값으로 색깔 지정-->
@@ -121,7 +114,7 @@
                           <!--left로 퍼센트조정-->
                           <span class="mark_point" style="left: 90%">
                             <span class="ico_chart txt_result"
-                              ><span class="num_per"> 90 </span><span class="txt_per">%</span>
+                              ><span class="num_per"> 90 </span><span class="txt_per"></span>
                             </span>
                           </span>
                         </div>
@@ -143,12 +136,10 @@
                     <dd class="txt_fund"></dd>
                   </dl>
                   <dl class="detail_fund fund_belong">
-                    <dt class="tit_fund">ㄴ 최고의 기부천사 (1명)</dt>
-                    <dd class="txt_fund">아이와 함께 만든 비즈 팔찌</dd>
-                    <dt class="tit_fund">ㄴ 감동의 기부천사 (10명)</dt>
-                    <dd class="txt_fund">아이와 함께 만든 비즈 반지</dd>
-                    <dt class="tit_fund">ㄴ 은은한 기부천사(100명)</dt>
-                    <dd class="txt_fund">아이의 손글씨 편지</dd>
+                      {% for byeoljji in byeoljjies %}
+                    <dt class="tit_fund">ㄴ {{ byeoljji.byeoljji_rank }}위 ({{ byeoljji.byeoljji_count }}명)</dt>
+                    <dd class="txt_fund">{{ byeoljji.byeoljji_name }}</dd>
+                      {% endfor %}
                     <dt class="txt_fund warn_zzi">(익명 기부시 별찌 대상자에서 제외됩니다.)</dt>
                     <dt class="txt_fund warn_zzi">
                       (같은 금액 기부시 먼저 기부한 천사가 기부천사가 됩니다.)
@@ -280,10 +271,10 @@
                                   src="https://t1.kakaocdn.net/together_image/common/avatar/avatar03.png"
                                 /><a class="ico_together2 btn_del">삭제</a>
                               </div>
-                            </div> -->
+                            </div>
                           <button type="button" class="btn_emot">
                             <span class="ico_together2 ico_emot"></span> 이모티콘
-                          </button>
+                          </button> -->
 
                           <!--이모티콘 누를시 내가가진 이모티콘이 나옴-->
                           <!-- <div class="emoticon_layer" style="display: none"></div> -->
@@ -298,7 +289,7 @@
                 </div>
                 <div class="wrap_info">
                   <div class="inner_info">
-                    <span class="txt_cmt">댓글 <span class="emph_sign">1,722</span></span>
+                    <span class="txt_cmt">댓글 <span class="emph_sign">{{ reply_count }}</span></span>
                     <div class="wrap_sort">
                       <input type="checkbox" id="inpSort" class="inp_sort" /><label
                         for="inpSort"
@@ -382,12 +373,13 @@
               <div class="group_endlist">
                 <div class="inner_slide">
                   <ul class="list_slide" style="width: 900px">
+                      {% for bottom_post in bottom_posts %}
                     <li>
                       <a href="#" class="link_slide">
                         <span
                           class="area_thumb"
                           style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
+                            background-image: url('/upload/{{ bottom_post.thumbnail_image }}');
                           "
                         ></span>
                       </a>
@@ -395,65 +387,12 @@
                         <a class="link_slide" href="#"
                           ><span class="tit_slide">모금함</span
                           ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
+                            >{{ bottom_post.neulhaerang_title }}</span
                           ></a
                         >
                       </div>
                     </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
+                      {% endfor %}
                   </ul>
                 </div>
               </div>
@@ -463,12 +402,12 @@
                 <button type="button" class="btn_g btn_cheer">
                   <span class="ico_together ico_cheer"></span
                   ><span class="txt_float txt_cheer"
-                    >응원<span class="num_active">4,218</span></span
+                    >응원<span class="num_active">{{ likes_count }}</span></span
                   ></button
                 ><button type="button" class="btn_g btn_participate">
                   <span class="ico_together ico_share"></span
                   ><span class="txt_float txt_share"
-                    >동참<span class="num_active">20/30</span></span
+                    >동참<span class="num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
                   >
                 </button>
                 <!--기부 가능-->
@@ -760,13 +699,14 @@
       let amount ="{{ target_amount|escapejs }}"
       let business_plan = "{{ business_plan|escapejs }}"
       let amountSum = "{{ amount_sum }}"
+      let neulhaerangId = "{{ neulhaerang_id }}"
       const parsedAmountSum = JSON.parse(amountSum)
       const parsedAmount = JSON.parse(amount)
       const temp = JSON.parse(test)
       const parsedPlan = JSON.parse(business_plan)
-      Function4(parsedAmountSum)
       Function3(parsedPlan)
-      Function2(parsedAmount)
+      Function2(parsedAmount,parsedAmountSum)
       Function(temp)
+
   </script>
 </html>

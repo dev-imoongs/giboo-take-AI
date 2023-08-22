@@ -7,13 +7,13 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
-    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike
+    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji, NeulhaerangParticipants, \
+    NeulhaerangReply, ReplyLike
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer
 
-# Create your views here.
+
 
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
@@ -27,14 +27,25 @@ class NeulhaerangDetailView(View):
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id)
 
         contents = list(inner_title_query) + list(content_query) + list(photo_query)
-
+        byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
         sorted_contents = sorted(contents, key=lambda item: item.neulhaerang_content_order)
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
+        likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
+        participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
+        reply_count = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id).count()
+        bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
+
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
 
         context = {
+            'neulhaerang_id': neulhaerang_id,
+            'bottom_posts': bottom_posts,
+            'reply_count': reply_count,
+            'participants_count' : participants_count,
+            'likes_count' : likes_count,
+            'byeoljjies': byeoljji,
             'amount_sum': amount_sum['donation_amount__sum'],
             'target_amount': serializers.serialize("json",target_amount),
             'tags': tags,
@@ -102,6 +113,24 @@ class NeulhaerangAPIView(APIView):
         }
         return Response(datas)
 
+class NeulhaerangDetailAPIView(APIView):
+    def get(self, request):
+        replyPage = int(request.GET.get('replyPage'))
+        replyCont = request.GET.get('replyCont')
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        replys = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        # reply_likes = []
+        # for reply in replys:
+        #     ReplyLike.objects.all().filter(neulhaerang_reply_id=reply.id)
+        NeulhaerangReply.objects.create(member_id='1',neulhaerang_id=neulhaerang_id, reply_content=replyCont)
+
+
+
+        datas = {
+            'replys':replys,
+        }
+
+        return Response(datas)
 
 class TestView(View):
     def get(self, request):
