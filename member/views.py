@@ -10,40 +10,52 @@ from member.models import Member
 class LoginView(View):
     def get(self, request):
         code = request.GET.get("code")
+        path = request.GET.get("state")
         query_string = '?Content-type: application/x-www-form-urlencoded;charset=utf-8&' \
                        'grant_type=authorization_code&' \
-                       'client_id=82730a86e5659b6ad4023759851f9f34&' \
-                       'redirect_uri=http://localhost:10000/member/oauth/redirect&' \
+                       'client_id=4026e9a3108be3903a5b5e255d4c1f06&' \
+                       'redirect_uri=http://localhost:10000/member/login&' \
                        f'code={code}'
-        print(code)
-        print(query_string)
 
         response = requests.post(f'https://kauth.kakao.com/oauth/token{query_string}')
-        print(response)
         access_token = response.json().get('access_token')
-
         headers = {
             'Authorization': f'Bearer {access_token}',
             'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
 
         response = requests.post('https://kapi.kakao.com/v2/user/me', headers=headers)
-        print(response.json())
         info = response.json().get('kakao_account')
-        nickname = info.get('profile').get('nickname')
-        thumbnail_image_url = info.get('profile').get('thumbnail_image_url')
         email = info.get('email')
+        nickname = email[0:3] + "**"
+
+        kakao_image_url = info.get('profile').get('thumbnail_image_url')
+        gender = info.get('gender')
         request.session['member_email'] = email
-        request.session['thumbnail_image_url'] = thumbnail_image_url
+        request.session['kakao_image_url'] = kakao_image_url
+        request.session['access_token'] = access_token
 
         member = Member.objects.filter(member_email=email).first()
         if not member:
-            Member.objects.create(member_email=email, member_name=nickname)
+            member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender)
 
-        return redirect('member:mypage')
+        request.session['member_status'] = member.member_status
 
-class MyPageView(View):
+        return redirect(path)
+
+
+
+
+class LogoutView(View):
     def get(self, request):
-        member = Member.objects.get(member_email=request.session['member_email'])
-        context = {'member': member}
-        return render(template_name='mypage/mypage-profile.html', request=request, context=context)
+        path = request.GET.get("path")
+        access_token = request.session['access_token']
+        headers = {
+            'Authorization': f'Bearer {access_token}',
+            'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        }
+
+        response = requests.post('https://kapi.kakao.com/v1/user/logout', headers=headers)
+        request.session.clear()
+
+        return redirect(path)

@@ -1,31 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const inputText = document.getElementById("inputText");
-    const consentButton = document.getElementById("consentButton");
-    const refuseButton = document.getElementById("refuseButton");
-
-    consentButton.addEventListener("click", function (event) {
-        if (inputText.value === "") {
-            consentButton.removeEventListener("click", preventConsent);
-        } else {
-            consentButton.addEventListener("click", preventConsent);
-            event.preventDefault();
-        }
-    });
-
-    function preventConsent() {
-        alert("등록 거부사유가 적혀있어 승낙을 수 없습니다!");
-
-
+$("#refuseButton").on("click",e=>{
+    if(!$("#inputText").val()){
+        $("#inputText").focus()
+        alert("등록 거부 사유를 작성해주세요")
+        return
     }
-        refuseButton.addEventListener("click", function(event){
-        if (inputText.value === "") {
-            refuseButton.addEventListener("click", preventRefuse);
-            event.preventDefault();
-        } else {
-            refuseButton.removeEventListener("click", preventRefuse);
-        }
-    });
-    function preventRefuse(event) {
-        alert("등록 거부사유를 작성해주세요!")
+
+    $("form").submit()
+})
+
+$("#consentButton").on("click",e=>{
+    if($("#inputText").val()){
+         $("#inputText").focus()
+        alert("등록 거부 사유가 없어야합니다.")
+        return;
     }
-});
+    $("form").submit()
+
+})
+

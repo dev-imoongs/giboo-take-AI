@@ -2,10 +2,15 @@ from django.urls import path
 
 from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
-    AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminReviewDetailView, AdminMainView, \
-    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView
+    AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminMainView, \
+    AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, \
+    AdminDeleteNeulhaerangAPIView, AdminGetNeulhajangsByPagedAPIView, AdminDeleteNeulhajangAPIView, \
+    AdminGetNeulhaerangsByPagedAPIView, AdminGetReviewsByPagedAPIView
 
 app_name = 'admin'
+
+
+
 
 urlpatterns = [
     path('main/', AdminMainView.as_view(), name='main'),
@@ -20,7 +25,6 @@ urlpatterns = [
     path('notice/write/', AdminNoticeWriteView.as_view(), name='notice/write'),
     path('notice/update/', AdminNoticeUpdateView.as_view(), name='notice/update'),
     path('review/list/', AdminReviewListView.as_view(), name='review/list'),
-    path('review/detail/', AdminReviewDetailView.as_view(), name='review/detail'),
 
 
 
@@ -28,5 +32,12 @@ urlpatterns = [
     #rest api view
     path('get-members-by-paged/',AdminGetMembersByPagedAPIView.as_view(),name ='get-members-by-paged'),
     path('change-member-status/',AdminChangeMemberStatusAPIView.as_view()),
+    path('get-neulhaerangs-by-paged/', AdminGetNeulhaerangsByPagedAPIView.as_view()),
+    path('delete-neulhaerangs/', AdminDeleteNeulhaerangAPIView.as_view()),
+    path('get-neulhajangs-by-paged/', AdminGetNeulhajangsByPagedAPIView.as_view()),
+    path('delete-neulhajangs/', AdminDeleteNeulhajangAPIView.as_view()),
+    path('get-reviews-by-paged/', AdminGetReviewsByPagedAPIView.as_view()),
+    # path('delete-reviews/', AdminDeleteReviewAPIView.as_view()),
+
 
 ]
