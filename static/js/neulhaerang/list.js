@@ -29,6 +29,7 @@ let category = "전체"
 let page = 1
 let sort = '추천순'
 
+// 클릭한 sort값 sort에 입력(추천순, 최신순, 종료임박순)
 $('.lab_sort').each((i,v)=>{
     $(v).on('click',()=>{
         sort = $(v).text()
@@ -63,8 +64,7 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
 
               let percentage = Math.ceil(post.donation_amount_sum / post.target_amount *100)
 
-              console.log(post)
-              const post_url = baseUrl.replace("0", neulhaerang_id=post.id);
+              const post_url = baseUrl.replace(0, neulhaerang_id=post.id);
               text += `<li class="listcard">
                     <a href="${post_url}" class="link_pack">
                     <span class="box_thumb">
