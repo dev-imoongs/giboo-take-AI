@@ -71,7 +71,7 @@ class NeulhaerangInnerContent(Period):
         ordering = ["-id"]
 
 class NeulhaerangInnerPhotos(Period):
-    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulharang/inner-photo/')
+    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhaerang/inner-photo/')
     neulhaerang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.TextField(null=False, blank=False)
@@ -126,7 +126,7 @@ class Byeoljji(Period):
 
 class MemberByeoljji(Period):
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
-    neulhaerang = models.ForeignKey(Neulhaerang, null=True, blank=False, on_delete=models.SET_NULL)
+    byeoljji = models.ForeignKey(Byeoljji, null=True, blank=False, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'tbl_member_byeoljji'

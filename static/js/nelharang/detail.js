@@ -177,7 +177,7 @@ const $toast = $(".toast-bottom-center")
 
 //댓글 숫자 제한
 $tf_cmt.on("input",e=>{
-    console.log($tf_cmt.text())
+    // console.log($tf_cmt.text())
     $comment_num.text($tf_cmt.val().length + "/")
 })
 
@@ -462,7 +462,6 @@ function Function(temps) {
 
                 let j = i;
                 while (j < temps.length && temps[j].fields.neulhaerang_content_order == multiImgflag) {
-                    console.log('아아아ㅏㅇ')
                     addtext += `<li>
                                   <span class="img_slide"
                                         style="background-image: url(${temps[j].fields.inner_photo});">
@@ -482,3 +481,25 @@ function Function(temps) {
 
     $('.cont_subject').html(addtext);
 }
+let replyPage = 1
+let replyCont = ""
+const neulhaerangDetailReply = (replyPage, replyCont)=>{
+    fetch(`/neulhaerang/detail-api-view/?replyPage=${replyPage}&replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
+        .then(response => response.json())
+        .then(result => {
+            let replys = result.replys
+
+            $('.btn_comment').on('click', () => {
+                console.log('들어와요1')
+                console.log(replyCont)
+                replyCont = $('.tf_cmt').val()
+            })
+        })
+
+}
+
+$('.btn_comment').on('click', () => {
+    replyCont = $('.tf_cmt').val()
+    console.log(neulhaerangId)
+    // neulhaerangDetailReply(replyPage, replyCont)
+})
