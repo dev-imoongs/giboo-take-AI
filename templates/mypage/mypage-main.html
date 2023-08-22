@@ -11,7 +11,12 @@
   <body>
     <div id="whole-wrap">
       <!-- 헤더 -->
-      <header></header>
+
+          {% if request.session.member_email %}
+          {% include 'header/logined-header.html' %}
+          {% else %}
+          {% include 'header/header.html' %}
+          {% endif %}
       <!-- 메인 -->
       <main id="root-content">
         <main-section>
@@ -106,7 +111,7 @@
                       <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
                   <user-actions>
-                    <span class="group-shadow group-action-before" >
+                    <span id="aaa" class="group-shadow group-action-before" >
                       <strong class="title-action">
                         더 나은 세상을 위해<br />
                         함께 할 수 있는 일이 있어요!
@@ -124,6 +129,7 @@
                   </user-actions>
                   <!-- /행동을 안했을때 -->
                   <!-- 행동 내역이 있을때 -->
+                <div id="bbb">
                   <user-actions>
                     <div class="group-shadow group-action-attend">
                       <h3 class="title-section section-type2"> 나의 늘해랑 목록
@@ -172,8 +178,9 @@
                       </div>
                     </div>
                   </user-actions>
+                </div>
 
-                <!--늘해랑-->
+                <!--늘하장--><div id="ccc">
                   <user-actions>
                     <div class="group-shadow group-action-attend">
                       <h3 class="title-section section-type2"> 나의 늘하장 목록
@@ -222,6 +229,7 @@
                       </div>
                     </div>
                   </user-actions>
+                </div>
                   <!-- /행동 내역이 있을때 -->
                   <!-- 내가 쓴 댓글 -->
                   <user-comments>
@@ -464,9 +472,19 @@
     </div>
   </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+{% if request.session.member_email %}
+
+    <script src="/static/js/header/logined-header.js"></script>
+{% else %}
+    <script src="/static/js/header/header.js"></script>
+
+{% endif %}
+<script> let NeulhaerangCount = {{ member_neulhaerang_count }} </script>
+<script> let NeulhajangCount = {{ member_neulhajang_count }} </script>
 
 
     <script src="../../static/js/mypage/mypage_main.js"></script>
+
 </html>
 
 
