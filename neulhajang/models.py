@@ -19,6 +19,7 @@ class Neulhajang(Period):
     representing_tag = models.CharField(max_length=100, null=False, blank=False)
     participants_openchat_link = models.CharField(max_length=500,null=False, blank=False)
     neulhajang_status = models.CharField(max_length=100, null=False, blank=False)
+    rejected_message = models.CharField(max_length=1000, null=True, blank=False)
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=False, on_delete=models.CASCADE)
 
