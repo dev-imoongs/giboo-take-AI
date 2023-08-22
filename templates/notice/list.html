@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>공지사항</title>
-  <link rel="stylesheet" href="/static/css/notice/notice.css">
-  <link rel="stylesheet" href="../../static/css/common/common.css">
-  <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/notice/notice.css' %}">
+  <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
+  <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
 </head>
 <body>
     {% if request.session.member_email %}
@@ -90,9 +90,9 @@
         </span>
 
 
-
+{% include 'footer/footer.html' %}
 </body>
-<script src="/static/js/notice/on.js"></script>
+<script src="{% static 'js/notice/on.js' %}"></script>
 {% if request.session.member_email %}
 
     <script src="/static/js/header/logined-header.js"></script>

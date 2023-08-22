@@ -15,7 +15,7 @@ class Neulhaerang(Period):
     target_amount_alternatives_plan = models.CharField(max_length=1000, null=False, blank=False)
     message_to_admin = models.CharField(max_length=1000, null=False, blank=False)
     neulhaerang_title = models.CharField(max_length=60, null=False, blank=False)
-    thumbnail_image = models.ImageField(null=False, blank=False, upload_to='neulhaerang/thumbnail/')
+    thumbnail_image = models.ImageField(null=False, blank=False, upload_to='neulhaerang/thumbnail/%Y/%m/%d')
     participants_openchat_link = models.CharField(max_length=500, null=False, blank=False)
     neulhaerang_status = models.CharField(max_length=100, null=False, blank=False)
     rejected_message = models.CharField(max_length=1000, null=True, blank=False)
@@ -71,7 +71,7 @@ class NeulhaerangInnerContent(Period):
         ordering = ["-id"]
 
 class NeulhaerangInnerPhotos(Period):
-    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhaerang/inner-photo/')
+    inner_photo = models.ImageField(null=False, blank=False, upload_to='neulhaerang/innerphoto/%Y/%m/%d')
     neulhaerang_content_order = models.IntegerField(null=False, blank=False, default=0)
     photo_order = models.IntegerField(null=False, blank=False, default=0)
     photo_explanation = models.TextField(null=False, blank=False)
@@ -116,7 +116,7 @@ class ReplyLike(Period):
 
 class Byeoljji(Period):
     byeoljji_name = models.CharField(max_length=100, null=False, blank=False)
-    byeoljji_img = models.ImageField(null=True, blank=False, upload_to='neulhaerang/byeoljji/')
+    byeoljji_img = models.ImageField(null=True, blank=False, upload_to='neulhaerang/byeoljji/%Y/%m/%d')
     byeoljji_rank = models.IntegerField(null=False, blank=False, default=0)
     byeoljji_count = models.IntegerField(null=False, blank=False, default=0)
     neulhaerang = models.ForeignKey(Neulhaerang, null=False, blank=False, on_delete=models.CASCADE)

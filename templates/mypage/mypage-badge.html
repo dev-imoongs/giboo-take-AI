@@ -5,12 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>뱃지:기부앤테이크</title>
-  <link rel="stylesheet" href="../../static/css/common/common.css">
-  <link rel="stylesheet" href="../../static/css/mypage/mypage_badge.css">
+  <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
+  <link rel="stylesheet" href="{% static 'css/mypage/mypage_badge.css'%}">
+  <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
 </head>
 <body>
   <div id="whole-wrap">
-    <!-- 헤더 -->
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
+    {% include 'header/header.html' %}
+    {% endif %}
     <header></header>
     <main id="root-content">
       <main-section>
@@ -362,8 +367,7 @@
           </div>
         </div>
       </main-section>
-      <!-- 푸터 -->
-      <footer></footer>
+      {% include 'footer/footer.html' %}
       <!-- height 100%시 모달 등장 -->
       <div class="dimmed_layer"></div>
     </main>
@@ -399,5 +403,10 @@
   </modal>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../../static/js/mypage/mypage_badge.js"></script>
+<script src="{% static 'js/mypage/mypage_badge.js'%}"></script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>
