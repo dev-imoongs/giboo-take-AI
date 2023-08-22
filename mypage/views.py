@@ -1,10 +1,17 @@
-from django.shortcuts import render
+from datetime import datetime
+
+from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import DeleteView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+
+import neulhaerang_review
 from member.models import Member
-from neulhaerang.models import Neulhaerang
+from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji
+from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
+from static_app.models import Badge, MemberBadge
 
 
 # Create your views here.
@@ -25,6 +32,13 @@ class MypageDonateView(View):
     def get(self,request):
         return render(request, 'mypage/mypage-donate.html')
 
+# class MypageMainDeleteView(View):
+#     def get(self, request, review_reply_id):
+#         NeulhaerangReviewReply.objects.get(id=review_reply_id).delete(id=9)
+#         return redirect('neulhaerang_review:review/list')
+
+
+
 
 class MypageMainView(View):
     def get(self,request):
@@ -33,16 +47,28 @@ class MypageMainView(View):
     def get(self, request):
         member = Member.objects.get(id=1)
         neulhaerang = Neulhaerang.objects.get(id=1)
+
         member.total_donation_fund = '{:,}'.format(member.total_donation_fund)
         member.total_donation_count = '{:,}'.format(member.total_donation_count)
-        members = Member.objects.all()
+        # neulhaerang_review = NeulhaerangReview.objects.get(id=1)
+        # review_title = neulhaerang_review_reply.neulhaerang_review.neulhaerang_review_title
 
+        profile_badge = MemberBadge.objects.filter(member_id=1)[0:1].get().badge.badge_image
 
         temp = Neulhaerang.objects.filter(member_id=1)[0:2]
+        reply_temp = NeulhaerangReviewReply.objects.filter(member_id=1)[0:2]
+        badge_temp = MemberBadge.objects.filter(member_id=1)[0:5]
+        byeoljji_temp = MemberByeoljji.objects.filter(member_id=1)[0:4]
         # print(abcd[i]['neulh'])
-       # temp.append(abcd.neulhaerang_title)
+        # temp.append(abcd.neulhaerang_title)
 
         neulhaerang_count = Neulhaerang.objects.filter(member_id=1).count()
+        reply_neulhaerang = NeulhaerangReply.objects.filter(member_id=1).count()
+        reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member_id=1).count()
+        byeoljji_count = MemberByeoljji.objects.filter(member_id=1).count()
+        badge_count = MemberBadge.objects.filter(member_id=1).count()
+
+        total_reply = (reply_neulhaerang + reply_neulhaerang_review)
 
 
         context = {
@@ -50,6 +76,8 @@ class MypageMainView(View):
                    'www_neulhaerang_title': temp,
                    'member_nickname': member.member_nickname,
                    'donation_level': member.donation_level,
+                   'member_profile_image': member.profile_image,
+                   'member_profile_badge': profile_badge,
                    'donation_status': member.donation_status,
                    'total_donation_fund': member.total_donation_fund,
                    'total_donation_count': member.total_donation_count,
@@ -58,14 +86,21 @@ class MypageMainView(View):
 
                    'volunteer_duration_start_date': neulhaerang.volunteer_duration_start_date,
                    'member_neulhaerang_count': neulhaerang_count,
-                   # 댓글 총 갯수 여기부터 하면됌 댓글, 리뷰 떄려넣어놨음
-                   # 'member_reply_count':
+                   # 'member_neulhaerang_img': neulhaerang.thumbnail_image,
+                   # 댓글 총 갯수 여기부터 하면됌 댓글, 리뷰 때려넣어놨음
+                   'member_reply_count': total_reply,
+                   # 'member_reply_review_content': reply_temp,
+                   'www_reply_content': reply_temp,
+                   # 'reply_title': review_title,
 
+                   # 뱃지
+                   'www_badge_content': badge_temp,
+                   'www_byeoljji_content': byeoljji_temp,
+                   'byeoljji_count': byeoljji_count,
+                   'badge_count': badge_count,
 
                    }
         return render(request, 'mypage/mypage-main.html', context)
-
-
 
 
 
@@ -112,3 +147,7 @@ class MemberChangeDonationStatusAPIView(APIView):
 
         member.save()
         return Response(True)
+
+class TimeReplyTimeView(APIView):
+    def get(self, request):
+        return render(request, 'mypage/mypage-main.html')
