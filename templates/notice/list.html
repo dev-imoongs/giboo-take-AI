@@ -10,6 +10,11 @@
   <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon">
 </head>
 <body>
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
+    {% include 'header/header.html' %}
+    {% endif %}
   <!-- 메인 -->
   <span class="main-wrap">
     <div class="total-main">
@@ -88,6 +93,13 @@
 
 </body>
 <script src="/static/js/notice/on.js"></script>
+{% if request.session.member_email %}
+
+    <script src="/static/js/header/logined-header.js"></script>
+{% else %}
+    <script src="/static/js/header/header.js"></script>
+
+{% endif %}
 </html>
 
 

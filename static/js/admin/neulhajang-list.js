@@ -1,15 +1,16 @@
 //페이지 네이션 구현
-let page=1
-let search=""
-const showMembersByPaged =  (page,search)=>{
 
-    fetch(`/admin/get-members-by-paged/?page=${page}&search=${search}`)
+page = page ? page :1
+search = search=='None' ? '' :search
+const showNeulhajangsByPaged =  (page,search)=>{
+
+    fetch(`/admin/get-neulhajangs-by-paged/?page=${page}&search=${search}`)
         .then(response => response.json())
         .then(result =>{
             console.log(result)
             let text=''
             let pageText=''
-           let members= result.members
+           let neulhajangs= result.neulhajangs
            let pagenator= result.pagenator
             text+=`   <thead>
                             <tr>
@@ -17,36 +18,39 @@ const showMembersByPaged =  (page,search)=>{
                                     <input type="checkbox" id="selectAll">
                                 </th>
                                 <th>No</th>
-                                <th>이메일</th>
-                                <th style="font-weight: bold">닉네임</th>
-                                <th>가입날짜</th>
+                                <th>작성자</th>
+                                <th style="font-weight: bold">늘해랑 제목</th>
+                                <th>작성 날짜</th>
                                 <th>상태</th>
                             </tr>
                             </thead>`
-            members.forEach((member,i)=>{
+            neulhajangs.forEach((neulhajang,i)=>{
                 text+=`<tr>
                                 <td class="checkbox-line">
                                     <input class="subCheckbox" type="checkbox" name="check">
                                 </td>
                                 <td class="noticeId">
-                                    ${member.id}
+                                    ${neulhajang.id}
                                 </td>
-                                <td>${member.member_email}</td>
-                                <td>
-                                   ${member.member_nickname}
+                                <td>${neulhajang.member_nickname}</td>
+                                <td>  
+                                    <a style="font-weight: bold;" href="/admin/neulhajang/detail/?neulhajang_id=${neulhajang.id}&page=${page}&search=${search}">
+                                         ${neulhajang.neulhajang_title}
+                                    </a>
+                                  
                                 </td>
                                 <td>
-                                    ${member.created_date}
+                                    ${neulhajang.created_date}
                                 </td>
                                 <td class="color-icon">
                                     <span class="icon-wrap">
-                                        <img class="green" src="${staticUrl}image/admin/${ member.member_status =="NORMAL"?'check':'x-icon'}.png">
+                                        <img class="green" src="${staticUrl}image/admin/${neulhajang.neulhajang_status =="검토중"? 'caution':neulhajang.neulhajang_status=="미선정"?'x-icon':'check'}.png">
                                     </span>
                                 </td>
                             </tr>`
             })
 
-            $(".member-table").html(text)
+            $(".neulhajang-table").html(text)
 
             pageText+=`<div class="page-button-box">`
 
@@ -90,33 +94,33 @@ const showMembersByPaged =  (page,search)=>{
         })
 }
 
-showMembersByPaged(page,search)
+showNeulhajangsByPaged(page,search)
 
 //하단 페이지 버튼 클릭시 이동
 const pageBtnAddEvent = (pagenator)=>{
     $(".page-button").each((i,btn)=>{
     $(btn).on("click",e=>{
         page = Number($(btn).find("span").text())
-        showMembersByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
 })
     $(".left-page-button").on("click",e=>{
         page = pagenator.start_page-1
-        showMembersByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
       $(".right-page-button").on("click",e=>{
         page = pagenator.end_page+1
-        showMembersByPaged(page,search)
+        showNeulhajangsByPaged(page,search)
     })
 }
 
 
-//회원 선택 삭제
+//게시판 선택 삭제
 $(".delete-button").on("click",e=>{
-    let member_ids = []
+    let neulhajang_ids = []
     $(".subCheckbox").filter((i,checkbox)=> $(checkbox).prop("checked")).each((i,checkbox)=>{
         let member_id = Number($(checkbox).closest(".checkbox-line").next().text())
-        member_ids.push(member_id)
+        neulhajang_ids.push(member_id)
     })
 
     let datas = {
@@ -125,15 +129,15 @@ $(".delete-button").on("click",e=>{
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-            member_ids
+            neulhajang_ids
              }),
     }
 
-    fetch("/admin/change-member-status/", datas)
+    fetch("/admin/delete-neulhajangs/", datas)
         .then(response=>response.json())
         .then(result =>{
             if(result){
-                showMembersByPaged(page,search)
+                showNeulhajangsByPaged(page,search)
             }
         })
 
@@ -144,5 +148,5 @@ $(".delete-button").on("click",e=>{
 $(".search-icon").on("click",e=>{
     search = $(".admin-search-box").val()
     page = 1
-    showMembersByPaged(page,search)
+    showNeulhajangsByPaged(page,search)
 })
