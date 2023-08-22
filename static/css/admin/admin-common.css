@@ -192,3 +192,8 @@ margin: -13px 0px 0px -8px;
 .title-txt {
 	font-size: 25px;
 }
+
+a{
+	text-decoration: none;
+	color: black;
+}
