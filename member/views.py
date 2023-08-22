@@ -38,8 +38,10 @@ class LoginView(View):
         member = Member.objects.filter(member_email=email).first()
         if not member:
             member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender)
-
         request.session['member_status'] = member.member_status
+
+        if member.member_role == 'ADMIN':
+            path='/admin/main/'
 
         return redirect(path)
 
