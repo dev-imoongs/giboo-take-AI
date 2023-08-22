@@ -80,3 +80,54 @@ const toastMsg = function (text) {
         }, 1000)
     }
 }
+
+
+// ~분전 관련 스크립트
+document.addEventListener("DOMContentLoaded", function () {
+    // txt-time 클래스를 가진 요소를 모두 찾음
+    let timeElements = document.querySelectorAll(".txt-time");
+
+    timeElements.forEach(function (timeElement) {
+        let timestamp = timeElement.getAttribute("data-timestamp");
+        let currentTime = Math.floor(Date.now() / 1000); // 현재 시간(초)을 가져옴
+        let timeDifference = currentTime - timestamp;
+
+        let timeText;
+        if (timeDifference < 60) {
+            timeText = timeDifference + "초 전";
+        } else if (timeDifference < 3600) {
+            let minutes = Math.floor(timeDifference / 60);
+            timeText = minutes + "분 전";
+        } else if (timeDifference < 86400) {
+            let hours = Math.floor(timeDifference / 3600);
+            timeText = hours + "시간 전";
+        } else if (timeDifference < 2592000) {  // 30일 이하
+            let days = Math.floor(timeDifference / 86400);
+            if (days == 1) {
+                timeText = "어제";
+            } else {
+                timeText = days + "일 전";
+            }
+        } else if (timeDifference < 7776000) {  // 3달 이하 (90일 * 24시간 * 60분 * 60초)
+            let months = Math.floor(timeDifference / 2592000);
+            if (months == 1) {
+                timeText = "한 달 전";
+            } else if (months == 2) {
+                timeText = "두 달 전";
+            } else if (months == 3) {
+                timeText = "세 달 전";
+            } else {
+                // 일, 분, 시간, 어제에 해당하지 않을 경우에만 날짜를 표시
+                let date = new Date(timestamp * 1000);
+                timeText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
+            }
+        } else {
+            // 위의 모든 경우에 해당하지 않을 경우에도 날짜를 표시
+            let date = new Date(timestamp * 1000);
+            timeText = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
+        }
+
+        // 텍스트를 업데이트
+        timeElement.textContent = timeText;
+    });
+});

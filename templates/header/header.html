@@ -17,7 +17,7 @@
           <a href="" class="logo-link"></a>
         </h1>
         <!-- 반응형 돋보기-->
-        <a href="" class="mobile-nav-item mobile-search-link">
+        <a href="/search/form/" class="mobile-nav-item mobile-search-link">
           <div aria-hidden="true">
             <svg class="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
               <g fill="#202020" fill-rule="nonzero">
@@ -60,13 +60,13 @@
                   <li class="side-menu-item">
                     <a class="side-menu-item-link">
                       <i class="side-menu-item-icon item1"></i>
-                      같이기부
+                      늘해랑
                     </a>
                   </li>
                   <li class="side-menu-item">
                     <a href="" class="side-menu-item-link">
                       <i class="side-menu-item-icon item2"></i>
-                      모두의행동
+                      늘하장
                     </a>
                   </li>
                   <li class="side-menu-item">
@@ -190,7 +190,7 @@
           <a href="javascript:loginWithKakao()" class="util-button login">로그인</a>
         </div>
         <!-- pc돋보기 -->
-        <a href="" class="pc-search-link">
+        <a href="/search/form/" class="pc-search-link">
           <div aria-hidden="true">
             <svg class="pc-search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
               <g fill="#202020" fill-rule="nonzero">
@@ -210,7 +210,7 @@
     // javascript APP KEY 설정
     Kakao.init('c6fc16cf77bad1b72762e026c2fbf9fd');
 
-    function loginWithKakao() {
+  function loginWithKakao() {
     Kakao.Auth.authorize({
       redirectUri: 'http://localhost:10000/member/oauth/redirect',
     });
@@ -240,5 +240,7 @@
     var parts = document.cookie.split(name + '=');
     if (parts.length === 2) { return parts[1].split(';')[0]; }
   }
+
+
   </script>
 </html>
