@@ -106,48 +106,100 @@
                       <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
                   <user-actions>
-                    <a class="group-shadow group-action-before" href={% url 'neulhajang:list' %} >
+                    <span class="group-shadow group-action-before" >
                       <strong class="title-action">
                         더 나은 세상을 위해<br />
                         함께 할 수 있는 일이 있어요!
                       </strong>
-                      <p class="desc-action">지금 늘하장이 진행중입니다.</p>
+                      <p class="desc-action">지금 늘해랑/늘하장이 진행중입니다.</p>
                       <span class="box-thumbnail">
                         <img
                           src="//t1.kakaocdn.net/together_image/my_action.png"
                           class="img-thumb"
                         />
                       </span>
-                      <span class="link-round">늘하장 둘러보기</span>
-                    </a>
+                      <a class="link-round" href= {% url 'neulhaerang:list' %} >늘해랑 둘러보기</a>
+                        <a class="link-round" href= {% url 'neulhajang:list' %} >늘하장 둘러보기</a>
+                    </span>
                   </user-actions>
                   <!-- /행동을 안했을때 -->
                   <!-- 행동 내역이 있을때 -->
                   <user-actions>
                     <div class="group-shadow group-action-attend">
-                      <h3 class="title-section section-type2"> 내가 주최한 목록
+                      <h3 class="title-section section-type2"> 나의 늘해랑 목록
                         <span class="color-g1">{{ member_neulhaerang_count }}</span>
                       </h3>
                       <actions-list>
                         <ul class="list-actions">
-                                  {% for title in www_neulhaerang_title %}
+                                  {% for neulhaerang in www_neulhaerang %}
                           <li>
                             <div class="action-content-card">
                               <a class="link-action-card" href= >
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" 
-                                  src='/upload/{{ title.thumbnail_image }}'>
+                                  src='/upload/{{ neulhaerang.thumbnail_image }}'>
                                 </span>
                                 <div class="info-action">
-                                  <strong class="title-action">{{ title.neulhaerang_title }}</strong>
+                                  <strong class="title-action">{{ neulhaerang.neulhaerang_title }}</strong>
                                   <p class="desc-action"></p>
-                                  <span class="txt-date">{{ title.volunteer_duration_start_date | date:'Y.m.d'}}</span>
+                                  <span class="txt-date">{{ neulhaerang.volunteer_duration_start_date | date:'Y.m.d'}}</span>
                                 </div>
                               </a>
                               <button type="button" class="btn-delete"> 삭제 </button>
                             </div>
                           </li>
                             {% endfor %}
+
+{#                          <li>#}
+{#                            <div class="action-content-card">#}
+{#                              <a class="link-action-card" href=" ">#}
+{#                                <span class="thumb-action">#}
+{#                                  <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">#}
+{#                                </span>#}
+{#                                <div class="info-action">#}
+{#                                  <strong class="title-action">게시글 제목</strong>#}
+{#                                  <p class="desc-action"></p>#}
+{#                                  <span class="txt-date">(행동한날짜)2023.00.00</span>#}
+{#                                </div>#}
+{#                              </a>#}
+{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
+{#                            </div>#}
+{#                          </li>#}
+                        </ul>
+                      </actions-list>
+                      <div class="list-more">
+                        <a class="link-round" href={% url 'mypage:post-list' %}> 모든 글 보러가기 </a>
+                      </div>
+                    </div>
+                  </user-actions>
+
+                <!--늘해랑-->
+                  <user-actions>
+                    <div class="group-shadow group-action-attend">
+                      <h3 class="title-section section-type2"> 나의 늘하장 목록
+                        <span class="color-g1">{{ member_neulhajang_count }}</span>
+                      </h3>
+                      <actions-list>
+                        <ul class="list-actions">
+                                  {% for neulhajang in www_neulhajang %}
+                          <li>
+                            <div class="action-content-card">
+                              <a class="link-action-card" href= >
+                                <span class="thumb-action">
+                                  <img alt="이미지" class="img-thumb"
+                                  src='/upload/{{ neulhajang.thumnail_image }}'>
+                                </span>
+                                <div class="info-action">
+                                  <strong class="title-action">{{ neulhajang.neulhajang_title }}</strong>
+                                  <p class="desc-action">{{ neulhajang.neulhajang_status }}</p>
+                                  <span class="txt-date">{{ neulhajang.neulhajang_duration_start_date | date:'Y.m.d'}}</span>
+                                </div>
+                              </a>
+                              <button type="button" class="btn-delete"> 삭제 </button>
+                            </div>
+                          </li>
+                            {% endfor %}
+
 {#                          <li>#}
 {#                            <div class="action-content-card">#}
 {#                              <a class="link-action-card" href=" ">#}
