@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
-    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike
+    NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji
 
 
 # Create your tests here.
@@ -72,4 +72,10 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInne
     #     NeulhaerangLike(member_id=4, neulhaerang_id=7),
     #     NeulhaerangLike(member_id=5, neulhaerang_id=7),
     #     NeulhaerangLike(member_id=6, neulhaerang_id=8),
+    # ])
+
+    # Byeoljji.objects.bulk_create([
+    #     Byeoljji(byeoljji_name='별찌이름 1',byeoljji_count=1, byeoljji_rank=1, neulhaerang_id=8),
+    #     Byeoljji(byeoljji_name='별찌이름 2', byeoljji_count=10, byeoljji_rank=2, neulhaerang_id=8),
+    #     Byeoljji(byeoljji_name='별찌이름 3', byeoljji_count=100, byeoljji_rank=3, neulhaerang_id=8),
     # ])

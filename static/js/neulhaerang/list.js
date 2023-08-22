@@ -46,7 +46,7 @@ $('.link-cate').each((i,v)=>{
     })
 })
 
-const showNeulhaerang =  (page, category, sort,scroll)=>{
+const showNeulhaerang =  (page, category, sort, scroll)=>{
 
     fetch(`/neulhaerang/list-api-view/?page=${page}&category=${category}&sort=${sort}`)
         .then(response => response.json())
