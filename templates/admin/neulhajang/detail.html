@@ -45,36 +45,36 @@
                                value="{{ neulhajang.member.member_nickname }}">
                     </div>
                 </div>
+
+                <!-- 여기부터 필요없을시 삭제 -->
                 <div class="notice-write">
+                    <div class="write-title">행동 기간</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.neulhajang_duration }}">
+                    </div>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">동참 목표 인원</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.participants_target_amount }}">
+                    </div>
+                </div>
+                <div class="notice-write">
+                    <div class="write-title">목표 달성 공략</div>
+                    <div class="write-sec">
+                        <input class="write-text write-input" type="text" readonly
+                               value="{{ neulhajang.promise_commit_content}}">
+                    </div>
+                </div>
+                 <div class="notice-write">
                     <div class="write-title">관리자에게 <br>하고싶은 말</div>
                     <div class="write-sec">
                         <textarea style="height: 120px;" class="write-text write-notice" type="text" readonly
                                   value="{{ neulhajang.message_to_admin }}"></textarea>
                     </div>
                 </div>
-                <!-- 여기부터 필요없을시 삭제 -->
-                <div class="notice-write">
-                    <div class="write-title">모금 기간</div>
-                    <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly
-                               value="{{ neulhajang.fund_duration_start_date }}~{{ neulhajang.fund_duration_end_date }}">
-                    </div>
-                </div>
-                <div class="notice-write">
-                    <div class="write-title">목표액</div>
-                    <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly
-                               value="{{ neulhajang.target_amount }}">
-                    </div>
-                </div>
-                <div class="notice-write">
-                    <div class="write-title">모집 인원</div>
-                    <div class="write-sec">
-                        <input class="write-text write-input" type="text" readonly
-                               value="{{ neulhajang.participants_max_count }}">
-                    </div>
-                </div>
-                <!-- 여기까지 삭제 -->
                 <div class="notice-write">
                     <div class="write-title">늘하장 <br>등록 거부 사유</div>
                     <div class="write-sec">
@@ -100,7 +100,8 @@
                     </button>
                 </a>
                 <a target="_blank" class="go-list"
-                   href="{% url 'neulhajang:detail' neulhajang_id=neulhajang.id %}">
+{#                   href="{% url 'neulhajang:detail' neulhajang_id=neulhajang.id %}"#}
+                >
                     <button type="button" class="btn btn-list">실제 늘하장
                     </button>
                 </a>

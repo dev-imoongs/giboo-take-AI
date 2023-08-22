@@ -4,6 +4,7 @@ from datetime import timedelta
 
 from django.core import serializers
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -15,10 +16,12 @@ from rest_framework.views import APIView
 from customer_center.models import Inquery
 from member.models import Member
 from neulhaerang.models import Neulhaerang
+from neulhaerang_review.models import NeulhaerangReview
 from neulhajang.models import Neulhajang
 from notice.models import Notice
 from workspace.pagenation import Pagenation
-from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer, NeulhajangSerializer
+from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer, NeulhajangSerializer, \
+    ReviewSerializer
 
 
 # Create your views here.
@@ -242,17 +245,17 @@ class AdminGetNeulhajangsByPagedAPIView(APIView):
 class AdminDeleteNeulhajangAPIView(APIView):
     def post(self,request):
         neulhajang_ids = json.loads(request.body).get("neulhajang_ids")
-        neulhajang = Neulhaerang.objects.filter(id__in= neulhajang_ids).delete()
+        neulhajang = Neulhajang.objects.filter(id__in= neulhajang_ids).delete()
         return Response(True)
 
 
 
 class AdminNeulhajangDetailView(View):
     def get(self, request):
-        nuelhajang_id = request.GET.get("nuelhajang_id")
+        neulhajang_id = request.GET.get("neulhajang_id")
         page = request.GET.get("page")
         search = request.GET.get("search")
-        neulhajang = Neulhajang.objects.filter(id=nuelhajang_id)[0]
+        neulhajang = Neulhajang.objects.filter(id=neulhajang_id)[0]
 
         datas = {
             "neulhajang": neulhajang,
@@ -279,13 +282,57 @@ class AdminNeulhajangDetailView(View):
             neulhajang.save()
 
         else:
-            neulhajang.neulhajang_status = "모금중"
-            neulhajang.fund_duration_start_date = timezone.now().date()
-            neulhajang.fund_duration_end_date = timezone.now() + timedelta(days=neulhajang.neul)
+            neulhajang.neulhajang_status = "행동중"
+            neulhajang.neulhajang_duration_start_date = timezone.now().date()
+            neulhajang.neulhajang_duration_end_date = timezone.now() + timedelta(days=neulhajang.neulhajang_duration)
             neulhajang.save()
-        next_url = reverse("admin:nuelhajang/list") + f"?page={page}&search={search}"
+        next_url = reverse("admin:neulhajang/list") + f"?page={page}&search={search}"
         return redirect(next_url)
 
+
+class AdminReviewListView(View):
+    def get(self,request):
+        if request.GET.get("page"):
+            page = int(request.GET.get("page"))
+        else:
+            page = 1
+
+        if request.GET.get("search"):
+            search = request.GET.get("search")
+        else:
+            search = ''
+
+        datas = {
+            "page": page,
+            "search": search,
+        }
+        return render(request, 'admin/review/list.html', datas)
+
+
+class AdminGetReviewsByPagedAPIView(APIView):
+    def get(self,request):
+        page = int(request.GET.get("page"))
+        search = request.GET.get("search")
+
+
+        if search :
+           reviews_query_set = NeulhaerangReview.objects.filter(Q(review_title__contains=search)|Q(neulhaerang__neulhaerang_title__contains=search)).all()
+        else:
+            reviews_query_set = NeulhaerangReview.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=reviews_query_set)
+
+        reviews = ReviewSerializer(pagenator.paged_models,many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "reviews":reviews,
+            "pagenator" : serialized_pagenator
+
+        }
+
+
+        return Response(datas)
 
 class AdminNoticeListView(View):
     def get(self,request):
@@ -299,13 +346,6 @@ class AdminNoticeUpdateView(View):
     def get(self,request):
         return render(request,'admin/notice/update.html')
 
-class AdminReviewListView(View):
-    def get(self,request):
-        return render(request,'admin/review/list.html')
-
-class AdminReviewDetailView(View):
-    def get(self,request):
-        return render(request,'admin/review/detail.html')
 
 
 class AdminInqueryListView(View):
