@@ -36,6 +36,8 @@ class LoginView(View):
         member = Member.objects.filter(member_email=email).first()
         if not member:
             Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender)
+        elif:
+
 
         return redirect('member:logined')
 
