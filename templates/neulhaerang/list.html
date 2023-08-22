@@ -392,6 +392,11 @@
 <script>
     const baseUrl = "{% url 'neulhaerang:detail' 0 %}"
 </script>
+{% if request.session.member_email %}
+    <script src="/static/js/header/logined-header.js"></script>
+{% else %}
+    <script src="/static/js/header/header.js"></script>
+{% endif %}
 <!--<script>
 
     let posts = "{{ posts|escapejs }}"
