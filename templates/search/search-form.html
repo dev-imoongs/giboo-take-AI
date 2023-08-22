@@ -3,16 +3,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../static/css/common/common.css" />
-    <link rel="stylesheet" href="../../static/css/search/search-form.css" />
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search/search-form.css' %}" />
     <title>검색창</title>
   </head>
   <body>
+  {% include "header/header.html" %}
     <div id="dkWrap" class="together_top">
       <!--header-->
       <span id="rootContent">
@@ -77,7 +75,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="link_category"
+                      <a class="link_category" href="{% url 'search:click' category_name=여성 %}"
                         ><img
                           class="img_thumb"
                           src="https://mud-kage.kakaocdn.net/dn/z41G3/btqeTE3fkJ7/8m34WVDUITvKA9HK5sP5yk/c160.jpg"
@@ -144,13 +142,22 @@
                 </div>
               </div>
             </div>
-          </div></search
-        ></span
-      >
+          </div>
+        </search>
+      </span>
       <hr class="hide" />
+      {% include "footer/footer.html" %}
       <!--footer-->
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/search-form.js"></script>
+<script>
+  function searchCategory (){
+    let categories = $('.link_category').text;
+
+    console.log(typeof(categories));
+
+  }
+</script>
 </html>

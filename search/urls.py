@@ -6,6 +6,6 @@ app_name = 'search'
 
 urlpatterns = [
     path('form/',SearchFormView.as_view(),name='form'),
-    path('click/',SearchClickView.as_view(),name = 'click'),
+    path('click/<str:category_name>',SearchClickView.as_view(),name='click'),
     path('input/',SearchInputView.as_view(),name='input'),
 ]
