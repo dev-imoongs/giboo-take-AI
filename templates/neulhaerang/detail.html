@@ -692,8 +692,6 @@
       </div>
     </app>
   </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="/static/js/nelharang/detail.js"></script>
   <script>
       let test = "{{ contents|escapejs }}"
       let amount ="{{ target_amount|escapejs }}"
@@ -704,9 +702,8 @@
       const parsedAmount = JSON.parse(amount)
       const temp = JSON.parse(test)
       const parsedPlan = JSON.parse(business_plan)
-      Function3(parsedPlan)
-      Function2(parsedAmount,parsedAmountSum)
-      Function(temp)
 
   </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="/static/js/neulhaerang/detail.js"></script>
 </html>

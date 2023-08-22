@@ -7,14 +7,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>늘해랑:기부앤테이크</title>
-    <link rel="stylesheet" href="../../../static/css/common/common.css">
-    <link rel="stylesheet" href="../../../static/css/neulhaerang/detail.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/write/write_step1.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/write/write_step2.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/write/write_step3.css">
+    <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
+    <link rel="stylesheet" href="{% static 'css/neulhaerang/detail.css'%}">
+    <link rel="stylesheet" href="{% static 'css/mypage/write/write_step1.css'%}">
+    <link rel="stylesheet" href="{% static 'css/mypage/write/write_step2.css'%}">
+    <link rel="stylesheet" href="{% static 'css/mypage/write/write_step3.css'%}">
+    <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
 </head>
 <body>
-    <header></header>
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
+    {% include 'header/header.html' %}
+    {% endif %}
     <span id="rootContent">
         <ng-component>
             <div id="dkContent" class="cont_suggest">
@@ -977,12 +982,17 @@
             </div>
         </div>
     </div>
-    <footer></footer>
+    {% include 'footer/footer.html' %}
     <div class="dimmed_layer"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../../../static/js/mypage/write/write_step1.js"></script>
-<script src="../../../static/js/mypage/write/write_step2.js"></script>
-<script src="../../../static/js/mypage/write/write_step3.js"></script>
-<script src="../../../static/js/mypage/write/addfile.js"></script>
+<script src="{% static 'js/mypage/write/write_step1.js'%}"></script>
+<script src="{% static 'js/mypage/write/write_step2.js'%}"></script>
+<script src="{% static 'js/mypage/write/write_step3.js'%}"></script>
+<script src="{% static 'js/mypage/write/addfile.js' %}"></script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>
