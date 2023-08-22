@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지:기부앤테이크</title>
-    <link rel="stylesheet" href="../../static/css/common/common.css"/>
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_main.css"/>
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage_main.css' %}">
   </head>
   <body>
     <div id="whole-wrap">
@@ -28,11 +28,11 @@
                     </div>
                   </div>
                   <div class="area-thumb">
-                    <a class="link-badge" href={% url 'mypage:badge' %}>
+                    <a class="link-badge-profile" href={% url 'mypage:badge' %}>
                       <span class="badge-thumb">
                         <img
                           class="img-thumb"
-                          src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png"
+                          src=/{{ member_profile_badge }}
                         />
                       </span>
                     </a>
@@ -41,7 +41,7 @@
                         <img
                           alt="프로필 사진"
                           class="img-thumb"
-                          src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png"
+                          src=/{{ member_profile_image }}
                         />
                       </span>
                     </a>
@@ -103,7 +103,7 @@
                       </ul>
                     </div>
                   </div>
-                  <!-- 늘해랑/늘하장 -->
+                      <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
                   <user-actions>
                     <a class="group-shadow group-action-before" href={% url 'neulhajang:list' %} >
@@ -133,15 +133,15 @@
                                   {% for title in www_neulhaerang_title %}
                           <li>
                             <div class="action-content-card">
-                              <a class="link-action-card" href={% url 'neulhaerang:detail' %}>
+                              <a class="link-action-card" href= >
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb" 
-                                  src="https://t1.kakaocdn.net/together_action_prod/action/20230805/q4yw7g3e3bkm_9a35522ca6184e31a73e697b9b305717?type=thumb&amp;opt=S100x100">
+                                  src='/upload/{{ title.thumbnail_image }}'>
                                 </span>
                                 <div class="info-action">
                                   <strong class="title-action">{{ title.neulhaerang_title }}</strong>
                                   <p class="desc-action"></p>
-                                  <span class="txt-date">{{ volunteer_duration_start_date | date:'Y.m.d'}}</span>
+                                  <span class="txt-date">{{ title.volunteer_duration_start_date | date:'Y.m.d'}}</span>
                                 </div>
                               </a>
                               <button type="button" class="btn-delete"> 삭제 </button>
@@ -150,7 +150,7 @@
                             {% endfor %}
 {#                          <li>#}
 {#                            <div class="action-content-card">#}
-{#                              <a class="link-action-card" href="{% url 'neulhaerang:detail' %}">#}
+{#                              <a class="link-action-card" href=" ">#}
 {#                                <span class="thumb-action">#}
 {#                                  <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">#}
 {#                                </span>#}
@@ -175,35 +175,37 @@
                   <user-comments>
                     <div class="group-shadow group-comment comment-type3">
                       <h3 class="title-section section-type2"> 댓글
-                        <span class="color-g1">4</span>
+                        <span class="color-g1">{{ member_reply_count }}</span>
                       </h3>
                       <ul class="list-comment">
+                          {% for reply_content in www_reply_content %}
                         <li>
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 어르신께 맛있는 김치를~ "밥상 위 작은 기적" </a>
+                              <a class="link-fund" href= > {{ reply_content.neulhaerang_review.review_title }} </a>
                             </span>
                             <span class="txt-comment">
-                              <span class="desc-comment">응원합니다</span>
+                              <span class="desc-comment">{{ reply_content.reply_content }}</span>
                             </span>
                             <span class="info-append">
-                              <span class="txt-time">3시간 전</span>
-                              <like-comment>
+                               <span class="txt-time" data-timestamp="{{ reply_content.updated_date|date:"U" }}"></span>
+                              <!--<like-comment>
                                 <button type="button" class="btn-like" >
                                   <span class="ico-together ico-like"></span>&nbsp;좋아요&nbsp;
                                   <span class="num-like">2</span>
                                 </button>
-                              </like-comment>
+                              </like-comment> -->
                               <button type="button" class="btn-delete"> 삭제 </button>
                             </span>
                           </div>
                         </li>
-                        <li>
+                          {% endfor %}
+                       <!-- <li>
                           <div class="comment-info">
                             <span class="info-append">
                               <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href={% url 'neulhaerang:detail' %}> 게시글 제목</a>
+                              <a class="link-fund" href= > 게시글 제목</a>
                             </span>
                             <span class="txt-comment">
                               <span class="desc-comment">댓글 내용</span>
@@ -220,10 +222,10 @@
                               <button type="button" class="btn-delete"> 삭제 </button>
                             </span>
                           </div>
-                        </li>
+                        </li>-->
                       </ul>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:mypage-reply' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:reply' %}> 더보기 </a>
                       </div>
                     </div>
                   </user-comments>
@@ -231,20 +233,21 @@
                   <user-badge-list>
                     <div class="group-shadow group-badge group-badge-type02">
                       <h3 class="title-section section-type2">
-                        스탬프
-                        <span class="color-g1">4</span>
+                        뱃지
+                        <span class="color-g1">{{ badge_count }}</span>
                       </h3>
                       <ul class="list-badge">
+                          {% for badge in www_badge_content %}
                         <li class="my-badge">
                           <a class="link-badge">
-                            <img class="thumb-badge" alt="진짜 나를 발견왕"
-                              src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png"
+                            <img class="thumb-badge" src=/{{ badge.badge.badge_image }}
                             />
-                            <strong class="name-badge">진짜 나를 발견왕</strong>
+                            <strong class="name-badge">{{ badge.badge.badge_name }}</strong>
                             <span class="num-badge">1회</span>
                           </a>
                         </li>
-                        <li class="my-badge">
+                          {% endfor %}
+                        <!--<li class="my-badge">
                           <a class="link-badge">
                             <img class="thumb-badge" alt="그냥 응원하는 그냥이"
                               src="https://mud-kage.kakaocdn.net/dn/wAcMI/btqcJGCmdqi/8y3t5GRvKS78AoakgTkWZ1/img.png"
@@ -279,7 +282,7 @@
                               src="https://mud-kage.kakaocdn.net/dn/oLbSF/btqsZjySQCw/C6KjWeC9eeFHLIrZxwuA5K/img.png"/>
                             <strong class="name-badge">대한민국 사랑꾼</strong>
                           </a>
-                        </li>
+                        </li> -->
                       </ul>
                       <div class="list-more">
                         <a class="link-round" href={% url 'mypage:badge' %}> 더보기 </a>
@@ -290,25 +293,27 @@
                     <div class="group-shadow group-badge group-badge-type02">
                       <h3 class="title-section section-type2">
                         별찌
-                        <span class="color-g1">4</span>
+                        <span class="color-g1">{{ byeoljji_count }}</span>
                       </h3>
                                     <div class="group_meditation">
                   <div class="inner_meditation">
                     <ul class="list_meditation">
+                        {% for byeoljji_contents in www_byeoljji_content %}
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
+                                  <img class="thumb_img" src=/{{ byeoljji_contents.byeoljji.byeoljji_img }}>
                               </span>
-                              <strong class="tit_meditation">기쁨에 접속하는 3단계 호흡법</strong>
+                              <strong class="tit_meditation">{{ byeoljji_contents.byeoljji.byeoljji_name}}</strong>
                               <span class="txt_option">
                                   명상가 유정은
                                   3분
                               </span>
                           </a>
                       </li>
-                      <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                        {% endfor %}
+                   <!--<li>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -317,7 +322,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
@@ -326,14 +331,14 @@
                           </a>
                       </li>
                       <li>
-                          <a class="link_meditation" href={% url 'neulhaerang:detail' %}>
+                          <a class="link_meditation" href= >
                               <span>
                                   <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
                               </span>
                               <strong class="tit_meditation">별찌 이름</strong>
                               <span class="txt_option">별찌 칭호</span>
                           </a>
-                      </li>
+                      </li>-->
                     </ul>
                   </div>
                 </div>

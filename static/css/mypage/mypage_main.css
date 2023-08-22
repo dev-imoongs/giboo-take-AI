@@ -168,7 +168,7 @@ h3 {
     right: 40px;
 }
 
-.group-profile .area-thumb .link-badge {
+.group-profile .area-thumb .link-badge, .group-profile .area-thumb .link-badge-profile {
     position: absolute;
     left: -15px;
     width: 40px;
@@ -205,6 +205,8 @@ h3 {
 }
 
 /* user profile */
+
+
 
 .group-shadow {
     position: relative;
@@ -717,7 +719,7 @@ body {
     content: "";
 }
 
-.group-badge-type02 .list-badge .link-badge {
+.group-badge-type02 .list-badge .link-badge, .group-badge-type02 .list-badge .link-badge-profile {
     width: auto;
     display: block;
     position: relative;
@@ -762,7 +764,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.group-badge .link-badge .num-badge {
+.group-badge .link-badge .num-badge, .group-badge .link-badge-profile .num-badge {
     font-size: 13px;
 }
 
@@ -980,7 +982,7 @@ body {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+    background-image: url(/static/image/byeoljji/image-not-found.jpg);
 }
 
 .group_meditation .list_meditation .tit_meditation {
@@ -1064,7 +1066,7 @@ body, html {
     right: 20px;
 }
 
-.group-profile .area-thumb .link-badge {
+.group-profile .area-thumb .link-badge, .group-profile .area-thumb .link-badge-profile {
     width: 30px;
     height: 30px;
 }
@@ -1334,7 +1336,7 @@ body, html {
     margin: 0;
 }
 
-.group-badge .list-badge .link-badge {
+.group-badge .list-badge .link-badge, .group-badge .list-badge .link-badge-profile {
     width: auto;
     height: 130px;
     margin: 0 2px 4px;
@@ -1344,12 +1346,12 @@ body, html {
     margin-top: 3px;
 }
 
-.group-badge .link-badge .name-badge {
+.group-badge .link-badge .name-badge, .group-badge .link-badge-profile .name-badge {
     margin: 5px 0 -2px;
     font-size: 13px;
 }
 
-.group-badge .link-badge .num-badge {
+.group-badge .link-badge .num-badge, .group-badge .link-badge-profile .num-badge {
     font-size: 11px;
 }
 
@@ -1422,7 +1424,7 @@ body, html {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+    background-image: url(static/image/byeoljji/image-not-found.jpg);
 }
 
   .group_meditation .list_meditation li {
