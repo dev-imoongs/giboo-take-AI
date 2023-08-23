@@ -1,9 +1,9 @@
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from rest_framework import serializers
 
 from member.models import Member
 
-from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangReply
+from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangReply, ReplyLike
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReview
@@ -37,8 +37,13 @@ class NeulhaerangDonationSerializer(serializers.ModelSerializer):
 
 class NeulhaerangReplySerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    reply_like_count = serializers.SerializerMethodField(method_name='get_reply_like_count',read_only=True)
+    def get_reply_like_count(self, neulhaerang_reply):
+        reply_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).aggregate(Count('id'))
+        return reply_count['id__count']
     class Meta:
         model = NeulhaerangReply
+        fields = '__all__'
 
 class NeulhaerangReviewSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='neulhaerang.member.member_nickname', read_only=True)

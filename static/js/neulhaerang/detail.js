@@ -195,7 +195,30 @@ $btn_comment.on("click",e=>{
             toastFlag = false
 
         },2000)
+    }else{
+        replyCont = $('.tf_cmt').val()
+        neulhaerangDetailReplyCreate(replyCont)
+        replyPage=1
+        neulhaerangDetailReplyView(replyPage)
     }
+})
+
+$(document).ready(()=> {
+    //왼쪽 클릭
+    const $btn_prevs = $(".btn_prev")
+    $btn_prevs.each((idx, btn_prev) => {
+        $(btn_prev).on("click", e => {
+            arrowBtnClickSlide(btn_prev, "prev")
+        })
+    })
+    //오른쪽 클릭
+
+    const $btn_nexts = $(".btn_next")
+    $btn_nexts.each((idx, btn_next) => {
+        $(btn_next).on("click", e => {
+            arrowBtnClickSlide(btn_next)
+        })
+    })
 })
 
 
@@ -210,10 +233,7 @@ $btn_comment.on("click",e=>{
 
 
 
-
-
-Function(temp)
-
+Function(parsedContents)
 
 
 //사진 무한 슬라이드 1.셋팅
@@ -293,126 +313,7 @@ const arrowBtnClickSlide = function (btn, prev) {
 
 }
 
-$(document).ready(()=> {
 
-    //왼쪽 클릭
-    const $btn_prevs = $(".btn_prev")
-    $btn_prevs.each((idx, btn_prev) => {
-        $(btn_prev).on("click", e => {
-            arrowBtnClickSlide(btn_prev, "prev")
-        })
-    })
-
-
-    //오른쪽 클릭
-
-    const $btn_nexts = $(".btn_next")
-    $btn_nexts.each((idx, btn_next) => {
-        $(btn_next).on("click", e => {
-            arrowBtnClickSlide(btn_next)
-        })
-    })
-})
-
-
-// function Function(temps) {
-//     let addtext = ""
-//     let multiImgflag = ""
-//     temps.forEach((temp,i)=>{
-//         console.log(temp)
-//         if(temp.fields.neulhaerang_content_order !== multiImgflag) {
-//             if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
-//                 addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`
-//             } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
-//                 addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`
-//             } else {
-//                 addtext += `<div class="photo_slide">
-//                               <div class="inner_photo">
-//                                 <ul class="list_photo">
-//                                 <li>
-//                                 <span
-//                                   class="img_slide"
-//                                   style="
-//                                     background-image: url(${temp.fields.inner_photo});
-//                                   "
-//                                 ></span
-//                                 ><span class="txt_caption">${temp.fields.photo_explanation}</span>
-//                               </li>
-//                               </ul>
-//                               </div>
-//                             </div>`
-//             }
-//         }else{
-//             addList = `<li>
-//                         <span
-//                           class="img_slide"
-//                           style="
-//                             background-image: url(${temp.fields.inner_photo});
-//                           "
-//                         ></span
-//                         ><span class="txt_caption">${temp.fields.photo_explanation}</span>
-//                       </li>`
-//             $('.list_photo').append(addList)
-//         }
-//         multiImgflag = temp.fields.neulhaerang_content_order;
-//         })
-//     $('.cont_subject').html(addtext)
-// }
-//
-//
-// })
-
-
-// my_script.js
-// function Function(temps) {
-//     let addtext = ""
-//     let multiImgflag = ""
-//     temps.forEach((temp,i)=>{
-//         console.log(temp)
-//         if(temp.fields.neulhaerang_content_order !== multiImgflag) {
-//             if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
-//                 addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`
-//             } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
-//                 addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`
-//             } else {
-//                 addtext += `<div class="photo_slide">
-//                               <div class="inner_photo">
-//                                 <ul class="list_photo">
-//                                 <li>
-//                                 <span
-//                                   class="img_slide"
-//                                   style="
-//                                     background-image: url(${temp.fields.inner_photo});
-//                                   "
-//                                 ></span
-//                                 ><span class="txt_caption">${temp.fields.photo_explanation}</span>
-//                               </li>
-//                               </ul>
-//                               </div>
-//                             </div>`
-//             }
-//         }else{
-//             addtext += `<li>
-//                         <span
-//                           class="img_slide"
-//                           style="
-//                             background-image: url(${temp.fields.inner_photo});
-//                           "
-//                         ></span
-//                         ><span class="txt_caption">${temp.fields.photo_explanation}</span>
-//                       </li>`
-//
-//         }
-//         multiImgflag = temp.fields.neulhaerang_content_order;
-//         })
-//     $('.cont_subject').html(addtext)
-// }
-
-//
-
-// function Function4(total_fund){
-//         $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
-// }
 
 function Function3(plans) {
     addText = ""
@@ -446,24 +347,24 @@ function Function2(target_amounts, total_fund){
 
 Function2(parsedAmount,parsedAmountSum)
 
-function Function(temps) {
+function Function(Contents) {
     let addtext = "";
     let multiImgflag = "";
-    temps.forEach((temp, i) => {
-        if (temp.fields.neulhaerang_content_order !== multiImgflag) {
-            if (temp.model == 'neulhaerang.neulhaeranginnertitle') {
-                addtext += `<span class="tit_subject">${temp.fields.inner_title_text}</span>`;
-            } else if (temp.model == 'neulhaerang.neulhaeranginnercontent') {
-                addtext += `<p class="desc_subject">${temp.fields.inner_content_text}</p>`;
+    Contents.forEach((content, i) => {
+        if (content.fields.neulhaerang_content_order !== multiImgflag) {
+            if (content.model == 'neulhaerang.neulhaeranginnertitle') {
+                addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
+            } else if (content.model == 'neulhaerang.neulhaeranginnercontent') {
+                addtext += `<p class="desc_subject">${content.fields.inner_content_text}</p>`;
             } else {
                 addtext += `<div class="photo_slide">
                               <div class="inner_photo">
                                 <ul class="list_photo">
                                   <li>
                                     <span class="img_slide"
-                                          style="background-image: url('/upload/${temp.fields.inner_photo}');">
+                                          style="background-image: url('/upload/${content.fields.inner_photo}');">
                                     </span>
-                                    <span class="txt_caption">${temp.fields.photo_explanation}</span>
+                                    <span class="txt_caption">${content.fields.photo_explanation}</span>
                                   </li>
                                 </ul>
                             </div>
@@ -485,24 +386,29 @@ function Function(temps) {
        }else{
             let addtext2 = `<li>
                                   <span class="img_slide"
-                                        style="background-image: url('/upload/${temp.fields.inner_photo}');">
+                                        style="background-image: url('/upload/${content.fields.inner_photo}');">
                                   </span>
-                                  <span class="txt_caption">${temp.fields.photo_explanation}</span>
+                                  <span class="txt_caption">${content.fields.photo_explanation}</span>
                                 </li>`;
             $('.list_photo').last().append(addtext2)
         }
 
-        multiImgflag = temp.fields.neulhaerang_content_order;
+        multiImgflag = content.fields.neulhaerang_content_order;
     });
 
  $('.list_photo').each((i,v)=>{
 
-        let first = $(v).children().first()
-       
-        let last = $(v).children().last()
-
+        let first = $(v).children().first().clone()
+        let last = $(v).children().last().clone()
+        $(v).append(first)
+        $(v).prepend(last)
     })
+}
 
+function btnLikeOn(){
+    $('.btn_like').on('click',(e)=>{
+        $(e.target).parent().toggleClass('on')
+    })
 }
 
 
@@ -535,16 +441,17 @@ function elapsedTime(date) {
 
 let replyPage = 1
 let replyCont = ""
+let replys = ""
+replyCount -= 5
 
-const neulhaerangDetailReplyView = (replyPage)=>{
+const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            let replys = result.replys
+            replys = result.replys
             let replyText = ""
 
             replys.forEach((reply,i)=>{
-            console.log(reply)
             replyText += `<li>
                           <button class="link_profile">
                             <img
@@ -574,17 +481,21 @@ const neulhaerangDetailReplyView = (replyPage)=>{
                               ><button type="button" class="btn_like">
                                 <span class="ico_together ico_like"></span>&nbsp;좋아요&nbsp;<span
                                   class="num_like"
-                                  >26</span
+                                  >${reply.reply_like_count}</span
                                 >
                               </button></span
                             >
                           </div>
                         </li>`
             })
-            $('.list_cmt').append(replyText)
-
+            if(btn_more){
+                $('.list_cmt').append(replyText)
+            }
+            else{
+                $('.list_cmt').html(replyText)
+            }
+            btnLikeOn()
         })
-
 }
 neulhaerangDetailReplyView(replyPage)
 
@@ -592,12 +503,25 @@ const neulhaerangDetailReplyCreate = (replyCont)=>{
 fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-
-
         })
 }
-$('.btn_comment').on('click', () => {
-    replyCont = $('.tf_cmt').val()
-    neulhaerangDetailReplyCreate(replyCont)
-    neulhaerangDetailReplyView(replyPage)
+
+if(replyCount<=0){
+    $('.link_round').hide()
+}
+
+// 더보기 버튼 누를 시에
+$('.link_round').on('click',()=>{
+    replyPage++
+    replyCount -= 5
+    if(replyCount<=0){
+    $('.link_round').hide()
+}
+    neulhaerangDetailReplyView(replyPage,'btn_more')
 })
+
+const neulhaerangDetailReplyView = () => {
+    fetch(`/neulhaerang/detail-reply-like/?replyLikeStatus=${replyLikeStatus}`)
+        .then(response=>resjson())
+        
+}
