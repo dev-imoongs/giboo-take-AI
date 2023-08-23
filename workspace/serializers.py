@@ -1,6 +1,7 @@
 from django.db.models import Sum
 from rest_framework import serializers
 
+from customer_center.models import Inquery
 from member.models import Member
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangReply
@@ -71,6 +72,12 @@ class NoticeSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='admin.member_nickname', read_only=True)
     class Meta:
         model = Notice
+        fields = '__all__'
+
+class InquerySerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    class Meta:
+        model = Inquery
         fields = '__all__'
 
 class PagenatorSerializer(serializers.Serializer):

@@ -1,19 +1,20 @@
 import json
 import math
 from datetime import timedelta
-
+from django.core.mail import EmailMessage, send_mail
 from django.core import serializers
 from django.core.paginator import Paginator
-from django.db.models import Q
-from django.http import JsonResponse
+from django.db.models import Q, F
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from customer_center.models import Inquery
+from customer_center.models import Inquery, InqueryResponse
 from member.models import Member
 from neulhaerang.models import Neulhaerang
 from neulhaerang_review.models import NeulhaerangReview
@@ -21,7 +22,7 @@ from neulhajang.models import Neulhajang
 from notice.models import Notice
 from workspace.pagenation import Pagenation
 from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer, NeulhajangSerializer, \
-    ReviewSerializer, NoticeSerializer
+    ReviewSerializer, NoticeSerializer, InquerySerializer
 
 
 # Create your views here.
@@ -441,7 +442,6 @@ class AdminNoticeDetailView(View):
         return render(request, 'admin/notice/detail.html', datas)
 
     def post(self, request):
-        pass
 
         page = request.POST.get("page")
         search = request.POST.get("search")
@@ -494,13 +494,93 @@ class AdminNoticeDetailView(View):
 
 class AdminInqueryListView(View):
     def get(self,request):
-        return render(request,'admin/inquiry/list.html')
+        if request.GET.get("page"):
+            page = int(request.GET.get("page"))
+        else:
+            page = 1
+
+        if request.GET.get("search"):
+            search = request.GET.get("search")
+        else:
+            search = ''
+
+        datas = {
+            "page": page,
+            "search": search,
+        }
+        return render(request, 'admin/inquiry/list.html', datas)
 
 
-
-class AdminInqueryWriteView(View):
+class AdminGetInquerysByPagedAPIView(APIView):
     def get(self,request):
-        return render(request,'admin/inquiry/write.html')
+        page = int(request.GET.get("page"))
+        search = request.GET.get("search")
+
+
+        if search :
+           inquerys_query_set = Inquery.objects.filter(inquery_title__contains=search).all()
+        else:
+            inquerys_query_set = Inquery.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=inquerys_query_set)
+
+        inquerys = InquerySerializer(pagenator.paged_models,many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "inquerys":inquerys,
+            "pagenator" : serialized_pagenator
+        }
+
+
+        return Response(datas)
+
+class AdminDeleteInquerysAPIView(APIView):
+    def post(self,request):
+        inquery_ids = json.loads(request.body).get("inquery_ids")
+        inquerys = Inquery.objects.filter(id__in= inquery_ids).delete()
+        return Response(True)
+
+
+
+class AdminInqueryDetailView(View):
+    def get(self,request):
+        inquery_id = request.GET.get("inquery_id")
+        page = request.GET.get("page")
+        search = request.GET.get("search")
+        inquery = Inquery.objects.filter(id=inquery_id).annotate(response_content = F("inqueryresponse__response_content")).values().get()
+        datas = {
+            "inquery": inquery,
+            "page": page,
+            "search": search,
+        }
+
+        return render(request, 'admin/inquiry/detail.html',datas)
+
+    def post(self,request):
+        page = request.POST.get("page")
+        search = request.POST.get("search")
+        inquery_id = request.POST.get("inquery_id")
+        main_url = request.build_absolute_uri().split("admin")[0]+"main/main/"
+
+        inquery = Inquery.objects.get(id=inquery_id)
+        response_content = request.POST.get("response_content")
+        admin = Member.objects.get(member_email=request.session["member_email"])
+        inquery_response = InqueryResponse.objects.create(admin=admin,response_content=response_content,inquery=inquery)
+        inquery.response_status="답변완료"
+        inquery.save()
+
+        email_title = '기부&테이크 문의내용에 대한 답변 메일입니다!'
+        html_message = render_to_string('admin/send_email_template.html', {'inquery': inquery,"response_content":response_content,"main_url":main_url})
+
+        recipient_list = [inquery.member.member_email]
+
+        send_mail(email_title, message="",recipient_list=recipient_list, html_message=html_message,from_email="service.center.12342@gmail.com")
+        next_url = reverse("admin:inquery/list") + f"?page={page}&search={search}"
+        return redirect(next_url)
+
+
+
 
 
 

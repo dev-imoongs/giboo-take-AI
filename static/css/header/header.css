@@ -913,3 +913,248 @@ background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px 
 .logout-button:hover .sub-menu-txt{
   text-decoration: underline;
 }
+
+.dialog-content {
+  overflow: hidden;
+  position: absolute;
+  z-index: 999999;
+  top: 50%;
+  left: 50%;
+}
+
+.inner-together-layer2 {
+  width: 392px;
+}
+
+.inner-together-layer {
+  background-color: #fff;
+}
+
+.inner-together-layer .write-phone {
+  margin: 0 22px 28px;
+  padding-top: 53px;
+  background: #fff;
+}
+
+.inner-together-layer .wrap-phone {
+  margin: 0 22px 20px;
+  padding-top: 28px;
+  background: url(//t1.kakaocdn.net/together_image/common/bg_line.png) repeat-x 0 0;
+}
+
+.inner-together-layer .wrap-phone .list-write {
+  margin: 0;
+}
+
+.inner-together-layer .write-phone dt {
+  width: auto;
+  padding-bottom: 20px;
+  line-height: 28px;
+}
+
+.inner-together-layer .wrap-phone dt {
+  position: static;
+  margin-top: 0;
+  padding-bottom: 22px;
+  font-size: 16px;
+  color: #626262;
+}
+
+.inner-together-layer .list-write dd {
+  position: relative;
+  padding: 0;
+}
+
+.inner-together-layer .wrap-phone .info-phone {
+  height: 44px;
+}
+
+.inner-together-layer .wrap-phone .info-phone .group-tf:first-child {
+  width: 60px;
+}
+
+.inner-together-layer .wrap-phone .info-phone .group-tf {
+  width: 120px;
+}
+
+.inner-together-layer .wrap-phone .group-tf {
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.inner-together-layer .wrap-phone .list-write .tf-write {
+  width: 100%;
+}
+
+.inner-together-layer .wrap-phone .dash-among .inner-among {
+  width: 11px;
+  height: 2px;
+  margin: 20px 6px 0 7px;
+}
+
+.inner-together-layer .wrap-phone .btn-certify {
+  width: 100%;
+  height: 44px;
+  margin: 12px 0;
+  border: 1px solid #ea7eb0;
+  border-radius: 2px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #dc287c;
+  background-color: #fdf4f8;
+  box-sizing: border-box;
+}
+
+.inner-together-layer .wrap-phone .group-tf .txt-lab {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #cacaca;
+  cursor: text;
+}
+
+.inner-together-layer .write-phone+.wrap-btn-type {
+  margin: 0 22px;
+}
+
+.inner-together-layer2 .wrap-btn-type {
+  overflow: hidden;
+}
+
+.inner-together-layer .wrap-btn-type {
+  margin: 0 30px;
+}
+
+.inner-together-layer .wrap-btn {
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.inner-together-layer .wrap-btn-type .btn-set:last-child {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.inner-together-layer2 .wrap-btn .btn-set {
+  text-align: center;
+}
+
+.inner-together-layer .wrap-btn-type .btn-set {
+  width: 100%;
+  margin: 0 0 12px;
+}
+
+.inner-together-layer .wrap-btn .btn-type1 {
+  background-color: #dc287c;
+}
+
+.inner-together-layer .wrap-btn .btn-set {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  height: 48px;
+  margin: 0 4px;
+  vertical-align: top;
+  color: #fff;
+  font-size: 16px;
+  line-height: 49px;
+}
+/* 모달 띄울때 주변 opacity 조절 */
+.dimmed-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  background-color: #000;
+  opacity: .3;
+  filter: alpha(opacity=30);
+}
+.dialog-content {
+  overflow: hidden;
+  z-index: 999999;
+  left: 50%;
+  position: fixed;
+  display: none;
+  top: 25%;
+  margin-left: -192px;
+}
+.inner-together-layer {
+    background-color: #fff;
+}
+
+.inner-together-layer2 {
+    width: 392px;
+}
+
+.inner-together-layer .desc-together {
+    display: table;
+    width: 100%;
+    height: 128px;
+    padding-top: 30px;
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+}
+
+.inner-together-layer .desc-together .txt-desc {
+    display: block;
+    display: table-cell;
+    padding: 20px 25px;
+    vertical-align: middle;
+    line-height: 28px;
+    word-break: break-all;
+    white-space: pre-line
+}
+
+.inner-together-layer .wrap-btn {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-set {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 48px;
+    margin: 0 4px;
+    vertical-align: top;
+    color: #fff;
+    font-size: 16px;
+    line-height: 49px;
+}
+
+.inner-together-layer .wrap-btn .btn-type1 {
+    background-color: #dc287c;
+}
+
+.inner-together-layer2 .wrap-btn .btn-set {
+    text-align: center;
+}
+
+.inner-together-layer .wrap-btn .btn-type2 {
+    background-color: #949494;
+}
+
+.inner-together-layer .layer-foot .ico-together {
+    width: 17px;
+    height: 17px;
+    margin: 22px;
+    background-position: -184px 0;
+}
+
+.ico-together {
+    background: url(//t1.kakaocdn.net/together_image/common/ico_together_201008.png) no-repeat 0 0;
+}
+
+.inner-together-layer .layer-foot .btn-close {
+    display: block;
+    overflow: hidden;
+}
+
+.inner-together-layer .layer-foot {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

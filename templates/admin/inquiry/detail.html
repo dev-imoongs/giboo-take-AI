@@ -19,26 +19,32 @@
             <div class="content-wrap">
 
                 <!-- [S] 공지사항 등록 -->
-                <form action="./qna.html" method="post">
+                <form action="/admin/inquery/detail/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="page" value="{{ page }}">
+                      <input type="hidden" name="search" value="{{ search }}">
+                     <input type="hidden" name="inquery_id" value="{{ inquery.id }}">
                     <h2 class="title-h2">문의사항 답변</h2>
                     <div class="con-write-wrap">
 
                         <div class="notice-write">
                             <div class="write-title">문의사항 제목</div>
                             <div class="write-sec">
-                                <input class="write-text write-input" type="text" readonly>
+                                <input class="write-text write-input" type="text" readonly value="{{ inquery.inquery_title }}">
                             </div>
                         </div>
                         <div class="notice-write">
                             <div class="write-title">문의사항 내용</div>
                             <div class="write-sec">
-                                <textarea class="write-text write-notice" style="height: 280px;" type="text" readonly></textarea>
+                                <textarea class="write-text write-notice" style="height: 280px; white-space: pre-line;" type="text" readonly>{{ inquery.inquery_content }}</textarea>
                             </div>
                         </div>
                         <div class="notice-write">
                             <div class="write-title">문의사항 답변</div>
                             <div class="write-sec">
-                                <textarea class="write-text write-notice" style="height: 280px;" type="text" placeholder="답변 내용을 적어주세요."></textarea>
+                                <textarea class="write-text write-notice" style="height: 280px;" type="text" placeholder="답변 내용을 적어주세요." name="response_content"
+                                        {% if inquery.response_content %} readonly
+                                        {% endif %}>{% if inquery.response_content %}{{ inquery.response_content }}{% endif %}</textarea>
                             </div>
                         </div>
 
@@ -48,8 +54,10 @@
 
                     <!-- 작성하기 btn -->
                     <div class="write-btn-wrap">
-                        <button type="button" class="btn btn-list"><a class="go-list" href="javascript:void(0)">문의목록</a></button>
-                        <button type="button" class="btn btn-write">답변하기</button>
+                        <button type="button" class="btn btn-list"><a class="go-list" href="/admin/inquery/list/?page={{ page }}&search={{ search }}">문의목록</a></button>
+                        {% if not inquery.response_content %}
+                            <button type="button" class="btn btn-write">답변하기</button>
+                        {% endif %}
                     </div>
                 </form>
 
@@ -60,4 +68,14 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{% static 'js/admin/side-bar.js' %}"></script>
+<script>
+    $(".btn-write").on("click",e=>{
+        if(!$("textarea[name='response_content']").val()){
+            $("textarea[name='response_content']").focus()
+            return
+        }
+        $("form").submit()
+
+    })
+</script>
 </html>

@@ -33,7 +33,7 @@ a {
 
 .txt_required {
     position: absolute;
-    top: 105px;
+    top: 80px;
     right: 0;
 }
 
@@ -248,6 +248,7 @@ fieldset {
 }
 
 .info_agree {
+    width: 100%;
     float: left;
     margin-top: -1px;
     border-top: 1px solid #1e1e1e;
@@ -376,6 +377,7 @@ fieldset {
     float: right;
     margin: 50px 5px 5px 0;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .group_shadow {
