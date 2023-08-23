@@ -419,3 +419,45 @@ button {
 }
 }
 
+.view-foot {
+    width: 700px;
+    margin: 52px auto 10px;
+}
+.view-foot .name-writer {
+    position: relative;
+    display: block;
+    padding-top: 27px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.cont_etc .group_banner, .cont_memory .group_banner, .cont_mind .group_banner, .cont_prm .group_banner, .cont_project .group_banner, .cont_tayo .group_banner, .cont_yearbest .group_banner {
+    margin-top: 60px;
+}
+
+.group-banner {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.link-banner {
+    display: block;
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.link-banner .img-banner {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 2px;
+    vertical-align: top;
+    max-width: 100%;
+}
+
+
+
+.group-banner{
+    margin: 50px auto;
+}

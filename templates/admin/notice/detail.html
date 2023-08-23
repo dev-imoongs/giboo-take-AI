@@ -55,6 +55,14 @@
                                 </select>
                             </div>
                         </div>
+                   <div class="notice-write">
+                            <div class="write-title">고정 여부</div>
+                            <div class="write-sec">
+                                <label>공지사항 고정
+                                    <input type="checkbox" name="status" >
+                                </label>
+                            </div>
+                        </div>
 
                 <div class="notice-write">
                     <div class="write-title">첨부파일</div>
@@ -99,12 +107,16 @@
 <script>
     let image_url = "{{ notice.notice_image }}"
     let type = "{{ notice.type }}"
+    let status ="{{ notice.notice_status }}"
 
     $(".sel-notice-target").children().each((i,option)=>{
         if($(option).val() == type){
             $(option).attr("selected","selected")
         }
     })
+    console.log(status)
+
+    $("input[name='status']").attr("checked",status=="FIXED"? true:false)
 </script>
 <script src="{% static 'js/admin/notice-detail.js' %}"></script>
 </html>

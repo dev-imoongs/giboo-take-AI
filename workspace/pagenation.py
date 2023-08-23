@@ -7,7 +7,10 @@ class Pagenation():
         self.row_count =row_count
         self.offset = (page - 1) * row_count
         self.limit = page * row_count
-        self.total = query_set.count()
+        if type(query_set)==list:
+            self.total = len(query_set)
+        else:
+            self.total = query_set.count()
         self.page_count = page_count
         self.end_page = math.ceil(page / page_count) * page_count
         self.start_page = self.end_page - self.page_count + 1

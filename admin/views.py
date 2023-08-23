@@ -410,11 +410,16 @@ class AdminNoticeWriteView(View):
         title = request.POST.get("title")
         content = request.POST.get("content")
         type = request.POST.get("type")
+        status = request.POST.get("status")
+        if status :
+            status = "FIXED"
+        else:
+            status = "NORMAL"
+
 
         file = files.get("file")
-        print(file)
         admin = Member.objects.get(member_email=request.session["member_email"])
-        Notice.objects.create(notice_title=title,notice_content=content,notice_image=file,type=type,admin=admin)
+        Notice.objects.create(notice_title=title,notice_content=content,notice_image=file,type=type,admin=admin,notice_status=status)
 
 
         return redirect("admin:notice/list")

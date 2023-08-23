@@ -22,13 +22,13 @@ class NoticeTest(TestCase):
     #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
 
-
+    admin = Member.objects.get(id=6)
 
     #
-    # for i in range(10):
-    #     Notice.objects.create(
-    #       notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="제안자",admin=admin
-    #        )
+    for i in range(100):
+        Notice.objects.create(
+          notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="참가자안내",admin=admin,notice_status="NORMAL"
+           )
 
     member = Member.objects.get(id=10)
 
@@ -36,10 +36,10 @@ class NoticeTest(TestCase):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
 
 
-    category = Category.objects.get(id=1)
-    for i in range(100):
-        Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",
-                                  category=category)
+    # category = Category.objects.get(id=1)
+    # for i in range(100):
+    #     Neulhaerang.objects.create(member=member,neulhaerang_title=f"늘해랑 제목{i}",
+    #                               category=category)
 
     # category = Category.objects.get(id=1)
     # for i in range(100):
