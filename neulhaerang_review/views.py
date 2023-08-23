@@ -13,7 +13,10 @@ from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, Ne
 class NeulhaerangReviewDetailView(View):
     def get(self, request, neulhaerang_review_id):
         post = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
-        return render(request,'neulhaerang/review-detail.html')
+        context = {
+            'post':post,
+        }
+        return render(request,'neulhaerang/review-detail.html',context)
 
 
 class NeulhaerangReviewListView(View):
