@@ -2,89 +2,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>공지사항</title>
-  <link rel="stylesheet" href="{% static 'css/notice/notice.css' %}">
-  <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
-  <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="{% static 'css/notice/notice.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
 </head>
 <body>
-    {% if request.session.member_email %}
+{% if request.session.member_email %}
     {% include 'header/logined-header.html' %}
-    {% else %}
+{% else %}
     {% include 'header/header.html' %}
-    {% endif %}
-  <!-- 메인 -->
-  <span class="main-wrap">
+{% endif %}
+<!-- 메인 -->
+<span class="main-wrap">
     <div class="total-main">
       <!-- 공지사항 탭 -->
       <div class="wrap-tab">
         <ul class="list-tab">
-          <li class="on">
+          <li>
             <a class="link-tab" href="javascript:void(0);">
               <span class="txt-tab">전체</span>
             </a>
             </li>
             <li>
               <a class="link-tab" href="javascript:void(0);">
-                <span class="txt-tab">공지탭1</span>
+                <span class="txt-tab">서비스안내</span>
               </a>
             </li>
               <li>
                 <a class="link-tab" href="javascript:void(0);">
-                  <span class="txt-tab">공지탭2</span>
+                  <span class="txt-tab">주최자안내</span>
                 </a>
               </li>
                 <li>
                   <a class="link-tab" href="javascript:void(0);">
-                    <span class="txt-tab">공지탭3</span>
+                    <span class="txt-tab">참가자안내</span>
                   </a>
                 </li>
               </ul>
             </div>
-          <!-- 공지사항 탭 끝 -->
-          <!-- 컨텐츠 목록 시작 -->
+        <!-- 공지사항 탭 끝 -->
+        <!-- 컨텐츠 목록 시작 -->
             <div class="contents-group">
               <ul class="list-official">
-                <li>
-                  <a class="link-official" href="javascript:void(0);">
-                    <strong class="subject-official">
-                      <span class="icon-pin">
-                      </span>"고정 공지사항 타이틀1"
-                    </strong>
-                      <span class="notice-target">"안내 타겟"</span>
-                      <span class="date-official">
-                        "2023.00.00" 
-                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="link-official" href="javascript:void(0);">
-                        <strong class="subject-official">
-                          <span class="icon-pin">
-                          </span>"고정 공지사항 타이틀2"
-                        </strong>
-                          <span class="notice-target">"안내 타겟"</span>
-                          <span class="date-official">
-                            "2023.00.00" 
-                          </span>
-                            </a>
-                          </li>
-                      <div class="list-more"></div>
-                    <li>
-                      <a class="link-official" href="javascript:void(0);">
-                        <strong class="subject-official">"공지사항 타이틀1"
-                        </strong>
-                        <span class="notice-target">"안내 타겟"</span>
-                        <span class="date-official">
-                      "2023.00.00"
-                    </span>
-                  </a>
-                </li>
+
               </ul>
             </div>
-            <!-- 컨텐츠 목록 끝 -->
+        <!-- 컨텐츠 목록 끝 -->
       
           </div>
         </span>
@@ -92,7 +58,19 @@
 
 {% include 'footer/footer.html' %}
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{% static 'js/notice/on.js' %}"></script>
+<script>
+    let type ="{{ type }}"
+     $(".txt-tab").each((i,tab)=>{
+        if($(tab).text()==type){
+            $(tab).closest("li").addClass("on")
+        }
+    })
+</script>
+<script src="{% static 'js/notice/list.js' %}"></script>
+
+
 {% if request.session.member_email %}
 
     <script src="/static/js/header/logined-header.js"></script>
@@ -100,6 +78,7 @@
     <script src="/static/js/header/header.js"></script>
 
 {% endif %}
+
 </html>
 
 

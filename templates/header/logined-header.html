@@ -216,7 +216,7 @@
                 <a href="" class="pc-user-sub-menu-link"><span class="sub-menu-txt">설정</span></a>
               </li>
               <li class="pc-user-sub-menu-list">
-                <button class="logout-button" onclick="location.href='/member/logout/?path={{ request.path }}'">
+                <button class="logout-button" onclick="location.href='/member/logout/?path={{ request.build_absolute_uri }}'">
                   <span class="sub-menu-txt">로그아웃</span>
                 </button>
               </li>
@@ -262,7 +262,6 @@
   </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="{% static '/js/header/logined-header.js'%}'"></script>
   <script>
     const status = "{{ request.session.member_status }}";
     const modal = document.querySelector("#modal");
