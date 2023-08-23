@@ -202,6 +202,28 @@
         </a>
       </div>
     </header>
+   <div class="dimmed_layer"></div>
+  </div>
+  <modal>
+    <!-- 모달 꺼지면 id modalOFF display:none -->
+    <div tabindex="0" role="dialog" class="dialog-content opened-modal"
+     id="modalOFF" style="display: none">
+        <modal-content class="modal-delete">
+          <div class="inner-together-layer inner-together-layer2">
+            <div class="layer-body">
+              <p class="desc-together">
+                <span class="txt-desc">로그인이 필요합니다.<br>로그인 하시겠습니까?</span>
+              </p>
+              <div class="wrap-btn">
+                <a href="javascript:void(0)" class="btn-set btn-type1">확인</a>
+                <a href="javascript:void(0)" class="btn-set btn-type2">취소</a>
+              </div>
+            </div>
+          </div>
+        </modal-content>
+
+    </div>
+  </modal>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js" integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh" crossorigin="anonymous"></script>
@@ -244,6 +266,17 @@
     if (parts.length === 2) { return parts[1].split(';')[0]; }
   }
 
+//  취소 버튼 클릭 시 모달창 사라짐
+$('.btn-type2').on("click", () =>{
+        $('#modalON').attr('id','modalOFF');
+        $('.dimmed_layer').css('height','0');
+        $('.dialog-content').css('display','none');
+        $('.modal-delete').css('display','none');
+})
+
+$(".btn-type1").on("click",e=>{
+   loginWithKakao()
+})
 
   </script>
 </html>

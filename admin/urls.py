@@ -1,12 +1,13 @@
 from django.urls import path
 
-from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
+from admin.views import AdminInqueryListView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
     AdminNoticeListView, AdminReviewListView, AdminMainView, \
     AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, \
     AdminDeleteNeulhaerangAPIView, AdminGetNeulhajangsByPagedAPIView, AdminDeleteNeulhajangAPIView, \
     AdminGetNeulhaerangsByPagedAPIView, AdminGetReviewsByPagedAPIView, AdminDeleteReviewAPIView, \
-    AdminGetNoticesByPagedAPIView, AdminDeleteNoticeAPIView, AdminNoticeDetailView
+    AdminGetNoticesByPagedAPIView, AdminDeleteNoticeAPIView, AdminNoticeDetailView, AdminGetInquerysByPagedAPIView, \
+    AdminDeleteInquerysAPIView, AdminInqueryDetailView
 
 app_name = 'admin'
 
@@ -16,7 +17,7 @@ app_name = 'admin'
 urlpatterns = [
     path('main/', AdminMainView.as_view(), name='main'),
     path('inquery/list/', AdminInqueryListView.as_view(), name='inquery/list'),
-    path('inquery/write/', AdminInqueryWriteView.as_view(), name='inquery/write'),
+    path('inquery/detail/', AdminInqueryDetailView.as_view(), name='inquery/detail'),
     path('member/list/', AdminMemberListView.as_view(), name='member/list'),
     path('neulhaerang/list/', AdminNeulhaerangListView.as_view(), name='neulhaerang/list'),
     path('neulhaerang/detail/', AdminNeulhaerangDetailView.as_view(), name='neulhaerang/detail'),
@@ -42,6 +43,7 @@ urlpatterns = [
 
     path('get-notices-by-paged/', AdminGetNoticesByPagedAPIView.as_view()),
     path('delete-notices/', AdminDeleteNoticeAPIView.as_view()),
-
+    path('get-inquerys-by-paged/', AdminGetInquerysByPagedAPIView.as_view()),
+    path('delete-inquerys/', AdminDeleteInquerysAPIView.as_view()),
 
 ]

@@ -26,10 +26,8 @@
     <!-- request -->
 
     <div class="question_cont">
-        <form id="request" action="/requests" enctype="multipart/form-data" method="post" novalidate="novalidate">
-            <input type="hidden" id="serviceId" name="serviceId" value="72">
-            <input type="hidden" id="categoryId" name="categoryId" value="">
-            <input type="hidden" id="locale" name="locale" value="ko">
+        <form id="request" action="/customer-center/inquery/write/" method="post">
+            {% csrf_token %}
             <fieldset>
 
 
@@ -44,9 +42,8 @@
                     </dt>
                     <dd>
                         <div class="wrap_item wrap_id">
-                            <span class="txt_placeholder">제목을 입력해 주세요(20자 이내)</span>
-                            <input autocomplete="off" class="inp_info blur_event" id="subject" name="subject"
-                                   aria-required="true" type="text" maxlength="20">
+                            <input autocomplete="off" class="inp_info blur_event" id="subject" name="title"
+                                   aria-required="true" type="text" maxlength="20" placeholder="제목을 입력해 주세요(20자 이내)">
                         </div>
                     </dd>
                 </dl>
@@ -59,7 +56,7 @@
                     </dt>
                     <dd>
                         <div class="wrap_item wrap_tf click_event">
-                            <textarea class="inp_info tf_info" cols="24" id="contents" name="contents"
+                            <textarea class="inp_info tf_info" cols="24" id="contents" name="content"
                                       required="required" rows="6" style="line-height: normal"
                                       aria-required="true"></textarea>
                         </div>
@@ -74,46 +71,9 @@
                 <!-- // 만 14세 미만 동의 안내 -->
 
                 <div class="info_agree" id="info_agree">
-                    <h4 class="tit_agree">개인정보 수집·이용에 대한 안내</h4>
+                    <h1 class="tit_agree">현재 로그인된 아이디의 이메일로 답변이 전송됩니다.</h1>
+                    <h1 class="tit_agree">답변이 전송되면 알림으로 답변이 완료되었다고 알려드립니다.</h1>
 
-                    <strong class="desc_agree_sub">(필수) 개인정보 수집·이용에 대한 안내</strong>
-                    <p class="desc_agree">(주)카카오는 이용자 문의를 처리하기 위해 다음과 같이 개인정보를 수집 및 이용하며, 이용자의 개인정보를 안전하게 취급하는데 최선을 다하고
-                        있습니다.</p>
-
-                    <table class="tbl_privacy">
-                        <caption class="ir_caption">개인정보 수집·이용에 대한 안내</caption>
-                        <colgroup>
-                            <col>
-                            <col>
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th scope="col" style="width:270px;">수집항목</th>
-                            <th scope="col" style="width:220px;" class="tbl_border_left">수집목적</th>
-                            <th scope="col" style="width:260px;" class="tbl_border_left">보유기간</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>이메일 주소, 휴대폰 번호</td>
-                            <td class="tbl_border_left" rowspan="1">문의・요청・불편사항 확인 및 처리결과 회신</td>
-                            <td class="tbl_border_left txt_bold">3년간 보관 후 지체없이 파기</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                    <p class="desc_agree">위 동의를 거부 할 권리가 있으며, 동의를 거부하실 경우 문의 처리 및 결과 회신이 제한됩니다.</p>
-
-                    <p class="desc_more">더 자세한 내용에 대해서는 <a class="link_blue" href="http://www.kakao.com/ko/privacy"
-                                                           target="_blank">카카오 개인정보처리방침</a>을 참고하시기 바랍니다.</p>
-
-                    <div class="wrap_check">
-            <span class="item_check">
-              <input class="inp_check agreement" id="agree" name="agree" type="checkbox">
-              <label class="lab_check" for="agree"><span class="ico_cs required_check"></span>위 내용에 동의합니다.</label>
-            </span>
-                    </div>
 
                 </div>
 
@@ -141,4 +101,31 @@
 {% else %}
     <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
+
+<script>
+    let member_email = "{{ request.session.member_email }}"
+  $('.btn_cs2').on('click',()=>{
+      if(!member_email){
+           $('#modalOFF').attr('id','modalON')
+        $('.dimmed_layer').css('height','100%');
+        $('.dialog-content').css('display','block');
+        $('.modal-delete').css('display','block');
+        $('.modal-policy').css('display','none');
+        return
+      }
+      if(!$("#subject").val()){
+          $("#subject").focus()
+          return;
+      }
+
+      if(!$("#contents").val()){
+          $("#contents").focus()
+          return;
+      }
+    $("form").submit()
+
+
+
+})
+</script>
 </html>
