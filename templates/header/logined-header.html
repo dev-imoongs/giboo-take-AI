@@ -235,7 +235,61 @@
         </a>
       </div>
     </header>
+    <!--탈퇴회원 확인 모달-->
+  <div id="modal" class="confirm-modal-base">
+        <div class="confirm-modal_container">
+            <div class="confirm-modal-body">
+                <div class="confirm-modal-content">
+                    <p class="confirm-modal-text">탈퇴회원 입니다.<br>
+                        <strong class="confirm-modal-text-important">회원가입을 진행하시겠습니까?</strong>
+                    </p>
+                </div>
+                <div class="confirm-modal-button-group">
+                    <div class="button-group-container">
+                        <button type="button" class="confirm-cancel-button">취소</button>
+                        <button type="button" class="confirm-button">확인</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="confirm-modal-close-button">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" width="14" height="14" opacity="0.7" class="base__SvgIcon-sc-1mima33-0 eXtuti">
+                  <path d="M29.37.41a1.5 1.5 0 0 1 2.12 0l.1.1a1.5 1.5 0 0 1 0 2.12L18.22 16l13.37 13.37a1.5 1.5 0 0 1 0 2.12l-.1.1a1.5 1.5 0 0 1-2.12 0L16 18.22 2.63 31.59a1.5 1.5 0 0 1-2.007.103L.51 31.59l-.099-.1a1.5 1.5 0 0 1 0-2.12L13.78 16 .41 2.63a1.5 1.5 0 0 1 0-2.12l.1-.1a1.5 1.5 0 0 1 2.12 0L16 13.78z" fill="#202020" fill-rule="evenodd"></path>
+                </svg>
+              <span class="screen-out__ScreenOut-sc-1g53lol-0 knpbuW">닫기</span>
+            </button>
+        </div>
+    <div class="modal__ModalLayer-sc-es535j-7 ffwKiv modal_layer"></div>
+  </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/header/logined-header.js'%}'"></script>
+  <script>
+    const status = "{{ request.session.member_status }}";
+    const modal = document.querySelector("#modal");
+    const modalCloseBtn = modal.querySelector(".confirm-modal-close-button");
+    console.log(status);
+    console.log(modal);
+    function modalOn(){
+      modal.style.display="flex";
+    }
+
+    function modalOff(){
+      modal.style.display="none";
+    }
+
+    modalCloseBtn.addEventListener("click", e => {
+      modalOff();
+    });
+
+    if (status === "NORMAL") {
+      modalOff();
+    } else {
+      modalOn();
+    }
+
+    /*$('.confirm-cancel-button').on('click', function(){
+
+
+    });*/
+  </script>
 </html>
