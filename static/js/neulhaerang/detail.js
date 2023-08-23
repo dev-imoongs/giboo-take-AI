@@ -212,7 +212,7 @@ $btn_comment.on("click",e=>{
 
 
 
-
+Function(temp)
 
 
 
@@ -294,6 +294,7 @@ const arrowBtnClickSlide = function (btn, prev) {
 }
 
 $(document).ready(()=> {
+
     //왼쪽 클릭
     const $btn_prevs = $(".btn_prev")
     $btn_prevs.each((idx, btn_prev) => {
@@ -466,7 +467,19 @@ function Function(temps) {
                                   </li>
                                 </ul>
                             </div>
-                          </div>`;
+                            <div class="paging_slide">
+                              <span class="num_paging">
+                                <span class="num_page">1</span>
+                                / 4
+                              </span>
+                              <button class="btn_prev" type="button">
+                                <span class="ico_together2 ico_prev">이전버트</span>
+                              </button>
+                              <button class="btn_next" type="button">
+                                <span class="ico_together2 ico_next">다음버튼</span>
+                              </button>
+                            </div>
+                            </div>`;
             }
             $('.cont_subject').html(addtext);
        }else{
@@ -477,29 +490,22 @@ function Function(temps) {
                                   <span class="txt_caption">${temp.fields.photo_explanation}</span>
                                 </li>`;
             $('.list_photo').last().append(addtext2)
-            let slideText = `  <div class="paging_slide">
-                                        <span class="num_paging">
-                                          <span class="num_page">1</span>
-                                          / 4
-                                        </span>
-                                        <button class="btn_prev" type="button">
-                                          <span class="ico_together2 ico_prev">이전버트</span>
-                                        </button>
-                                        <button class="btn_next" type="button">
-                                          <span class="ico_together2 ico_next">다음버튼</span>
-                                        </button>
-                                      </div>`
-            if(!$('.paging_slide')){
-                $('.photo_slide').append(slideText)
-            }
         }
 
         multiImgflag = temp.fields.neulhaerang_content_order;
     });
 
+ $('.list_photo').each((i,v)=>{
+
+        let first = $(v).children().first()
+       
+        let last = $(v).children().last()
+
+    })
+
 }
 
-Function(temp)
+
 
 function elapsedTime(date) {
   const start = new Date(date);

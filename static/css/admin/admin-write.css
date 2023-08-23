@@ -248,14 +248,16 @@ ul {
 
 .notice-write .notice-img-sec .notice-img {
     width: 150px;
-    height: 75px;
-    background-size: 50%;
+    height: 150px;
     background-repeat: no-repeat;
     position: relative;
+    background-size: cover;
+        background-position: center;
 }
 
 .notice-write .notice-img-sec .thum-img {
    background-image: url('https://s2.svgbox.net/materialui.svg?ic=image&color=ddd');
+        background-size: cover;
 }
 
 .notice-write .notice-img-sec .notice-img:nth-child(2) {

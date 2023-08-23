@@ -8,6 +8,7 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangRepl
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReview
 from neulhajang.models import Neulhajang
+from notice.models import Notice
 
 
 
@@ -39,6 +40,18 @@ class NeulhaerangReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = NeulhaerangReply
 
+class NeulhaerangReviewSerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='neulhaerang.member.member_nickname', read_only=True)
+    donation_amount_sum = serializers.SerializerMethodField(method_name='get_donation_amount_sum',read_only=True)
+
+    def get_donation_amount_sum(self, neulhaerangreview):
+        amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerangreview.neulhaerang_id).aggregate(Sum('donation_amount'))
+        return amount_sum['donation_amount__sum']
+
+    class Meta:
+        model = NeulhaerangReview
+        fields = '__all__'
+
 class NeulhajangSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
     class Meta:
@@ -48,8 +61,16 @@ class NeulhajangSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='neulhaerang.member.member_nickname', read_only=True)
     neulhaerang_title = serializers.CharField(source='neulhaerang.neulhaerang_title', read_only=True)
+    neulhaerang_id = serializers.IntegerField(source='neulhaerang.id', read_only=True)
     class Meta:
         model = NeulhaerangReview
+        fields = '__all__'
+
+
+class NoticeSerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='admin.member_nickname', read_only=True)
+    class Meta:
+        model = Notice
         fields = '__all__'
 
 class PagenatorSerializer(serializers.Serializer):

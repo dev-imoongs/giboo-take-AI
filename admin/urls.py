@@ -2,10 +2,11 @@ from django.urls import path
 
 from admin.views import AdminInqueryListView, AdminInqueryWriteView, AdminMemberListView, AdminNeulhaerangListView, \
     AdminNeulhaerangDetailView, AdminNeulhajangListView, AdminNeulhajangDetailView, AdminNoticeWriteView, \
-    AdminNoticeListView, AdminNoticeUpdateView, AdminReviewListView, AdminMainView, \
+    AdminNoticeListView, AdminReviewListView, AdminMainView, \
     AdminGetMembersByPagedAPIView, AdminChangeMemberStatusAPIView, \
     AdminDeleteNeulhaerangAPIView, AdminGetNeulhajangsByPagedAPIView, AdminDeleteNeulhajangAPIView, \
-    AdminGetNeulhaerangsByPagedAPIView, AdminGetReviewsByPagedAPIView
+    AdminGetNeulhaerangsByPagedAPIView, AdminGetReviewsByPagedAPIView, AdminDeleteReviewAPIView, \
+    AdminGetNoticesByPagedAPIView, AdminDeleteNoticeAPIView, AdminNoticeDetailView
 
 app_name = 'admin'
 
@@ -22,8 +23,8 @@ urlpatterns = [
     path('neulhajang/list/', AdminNeulhajangListView.as_view(), name='neulhajang/list'),
     path('neulhajang/detail/', AdminNeulhajangDetailView.as_view(), name='neulhajang/detail'),
     path('notice/list/', AdminNoticeListView.as_view(), name='notice/list'),
+    path('notice/detail/', AdminNoticeDetailView.as_view(), name='notice/detail'),
     path('notice/write/', AdminNoticeWriteView.as_view(), name='notice/write'),
-    path('notice/update/', AdminNoticeUpdateView.as_view(), name='notice/update'),
     path('review/list/', AdminReviewListView.as_view(), name='review/list'),
 
 
@@ -37,7 +38,10 @@ urlpatterns = [
     path('get-neulhajangs-by-paged/', AdminGetNeulhajangsByPagedAPIView.as_view()),
     path('delete-neulhajangs/', AdminDeleteNeulhajangAPIView.as_view()),
     path('get-reviews-by-paged/', AdminGetReviewsByPagedAPIView.as_view()),
-    # path('delete-reviews/', AdminDeleteReviewAPIView.as_view()),
+    path('delete-reviews/', AdminDeleteReviewAPIView.as_view()),
+
+    path('get-notices-by-paged/', AdminGetNoticesByPagedAPIView.as_view()),
+    path('delete-notices/', AdminDeleteNoticeAPIView.as_view()),
 
 
 ]
