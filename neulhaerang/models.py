@@ -18,7 +18,7 @@ class Neulhaerang(Period):
     thumbnail_image = models.ImageField(null=False, blank=False, upload_to='neulhaerang/thumbnail/%Y/%m/%d')
     participants_openchat_link = models.CharField(max_length=500, null=False, blank=False)
     neulhaerang_status = models.CharField(max_length=100, null=False, blank=False)
-    rejected_message = models.CharField(max_length=1000, null=True, blank=False)
+    rejected_message = models.CharField(max_length=1000, null=True, blank=False)    
     member = models.ForeignKey(Member, null=False, blank=False, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
 

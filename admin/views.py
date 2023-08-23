@@ -21,7 +21,7 @@ from neulhajang.models import Neulhajang
 from notice.models import Notice
 from workspace.pagenation import Pagenation
 from workspace.serializers import MemberSerializer, PagenatorSerializer, NeulhaerangSerializer, NeulhajangSerializer, \
-    ReviewSerializer
+    ReviewSerializer, NoticeSerializer
 
 
 # Create your views here.
@@ -334,17 +334,156 @@ class AdminGetReviewsByPagedAPIView(APIView):
 
         return Response(datas)
 
+class AdminDeleteReviewAPIView(APIView):
+    def post(self,request):
+        review_ids = json.loads(request.body).get("review_ids")
+        reviews = NeulhaerangReview.objects.filter(id__in= review_ids).delete()
+        return Response(True)
+
+
+
+
 class AdminNoticeListView(View):
     def get(self,request):
-        return render(request,'admin/notice/list.html')
+        if request.GET.get("page"):
+            page = int(request.GET.get("page"))
+        else:
+            page = 1
+
+        if request.GET.get("search"):
+            search = request.GET.get("search")
+        else:
+            search = ''
+
+        datas = {
+            "page": page,
+            "search": search,
+        }
+        return render(request, 'admin/notice/list.html', datas)
+
+
+class AdminGetNoticesByPagedAPIView(APIView):
+    def get(self,request):
+        page = int(request.GET.get("page"))
+        search = request.GET.get("search")
+
+
+        if search :
+           notices_query_set = Notice.objects.filter(notice_title=search).all()
+        else:
+            notices_query_set = Notice.objects.all()
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=notices_query_set)
+
+        notices = NoticeSerializer(pagenator.paged_models,many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "notices":notices,
+            "pagenator" : serialized_pagenator
+
+        }
+
+
+        return Response(datas)
+
+class AdminDeleteNoticeAPIView(APIView):
+    def post(self,request):
+        notice_ids = json.loads(request.body).get("notice_ids")
+        notices = Notice.objects.filter(id__in= notice_ids).delete()
+        return Response(True)
+
+
+
+
+
+
 
 class AdminNoticeWriteView(View):
     def get(self,request):
+
         return render(request,'admin/notice/write.html')
 
-class AdminNoticeUpdateView(View):
-    def get(self,request):
-        return render(request,'admin/notice/update.html')
+    def post(self,request):
+        files = request.FILES
+
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        type = request.POST.get("type")
+
+        file = files.get("file")
+        print(file)
+        admin = Member.objects.get(member_email=request.session["member_email"])
+        Notice.objects.create(notice_title=title,notice_content=content,notice_image=file,type=type,admin=admin)
+
+
+        return redirect("admin:notice/list")
+
+
+class AdminNoticeDetailView(View):
+    def get(self, request):
+        notice_id = request.GET.get("notice_id")
+        page = request.GET.get("page")
+        search = request.GET.get("search")
+        notice = Notice.objects.filter(id=notice_id)[0]
+
+        datas = {
+            "notice": notice,
+            "page": page,
+            "search": search,
+        }
+
+        return render(request, 'admin/notice/detail.html', datas)
+
+    def post(self, request):
+        pass
+
+        page = request.POST.get("page")
+        search = request.POST.get("search")
+        notice_id = request.POST.get("notice_id")
+
+        notice = Notice.objects.get(id=notice_id)
+
+        files = request.FILES
+
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        type = request.POST.get("type")
+        x_falg = request.POST.get("xFlag")
+
+        file = files.get("file")
+        if file:
+            notice.notice_image = file
+        elif x_falg=="true":
+            notice.notice_image=''
+
+
+        admin = Member.objects.get(member_email=request.session["member_email"])
+        notice.notice_title=title
+        notice.notice_content=content
+        notice.admin=admin
+        notice.type=type
+
+        notice.save()
+
+        next_url = reverse("admin:notice/list") + f"?page={page}&search={search}"
+        return redirect(next_url)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
