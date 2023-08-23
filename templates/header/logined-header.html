@@ -264,25 +264,28 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/header/logined-header.js'%}'"></script>
   <script>
-    let status = "{{ request.session.member_status }}";
-    let modal = document.querySelector("#modal");
+    const status = "{{ request.session.member_status }}";
+    const modal = document.querySelector("#modal");
+    const modalCloseBtn = modal.querySelector(".confirm-modal-close-button");
     console.log(status);
     console.log(modal);
     function modalOn(){
-      modal.style.display='flex';
+      modal.style.display="flex";
     }
 
     function modalOff(){
-      modal.style.display='none';
+      modal.style.display="none";
     }
 
+    modalCloseBtn.addEventListener("click", e => {
+      modalOff();
+    });
 
-    if (status === 'DELETED') {
+    if (status === "NORMAL") {
       modalOff();
     } else {
       modalOn();
     }
-
 
     /*$('.confirm-cancel-button').on('click', function(){
 
