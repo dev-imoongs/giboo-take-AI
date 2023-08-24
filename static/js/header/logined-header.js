@@ -50,7 +50,6 @@ if (status === "NORMAL") {
 
 // NORMAL로 member_status 변경
 deletedConfirmBtn.addEventListener("click", e => {
-
     changeMemberStatus()
     modalOff();
 });

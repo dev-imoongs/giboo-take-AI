@@ -1,15 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static '/css/common/common.css'%}" />
-    <link rel="stylesheet" href="{% static '/css/header/header.css'%}" />
-    <link rel="stylesheet" href="{% static '/css/header/header-media.css'%}" />
-    <title>header</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static '/css/common/common.css'%}" />
+  <link rel="stylesheet" href="{% static '/css/header/header.css'%}" />
+  <link rel="stylesheet" href="{% static '/css/header/header-media.css'%}" />
+  <title>header</title>
+</head>
+<body>
     <header id="header" class="header-base">
       <div class="header-inner">
         <!-- 로고 -->
@@ -169,16 +169,16 @@
       <nav class="menu">
         <ul class="menu-list">
           <li class="list-item-container home">
-            <a href="" class="menu-item-link">홈
+            <a href="/main/main/" class="menu-item-link">홈
             <!-- 메뉴알림뱃지 핑크닷-->
               <!--<i class="new-badge"></i>-->
             </a>
           </li>
           <li class="list-item-container header-menu">
-            <a href="" class="menu-item-link">늘해랑</a>
+            <a href="/neulhaerang/list/" class="menu-item-link">늘해랑</a>
           </li>
           <li class="list-item-container header-menu">
-            <a href="" class="menu-item-link">늘하장</a>
+            <a href="/neulhajang/list/" class="menu-item-link">늘하장</a>
           </li>
 
           <li class="list-item-container header-menu more">
@@ -253,48 +253,21 @@
       </div>
       <div class="confirm-modal-layer"></div>
   </div>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script>
-       let url = "{{ request.path }}".split("/")[1]
-         if(url=="main"){
-            $(".list-item-container").eq(0).addClass("home")
-            $(".list-item-container").eq(0).removeClass("header-menu")
-        }else if(url=="neulhaerang"){
-             $(".list-item-container").eq(1).addClass("home")
-            $(".list-item-container").eq(1).removeClass("header-menu")
-        }else if(url=="neulhajang"){
-             $(".list-item-container").eq(2).addClass("home")
-            $(".list-item-container").eq(2).removeClass("header-menu")
-        }
-    const status = "{{ request.session.member_status }}";
-    const modal = document.querySelector("#modal");
-    const modalCloseBtn = modal.querySelector(".confirm-modal-close-button");
-//    console.log(status);
-//    console.log(modal);
-    function modalOn(){
-      modal.style.display="flex";
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+  const status = "{{ request.session.member_status }}";
+  let url = "{{ request.path }}".split("/")[1]
+     if(url=="main"){
+        $(".list-item-container").eq(0).addClass("home")
+        $(".list-item-container").eq(0).removeClass("header-menu")
+    }else if(url=="neulhaerang"){
+         $(".list-item-container").eq(1).addClass("home")
+        $(".list-item-container").eq(1).removeClass("header-menu")
+    }else if(url=="neulhajang"){
+         $(".list-item-container").eq(2).addClass("home")
+        $(".list-item-container").eq(2).removeClass("header-menu")
     }
-
-    function modalOff(){
-      modal.style.display="none";
-    }
-
-    modalCloseBtn.addEventListener("click", e => {
-      modalOff();
-    });
-
-    if (status === "NORMAL") {
-      modalOff();
-    } else {
-      modalOn();
-    }
-
-    /*$('.confirm-cancel-button').on('click', function(){
-
-
-    });*/
-
-
-  </script>
+</script>
+<script src="{% static '/js/header/logined-header.js' %}'"></script>
 </html>
