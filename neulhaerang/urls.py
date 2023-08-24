@@ -1,7 +1,7 @@
 from django.urls import path
 
 from neulhaerang.views import NeulhaerangDetailView, NeulhaerangListView, NeulhaerangAPIView, TestView, \
-NeulhaerangDetailReplyAPIView, NeulhaerangDetailReplyWriteAPIView
+    NeulhaerangDetailReplyAPIView, NeulhaerangDetailReplyWriteAPIView, NeulhaerangDetailReplyLikeAPIView
 
 app_name = 'neulhaerang'
 
@@ -15,5 +15,6 @@ urlpatterns = [
     # api view
     path('list-api-view/', NeulhaerangAPIView.as_view(), name='list-api-view'),
     path('detail-reply-view/', NeulhaerangDetailReplyAPIView.as_view(), name='detail-reply-view'),
-    path('detail-write-view/', NeulhaerangDetailReplyWriteAPIView.as_view(), name='detail-write-view')
+    path('detail-write-view/', NeulhaerangDetailReplyWriteAPIView.as_view(), name='detail-write-view'),
+    path('detail-reply-like/', NeulhaerangDetailReplyLikeAPIView.as_view(), name='detail-reply-like')
 ]

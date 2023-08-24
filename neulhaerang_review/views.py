@@ -9,7 +9,6 @@ from workspace.pagenation import Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReviewSerializer
 
 
-# Create your views here.
 class NeulhaerangReviewDetailView(View):
     def get(self, request, neulhaerang_review_id):
         post = NeulhaerangReview.objects.get(id=neulhaerang_review_id)

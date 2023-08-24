@@ -7,9 +7,11 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
     NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji, NeulhaerangParticipants, \
     NeulhaerangReply, ReplyLike
+from neulhaerang_review.models import NeulhaerangReview
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReplySerializer
 
@@ -20,28 +22,33 @@ class NeulhaerangDetailView(View):
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
-
+        neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
         inner_title_query = NeulhaerangInnerTitle.objects.filter(neulhaerang_id=neulhaerang_id)
         content_query = NeulhaerangInnerContent.objects.filter(neulhaerang_id=neulhaerang_id)
-        photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id)
+        photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id).order_by('photo_order')
 
         contents = list(inner_title_query) + list(content_query) + list(photo_query)
+
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
+
         sorted_contents = sorted(contents, key=lambda item: item.neulhaerang_content_order)
+
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
         likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
         participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
-        reply_count = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id).count()
+        reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
         bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
+
 
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
 
         context = {
             'neulhaerang_id': neulhaerang_id,
+            'neulhaerang_review':neulhaerang_review,
             'bottom_posts': bottom_posts,
-            'reply_count': reply_count,
+            'reply_count': reply.count(),
             'participants_count' : participants_count,
             'likes_count' : likes_count,
             'byeoljjies': byeoljji,
@@ -114,29 +121,46 @@ class NeulhaerangAPIView(APIView):
 
 class NeulhaerangDetailReplyAPIView(APIView):
     def get(self, request):
+        my_email = request.session.get('member_email')
         replyPage = int(request.GET.get('replyPage'))
-
         neulhaerang_id = request.GET.get('neulhaerangId')
-        replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id).order_by("-created_date")[0:5]
-        # reply_likes = []
-        # for reply in replys:
-        #     ReplyLike.objects.all().filter(neulhaerang_reply_id=reply.id)
-
-        replys = NeulhaerangReplySerializer(replys_queryset,many=True).data
-
+        replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        pagenator = Pagenation(page=replyPage, page_count=5, row_count=5, query_set=replys_queryset)
+        replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
 
         datas = {
             'replys':replys,
+            'replys_count':replys_queryset.count(),
         }
 
         return Response(datas)
 
 class NeulhaerangDetailReplyWriteAPIView(APIView):
     def get(self, request):
+        my_email = request.session.get('member_email')
         replyCont = request.GET.get('replyCont')
         neulhaerang_id = request.GET.get('neulhaerangId')
-        NeulhaerangReply.objects.create(member_id='1', neulhaerang_id=neulhaerang_id, reply_content=replyCont)
+        member = Member.objects.get(member_email=my_email)
+
+        NeulhaerangReply.objects.create(member=member, neulhaerang_id=neulhaerang_id, reply_content=replyCont)
+
         return Response(True)
+
+class NeulhaerangDetailReplyLikeAPIView(APIView):
+    def get(self, request):
+        my_email = request.session.get('member_email')
+        neulhaerang_reply_id = request.GET.get('reply_id')
+        member = Member.objects.get(member_email=my_email)
+        neulhaerang_reply = NeulhaerangReply.objects.get(id=neulhaerang_reply_id)
+        reply_like = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply, member=member)
+        if reply_like:
+            reply_like.delete()
+        else:
+            ReplyLike.objects.create(neulhaerang_reply=neulhaerang_reply, member=member)
+        reply_like_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).count()
+
+        return Response(reply_like_count)
+
 
 
 

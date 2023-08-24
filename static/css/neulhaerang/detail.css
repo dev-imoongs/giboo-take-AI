@@ -1501,6 +1501,11 @@ button {
     padding-left: 20px;
     color: #999;
     vertical-align: 0;
+    font-size: 14px;
+}
+
+.list_cmt .btn_like:hover{
+    color: #444;
 }
 
 .list_cmt .btn_like .ico_like {
@@ -1515,10 +1520,31 @@ button {
     background-position: -208px -1396px;
     vertical-align: top;
 }
+
 .list_cmt .btn_like .num_like {
     margin-left: 1px;
     font-family: KakaoBig Bold,sans-serif;
 }
+
+.list_cmt .on.btn_like {
+    color: #444;
+}
+
+.list_cmt .on.btn_like .ico_like {
+    background-position: 0 -1609px;
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    top: -1px;
+    left: -4px;
+    transform: scale(.7);
+    animation-name: likeAni;
+    animation-timing-function: ease-out;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+}
+
+
 
 .list_cmt .btn_delete, .list_cmt .btn_report {
     margin-left: 19px;
@@ -1526,6 +1552,11 @@ button {
     color: #9f9f9f;
     vertical-align: 0;
 }
+
+.list_cmt .btn_delete:hover {
+    color: #4f4f4f;
+}
+
 .list_more {
     padding: 23px 0 0;
     text-align: center;
@@ -2523,6 +2554,7 @@ button {
     padding-left: 15px;
     font-size: 12px;
 }
+
 .list_cmt .btn_like .ico_like {
     width: 16px;
     height: 14px;
