@@ -20,6 +20,7 @@ class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
 
         post = Neulhaerang.objects.get(id=neulhaerang_id)
+        post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
@@ -46,6 +47,7 @@ class NeulhaerangDetailView(View):
 
         context = {
             'neulhaerang_id': neulhaerang_id,
+            'post_writer_thumb':post_writer_thumb,
             'neulhaerang_review':neulhaerang_review,
             'bottom_posts': bottom_posts,
             'reply_count': reply.count(),
