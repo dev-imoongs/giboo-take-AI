@@ -19,20 +19,7 @@ $(".btn_close").on("click", e => {
 })
 
 
-//내 댓글 삭제 모달,
-const $btn_delete = $(".btn_delete")
-const $comment_delete_modal = $(".comment_delete_modal")
-$btn_delete.on("click",e=>{
-    $dimedLayer.css("height","100%")
-    $comment_delete_modal.show()
-    $comment_delete_modal.addClass("opened_modal")
-})
 
-$(".comment_delete_modal .btn_type2").on("click",e=>{
-    $dimedLayer.css('height', "");
-    $comment_delete_modal.hide();
-    $comment_delete_modal.removeClass("opened_modal")
-})
 
 //동참하기 모달
 const $participate_modal = $(".participate_modal")
@@ -86,8 +73,32 @@ $(".need_login_modal .btn_type2").on("click",e=>{
     $need_login_modal.removeClass("opened_modal")
 })
 
+//내 댓글 삭제 모달,
+const deleteReply = (reply_id) => {
+    const $btn_delete = $(".btn_delete")
+    const $comment_delete_modal = $(".comment_delete_modal")
+    $btn_delete.on("click", e => {
+        $dimedLayer.css("height", "100%")
+        $comment_delete_modal.show()
+        $comment_delete_modal.addClass("opened_modal")
+        if($(e.target).hasClass('btn_delete'))
+        reply_id = $(e.target).prev().prev().attr('id')
+    })
 
+    $(".comment_delete_modal .btn_type1").on("click",(e)=>{
+        neulhaerangDetailReplyDeleteView(reply_id)
+        $(`span[id=${reply_id}]`).closest('li').hide()
+        $dimedLayer.css('height', "");
+        $comment_delete_modal.hide();
+        $comment_delete_modal.removeClass("opened_modal")
+    })
 
+    $(".comment_delete_modal .btn_type2").on("click", e => {
+        $dimedLayer.css('height', "");
+        $comment_delete_modal.hide();
+        $comment_delete_modal.removeClass("opened_modal")
+    })
+}
 
 //기부하기 버튼 모달
 const $fund_modal =$(".fund_modal")
@@ -238,6 +249,8 @@ $(document).ready(()=> {
             arrowBtnClickSlide(btn_next)
         })
     })
+
+
 })
 
 
@@ -533,6 +546,7 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
                 $('.list_cmt').html(replyText)
             }
             btnLikeOn()
+            deleteReply()
             $('.inner_info .emph_sign').html(reply_count)
         })
 }
@@ -562,6 +576,16 @@ const neulhaerangDetailReplyLikeView = (reply_id) => {
         .then(response => response.json())
         .then(result => {
             $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
+
+        })
+
+}
+
+const neulhaerangDetailReplyDeleteView = (reply_id) => {
+    fetch(`/neulhaerang/detail-reply-delete/?reply_id=${reply_id}`)
+        .then(response => response.json())
+        .then(result => {
+            // $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
 
         })
 

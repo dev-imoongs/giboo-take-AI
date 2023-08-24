@@ -20,9 +20,13 @@ class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
 
         post = Neulhaerang.objects.get(id=neulhaerang_id)
+        post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
-        neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
+        if(NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)):
+            neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
+        else:
+            neulhaerang_review = None
         inner_title_query = NeulhaerangInnerTitle.objects.filter(neulhaerang_id=neulhaerang_id)
         content_query = NeulhaerangInnerContent.objects.filter(neulhaerang_id=neulhaerang_id)
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id).order_by('photo_order')
@@ -46,6 +50,7 @@ class NeulhaerangDetailView(View):
 
         context = {
             'neulhaerang_id': neulhaerang_id,
+            'post_writer_thumb':post_writer_thumb,
             'neulhaerang_review':neulhaerang_review,
             'bottom_posts': bottom_posts,
             'reply_count': reply.count(),
@@ -71,24 +76,6 @@ class NeulhaerangListView(View):
             page = 1
 
         return render(request, 'neulhaerang/list.html')
-    # def get(self,request):
-    #     posts = Neulhaerang.objects.all()[0:8]
-    #     donation_list = []
-    #     for post in posts:
-    #         post_donation = NeulhaerangDonation.objects.filter(neulhaerang=post).aggregate(Sum('donation_amount'))
-    #         donation_list.append(post_donation)
-    #     print(type(donation_list))
-    #
-
-
-        # combined_data = zip(posts, donation_list)
-    #
-        # context = {
-        #     'posts':serializers.serialize("json",posts),
-        #     'fund_now':donation_list,
-        #     'combined_data':combined_data,
-        # }
-    #     return render(request,'neulhaerang/list.html', context)
 
 
 class NeulhaerangAPIView(APIView):
@@ -146,6 +133,13 @@ class NeulhaerangDetailReplyWriteAPIView(APIView):
 
         return Response(True)
 
+class NeulhaerangDetailReplyDeleteAPIview(APIView):
+    def get(self, request):
+        print('들어왔냐')
+        reply_id = request.GET.get('reply_id')
+        NeulhaerangReply.objects.get(id=reply_id).delete()
+        return Response(True)
+
 class NeulhaerangDetailReplyLikeAPIView(APIView):
     def get(self, request):
         my_email = request.session.get('member_email')
@@ -172,3 +166,7 @@ class TestView(View):
         # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
         # Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
         #                            ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))
+        # Member.objects.create(member_nickname='임웅빈테스트', member_age=4, member_gender='M', member_role='MEMBER',
+        #                       donation_status='open', total_donation_fund=0, total_donation_count=0, donation_level='bronze',
+        #                       profile_image=file.get('file'), profile_image_choice='user')
+        pass
