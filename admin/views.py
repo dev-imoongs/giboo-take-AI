@@ -575,9 +575,17 @@ class AdminInqueryDetailView(View):
 
         recipient_list = [inquery.member.member_email]
 
-        send_mail(email_title, message="",recipient_list=recipient_list, html_message=html_message,from_email="service.center.12342@gmail.com")
-        next_url = reverse("admin:inquery/list") + f"?page={page}&search={search}"
-        return redirect(next_url)
+
+
+
+        try:
+            send_mail(email_title, message="", recipient_list=recipient_list, html_message=html_message,
+                      from_email="service.center.12342@gmail.com")
+            next_url = reverse("admin:inquery/list") + f"?page={page}&search={search}"
+            return redirect(next_url)
+        except Exception as e:
+            return HttpResponse(f"An error occurred: {str(e)}", status=500)
+
 
 
 
