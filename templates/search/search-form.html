@@ -10,7 +10,11 @@
     <title>검색창</title>
   </head>
   <body>
-  {% include "header/header.html" %}
+  {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+  {% else %}
+    {% include 'header/header.html' %}
+  {% endif %}
     <div id="dkWrap" class="together_top">
       <!--header-->
       <span id="rootContent">

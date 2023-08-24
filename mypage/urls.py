@@ -17,6 +17,7 @@ urlpatterns = [
     path('service-setting/',MypageServiceSettingView.as_view(),name = 'service-setting'),
     path('sign-out/',MypageSignOutView.as_view(),name = 'sign-out'),
     path('reply/', MypageReplyView.as_view(),name = 'reply'),
+    path('save_data/', MypageProfileView.save_data, name='save_data'),
 
 
 
