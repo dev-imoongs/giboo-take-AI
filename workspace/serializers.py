@@ -82,6 +82,7 @@ class NeulhajangSerializer(serializers.ModelSerializer):
     def get_authentication_feed_sum(self, neulhajang):
         authentication_feed_count = NeulhajangAuthenticationFeed.objects.filter(neulhajang=neulhajang.id).aggregate(Count('id'))
         return authentication_feed_count['id__count']
+
     class Meta:
         model = Neulhajang
         fields = '__all__'
