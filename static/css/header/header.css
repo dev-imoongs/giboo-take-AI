@@ -913,3 +913,144 @@ background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px 
 .logout-button:hover .sub-menu-txt{
   text-decoration: underline;
 }
+
+/*탈퇴회원 확인 모달*/
+.confirm-modal-base {
+    overflow: hidden;
+    position: fixed;
+    inset: 0px;
+    z-index: 500;
+    display: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.confirm-modal_container {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    max-height: 90%;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(32, 32, 32);
+    width: 300px;
+}
+
+.confirm-modal-body {
+    overflow-y: auto;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.confirm-modal-content {
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 28px 20px 20px;
+    color: rgb(68, 68, 68);
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.confirm-modal-text {
+    font-size: 16px;
+    color: rgb(32, 32, 32);
+    font-style: normal;
+    font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    letter-spacing: -0.3px;
+    line-height: 1.88;
+    text-align: center;
+}
+
+.confirm-modal-text-important {
+    font-size: 16px;
+    color: rgb(32, 32, 32);
+    font-style: normal;
+    font-family: "KakaoBig Bold", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    letter-spacing: -0.3px;
+    line-height: 1.88;
+}
+
+.confirm-modal-button-group {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding: 0px 20px 20px;
+}
+
+.button-group-container {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.confirm-cancel-button {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgb(174, 174, 174);
+    border-radius: 6px;
+    margin: 0;
+    font-family: "KakaoBig Bold";
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: rgb(32, 32, 32);
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+}
+
+.confirm-button {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgb(173, 76, 254);
+    border-radius: 6px;
+    margin: 0 0 0 10px;
+    font-family: "KakaoBig Bold";
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(173, 76, 254);
+    background-color: rgb(255, 255, 255);
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+}
+
+.confirm-modal-layer {
+    position: fixed;
+    inset: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
