@@ -25,21 +25,21 @@
             <div class="group-profile">
               <div class="area-name">
                 <div class="link-myprofile">
-                  <strong class="txt-nick">기부천사</strong>
+                  <strong class="txt-nick">{{ donation_level }}기부천사</strong>
                   <div class="box_name">
-                    <strong class="txt-name"> (계정ID) ***** </strong>
+                    <strong class="txt-name"> {{ member_nickname }} </strong>
                   </div>
                 </div>
               </div>
               <div class="area-thumb">
                 <a class="link-badge" href="javascript:void(0)">
                   <span class="badge-thumb">
-                    <img class="img-thumb" src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png">
+                    <img class="img-thumb" src=/{{ member_profile_badge }}>
                   </span>
                 </a>
                 <a class="link-thumb" href="javascript:void(0)">
                   <span class="profile-thumb">
-                    <img class="img-thumb" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png">
+                    <img class="img-thumb" src=/{{ member_profile_image }}>
                   </span>
                 </a>
               </div>
@@ -333,7 +333,7 @@
 
                     </ul>
                   </div>
-                </div>
+                </div>-->
                 <div class="list-more">
                   <button type="button" class="link-round link-other2">
                     더보기 
