@@ -23,7 +23,10 @@ class NeulhaerangDetailView(View):
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
-        neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
+        if(NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)):
+            neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
+        else:
+            neulhaerang_review = None
         inner_title_query = NeulhaerangInnerTitle.objects.filter(neulhaerang_id=neulhaerang_id)
         content_query = NeulhaerangInnerContent.objects.filter(neulhaerang_id=neulhaerang_id)
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id).order_by('photo_order')
@@ -73,24 +76,6 @@ class NeulhaerangListView(View):
             page = 1
 
         return render(request, 'neulhaerang/list.html')
-    # def get(self,request):
-    #     posts = Neulhaerang.objects.all()[0:8]
-    #     donation_list = []
-    #     for post in posts:
-    #         post_donation = NeulhaerangDonation.objects.filter(neulhaerang=post).aggregate(Sum('donation_amount'))
-    #         donation_list.append(post_donation)
-    #     print(type(donation_list))
-    #
-
-
-        # combined_data = zip(posts, donation_list)
-    #
-        # context = {
-        #     'posts':serializers.serialize("json",posts),
-        #     'fund_now':donation_list,
-        #     'combined_data':combined_data,
-        # }
-    #     return render(request,'neulhaerang/list.html', context)
 
 
 class NeulhaerangAPIView(APIView):
@@ -146,6 +131,13 @@ class NeulhaerangDetailReplyWriteAPIView(APIView):
 
         NeulhaerangReply.objects.create(member=member, neulhaerang_id=neulhaerang_id, reply_content=replyCont)
 
+        return Response(True)
+
+class NeulhaerangDetailReplyDeleteAPIview(APIView):
+    def get(self, request):
+        print('들어왔냐')
+        reply_id = request.GET.get('reply_id')
+        NeulhaerangReply.objects.get(id=reply_id).delete()
         return Response(True)
 
 class NeulhaerangDetailReplyLikeAPIView(APIView):

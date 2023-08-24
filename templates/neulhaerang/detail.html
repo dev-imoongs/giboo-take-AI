@@ -51,6 +51,7 @@
               <!--본문-->
               <div class="wrap_subject">
                 <!--검토중, 미선정 나타내는 칸-->
+                {% if post.neulhaerang_status == '검토중' %}
                 <div class="box_info">
                   <p class="desc_info">
                     <em class="emph_give">{{ post.neulhaerang_status }}</em>
@@ -60,8 +61,20 @@
                     >
                   </p>
                 </div>
+                {% elif post.neulhaerang_status == '미선정' %}
+                <div class="box_info">
+                  <p class="desc_info">
+                    <em class="emph_give">{{ post.neulhaerang_status }}</em>
+                    <span class="txt_g" style="white-space: pre-line"
+                      >{{ post.rejected_message }}</span
+                    >
+                  </p>
+                </div>
+                {% endif %}
+
 
                 <!--후기 작성시 링크 생성-->
+                {% if neulhaerang_review %}
                 <div id="lnb_menu" class="wrap_tab2">
                   <ul class="list_tab">
                     <li class="on">
@@ -75,6 +88,7 @@
                         ><span class="inner_tab"><span class="txt_tab">모금후기</span></span></a
                       >
                     </li>
+                  {% endif %}
                   </ul>
                 </div>
 

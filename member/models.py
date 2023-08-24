@@ -21,7 +21,7 @@ class Member(Period):
     # choice가 카카오면 로그인 할때마다 세션의 member_email랑 프로필 url을 담고, 그것을 사용한다.
     profile_image = models.ImageField(null=True, blank=False, upload_to='member/profile/%Y/%m/%d')
     profile_image_choice = models.CharField(max_length=10, null=False, blank=False, default='user')
-
+    kakao_profile_image = models.TextField()
 
     class Meta:
         db_table = 'tbl_member'
