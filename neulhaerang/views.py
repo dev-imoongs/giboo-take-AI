@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core import serializers
-from django.db.models import Sum, F, Count
+from django.db.models import Sum, F, Count, Value
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
@@ -115,9 +115,26 @@ class NeulhaerangDetailReplyAPIView(APIView):
         pagenator = Pagenation(page=replyPage, page_count=5, row_count=5, query_set=replys_queryset)
         replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
 
+        # 베댓을 가져왔는데 3개이상이다 그럼 오더바이 (좋아요 순 , 생성순)으로 최대 3개 가져와 list
+        # 3개면 전체 댓글 가져온거 list 최신순으로 한다? 이게 말이댐?
+        # 페이지네이터해 list+ list
+        if(replyPage==1):
+            # count = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).count()
+            temps = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
+            if(temps.count()>3):
+                temps = temps[0:3]
+            temp2 = replys_queryset.annotate(reply_count=Count('replylike')).order_by('-created_date')[0:5-temps.count()]
+            sum_temp = list(temps)+list(temp2)
+            replys = NeulhaerangReplySerializer(sum_temp, many=True, context={'request': request}).data
+            datas = {
+                'replys':replys,
+                'replys_count':replys_queryset.count(),
+            }
+            return Response(datas)
         datas = {
             'replys':replys,
             'replys_count':replys_queryset.count(),
+
         }
 
         return Response(datas)
@@ -135,7 +152,6 @@ class NeulhaerangDetailReplyWriteAPIView(APIView):
 
 class NeulhaerangDetailReplyDeleteAPIview(APIView):
     def get(self, request):
-        print('들어왔냐')
         reply_id = request.GET.get('reply_id')
         NeulhaerangReply.objects.get(id=reply_id).delete()
         return Response(True)
