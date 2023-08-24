@@ -112,3 +112,11 @@ function updateCharCount() {
 
 // 페이지 로딩 시 초기 텍스트를 검사하고 표시
 updateCharCount();
+
+document.addEventListener()
+
+
+
+
+
+

@@ -17,7 +17,7 @@
     {% else %}
     {% include 'header/header.html' %}
     {% endif %}
-  <form method="post" action="{% url 'mypage:save_data' %}">
+  <form method="post" action="{% url 'mypage:save_data' %}" enctype="multipart/form-data">
       {% csrf_token %}
     <main id="root-content">
       <section-component>
@@ -26,10 +26,10 @@
             <div class="wrap-project wrap-profile">
               <div class="cont-thumb">
                 <div class="file-upload" >
-                  <img alt="프로필" class="img-thumb" src=/{{ profile_image }}>
+                  <img alt="프로필" class="img-thumb" src=/upload/{{ profile_image }}>
                   <label class="lab-photo">
                     <span class="ico-together ico-photo">
-                        <input class="upload-profile-img" type="file"> 사진첨부</span>
+                        <input class="upload-profile-img" id="upload-profile-img" type="file" name="profile_image"> 사진첨부</span>
                   </label>
                   <!-- 이미지가 업로드 되지 않은 상태면 display:none; -->
                   <button type="button" class="btn-del">

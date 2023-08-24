@@ -145,7 +145,7 @@ class MypageProfileView(View):
 
     def get(self, request):
         member = Member.objects.get(member_email=request.session['member_email'])
-
+        print(member.profile_image)
         context = {
             'profile_image': member.profile_image,
             'member_nickname': member.member_nickname,
@@ -168,6 +168,7 @@ class MypageProfileView(View):
                 member = get_object_or_404(Member, member_email=member_email)
                 member_nickname = request.POST.get('member_nickname', '찐빵로봇')
                 member_gender = request.POST.get('genderChk', 'notselect')
+                profile_image = request.FILES.get('profile_image')
 
                 # 멤버 필드 값을 업데이트하고 저장합니다.
                 member.member_nickname = member_nickname
@@ -175,11 +176,19 @@ class MypageProfileView(View):
 
                 member.member_gender = member_gender
                 print(member_gender)
+
+
+                member.profile_image = profile_image
+                print(profile_image)
+
                 member.save()
 
                 return redirect('success_page')
 
         return JsonResponse({'error': '잘못된 요청입니다.'})
+
+
+
 
 class MypageReplyView(View):
     def get(self,request):
