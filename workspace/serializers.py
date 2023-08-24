@@ -77,6 +77,7 @@ class NeulhaerangReviewSerializer(serializers.ModelSerializer):
 
 class NeulhajangSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+
     class Meta:
         model = Neulhajang
         fields = '__all__'

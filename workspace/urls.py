@@ -30,7 +30,7 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path('main/', include('main.urls')),
     path('member/', include('member.urls')),
-    path('customer-center/', include('customer_center.urls')),
+    path('customer_center/', include('customer_center.urls')),
     path('static_app/', include('static_app.urls')),
     path('neulhaerang_review/', include('neulhaerang_review.urls')),
     path('introduce/', include('introduce.urls'))

@@ -25,22 +25,22 @@
                 <div class="wrap_tab">
                   <ul class="list_tab tab_type4">
                     <li routerlinkactive="on" class="on">
-                      <a class="link_tab" href="/auroville/together"
+                      <a class="link_tab" href="/introduce/about/"
                         ><span class="txt_tab">기부앤테이크?</span></a
                       >
                     </li>
                     <li>
-                      <a class="link_tab" href="/auroville/donate"
+                      <a class="link_tab" href="/introduce/giboo-suggestion/"
                         ><span class="txt_tab">기부&amp;제안</span></a
                       >
                     </li>
                     <li>
-                      <a class="link_tab" href="/auroville/statistics"
+                      <a class="link_tab" href="/introduce/statistics/"
                         ><span class="txt_tab">기부 통계</span></a
                       >
                     </li>
                     <li>
-                      <a class="link_tab" href="/auroville/partner"
+                      <a class="link_tab" href="/introduce/partners/"
                         ><span class="txt_tab">파트너기관</span></a
                       >
                     </li>
@@ -85,7 +85,6 @@
                           <li class="slide_pannel">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/90977/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/e6262fa477674f2c83c4f0a2efb31cb1');
                               "
@@ -94,7 +93,6 @@
                           <li class="slide_pannel">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/79307/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/69e64bc6023d4b1593766c9adb401c9d');
                               "
@@ -103,7 +101,6 @@
                           <li class="slide_pannel" data-index="1">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/80264/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/81dbf60e5a0b4acaad99b9b9f3b4e708');
                               "
@@ -112,7 +109,6 @@
                           <li class="slide_pannel" data-index="2">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/actions/projects/13/mission"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/85eceefb650e47e0b63a465d356eb15d');
                               "
@@ -121,7 +117,6 @@
                           <li class="slide_pannel">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/91085/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/c17e4a5014884e48af9eff9ee82248eb');
                               "
@@ -130,7 +125,6 @@
                           <li class="slide_pannel">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/90977/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/e6262fa477674f2c83c4f0a2efb31cb1');
                               "
@@ -140,7 +134,6 @@
                           <li class="slide_pannel" data-index="0">
                             <a
                               class="link_slide"
-                              href="https://together.kakao.com/fundraisings/79307/epilogue"
                               style="
                                 background-image: url('https://t1.daumcdn.net/section/oc/69e64bc6023d4b1593766c9adb401c9d');
                               "
@@ -170,7 +163,7 @@
                       같이가치를 통해 사회 변화를 만들어 냈습니다.
                     </p>
                     <p class="txt_contribute">
-                      <em class="emph_sign">54,793,479번의 마음</em>이<br class="mo_linefeed" />
+                      <em class="emph_sign"></em>이<br class="mo_linefeed" />
                       모여 사회 변화를 이루어냈습니다.
                     </p>
                     <p class="txt_contribute">
@@ -180,21 +173,19 @@
                       기부앤테이크에서 사회 변화를 위해 모여졌습니다.
                     </p>
                     <p class="txt_contribute">
-                      기부앤테이크에서는 모금 프로젝트당 <br class="mo_linefeed" /><em class="emph_sign"
+                      기부앤테이크에서는 늘해랑 프로젝트당 <br class="mo_linefeed" /><em class="emph_sign"
                         >평균 6,859,130원의 기부금</em
                       >이 모금됩니다.
                     </p>
                   </div>
                   <div class="wrap_btn">
                     <a
-                      routerlink="/fundraisings/propose"
                       class="btn_begin btn_type2"
-                      href="/fundraisings/propose"
+                      href="/main/suggestion-choice/"
                       >제안하기</a
                     ><a
-                      routerlink="/fundraisings/now"
                       class="btn_begin btn_type1"
-                      href="/fundraisings/now"
+                      href="/neulhaerang/list/"
                       >기부하기</a
                     >
                   </div></ng-component
@@ -214,4 +205,18 @@
 {% else %}
     <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
+<script>
+
+    let project_total = Number("{{ project_total  }}").toLocaleString()
+    let donation_total = Number("{{ donation_total }}").toLocaleString()
+    let like_total = Number("{{ like_total }}").toLocaleString()
+    let average = Number("{{ average }}").toLocaleString()
+
+
+    $(".emph_sign").eq(0).text(`${project_total}개의 프로젝트`)
+    $(".emph_sign").eq(1).text(`${like_total}번의 마음`)
+    $(".emph_sign").eq(2).text(`${donation_total}원의 기부금`)
+    $(".emph_sign").eq(3).text(`평균 ${average}원의 기부금`)
+
+</script>
 </html>
