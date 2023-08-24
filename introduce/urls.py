@@ -1,7 +1,7 @@
 from django.urls import path
 
 from introduce.views import IntroduceAboutView, IntroduceGibooSuggestionView, IntroducePartnersView, \
-    IntroduceStatisticsView
+    IntroduceStatisticsView, IntroduceGetChartsView
 
 app_name = 'introduce'
 
@@ -10,4 +10,6 @@ urlpatterns = [
     path('giboo-suggestion/',IntroduceGibooSuggestionView.as_view(),name="giboo-suggestion"),
     path('partners/',IntroducePartnersView.as_view(),name="partners"),
     path('statistics/',IntroduceStatisticsView.as_view(),name="statistics"),
+
+    path('get-charts-by-year/',IntroduceGetChartsView.as_view()),
 ]
