@@ -54,8 +54,7 @@ class NeulhaerangReplySerializer(serializers.ModelSerializer):
     def check_my_like(self, neulhaerang_reply):
         request = self.context.get('request')
         my_email = request.session.get('member_email', None)
-        member = Member.objects.get(member_email=my_email)
-        my_reply_like = ReplyLike.objects.filter(member=member, neulhaerang_reply=neulhaerang_reply)
+        my_reply_like = ReplyLike.objects.filter(member__member_email=my_email, neulhaerang_reply=neulhaerang_reply)
         if (my_reply_like):
             return True
         return False
