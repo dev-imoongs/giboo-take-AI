@@ -131,3 +131,34 @@ document.addEventListener("DOMContentLoaded", function () {
         timeElement.textContent = timeText;
     });
 });
+
+
+// let elementToHide = document.getElementById('aaa');
+// if (NeulhaerangCount + NeulhajangCount >= 1 ) {
+//     elementToHide.style.display = 'none';
+// } else if (NeulhaerangCount + NeulhajangCount == 0) {
+//     elementToHide.style.display = 'block';
+// }
+//
+// let elementToHide2  = document.getElementById('bbb');
+// if (NeulhaerangCount == 0) {
+//     elementToHide2.style.display = 'none';
+// } else if (NeulhaerangCount >=1 ) {
+//     elementToHide2.style.display = 'block';
+// }
+//
+// let elementToHide3  = document.getElementById('ccc');
+// if (NeulhajangCount == 0) {
+//     elementToHide3.style.display = 'none';
+// } else if (NeulhajangCount >=1 ) {
+//     elementToHide3.style.display = 'block';
+// }
+
+const elementToHide = document.getElementById('aaa');
+const elementToHide2 = document.getElementById('bbb');
+const elementToHide3 = document.getElementById('ccc');
+
+// 조건에 따라 요소 숨기기/표시하기
+elementToHide.style.display = (NeulhaerangCount + NeulhajangCount >= 1) ? 'none' : 'block';
+elementToHide2.style.display = (NeulhaerangCount === 0) ? 'none' : 'block';
+elementToHide3.style.display = (NeulhajangCount === 0) ? 'none' : 'block';
