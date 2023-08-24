@@ -32,7 +32,8 @@ urlpatterns = [
     path('member/', include('member.urls')),
     path('customer-center/', include('customer_center.urls')),
     path('static_app/', include('static_app.urls')),
-    path('neulhaerang_review/', include('neulhaerang_review.urls'))
+    path('neulhaerang_review/', include('neulhaerang_review.urls')),
+    path('introduce/', include('introduce.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
