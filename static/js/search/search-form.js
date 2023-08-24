@@ -14,3 +14,7 @@ $searchInput.on("input",e=>{
         $searchDeleteBtn.hide()
     }
 })
+
+const showTag = (tag) => {
+    fetch(`/search/tag/`)
+}
