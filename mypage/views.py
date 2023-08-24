@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import DeleteView
 from rest_framework.response import Response
@@ -32,6 +33,8 @@ class MypageByeoljjiView(View):
 class MypageDonateView(View):
     def get(self,request):
         return render(request, 'mypage/mypage-donate.html')
+
+
 
 
     def get(self, request):
@@ -75,6 +78,7 @@ class MypageMainView(View):
         profile_badge = MemberBadge.objects.filter(member_id=1)[0:1].get().badge.badge_image
 
         temp = Neulhaerang.objects.filter(member_id=1)[0:2]
+        # temp = Neulhaerang.objects.filter(member__member_email = request.session['member_email'])[0:2]
         neulhajang_temp = Neulhajang.objects.filter(member_id=1)[0:2]
         reply_temp = NeulhaerangReviewReply.objects.filter(member_id=1)[0:2]
         badge_temp = MemberBadge.objects.filter(member_id=1)[0:5]
@@ -138,9 +142,44 @@ class MypagePostListView(View):
 
 
 class MypageProfileView(View):
-    def get(self,request):
-        return render(request, 'mypage/mypage-profile.html')
 
+    def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        context = {
+            'profile_image': member.profile_image,
+            'member_nickname': member.member_nickname,
+            'member_email': member.member_email,
+            'member_age': member.member_age,
+            'member_gender':member.member_gender,
+
+
+        }
+
+        return render(request, 'mypage/mypage-profile.html', context)
+
+    def save_data(request):
+
+        if request.method == 'POST':
+            member_email = request.session.get('member_email')
+            print(request.POST)
+            if member_email:
+                # 세션에서 이메일을 사용하여 멤버를 가져옵니다. 이메일을 기반으로 멤버를 식별해야 합니다.
+                member = get_object_or_404(Member, member_email=member_email)
+                member_nickname = request.POST.get('member_nickname', '찐빵로봇')
+                member_gender = request.POST.get('genderChk', 'notselect')
+
+                # 멤버 필드 값을 업데이트하고 저장합니다.
+                member.member_nickname = member_nickname
+                print(member_nickname)
+
+                member.member_gender = member_gender
+                print(member_gender)
+                member.save()
+
+                return redirect('success_page')
+
+        return JsonResponse({'error': '잘못된 요청입니다.'})
 
 class MypageReplyView(View):
     def get(self,request):
