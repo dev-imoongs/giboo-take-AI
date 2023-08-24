@@ -23,7 +23,7 @@
             <article id="mArticle" class="mArticle">
               <!--상단 타이틀 부분-->
               <div class="wrap_visual">
-                <div class="cont_visual">
+                <div class="cont_visual" style="background-image: url('/upload/{{ post.thumbnail_image }}')">
                   <div class="front_pack">
                     <!--타이틀-->
                     <h4 class="tit_visual ellipsis_type1">{{ post.neulhaerang_title }}</h4>
@@ -160,7 +160,7 @@
                             <img
                               alt="대표 섬네일"
                               class="img_logo"
-                              src="{{ post.member.profile_image }}"
+                              src="/upload/{{ post.member.profile_image }}"
                             />
                           </span>
                           <span class="info_suggester">

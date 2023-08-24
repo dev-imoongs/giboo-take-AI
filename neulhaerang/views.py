@@ -174,3 +174,7 @@ class TestView(View):
         # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
         # Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
         #                            ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))
+        # Member.objects.create(member_nickname='임웅빈테스트', member_age=4, member_gender='M', member_role='MEMBER',
+        #                       donation_status='open', total_donation_fund=0, total_donation_count=0, donation_level='bronze',
+        #                       profile_image=file.get('file'), profile_image_choice='user')
+        pass
