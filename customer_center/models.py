@@ -1,6 +1,9 @@
 from django.db import models
 
 from member.models import Member
+from neulhaerang.models import Neulhaerang
+from neulhaerang_review.models import NeulhaerangReview
+from neulhajang.models import Neulhajang
 from workspace.models import Period
 
 
@@ -26,8 +29,10 @@ class InqueryResponse(Period):
 class Alram(Period):
     message = models.TextField(null=False, blank=False)
     isChecked = models.CharField(max_length=30, null=False, blank=False)
-    page_link = models.CharField(max_length=200, null=True, blank=False)
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
+    neulhaerang = models.ForeignKey(Neulhaerang, null=True, on_delete=models.SET_NULL)
+    neulhaerang_review = models.ForeignKey(NeulhaerangReview, null=True, on_delete=models.SET_NULL)
+    neulhajang = models.ForeignKey(Neulhajang, null=True, on_delete=models.SET_NULL)
     class Meta:
         db_table = 'tbl_alram'
         ordering = ["-id"]

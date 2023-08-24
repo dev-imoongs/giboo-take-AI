@@ -38,6 +38,7 @@ $(".comment_delete_modal .btn_type2").on("click",e=>{
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
 $btn_participate.on("click",e=>{
+    if(check_session_email()) return
     $dimedLayer.css("height","100%")
     $participate_modal.show()
     $participate_modal.addClass("opened_modal")
@@ -60,9 +61,23 @@ const show_need_login_modal = function (){
 }
 
 // 로그인 검사로직 false라면 로그인 모달 띄우기
-$(".btn_give").on("click",e=>{
-    show_need_login_modal()
-})
+// $(".btn_give").on("click",e=>{
+//     show_need_login_modal()
+// })
+// 세션 이메일 정보 검사
+const check_session_email = () =>{
+    if(!email){
+        show_need_login_modal()
+        return
+    }
+}
+//
+const showMoreBtn = () => {
+    if (checkMoreBtn <= 0) {
+        $('.link_round').hide()
+    }
+}
+
 
 
 $(".need_login_modal .btn_type2").on("click",e=>{
@@ -77,6 +92,7 @@ $(".need_login_modal .btn_type2").on("click",e=>{
 //기부하기 버튼 모달
 const $fund_modal =$(".fund_modal")
 $(".btn_give").on("click",e=>{
+    if(check_session_email()) return
     $fund_modal.css("display","flex")
     $dimedLayer.css("height","100%")
     $fund_modal.addClass("opend_modal")
@@ -185,7 +201,8 @@ $tf_cmt.on("input",e=>{
 const $btn_comment = $(".btn_comment")
 
 let toastFlag = false
-$btn_comment.on("click",e=>{
+$btn_comment.on("click",(e)=>{
+    if(check_session_email()) return
     if($tf_cmt.val().length<2){
         if (toastFlag) return
         toastFlag=true
@@ -198,8 +215,10 @@ $btn_comment.on("click",e=>{
     }else{
         replyCont = $('.tf_cmt').val()
         neulhaerangDetailReplyCreate(replyCont)
+        $('.tf_cmt').val("")
+        $comment_num.text(0+'/')
         replyPage=1
-        neulhaerangDetailReplyView(replyPage)
+
     }
 })
 
@@ -374,7 +393,7 @@ function Function(Contents) {
                                 / 4
                               </span>
                               <button class="btn_prev" type="button">
-                                <span class="ico_together2 ico_prev">이전버트</span>
+                                <span class="ico_together2 ico_prev">이전버튼</span>
                               </button>
                               <button class="btn_next" type="button">
                                 <span class="ico_together2 ico_next">다음버튼</span>
@@ -407,7 +426,18 @@ function Function(Contents) {
 
 function btnLikeOn(){
     $('.btn_like').on('click',(e)=>{
-        $(e.target).parent().toggleClass('on')
+
+        if($(e.target).hasClass('ico_like')){
+            $(e.target).parent().toggleClass('on')
+            reply_id = $(e.target).parent().prev().attr('id')
+        }else if($(e.target).hasClass('btn_like')){
+            $(e.target).toggleClass('on')
+            reply_id = $(e.target).prev().attr('id')
+        }else if($(e.target).hasClass('num_like')){
+            return
+        }
+
+        neulhaerangDetailReplyLikeView(reply_id)
     })
 }
 
@@ -442,15 +472,16 @@ function elapsedTime(date) {
 let replyPage = 1
 let replyCont = ""
 let replys = ""
-replyCount -= 5
+let checkMoreBtn = replyCount - 5
+
 
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
-    fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}`)
+    fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
         .then(response => response.json())
         .then(result => {
             replys = result.replys
+            reply_count = result.replys_count
             let replyText = ""
-
             replys.forEach((reply,i)=>{
             replyText += `<li>
                           <button class="link_profile">
@@ -477,16 +508,23 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
                               <!--이모티콘 있을시 아래에 넣음-->
                               <span class="emoticon_pack"></span> </span
                             ><span class="info_append"
-                              ><span class="txt_time">${elapsedTime(reply.created_date)}</span
-                              ><button type="button" class="btn_like">
+                              ><span id="${reply.id}" class="txt_time">${elapsedTime(reply.created_date)}</span>
+                              <button type="button" class="btn_like ${reply.my_like?"on":""}">
                                 <span class="ico_together ico_like"></span>&nbsp;좋아요&nbsp;<span
                                   class="num_like"
                                   >${reply.reply_like_count}</span
                                 >
-                              </button></span
-                            >
-                          </div>
-                        </li>`
+                              </button>`
+
+                if(reply.check_my_comment){
+                    replyText += `<button type="button" class="btn_delete">삭제</button></span>
+                                    </div>
+                                        </li>`
+                }else{
+                         replyText += `</span>
+                                        </div>
+                                        </li>`
+                }
             })
             if(btn_more){
                 $('.list_cmt').append(replyText)
@@ -495,33 +533,36 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
                 $('.list_cmt').html(replyText)
             }
             btnLikeOn()
+            $('.inner_info .emph_sign').html(reply_count)
         })
 }
 neulhaerangDetailReplyView(replyPage)
-
+showMoreBtn()
 const neulhaerangDetailReplyCreate = (replyCont)=>{
-fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
+    fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
+            neulhaerangDetailReplyView(replyPage)
         })
 }
 
-if(replyCount<=0){
-    $('.link_round').hide()
-}
+
 
 // 더보기 버튼 누를 시에
 $('.link_round').on('click',()=>{
     replyPage++
-    replyCount -= 5
-    if(replyCount<=0){
-    $('.link_round').hide()
-}
+    checkMoreBtn -= 5
+    showMoreBtn()
     neulhaerangDetailReplyView(replyPage,'btn_more')
 })
+let replyLikeStatus = ""
+let reply_id = ""
+const neulhaerangDetailReplyLikeView = (reply_id) => {
+    fetch(`/neulhaerang/detail-reply-like/?reply_id=${reply_id}`)
+        .then(response => response.json())
+        .then(result => {
+            $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
 
-const neulhaerangDetailReplyView = () => {
-    fetch(`/neulhaerang/detail-reply-like/?replyLikeStatus=${replyLikeStatus}`)
-        .then(response=>resjson())
-        
+        })
+
 }

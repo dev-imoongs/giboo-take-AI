@@ -38,9 +38,27 @@ class NeulhaerangDonationSerializer(serializers.ModelSerializer):
 class NeulhaerangReplySerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
     reply_like_count = serializers.SerializerMethodField(method_name='get_reply_like_count',read_only=True)
+    check_my_comment = serializers.SerializerMethodField(method_name='check_is_my_comment', read_only=True)
+    my_like = serializers.SerializerMethodField(method_name='check_my_like', read_only=True)
+
     def get_reply_like_count(self, neulhaerang_reply):
         reply_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).aggregate(Count('id'))
         return reply_count['id__count']
+    def check_is_my_comment(self, neulhaerang_reply):
+        request = self.context.get('request')
+        my_email = request.session.get('member_email', None)
+        if (neulhaerang_reply.member.member_email == my_email):
+            return True
+        return False
+    def check_my_like(self, neulhaerang_reply):
+        request = self.context.get('request')
+        my_email = request.session.get('member_email', None)
+        member = Member.objects.get(member_email=my_email)
+        my_reply_like = ReplyLike.objects.filter(member=member, neulhaerang_reply=neulhaerang_reply)
+        if (my_reply_like):
+            return True
+        return False
+
     class Meta:
         model = NeulhaerangReply
         fields = '__all__'

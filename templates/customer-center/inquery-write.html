@@ -135,7 +135,7 @@
 {% include 'footer/footer.html' %}
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../../static/js/mypage/mypage_faq.js"></script>
+<script src="{% static 'js/mypage/mypage_faq.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}

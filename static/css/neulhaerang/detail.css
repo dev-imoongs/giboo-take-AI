@@ -1504,6 +1504,10 @@ button {
     font-size: 14px;
 }
 
+.list_cmt .btn_like:hover{
+    color: #444;
+}
+
 .list_cmt .btn_like .ico_like {
     display: inline-block;
     overflow: hidden;
@@ -1516,6 +1520,7 @@ button {
     background-position: -208px -1396px;
     vertical-align: top;
 }
+
 .list_cmt .btn_like .num_like {
     margin-left: 1px;
     font-family: KakaoBig Bold,sans-serif;
@@ -1540,12 +1545,18 @@ button {
 }
 
 
+
 .list_cmt .btn_delete, .list_cmt .btn_report {
     margin-left: 19px;
     font-size: 14px;
     color: #9f9f9f;
     vertical-align: 0;
 }
+
+.list_cmt .btn_delete:hover {
+    color: #4f4f4f;
+}
+
 .list_more {
     padding: 23px 0 0;
     text-align: center;
@@ -2543,6 +2554,7 @@ button {
     padding-left: 15px;
     font-size: 12px;
 }
+
 .list_cmt .btn_like .ico_like {
     width: 16px;
     height: 14px;
