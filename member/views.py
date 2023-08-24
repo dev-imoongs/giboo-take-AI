@@ -73,7 +73,6 @@ class LogoutView(View):
 
 class LoginAPIView(APIView):
     def get(self, request):
-        print("들")
         email = request.session['member_email']
 
         member = Member.objects.filter(member_email=email).first()
