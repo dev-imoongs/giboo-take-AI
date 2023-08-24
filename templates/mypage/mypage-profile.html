@@ -17,20 +17,23 @@
     {% else %}
     {% include 'header/header.html' %}
     {% endif %}
+  <form method="post" action="{% url 'mypage:save_data' %}">
+      {% csrf_token %}
     <main id="root-content">
       <section-component>
         <div id="main-content">
           <div id="article">
             <div class="wrap-project wrap-profile">
               <div class="cont-thumb">
-                <div class="file-upload">
-                  <img alt="프로필" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">
+                <div class="file-upload" >
+                  <img alt="프로필" class="img-thumb" src=/{{ profile_image }}>
                   <label class="lab-photo">
-                    <span class="ico-together ico-photo">사진첨부</span>
+                    <span class="ico-together ico-photo">
+                        <input class="upload-profile-img" type="file"> 사진첨부</span>
                   </label>
                   <!-- 이미지가 업로드 되지 않은 상태면 display:none; -->
                   <button type="button" class="btn-del">
-                    삭제 
+                    삭제
                   </button>
                   <!-- /이미지가 업로드 되지 않은 상태면 display:none; -->
                 </div>
@@ -41,45 +44,45 @@
                   <dd class="item-btn">
                     <button type="button" class="btn-katalk">
                       <span class="ico-together ico-katalk">
-                      </span>카카오톡 프로필 정보 불러오기 
+                      </span>카카오톡 프로필 정보 불러오기
                     </button>
                   </dd>
                   <dt>닉네임</dt>
                   <dd>
                     <!-- input 클릭 하면 tf_active class 생기고 입력이 가능하게 됨 -->
                     <div class="group-tf">
-                      <input classoutline="" type="text" id="subTitle" maxlength="20" class="tf-write ">
+                      <input value="{{ member_nickname }}" type="text" name="member_nickname" id="subTitle" maxlength="20" class="tf-write">
                     </div>
                     <div class="info-append">
                       <!-- 닉네임 글자수 맞춰서 텍스트에 넣어줘야함 -->
-                      <span class="txt-num">0/</span>
-                      20 
+                      <span class="txt-num" id="charCount">0/</span>
+                      20
                     </div>
                   </dd>
                   <div class="bg-dashline"></div>
-                  <profile-edit>
-                    <dt> 연락처 </dt>
+
+                <!--<dt> 연락처 </dt>-->
                     <!-- 연락처가 입력되어 있지 않을경우 -->
-                      <!--
-                    <dd class="phone-item">
+
+                    <!--<dd class="phone-item">
                       <div class="group-tf">
                         <button type="button" class="btn-number"> 휴대폰 번호 입력 </button>
                       </div>
-                    </dd>
-                      -->
+                    </dd>-->
+
                     <!-- 연락처가 입력되어있을경우 -->
-                    <dt> 연락처 </dt>
+                    <!--<dt> 연락처 </dt>
                     <dd class="phone-item">
                       <div class="group-tf">
                         <div class="box-output"> 01000000000 </div>
-       <!--                 <button type="button" class="btn-modify"> 변경 </button>
-                        <button type="button" class="btn-del"> 삭제 </button>    -->
+                       <button type="button" class="btn-modify"> 변경 </button>
+                        <button type="button" class="btn-del"> 삭제 </button>
                       </div>
-                    </dd>
+                    </dd>-->
                     <dt> 이메일 </dt>
                     <dd class="phone-item">
                       <div class="group-tf">
-                        <div class="box-output"> ****@naver.com </div>
+                        <div class="box-output">{{ member_email }}</div>
           <!--              <button type="button" class="btn-modify"> 변경 </button>    -->
                       </div>
                     </dd>
@@ -160,20 +163,24 @@
                     <dd>
                       <div class="group-tf group-gender">
                         <span class="choice-comm choice-btn">
-                          <input type="radio" id="genderChk1" name="genderChk" class="inp-comm">
+                          <input type="radio" id="genderChk1" name="genderChk" class="inp-comm" value="male">
                           <label for="genderChk1" class="lab-comm">남자</label>
                         </span>
                         <span class="choice-comm choice-btn">
-                          <input type="radio" id="genderChk2" name="genderChk" class="inp-comm">
+                          <input type="radio" id="genderChk2" name="genderChk" class="inp-comm" value="female">
                           <label for="genderChk2" class="lab-comm">여자</label>
                         </span>
                         <span class="choice-comm choice-btn">
-                          <input type="radio" checked="True" id="genderChk3" name="genderChk" class="inp-comm">
+                          <input type="radio" checked="True" id="genderChk3" name="genderChk" class="inp-comm" value="notselect">
                           <label for="genderChk3" class="lab-comm">선택안함</label>
                         </span>
                       </div>
                     </dd>
-                    <dt> 지역 </dt>
+
+                    </form>
+                </dl>
+
+                  <!--<dt> 지역 </dt>
                     <dd>
                       <div class="pack-select select-type2">
                         <div class="box-select">
@@ -266,7 +273,7 @@
                           </div>
                         </div>
                       </div>
-                    </dd>
+                    </dd>-->
                     <!-- 모달 -->   <!--
                     <update-phone-modal>
                       <modal>
@@ -414,7 +421,7 @@
                   </dl>
               </div>
               <div class="btn-step-type">
-                <button type="button" class="link-step link-type3"> 저장하기 </button>
+                <button type="submit" class="link-step link-type3"> 저장하기 </button>
               </div>
             </div>
           </div>
@@ -463,6 +470,7 @@
   </modal>
 </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script> let memberGender = "{{ member_gender }}" </script>
     <script src="{% static 'js/mypage/mypage_profile.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
