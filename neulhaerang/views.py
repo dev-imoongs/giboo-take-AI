@@ -15,7 +15,48 @@ from neulhaerang_review.models import NeulhaerangReview
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReplySerializer
 
+class NeulhaerangListView(View):
 
+    def get(self, request):
+        print("==================")
+        print(request.session.get("member_email"))
+        if request.GET.get("page") is not None:
+            page = request.GET.get("page")
+        else :
+            page = 1
+
+        return render(request, 'neulhaerang/list.html')
+
+
+class NeulhaerangAPIView(APIView):
+    def get(self, request):
+        page = int(request.GET.get("page"))
+        category = request.GET.get("category")
+        sort = request.GET.get("sort")
+
+        if(category != '전체'):
+            neulhaerang = Neulhaerang.objects.all().filter(category__category_name=category)
+        else:
+            neulhaerang = Neulhaerang.objects.all()
+
+        if(sort == '추천순'):
+            neulhaerang = neulhaerang.annotate(neulhaerang=Count('neulhaeranglike')).order_by('-neulhaerang','-created_date')
+        elif(sort == '최신순'):
+            neulhaerang = neulhaerang.order_by('-created_date')
+        else:
+            neulhaerang = neulhaerang.order_by('-fund_duration_end_date','-created_date')
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
+        posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            "posts":posts,
+            "pagenator" : serialized_pagenator
+        }
+        return Response(datas)
+
+# 상세보기
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
 
@@ -66,46 +107,23 @@ class NeulhaerangDetailView(View):
         }
         return render(request,'neulhaerang/detail.html', context)
 
+# class NeulhaerangDetailLikeAPIView(APIView):
+#     def get(self, request):
+#             my_email = request.session.get('member_email')
+#             neulhaerang_id = request.GET.get('neulhaerang_id')
+#             member = Member.objects.get(member_email=my_email)
+#             neulhaerang_like = NeulhaerangLike.objects.filter(id=neulhaerang_id, member__member_email=member)
+#             if neulhaerang_like:
+#                 neulhaerang_like.delete()
+#             else:
+#                 ReplyLike.objects.create(neulhaerang_reply=neulhaerang_reply, member=member)
+#             reply_like_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).count()
+#
+#             return Response(reply_like_count)
+#
+#         return Response(True)
 
-class NeulhaerangListView(View):
-
-    def get(self, request):
-        if request.GET.get("page") is not None:
-            page = request.GET.get("page")
-        else :
-            page = 1
-
-        return render(request, 'neulhaerang/list.html')
-
-
-class NeulhaerangAPIView(APIView):
-    def get(self, request):
-        page = int(request.GET.get("page"))
-        category = request.GET.get("category")
-        sort = request.GET.get("sort")
-
-        if(category != '전체'):
-            neulhaerang = Neulhaerang.objects.all().filter(category__category_name=category)
-        else:
-            neulhaerang = Neulhaerang.objects.all()
-
-        if(sort == '추천순'):
-            neulhaerang = neulhaerang.annotate(neulhaerang=Count('neulhaeranglike')).order_by('-neulhaerang','-created_date')
-        elif(sort == '최신순'):
-            neulhaerang = neulhaerang.order_by('-created_date')
-        else:
-            neulhaerang = neulhaerang.order_by('-fund_duration_end_date','-created_date')
-
-        pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
-        posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
-        serialized_pagenator= PagenatorSerializer(pagenator).data
-
-        datas = {
-            "posts":posts,
-            "pagenator" : serialized_pagenator
-        }
-        return Response(datas)
-
+# 댓글
 class NeulhaerangDetailReplyAPIView(APIView):
     def get(self, request):
         my_email = request.session.get('member_email')
@@ -170,7 +188,6 @@ class NeulhaerangDetailReplyLikeAPIView(APIView):
         reply_like_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).count()
 
         return Response(reply_like_count)
-
 
 
 

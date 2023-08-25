@@ -6,7 +6,7 @@ app_name = 'neulhajang'
 
 urlpatterns = [
     path('list/', NeulhajangListView.as_view(), name ='list'),
-    path('detail/<int:neulhajang_id>', NeulhajangDetailView.as_view(), name='detail'),
+    path('detail/<int:neulhajang_id>/', NeulhajangDetailView.as_view(), name='detail'),
 
 
     #apiview

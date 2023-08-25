@@ -10,7 +10,7 @@ urlpatterns = [
 
 
     path('review/list/', NeulhaerangReviewListView.as_view(),name='review/list'),
-    path('review/detail/<int:neulhaerang_review_id>', NeulhaerangReviewDetailView.as_view(),name='review/detail'),
+    path('review/detail/<int:neulhaerang_review_id>/', NeulhaerangReviewDetailView.as_view(),name='review/detail'),
 
 
 

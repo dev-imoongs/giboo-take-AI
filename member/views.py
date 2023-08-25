@@ -47,7 +47,7 @@ class LoginView(View):
         if member.member_role == 'ADMIN':
             path='/admin/main/'
 
-
+        request.session.save()
         return redirect(path)
 
 
@@ -65,7 +65,6 @@ class LogoutView(View):
 
         response = requests.post('https://kapi.kakao.com/v1/user/logout', headers=headers)
         request.session.clear()
-
         return redirect(path)
 
 

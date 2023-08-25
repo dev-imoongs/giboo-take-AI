@@ -162,3 +162,4 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'service.center.12342@gmail.com'
 EMAIL_HOST_PASSWORD = 'sikltcmonprcmfdm'
+

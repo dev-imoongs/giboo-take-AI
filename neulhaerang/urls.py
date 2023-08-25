@@ -8,7 +8,7 @@ app_name = 'neulhaerang'
 
 urlpatterns = [
     path('list/', NeulhaerangListView.as_view(), name='list'),
-    path('detail/<int:neulhaerang_id>', NeulhaerangDetailView.as_view(), name='detail'),
+    path('detail/<int:neulhaerang_id>/', NeulhaerangDetailView.as_view(), name='detail'),
     path('test/', TestView.as_view(), name ='test'),
 
 

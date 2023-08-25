@@ -495,12 +495,10 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
         .then(response => response.json())
         .then(result => {
-
             replys = result.replys
             reply_count = result.replys_count
             let replyText = ""
             replys.forEach((reply,i)=>{
-                console.log(reply)
             replyText += `<li>
                           <button class="link_profile">
                             <img
