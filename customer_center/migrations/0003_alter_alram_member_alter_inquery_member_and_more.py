@@ -13,11 +13,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='alram',
-            name='member',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='member.member'),
-        ),
-        migrations.AlterField(
             model_name='inquery',
             name='member',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='member.member'),

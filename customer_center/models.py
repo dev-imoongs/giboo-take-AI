@@ -26,13 +26,13 @@ class InqueryResponse(Period):
         ordering = ["-id"]
 
 
-class Alram(Period):
+class Alarm(Period):
     message = models.TextField(null=False, blank=False)
     isChecked = models.CharField(max_length=30, null=False, blank=False)
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
-    neulhaerang = models.ForeignKey(Neulhaerang, null=True, on_delete=models.SET_NULL)
-    neulhaerang_review = models.ForeignKey(NeulhaerangReview, null=True, on_delete=models.SET_NULL)
-    neulhajang = models.ForeignKey(Neulhajang, null=True, on_delete=models.SET_NULL)
+    type = models.TextField()
+    reference_id = models.IntegerField(null=False, default=0)
+
     class Meta:
-        db_table = 'tbl_alram'
+        db_table = 'tbl_alarm'
         ordering = ["-id"]

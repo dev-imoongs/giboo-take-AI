@@ -6,6 +6,7 @@ from workspace.models import Period
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100, null=False, blank=False)
+    category_image = models.TextField()
     class Meta:
         db_table = 'tbl_category'
 
