@@ -71,7 +71,7 @@ $('.btn-close').on("click", () =>{
 
 // gender 라디오버튼 JS
 document.addEventListener("DOMContentLoaded", function (e) {
-    let memberGenderJS = "{{ member_gender }}"; 
+    let memberGenderJS = "{{ member_gender }}";
 
     let maleRadio = document.getElementById("genderChk1");
     let femaleRadio = document.getElementById("genderChk2");
