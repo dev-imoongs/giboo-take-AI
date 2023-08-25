@@ -1705,6 +1705,13 @@ button {
     background-position: -465px -1325px;
 }
 
+.fund_float .on.ico_cheer {
+    width: 22px;
+    height: 20px;
+    margin: 19px 4px 0 0;
+    background-position: -490px -1325px;
+}
+
 .fund_float .txt_float {
     display: inline-block;
     margin-top: -2px;

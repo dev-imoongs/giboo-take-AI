@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.core import serializers
 from django.db.models import Sum, F, Count, Value
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
@@ -58,7 +59,7 @@ class NeulhaerangAPIView(APIView):
 # 상세보기
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
-
+        my_email = request.session.get('member_email')
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
@@ -84,11 +85,16 @@ class NeulhaerangDetailView(View):
         reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
         bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
 
-
+        if(NeulhaerangLike.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)):
+            cheer_status = 'on'
+        else:
+            cheer_status = ''
+        print(cheer_status)
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
 
         context = {
+            'cheer_status':cheer_status,
             'neulhaerang_id': neulhaerang_id,
             'post_writer_thumb':post_writer_thumb,
             'neulhaerang_review':neulhaerang_review,
@@ -142,7 +148,6 @@ class NeulhaerangDetailReplyAPIView(APIView):
 
 class NeulhaerangDetailReplyWriteAPIView(APIView):
     def get(self, request):
-        print('들어옴')
         my_email = request.session.get('member_email')
         replyCont = request.GET.get('replyCont')
         neulhaerang_id = request.GET.get('neulhaerangId')
@@ -173,6 +178,42 @@ class NeulhaerangDetailReplyLikeAPIView(APIView):
 
         return Response(reply_like_count)
 
+class NeulhaerangDetailLikeAPIView(APIView):
+    def get(self, request):
+        my_email = request.session.get('member_email')
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        member = Member.objects.get(member_email=my_email)
+        neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
+        neulhaerang_like = NeulhaerangLike.objects.filter(member=member, neulhaerang=neulhaerang)
+        if neulhaerang_like:
+            neulhaerang_like.delete()
+        else:
+            NeulhaerangLike.objects.create(member=member, neulhaerang=neulhaerang)
+        neulhaerang_like_count = NeulhaerangLike.objects.filter(neulhaerang=neulhaerang).count()
+
+        return Response(neulhaerang_like_count)
+
+class NeulhaerangDetailParticipateAPIView(APIView):
+    def get(self, request):
+        my_email = request.session.get('member_email')
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        member = Member.objects.get(member_email=my_email)
+        neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
+        neulhaerang_participate = NeulhaerangParticipants.objects.filter(member=member, neulhaerang=neulhaerang)
+        neulhaerang_participate_count = NeulhaerangParticipants.objects.filter(neulhaerang=neulhaerang).count()
+        neulhaerang_participate_max = Neulhaerang.objects.filter(id=neulhaerang_id).values('participants_max_count')[0]
+
+        if neulhaerang_participate:
+            neulhaerang_participate.delete()
+        elif(neulhaerang_participate_max['participants_max_count'] > neulhaerang_participate_count):
+            NeulhaerangParticipants.objects.create(member=member, neulhaerang=neulhaerang)
+        else:
+            return
+        datas = {
+            'neulhaerang_participate_count':neulhaerang_participate_count,
+            'neulhaerang_participate_max':neulhaerang_participate_max
+        }
+        return JsonResponse(datas)
 
 
 class TestView(View):
