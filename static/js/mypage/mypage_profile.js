@@ -25,13 +25,13 @@ $('.btn-view').on("click",() =>{
 
 
 // 프로필 삭제 버튼 클릭 시 모달창 띄우기
-$('.btn-del').on('click',()=>{
-        $('#modalOFF').attr('id','modalON')
-        $('.dimmed_layer').css('height','100%');
-        $('.dialog-content').css('display','block');
-        $('.modal-delete').css('display','block');
-        $('.modal-policy').css('display','none');
-})
+// $('.btn-del').on('click',()=>{
+//         $('#modalOFF').attr('id','modalON')
+//         $('.dimmed_layer').css('height','100%');
+//         $('.dialog-content').css('display','block');
+//         $('.modal-delete').css('display','block');
+//         $('.modal-policy').css('display','none');
+// })
 
 //  취소 버튼 클릭 시 모달창 사라짐
 $('.btn-type2').on("click", () =>{
@@ -70,31 +70,26 @@ $('.btn-close').on("click", () =>{
 })
 
 // gender 라디오버튼 JS
-document.addEventListener("DOMContentLoaded", function () {
-    // memberGender 값을 가져옵니다.
-    let memberGenderJS = "{{ member_gender }}"; // Django 템플릿 변수를 가져옵니다.
+document.addEventListener("DOMContentLoaded", function (e) {
+    let memberGenderJS = "{{ member_gender }}";
 
-    // 라디오 버튼 요소들을 가져옵니다.
     let maleRadio = document.getElementById("genderChk1");
     let femaleRadio = document.getElementById("genderChk2");
-    let noselectRadio = document.getElementById("genderChk3");
+    let notselectRadio = document.getElementById("genderChk3");
 
-    // memberGender에 따라 라디오 버튼의 checked 속성을 설정합니다.
     if (memberGender === "male") {
         maleRadio.checked = true;
     } else if (memberGender === "female") {
         femaleRadio.checked = true;
-    } else if (memberGender === "noselect") {
-        noselectRadio.checked = true;
+    } else if (memberGender === "notselect") {
+        notselectRadio.checked = true;
     }
 });
 
-// input 요소와 charCount 요소를 가져옵니다.
 const input = document.getElementById("subTitle");
 const charCount = document.getElementById("charCount");
 const maxLength = 19;
 
-// input 요소에 input 이벤트 리스너를 추가합니다.
 input.addEventListener("input", updateCharCount);
 
 function updateCharCount() {
@@ -112,3 +107,57 @@ function updateCharCount() {
 
 // 페이지 로딩 시 초기 텍스트를 검사하고 표시
 updateCharCount();
+
+
+
+
+
+
+// 파일 입력 필드와 이미지 태그 엘리먼트를 가져옴
+const imageInput = document.getElementById('upload-profile-img');
+const checkProfileImg = document.getElementById('checkProfileImg');
+
+// 파일 입력 필드의 값이 변경될 때 호출되는 함수
+imageInput.addEventListener('change', function() {
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        checkProfileImg.src = e.target.result;
+    };
+
+      reader.readAsDataURL(imageInput.files[0]);
+    });
+
+    //삭제버튼을 누르면 src가 지워짐
+    const deleteButton = document.querySelector('.btn-del');
+    const input_file = document.querySelector(".upload-profile-img");
+     $("input[name='xFlag']").val(false)
+    console.log(deleteButton)
+    console.log(checkProfileImg)
+    deleteButton.addEventListener('click', function() {
+        console.log("e")
+      // 이미지 태그의 src 속성을 삭제
+      checkProfileImg.src = '';
+      input_file.value = "";
+      $("input[name='xFlag']").val(true)
+      console.log($("input[name='xFlag']"))
+    });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const submitButton = document.getElementById('submitButton');
+  const checkPolicy = document.getElementById('checkPolicy');
+
+
+
+  submitButton.addEventListener('click', function(e) {
+    if (!checkPolicy.checked) {
+        console.log('체크박스가 체크되지 않았습니다.');
+      return;
+    }
+    $("#save_data").submit()
+      console.log('확인버튼 눌림')
+
+
+  });
+});
+

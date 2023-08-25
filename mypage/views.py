@@ -141,18 +141,18 @@ class MypagePostListView(View):
         return render(request, 'mypage/mypage-post-list.html')
 
 
+
 class MypageProfileView(View):
 
     def get(self, request):
         member = Member.objects.get(member_email=request.session['member_email'])
-
+        print(member.profile_image)
         context = {
             'profile_image': member.profile_image,
             'member_nickname': member.member_nickname,
             'member_email': member.member_email,
             'member_age': member.member_age,
             'member_gender':member.member_gender,
-
 
         }
 
@@ -164,22 +164,41 @@ class MypageProfileView(View):
             member_email = request.session.get('member_email')
             print(request.POST)
             if member_email:
-                # 세션에서 이메일을 사용하여 멤버를 가져옵니다. 이메일을 기반으로 멤버를 식별해야 합니다.
                 member = get_object_or_404(Member, member_email=member_email)
-                member_nickname = request.POST.get('member_nickname', '찐빵로봇')
-                member_gender = request.POST.get('genderChk', 'notselect')
+                member_nickname = request.POST.get('member_nickname', '닉네임을 지정해주세요')
+                member_gender = request.POST.get('genderChk')
+                profile_image = request.FILES.get('profile_image')
 
-                # 멤버 필드 값을 업데이트하고 저장합니다.
+                files = request.FILES
+                x_falg = request.POST.get("xFlag")
+                print(x_falg)
+                file = files.get("profile_image")
+                if file:
+                    member.profile_image = file
+                elif x_falg == "true":
+                    print("e,f")
+                    member.profile_image = ''
+
+
                 member.member_nickname = member_nickname
                 print(member_nickname)
 
                 member.member_gender = member_gender
                 print(member_gender)
+
+
+
+
+
+
                 member.save()
 
-                return redirect('success_page')
+                return redirect('mypage:profile')
 
         return JsonResponse({'error': '잘못된 요청입니다.'})
+
+
+
 
 class MypageReplyView(View):
     def get(self,request):

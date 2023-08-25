@@ -194,6 +194,23 @@
     background-color: #7969cc;
 }
 
+.wrap_introduce .box_graph .point_color6 {
+    background-color: #85f869;
+}
+.wrap_introduce .box_graph .point_color7 {
+    background-color: #57f3c2;
+}
+.wrap_introduce .box_graph .point_color8 {
+    background-color: #2d2828;
+}
+.wrap_introduce .box_graph .point_color9 {
+    background-color: #7b7e7e;
+}
+.wrap_introduce .box_graph .point_color10 {
+    background-color: #d843fa;
+}
+
+
 .chartjs-render-monitor {
     animation: chartjs-render-animation 0.001s;
 }
@@ -301,3 +318,12 @@
     color: #444;
 }
 
+.wrap_introduce .cont_stat .tit_stat {
+    display: block;
+    padding-top: 47px;
+    font-weight: 400;
+    font-size: 19px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    clear: both;
+}

@@ -11,10 +11,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterModelOptions(
-            name='alram',
-            options={'ordering': ['-id']},
-        ),
-        migrations.AlterModelOptions(
             name='inquery',
             options={'ordering': ['-id']},
         ),

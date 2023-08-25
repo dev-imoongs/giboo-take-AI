@@ -13,7 +13,7 @@ from member.models import Member
 class LoginView(View):
     def get(self, request):
         code = request.GET.get("code")
-        path = request.GET.get("state")
+        prev_url = request.GET.get("state")
         query_string = '?Content-type: application/x-www-form-urlencoded;charset=utf-8&' \
                        'grant_type=authorization_code&' \
                        'client_id=4026e9a3108be3903a5b5e255d4c1f06&' \
@@ -29,7 +29,6 @@ class LoginView(View):
 
         response = requests.post('https://kapi.kakao.com/v2/user/me', headers=headers)
         info = response.json().get('kakao_account')
-        print(info)
         email = info.get('email')
         nickname = email[0:3] + "**"
         kakao_image_url = info.get('profile').get('thumbnail_image_url')
@@ -42,20 +41,25 @@ class LoginView(View):
         member = Member.objects.filter(member_email=email).first()
         if not member:
             member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender, member_age=age)
+
+        member.kakao_profile_image = kakao_image_url
+        member.save()
+
+
         request.session['member_status'] = member.member_status
 
         if member.member_role == 'ADMIN':
-            path='/admin/main/'
+            prev_url= '/admin/main/'
 
 
-        return redirect(path)
+        return redirect(prev_url)
 
 
 
 
 class LogoutView(View):
     def get(self, request):
-        path = request.GET.get("path")
+        prev_url = request.GET.get("prev_url")
         access_token = request.session['access_token']
 
         headers = {
@@ -65,8 +69,7 @@ class LogoutView(View):
 
         response = requests.post('https://kapi.kakao.com/v1/user/logout', headers=headers)
         request.session.clear()
-
-        return redirect(path)
+        return redirect(prev_url)
 
 
 
