@@ -64,3 +64,8 @@ const showCategory = () => {
         })
 
 }
+
+
+$(".link_hash").on("click", () => {
+    console.log($target)
+})

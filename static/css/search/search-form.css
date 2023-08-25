@@ -144,6 +144,7 @@ fieldset, img {
     padding: 7px 16px 9px 15px;
     border-radius: 25px;
     font-size: 15px;
+    cursor: pointer;
 }
 .group_schtheme {
     padding-top: 49px;
@@ -159,12 +160,14 @@ fieldset, img {
     height: 131px;
     margin-top: 7px;
     text-align: center;
+    cursor: pointer;
 }
 
 .list_category .link_category {
     display: block;
     width: 128px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .list_category .link_category .img_thumb {
@@ -172,6 +175,7 @@ fieldset, img {
     height: 100px;
     margin: 0 auto 7px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .img_thumb {
     display: block;
@@ -261,6 +265,7 @@ fieldset, img {
     margin: 2px 1px 2px 2px;
     padding: 5px 12px 8px;
     font-size: 13px;
+    cursor: pointer;
 }
     .group_schtag .link_hash {
     margin-bottom: 6px;
@@ -277,11 +282,13 @@ fieldset, img {
     width: auto;
     margin: 0;
     font-size: 13px;
+    cursor: pointer;
 }
     .list_category .link_category .img_thumb {
     width: 80px;
     height: 80px;
     margin: 0 auto 5px;
+    cursor: pointer;
 }
 .group_schkeyword .box_search .tf_keyword {
     height: 26px;

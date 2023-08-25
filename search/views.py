@@ -46,3 +46,7 @@ class ShowCategoryAPIView(APIView):
             "categories": categories
         }
         return Response(datas)
+
+    class ShowTagSearchListAPIView(APIView):
+        def get(self, request):
+            pass
