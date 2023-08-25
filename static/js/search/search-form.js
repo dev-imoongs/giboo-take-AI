@@ -44,16 +44,18 @@ const showCategory = () => {
     fetch(`/search/category/`)
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             let categories = result.categories
             let text = "";
 
             categories.forEach((category, i) => {
                 let name = category.category_name;
+                let image = category.category_image;
 
                 text += `
                     <li>
                       <a class="link_category">
-                        <img class="img_thumb" src="https://mud-kage.kakaocdn.net/dn/eE4eDt/btqeTEvo1oi/i3hCyjx9BasmNFN6Qnewz0/c160.jpg"/>
+                        <img class="img_thumb" src="${image}"/>
                         ${name}
                       </a>
                     </li>`
