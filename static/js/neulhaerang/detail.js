@@ -56,7 +56,10 @@ const show_need_login_modal = function (){
 const check_session_email = () =>{
     if(!email){
         show_need_login_modal()
+        return false
     }
+    return true
+
 }
 //
 const showMoreBtn = () => {
@@ -214,6 +217,7 @@ const $btn_comment = $(".btn_comment")
 let toastFlag = false
 $btn_comment.on("click",(e)=>{
     if(!check_session_email()) return
+    console.log('버튼 누름')
     if($tf_cmt.val().length<2){
         if (toastFlag) return
         toastFlag=true
@@ -560,6 +564,7 @@ const neulhaerangDetailReplyCreate = (replyCont)=>{
     fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
+            console.log('들어옴?')
             neulhaerangDetailReplyView(replyPage)
         })
 }
@@ -589,7 +594,6 @@ const neulhaerangDetailReplyDeleteView = (reply_id) => {
     fetch(`/neulhaerang/detail-reply-delete/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
-            // $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
 
         })
 

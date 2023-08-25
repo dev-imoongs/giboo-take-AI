@@ -18,7 +18,6 @@ from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, Ne
 class NeulhaerangListView(View):
 
     def get(self, request):
-        print("==================")
         print(request.session.get("member_email"))
         if request.GET.get("page") is not None:
             page = request.GET.get("page")
@@ -107,22 +106,6 @@ class NeulhaerangDetailView(View):
         }
         return render(request,'neulhaerang/detail.html', context)
 
-# class NeulhaerangDetailLikeAPIView(APIView):
-#     def get(self, request):
-#             my_email = request.session.get('member_email')
-#             neulhaerang_id = request.GET.get('neulhaerang_id')
-#             member = Member.objects.get(member_email=my_email)
-#             neulhaerang_like = NeulhaerangLike.objects.filter(id=neulhaerang_id, member__member_email=member)
-#             if neulhaerang_like:
-#                 neulhaerang_like.delete()
-#             else:
-#                 ReplyLike.objects.create(neulhaerang_reply=neulhaerang_reply, member=member)
-#             reply_like_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).count()
-#
-#             return Response(reply_like_count)
-#
-#         return Response(True)
-
 # 댓글
 class NeulhaerangDetailReplyAPIView(APIView):
     def get(self, request):
@@ -159,6 +142,7 @@ class NeulhaerangDetailReplyAPIView(APIView):
 
 class NeulhaerangDetailReplyWriteAPIView(APIView):
     def get(self, request):
+        print('들어옴')
         my_email = request.session.get('member_email')
         replyCont = request.GET.get('replyCont')
         neulhaerang_id = request.GET.get('neulhaerangId')
