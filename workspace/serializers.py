@@ -1,7 +1,7 @@
 from django.db.models import Sum, Count
 from rest_framework import serializers
 
-from customer_center.models import Inquery
+from customer_center.models import Inquery, Alram
 from member.models import Member
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangReply, ReplyLike
@@ -107,6 +107,8 @@ class InquerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inquery
         fields = '__all__'
+
+
 
 class PagenatorSerializer(serializers.Serializer):
 

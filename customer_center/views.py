@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework.views import APIView
 
-from customer_center.models import Inquery
+from customer_center.models import Inquery, Alram
 from member.models import Member
 
 
@@ -9,8 +10,16 @@ from member.models import Member
 
 
 class AlarmView(View):
-    def get(self,request):
+    def get(fself,request):
         return render(request,'customer-center/alarm.html')
+
+
+class GetAlarmsByPagedAPIView(APIView):
+    def get(self,request):
+        page = int(request.GET.get("page"))
+        member = Member.objects.get(member_email=request.session.get("member_email"))
+        all_alarms = Alram.objects.filter(member=member).values()
+        print(all_alarms)
 
 
 
