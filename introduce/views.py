@@ -4,6 +4,7 @@ from django.views import View
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.serializers import ListSerializer
+from rest_framework.views import APIView
 
 from neulhaerang.models import Neulhaerang, NeulhaerangLike, NeulhaerangDonation, NeulhaerangParticipants, \
     NeulhaerangReply
@@ -77,7 +78,7 @@ class IntroduceStatisticsView(View):
 
         return render(request,"introduce/statistics.html",datas)
 
-class IntroduceGetChartsView(View):
+class IntroduceGetChartsView(APIView):
     def get(self,request):
         year = int(request.GET.get("year"))
         donation_total_by_category_list = Neulhaerang.objects.filter(created_date__year=year).values("category").annotate(donation_total_by_category =Sum("neulhaerangdonation__donation_amount")).values("donation_total_by_category","category")

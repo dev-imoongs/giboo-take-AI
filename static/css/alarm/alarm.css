@@ -162,3 +162,11 @@ button {
 .btn_more:hover, .btn_delete_all:hover {
     border-bottom : none;
 }
+
+a{
+    text-decoration: none;
+}
+
+span.alarm{
+   left : 191px;
+}
