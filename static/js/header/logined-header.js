@@ -41,7 +41,6 @@ function modalOff(){
   deletedMemberModal.style.display="none";
 }
 
-console.log(status)
 if (status === "NORMAL") {
     modalOff();
 }else if (status === "DELETED") {
