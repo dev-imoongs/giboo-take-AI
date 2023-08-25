@@ -85,16 +85,22 @@ class NeulhaerangDetailView(View):
         reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
         bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
 
+        neulhaerang_participants = NeulhaerangParticipants.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)
+        if(neulhaerang_participants):
+            check_my_participate = 'on'
+        else:
+            check_my_participate = ''
+
         if(NeulhaerangLike.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)):
             cheer_status = 'on'
         else:
             cheer_status = ''
-        print(cheer_status)
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
 
         context = {
             'cheer_status':cheer_status,
+            'check_my_participate':check_my_participate,
             'neulhaerang_id': neulhaerang_id,
             'post_writer_thumb':post_writer_thumb,
             'neulhaerang_review':neulhaerang_review,
@@ -203,13 +209,16 @@ class NeulhaerangDetailParticipateAPIView(APIView):
         neulhaerang_participate_count = NeulhaerangParticipants.objects.filter(neulhaerang=neulhaerang).count()
         neulhaerang_participate_max = Neulhaerang.objects.filter(id=neulhaerang_id).values('participants_max_count')[0]
 
-        if neulhaerang_participate:
+        if(neulhaerang_participate):
             neulhaerang_participate.delete()
+            check_my_apply = True
         elif(neulhaerang_participate_max['participants_max_count'] > neulhaerang_participate_count):
             NeulhaerangParticipants.objects.create(member=member, neulhaerang=neulhaerang)
+            check_my_apply = False
         else:
             return
         datas = {
+            'check_my_apply':check_my_apply,
             'neulhaerang_participate_count':neulhaerang_participate_count,
             'neulhaerang_participate_max':neulhaerang_participate_max
         }

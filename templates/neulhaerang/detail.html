@@ -398,9 +398,9 @@
                     >응원<span class="num_active">{{ likes_count }}</span></span
                   ></button
                 ><button type="button" class="btn_g btn_participate">
-                  <span class="ico_together ico_share"></span
-                  ><span class="txt_float txt_share"
-                    >동참<span class="num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
+                  <span class="ico_together {{ check_my_participate }} ico_share"></span
+                  ><span class="txt_float {{ check_my_participate }} txt_share"
+                    >동참<span class="{{ check_my_participate }} num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
                   >
                 </button>
                 <!--기부 가능-->

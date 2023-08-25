@@ -29,14 +29,12 @@ $('.btn_cheer').on('click',(e)=>{
 //동참하기 모달
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
-$btn_participate.on("click",e=>{
-    if(!check_session_email()) return
-    $dimedLayer.css("height","100%")
-    $participate_modal.show()
-    $participate_modal.addClass("opened_modal")
-})
+
 $(".participate_modal .btn_type1").on("click", (e)=>{
     neulhaerangDetailParticipateView()
+    $('.ico_share').toggleClass('on')
+    $('.txt_share').toggleClass('on')
+    $('.txt_share .num_active').toggleClass('on')
     $dimedLayer.css('height', "");
     $participate_modal.hide();
     $participate_modal.removeClass("opened_modal")
@@ -503,6 +501,8 @@ let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
 
+
+
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
@@ -622,6 +622,7 @@ const neulhaerangDetailParticipateView = () => {
     fetch(`/neulhaerang/detail-neulhaerang-participate/?neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
+            let check_my_apply = result.check_my_apply
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
                 toastFlag = false
@@ -635,7 +636,12 @@ const neulhaerangDetailParticipateView = () => {
                     }, 2000)
                 }
             $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
-
+            if(check_my_apply){
+                return true
+            }
+            else{
+                return false
+            }
         })
 }
 
