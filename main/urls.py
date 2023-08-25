@@ -7,4 +7,5 @@ app_name = 'main'
 urlpatterns = [
     path('suggestion-choice/',SuggestionChoiceView.as_view(),name= "suggestion-choice"),
     path('main/',MainView.as_view(),name= 'main'),
+
 ]

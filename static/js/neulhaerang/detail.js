@@ -25,7 +25,7 @@ $(".btn_close").on("click", e => {
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
 $btn_participate.on("click",e=>{
-    if(check_session_email()) return
+    if(!check_session_email()) return
     $dimedLayer.css("height","100%")
     $participate_modal.show()
     $participate_modal.addClass("opened_modal")
@@ -45,6 +45,7 @@ const show_need_login_modal = function (){
     $dimedLayer.css("height","100%")
     $need_login_modal.show()
     $need_login_modal.addClass("opened_modal")
+    return
 }
 
 // 로그인 검사로직 false라면 로그인 모달 띄우기
@@ -55,8 +56,10 @@ const show_need_login_modal = function (){
 const check_session_email = () =>{
     if(!email){
         show_need_login_modal()
-        return
+        return false
     }
+    return true
+
 }
 //
 const showMoreBtn = () => {
@@ -103,7 +106,7 @@ const deleteReply = (reply_id) => {
 //기부하기 버튼 모달
 const $fund_modal =$(".fund_modal")
 $(".btn_give").on("click",e=>{
-    if(check_session_email()) return
+    if(!check_session_email()) return
     $fund_modal.css("display","flex")
     $dimedLayer.css("height","100%")
     $fund_modal.addClass("opend_modal")
@@ -213,7 +216,8 @@ const $btn_comment = $(".btn_comment")
 
 let toastFlag = false
 $btn_comment.on("click",(e)=>{
-    if(check_session_email()) return
+    if(!check_session_email()) return
+    console.log('버튼 누름')
     if($tf_cmt.val().length<2){
         if (toastFlag) return
         toastFlag=true
@@ -375,6 +379,9 @@ function Function2(target_amounts, total_fund){
     $('.mark_point').attr('style',`left:${percentage}%`)
     $('.sign_graph').attr('style',`width:${percentage}%`)
     $('.num_per').text(percentage)
+    if(percentage == 100){
+        $('.chart_fund').addClass('fund_end')
+    }
 }
 
 Function2(parsedAmount,parsedAmountSum)
@@ -503,7 +510,8 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
                               class="img_thumb"
                             />
                             <!--베뎃-->
-                            <span class="ico_together2 ico_best"></span>
+                            ${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
+                            
                           </button>
                           <div class="cmt_info">
                             <span class="info_append"
@@ -556,6 +564,7 @@ const neulhaerangDetailReplyCreate = (replyCont)=>{
     fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
+            console.log('들어옴?')
             neulhaerangDetailReplyView(replyPage)
         })
 }
@@ -585,7 +594,6 @@ const neulhaerangDetailReplyDeleteView = (reply_id) => {
     fetch(`/neulhaerang/detail-reply-delete/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
-            // $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
 
         })
 

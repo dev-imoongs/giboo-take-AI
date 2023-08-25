@@ -8,7 +8,7 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangRepl
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReview
-from neulhajang.models import Neulhajang
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
 from notice.models import Notice
 
 
@@ -41,7 +41,7 @@ class NeulhaerangReplySerializer(serializers.ModelSerializer):
     reply_like_count = serializers.SerializerMethodField(method_name='get_reply_like_count',read_only=True)
     check_my_comment = serializers.SerializerMethodField(method_name='check_is_my_comment', read_only=True)
     my_like = serializers.SerializerMethodField(method_name='check_my_like', read_only=True)
-
+    best_reply = serializers.BooleanField(read_only=True)
     def get_reply_like_count(self, neulhaerang_reply):
         reply_count = ReplyLike.objects.filter(neulhaerang_reply=neulhaerang_reply).aggregate(Count('id'))
         return reply_count['id__count']
@@ -77,6 +77,11 @@ class NeulhaerangReviewSerializer(serializers.ModelSerializer):
 
 class NeulhajangSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    member_profile_image = serializers.CharField(source='member.profile_image', read_only=True)
+    authentication_count = serializers.SerializerMethodField(method_name='get_authentication_feed_sum',read_only=True)
+    def get_authentication_feed_sum(self, neulhajang):
+        authentication_feed_count = NeulhajangAuthenticationFeed.objects.filter(neulhajang=neulhajang.id).aggregate(Count('id'))
+        return authentication_feed_count['id__count']
 
     class Meta:
         model = Neulhajang
