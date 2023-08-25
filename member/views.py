@@ -29,7 +29,6 @@ class LoginView(View):
 
         response = requests.post('https://kapi.kakao.com/v2/user/me', headers=headers)
         info = response.json().get('kakao_account')
-        print(info)
         email = info.get('email')
         nickname = email[0:3] + "**"
         kakao_image_url = info.get('profile').get('thumbnail_image_url')
@@ -42,6 +41,13 @@ class LoginView(View):
         member = Member.objects.filter(member_email=email).first()
         if not member:
             member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender, member_age=age)
+
+        member.kakao_profile_image = kakao_image_url
+        member.save()
+
+
+
+
         request.session['member_status'] = member.member_status
 
         if member.member_role == 'ADMIN':
