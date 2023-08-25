@@ -14,23 +14,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='alram',
-            name='page_link',
-        ),
-        migrations.AddField(
-            model_name='alram',
-            name='neulhaerang',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='neulhaerang.neulhaerang'),
-        ),
-        migrations.AddField(
-            model_name='alram',
-            name='neulhaerang_review',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='neulhaerang_review.neulhaerangreview'),
-        ),
-        migrations.AddField(
-            model_name='alram',
-            name='neulhajang',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='neulhajang.neulhajang'),
-        ),
+
     ]

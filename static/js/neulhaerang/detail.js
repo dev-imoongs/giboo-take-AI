@@ -18,7 +18,12 @@ $(".btn_close").on("click", e => {
     $badgeModal.removeClass("opened_modal")
 })
 
-
+// 응원하기 버튼 누를시 이벤트
+$('.btn_cheer').on('click',(e)=>{
+    if(!check_session_email()) return
+    $('.ico_cheer').toggleClass('on')
+    neulhaerangDetailLikeView()
+})
 
 
 //동참하기 모달
@@ -30,7 +35,12 @@ $btn_participate.on("click",e=>{
     $participate_modal.show()
     $participate_modal.addClass("opened_modal")
 })
-
+$(".participate_modal .btn_type1").on("click", (e)=>{
+    neulhaerangDetailParticipateView()
+    $dimedLayer.css('height', "");
+    $participate_modal.hide();
+    $participate_modal.removeClass("opened_modal")
+})
 $(".participate_modal .btn_type2").on("click",e=>{
     $dimedLayer.css('height', "");
     $participate_modal.hide();
@@ -67,7 +77,6 @@ const showMoreBtn = () => {
         $('.link_round').hide()
     }
 }
-
 
 
 $(".need_login_modal .btn_type2").on("click",e=>{
@@ -494,7 +503,7 @@ let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
 
-
+// neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
         .then(response => response.json())
@@ -564,21 +573,22 @@ const neulhaerangDetailReplyCreate = (replyCont)=>{
     fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            console.log('들어옴?')
             neulhaerangDetailReplyView(replyPage)
         })
 }
 
 
 
-// 더보기 버튼 누를 시에
+// 더보기 버튼 누를 시에 실행되는 이벤트
 $('.link_round').on('click',()=>{
     replyPage++
     checkMoreBtn -= 5
     showMoreBtn()
     neulhaerangDetailReplyView(replyPage,'btn_more')
 })
-let replyLikeStatus = ""
+
+
+// 댓글 좋아요
 let reply_id = ""
 const neulhaerangDetailReplyLikeView = (reply_id) => {
     fetch(`/neulhaerang/detail-reply-like/?reply_id=${reply_id}`)
@@ -590,11 +600,43 @@ const neulhaerangDetailReplyLikeView = (reply_id) => {
 
 }
 
+// 댓글 삭제
 const neulhaerangDetailReplyDeleteView = (reply_id) => {
     fetch(`/neulhaerang/detail-reply-delete/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
 
         })
-
 }
+// 늘해랑 응원하기
+const neulhaerangDetailLikeView = () => {
+    fetch(`/neulhaerang/detail-neulhaerang-like/?neulhaerangId=${neulhaerangId}`)
+        .then(response => response.json())
+        .then(result => {
+            $(`.txt_cheer .num_active`).text(result)
+
+        })
+}
+// 늘해랑 동참하기
+const neulhaerangDetailParticipateView = () => {
+    fetch(`/neulhaerang/detail-neulhaerang-participate/?neulhaerangId=${neulhaerangId}`)
+        .then(response => response.json())
+        .then(result => {
+            let participate_count = result.neulhaerang_participate_count
+            let participate_max = result.neulhaerang_participate_max
+                toastFlag = false
+                if (participate_max <= participate_max.participants_max_count) {
+                    if (toastFlag) return
+                    toastFlag = true
+                    $toast.show()
+                    setTimeout(() => {
+                        $toast.hide()
+                        toastFlag = false
+                    }, 2000)
+                }
+            $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
+
+        })
+}
+
+
