@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.test import TestCase
 
-from customer_center.models import Inquery
+from customer_center.models import Inquery, Alarm
 from member.models import Member
 from neulhaerang.models import Neulhaerang
 from neulhaerang_review.models import NeulhaerangReview
@@ -25,9 +25,9 @@ class NoticeTest(TestCase):
     admin = Member.objects.get(id=6)
 
     #
-    for i in range(100):
-        Notice.objects.create(
-          notice_content=f"공지사항 내용{i}",notice_title=f"공지사항 제목{i}",type="참가자안내",admin=admin,notice_status="NORMAL"
+    for i in range(10):
+       Alarm.objects.create(
+           message=f"알람{i}",member_id=209,reference_id=i,type="neulhaerang"
            )
 
     member = Member.objects.get(id=10)
