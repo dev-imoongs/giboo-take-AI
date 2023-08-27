@@ -90,7 +90,7 @@
                   <div class="box-receipt">
                     <!-- 20개까지 화면에 보여지고 더보기를 누르면 늘어남 -->
                     <ul class="list-receipt list-donate">
-                      <!-- 리스트 1 -->
+                      <!-- 리스트 1
                       <li class="item-donate">
                         <p class="txt-sumdata"> 2023.00.00 </p>
                         <p class="tit-sum">
@@ -101,7 +101,7 @@
                           <span class="txt-sumprice"> (방식) - 참여기부 (댓글참여) </span>
                         </div>
                         <div class="box-link"></div>
-                      </li>
+                      </li>-->
                       <!-- 리스트 2 반복이라 다 지웠음 필요시 복사-->
 
 
@@ -122,6 +122,12 @@
     <footer></footer>
   </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/static/js/mypage/list.js"></script>
+<!--<script>
+    const baseUrl = "{% url 'mypage:donate' %}"
+</script>-->
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}

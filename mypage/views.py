@@ -14,6 +14,8 @@ from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, By
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 from neulhajang.models import Neulhajang
 from static_app.models import Badge, MemberBadge
+from workspace.pagenation import Pagenation
+from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, NeulhaerangDonationSerializer
 
 
 # Create your views here.
@@ -270,3 +272,25 @@ class TimeReplyTimeView(APIView):
     def get(self, request):
         return render(request, 'mypage/mypage-main.html')
 
+
+class DonationListAPIView(APIView):
+    def get(self, request):
+        member_email = request.session.get('member_email')
+        page = int(request.GET.get("page"))
+        year = request.GET.get('year', None)
+
+
+        neulhaerang_dontaion = NeulhaerangDonation.objects.filter(member__member_email=member_email)
+        print(neulhaerang_dontaion)
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=5, query_set=neulhaerang_dontaion)
+
+        donation_list = NeulhaerangDonationSerializer(pagenator.paged_models, many=True).data
+        serialized_pagenator= PagenatorSerializer(pagenator).data
+
+        datas = {
+            'donation_list':donation_list,
+            'serialized_pagenator':serialized_pagenator,
+
+        }
+        return JsonResponse(datas)
