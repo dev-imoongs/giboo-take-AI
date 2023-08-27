@@ -10,13 +10,13 @@
     <title>검색창</title>
   </head>
   <body>
-  {% if request.session.member_email %}
-    {% include 'header/logined-header.html' %}
-  {% else %}
-    {% include 'header/header.html' %}
-  {% endif %}
     <div id="dkWrap" class="together_top">
       <!--header-->
+      {% if request.session.member_email %}
+        {% include 'header/logined-header.html' %}
+      {% else %}
+        {% include 'header/header.html' %}
+      {% endif %}
       <span id="rootContent">
         <search>
           <div id="dkContent" class="cont_search">
@@ -150,14 +150,13 @@
         </search>
       </span>
       <hr class="hide" />
-      {% include "footer/footer.html" %}
       <!--footer-->
+      {% include "footer/footer.html" %}
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/search-form.js"></script>
 <script>
-  const tagUrl = "{% url 'search:tag' %}"
 </script>
   {% if request.session.member_email %}
     <script src="/static/js/header/logined-header.js"></script>

@@ -30,7 +30,7 @@ class SearchInputView(View):
 class ShowTagAPIView(APIView):
     def get(self, request):
         tags = NeulhaerangTag.objects.all().order_by("-id")[:10].values()
-
+        print(tags)
         datas = {
             "tags": tags
         }
@@ -41,8 +41,10 @@ class ShowTagAPIView(APIView):
 class ShowCategoryAPIView(APIView):
     def get(self, request):
         categories = Category.objects.all().values()
+        print(categories)
 
         datas = {
             "categories": categories
         }
         return Response(datas)
+

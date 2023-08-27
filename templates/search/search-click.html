@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,6 +21,11 @@
       class="together_top"
     >
       <!--header-->
+      {% if request.session.member_email %}
+        {% include 'header/logined-header.html' %}
+      {% else %}
+        {% include 'header/header.html' %}
+      {% endif %}
       <span id="rootContent"
         ><ng-component
           ><div id="dkContent" class="cont_search">
@@ -238,8 +243,14 @@
         ></span
       >
      <!--footer-->
+      {% include "footer/footer.html" %}
     </div>
   </body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/serach-click.js"></script>
+  {% if request.session.member_email %}
+    <script src="/static/js/header/logined-header.js"></script>
+  {% else %}
+    <script src="/static/js/header/header.js"></script>
+  {% endif %}
 </html>
