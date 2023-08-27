@@ -684,16 +684,16 @@
     </app>
   </body>
   <script>
-      let contents = "{{ contents|escapejs }}"
+      let innerContents = "{{ contents|escapejs }}"
+      let businessPlan = "{{ business_plan|escapejs }}"
       let amount ="{{ target_amount|escapejs }}"
-      let business_plan = "{{ business_plan|escapejs }}"
       let amountSum = "{{ amount_sum }}"
       let neulhaerangId = "{{ neulhaerang_id }}"
       let replyCount = "{{ reply_count }}"
-      const parsedAmountSum = JSON.parse(amountSum)
       const parsedAmount = JSON.parse(amount)
-      const parsedContents = JSON.parse(contents)
-      const parsedPlan = JSON.parse(business_plan)
+      const parsedAmountSum = JSON.parse(amountSum)
+      const parsedInnerContents = JSON.parse(innerContents)
+      const parsedPlan = JSON.parse(businessPlan)
 
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

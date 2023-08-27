@@ -14,19 +14,22 @@
   <body>
     <app>
       <div class="dkwrap">
-        <!-- <header></header> -->
-        {% include 'header/header.html' %}
+        {% if request.session.member_email %}
+            {% include 'header/logined-header.html' %}
+        {% else %}
+            {% include 'header/header.html' %}
+        {% endif %}
         <span class="rootContent">
           <div id="dkContent" class="cont_project">
             <article id="mArticle" class="mArticle">
               <!--상단 타이틀 부분-->
               <div class="wrap_visual">
-                <div class="cont_visual">
+                <div class="cont_visual" style="background-image: url('/upload/{{ review_post.thumbnail_image }}')">
                   <div class="front_pack">
                     <!--타이틀-->
-                    <h4 class="tit_visual ellipsis_type1">삼복더위, 물러가계(鷄)!</h4>
+                    <h4 class="tit_visual ellipsis_type1">{{ review_post.review_title }}</h4>
                     <!--주최자-->
-                    <span class="txt_sponsor ellipsis_g">by 내당노인복지관</span>
+                    <span class="txt_sponsor ellipsis_g">by {{ review_post.neulhaerang.member.member_nickname }}</span>
                     <!--뱃지목록 (획득가능)-->
                     <div class="badge_group">
                       <button type="button" class="link_badge">
@@ -54,7 +57,7 @@
                         <!-- href="/fundraisings/96287/story" -->
                       <a
                         class="link_tab"
-                        href="{% url 'neulhaerang:detail' neulhaerang_id=post.neulhaerang_id %}"
+                        href="{% url 'neulhaerang:detail' neulhaerang_id=review_post.neulhaerang_id %}"
                         ><span class="txt_tab">스토리</span></a
                       >
                     </li>
@@ -309,7 +312,7 @@
                     <strong class="tit_rellink">관련 링크</strong>
                     <ul class="list_ref">
                       <li>
-                        <a class="link_ref" href="http://www.haeundaejangsan.or.kr/" target="_blank"
+                        <a class="link_ref" href="{{ review_post.byeoljji_receiver_openchat_link }}" target="_blank"
                           ><span class="txt_line">별찌 수령자 전용 오픈카톡</span></a
                         >
                       </li>
@@ -317,15 +320,9 @@
                   </div>
                   <!--해시태그, 랜던값으로 색깔 지정-->
                   <div class="hash_group">
-                    <a href="#" class="link_hash hash_type1">#실버세대</a>
-                    <a href="#" class="link_hash hash_type2">#실버세대</a>
-                    <a href="#" class="link_hash hash_type3">#실버세대</a>
-                    <a href="#" class="link_hash hash_type4">#실버세대</a>
-                    <a href="#" class="link_hash hash_type5">#실버세대</a>
-                    <a href="#" class="link_hash hash_type6">#실버세대</a>
-                    <a href="#" class="link_hash hash_type7">#실버세대</a>
-                    <a href="#" class="link_hash hash_type8">#실버세대</a>
-                    <a href="#" class="link_hash hash_type9">#실버세대</a>
+                    {% for tag in tags %}
+                    <a href="#" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
+                    {% endfor %}
                   </div>
                 </div>
                 <!--목표금액,랭킹,기부 퍼센트-->
@@ -365,12 +362,10 @@
                     <dd class="txt_fund"></dd>
                   </dl>
                   <dl class="detail_fund fund_belong">
-                    <dt class="tit_fund">ㄴ 최고의 기부천사 (1명)</dt>
-                    <dd class="txt_fund">아이와 함께 만든 비즈 팔찌</dd>
-                    <dt class="tit_fund">ㄴ 감동의 기부천사 (10명)</dt>
-                    <dd class="txt_fund">아이와 함께 만든 비즈 반지</dd>
-                    <dt class="tit_fund">ㄴ 은은한 기부천사(100명)</dt>
-                    <dd class="txt_fund">아이의 손글씨 편지</dd>
+                      {% for byeoljji in byeoljjies %}
+                    <dt class="tit_fund">ㄴ {{ byeoljji.byeoljji_rank }}위 ({{ byeoljji.byeoljji_count }}명)</dt>
+                    <dd class="txt_fund">{{ byeoljji.byeoljji_name }}</dd>
+                      {% endfor %}
                     <dt class="txt_fund warn_zzi">(익명 기부시 별찌 대상자에서 제외됩니다.)</dt>
                     <dt class="txt_fund warn_zzi">
                       (같은 금액 기부시 먼저 기부한 천사가 기부천사가 됩니다.)
@@ -506,8 +501,8 @@
                 <div class="write_cmt">
                   <div class="inner_write">
                     <div class="info_append">
-                      <span class="txt_heading">카카오 지원 댓글 기부금 </span
-                      ><span class="emph_sign">149,800원</span>
+                  <!--    <span class="txt_heading">카카오 지원 댓글 기부금 </span
+                      ><span class="emph_sign">149,800원</span>-->
                     </div>
                     <a class="link_profile" href="#"
                       ><img
@@ -536,10 +531,10 @@
                                   src="https://t1.kakaocdn.net/together_image/common/avatar/avatar03.png"
                                 /><a class="ico_together2 btn_del">삭제</a>
                               </div>
-                            </div> -->
+                            </div>
                           <button type="button" class="btn_emot">
                             <span class="ico_together2 ico_emot"></span> 이모티콘
-                          </button>
+                          </button>-->
 
                           <!--이모티콘 누를시 내가가진 이모티콘이 나옴-->
                           <!-- <div class="emoticon_layer" style="display: none"></div> -->
@@ -1001,7 +996,22 @@
       </div>
     </app>
   </body>
+  <script>
+    let reviewInnerContents = "{{ review_inner_contents|escapejs }}"
+    let amount ="{{ target_amount|escapejs }}"
+    let amountSum = "{{ amount_sum }}"
+    let fundUsageHistory = "{{ fund_usage_history|escapejs }}"
+    const parsedReviewInnerContents = JSON.parse(reviewInnerContents)
+    const parsedAmount = JSON.parse(amount)
+    const parsedAmountSum = JSON.parse(amountSum)
+    const parsedUsageHistory = JSON.parse(fundUsageHistory)
+
+  </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="{% static '/js/nelharang/detail.js'%}"></script>
-  <script src="{% static '/js/nelharang/review-detail.js'%}"></script>
+  <script src="{% static '/js/neulhaerang/review-detail.js'%}"></script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>

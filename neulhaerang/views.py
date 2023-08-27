@@ -63,7 +63,7 @@ class NeulhaerangDetailView(View):
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
-        tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
+        tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('id')
         if(NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)):
             neulhaerang_review = NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)[0]
         else:
@@ -125,32 +125,43 @@ class NeulhaerangDetailReplyAPIView(APIView):
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_id = request.GET.get('neulhaerangId')
         replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
-        pagenator = Pagenation(page=replyPage, page_count=5, row_count=5, query_set=replys_queryset)
-        replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
-
-        # 베댓을 가져왔는데 3개이상이다 그럼 오더바이 (좋아요 순 , 생성순)으로 최대 3개 가져와 list
-        # 3개면 전체 댓글 가져온거 list 최신순으로 한다? 이게 말이댐?
-        # 페이지네이터해 list+ list
+        first_page_replys_id = []
         if(replyPage==1):
-            # count = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).count()
-            temps = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
-            if(temps.count()>3):
-                temps = temps[0:3]
-            temp2 = replys_queryset.annotate(reply_count=Count('replylike')).order_by('-created_date')[0:5-temps.count()]
-            sum_temp = list(temps)+list(temp2)
-            replys = NeulhaerangReplySerializer(sum_temp, many=True, context={'request': request}).data
+            best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
+            best_replys_count = best_replys.count()
+
+            if(best_replys_count>3):
+                best_replys = best_replys[0:3]
+
+            for best_reply in best_replys.values('id'):
+                first_page_replys_id.append(best_reply['id'])
+
+            normal_replys = replys_queryset.exclude(id__in=first_page_replys_id)[0:5-best_replys_count]
+
+            for normal_reply in normal_replys.values('id'):
+                first_page_replys_id.append(normal_reply['id'])
+
+            total_replys = list(best_replys)+list(normal_replys)
+            replys = NeulhaerangReplySerializer(total_replys, many=True, context={'request': request}).data
+
             datas = {
                 'replys':replys,
                 'replys_count':replys_queryset.count(),
             }
+
             return Response(datas)
-        datas = {
-            'replys':replys,
-            'replys_count':replys_queryset.count(),
 
-        }
+        else:
+            replys_queryset = replys_queryset.exclude(id__in=first_page_replys_id)
+            pagenator = Pagenation(page=replyPage-1, page_count=5, row_count=5, query_set=replys_queryset)
+            replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True).data
 
-        return Response(datas)
+            datas = {
+                'replys':replys,
+                'replys_count':replys_queryset.count(),
+            }
+
+            return Response(datas)
 
 class NeulhaerangDetailReplyWriteAPIView(APIView):
     def get(self, request):
@@ -206,19 +217,18 @@ class NeulhaerangDetailParticipateAPIView(APIView):
         member = Member.objects.get(member_email=my_email)
         neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
         neulhaerang_participate = NeulhaerangParticipants.objects.filter(member=member, neulhaerang=neulhaerang)
-        neulhaerang_participate_count = NeulhaerangParticipants.objects.filter(neulhaerang=neulhaerang).count()
         neulhaerang_participate_max = Neulhaerang.objects.filter(id=neulhaerang_id).values('participants_max_count')[0]
-
+        neulhaerang_participate_count = NeulhaerangParticipants.objects.filter(neulhaerang=neulhaerang).count()
+        check_toast = False
         if(neulhaerang_participate):
             neulhaerang_participate.delete()
-            check_my_apply = True
         elif(neulhaerang_participate_max['participants_max_count'] > neulhaerang_participate_count):
             NeulhaerangParticipants.objects.create(member=member, neulhaerang=neulhaerang)
-            check_my_apply = False
         else:
-            return
+            check_toast = True
+        neulhaerang_participate_count = NeulhaerangParticipants.objects.filter(neulhaerang=neulhaerang).count()
         datas = {
-            'check_my_apply':check_my_apply,
+            'check_toast':check_toast,
             'neulhaerang_participate_count':neulhaerang_participate_count,
             'neulhaerang_participate_max':neulhaerang_participate_max
         }

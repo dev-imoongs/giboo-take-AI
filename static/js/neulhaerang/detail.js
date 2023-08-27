@@ -29,21 +29,37 @@ $('.btn_cheer').on('click',(e)=>{
 //동참하기 모달
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
+$btn_participate.on("click", e => {
+    if (!check_session_email()) return;
+    if($('.ico_share').hasClass('on'))
+    {
+        neulhaerangDetailParticipateView()
+        $('.ico_share').removeClass('on');
+        $('.txt_share').removeClass('on');
+        $('.txt_share .num_active').removeClass('on');
+    }
+    else{
+        $dimedLayer.css('height', "100%");
+        $participate_modal.show();
+        $participate_modal.addClass("opened_modal");
+    }
+});
 
-$(".participate_modal .btn_type1").on("click", (e)=>{
-    neulhaerangDetailParticipateView()
-    $('.ico_share').toggleClass('on')
-    $('.txt_share').toggleClass('on')
-    $('.txt_share .num_active').toggleClass('on')
+$(".participate_modal .btn_type1").on("click", e => {
+    neulhaerangDetailParticipateView();
+    $('.ico_share').addClass('on');
+    $('.txt_share').addClass('on');
+    $('.txt_share .num_active').addClass('on');
     $dimedLayer.css('height', "");
     $participate_modal.hide();
-    $participate_modal.removeClass("opened_modal")
-})
-$(".participate_modal .btn_type2").on("click",e=>{
+    $participate_modal.removeClass("opened_modal");
+});
+
+$(".participate_modal .btn_type2").on("click", e => {
     $dimedLayer.css('height', "");
     $participate_modal.hide();
-    $participate_modal.removeClass("opened_modal")
-})
+    $participate_modal.removeClass("opened_modal");
+});
 
 //로그인 모달
 const $need_login_modal = $(".need_login_modal")
@@ -212,6 +228,20 @@ const $comment_num = $(".comment_num")
 const $tf_cmt = $(".tf_cmt")
 const $toast = $(".toast-bottom-center")
 
+let toastFlag = false
+const toastMsg = function (text) {
+    if (!toastFlag) {
+        $toast.show()
+        toastFlag = true
+        $('.toast-message').eq(0).text(text)
+        setTimeout(function () {
+            toastFlag = false
+            $toast.hide()
+        }, 2000)
+    }
+}
+
+
 //댓글 숫자 제한
 $tf_cmt.on("input",e=>{
     // console.log($tf_cmt.text())
@@ -221,19 +251,11 @@ $tf_cmt.on("input",e=>{
 //등록 눌렀을때 확인
 const $btn_comment = $(".btn_comment")
 
-let toastFlag = false
+
 $btn_comment.on("click",(e)=>{
     if(!check_session_email()) return
-    console.log('버튼 누름')
     if($tf_cmt.val().length<2){
-        if (toastFlag) return
-        toastFlag=true
-        $toast.show()
-        setTimeout(()=> {
-            $toast.hide()
-            toastFlag = false
-
-        },2000)
+        toastMsg('최소 2글자 이상 입력해주세요')
     }else{
         replyCont = $('.tf_cmt').val()
         neulhaerangDetailReplyCreate(replyCont)
@@ -276,11 +298,11 @@ $(document).ready(()=> {
 
 
 
-Function(parsedContents)
+postContent(parsedInnerContents)
 
 
 //사진 무한 슬라이드 1.셋팅
-$photoUls = $("ul.list_photo")
+const $photoUls = $("ul.list_photo")
 $photoUls.each((idx, photoul) => {
     $photos = $(photoul).children("li")
     $pagingSlide = $(".paging_slide").eq(idx)
@@ -393,10 +415,10 @@ function Function2(target_amounts, total_fund){
 
 Function2(parsedAmount,parsedAmountSum)
 
-function Function(Contents) {
+function postContent(contents) {
     let addtext = "";
     let multiImgflag = "";
-    Contents.forEach((content, i) => {
+    contents.forEach((content, i) => {
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
@@ -500,8 +522,6 @@ let replyPage = 1
 let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
-
-
 
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
@@ -613,6 +633,7 @@ const neulhaerangDetailLikeView = () => {
     fetch(`/neulhaerang/detail-neulhaerang-like/?neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             $(`.txt_cheer .num_active`).text(result)
 
         })
@@ -622,27 +643,17 @@ const neulhaerangDetailParticipateView = () => {
     fetch(`/neulhaerang/detail-neulhaerang-participate/?neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            let check_my_apply = result.check_my_apply
+            console.log(result)
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
-                toastFlag = false
-                if (participate_max <= participate_max.participants_max_count) {
-                    if (toastFlag) return
-                    toastFlag = true
-                    $toast.show()
-                    setTimeout(() => {
-                        $toast.hide()
-                        toastFlag = false
-                    }, 2000)
-                }
+            if (result.check_toast) {
+                toastMsg('최대 동참 인원을 초과하였습니다.')
+                $('.ico_share').removeClass('on');
+                $('.txt_share').removeClass('on');
+                $('.txt_share .num_active').removeClass('on');
+            }
             $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
-            if(check_my_apply){
-                return true
-            }
-            else{
-                return false
-            }
+
+
         })
 }
-
-
