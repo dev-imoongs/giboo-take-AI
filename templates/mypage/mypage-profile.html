@@ -20,6 +20,7 @@
   <form method="post" action="{% url 'mypage:save_data' %}" enctype="multipart/form-data" id="save_data">
       {% csrf_token %}
       <input type="hidden" name="xFlag" value="false">
+      <input type="hidden" name="kakaoFlag" value="false">
     <main id="root-content">
       <section-component>
         <div id="main-content">
@@ -27,9 +28,25 @@
             <div class="wrap-project wrap-profile">
               <div class="cont-thumb">
                 <div class="file-upload" >
-                  <img alt="프로필" class="img-thumb" id="checkProfileImg" src="/upload/{{ profile_image }}">
+
+                  <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src={{ member.profile_image.url }}
+                           {% endif %}
+                       {% else %}
+                       src={% static 'image/avatar.png' %}
+                      {% endif %}
+
+                  >
                   <label class="lab-photo">
-                    <span class="ico-together ico-photo">
+                    <span class="ico-together ico-photo"
+                         {% if profile_image %}
+                            style="display: none"
+                         {% endif %}
+                    >
                         <input class="upload-profile-img" id="upload-profile-img" type="file" name="profile_image"> 사진첨부</span>
                   </label>
                   <!-- 이미지가 업로드 되지 않은 상태면 display:none; -->
@@ -177,9 +194,11 @@
                         </span>
                       </div>
                     </dd>
-                </form>
+                     </form>
+                     </dl>
 
-                </dl>
+
+
 
                   <!--<dt> 지역 </dt>
                     <dd>
@@ -402,7 +421,7 @@
                       <span class="ico-together ico-warn">미입력 경고</span>
                       <div class="area-policy open-policy">
                         <p class="txt-effort">
-                           기부앤테이크의 서비스는 아래의 목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 처리하는데 최선을 다합니다. 
+                           기부앤테이크의 서비스는 아래의 목적으로 개인정보를 수집 및 이용하며, 회원의 개인정보를 안전하게 처리하는데 최선을 다합니다.
                         </p>
                         <div class="box-policy">
                           <strong class="tit-policy">목적</strong>
@@ -412,10 +431,10 @@
                           <strong class="tit-policy">보유기간</strong>
                           <p class="desc-policy">회원 탈퇴 시 지체없이 파기</p>
                         </div>
-                        <p class="txt-policy"> 서비스 제공을 위해 필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스 이용이 가능합니다. 
-                          <br> 더 자세한 내용에 대해서는 
+                        <p class="txt-policy"> 서비스 제공을 위해 필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스 이용이 가능합니다.
+                          <br> 더 자세한 내용에 대해서는
                           <a href="javascript:void(0)" target="_blank" class="link-policy">개인정보처리방침</a>
-                          을 참고하시기 바랍니다. 
+                          을 참고하시기 바랍니다.
                         </p>
                       </div>
                     </dd>
@@ -475,7 +494,13 @@
 </form>
 </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script> let memberGender = "{{ member_gender }}" </script>
+<script> let memberGender = "{{ member_gender }}"
+console.log(memberGender)
+            let staticUrl = "{% get_static_prefix %}"
+
+
+        let kakao_image_url = "{{ request.session.kakao_image_url }}"
+</script>
     <script src="{% static 'js/mypage/mypage_profile.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>

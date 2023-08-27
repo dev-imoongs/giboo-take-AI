@@ -1,11 +1,13 @@
 import requests
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from customer_center.models import Alarm
 from member.models import Member
+from workspace.serializers import MemberSerializer
 
 
 # Create your views here.
@@ -41,8 +43,10 @@ class LoginView(View):
         member = Member.objects.filter(member_email=email).first()
         if not member:
             member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender, member_age=age)
+        else:
+            if member.profile_image_choice=="kakao":
+                member.profile_image=kakao_image_url
 
-        member.kakao_profile_image = kakao_image_url
         member.save()
 
 
@@ -54,12 +58,28 @@ class LoginView(View):
 
         return redirect(prev_url)
 
+class GetMemberProfileAPIView(APIView):
+    def get(self,request):
+        member = Member.objects.filter(member_email=request.session.get("member_email")).values().first()
+        data ={
+            "member": member,
+        }
+        return JsonResponse(data)
+
+class GetMemberAlarmsNotChckedAPIView(APIView):
+    def get(self,request):
+        not_checked_alarms_count = Alarm.objects.filter(member__member_email=request.session.get("member_email"),isChecked='').count()
+        data ={
+            "not_checked_alarms_count": not_checked_alarms_count
+        }
+        return JsonResponse(data)
+
 
 
 
 class LogoutView(View):
     def get(self, request):
-        prev_url = request.GET.get("prev_url")
+        prev_url = request.GET.get("path")
         access_token = request.session['access_token']
 
         headers = {

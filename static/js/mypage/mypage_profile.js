@@ -126,22 +126,35 @@ imageInput.addEventListener('change', function() {
     };
 
       reader.readAsDataURL(imageInput.files[0]);
+      $(".ico-photo").hide()
+
+
     });
 
     //삭제버튼을 누르면 src가 지워짐
-    const deleteButton = document.querySelector('.btn-del');
-    const input_file = document.querySelector(".upload-profile-img");
-     $("input[name='xFlag']").val(false)
-    console.log(deleteButton)
-    console.log(checkProfileImg)
-    deleteButton.addEventListener('click', function() {
-        console.log("e")
-      // 이미지 태그의 src 속성을 삭제
-      checkProfileImg.src = '';
-      input_file.value = "";
-      $("input[name='xFlag']").val(true)
-      console.log($("input[name='xFlag']"))
-    });
+const deleteButton = document.querySelector('.btn-del');
+const input_file = document.querySelector(".upload-profile-img");
+ $("input[name='xFlag']").val(false)
+ $("input[name='kakaoFlag']").val(false)
+deleteButton.addEventListener('click', function() {
+    console.log("e")
+  // 이미지 태그의 src 속성을 삭제
+  checkProfileImg.src = `${staticUrl}image/avatar.png`;
+  input_file.value = "";
+  $(".ico-photo").show()
+  $("input[name='xFlag']").val(true)
+});
+
+ //프로필 이미지 클릯시
+ $(".btn-katalk").on("click",e=>{
+     checkProfileImg.src = kakao_image_url;
+  input_file.value = "";
+
+  $("input[name='kakaoFlag']").val(true)
+     $(".ico-photo").hide()
+
+ })
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const submitButton = document.getElementById('submitButton');

@@ -14,7 +14,7 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from customer_center.models import Inquery, InqueryResponse
+from customer_center.models import Inquery, InqueryResponse, Alarm
 from member.models import Member
 from neulhaerang.models import Neulhaerang
 from neulhaerang_review.models import NeulhaerangReview
@@ -575,7 +575,10 @@ class AdminInqueryDetailView(View):
 
         recipient_list = [inquery.member.member_email]
 
-
+        #알람넣기
+        alarm_message = f"문의제목 : {inquery.inquery_title}에 대한 답변이 메일로 도착했습니다!\n" \
+                        f"지금 바로 확인해보세요!"
+        Alarm.objects.create(message=alarm_message,type="inquery",reference_id=inquery.id,member=inquery.member)
 
 
         try:

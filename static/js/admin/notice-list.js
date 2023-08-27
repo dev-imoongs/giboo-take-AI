@@ -40,7 +40,7 @@ const shownoticesByPaged =  (page,search)=>{
                                   
                                 </td>
                                 <td>
-                                    ${notice.created_date}
+                                    ${notice.created_date.split(".")[0].replace("T","-")}
                                 </td>
                                 <td class="color-icon">
                                     ${notice.type}

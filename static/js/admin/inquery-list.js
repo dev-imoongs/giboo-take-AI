@@ -40,7 +40,7 @@ const showinquerysByPaged =  (page,search)=>{
                                   
                                 </td>
                                 <td>
-                                    ${inquery.created_date}
+                                    ${inquery.created_date.split(".")[0].replace("T","-")}
                                 </td>
                                 <td class="color-icon">
                                     <span class="icon-wrap">

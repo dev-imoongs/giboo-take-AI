@@ -40,7 +40,7 @@ const showNeulhajangsByPaged =  (page,search)=>{
                                   
                                 </td>
                                 <td>
-                                    ${neulhajang.created_date}
+                                    ${neulhajang.created_date.split(".")[0].replace("T","-")}
                                 </td>
                                 <td class="color-icon">
                                     <span class="icon-wrap">
