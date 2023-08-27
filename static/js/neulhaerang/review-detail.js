@@ -100,7 +100,7 @@ $(".need_login_modal .btn_type2").on("click",e=>{
 })
 
 //내 댓글 삭제 모달,
-const deleteReply = (reply_id) => {
+const deleteReply = (replyId) => {
     const $btn_delete = $(".btn_delete")
     const $comment_delete_modal = $(".comment_delete_modal")
     $btn_delete.on("click", e => {
@@ -108,12 +108,12 @@ const deleteReply = (reply_id) => {
         $comment_delete_modal.show()
         $comment_delete_modal.addClass("opened_modal")
         if($(e.target).hasClass('btn_delete'))
-        reply_id = $(e.target).prev().prev().attr('id')
+        replyId = $(e.target).prev().prev().attr('id')
     })
 
     $(".comment_delete_modal .btn_type1").on("click",(e)=>{
-        // neulhaerangDetailReplyDeleteView(reply_id)
-        $(`span[id=${reply_id}]`).closest('li').hide()
+        // neulhaerangDetailReplyDeleteView(replyId)
+        $(`span[id=${replyId}]`).closest('li').hide()
         $dimedLayer.css('height', "");
         $comment_delete_modal.hide();
         $comment_delete_modal.removeClass("opened_modal")
@@ -447,9 +447,9 @@ let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
 
-// neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
-const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
-    fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
+// neulhaerangReviewId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
+const neulhaerangReviewDetailReplyView = (replyPage,btn_more)=>{
+    fetch(`/neulhaerang_review/review-detail-reply/?replyPage=${replyPage}&neulhaerangReviewId=${neulhaerangReviewId}&`)
         .then(response => response.json())
         .then(result => {
             replys = result.replys
@@ -506,10 +506,59 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             else{
                 $('.list_cmt').html(replyText)
             }
-            btnLikeOn()
-            deleteReply()
+            // btnLikeOn()
+            // deleteReply()
             $('.inner_info .emph_sign').html(reply_count)
         })
 }
-neulhaerangDetailReplyView(replyPage)
+neulhaerangReviewDetailReplyView(replyPage)
 showMoreBtn()
+
+const neulhaerangDetailReplyCreate = (replyCont)=>{
+    fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangReviewId=${neulhaerangReviewId}`)
+        .then(response => response.json())
+        .then(result => {
+            neulhaerangDetailReplyView(replyPage)
+        })
+}
+
+
+
+// 더보기 버튼 누를 시에 실행되는 이벤트
+$('.link_round').on('click',()=>{
+    replyPage++
+    checkMoreBtn -= 5
+    showMoreBtn()
+    neulhaerangDetailReplyView(replyPage,'btn_more')
+})
+
+
+// 댓글 좋아요
+let reply_id = ""
+const neulhaerangDetailReplyLikeView = (reply_id) => {
+    fetch(`/neulhaerang/detail-reply-like/?reply_id=${reply_id}`)
+        .then(response => response.json())
+        .then(result => {
+            $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
+
+        })
+
+}
+
+// 댓글 삭제
+const neulhaerangDetailReplyDeleteView = (reply_id) => {
+    fetch(`/neulhaerang/detail-reply-delete/?reply_id=${reply_id}`)
+        .then(response => response.json())
+        .then(result => {
+
+        })
+}
+// 늘해랑 응원하기
+const neulhaerangReviewDetailLikeView = () => {
+    fetch(`/neulhaerang/detail-neulhaerang-like/?neulhaerangReviewId=${neulhaerangReviewId}`)
+        .then(response => response.json())
+        .then(result => {
+            $(`.txt_cheer .num_active`).text(result)
+
+        })
+}

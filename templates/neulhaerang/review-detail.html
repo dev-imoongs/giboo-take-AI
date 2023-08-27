@@ -35,15 +35,8 @@
                       <button type="button" class="link_badge">
                         <img
                           class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                          alt="힘내라 힘"
-                        /></button
-                      ><button type="button" class="link_badge">
-                        <img
-                          class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/Lm7Jm/btqcKIsVnX2/f3O7WtZRGMMKLCOb1SfcVK/img.png"
-                          alt="내 나이가 어때서"
-                        />
+                          src="/{{ post_badge.badge_image }}"
+                          alt="{{ post_badge.badge_name }}"/>
                       </button>
                     </div>
                   </div>
@@ -383,12 +376,12 @@
                             <img
                               alt="대표 섬네일"
                               class="img_logo"
-                              src="https://mud-kage.kakaocdn.net/dn/cbjWbu/btslaSWrOFE/dtSdEnXKALhBS05xUD6FRK/c160.jpg"
+                              src="/upload/{{ review_post.neulhaerang.member.profile_image }}"
                             />
                           </span>
                           <span class="info_suggester">
                             <span class="txt_suggester">프로젝트 주최자</span>
-                            <span class="name_suggester">내당노인복지관</span>
+                            <span class="name_suggester">{{ review_post.neulhaerang.member.member_nickname }}</span>
                           </span>
                         </a>
                         <!--홈페이지, 인스타 등등-->
@@ -403,11 +396,11 @@
                       <!--모집,모금기간-->
                       <dl class="story_date">
                         <dt class="tit_date">모금기간 :</dt>
-                        <dd class="txt_date">2023.07.07 ~ 2023.08.07</dd>
+                        <dd class="txt_date">{{ review_post.neulhaerang.fund_duration_start_date|date:'Y-m-d' }} ~ {{ review_post.neulhaerang.fund_duration_end_date|date:'Y-m-d' }}</dd>
                         <dt class="tit_date">봉사기간 :</dt>
-                        <dd class="txt_date">2023.07.07 ~ 2023.08.07</dd>
+                        <dd class="txt_date">{{ review_post.neulhaerang.volunteer_duration_start_date|date:'Y-m-d' }} ~ {{ review_post.neulhaerang.volunteer_duration_end_date|date:'Y-m-d' }}</dd>
                         <dt class="tit_date">후기작성 :</dt>
-                        <dd class="txt_date">2023.07.07</dd>
+                        <dd class="txt_date">{{ review_post.created_date|date:'Y-m-d' }}</dd>
                       </dl>
                       <!--모금액 사용 계획-->
                       <div class="info_plan">
@@ -633,12 +626,13 @@
               <div class="group_endlist">
                 <div class="inner_slide">
                   <ul class="list_slide" style="width: 900px">
+                      {% for bottom_post in bottom_posts %}
                     <li>
                       <a href="#" class="link_slide">
                         <span
                           class="area_thumb"
                           style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
+                            background-image: url('/upload/{{ bottom_post.thumbnail_image }}');
                           "
                         ></span>
                       </a>
@@ -646,65 +640,12 @@
                         <a class="link_slide" href="#"
                           ><span class="tit_slide">모금함</span
                           ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
+                            >{{ bottom_post.neulhaerang_title }}</span
                           ></a
                         >
                       </div>
                     </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <a href="#" class="link_slide">
-                        <span
-                          class="area_thumb"
-                          style="
-                            background-image: url('https://mud-kage.kakaocdn.net/dn/bj7qBs/btsnD7wMWxw/xK4tZzj0TSGymKYUCzFEE1/img.jpg?convert=c360x360');
-                          "
-                        ></span>
-                      </a>
-                      <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >집중호우 피해 구호활동에 함께해주세요!</span
-                          ></a
-                        >
-                      </div>
-                    </li>
+                      {% endfor %}
                   </ul>
                 </div>
               </div>
@@ -760,7 +701,7 @@
                     기부해보세요.
                   </p>
                 </div>
-                <plus-friend-button>
+        <!--        <plus-friend-button>
                   <div class="cont_plusfriend">
                     <span class="info_plusfriend"
                       >카카오같이가치 채널을 추가하면<br />기부한 모금함의 소식을 알려드려요.</span
@@ -770,7 +711,7 @@
                       ><span class="txt_plusfriend">채널 추가</span>
                     </button>
                   </div>
-                </plus-friend-button>
+                </plus-friend-button> -->
               </div>
               <div class="layer_foot">
                 <button type="button" class="btn_close">
@@ -1001,6 +942,8 @@
     let amount ="{{ target_amount|escapejs }}"
     let amountSum = "{{ amount_sum }}"
     let fundUsageHistory = "{{ fund_usage_history|escapejs }}"
+    let replyCount = "{{ reply_count }}"
+    let neulhaerangReviewId = "{{ neulhaerang_review_id }}"
     const parsedReviewInnerContents = JSON.parse(reviewInnerContents)
     const parsedAmount = JSON.parse(amount)
     const parsedAmountSum = JSON.parse(amountSum)
@@ -1009,6 +952,9 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/neulhaerang/review-detail.js'%}"></script>
+  <script>
+      email = "{{ request.session.member_email }}"
+  </script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}
