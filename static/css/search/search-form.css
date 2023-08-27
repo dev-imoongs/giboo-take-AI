@@ -145,6 +145,7 @@ fieldset, img {
     border-radius: 25px;
     font-size: 15px;
     cursor: pointer;
+    text-decoration: none;
 }
 .group_schtheme {
     padding-top: 49px;
@@ -266,9 +267,11 @@ fieldset, img {
     padding: 5px 12px 8px;
     font-size: 13px;
     cursor: pointer;
+    text-decoration: none;
 }
     .group_schtag .link_hash {
     margin-bottom: 6px;
+    text-decoration: none;
 }
     .group_schtheme {
     padding-top: 33px;

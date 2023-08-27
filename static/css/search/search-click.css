@@ -1,3 +1,16 @@
+#dkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100vh;
+}
+
+#rootContent {
+    flex-grow: 1;
+    min-height: calc(100vh - (70px + 250px));
+}
+
 .group_tagcover {
     position: relative;
     width: 1000px;
@@ -226,6 +239,10 @@ address, caption, cite, code, dfn, em, var {
     margin-left: 13px;
 }
 
+.cont_search #mArticle {
+    margin-bottom: 100px;
+    padding: 0 0 100px;
+}
 
 @media (max-width: 767px){
 #mArticle {

@@ -15,13 +15,24 @@ $searchInput.on("input",e=>{
     }
 })
 
-
-$(document).ready(()=> {
+// 태그버튼들
+const $hashtags = $(".link_hash")
+$(document).ready(function() {
     showTag();
     showCategory();
+
+    // $hashtags.each(function(i, hash){
+    //     $(hash).on("click", function(e){
+    //         e.preventDefault()
+    //         let hashtag = $(hash).text()
+    //         showResultOfSearchTag(hashtag);
+    //     });
+    // });
+
+
 })
 
-
+// 태그검색
 const showTag = () => {
     fetch(`/search/tag/`)
         .then(response => response.json())
@@ -32,19 +43,17 @@ const showTag = () => {
             tags.forEach((tag, i) => {
                 let name = tag.tag_name;  // 'tag_name'을 직접 가져옴
                 let type = tag.tag_type;  // 'tag_type'을 직접 가져옴
-
-                text += `<tag-card><a class="link_hash hash_type${type}">#${name}</a></tag-card>`;
+                text += `<tag-card><a href="/search/click/" class="link_hash hash_type${type}">#${name}</a></tag-card>`;
             })
             $('.hash_group').html(text);
         });
 };
 
-
+// 카테고리 검색
 const showCategory = () => {
     fetch(`/search/category/`)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             let categories = result.categories
             let text = "";
 
@@ -66,6 +75,6 @@ const showCategory = () => {
 }
 
 
-$(".link_hash").on("click", () => {
-    console.log($target)
-})
+// const showResultOfSearchTag = (hashtag) => {
+//     fetch(`/search/click/?hashtag=${hashtag}`)
+// }
