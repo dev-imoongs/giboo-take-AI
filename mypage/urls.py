@@ -2,7 +2,7 @@ from django.urls import path
 
 from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, MypageSignOutView, \
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
-    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView
+    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView
 
 app_name = 'mypage'
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('sign-out/',MypageSignOutView.as_view(),name = 'sign-out'),
     path('reply/', MypageReplyView.as_view(),name = 'reply'),
     path('save_data/', MypageProfileView.save_data, name='save_data'),
+    path('donation_list/', DonationListAPIView.as_view(), name='donation_list'),
 
 
 
