@@ -59,7 +59,7 @@ class LoginView(View):
 
 class LogoutView(View):
     def get(self, request):
-        prev_url = request.GET.get("prev_url")
+        prev_url = request.GET.get("path")
         access_token = request.session['access_token']
 
         headers = {

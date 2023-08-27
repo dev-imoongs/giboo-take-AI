@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import DeleteView
@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 
 import neulhaerang_review
 from member.models import Member
-from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji
+from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 from neulhajang.models import Neulhajang
 from static_app.models import Badge, MemberBadge
@@ -34,24 +34,64 @@ class MypageDonateView(View):
     def get(self,request):
         return render(request, 'mypage/mypage-donate.html')
 
-
-
-
     def get(self, request):
-        member = Member.objects.get(id=1)
+        # 세션에서 멤버 이메일을 가져옵니다.
+        member_email = request.session.get('member_email')
 
-        profile_badge = MemberBadge.objects.filter(member_id=1)[0:1].get().badge.badge_image
-        context = {
-            #'www_neulhaerang_title': temp,
-            'member_nickname': member.member_nickname,
-            'donation_level': member.donation_level,
-            'member_profile_image': member.profile_image,
-            'member_profile_badge': profile_badge,
-            'donation_status': member.donation_status,
-            'total_donation_fund': member.total_donation_fund,
-            'total_donation_count': member.total_donation_count,
-        }
-        return render(request, 'mypage/mypage-donate.html', context)
+        if member_email:
+            try:
+                # 해당 이메일을 가진 멤버를 조회합니다.
+                member = Member.objects.get(member_email=member_email)
+
+                # MemberBadge 모델에서 해당 멤버의 배지 정보를 가져옵니다.
+                profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+
+                # 세션에 profile_badge를 저장합니다.
+                request.session['profile_badge'] = profile_badge
+
+                donation_temp = NeulhaerangDonation.objects.filter(member=member)[0:20]
+                context = {
+                    'www_donation_list': donation_temp,
+                    'member_nickname': member.member_nickname,
+                    'donation_level': member.donation_level,
+                    'member_profile_image': member.profile_image,
+                    'member_profile_badge': profile_badge,
+                    'donation_status': member.donation_status,
+                    'total_donation_fund': member.total_donation_fund,
+                    'total_donation_count': member.total_donation_count,
+
+
+                }
+
+                return render(request, 'mypage/mypage-donate.html', context)
+
+            except Member.DoesNotExist:
+                # 멤버가 존재하지 않는 경우 처리
+                pass
+
+        # 멤버 이메일이 세션에 존재하지 않거나 오류 발생 시
+        return HttpResponse('잘못된 요청입니다.')
+
+
+
+
+
+    # def get(self, request):
+    #     member = Member.objects.get(member_email=request.session['member_email'])
+    #
+    #     profile_badge = MemberBadge.objects.filter(member_id=1)[0:1].get().badge.badge_image
+    #     print(request.session.get("member_email"))
+    #     context = {
+    #         #'www_neulhaerang_title': temp,
+    #         'member_nickname': member.member_nickname,
+    #         'donation_level': member.donation_level,
+    #         'member_profile_image': member.profile_image,
+    #         'member_profile_badge':  profile_badge,
+    #         'donation_status': member.donation_status,
+    #         'total_donation_fund': member.total_donation_fund,
+    #         'total_donation_count': member.total_donation_count,
+    #     }
+    #     return render(request, 'mypage/mypage-donate.html', context)
 
 
 # class MypageMainDeleteView(View):
@@ -232,3 +272,4 @@ class MemberChangeDonationStatusAPIView(APIView):
 class TimeReplyTimeView(APIView):
     def get(self, request):
         return render(request, 'mypage/mypage-main.html')
+
