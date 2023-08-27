@@ -784,7 +784,6 @@ background: url("https://t1.kakaocdn.net/together_image/svg/toons.svg") 0px 0px 
   overflow: hidden;
   position: relative;
   border-radius: 50%;
-  background: url("https://t1.kakaocdn.net/together_image/common/avatar/avatar.png") 50% 50% / cover no-repeat;
 }
 
 .pc-user-profile::after {

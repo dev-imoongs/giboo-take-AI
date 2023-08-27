@@ -36,7 +36,7 @@ const showMembersByPaged =  (page,search)=>{
                                    ${member.member_nickname}
                                 </td>
                                 <td>
-                                    ${member.created_date}
+                                    ${member.created_date.split(".")[0].replace("T","-")}
                                 </td>
                                 <td class="color-icon">
                                     <span class="icon-wrap">

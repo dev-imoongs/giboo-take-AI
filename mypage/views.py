@@ -186,15 +186,16 @@ class MypageProfileView(View):
 
     def get(self, request):
         member = Member.objects.get(member_email=request.session['member_email'])
-        print(member.profile_image)
         context = {
             'profile_image': member.profile_image,
             'member_nickname': member.member_nickname,
             'member_email': member.member_email,
             'member_age': member.member_age,
             'member_gender':member.member_gender,
+            'member': member,
 
         }
+
 
         return render(request, 'mypage/mypage-profile.html', context)
 
@@ -202,35 +203,31 @@ class MypageProfileView(View):
 
         if request.method == 'POST':
             member_email = request.session.get('member_email')
-            print(request.POST)
             if member_email:
                 member = get_object_or_404(Member, member_email=member_email)
                 member_nickname = request.POST.get('member_nickname', '닉네임을 지정해주세요')
                 member_gender = request.POST.get('genderChk')
                 profile_image = request.FILES.get('profile_image')
 
+
+
                 files = request.FILES
                 x_falg = request.POST.get("xFlag")
-                print(x_falg)
+                kakao_falg = request.POST.get("kakaoFlag")
+                print(kakao_falg)
                 file = files.get("profile_image")
                 if file:
                     member.profile_image = file
+                    member.profile_image_choice = "user"
                 elif x_falg == "true":
-                    print("e,f")
                     member.profile_image = ''
-
-
+                    member.profile_image_choice = "user"
+                elif kakao_falg =="true":
+                    member.profile_image = request.session.get("kakao_image_url")
+                    member.profile_image_choice = "kakao"
                 member.member_nickname = member_nickname
-                print(member_nickname)
 
                 member.member_gender = member_gender
-                print(member_gender)
-
-
-
-
-
-
                 member.save()
 
                 return redirect('mypage:profile')

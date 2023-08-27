@@ -18,5 +18,6 @@ class Pagenation():
         self.end_page = self.real_end if self.end_page > self.real_end else self.end_page
         self.has_next = self.real_end>self.end_page
         self.has_prev = self.start_page>1
+        self.has_next_data = self.total>self.limit
         self.paged_models = query_set[self.offset:self.limit]
 

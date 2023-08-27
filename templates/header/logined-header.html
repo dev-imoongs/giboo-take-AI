@@ -203,12 +203,12 @@
         <a href="/main/suggestion-choice/" class="util-button write">제안하기</a>
         <div class="pc-user-util-menu">
           <button type="button" class="pc-user-button">
-            <span class="pc-user-profile" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar.png"></span>
-            <span class="pc-new-badge">1</span>
+            <span class="pc-user-profile"></span>
+            <span class="pc-new-badge" style="display:none;">1</span>
           </button>
           <ul class="pc-user-sub-menu" style="display: none">
             <li class="pc-user-sub-menu-list">
-              <a href="/customer_center/alram/" class="pc-user-sub-menu-link"><span class="sub-menu-txt">알림</span></a>
+              <a href="/customer_center/alarm/" class="pc-user-sub-menu-link"><span class="sub-menu-txt">알림</span></a>
             </li>
             <li class="pc-user-sub-menu-list">
               <a href="/mypage/main/" class="pc-user-sub-menu-link"><span class="sub-menu-txt">마이페이지</span></a>
@@ -267,6 +267,48 @@
     }else if(url=="neulhajang"){
          $(".list-item-container").eq(2).addClass("home")
         $(".list-item-container").eq(2).removeClass("header-menu")
-    }
+    }else if(["notice","customer_center","introduce"].includes(url)){
+         $(".list-item-container").eq(3).addClass("home")
+        $(".list-item-container").eq(3).removeClass("header-menu")
+     }
+
+    //알람 갯수 구하기
+
+  const getAlarmNotChecked = ()=>{
+         fetch("/member/get-alarms-not-checked/")
+             .then(response => response.json())
+             .then(result =>{
+                 let count = result.not_checked_alarms_count
+                 if(count==0){
+                     $(".pc-user-button .pc-new-badge").hide()
+                 }else{
+                     $(".pc-user-button .pc-new-badge").show()
+                     $(".pc-user-button .pc-new-badge").text(count)
+                 }
+
+             })
+  }
+  getAlarmNotChecked()
+
+  //프로필 달기
+    let staticHeaderUrl = "{% get_static_prefix %}"
+    let mediaHeaderUrl = "{% get_media_prefix %}"
+    fetch("/member/get-profile/")
+        .then(response=> response.json())
+        .then(result=>{
+            let member = result.member
+            if(!member.profile_image){
+                $(".pc-user-profile").css("background",`url(${staticHeaderUrl}image/avatar.png)  50% 50% / cover no-repeat`)
+            }else if(member.profile_image_choice == "kakao"){
+
+                $(".pc-user-profile").css("background",`url(${member.profile_image})  50% 50% / cover no-repeat`)
+
+            }else{
+                  $(".pc-user-profile").css("background",`url(${mediaHeaderUrl + member.profile_image})  50% 50% / cover no-repeat`)
+            }
+
+        })
+
+  //프로필 설정할때 카카오쓸건지 일반프로필쓸건지 비교하기
 </script>
 </html>
