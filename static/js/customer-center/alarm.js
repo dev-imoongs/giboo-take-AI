@@ -22,16 +22,16 @@ const getAlarmsByPaged = (page)=>{
                 }
 
                 text+=` <li>
-                    <a  href="${alarm.type =="inquery"? '' : `/${alarm.type}/detail/${alarm.reference_id}`}"
+                    <a  ${alarm.type =="inquery"? '' : `href='/${alarm.type}/detail/${alarm.reference_id}'`}
                             class="link_inform"
                     ><span class="thumb_inform"
                     ><span class="ico_together ico_declare"></span
                     ></span
                     ><span class="cont_inform"
                     ><strong class="tit_inform emph_sign">${alarm.type=="inquery"?'답변은 메일로 확인하세요!' : `${type} 바로가기`}</strong
-                    ><span class="txt_inform"
+                    ><span class="txt_inform" style=" white-space: pre-line;"
                     >${alarm.message}</span
-                    ><span class="date_inform" style="position: relative">${alarm.created_date}${alarm.isChecked ? '':
+                    ><span class="date_inform" style="position: relative">${alarm.created_date.split(".")[0].replace("T","-")}${alarm.isChecked ? '':
                     '<span class="pc-new-badge alarm">1</span>'}</span></span
                     ></a
                     >

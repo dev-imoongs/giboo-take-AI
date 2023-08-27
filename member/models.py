@@ -27,3 +27,8 @@ class Member(Period):
         db_table = 'tbl_member'
         ordering = ["-id"]
 
+    # def save(self,*args,**kwargs):
+    #     if self.profile_image:
+    #         self.profile_image.name = f"/upload/{self.profile_image.name}"
+    #
+    #     super().save(*args,**kwargs)
