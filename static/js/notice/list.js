@@ -23,7 +23,7 @@ const getNoticesByPaged = (page,type,tab)=>{
                     </strong>
                       <span class="notice-target">${notice.type}</span>
                       <span class="date-official">
-                        ${notice.created_date}
+                        ${notice.created_date.split(".")[0].replace("T","-")}
                       </span>
                       </a>
                     </li>`

@@ -47,7 +47,7 @@
           <div class="view-head">
             <span class="notice-title">{{ notice.type }}</span>
             <strong class="subject-official">{{ notice.notice_title }}</strong>
-            <span class="date-official">{{ notice.created_date }}</span>
+            <span class="date-official">{{ notice.created_date|date:'Y-m-d-H:i:s' }}</span>
           </div>
         </div>
 
