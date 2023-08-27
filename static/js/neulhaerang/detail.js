@@ -20,7 +20,14 @@ $(".btn_close").on("click", e => {
 
 // 응원하기 버튼 누를시 이벤트
 $('.btn_cheer').on('click',(e)=>{
-    if(!check_session_email()) return
+      if(!email) {
+          $('#modalOFF').attr('id', 'modalON')
+          $('.dimmed_layer').css('height', '100%');
+          $('.dialog-content').css('display', 'block');
+          $('.modal-delete').css('display', 'block');
+          $('.modal-policy').css('display', 'none');
+          return
+      }
     $('.ico_cheer').toggleClass('on')
     neulhaerangDetailLikeView()
 })
@@ -30,7 +37,14 @@ $('.btn_cheer').on('click',(e)=>{
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
 $btn_participate.on("click", e => {
-    if (!check_session_email()) return;
+      if(!email) {
+          $('#modalOFF').attr('id', 'modalON')
+          $('.dimmed_layer').css('height', '100%');
+          $('.dialog-content').css('display', 'block');
+          $('.modal-delete').css('display', 'block');
+          $('.modal-policy').css('display', 'none');
+          return
+      }
     if($('.ico_share').hasClass('on'))
     {
         neulhaerangDetailParticipateView()
@@ -47,9 +61,6 @@ $btn_participate.on("click", e => {
 
 $(".participate_modal .btn_type1").on("click", e => {
     neulhaerangDetailParticipateView();
-    $('.ico_share').addClass('on');
-    $('.txt_share').addClass('on');
-    $('.txt_share .num_active').addClass('on');
     $dimedLayer.css('height', "");
     $participate_modal.hide();
     $participate_modal.removeClass("opened_modal");
@@ -76,15 +87,6 @@ const show_need_login_modal = function (){
 // $(".btn_give").on("click",e=>{
 //     show_need_login_modal()
 // })
-// 세션 이메일 정보 검사
-const check_session_email = () =>{
-    if(!email){
-        show_need_login_modal()
-        return false
-    }
-    return true
-
-}
 //
 const showMoreBtn = () => {
     if (checkMoreBtn <= 0) {
@@ -128,10 +130,17 @@ const deleteReply = (reply_id) => {
 
 //기부하기 버튼 모달
 const $fund_modal =$(".fund_modal")
-$(".btn_give").on("click",e=>{
-    if(!check_session_email()) return
-    $fund_modal.css("display","flex")
-    $dimedLayer.css("height","100%")
+$(".btn_give").on("click", e => {
+    if (!email) {
+        $('#modalOFF').attr('id', 'modalON')
+        $('.dimmed_layer').css('height', '100%');
+        $('.dialog-content').css('display', 'block');
+        $('.modal-delete').css('display', 'block');
+        $('.modal-policy').css('display', 'none');
+        return
+    }
+    $fund_modal.css("display", "flex")
+    $dimedLayer.css("height", "100%")
     $fund_modal.addClass("opend_modal")
 })
 
@@ -244,7 +253,6 @@ const toastMsg = function (text) {
 
 //댓글 숫자 제한
 $tf_cmt.on("input",e=>{
-    // console.log($tf_cmt.text())
     $comment_num.text($tf_cmt.val().length + "/")
 })
 
@@ -252,16 +260,23 @@ $tf_cmt.on("input",e=>{
 const $btn_comment = $(".btn_comment")
 
 
-$btn_comment.on("click",(e)=>{
-    if(!check_session_email()) return
-    if($tf_cmt.val().length<2){
+$btn_comment.on("click", (e) => {
+    if (!email) {
+        $('#modalOFF').attr('id', 'modalON')
+        $('.dimmed_layer').css('height', '100%');
+        $('.dialog-content').css('display', 'block');
+        $('.modal-delete').css('display', 'block');
+        $('.modal-policy').css('display', 'none');
+        return
+    }
+    if ($tf_cmt.val().length < 2) {
         toastMsg('최소 2글자 이상 입력해주세요')
-    }else{
+    } else {
         replyCont = $('.tf_cmt').val()
         neulhaerangDetailReplyCreate(replyCont)
         $('.tf_cmt').val("")
-        $comment_num.text(0+'/')
-        replyPage=1
+        $comment_num.text(0 + '/')
+        replyPage = 1
 
     }
 })
@@ -522,7 +537,7 @@ let replyPage = 1
 let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
-
+console.log('들어옴')
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
@@ -532,23 +547,42 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             reply_count = result.replys_count
             let replyText = ""
             replys.forEach((reply,i)=>{
+                console.log(reply)
             replyText += `<li>
-                          <button class="link_profile">
-                            <img
-                              src="https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png"
-                              class="img_thumb"
-                            />
-                            <!--베뎃-->
-                            ${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
+                          <button class="link_profile">`
+                            if(!reply.check_anonymous){
+                                replyText += `<img
+                                src="${reply.reply_member_thumbnail?reply.reply_member_thumbnail:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                class="img_thumb"
+                                />`
+
+                            }else{
+                                if(reply.check_anonymous == '공개'){
+                                      replyText += `<img
+                                    src="${reply.reply_member_thumbnail?reply.reply_member_thumbnail:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                    class="img_thumb"
+                                    />`
+                                }else{
+                                      replyText += `<img
+                                    src='https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'
+                                    class="img_thumb"
+                                    />`
+                                }
+                            }
+
+
+                            replyText += `${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
                             
                           </button>
                           <div class="cmt_info">
                             <span class="info_append"
                               ><strong class="tit_nickname"
-                                ><a href="#" class="link_nickname"> ${reply.member_nickname} </a></strong
+                                ><a 
+                                ${reply.check_anonymous?reply.check_anonymous=='공개'?`href="/mypage/otherslink/?member_id=${reply.member}"`:'':`href="/mypage/otherslink/?member_id=${reply.member}"`} class="link_nickname">
+                                ${reply.check_anonymous?reply.check_anonymous=='공개'?reply.member_nickname:'익명의 기부천사':reply.member_nickname} </a></strong
                               >`
                               if(reply.donation != null){
-                                replyText += `<span class="txt_money"> ${reply.donation} </span>`
+                                replyText += `<span class="txt_money"> ${reply.donation_amount.toLocaleString()}원 </span>`
                               }else{
                                 replyText += `<span class="txt_money"></span>`
                               }
@@ -584,7 +618,6 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             }
             btnLikeOn()
             deleteReply()
-            $('.inner_info .emph_sign').html(reply_count)
         })
 }
 neulhaerangDetailReplyView(replyPage)
@@ -633,7 +666,6 @@ const neulhaerangDetailLikeView = () => {
     fetch(`/neulhaerang/detail-neulhaerang-like/?neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             $(`.txt_cheer .num_active`).text(result)
 
         })
@@ -643,7 +675,6 @@ const neulhaerangDetailParticipateView = () => {
     fetch(`/neulhaerang/detail-neulhaerang-participate/?neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
             if (result.check_toast) {
@@ -651,6 +682,11 @@ const neulhaerangDetailParticipateView = () => {
                 $('.ico_share').removeClass('on');
                 $('.txt_share').removeClass('on');
                 $('.txt_share .num_active').removeClass('on');
+            }
+            else{
+                $('.ico_share').addClass('on');
+                $('.txt_share').addClass('on');
+                $('.txt_share .num_active').addClass('on');
             }
             $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
 

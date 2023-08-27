@@ -32,17 +32,9 @@
                     <!--뱃지목록 (획득가능)-->
                     <div class="badge_group">
                       <button type="button" class="link_badge">
-                        <img
-                          class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                          alt="힘내라 힘"
-                        /></button
-                      ><button type="button" class="link_badge">
-                        <img
-                          class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/Lm7Jm/btqcKIsVnX2/f3O7WtZRGMMKLCOb1SfcVK/img.png"
-                          alt="내 나이가 어때서"
-                        />
+                        <img class="thumb_badge"
+                          src="/{{ post_badge.badge_image }}"
+                          alt="{{ post_badge.badge_name }}"/>
                       </button>
                     </div>
                   </div>
@@ -194,7 +186,7 @@
                       <!--모집,모금기간-->
                       <dl class="story_date">
                         <dt class="tit_date">모금기간 :</dt>
-                        <dd class="txt_date">{{ post.fund_duration_start_date }} ~ {{ post.fund_duration_end_date }}</dd>
+                        <dd class="txt_date">{{ post.fund_duration_start_date|date:'Y-m-d' }} ~ {{ post.fund_duration_end_date|date:'Y-m-d' }}</dd>
                       </dl>
                       <!--모금액 사용 계획-->
                       <div class="info_plan">
@@ -206,7 +198,7 @@
                         <!--토글 슬라이드 모금액-->
                         <div class="slide-togle" style="display: none">
                           <span class="plan_period">
-                            < 사업 예정기간 : {{ post.volunteer_duration_start_date }} ~ {{ post.volunteer_duration_end_date }} >
+                            < 사업 예정기간 : {{ post.volunteer_duration_start_date|date:'Y-m-d' }} ~ {{ post.volunteer_duration_end_date|date:'Y-m-d' }} >
                           </span>
                           <ul class="list_plan">
 
@@ -441,11 +433,10 @@
                     >당신은 같이가치의 히어로!<br />기부하고 다양한 스탬프를 모아보세요.</strong
                   ><img
                     class="thumb_badge"
-                    src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                  /><strong class="name_badge">힘내라 힘</strong>
+                    src="/{{ post_badge.badge_image }}"
+                  /><strong class="name_badge">{{ post_badge.badge_name }}</strong>
                   <p class="txt_badge">
-                    의식주 걱정없이 살아가는 세상을 만들어요. '기본 생활 지원' 프로젝트에
-                    기부해보세요.
+                      {{ post_badge.badge_content }}
                   </p>
                 </div>
                 <plus-friend-button>
@@ -690,6 +681,8 @@
       let amountSum = "{{ amount_sum }}"
       let neulhaerangId = "{{ neulhaerang_id }}"
       let replyCount = "{{ reply_count }}"
+      let memberInfo = "{{ member_info|escapejs }}"
+      const parsedMemberInfo = JSON.parse(memberInfo)
       const parsedAmount = JSON.parse(amount)
       const parsedAmountSum = JSON.parse(amountSum)
       const parsedInnerContents = JSON.parse(innerContents)
@@ -697,6 +690,8 @@
 
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://js.bootpay.co.kr/bootpay-4.3.1.min.js" type="application/javascript"></script>
+  <script src="{% static 'js/neulhaerang/bootpay.js' %}"></script>
   <script>
       email = "{{ request.session.member_email }}"
   </script>

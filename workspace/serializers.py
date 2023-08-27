@@ -38,6 +38,9 @@ class NeulhaerangDonationSerializer(serializers.ModelSerializer):
 
 class NeulhaerangReplySerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    reply_member_thumbnail = serializers.CharField(source='member.profile_image', read_only=True)
+    donation_amount = serializers.IntegerField(source='donation.donation_amount', read_only=True)
+    check_anonymous = serializers.CharField(source='donation.donation_anonymous', read_only=True)
     reply_like_count = serializers.SerializerMethodField(method_name='get_reply_like_count',read_only=True)
     check_my_comment = serializers.SerializerMethodField(method_name='check_is_my_comment', read_only=True)
     my_like = serializers.SerializerMethodField(method_name='check_my_like', read_only=True)

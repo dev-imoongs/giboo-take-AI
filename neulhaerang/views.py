@@ -8,18 +8,20 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from customer_center.models import Alarm
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInnerTitle, NeulhaerangInnerContent, \
     NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji, NeulhaerangParticipants, \
     NeulhaerangReply, ReplyLike
 from neulhaerang_review.models import NeulhaerangReview
+from static_app.models import Badge
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReplySerializer
 
 class NeulhaerangListView(View):
 
     def get(self, request):
-        print(request.session.get("member_email"))
+        # print(request.session.get("member_email"))
         if request.GET.get("page") is not None:
             page = request.GET.get("page")
         else :
@@ -60,8 +62,10 @@ class NeulhaerangAPIView(APIView):
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
         my_email = request.session.get('member_email')
+        member_info = Member.objects.filter(member_email=my_email)
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
+        post_badge = Badge.objects.filter(category_id=post.category_id)[0]
         business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         tags = NeulhaerangTag.objects.filter(neulhaerang_id=neulhaerang_id).order_by('id')
         if(NeulhaerangReview.objects.filter(neulhaerang_id=neulhaerang_id)):
@@ -99,6 +103,8 @@ class NeulhaerangDetailView(View):
             amount_sum = {'donation_amount__sum': 0}
 
         context = {
+            'member_info':serializers.serialize('json',member_info),
+            'post_badge':post_badge,
             'cheer_status':cheer_status,
             'check_my_participate':check_my_participate,
             'neulhaerang_id': neulhaerang_id,
@@ -120,13 +126,14 @@ class NeulhaerangDetailView(View):
 
 # 댓글
 class NeulhaerangDetailReplyAPIView(APIView):
+    exclude_id_list = []
     def get(self, request):
         my_email = request.session.get('member_email')
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_id = request.GET.get('neulhaerangId')
         replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
-        first_page_replys_id = []
         if(replyPage==1):
+            first_page_replys_id = []
             best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
             best_replys_count = best_replys.count()
 
@@ -140,7 +147,7 @@ class NeulhaerangDetailReplyAPIView(APIView):
 
             for normal_reply in normal_replys.values('id'):
                 first_page_replys_id.append(normal_reply['id'])
-
+            NeulhaerangDetailReplyAPIView.exclude_id_list = first_page_replys_id
             total_replys = list(best_replys)+list(normal_replys)
             replys = NeulhaerangReplySerializer(total_replys, many=True, context={'request': request}).data
 
@@ -148,13 +155,11 @@ class NeulhaerangDetailReplyAPIView(APIView):
                 'replys':replys,
                 'replys_count':replys_queryset.count(),
             }
-
             return Response(datas)
-
         else:
-            replys_queryset = replys_queryset.exclude(id__in=first_page_replys_id)
+            replys_queryset = replys_queryset.exclude(id__in=NeulhaerangDetailReplyAPIView.exclude_id_list)
             pagenator = Pagenation(page=replyPage-1, page_count=5, row_count=5, query_set=replys_queryset)
-            replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True).data
+            replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
 
             datas = {
                 'replys':replys,
@@ -234,6 +239,44 @@ class NeulhaerangDetailParticipateAPIView(APIView):
         }
         return JsonResponse(datas)
 
+class NeulhaerangDetailRealtimeFundAmountAPIView(APIView):
+    def get(self, request):
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        post = Neulhaerang.objects.filter(id=neulhaerang_id).values()
+        post_donation_sum = NeulhaerangDonation.objects.filter(neulhaerang_id=neulhaerang_id).aggregate(sum=Sum('donation_amount'))
+
+        datas={
+            'post':post[0],
+            'post_donation_sum':post_donation_sum['sum'],
+        }
+
+        return JsonResponse(datas)
+
+
+class SuccessPayment(APIView):
+    def get(self, request):
+        print('들어왔음')
+        my_email = request.session.get('member_email')
+        neulhaerang_id = int(request.GET.get('neulhaerangId'))
+        donation_content = request.GET.get('donationContent')
+        donation_amount = int(request.GET.get('donationAmount'))
+        donation_anonymous = request.GET.get('donationAnonymous')
+        member = Member.objects.get(member_email=my_email)
+        member_nickname = member.member_nickname
+        if(donation_anonymous == '비공개'):
+            member_nickname = '익명의 기부천사'
+
+        if(not donation_content):
+            donation_content='응원합니다'
+        donation = NeulhaerangDonation.objects.create(member=member, donation_amount=donation_amount, donation_content=donation_content,donation_anonymous=donation_anonymous, neulhaerang_id=neulhaerang_id)
+        NeulhaerangReply.objects.create(reply_content=donation_content, member=member, donation=donation, neulhaerang_id=neulhaerang_id)
+        neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
+        message = f'회원님이 작성한 늘해랑:{neulhaerang.neulhaerang_title}에 \n' \
+                  f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
+        Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
+
+
+        return Response(True)
 
 class TestView(View):
     def get(self, request):
