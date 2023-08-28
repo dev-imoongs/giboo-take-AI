@@ -20,7 +20,14 @@ $(".btn_close").on("click", e => {
 
 // 응원하기 버튼 누를시 이벤트
 $('.btn_cheer').on('click',(e)=>{
-    if(!check_session_email()) return
+      if(!email) {
+          $('#modalOFF').attr('id', 'modalON')
+          $('.dimmed_layer').css('height', '100%');
+          $('.dialog-content').css('display', 'block');
+          $('.modal-delete').css('display', 'block');
+          $('.modal-policy').css('display', 'none');
+          return
+      }
     $('.ico_cheer').toggleClass('on')
     neulhaerangDetailLikeView()
 })
@@ -29,23 +36,41 @@ $('.btn_cheer').on('click',(e)=>{
 //동참하기 모달
 const $participate_modal = $(".participate_modal")
 const $btn_participate =$(".btn_participate")
-$btn_participate.on("click",e=>{
-    if(!check_session_email()) return
-    $dimedLayer.css("height","100%")
-    $participate_modal.show()
-    $participate_modal.addClass("opened_modal")
-})
-$(".participate_modal .btn_type1").on("click", (e)=>{
-    neulhaerangDetailParticipateView()
+$btn_participate.on("click", e => {
+      if(!email) {
+          $('#modalOFF').attr('id', 'modalON')
+          $('.dimmed_layer').css('height', '100%');
+          $('.dialog-content').css('display', 'block');
+          $('.modal-delete').css('display', 'block');
+          $('.modal-policy').css('display', 'none');
+          return
+      }
+    if($('.ico_share').hasClass('on'))
+    {
+        neulhaerangDetailParticipateView()
+        $('.ico_share').removeClass('on');
+        $('.txt_share').removeClass('on');
+        $('.txt_share .num_active').removeClass('on');
+    }
+    else{
+        $dimedLayer.css('height', "100%");
+        $participate_modal.show();
+        $participate_modal.addClass("opened_modal");
+    }
+});
+
+$(".participate_modal .btn_type1").on("click", e => {
+    neulhaerangDetailParticipateView();
     $dimedLayer.css('height', "");
     $participate_modal.hide();
-    $participate_modal.removeClass("opened_modal")
-})
-$(".participate_modal .btn_type2").on("click",e=>{
+    $participate_modal.removeClass("opened_modal");
+});
+
+$(".participate_modal .btn_type2").on("click", e => {
     $dimedLayer.css('height', "");
     $participate_modal.hide();
-    $participate_modal.removeClass("opened_modal")
-})
+    $participate_modal.removeClass("opened_modal");
+});
 
 //로그인 모달
 const $need_login_modal = $(".need_login_modal")
@@ -62,15 +87,6 @@ const show_need_login_modal = function (){
 // $(".btn_give").on("click",e=>{
 //     show_need_login_modal()
 // })
-// 세션 이메일 정보 검사
-const check_session_email = () =>{
-    if(!email){
-        show_need_login_modal()
-        return false
-    }
-    return true
-
-}
 //
 const showMoreBtn = () => {
     if (checkMoreBtn <= 0) {
@@ -114,10 +130,17 @@ const deleteReply = (reply_id) => {
 
 //기부하기 버튼 모달
 const $fund_modal =$(".fund_modal")
-$(".btn_give").on("click",e=>{
-    if(!check_session_email()) return
-    $fund_modal.css("display","flex")
-    $dimedLayer.css("height","100%")
+$(".btn_give").on("click", e => {
+    if (!email) {
+        $('#modalOFF').attr('id', 'modalON')
+        $('.dimmed_layer').css('height', '100%');
+        $('.dialog-content').css('display', 'block');
+        $('.modal-delete').css('display', 'block');
+        $('.modal-policy').css('display', 'none');
+        return
+    }
+    $fund_modal.css("display", "flex")
+    $dimedLayer.css("height", "100%")
     $fund_modal.addClass("opend_modal")
 })
 
@@ -214,34 +237,46 @@ const $comment_num = $(".comment_num")
 const $tf_cmt = $(".tf_cmt")
 const $toast = $(".toast-bottom-center")
 
+let toastFlag = false
+const toastMsg = function (text) {
+    if (!toastFlag) {
+        $toast.show()
+        toastFlag = true
+        $('.toast-message').eq(0).text(text)
+        setTimeout(function () {
+            toastFlag = false
+            $toast.hide()
+        }, 2000)
+    }
+}
+
+
 //댓글 숫자 제한
 $tf_cmt.on("input",e=>{
-    // console.log($tf_cmt.text())
     $comment_num.text($tf_cmt.val().length + "/")
 })
 
 //등록 눌렀을때 확인
 const $btn_comment = $(".btn_comment")
 
-let toastFlag = false
-$btn_comment.on("click",(e)=>{
-    if(!check_session_email()) return
-    console.log('버튼 누름')
-    if($tf_cmt.val().length<2){
-        if (toastFlag) return
-        toastFlag=true
-        $toast.show()
-        setTimeout(()=> {
-            $toast.hide()
-            toastFlag = false
 
-        },2000)
-    }else{
+$btn_comment.on("click", (e) => {
+    if (!email) {
+        $('#modalOFF').attr('id', 'modalON')
+        $('.dimmed_layer').css('height', '100%');
+        $('.dialog-content').css('display', 'block');
+        $('.modal-delete').css('display', 'block');
+        $('.modal-policy').css('display', 'none');
+        return
+    }
+    if ($tf_cmt.val().length < 2) {
+        toastMsg('최소 2글자 이상 입력해주세요')
+    } else {
         replyCont = $('.tf_cmt').val()
         neulhaerangDetailReplyCreate(replyCont)
         $('.tf_cmt').val("")
-        $comment_num.text(0+'/')
-        replyPage=1
+        $comment_num.text(0 + '/')
+        replyPage = 1
 
     }
 })
@@ -278,11 +313,11 @@ $(document).ready(()=> {
 
 
 
-Function(parsedContents)
+postContent(parsedInnerContents)
 
 
 //사진 무한 슬라이드 1.셋팅
-$photoUls = $("ul.list_photo")
+const $photoUls = $("ul.list_photo")
 $photoUls.each((idx, photoul) => {
     $photos = $(photoul).children("li")
     $pagingSlide = $(".paging_slide").eq(idx)
@@ -395,10 +430,10 @@ function Function2(target_amounts, total_fund){
 
 Function2(parsedAmount,parsedAmountSum)
 
-function Function(Contents) {
+function postContent(contents) {
     let addtext = "";
     let multiImgflag = "";
-    Contents.forEach((content, i) => {
+    contents.forEach((content, i) => {
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
@@ -502,7 +537,7 @@ let replyPage = 1
 let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
-
+console.log('들어옴')
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
@@ -512,23 +547,54 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             reply_count = result.replys_count
             let replyText = ""
             replys.forEach((reply,i)=>{
+                console.log(reply)
             replyText += `<li>
-                          <button class="link_profile">
-                            <img
-                              src="https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png"
-                              class="img_thumb"
-                            />
-                            <!--베뎃-->
-                            ${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
+                          <button class="link_profile">`
+                            if(!reply.check_anonymous){
+                                if(reply.member_profile_choice == 'user'){
+                                replyText += `<img
+                                src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                class="img_thumb"
+                                />`
+                                }
+                                else{
+                                    replyText += `<img
+                                    src="${reply.member_kakao_profile}"
+                                    class="img_thumb"/>`
+                                }
+                            }else{
+                                if(reply.check_anonymous == '공개'){
+                                    if(reply.member_profile_choice == 'user'){
+                                      replyText += `<img
+                                    src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                    class="img_thumb"/>`
+                                    }
+                                    else{
+                                    replyText += `<img
+                                    src="${reply.member_kakao_profile}"
+                                    class="img_thumb"/>`
+                                    }
+                                }else{
+                                      replyText += `<img
+                                    src='https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'
+                                    class="img_thumb"
+                                    />`
+                                }
+                            }
+
+
+                            replyText += `${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
                             
                           </button>
                           <div class="cmt_info">
                             <span class="info_append"
                               ><strong class="tit_nickname"
-                                ><a href="#" class="link_nickname"> ${reply.member_nickname} </a></strong
+                                ><a 
+                                ${reply.check_anonymous?reply.check_anonymous=='공개'?`href="/mypage/otherslink/?member_id=${reply.member}"`:'':`href="/mypage/otherslink/?member_id=${reply.member}"`} class="link_nickname">
+                                ${reply.check_anonymous?reply.check_anonymous=='공개'?reply.member_nickname:'익명의 기부천사':reply.member_nickname} </a></strong
                               >`
                               if(reply.donation != null){
-                                replyText += `<span class="txt_money"> ${reply.donation} </span>`
+                                replyText += `<span class="txt_money"> ${reply.donation_amount.toLocaleString()}원 </span>`
                               }else{
                                 replyText += `<span class="txt_money"></span>`
                               }
@@ -564,7 +630,6 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             }
             btnLikeOn()
             deleteReply()
-            $('.inner_info .emph_sign').html(reply_count)
         })
 }
 neulhaerangDetailReplyView(replyPage)
@@ -624,19 +689,19 @@ const neulhaerangDetailParticipateView = () => {
         .then(result => {
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
-                toastFlag = false
-                if (participate_max <= participate_max.participants_max_count) {
-                    if (toastFlag) return
-                    toastFlag = true
-                    $toast.show()
-                    setTimeout(() => {
-                        $toast.hide()
-                        toastFlag = false
-                    }, 2000)
-                }
+            if (result.check_toast) {
+                toastMsg('최대 동참 인원을 초과하였습니다.')
+                $('.ico_share').removeClass('on');
+                $('.txt_share').removeClass('on');
+                $('.txt_share .num_active').removeClass('on');
+            }
+            else{
+                $('.ico_share').addClass('on');
+                $('.txt_share').addClass('on');
+                $('.txt_share .num_active').addClass('on');
+            }
             $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
+
 
         })
 }
-
-

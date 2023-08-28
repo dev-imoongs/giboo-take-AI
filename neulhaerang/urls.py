@@ -2,7 +2,8 @@ from django.urls import path
 
 from neulhaerang.views import NeulhaerangDetailView, NeulhaerangListView, NeulhaerangAPIView, TestView, \
     NeulhaerangDetailReplyAPIView, NeulhaerangDetailReplyWriteAPIView, NeulhaerangDetailReplyLikeAPIView, \
-    NeulhaerangDetailReplyDeleteAPIview, NeulhaerangDetailLikeAPIView, NeulhaerangDetailParticipateAPIView
+    NeulhaerangDetailReplyDeleteAPIview, NeulhaerangDetailLikeAPIView, NeulhaerangDetailParticipateAPIView, \
+    NeulhaerangDetailRealtimeFundAmountAPIView, SuccessPayment
 
 app_name = 'neulhaerang'
 
@@ -20,5 +21,7 @@ urlpatterns = [
     path('detail-reply-like/', NeulhaerangDetailReplyLikeAPIView.as_view(), name='detail-reply-like'),
     path('detail-reply-delete/', NeulhaerangDetailReplyDeleteAPIview.as_view(), name='detail-reply-delete'),
     path('detail-neulhaerang-like/', NeulhaerangDetailLikeAPIView.as_view(), name='detail-neulhaerang-like'),
-    path('detail-neulhaerang-participate/', NeulhaerangDetailParticipateAPIView.as_view(), name='detail-neulhaerang-participate')
+    path('detail-neulhaerang-participate/', NeulhaerangDetailParticipateAPIView.as_view(), name='detail-neulhaerang-participate'),
+    path('detail-realtime-fundamount/', NeulhaerangDetailRealtimeFundAmountAPIView.as_view(), name='detail-realtime-fundamount'),
+    path('detail-success-payment/', SuccessPayment.as_view(),name='detail-success-payment')
 ]

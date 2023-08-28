@@ -180,16 +180,24 @@ class AdminNeulhaerangDetailView(View):
 
         print(request)
         if reason:
-            pass
             neulhaerang.neulhaerang_status = "미선정"
             neulhaerang.rejected_message = reason
             neulhaerang.save()
+            neulhaerang_message = f"늘해랑 제목 : {neulhaerang.neulhaerang_title}에 대한 검토가 완료되었습니다.!\n" \
+                            f"해당 늘해랑은 미선정 되었습니다. \n" \
+                            f"미선정 이유를 글에서 확인하시고 보완해 다시 작성해주세요!"
+            Alarm.objects.create(message=neulhaerang_message, type="neulhaerang", reference_id=neulhaerang.id, member=neulhaerang.member)
 
         else:
             neulhaerang.neulhaerang_status ="모금중"
             neulhaerang.fund_duration_start_date=timezone.now().date()
             neulhaerang.fund_duration_end_date = timezone.now() + timedelta(days=neulhaerang.neulhaerang_duration)
             neulhaerang.save()
+            neulhaerang_message = f"늘해랑 제목 : {neulhaerang.neulhaerang_title}에 대한 검토가 완료되었습니다.!\n" \
+                                  f"지금 부터 바로 펀딩과 모집이 시작됩니다! \n"
+
+            Alarm.objects.create(message=neulhaerang_message, type="neulhaerang", reference_id=neulhaerang.id,
+                                 member=neulhaerang.member)
         next_url = reverse("admin:neulhaerang/list") +f"?page={page}&search={search}"
         return redirect(next_url)
 
@@ -277,16 +285,24 @@ class AdminNeulhajangDetailView(View):
 
         print(request)
         if reason:
-            pass
             neulhajang.neulhajang_status = "미선정"
             neulhajang.rejected_message = reason
             neulhajang.save()
+            neulhajang_message = f"늘해랑 제목 : {neulhajang.neulhajang_title}에 대한 검토가 완료되었습니다.!\n" \
+                                  f"해당 늘하장은 미선정 되었습니다. \n" \
+                                  f"미선정 이유를 글에서 확인하시고 보완해 다시 작성해주세요!"
+            Alarm.objects.create(message=neulhajang_message, type="neulhajang", reference_id=neulhajang.id,
+                                 member=neulhajang.member)
 
         else:
             neulhajang.neulhajang_status = "행동중"
             neulhajang.neulhajang_duration_start_date = timezone.now().date()
             neulhajang.neulhajang_duration_end_date = timezone.now() + timedelta(days=neulhajang.neulhajang_duration)
             neulhajang.save()
+            neulhajang_message = f"늘해랑 제목 : {neulhajang.neulhajang_title}에 대한 검토가 완료되었습니다.!\n" \
+                                 f"지금 부터 참가자들의 행동이 시작됩니다!"
+            Alarm.objects.create(message=neulhajang_message, type="neulhajang", reference_id=neulhajang.id,
+                                 member=neulhajang.member)
         next_url = reverse("admin:neulhajang/list") + f"?page={page}&search={search}"
         return redirect(next_url)
 
@@ -382,7 +398,6 @@ class AdminGetNoticesByPagedAPIView(APIView):
         datas = {
             "notices":notices,
             "pagenator" : serialized_pagenator
-
         }
 
 
