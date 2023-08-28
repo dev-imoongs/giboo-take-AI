@@ -62,7 +62,10 @@ class NeulhaerangAPIView(APIView):
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
         my_email = request.session.get('member_email')
-        my_member = Member.objects.get(member_email=my_email)
+        if(my_email):
+            my_member = Member.objects.get(member_email=my_email)
+        else:
+            my_member = ""
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         post_badge = Badge.objects.filter(category_id=post.category_id)[0]
@@ -87,7 +90,7 @@ class NeulhaerangDetailView(View):
         likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
         participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
-        bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
+        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_id).order_by('-created_date')[0:4]
 
         neulhaerang_participants = NeulhaerangParticipants.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)
         if(neulhaerang_participants):
@@ -101,7 +104,6 @@ class NeulhaerangDetailView(View):
             cheer_status = ''
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
-        print(my_member.profile_image)
         context = {
             'my_member': my_member,
             'post_badge': post_badge,
@@ -237,6 +239,7 @@ class NeulhaerangDetailParticipateAPIView(APIView):
             'neulhaerang_participate_count':neulhaerang_participate_count,
             'neulhaerang_participate_max':neulhaerang_participate_max
         }
+
         return JsonResponse(datas)
 
 class NeulhaerangDetailRealtimeFundAmountAPIView(APIView):
@@ -249,7 +252,7 @@ class NeulhaerangDetailRealtimeFundAmountAPIView(APIView):
             'post':post[0],
             'post_donation_sum':post_donation_sum['sum'],
         }
-
+        print(datas['post'])
         return JsonResponse(datas)
 
 

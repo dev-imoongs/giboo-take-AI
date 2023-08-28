@@ -459,7 +459,6 @@
     display: flex;
     flex-wrap: wrap;
     -webkit-box-pack: justify;
-    justify-content: space-between;
     margin-bottom: -2px;
     padding-bottom: 20px;
 }
@@ -730,7 +729,7 @@
 }
 
 .mission-tab-together-document-text {
-    padding-top: 24px;
+    padding-top: 0px;
     line-height: 1.88;
     white-space: pre-wrap;
     font-size: 16px;
@@ -1601,7 +1600,7 @@
 }
 
 /* 글작성 확인 모달 */
-.confirm-modal-base {
+.confirm-modal {
     overflow: hidden;
     position: fixed;
     inset: 0px;
@@ -1771,4 +1770,21 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+.image_caption {
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(136, 136, 136);
+    font-size: 12px;
+    font-style: normal;
+    font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.67;
+    letter-spacing: -0.1px;
+    padding: 8px 10px 0px;
+    text-align: center;
 }
