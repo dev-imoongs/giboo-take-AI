@@ -42,12 +42,28 @@
                       </span>
                     </a>
                     <a class="link-thumb" href={% url 'mypage:profile' %}>
-                      <span class="profile-thumb">
-                        <img
+                    <span class="profile-thumb">
+                        <!--  -->
+                     <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src={{ member.profile_image.url }}
+                           {% endif %}
+                       {% else %}
+                       src = {% static 'image/avatar.png' %}
+                      {% endif %}
+
+                     >
+                        <!--  -->
+
+                  <!--  <img
                           alt="프로필 사진"
                           class="img-thumb"
                           src=/{{ member_profile_image }}
                         />
+                        -->
                       </span>
                     </a>
                   </div>

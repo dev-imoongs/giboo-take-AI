@@ -68,16 +68,25 @@
 //     }
 //
 // })
-
-
-
-
 let page = 1; // 페이지 변수를 전역 범위에서 정의
+
+// $('#op-period').on('change', function() {
+//   const selectedText = $(this).find('option:selected').text();
+//   $('.select-option').text(selectedText);
+//   page=1
+//   loadYearlyData(selectedText)
+// });
+
+
 
 // 셀렉트 박스의 change 이벤트 핸들러
 $('#op-period').on('change', function() {
+  page = 1;
+  const selectedText = $(this).find('option:selected').text();
+  $('.select-option').text(selectedText);
+  $('.link-other2').css('display', 'inline-block');
   const selectedOptionValue = $(this).val();
-  const selectedYear = selectedOptionValue.split(':')[1].trim();
+  const selectedYear = selectedOptionValue.split(':')[0];
   initializePage();
   loadYearlyData(selectedYear);
 });
@@ -88,7 +97,14 @@ function initializePage() {
 }
 
 function loadYearlyData(year) {
-  const apiUrl = `/mypage/donation_list/?page=${page}&year=${year}`; // 페이지 변수를 사용
+    let apiUrl = ''
+    if(year){
+         apiUrl = `/mypage/donation_list/?page=${page}&year=${year}`;
+    }else{
+         apiUrl = `/mypage/donation_list/?page=${page}`;
+    }
+
+
   fetch(apiUrl)
     .then(response => response.json())
     .then(result => {
@@ -124,9 +140,7 @@ function loadYearlyData(year) {
       $('.list-donate').append(text);
       console.log(`Year: ${year}, Page: ${page}`);
     })
-    .catch(error => {
-      console.error('Error loading data:', error);
-    });
+
 }
 
 $('.link-other2').on("click", () => {
@@ -137,4 +151,4 @@ $('.link-other2').on("click", () => {
 });
 
 // 초기 페이지 로드 시 전체 데이터를 불러옵니다.
-loadYearlyData("");
+loadYearlyData();
