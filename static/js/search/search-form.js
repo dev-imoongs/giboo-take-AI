@@ -15,22 +15,29 @@ $searchInput.on("input",e=>{
     }
 })
 
+//키워드 검색
+// $searchInput.keydown(function(e) {
+//     console.log("실행은 되니?")
+//     if(e.key === 'Enter') {
+//         console.log("왜안되징?")
+//         let value = $(this).val();
+//         console.log(value)
+//     }
+// })
+
+// $searchInput.keyup(function(e){
+//     if(e.keyCode == 13) {
+//         let keyword = $(this).val()
+//         console.log(keyword)
+//     }
+// });
+
 // 태그버튼들
 const $hashtags = $(".link_hash")
 $(document).ready(function() {
     showTag();
     showCategory();
-
-    // $hashtags.each(function(i, hash){
-    //     $(hash).on("click", function(e){
-    //         e.preventDefault()
-    //         let hashtag = $(hash).text()
-    //         showResultOfSearchTag(hashtag);
-    //     });
-    // });
-
-
-})
+});
 
 // 태그검색
 const showTag = () => {
@@ -43,7 +50,7 @@ const showTag = () => {
             tags.forEach((tag, i) => {
                 let name = tag.tag_name;  // 'tag_name'을 직접 가져옴
                 let type = tag.tag_type;  // 'tag_type'을 직접 가져옴
-                text += `<tag-card><a href="/search/click/" class="link_hash hash_type${type}">#${name}</a></tag-card>`;
+                text += `<tag-card><a href="/search/tag/result/${name}/" class="link_hash hash_type${type}">#${name}</a></tag-card>`;
             })
             $('.hash_group').html(text);
         });
@@ -63,7 +70,7 @@ const showCategory = () => {
 
                 text += `
                     <li>
-                      <a class="link_category">
+                      <a href="/search/category/result/${name}/" class="link_category">
                         <img class="img_thumb" src="${image}"/>
                         ${name}
                       </a>
@@ -75,6 +82,4 @@ const showCategory = () => {
 }
 
 
-// const showResultOfSearchTag = (hashtag) => {
-//     fetch(`/search/click/?hashtag=${hashtag}`)
-// }
+

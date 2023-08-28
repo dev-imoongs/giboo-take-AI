@@ -22,12 +22,14 @@
           <div id="dkContent" class="cont_search">
             <div id="mArticle">
               <div class="group_schkeyword">
-                <form class="form_search ng-untouched ng-pristine ng-valid">
+                <!--검색창-->
+                <form action="/search/keyword/result/" class="form_search ng-untouched ng-pristine ng-valid">
                   <fieldset>
                     <div class="box_search">
                       <input
+                        onsubmit="return false"
                         placeholder="검색어를 입력하세요"
-                        name="q"
+                        name="keyword"
                         type="text"
                         id="schKeyword"
                         class="tf_keyword ng-untouched ng-pristine ng-valid"
@@ -156,8 +158,6 @@
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/search-form.js"></script>
-<script>
-</script>
   {% if request.session.member_email %}
     <script src="/static/js/header/logined-header.js"></script>
   {% else %}
