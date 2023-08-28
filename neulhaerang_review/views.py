@@ -14,16 +14,6 @@ from workspace.pagenation import Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReviewSerializer, \
     NeulhaerangReviewReplySerializer
 
-
-class NeulhaerangReviewDetailView(View):
-    def get(self, request, neulhaerang_review_id):
-        post = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
-        context = {
-            'post':post,
-        }
-        return render(request,'neulhaerang/review-detail.html',context)
-
-
 class NeulhaerangReviewListView(View):
     def get(self,request):
         def get(self, request):
@@ -59,8 +49,11 @@ class NeulhaerangReviewListAPIView(APIView):
         return Response(datas)
 
 
+
+
 class NeulhaerangReviewDetailView(View):
     def get(self, request, neulhaerang_review_id):
+        my_email = request.session.get('member_email')
         review_post = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
         neulhaerang_id = review_post.neulhaerang_id
         post_badge = Badge.objects.filter(category_id=review_post.neulhaerang.category_id)[0]
@@ -76,18 +69,23 @@ class NeulhaerangReviewDetailView(View):
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
-        # likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
+        likes_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
         # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         # reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
         bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
         #
-        #
+        if (NeulhaerangReviewLike.objects.filter(member__member_email=my_email, neulhaerang_review_id=neulhaerang_review_id)):
+            cheer_status = 'on'
+        else:
+            cheer_status = ''
+
         # if(amount_sum['donation_amount__sum'] is None):
         #     amount_sum = {'donation_amount__sum': 0}
 
         context = {
             'review_post': review_post,
             'post_badge': post_badge,
+            'cheer_status': cheer_status,
             # 'neulhaerang_id': neulhaerang_id,
             'neulhaerang_review_id': neulhaerang_review_id,
             # 'post_writer_thumb':post_writer_thumb,
@@ -95,7 +93,7 @@ class NeulhaerangReviewDetailView(View):
             'bottom_posts': bottom_posts,
             # 'reply_count': reply.count(),
             # 'participants_count' : participants_count,
-            # 'likes_count' : likes_count,
+            'likes_count' : likes_count,
             'byeoljjies': byeoljji,
             'amount_sum': amount_sum['donation_amount__sum'],
             'target_amount': serializers.serialize("json", target_amount),
@@ -104,7 +102,7 @@ class NeulhaerangReviewDetailView(View):
             'fund_usage_history': serializers.serialize("json", fund_usage_history),
             'review_inner_contents': serializers.serialize("json", sorted_inner_contents),
         }
-        return render(request,'neulhaerang/review-detail.html',context)
+        return render(request,'neulhaerang/review-detail.html', context)
 
 
 class NeulhaerangReviewDetailReplyAPIView(APIView):
@@ -113,10 +111,10 @@ class NeulhaerangReviewDetailReplyAPIView(APIView):
         my_email = request.session.get('member_email')
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_review_id = request.GET.get('neulhaerangReviewId')
-        replys_queryset = NeulhaerangReviewReply.objects.all().filter(neulhaerang_id=neulhaerang_review_id)
+        replys_queryset = NeulhaerangReviewReply.objects.all().filter(neulhaerang_review_id=neulhaerang_review_id)
         if(replyPage==1):
             first_page_replys_id = []
-            best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
+            best_replys = replys_queryset.annotate(reply_count=Count('reviewreplylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
             best_replys_count = best_replys.count()
 
             if(best_replys_count>3):
@@ -129,6 +127,7 @@ class NeulhaerangReviewDetailReplyAPIView(APIView):
 
             for normal_reply in normal_replys.values('id'):
                 first_page_replys_id.append(normal_reply['id'])
+
             NeulhaerangReviewDetailReplyAPIView.exclude_id_list = first_page_replys_id
             total_replys = list(best_replys)+list(normal_replys)
             replys = NeulhaerangReviewReplySerializer(total_replys, many=True, context={'request': request}).data
@@ -149,7 +148,7 @@ class NeulhaerangReviewDetailReplyAPIView(APIView):
             }
 
             return Response(datas)
-#
+
 class NeulhaerangReviewDetailReplyWriteAPIView(APIView):
     def get(self, request):
         my_email = request.session.get('member_email')
@@ -163,22 +162,22 @@ class NeulhaerangReviewDetailReplyWriteAPIView(APIView):
 
 class NeulhaerangReviewDetailReplyDeleteAPIview(APIView):
     def get(self, request):
-        review_reply_id = request.GET.get('replyId')
+        review_reply_id = request.GET.get('reply_id')
         NeulhaerangReviewReply.objects.get(id=review_reply_id).delete()
         return Response(True)
 
 class NeulhaerangReviewDetailReplyLikeAPIView(APIView):
     def get(self, request):
         my_email = request.session.get('member_email')
-        review_reply_id = request.GET.get('replyId')
+        review_reply_id = request.GET.get('reply_id')
         member = Member.objects.get(member_email=my_email)
         review_reply = NeulhaerangReviewReply.objects.get(id=review_reply_id)
-        review_reply_like = ReviewReplyLike.objects.filter(review_reply=review_reply, member=member)
+        review_reply_like = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id, member=member)
         if review_reply_like:
             review_reply_like.delete()
         else:
-            ReviewReplyLike.objects.create(review_reply=review_reply, member=member)
-        reply_like_count = ReviewReplyLike.objects.filter(review_reply=review_reply).count()
+            ReviewReplyLike.objects.create(review_reply_id=review_reply_id, member=member)
+        reply_like_count = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id).count()
 
         return Response(reply_like_count)
 

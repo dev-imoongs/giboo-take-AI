@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +11,11 @@
     <title>늘하장 상세페이지</title>
 </head>
 <body>
+    {% if request.session.member_email %}
+    {% include 'header/logined-header.html' %}
+    {% else %}
+    {% include 'header/header.html' %}
+    {% endif %}
     <main id="hajang-detail-main" class="hajang-detail-page-container">
         <div>
             <section class="project-information-section">
@@ -21,41 +27,31 @@
                         <div class="project-cover-story-label-container">
                             <em class="remain-date-label"><svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>283일 남음</em>
                             <a href="" class="tag-label-link">
-                                <div class="tag-label-text"># 2023그린디지털</div>
+                                <div class="tag-label-text"># {{ post.representing_tag }}</div>
                             </a>
                         </div>
-                        <h3 class="project-title">자전거로 시작하는<br/>기후 위기 대응</h3>
+                        <h3 class="project-title">{{ post.neulhajang_title }}</h3>
                         <div class="project-progress-bar">
                             <div class="current-progress-bar"></div>
                         </div>
                         <div class="participants-information">
-                            <span class="participants-acvive-count"><button class="count-modal-button"><span class="participants-count"><svg class="participants-count-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 28"><g fill="none" fill-rule="evenodd"><path d="m15.414.566 2.934 2.933L22.5 3.5a2 2 0 0 1 2 2v4.15l2.934 2.936a2 2 0 0 1 0 2.828L24.5 18.35 24.5 22.5a2 2 0 0 1-2 2h-4.15l-2.936 2.934a2 2 0 0 1-2.828 0L9.65 24.5 5.5 24.5a2 2 0 0 1-2-2v-4.152L.565 15.414a2 2 0 0 1 0-2.828L3.499 9.65 3.5 5.5a2 2 0 0 1 2-2h4.151L12.586.565a2 2 0 0 1 2.828 0z" fill="#ad4cfe"></path><path d="M18.02 9.62a1 1 0 0 1 1.677 1.082l-.068.106-6.066 8.21a1 1 0 0 1-1.443.175l-.09-.085-3.506-3.73a1 1 0 0 1 1.366-1.456l.091.086 2.685 2.857 5.354-7.246z" fill="#fff" fill-rule="nonzero"></path></g></svg><span class="participants-count-textline">802</span>명 행동중</span></button><span class="participants-ratio-count">80%</span></span>
-                            <span class="participants-goal-count">1,000명<span class="goal-text">목표</span></span>
+                            <span class="participants-acvive-count"><button class="count-modal-button"><span class="participants-count"><svg class="participants-count-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 28"><g fill="none" fill-rule="evenodd"><path d="m15.414.566 2.934 2.933L22.5 3.5a2 2 0 0 1 2 2v4.15l2.934 2.936a2 2 0 0 1 0 2.828L24.5 18.35 24.5 22.5a2 2 0 0 1-2 2h-4.15l-2.936 2.934a2 2 0 0 1-2.828 0L9.65 24.5 5.5 24.5a2 2 0 0 1-2-2v-4.152L.565 15.414a2 2 0 0 1 0-2.828L3.499 9.65 3.5 5.5a2 2 0 0 1 2-2h4.151L12.586.565a2 2 0 0 1 2.828 0z" fill="#ad4cfe"></path><path d="M18.02 9.62a1 1 0 0 1 1.677 1.082l-.068.106-6.066 8.21a1 1 0 0 1-1.443.175l-.09-.085-3.506-3.73a1 1 0 0 1 1.366-1.456l.091.086 2.685 2.857 5.354-7.246z" fill="#fff" fill-rule="nonzero"></path></g></svg><span class="participants-count-textline"></span>명 행동중</span></button><span class="participants-ratio-count"></span></span>
+                            <span class="participants-goal-count"><span class="goal-text">목표</span></span>
                         </div>
                     </div>
                     <!--- 미션 container --->
-                    <p class="project-mission-text">자전거로 지구를 지키는 건강한 실천 시작해 볼까요?</p>
+                    <p class="project-mission-text">'{{ post.promise_commit_content }}'</p>
                     <div class="project-reward-story">
                         <h5 class="project-reward-title"></h5>
                         <ol class="project-reward-list">
+                            {% for mission in missions %}
                             <li class="how-To-content">
                                 <div class="how-to-list-inner-container">
-                                    <em class="how-to-list-order-label">1</em>
-                                    자전거 주행 사진 혹은 자전거 경로 조회 화면 캡처 인증하기
+                                    <em class="how-to-list-order-label">{{ mission.mission_order }}</em>
+                                    {{ mission.mission_content }}
                                 </div>
                             </li>
-                            <li class="how-To-content">
-                                <div class="how-to-list-inner-container">
-                                    <em class="how-to-list-order-label">2</em>
-                                    ‘행동하기’ 버튼 클릭 후, 해당 사진을 올려주시면 인증 완료!
-                                </div>
-                            </li>
-                            <li class="how-To-content">
-                                <div class="how-to-list-inner-container">
-                                    <em class="how-to-list-order-label">3</em>
-                                    행동 1천 개 달성 시 카카오가 숲 조성을 위해 1천만 원 기부
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ol>
                     </div>
                     <div class="project-active-button-container">
@@ -5566,6 +5562,16 @@
         </div>
         <div class="confirm-modal-layer"></div>
     </div>
+{% include 'footer/footer.html' %}
 </body>
-<script src="/static/js/neulhajang/detail.js"></script>
+<script>
+    let participateTargetAmount = {{ participate_target_amount }};
+    let authenticationFeedCount = {{ authentication_feed_count }};
+</script>
+<script src="{% static 'js/neulhajang/detail.js'%}"></script>
+{% if request.session.member_email %}
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/header/header.js' %}"></script>
+{% endif %}
 </html>

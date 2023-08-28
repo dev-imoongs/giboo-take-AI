@@ -215,7 +215,7 @@
                             ><span>모금액 미달 시 이렇게 사용합니다!</span><br /><span
                               class="txt_detail"
                               style="word-break: break-all"
-                              >자부담 지원 예정{{ post.target_amount_alternatives_plan }}</span
+                              >{{ post.target_amount_alternatives_plan }}</span
                             ></span
                           >
                           <div data-tiara-layer="receipt_team" class="info_receipt">
@@ -254,11 +254,21 @@
                       ><span class="emph_sign">149,800원</span> -->
                     </div>
                     <a class="link_profile" href="#"
-                      ><img
+                      >
+                        {% if my_member.profile_image_choice == 'user' %}
+                        <img
                         alt="프로필사진"
                         class="img_thumb"
-                        src="https://t1.kakaocdn.net/together_image/common/avatar/avatar03.png"
-                    /></a>
+                        src='/upload/{{ my_member.profile_image }}'
+                    />
+                        {% else %}
+                            <img
+                        alt="프로필사진"
+                        class="img_thumb"
+                        src='{{ my_member.kakao_profile_image }}'
+                    />
+                        {% endif %}
+                    </a>
                     <!--댓글 작성-->
                     <div class="cmt_info">
                       <div class="txt_cmt">
@@ -681,8 +691,6 @@
       let amountSum = "{{ amount_sum }}"
       let neulhaerangId = "{{ neulhaerang_id }}"
       let replyCount = "{{ reply_count }}"
-      let memberInfo = "{{ member_info|escapejs }}"
-      const parsedMemberInfo = JSON.parse(memberInfo)
       const parsedAmount = JSON.parse(amount)
       const parsedAmountSum = JSON.parse(amountSum)
       const parsedInnerContents = JSON.parse(innerContents)

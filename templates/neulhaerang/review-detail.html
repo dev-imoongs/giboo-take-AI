@@ -542,13 +542,12 @@
                 </div>
                 <div class="wrap_info">
                   <div class="inner_info">
-                    <span class="txt_cmt">댓글 <span class="emph_sign">1,722</span></span>
+                    <span class="txt_cmt">댓글 <span class="emph_sign">{{ review_post.neulhaerangreviewreply_set.count }}</span></span>
                     <div class="wrap_sort">
                       <input type="checkbox" id="inpSort" class="inp_sort" /><label
                         for="inpSort"
                         class="lab_sort"
-                        ><span class="ico_together ico_sort"></span>직접기부자만 보기</label
-                      >
+                        >
                     </div>
                   </div>
                 </div>
@@ -556,65 +555,7 @@
                 <ul class="list_cmt">
                   <!--배뎃,몰래기부,남-->
 
-                  <li>
-                    <button class="link_profile">
-                      <img
-                        src="https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png"
-                        class="img_thumb"
-                      />
-                      <!--베뎃-->
-                      <span class="ico_together2 ico_best"></span>
-                    </button>
-                    <div class="cmt_info">
-                      <span class="info_append"
-                        ><strong class="tit_nickname"
-                          ><a href="#" class="link_nickname"> 몰래천사 </a></strong
-                        ><span class="txt_money"> 1,000원 </span></span
-                      ><span class="txt_cmt"
-                        ><span class="desc_cmt">조용히 기부합니다.</span>
-                        <!--이모티콘 있을시 아래에 넣음-->
-                        <span class="emoticon_pack"></span> </span
-                      ><span class="info_append"
-                        ><span class="txt_time">2023년 07월 07일</span
-                        ><button type="button" class="btn_like">
-                          <span class="ico_together ico_like"></span>&nbsp;좋아요&nbsp;<span
-                            class="num_like"
-                            >26</span
-                          >
-                        </button></span
-                      >
-                    </div>
-                  </li>
-                  <!--내 댓글-->
-                  <li>
-                    <button class="link_profile">
-                      <img
-                        src="https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png"
-                        class="img_thumb"
-                      />
-                    </button>
-                    <div class="cmt_info">
-                      <span class="info_append"
-                        ><strong class="tit_nickname"
-                          ><a href="#" class="link_nickname"> des** </a></strong
-                        ><span class="txt_money"> 1,000원 </span></span
-                      ><span class="txt_cmt"
-                        ><span class="desc_cmt">화이팅입니다.</span>
-                        <!--이모티콘 있을시 아래에 넣음-->
-                        <span class="emoticon_pack"></span> </span
-                      ><span class="info_append"
-                        ><span class="txt_time">2023년 07월 07일</span
-                        ><button type="button" class="btn_like">
-                          <span class="ico_together ico_like"></span>&nbsp;좋아요&nbsp;<span
-                            class="num_like"
-                            >26</span
-                          >
-                        </button>
-                        <!--삭제 버튼-->
-                        <button type="button" class="btn_delete">삭제</button>
-                      </span>
-                    </div>
-                  </li>
+
                 </ul>
 
                 <!--더보기 버튼-->
@@ -653,9 +594,9 @@
               <!-- btn_static 추가시 밑에 붙음-->
               <div class="fund_float">
                 <button type="button" class="btn_g btn_cheer">
-                  <span class="ico_together ico_cheer"></span
+                  <span class="ico_together {{ cheer_status }} ico_cheer"></span
                   ><span class="txt_float txt_cheer"
-                    >응원<span class="num_active">4,218</span></span
+                    >응원<span class="num_active">{{ likes_count }}</span></span
                   ></button
                 ><button type="button" class="btn_g btn_participate">
                   <span class="ico_together ico_share"></span
@@ -948,7 +889,6 @@
     const parsedAmount = JSON.parse(amount)
     const parsedAmountSum = JSON.parse(amountSum)
     const parsedUsageHistory = JSON.parse(fundUsageHistory)
-
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{% static '/js/neulhaerang/review-detail.js'%}"></script>

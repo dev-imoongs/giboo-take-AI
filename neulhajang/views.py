@@ -5,7 +5,7 @@ from rest_framework import request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, NeulhajangMission
 from workspace.pagenation import Pagenation
 from workspace.serializers import PagenatorSerializer, NeulhajangSerializer
 
@@ -21,7 +21,7 @@ class NeulhajangListView(View):
             page = 1
         total_authentication_feed = NeulhajangAuthenticationFeed.objects.all().count()
         datas = {
-            'count':total_authentication_feed
+            'count':format(total_authentication_feed, ",")
         }
         return render(request,'neulhajang/hajang-list.html', datas)
 
@@ -44,5 +44,14 @@ class NeulhajangListAPIView(APIView):
 
 class NeulhajangDetailView(View):
     def get(self, request, neulhajang_id):
+        post = Neulhajang.objects.get(id=neulhajang_id)
+        missions = NeulhajangMission.objects.filter(neulhajang_id=neulhajang_id).order_by('id')
+        authentication_feed_count = NeulhajangAuthenticationFeed.objects.filter(neulhajang_id=neulhajang_id).count()
+        datas = {
+            'post':post,
+            'participate_target_amount':post.participants_target_amount,
+            'missions':missions,
+            'authentication_feed_count':authentication_feed_count,
+        }
 
-        return render(request, 'neulhajang/hajang-detail.html')
+        return render(request, 'neulhajang/hajang-detail.html', datas)

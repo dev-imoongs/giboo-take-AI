@@ -62,7 +62,7 @@ class NeulhaerangAPIView(APIView):
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
         my_email = request.session.get('member_email')
-        member_info = Member.objects.filter(member_email=my_email)
+        my_member = Member.objects.get(member_email=my_email)
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         post_badge = Badge.objects.filter(category_id=post.category_id)[0]
@@ -101,15 +101,15 @@ class NeulhaerangDetailView(View):
             cheer_status = ''
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
-
+        print(my_member.profile_image)
         context = {
-            'member_info':serializers.serialize('json',member_info),
-            'post_badge':post_badge,
-            'cheer_status':cheer_status,
-            'check_my_participate':check_my_participate,
+            'my_member': my_member,
+            'post_badge': post_badge,
+            'cheer_status': cheer_status,
+            'check_my_participate': check_my_participate,
             'neulhaerang_id': neulhaerang_id,
-            'post_writer_thumb':post_writer_thumb,
-            'neulhaerang_review':neulhaerang_review,
+            'post_writer_thumb': post_writer_thumb,
+            'neulhaerang_review': neulhaerang_review,
             'bottom_posts': bottom_posts,
             'reply_count': reply.count(),
             'participants_count' : participants_count,
@@ -277,6 +277,9 @@ class SuccessPayment(APIView):
 
 
         return Response(True)
+
+
+
 
 class TestView(View):
     def get(self, request):

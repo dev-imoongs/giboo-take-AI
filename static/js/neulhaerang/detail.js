@@ -551,17 +551,29 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             replyText += `<li>
                           <button class="link_profile">`
                             if(!reply.check_anonymous){
+                                if(reply.member_profile_choice == 'user'){
                                 replyText += `<img
-                                src="${reply.reply_member_thumbnail?reply.reply_member_thumbnail:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
                                 class="img_thumb"
                                 />`
-
+                                }
+                                else{
+                                    replyText += `<img
+                                    src="${reply.member_kakao_profile}"
+                                    class="img_thumb"/>`
+                                }
                             }else{
                                 if(reply.check_anonymous == '공개'){
+                                    if(reply.member_profile_choice == 'user'){
                                       replyText += `<img
-                                    src="${reply.reply_member_thumbnail?reply.reply_member_thumbnail:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
-                                    class="img_thumb"
-                                    />`
+                                    src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
+                                    class="img_thumb"/>`
+                                    }
+                                    else{
+                                    replyText += `<img
+                                    src="${reply.member_kakao_profile}"
+                                    class="img_thumb"/>`
+                                    }
                                 }else{
                                       replyText += `<img
                                     src='https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'
