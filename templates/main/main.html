@@ -20,14 +20,14 @@
 {% endif %}
 <main id="main" class="page-container">
     <section class="main-branding-section">
-        <h3 class="main-branding-title">당신의 착한 마음을<br>같이가치가 응원합니다❤️</h3>
+        <h3 class="main-branding-title">당신의 착한 마음을<br>기부&테이크가 응원합니다❤️</h3>
         <div class="main-branding-introduce">
             <div class="main-branding-introduce-item" aria-hidden="true">
                 <i class="main-branding-introduce-item-donation" src="https://t1.kakaocdn.net/together_image/common/ico_home_donation.png"></i>
-                <span class="main-branding-introduce-text-item">기부 54,793,479 건</span>
+                <span class="main-branding-introduce-text-item">기부 {{ total_donation_count}} 건</span>
                 <i class="main-branding-introduce-pic-item" src="https://t1.kakaocdn.net/together_image/common/bg_home_hands.png"></i>
                 <i class="main-branding-introduce-item-together" src="https://t1.kakaocdn.net/together_image/common/ico_action_people.png"></i>
-                <a href="" class="main-branding-introduce-link">
+                <a href="/introduce/about" class="main-branding-introduce-link">
                     <span class="main-branding-introduce-text-item">같이가치 소개</span>
                     <i class="branding-introduce-item-arrow" src="https://t1.kakaocdn.net/together_image/common/ico_home_arrow_220831.png"></i>
                 </a>
@@ -36,7 +36,7 @@
             <div class="mobile-branding-introduce" aria-hidden="true">
                 <div class="mobile-branding-introduce-item" aria-hidden="true">
                     <i class="mobile-branding-introduce-item-donation" src="https://t1.kakaocdn.net/together_image/common/ico_home_donation.png"></i>
-                    <span class="mobile-branding-introduce-text-item">기부 54,793,479 건</span>
+                    <span class="mobile-branding-introduce-text-item">기부 {{ total_donation_count}} 건</span>
                     <i class="mobile-branding-introduce-pic-item" src="https://t1.kakaocdn.net/together_image/common/bg_home_hands.png"></i>
                     <i class="mobile-branding-introduce-item-together" src="https://t1.kakaocdn.net/together_image/common/ico_action_people.png"></i>
                     <a href="" class="mobile-branding-introduce-link">
@@ -52,46 +52,46 @@
             <h4 class="main-story-item">
                 <span aria-hidden="true" class="main-story-item-content-cover">
                     <em type="tag" class="cover-story-item-label-tag"><div class="cover-story-item-label-tag-text"># 달리면 기부되는 815런</div></em>
-                    <span class="cover-story-item-title-text">독립유공자 후손을 위해 가수 션과 함께 달려요!</span>
+                    <span class="cover-story-item-title-text">독립유공자 후손을 위해 함께 달려요!</span>
                     <em type="rect" class="cover-story-item-label-text">8,301명 행동중</em></span>
                 <a href="" class="main-story-item-link"></a>
             </h4>
             <!--일반카드 그룹-->
             <div class="neulhearang-card-container">
                 <div class="neulhearang-card-group">
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/bFshzz/btspeHuCn8c/fG1xKKpBvPBJ6gVrApP800/c360.jpg" class="neulhearang-funding-card-thumbnail first"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">김치가 없는 밥상을 생각해본 적 있으세요?</strong>
-                                <span class="neulhearang-funding-card-subtext">김치가 없는 밥상을 생각해 본 적이 있으세요? 우리나라 사람이라면 손님 상에, 가족끼리 먹는 밥상에, 심지어 혼자 라면을 끓여 먹을 때마저 김치가 빠지면 섭하지요. 하지만 우리 어르신들은 그런 김치가 유난히 필요하고 간절합니다. 그나마 올해는 소금 값이 폭등을 하고, 폭우로 인한 농작물 피해가 심해 야채 값이 많이 오른다고 하니 더 걱정이 많으십니다....</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한식생활</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>244,600원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/2uT1e/btsdQfJWwCY/55nka3oBGgOkzIdZFDrsY0/c360.jpg" class="neulhearang-funding-card-thumbnail second"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">'사랑 가득' 집밥 레시피를 소개합니다</strong>
-                                <span class="neulhearang-funding-card-subtext">높아진 물가에 늘어나는 한숨 소리 “또 올랐네?”  자고 일어나면 올라가는 밥상 물가로 마트에서는 장바구니에 물건을 담았다, 뺐다를 반복하고, 식당에서는 가격이 오른 차림표를 보며 무얼 먹을지 한참을 고민하게 되는 요즘입니다.   그 속에서 유독 깊은 한숨을 내뱉으시는 분들이 있는데요. 우리 주위에는 여전히 조촐한 한 끼를 챙기는 것조차 머뭇거리는 이...</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 기본생활지원</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>1,513,200원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/cI3SzB/btsf0R1sS0F/e1QG8maiJwVnmulVYJsWoK/c360.jpg" class="neulhearang-funding-card-thumbnail third"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">참전용사 할아버지, 건강하세요!</strong>
-                                <span class="neulhearang-funding-card-subtext">청춘을 바쳐 나라를 지켰지만... 온몸을 바쳐 대한민국을 지켰습니다. 청춘을 바쳐 나라를 지켰습니다. 목숨 걸고 조국을 지켰다는 것이, 자신이 참전용사라는 것이 평생 자랑스러웠습니다. 그러나 현실의 벽은 높았습니다. 전쟁으로 발병한 허리, 다리 통증과 장애는 고질적으로 어르신들을 괴롭혔고, 불편한 몸으로 제대로 된 일을 할 수 없었기에 늘 가난에 시달...</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한삶</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>5,800,755원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
+{#                    <div class="neulhearang-funding-card">#}
+{#                        <a href="" class="neulhearang-funding-card-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/bFshzz/btspeHuCn8c/fG1xKKpBvPBJ6gVrApP800/c360.jpg" class="neulhearang-funding-card-thumbnail first"></div>#}
+{#                            <div class="neulhearang-funding-card-content">#}
+{#                                <strong class="neulhearang-funding-card-title">김치가 없는 밥상을 생각해본 적 있으세요?</strong>#}
+{#                                <span class="neulhearang-funding-card-subtext">김치가 없는 밥상을 생각해 본 적이 있으세요? 우리나라 사람이라면 손님 상에, 가족끼리 먹는 밥상에, 심지어 혼자 라면을 끓여 먹을 때마저 김치가 빠지면 섭하지요. 하지만 우리 어르신들은 그런 김치가 유난히 필요하고 간절합니다. 그나마 올해는 소금 값이 폭등을 하고, 폭우로 인한 농작물 피해가 심해 야채 값이 많이 오른다고 하니 더 걱정이 많으십니다....</span>#}
+{#                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한식생활</div></em>#}
+{#                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>244,600원 모금중</em>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="neulhearang-funding-card">#}
+{#                        <a href="" class="neulhearang-funding-card-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/2uT1e/btsdQfJWwCY/55nka3oBGgOkzIdZFDrsY0/c360.jpg" class="neulhearang-funding-card-thumbnail second"></div>#}
+{#                            <div class="neulhearang-funding-card-content">#}
+{#                                <strong class="neulhearang-funding-card-title">'사랑 가득' 집밥 레시피를 소개합니다</strong>#}
+{#                                <span class="neulhearang-funding-card-subtext">높아진 물가에 늘어나는 한숨 소리 “또 올랐네?”  자고 일어나면 올라가는 밥상 물가로 마트에서는 장바구니에 물건을 담았다, 뺐다를 반복하고, 식당에서는 가격이 오른 차림표를 보며 무얼 먹을지 한참을 고민하게 되는 요즘입니다.   그 속에서 유독 깊은 한숨을 내뱉으시는 분들이 있는데요. 우리 주위에는 여전히 조촐한 한 끼를 챙기는 것조차 머뭇거리는 이...</span>#}
+{#                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 기본생활지원</div></em>#}
+{#                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>1,513,200원 모금중</em>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="neulhearang-funding-card">#}
+{#                        <a href="" class="neulhearang-funding-card-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/cI3SzB/btsf0R1sS0F/e1QG8maiJwVnmulVYJsWoK/c360.jpg" class="neulhearang-funding-card-thumbnail third"></div>#}
+{#                            <div class="neulhearang-funding-card-content">#}
+{#                                <strong class="neulhearang-funding-card-title">참전용사 할아버지, 건강하세요!</strong>#}
+{#                                <span class="neulhearang-funding-card-subtext">청춘을 바쳐 나라를 지켰지만... 온몸을 바쳐 대한민국을 지켰습니다. 청춘을 바쳐 나라를 지켰습니다. 목숨 걸고 조국을 지켰다는 것이, 자신이 참전용사라는 것이 평생 자랑스러웠습니다. 그러나 현실의 벽은 높았습니다. 전쟁으로 발병한 허리, 다리 통증과 장애는 고질적으로 어르신들을 괴롭혔고, 불편한 몸으로 제대로 된 일을 할 수 없었기에 늘 가난에 시달...</span>#}
+{#                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한삶</div></em>#}
+{#                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>5,800,755원 모금중</em>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
                 </div>
             </div>
             <!-- 배너 -->
@@ -162,41 +162,7 @@
             <!--일반카드 그룹-->
             <div class="neulhearang-card-container">
                 <div class="neulhearang-card-group">
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/bFshzz/btspeHuCn8c/fG1xKKpBvPBJ6gVrApP800/c360.jpg" class="neulhearang-funding-card-thumbnail first"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">김치가 없는 밥상을 생각해본 적 있으세요?</strong>
-                                <span class="neulhearang-funding-card-subtext">김치가 없는 밥상을 생각해 본 적이 있으세요? 우리나라 사람이라면 손님 상에, 가족끼리 먹는 밥상에, 심지어 혼자 라면을 끓여 먹을 때마저 김치가 빠지면 섭하지요. 하지만 우리 어르신들은 그런 김치가 유난히 필요하고 간절합니다. 그나마 올해는 소금 값이 폭등을 하고, 폭우로 인한 농작물 피해가 심해 야채 값이 많이 오른다고 하니 더 걱정이 많으십니다....</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한식생활</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>244,600원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/2uT1e/btsdQfJWwCY/55nka3oBGgOkzIdZFDrsY0/c360.jpg"
-                                 class="neulhearang-funding-card-thumbnail second"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">'사랑 가득' 집밥 레시피를 소개합니다</strong>
-                                <span class="neulhearang-funding-card-subtext">높아진 물가에 늘어나는 한숨 소리 “또 올랐네?”  자고 일어나면 올라가는 밥상 물가로 마트에서는 장바구니에 물건을 담았다, 뺐다를 반복하고, 식당에서는 가격이 오른 차림표를 보며 무얼 먹을지 한참을 고민하게 되는 요즘입니다.   그 속에서 유독 깊은 한숨을 내뱉으시는 분들이 있는데요. 우리 주위에는 여전히 조촐한 한 끼를 챙기는 것조차 머뭇거리는 이...</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 기본생활지원</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>1,513,200원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="neulhearang-funding-card">
-                        <a href="" class="neulhearang-funding-card-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/cI3SzB/btsf0R1sS0F/e1QG8maiJwVnmulVYJsWoK/c360.jpg"
-                                 class="neulhearang-funding-card-thumbnail third"></div>
-                            <div class="neulhearang-funding-card-content">
-                                <strong class="neulhearang-funding-card-title">참전용사 할아버지, 건강하세요!</strong>
-                                <span class="neulhearang-funding-card-subtext">청춘을 바쳐 나라를 지켰지만... 온몸을 바쳐 대한민국을 지켰습니다. 청춘을 바쳐 나라를 지켰습니다. 목숨 걸고 조국을 지켰다는 것이, 자신이 참전용사라는 것이 평생 자랑스러웠습니다. 그러나 현실의 벽은 높았습니다. 전쟁으로 발병한 허리, 다리 통증과 장애는 고질적으로 어르신들을 괴롭혔고, 불편한 몸으로 제대로 된 일을 할 수 없었기에 늘 가난에 시달...</span>
-                                <em type="tag" class="neulhearang-funding-card-tag"><div role="text" class="neulhearang-funding-card-tag-text"># 건강한삶</div></em>
-                                <em type="rect" class="neulhearang-funding-card-label"><i class="neulhearang-funding-card-label-icon"></i>5,800,755원 모금중</em>
-                            </div>
-                        </a>
-                    </div>
+
                 </div>
             </div>
             <!-- tag card list -->
@@ -484,4 +450,9 @@
 {% else %}
     <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
+<script>
+   let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
+<script src="{% static 'js/main/main.js' %}"></script>
 </html>
