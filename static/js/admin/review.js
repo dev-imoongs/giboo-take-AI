@@ -35,7 +35,7 @@ const showReviewsByPaged =  (page,search)=>{
                                 <td>${review.member_nickname}</td>
                                 <td>  
                                     <a target="_blank" style="font-weight: bold;" 
-                                    href="/review/detail/?review_id=${review.id}"
+                                    href="/neulhaerang_review/review/detail/${review.id}"
                                     >
                                          ${review.review_title}
                                     </a>
