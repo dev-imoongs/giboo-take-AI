@@ -42,3 +42,9 @@
        confirmModalOff()
     });
 let page = 1
+
+const participantsRatio = authenticationFeedCount/participateTargetAmount*100
+
+$('.participants-ratio-count').text(`${participantsRatio}%`)
+$('.participants-count-textline').text(authenticationFeedCount.toLocaleString())
+$('.participants-goal-count').text(`${participateTargetAmount.toLocaleString()}명`)

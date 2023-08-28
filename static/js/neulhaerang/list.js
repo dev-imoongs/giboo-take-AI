@@ -104,10 +104,14 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
 
 showNeulhaerang(page, category, sort)
 
-scrollEventFlag = false
-window.addEventListener("scroll", () => {
-    if (window.innerHeight + window.scrollY >= document.body.clientHeight) {
-        page++
-        showNeulhaerang(page, category, sort, "scroll")
-    }
+let timeoutId
+window.addEventListener("scroll", ()=>{
+    clearTimeout(timeoutId)
+    console.log(page)
+            timeoutId = setTimeout(()=>{
+         if (window.innerHeight + window.scrollY + 500>= document.body.offsetHeight) {
+    page++
+    showNeulhaerang(page, category, sort, "scroll")
+             }
+    },50)
 });
