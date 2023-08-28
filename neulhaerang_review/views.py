@@ -72,7 +72,7 @@ class NeulhaerangReviewDetailView(View):
         likes_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
         # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         # reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
-        bottom_posts = Neulhaerang.objects.all().order_by('-created_date')[0:4]
+        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_review_id).order_by('-created_date')[0:4]
         #
         if (NeulhaerangReviewLike.objects.filter(member__member_email=my_email, neulhaerang_review_id=neulhaerang_review_id)):
             cheer_status = 'on'

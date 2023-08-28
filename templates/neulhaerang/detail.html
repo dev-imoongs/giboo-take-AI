@@ -175,13 +175,13 @@
                           </span>
                         </a>
                         <!--홈페이지, 인스타 등등-->
-                        <ul class="list_contact">
+                   <!--     <ul class="list_contact">
                           <li>
                             <a href="" class="ico_homepage ico_social"></a>
                             <a href="" class="ico_facebook ico_social"></a>
                             <a href="" class="ico_instagram ico_social"></a>
                           </li>
-                        </ul>
+                        </ul> -->
                       </div>
                       <!--모집,모금기간-->
                       <dl class="story_date">
@@ -253,20 +253,21 @@
                  <!--     <span class="txt_heading">카카오 지원 댓글 기부금 </span
                       ><span class="emph_sign">149,800원</span> -->
                     </div>
-                    <a class="link_profile" href="#"
-                      >
-                        {% if my_member.profile_image_choice == 'user' %}
-                        <img
-                        alt="프로필사진"
-                        class="img_thumb"
-                        src='/upload/{{ my_member.profile_image }}'
-                    />
+                    <a class="link_profile" href="#">
+                        {% if not my_member%}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='/upload/member/profile/2023/08/28/avatar_angel.png'/>
                         {% else %}
-                            <img
-                        alt="프로필사진"
-                        class="img_thumb"
-                        src='{{ my_member.kakao_profile_image }}'
-                    />
+                        {% if my_member.profile_image_choice == 'user' %}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='/upload/{{ my_member.profile_image }}'/>
+                        {% else %}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='{{ my_member.kakao_profile_image }}'/>
+                        {% endif %}
                         {% endif %}
                     </a>
                     <!--댓글 작성-->
@@ -693,7 +694,7 @@
       let replyCount = "{{ reply_count }}"
       const parsedAmount = JSON.parse(amount)
       const parsedAmountSum = JSON.parse(amountSum)
-      const parsedInnerContents = JSON.parse(innerContents)
+      let parsedInnerContents = JSON.parse(innerContents)
       const parsedPlan = JSON.parse(businessPlan)
 
   </script>
