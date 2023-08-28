@@ -169,6 +169,8 @@ fieldset, img {
     width: 128px;
     font-size: 15px;
     cursor: pointer;
+    text-decoration: none;
+    color: #444;
 }
 
 .list_category .link_category .img_thumb {
