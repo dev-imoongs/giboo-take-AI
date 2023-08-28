@@ -1,5 +1,6 @@
 
 let count = 0
+let reviewCount =0
 const getNeulhaerangByPaged = () => {
     fetch(`/main/get-neulhaerangs-by-paged/`)
         .then(response => response.json())
@@ -12,7 +13,7 @@ const getNeulhaerangByPaged = () => {
                 if (i <= 2) {
                     text1 += `<div class="neulhearang-funding-card">
     <a href="/neulhaerang/detail/${neulhaerang.id}" class="neulhearang-funding-card-link">
-        <div src=${mediaUrl+neulhaerang.thumbnail_image}
+        <div style="background: url('${mediaUrl+neulhaerang.thumbnail_image}') 50% 50% / cover no-repeat"
              class="neulhearang-funding-card-thumbnail first"></div>
         <div class="neulhearang-funding-card-content">
             <strong class="neulhearang-funding-card-title">${neulhaerang.neulhaerang_title}</strong>
@@ -28,7 +29,7 @@ const getNeulhaerangByPaged = () => {
                 } else {
                     text2 += `<div class="neulhearang-funding-card">
     <a href="/neulhaerang/detail/${neulhaerang.id}" class="neulhearang-funding-card-link">
-        <div src=${mediaUrl+neulhaerang.thumbnail_image}
+        <div style="background: url('${mediaUrl+neulhaerang.thumbnail_image}') 50% 50% / cover no-repeat"
              class="neulhearang-funding-card-thumbnail first"></div>
         <div class="neulhearang-funding-card-content">
             <strong class="neulhearang-funding-card-title">${neulhaerang.neulhaerang_title}</strong>
@@ -65,7 +66,7 @@ const getNeulhajangSlide = ()=>{
                 text+=`<div class="slide">
                                 <div class="slide-card-wrap">
                                     <a href="/neulhajang/detail/${neulhajang.id}" class="slide-card-link">
-                                        <div style="background: url('${mediaUrl+neulhajang.thumnail_image}') 50% 50% cover no-repeat" class="card-thumbnail"></div>
+                                        <div style="background: url('${mediaUrl+neulhajang.thumnail_image}') 50% 50% / cover no-repeat" class="card-thumbnail"></div>
                                         <div class="card-content">
                                             <strong class="card-title">${neulhajang.neulhajang_title}</strong>
                                             <span class="card-subtext">${result.inner_contents[i]}</span>
@@ -79,7 +80,7 @@ const getNeulhajangSlide = ()=>{
                     text1+=`<div class="slide">
                                 <div class="slide-card-wrap">
                                     <a href="/neulhajang/detail/${neulhajang.id}" class="slide-card-link">
-                                        <div style="background:  url('${mediaUrl+neulhajang.thumnail_image}') 50% 50% cover no-repeat" class="card-thumbnail"></div>
+                                        <div style="background:  url('${mediaUrl+neulhajang.thumnail_image}') 50% 50% / cover no-repeat" class="card-thumbnail"></div>
                                         <div class="card-content">
                                             <strong class="card-title">${neulhajang.neulhajang_title}</strong>
                                             <span class="card-subtext">${result.inner_contents[i]}</span>
@@ -182,7 +183,7 @@ const getTagNeulhaerangs = ()=>{
                 })
             })
             $(".tag-tab-list .tab-button").eq(0).trigger("click")
-            
+
         })
 }
 getTagNeulhaerangs()
@@ -196,7 +197,7 @@ const showTagNeulhaerangs = (tag,btn)=>{
             let text =''
 
             result.random_neulhaerangs.forEach((neulhaerang,i)=>{
-                text+=` <div class="tab-panel-content-card">
+                text+=` <div class="tab-panel-content-card ${i!=0?'space':''}">
                         <a href="/neulhaerang/detail/${neulhaerang.id}" class="tab-panel-content-card-link">
                             <div class="tab-panel-content-card-thumbnail thumbnail1" style="background: url('${mediaUrl+neulhaerang.thumbnail_image}') 50% 50% / cover no-repeat"></div>
                             <div class="tab-panel-content-card-text-wrap">
@@ -205,9 +206,159 @@ const showTagNeulhaerangs = (tag,btn)=>{
                             </div>
                         </a>
                     </div>`
+
             })
             $(".tab-panel").html(text)
               $(".tag-tab-list .tab-button").removeClass("active")
             $(btn).addClass("active")
         })
 }
+
+
+const getReviewSlide = ()=>{
+    fetch("/main/get-review-slide")
+        .then(response=>response.json())
+        .then(result=>{
+            let text=''
+            let text1 =''
+            console.log(result)
+            result.reviews.forEach((review,i)=>{
+                text+=`<div class="neulhearang-review-slide">
+                                        <a href="/neulhaerang_review/review/detail/${review.id}" class="neulhearang-review-slide-link">
+                                            <div class="neulhearang-review-slide-content">
+                                                <strong class="neulhearang-review-slide-title">${review.review_title}</strong>
+                                                <p class="neulhearang-review-slide-description">${result.innercontents[i]}</p>
+                                            </div>
+                                        </a>
+                                    </div>`
+                if(i==0){
+                    text1+=text
+                }
+            })
+
+
+            $(".neulhearang-review-slider-list").append(text+text1)
+            $(".neulhearang-review-slider-list").css("width",`${$(".neulhearang-review-slide").length}00%`)
+
+            let slide_text = ''
+
+                for(let i = 0;i<result.reviews.length;i++){
+                    slide_text+=` <li>
+                                            <button type="button" class="neulhearang-review-paging-button"></button>
+                                        </li>`
+                }
+
+            $(".neulhearang-review-paging-button-list").append(slide_text)
+            $(".neulhearang-review-paging-button-list li").eq(0).addClass("active")
+
+
+            let review_inter_id = setInterval(reviewAutoslide,5000)
+            $(".neulhearang-review-paging-button-list li").each((i,li)=>{
+                $(li).on("click",e=>{
+                    clearInterval(review_inter_id)
+                    $(".neulhearang-review-paging-button-list li").each((i2,li2)=>{
+                        if(i==i2){
+                            $(li2).addClass("active")
+                        }else{
+                            $(li2).removeClass("active")
+                        }
+                    })
+
+                    $(".neulhearang-review-slider-list").css('transition-duration','500ms')
+                     $(".neulhearang-review-slider-list").css('transform',`translate3d(-${(100 / $(".neulhearang-review-slide").length) * i}%, 0px, 0px)`)
+                    reviewCount = i
+                    review_inter_id = setInterval(reviewAutoslide,5000)
+
+                })
+            })
+
+
+
+
+
+        })
+}
+
+getReviewSlide()
+const reviewAutoslide = ()=>{
+    let slides = $(".neulhearang-review-slide")
+    let length = slides.length
+    reviewCount++
+    let transformValue = `translate3d(-${(100 / length) * reviewCount}%, 0px, 0px)`
+    if(reviewCount==length-1){
+        $(".neulhearang-review-slider-list").css('transform',transformValue)
+        setTimeout(()=>{
+            $(".neulhearang-review-slider-list").css('transition-duration','')
+            $(".neulhearang-review-slider-list").css('transform',`translate3d(0%, 0px, 0px)`)
+
+        },500)
+         reviewCount= 0
+    }else{
+        $(".neulhearang-review-slider-list").css('transition-duration','500ms')
+         $(".neulhearang-review-slider-list").css('transform',transformValue)
+    }
+    $(".neulhearang-review-paging-button-list li").each((i,slide)=>{
+        if(i==reviewCount){
+            $(slide).addClass("active")
+        }else{
+             $(slide).removeClass("active")
+        }
+    })
+
+
+}
+
+
+
+
+$(".aside-rectangle-banner-link").on("click",e=>{
+    e.preventDefault()
+    let tag_name = $(".aside-rectangle-banner-subtext").text().split(" ")[0].replace("#","")
+    fetch(`/main/get-random-tag-one-neulhaerang/?tag=${tag_name}`)
+        .then(response=>response.json())
+        .then(result=>{
+            if(result){
+                location.href = `/neulhaerang/detail/${result}`
+            }else{
+
+            }
+        })
+
+})
+
+
+
+const showDonationRanking = ()=>{
+    fetch("/main/get-member-ranking")
+        .then(response => response.json())
+        .then(result =>{
+            console.log(result)
+            let text=''
+            result.members.forEach((member,i)=>{
+                text+=`<li class="aside-list-item">
+                        <a href="/myapge/otherslink/${member.id}" class="aside-list-item-link top-link">`
+
+                    if(member.profile_image){
+                        if(member.profile_image_choice =="kakao"){
+                             text+=`<div style="background: url('${member.profile_image}') 50% 50% / cover no-repeat" `
+                        }else{
+                            text+=`<div style="background: url('${mediaUrl+member.profile_image}') 50% 50% / cover no-repeat" `
+                        }
+                    }else{
+                        text+=`<div style="background: url('${staticUrl}image/avatar.png') 50% 50% / cover no-repeat" `
+                    }
+
+                    text+=`class="aside-list-item-thumbnail aside-thumbnail1"></div>
+                            <div class="aside-list-content-container">
+                                <strong class="aside-list-content-title title-text">${member.member_nickname}</strong>
+                                <p class="aside-list-content-subtext">${member.donation_sum.toLocaleString()}원 기부</p>
+                            </div>
+                        </a>
+                    </li>`
+            })
+
+            $(".aside-list").append(text)
+        })
+}
+showDonationRanking()
+

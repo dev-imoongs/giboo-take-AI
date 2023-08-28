@@ -1092,7 +1092,7 @@
 .neulhearang-review-slider-list {
     width: 900%;
     text-align: left;
-    transform: translate3d(-66.6667%, 0px, 0px);
+    /*transform: translate3d(-66.6667%, 0px, 0px);*/
     display: flex;
     touch-action: pan-y !important;
 }

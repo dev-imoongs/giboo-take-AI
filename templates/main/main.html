@@ -28,7 +28,7 @@
                 <i class="main-branding-introduce-pic-item" src="https://t1.kakaocdn.net/together_image/common/bg_home_hands.png"></i>
                 <i class="main-branding-introduce-item-together" src="https://t1.kakaocdn.net/together_image/common/ico_action_people.png"></i>
                 <a href="/introduce/about" class="main-branding-introduce-link">
-                    <span class="main-branding-introduce-text-item">같이가치 소개</span>
+                    <span class="main-branding-introduce-text-item">기부&테이크 소개</span>
                     <i class="branding-introduce-item-arrow" src="https://t1.kakaocdn.net/together_image/common/ico_home_arrow_220831.png"></i>
                 </a>
             </div>
@@ -228,18 +228,18 @@
             <div class="aside-epilogue-container">
                 <div class="total-donation">
                     <h4 class="total-donation-title-wrap">
-                        <a href="" class="total-donation-title-link">
+                        <a href="/introduce/statistics" class="total-donation-title-link">
                             <span class="total-donation-title-text">우리가<br>같이만든 변화들</span>
                         </a>
                     </h4>
-                    <p class="total-donation-title-subtext">2023.08.10 기준</p>
+                    <p class="total-donation-title-subtext">{{ now|date:"Y.m.d" }} 기준</p>
                     <div class="total-donation-image-box"></div>
                     <div>
-                        <a href="" class="donation-statistics-link">
+                        <a href="/introduce/statistics" class="donation-statistics-link">
                             <div class="total-donate-box">
                                 <i class="total-donate-icon"></i>
                                 <strong class="total-donate-title">총 기부금</strong>
-                                <em class="total-donate-money">68,812,721,840원</em>
+                                <em class="total-donate-money">{{ total_donation }}원</em>
                             </div>
                         </a>
                     </div>
@@ -247,7 +247,7 @@
                 <!-- 후기배너 -->
                 <div class="neulhearang-review-container">
                     <div>
-                        <a href="" class="neulhearang-review-link">
+                        <a href="/neulhaerang_review/review/list" class="neulhearang-review-link">
                             <h4 class="neulhearang-review-container-title">따뜻한 후기</h4>
                         </a>
                     </div>
@@ -257,81 +257,81 @@
                                 <div class="neulhearang-review-slider-control">
                                     <ul class="neulhearang-review-paging-button-list">
 {#                                        <!-- 슬라이드버튼 활성화 active 유무로 조정하기 -->#}
-                                        <li class="active">
-                                            <button type="button" class="neulhearang-review-paging-button"></button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="neulhearang-review-paging-button"></button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="neulhearang-review-paging-button"></button>
-                                        </li>
+{#                                        <li class="active">#}
+{#                                            <button type="button" class="neulhearang-review-paging-button"></button>#}
+{#                                        </li>#}
+{#                                        <li>#}
+{#                                            <button type="button" class="neulhearang-review-paging-button"></button>#}
+{#                                        </li>#}
+{#                                        <li>#}
+{#                                            <button type="button" class="neulhearang-review-paging-button"></button>#}
+{#                                        </li>#}
                                     </ul>
                                 </div>
                             </div>
                             <div class="neulhearang-review-slider-frame">
                                 <div class="neulhearang-review-slider-list">
-                                    <div class="neulhearang-review-slide last-cloned">
-                                        <a href="" class="neulhearang-review-slide-link">
-                                            <div class="neulhearang-review-slide-content">
-                                                <strong class="neulhearang-review-slide-title">무더운 여름이 이제 두렵지 않습니다</strong>
-                                                <p class="neulhearang-review-slide-description">
-                                                    많은 분의 관심으로 에어컨을 설치한 한 가정에서 보내주신 아름다운 감사
-                                                    인사를 전해 드립니다!
-                                                    "3형제, 친정 엄마와 함께 사는 저희 집은 선풍기만으로 여름을 버텼습니다.
-                                                    매년 여름, 좁은 공간에 가득한 열기로
-                                                    움직이지 않아도 아이들은 더위로 예민했습니다.
-                                                    발달장애를</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="neulhearang-review-slide">
-                                        <a href="" class="neulhearang-review-slide-link">
-                                            <div class="neulhearang-review-slide-content">
-                                                <strong class="neulhearang-review-slide-title">국가유공자 어르신에게 여름키트를 전달했어요</strong>
-                                                <p class="neulhearang-review-slide-description">
-                                                    안녕하세요, 후원자님! 지난 5월 18일 '나라사랑 아름다운 동행' 모금 개설 후 3,609명의 후원자님이 함께해
-                                                    주셨습니다. 덕분에 1,157,010원이라는 금액이 모였고, 국가유공자분들에게 감사 인사를 전할 수 있었습니다.
-                                                    판암사회복지관은 6월 호국보훈의 달을 맞</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="neulhearang-review-slide">
-                                        <a href="" class="neulhearang-review-slide-link">
-                                            <div class="neulhearang-review-slide-content">
-                                                <strong class="neulhearang-review-slide-title">워킹맘으로 변신한 라오스 시골 엄마들!</strong>
-                                                <p class="neulhearang-review-slide-description">
-                                                    라오스 북부 깊은 산속, 소수민족 마을의 젊은 엄마 란은 늘 걱정이 많았습니다. 아이들을 사랑하는 마음만 가지고는 현실적
-                                                    장애물이 너무나 많았습니다. 남성 중심 농업 문화로 라오스 시골 지역 여성은 무급으로 자급자족하거나, 가사 노동에만
-                                                    종사하는 경향이 많았습니다. 그런</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="neulhearang-review-slide">
-                                        <a href="" class="neulhearang-review-slide-link">
-                                            <div class="neulhearang-review-slide-content">
-                                                <strong class="neulhearang-review-slide-title">무더운 여름이 이제 두렵지 않습니다</strong>
-                                                <p class="neulhearang-review-slide-description">
-                                                    많은 분의 관심으로 에어컨을 설치한 한 가정에서 보내주신 아름다운 감사
-                                                    인사를 전해 드립니다!
-                                                    "3형제, 친정 엄마와 함께 사는 저희 집은 선풍기만으로 여름을 버텼습니다.
-                                                    매년 여름, 좁은 공간에 가득한 열기로
-                                                    움직이지 않아도 아이들은 더위로 예민했습니다.
-                                                    발달장애를</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="neulhearang-review-slide first-cloned">
-                                        <a href="" class="neulhearang-review-slide-link">
-                                            <div class="neulhearang-review-slide-content">
-                                                <strong class="neulhearang-review-slide-title">국가유공자 어르신에게 여름키트를 전달했어요</strong>
-                                                <p class="neulhearang-review-slide-description">
-                                                    안녕하세요, 후원자님! 지난 5월 18일 '나라사랑 아름다운 동행' 모금 개설 후 3,609명의 후원자님이 함께해
-                                                    주셨습니다. 덕분에 1,157,010원이라는 금액이 모였고, 국가유공자분들에게 감사 인사를 전할 수 있었습니다.
-                                                    판암사회복지관은 6월 호국보훈의 달을 맞</p>
-                                            </div>
-                                        </a>
-                                    </div>
+{#                                    <div class="neulhearang-review-slide last-cloned">#}
+{#                                        <a href="" class="neulhearang-review-slide-link">#}
+{#                                            <div class="neulhearang-review-slide-content">#}
+{#                                                <strong class="neulhearang-review-slide-title">무더운 여름이 이제 두렵지 않습니다</strong>#}
+{#                                                <p class="neulhearang-review-slide-description">#}
+{#                                                    많은 분의 관심으로 에어컨을 설치한 한 가정에서 보내주신 아름다운 감사#}
+{#                                                    인사를 전해 드립니다!#}
+{#                                                    "3형제, 친정 엄마와 함께 사는 저희 집은 선풍기만으로 여름을 버텼습니다.#}
+{#                                                    매년 여름, 좁은 공간에 가득한 열기로#}
+{#                                                    움직이지 않아도 아이들은 더위로 예민했습니다.#}
+{#                                                    발달장애를</p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="neulhearang-review-slide">#}
+{#                                        <a href="" class="neulhearang-review-slide-link">#}
+{#                                            <div class="neulhearang-review-slide-content">#}
+{#                                                <strong class="neulhearang-review-slide-title">국가유공자 어르신에게 여름키트를 전달했어요</strong>#}
+{#                                                <p class="neulhearang-review-slide-description">#}
+{#                                                    안녕하세요, 후원자님! 지난 5월 18일 '나라사랑 아름다운 동행' 모금 개설 후 3,609명의 후원자님이 함께해#}
+{#                                                    주셨습니다. 덕분에 1,157,010원이라는 금액이 모였고, 국가유공자분들에게 감사 인사를 전할 수 있었습니다.#}
+{#                                                    판암사회복지관은 6월 호국보훈의 달을 맞</p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="neulhearang-review-slide">#}
+{#                                        <a href="" class="neulhearang-review-slide-link">#}
+{#                                            <div class="neulhearang-review-slide-content">#}
+{#                                                <strong class="neulhearang-review-slide-title">워킹맘으로 변신한 라오스 시골 엄마들!</strong>#}
+{#                                                <p class="neulhearang-review-slide-description">#}
+{#                                                    라오스 북부 깊은 산속, 소수민족 마을의 젊은 엄마 란은 늘 걱정이 많았습니다. 아이들을 사랑하는 마음만 가지고는 현실적#}
+{#                                                    장애물이 너무나 많았습니다. 남성 중심 농업 문화로 라오스 시골 지역 여성은 무급으로 자급자족하거나, 가사 노동에만#}
+{#                                                    종사하는 경향이 많았습니다. 그런</p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="neulhearang-review-slide">#}
+{#                                        <a href="" class="neulhearang-review-slide-link">#}
+{#                                            <div class="neulhearang-review-slide-content">#}
+{#                                                <strong class="neulhearang-review-slide-title">무더운 여름이 이제 두렵지 않습니다</strong>#}
+{#                                                <p class="neulhearang-review-slide-description">#}
+{#                                                    많은 분의 관심으로 에어컨을 설치한 한 가정에서 보내주신 아름다운 감사#}
+{#                                                    인사를 전해 드립니다!#}
+{#                                                    "3형제, 친정 엄마와 함께 사는 저희 집은 선풍기만으로 여름을 버텼습니다.#}
+{#                                                    매년 여름, 좁은 공간에 가득한 열기로#}
+{#                                                    움직이지 않아도 아이들은 더위로 예민했습니다.#}
+{#                                                    발달장애를</p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="neulhearang-review-slide first-cloned">#}
+{#                                        <a href="" class="neulhearang-review-slide-link">#}
+{#                                            <div class="neulhearang-review-slide-content">#}
+{#                                                <strong class="neulhearang-review-slide-title">국가유공자 어르신에게 여름키트를 전달했어요</strong>#}
+{#                                                <p class="neulhearang-review-slide-description">#}
+{#                                                    안녕하세요, 후원자님! 지난 5월 18일 '나라사랑 아름다운 동행' 모금 개설 후 3,609명의 후원자님이 함께해#}
+{#                                                    주셨습니다. 덕분에 1,157,010원이라는 금액이 모였고, 국가유공자분들에게 감사 인사를 전할 수 있었습니다.#}
+{#                                                    판암사회복지관은 6월 호국보훈의 달을 맞</p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
                                 </div>
                             </div>
                         </div>
@@ -342,98 +342,98 @@
                 <a href="" class="aside-rectangle-banner-link" src="https://t1.kakaocdn.net/together_action_prod/admin/20230713/9cfc9d2c50e54c67b2010885ef41d0a3">
                     <div class="aside-rectangle-banner-text-container">
                         <strong class="aside-rectangle-banner-title-text">힘겹게 여름을 버티는 이웃을 도와주세요</strong>
-                        <p class="aside-rectangle-banner-subtext">#여름나기 모금함</p>
+                        <p class="aside-rectangle-banner-subtext">#여름나기 늘해랑</p>
                     </div>
                 </a>
             </div>
             <div class="aside-list-container">
                 <h4 class="aside-list-title">
-                    <a href="" class="aside-list-title-link">
+                    <a class="aside-list-title-link">
                         <div>
-                            <em class="aside-list-title-subtext">마음날씨</em>
-                            <strong class="aside-list-title-text">오늘 당신의 마음을 응원해요</strong>
+                            <em class="aside-list-title-subtext">{{ now|date:"Y.m.d" }} 기준</em>
+                            <strong class="aside-list-title-text">역대 기부천사 랭킹</strong>
                         </div>
                     </a>
                 </h4>
                 <ul class="aside-list">
-                    <li class="aside-list-item">
-                        <a href="" class="aside-list-item-link top-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/bSqPwZ/btqhdjpbTW1/6Ncx5UtbidCHsXTSR7N3H0/img.png?type=thumb&amp;opt=S500x500"
-                                 class="aside-list-item-thumbnail aside-thumbnail1"></div>
-                            <div class="aside-list-content-container">
-                                <strong class="aside-list-content-title title-text">나의 감사 파워 등급은?</strong>
-                                <p class="aside-list-content-subtext">173,949명 참여</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="aside-list-item">
-                        <a href="" class="aside-list-item-link top-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/giHSd/btqhbM7Eaf3/ieAIEp4ckYKEMXbvklZxH0/img.png?type=thumb&amp;opt=S500x500"
-                                 class="aside-list-item-thumbnail aside-thumbnail2"></div>
-                            <div class="aside-list-content-container">
-                                <strong class="aside-list-content-title title-text">나의 자존감 레벨은?</strong>
-                                <p class="aside-list-content-subtext">602,804명 참여</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="aside-list-item">
-                        <a href="" class="aside-list-item-link bottom-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/btcB3b/btqhc89zWqJ/hztUvw3S8l0QZ6L1VgIxa1/img.jpg?type=thumb&amp;opt=S500x500"
-                                 class="aside-list-media-item-thumbnail aside-thumbnail3">
-                                <i class="media-item-icon"></i>
-                            </div>
-                            <div class="aside-list-content-container">
-                                <strong class="aside-list-content-title media-title">아침을 깨우는 빗소리</strong>
-                                <p class="aside-list-content-subtext">120,007명 재생</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="aside-list-item">
-                        <a href="" class="aside-list-item-link bottom-link">
-                            <div src="https://mud-kage.kakaocdn.net/dn/Ccv96/btqhcvkpa0v/r8GPtqSs8OTKVqWZJOrjRk/img.jpg?type=thumb&amp;opt=S500x500"
-                                 class="aside-list-media-item-thumbnail aside-thumbnail4">
-                                <i class="media-item-icon"></i>
-                            </div>
-                            <div class="aside-list-content-container">
-                                <strong class="aside-list-content-title media-title">머나먼 해변가</strong>
-                                <p class="aside-list-content-subtext">82,224명 재생</p>
-                            </div>
-                        </a>
-                    </li>
+{#                    <li class="aside-list-item">#}
+{#                        <a href="" class="aside-list-item-link top-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/bSqPwZ/btqhdjpbTW1/6Ncx5UtbidCHsXTSR7N3H0/img.png?type=thumb&amp;opt=S500x500"#}
+{#                                 class="aside-list-item-thumbnail aside-thumbnail1"></div>#}
+{#                            <div class="aside-list-content-container">#}
+{#                                <strong class="aside-list-content-title title-text">나의 감사 파워 등급은?</strong>#}
+{#                                <p class="aside-list-content-subtext">173,949명 참여</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="aside-list-item">#}
+{#                        <a href="" class="aside-list-item-link top-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/giHSd/btqhbM7Eaf3/ieAIEp4ckYKEMXbvklZxH0/img.png?type=thumb&amp;opt=S500x500"#}
+{#                                 class="aside-list-item-thumbnail aside-thumbnail2"></div>#}
+{#                            <div class="aside-list-content-container">#}
+{#                                <strong class="aside-list-content-title title-text">나의 자존감 레벨은?</strong>#}
+{#                                <p class="aside-list-content-subtext">602,804명 참여</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="aside-list-item">#}
+{#                        <a href="" class="aside-list-item-link bottom-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/btcB3b/btqhc89zWqJ/hztUvw3S8l0QZ6L1VgIxa1/img.jpg?type=thumb&amp;opt=S500x500"#}
+{#                                 class="aside-list-media-item-thumbnail aside-thumbnail3">#}
+{#                                <i class="media-item-icon"></i>#}
+{#                            </div>#}
+{#                            <div class="aside-list-content-container">#}
+{#                                <strong class="aside-list-content-title media-title">아침을 깨우는 빗소리</strong>#}
+{#                                <p class="aside-list-content-subtext">120,007명 재생</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="aside-list-item">#}
+{#                        <a href="" class="aside-list-item-link bottom-link">#}
+{#                            <div src="https://mud-kage.kakaocdn.net/dn/Ccv96/btqhcvkpa0v/r8GPtqSs8OTKVqWZJOrjRk/img.jpg?type=thumb&amp;opt=S500x500"#}
+{#                                 class="aside-list-media-item-thumbnail aside-thumbnail4">#}
+{#                                <i class="media-item-icon"></i>#}
+{#                            </div>#}
+{#                            <div class="aside-list-content-container">#}
+{#                                <strong class="aside-list-content-title media-title">머나먼 해변가</strong>#}
+{#                                <p class="aside-list-content-subtext">82,224명 재생</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
                 </ul>
             </div>
             <div class="giboo-n-take-news-container">
                 <h4 class="news-subtitle">기부앤테이크 NOW</h4>
-                <strong class="news-title">놓치면 아까운 같이가치 소식</strong>
+                <strong class="news-title">놓치면 아까운 기부&테이크 소식</strong>
                 <ul class="news-list">
                     <li class="news-list-item">
                         <div class="item-container">
-                            <a href="" class="news-item-link">
-                                <strong class="news-item-title">카카오같이가치 카카오톡 채널을 추가해보세요!</strong>
+                            <a href="/notice/detail/?notice_id=121" class="news-item-link">
+                                <strong class="news-item-title">기부&테이크 <br>100% <br>활용하기! ✨</strong>
                                 <i class="news-item-icon"></i>
                             </a>
                         </div>
                     </li>
                     <li class="news-list-item">
                         <div class="item-container-signature-color">
-                            <a href="" class="news-item-link">
-                                <strong class="news-item-title">참여만으로도 기부에 참여할 수 있어요!</strong>
+                            <a href="/neulhaerang/list" class="news-item-link">
+                                <strong class="news-item-title">봉사활동 참여와 펀딩으로 따뜻한 마음을 <br>나누어 보아요! ❤️</strong>
                                 <i class="news-item-icon"></i>
                             </a>
                         </div>
                     </li>
                     <li class="news-list-item">
                         <div class="item-container-signature-color">
-                            <a href="" class="news-item-link">
-                                <strong class="news-item-title">SNS에서도 '모두의행동' 인증할 수 있어요 📷</strong>
+                            <a href="/neulhajang/list" class="news-item-link">
+                                <strong class="news-item-title">늘하장 인증피드로 <br>기부에 <br>동참할 수 있어요! 📷</strong>
                                 <i class="news-item-icon"></i>
                             </a>
                         </div>
                     </li>
                     <li class="news-list-item">
                         <div class="item-container">
-                            <a href="" class="news-item-link">
-                                <strong class="news-item-title">모금을 제안하고 싶은 당신을 위한 꿀팁💡</strong>
+                            <a href="/notice/detail/?notice_id=122" class="news-item-link">
+                                <strong class="news-item-title">모금 펀딩을 <br>주최 하고 싶은 <br>당신을 위한 꿀팁💡</strong>
                                 <i class="news-item-icon"></i>
                             </a>
                         </div>
