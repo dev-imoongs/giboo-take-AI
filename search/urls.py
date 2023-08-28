@@ -1,6 +1,6 @@
 from django.urls import path
 
-from search.views import SearchFormView, SearchClickView, SearchInputView, ShowTagAPIView, ShowCategoryAPIView
+from search.views import SearchFormView, SearchClickView, SearchInputView, ShowTagAPIView, ShowCategoryAPIView, ShowSearchListOfTagView, ShowSearchListOfCategoryView, ShowSearchListOfKeywordView
 
 app_name = 'search'
 
@@ -11,5 +11,8 @@ urlpatterns = [
 
     # API View
     path('tag/', ShowTagAPIView.as_view(), name='tag'),
-    path('category/', ShowCategoryAPIView.as_view(), name='category')
+    path('category/', ShowCategoryAPIView.as_view(), name='category'),
+    path('tag/result/<str:tag_name>/', ShowSearchListOfTagView.as_view(), name='tag-result'),
+    path('category/result/<str:category_name>/', ShowSearchListOfCategoryView.as_view(), name='category-result'),
+    path('keyword/result/', ShowSearchListOfKeywordView.as_view(), name='keyword-result')
 ]
