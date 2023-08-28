@@ -78,46 +78,45 @@
                   <h3 class="tit_section section_type5">
                     늘해랑 <span class="emph_sign">48</span>
                   </h3>
-                  <tag-home-fundraising-list-filter
-                    ><div class="sort_cate">
-                      <span class="inner_sort_cate"
-                        ><span class="box_sorting"
-                          ><input
+                  <tag-home-fundraising-list-filter>
+                    <div class="sort_cate">
+                      <span class="inner_sort_cate">
+                        <span class="box_sorting">
+                          <input
                             type="radio"
                             id="sortCate0"
                             name="sortCate"
-                            class="inp_sort"
-                          /><label for="sortCate0" class="lab_sort">전체</label></span
-                        ><span class="box_sorting"
-                          ><input
+                            class="inp_sort"/>
+                          <label for="sortCate0" class="lab_sort">전체</label></span>
+                        <span class="box_sorting">
+                        <input
                             type="radio"
                             id="sortCate1"
                             name="sortCate"
-                            class="inp_sort"
-                          /><label for="sortCate1" class="lab_sort">모집/펀딩중</label></span
-                        ><span class="box_sorting"
-                          ><input
+                            class="inp_sort"/>
+                          <label for="sortCate1" class="lab_sort">모집/펀딩중</label></span>
+                        <span class="box_sorting">
+                        <input
                             type="radio"
                             id="sortCate2"
                             name="sortCate"
-                            class="inp_sort"
-                          /><label for="sortCate2" class="lab_sort">후기</label></span
-                        ><span class="box_sorting"
-                          ><input
+                            class="inp_sort"/>
+                        <label for="sortCate2" class="lab_sort">후기</label></span>
+                        <span class="box_sorting">
+                        <input
                             type="radio"
                             id="sortCate3"
                             name="sortCate"
-                            class="inp_sort"
-                          /><label for="sortCate3" class="lab_sort">봉사중</label></span
-                        ><span class="box_sorting"
-                          ><input
+                            class="inp_sort"/>
+                        <label for="sortCate3" class="lab_sort">봉사중</label></span>
+                        <span class="box_sorting">
+                        <input
                             type="radio"
                             id="sortCate4"
                             name="sortCate"
-                            class="inp_sort"
-                          /><label for="sortCate4" class="lab_sort">준비중</label></span
-                        ></span
-                      >
+                            class="inp_sort"/>
+                        <label for="sortCate4" class="lab_sort">준비중</label></span>
+                      </span>
                     </div></tag-home-fundraising-list-filter
                   >
                   <ul class="list_fund">
@@ -248,9 +247,12 @@
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/serach-click.js"></script>
-  {% if request.session.member_email %}
-    <script src="/static/js/header/logined-header.js"></script>
-  {% else %}
-    <script src="/static/js/header/header.js"></script>
-  {% endif %}
+<script>
+
+</script>
+{% if request.session.member_email %}
+  <script src="/static/js/header/logined-header.js"></script>
+{% else %}
+  <script src="/static/js/header/header.js"></script>
+{% endif %}
 </html>
