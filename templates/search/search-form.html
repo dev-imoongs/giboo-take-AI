@@ -1,7 +1,7 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -10,13 +10,13 @@
     <title>검색창</title>
   </head>
   <body>
-  {% if request.session.member_email %}
-    {% include 'header/logined-header.html' %}
-  {% else %}
-    {% include 'header/header.html' %}
-  {% endif %}
     <div id="dkWrap" class="together_top">
       <!--header-->
+      {% if request.session.member_email %}
+        {% include 'header/logined-header.html' %}
+      {% else %}
+        {% include 'header/header.html' %}
+      {% endif %}
       <span id="rootContent">
         <search>
           <div id="dkContent" class="cont_search">
@@ -47,22 +47,22 @@
                     <!--태그는 최근 태그 10개 정도 뿌리기-->
                   <h3 class="tit_section">태그로 찾기</h3>
                   <div class="hash_group">
-                    <tag-card><a class="link_hash hash_type10">#동물</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type2">#인권보호</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type6">#소아암</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type3">#생계지원</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type4">#EBS나눔0700</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type4">#문화예술</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type7">#친환경생활</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type6">#청각장애</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type3">#쪽방</a> </tag-card
-                    ><tag-card><a class="link_hash hash_type4">#여성가장</a> </tag-card>
+                    <!--<tag-card><a class="link_hash hash_type10">#동물</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type2">#인권보호</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type6">#소아암</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type3">#생계지원</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type4">#EBS나눔0700</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type4">#문화예술</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type7">#친환경생활</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type6">#청각장애</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type3">#쪽방</a> </tag-card>
+                    <tag-card><a class="link_hash hash_type4">#여성가장</a> </tag-card>-->
                   </div>
                 </div>
                 <div class="group_schtheme">
                   <h3 class="tit_section">카테고리별 찾기</h3>
                   <ul class="list_category">
-                    <li>
+                    <!--<li>
                       <a class="link_category"
                         ><img
                           class="img_thumb"
@@ -79,7 +79,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="link_category" href="{% url 'search:click' category_name=여성 %}"
+                      <a class="link_category"
                         ><img
                           class="img_thumb"
                           src="https://mud-kage.kakaocdn.net/dn/z41G3/btqeTE3fkJ7/8m34WVDUITvKA9HK5sP5yk/c160.jpg"
@@ -141,7 +141,7 @@
                           src="https://mud-kage.kakaocdn.net/dn/bijvLv/btqfHG6PshT/4Lu4129OAJ0aRPXgRsm2kK/c160.jpg"
                         />환경
                       </a>
-                    </li>
+                    </li>-->
                   </ul>
                 </div>
               </div>
@@ -150,18 +150,17 @@
         </search>
       </span>
       <hr class="hide" />
-      {% include "footer/footer.html" %}
       <!--footer-->
+      {% include "footer/footer.html" %}
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/static/js/search/search-form.js"></script>
 <script>
-  function searchCategory (){
-    let categories = $('.link_category').text;
-
-    console.log(typeof(categories));
-
-  }
 </script>
+  {% if request.session.member_email %}
+    <script src="/static/js/header/logined-header.js"></script>
+  {% else %}
+    <script src="/static/js/header/header.js"></script>
+  {% endif %}
 </html>

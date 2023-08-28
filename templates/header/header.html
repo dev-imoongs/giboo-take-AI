@@ -229,7 +229,6 @@
   <script>
       let path = "{{ request.build_absolute_uri }}"
       let url = "{{ request.path }}".split("/")[1]
-      console.log(url)
         if(url=="main"){
             $(".list-item-container").eq(0).addClass("home")
             $(".list-item-container").eq(0).removeClass("header-menu")
