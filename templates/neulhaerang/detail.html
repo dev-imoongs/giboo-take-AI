@@ -32,17 +32,9 @@
                     <!--뱃지목록 (획득가능)-->
                     <div class="badge_group">
                       <button type="button" class="link_badge">
-                        <img
-                          class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                          alt="힘내라 힘"
-                        /></button
-                      ><button type="button" class="link_badge">
-                        <img
-                          class="thumb_badge"
-                          src="https://mud-kage.kakaocdn.net/dn/Lm7Jm/btqcKIsVnX2/f3O7WtZRGMMKLCOb1SfcVK/img.png"
-                          alt="내 나이가 어때서"
-                        />
+                        <img class="thumb_badge"
+                          src="/{{ post_badge.badge_image }}"
+                          alt="{{ post_badge.badge_name }}"/>
                       </button>
                     </div>
                   </div>
@@ -183,18 +175,18 @@
                           </span>
                         </a>
                         <!--홈페이지, 인스타 등등-->
-                        <ul class="list_contact">
+                   <!--     <ul class="list_contact">
                           <li>
                             <a href="" class="ico_homepage ico_social"></a>
                             <a href="" class="ico_facebook ico_social"></a>
                             <a href="" class="ico_instagram ico_social"></a>
                           </li>
-                        </ul>
+                        </ul> -->
                       </div>
                       <!--모집,모금기간-->
                       <dl class="story_date">
                         <dt class="tit_date">모금기간 :</dt>
-                        <dd class="txt_date">{{ post.fund_duration_start_date }} ~ {{ post.fund_duration_end_date }}</dd>
+                        <dd class="txt_date">{{ post.fund_duration_start_date|date:'Y-m-d' }} ~ {{ post.fund_duration_end_date|date:'Y-m-d' }}</dd>
                       </dl>
                       <!--모금액 사용 계획-->
                       <div class="info_plan">
@@ -206,7 +198,7 @@
                         <!--토글 슬라이드 모금액-->
                         <div class="slide-togle" style="display: none">
                           <span class="plan_period">
-                            < 사업 예정기간 : {{ post.volunteer_duration_start_date }} ~ {{ post.volunteer_duration_end_date }} >
+                            < 사업 예정기간 : {{ post.volunteer_duration_start_date|date:'Y-m-d' }} ~ {{ post.volunteer_duration_end_date|date:'Y-m-d' }} >
                           </span>
                           <ul class="list_plan">
 
@@ -223,7 +215,7 @@
                             ><span>모금액 미달 시 이렇게 사용합니다!</span><br /><span
                               class="txt_detail"
                               style="word-break: break-all"
-                              >자부담 지원 예정{{ post.target_amount_alternatives_plan }}</span
+                              >{{ post.target_amount_alternatives_plan }}</span
                             ></span
                           >
                           <div data-tiara-layer="receipt_team" class="info_receipt">
@@ -261,12 +253,23 @@
                  <!--     <span class="txt_heading">카카오 지원 댓글 기부금 </span
                       ><span class="emph_sign">149,800원</span> -->
                     </div>
-                    <a class="link_profile" href="#"
-                      ><img
-                        alt="프로필사진"
-                        class="img_thumb"
-                        src="https://t1.kakaocdn.net/together_image/common/avatar/avatar03.png"
-                    /></a>
+                    <a class="link_profile" href="#">
+                        {% if not my_member%}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='/upload/member/profile/2023/08/28/avatar_angel.png'/>
+                        {% else %}
+                        {% if my_member.profile_image_choice == 'user' %}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='/upload/{{ my_member.profile_image }}'/>
+                        {% else %}
+                        <img alt="프로필사진"
+                            class="img_thumb"
+                            src='{{ my_member.kakao_profile_image }}'/>
+                        {% endif %}
+                        {% endif %}
+                    </a>
                     <!--댓글 작성-->
                     <div class="cmt_info">
                       <div class="txt_cmt">
@@ -398,9 +401,9 @@
                     >응원<span class="num_active">{{ likes_count }}</span></span
                   ></button
                 ><button type="button" class="btn_g btn_participate">
-                  <span class="ico_together ico_share"></span
-                  ><span class="txt_float txt_share"
-                    >동참<span class="num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
+                  <span class="ico_together {{ check_my_participate }} ico_share"></span
+                  ><span class="txt_float {{ check_my_participate }} txt_share"
+                    >동참<span class="{{ check_my_participate }} num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
                   >
                 </button>
                 <!--기부 가능-->
@@ -441,14 +444,13 @@
                     >당신은 같이가치의 히어로!<br />기부하고 다양한 스탬프를 모아보세요.</strong
                   ><img
                     class="thumb_badge"
-                    src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                  /><strong class="name_badge">힘내라 힘</strong>
+                    src="/{{ post_badge.badge_image }}"
+                  /><strong class="name_badge">{{ post_badge.badge_name }}</strong>
                   <p class="txt_badge">
-                    의식주 걱정없이 살아가는 세상을 만들어요. '기본 생활 지원' 프로젝트에
-                    기부해보세요.
+                      {{ post_badge.badge_content }}
                   </p>
                 </div>
-                <plus-friend-button>
+         <!--       <plus-friend-button>
                   <div class="cont_plusfriend">
                     <span class="info_plusfriend"
                       >카카오같이가치 채널을 추가하면<br />기부한 모금함의 소식을 알려드려요.</span
@@ -458,7 +460,7 @@
                       ><span class="txt_plusfriend">채널 추가</span>
                     </button>
                   </div>
-                </plus-friend-button>
+                </plus-friend-button> -->
               </div>
               <div class="layer_foot">
                 <button type="button" class="btn_close">
@@ -684,19 +686,21 @@
     </app>
   </body>
   <script>
-      let contents = "{{ contents|escapejs }}"
+      let innerContents = "{{ contents|escapejs }}"
+      let businessPlan = "{{ business_plan|escapejs }}"
       let amount ="{{ target_amount|escapejs }}"
-      let business_plan = "{{ business_plan|escapejs }}"
       let amountSum = "{{ amount_sum }}"
       let neulhaerangId = "{{ neulhaerang_id }}"
       let replyCount = "{{ reply_count }}"
-      const parsedAmountSum = JSON.parse(amountSum)
       const parsedAmount = JSON.parse(amount)
-      const parsedContents = JSON.parse(contents)
-      const parsedPlan = JSON.parse(business_plan)
+      const parsedAmountSum = JSON.parse(amountSum)
+      let parsedInnerContents = JSON.parse(innerContents)
+      const parsedPlan = JSON.parse(businessPlan)
 
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://js.bootpay.co.kr/bootpay-4.3.1.min.js" type="application/javascript"></script>
+  <script src="{% static 'js/neulhaerang/bootpay.js' %}"></script>
   <script>
       email = "{{ request.session.member_email }}"
   </script>

@@ -1425,9 +1425,6 @@ button {
     font-size: 15px;
     color: #dc287c;
 }
-.cmt_type3 .list_cmt .txt_money {
-    color: #444;
-}
 
 .list_cmt .txt_cmt {
     display: block;
@@ -1745,10 +1742,17 @@ button {
 }
 
 .fund_float .ico_share {
-    width: 17px;
+    width: 15px;
     height: 20px;
-    margin: 18px 5px 0 0;
-    background-position: -515px -1325px;
+    margin: 17px 7px 0 0;
+    background-position: -128px -20px;
+}
+
+.fund_float .on.ico_share {
+    width: 15px;
+    height: 20px;
+    margin: 17px 7px 0 0;
+    background-position: -116px -20px;
 }
 
 .fund_float .btn_give {
@@ -1779,8 +1783,12 @@ button {
 .fund_float .btn_cheer:after { 
     right: 0;
 }   
-
-
+.fund_float .on.txt_float {
+    color: #21e1d6
+}
+.fund_float .txt_share.on .num_active.on {
+    color: #21e1d6
+}
 
 
 @media (max-width: 767px){
@@ -2701,6 +2709,8 @@ button {
     font-size: 11px;
     line-height: 14px;
 }
+
+
 
 .fund_float .btn_g {
     height: 56px;

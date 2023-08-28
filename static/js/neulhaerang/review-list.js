@@ -86,13 +86,15 @@ const showNeulhaerangReviewList = (page, sort, scroll)=>{
 
 }
 showNeulhaerangReviewList(page, sort)
-window.addEventListener("scroll", ()=>{
-    console.log(window.innerHeight)
-    console.log(window.scrollY)
-    console.log(document.body.clientHeight)
 
-    if (window.innerHeight + window.scrollY + 1 >= document.body.clientHeight) {
-        page++
-        showNeulhaerangReviewList(page, sort,"scroll")
-}
+let timeoutId
+window.addEventListener("scroll", ()=>{
+    clearTimeout(timeoutId)
+    console.log(page)
+            timeoutId = setTimeout(()=>{
+         if (window.innerHeight + window.scrollY + 500>= document.body.offsetHeight) {
+    page++
+    showNeulhaerangReviewList(page, sort,'scroll')
+             }
+    },50)
 });
