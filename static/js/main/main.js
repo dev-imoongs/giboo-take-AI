@@ -161,4 +161,53 @@ const autoslide = ()=>{
 }
 
 
+const getTagNeulhaerangs = ()=>{
+    fetch("/main/get-tag-neulhaerangs")
+        .then(response => response.json())
+        .then(result=>{
+            console.log(result)
+            let text =''
+            result.random_tags.forEach((tag,i)=>{
+                text+=`<button id="totalTab${i+1}" class="tab-button ${i==0?'active':''}"># ${tag.tag_name}</button>`
+            })
+            $(".tag-tab-list").append(text)
 
+            $(".tag-tab-list .tab-button").each((i,btn)=>{
+                $(btn).on("click",e=>{
+                    showTagNeulhaerangs($(btn).text().replace("# ",""),btn)
+
+
+
+
+                })
+            })
+            $(".tag-tab-list .tab-button").eq(0).trigger("click")
+            
+        })
+}
+getTagNeulhaerangs()
+
+
+const showTagNeulhaerangs = (tag,btn)=>{
+    fetch(`/main/get-click-tag-neulhaerangs/?tag=${tag}`)
+        .then(response => response.json())
+        .then(result =>{
+            console.log(result)
+            let text =''
+
+            result.random_neulhaerangs.forEach((neulhaerang,i)=>{
+                text+=` <div class="tab-panel-content-card">
+                        <a href="/neulhaerang/detail/${neulhaerang.id}" class="tab-panel-content-card-link">
+                            <div class="tab-panel-content-card-thumbnail thumbnail1" style="background: url('${mediaUrl+neulhaerang.thumbnail_image}') 50% 50% / cover no-repeat"></div>
+                            <div class="tab-panel-content-card-text-wrap">
+                                <strong class="tab-panel-content-card-title">${neulhaerang.neulhaerang_title}</strong>
+                                <em class="tab-panel-content-card-label">${neulhaerang.donation_sum?neulhaerang.donation_sum.toLocaleString():0}원 모금중</em>
+                            </div>
+                        </a>
+                    </div>`
+            })
+            $(".tab-panel").html(text)
+              $(".tag-tab-list .tab-button").removeClass("active")
+            $(btn).addClass("active")
+        })
+}

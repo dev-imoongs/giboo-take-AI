@@ -27,11 +27,9 @@ class MainView(View):
 class MainGetNeulhaerangsByPagedRandomAPIView(APIView):
     def get(self,request):
         neulhaerangs = list(Neulhaerang.objects.exclude(neulhaerang_status="종료").annotate(donation_sum = Sum('neulhaerangdonation__donation_amount')).order_by('?').values())[0:6]
-        print(neulhaerangs)
         innercontents = []
         tags = []
         for neulhaerang in neulhaerangs:
-            print(neulhaerang)
             inner_content = NeulhaerangInnerContent.objects.filter(neulhaerang=neulhaerang.get("id")).first()
             if(inner_content):
                 innercontents.append(inner_content.inner_content_text)
@@ -58,6 +56,29 @@ class MainGetNeulhajangByPagedRandomAPIView(APIView):
         datas = {
             "neulhajangs" :neulhajangs,
             "inner_contents" :innercontents,
+        }
+        return JsonResponse(datas)
+
+
+
+class MainGetTagNeulhaerangsRandomAPIView(APIView):
+    def get(self,request):
+        random_tags =  NeulhaerangTag.objects.values("tag_name").annotate(tag_count=Count("tag_name")).values("tag_name","tag_count").order_by("?")[0:4]
+        datas={
+            "random_tags":list(random_tags)
+        }
+        return JsonResponse(datas)
+
+
+
+class MainGetTagClickNeulhaerangsRandomAPIView(APIView):
+    def get(self,request):
+        tag = request.GET.get("tag")
+        print(tag)
+        random_neulhaerangs = Neulhaerang.objects.filter(neulhaerangtag__tag_name=tag).annotate(donation_sum=Sum("neulhaerangdonation__donation_amount")).values().order_by('?')[0:4]
+
+        datas ={
+            "random_neulhaerangs":list(random_neulhaerangs)
         }
         return JsonResponse(datas)
 

@@ -1,7 +1,7 @@
 from django.urls import path
 
 from main.views import SuggestionChoiceView, MainView, MainGetNeulhaerangsByPagedRandomAPIView, \
-    MainGetNeulhajangByPagedRandomAPIView
+    MainGetNeulhajangByPagedRandomAPIView, MainGetTagNeulhaerangsRandomAPIView, MainGetTagClickNeulhaerangsRandomAPIView
 
 app_name = 'main'
 
@@ -12,5 +12,7 @@ urlpatterns = [
 
     path('get-neulhaerangs-by-paged/',MainGetNeulhaerangsByPagedRandomAPIView.as_view()),
     path('get-neulhajang-slider/',MainGetNeulhajangByPagedRandomAPIView.as_view()),
+    path('get-tag-neulhaerangs/',MainGetTagNeulhaerangsRandomAPIView.as_view()),
+    path('get-click-tag-neulhaerangs/',MainGetTagClickNeulhaerangsRandomAPIView.as_view()),
 
 ]
