@@ -559,7 +559,7 @@
 .slider-list {
     width: 900%;
     text-align: left;
-    transform: translate3d(-66.6667%, 0px, 0px);
+    /*transform: translate3d(-66.6667%, 0px, 0px);*/
     display: flex;
     touch-action: pan-y !important;
 }
@@ -596,7 +596,7 @@
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    background: url("https://t1.kakaocdn.net/together_action_prod/admin/20230524/f3f763631bbc48288935c06ad6520e61?type=thumb&opt=S500x500") 50% 50%/ cover no-repeat, url("https://t1.kakaocdn.net/together_image/common/no_image.png");
+    /*background: url("https://t1.kakaocdn.net/together_action_prod/admin/20230524/f3f763631bbc48288935c06ad6520e61?type=thumb&opt=S500x500") 50% 50%/ cover no-repeat, url("https://t1.kakaocdn.net/together_image/common/no_image.png");*/
 }
 
 .card-thumbnail::after {
@@ -882,6 +882,7 @@
     font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
     overflow-wrap: break-word;
     letter-spacing: -0.3px;
+    background-color: rgb(32, 32, 32);
 }
 
 .aside-epilogue-container {

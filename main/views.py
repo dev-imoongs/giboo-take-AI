@@ -1,10 +1,11 @@
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.views import APIView
 
 from neulhaerang.models import NeulhaerangDonation, Neulhaerang, NeulhaerangInnerContent, NeulhaerangTag
+from neulhajang.models import Neulhajang, NeulhajangInnerContent
 
 
 # Create your views here.
@@ -42,6 +43,21 @@ class MainGetNeulhaerangsByPagedRandomAPIView(APIView):
             "neulhaerangs" :neulhaerangs,
             "inner_contents" :innercontents,
             "tags" :tags,
+        }
+        return JsonResponse(datas)
+
+class MainGetNeulhajangByPagedRandomAPIView(APIView):
+    def get(self,request):
+        neulhajangs = list(Neulhajang.objects.exclude(neulhajang_status="종료").annotate(feed_sum = Count('neulhajangauthenticationfeed')).order_by('?').values())[0:3]
+        innercontents=[]
+        for neulhajang in neulhajangs:
+            inner_content = NeulhajangInnerContent.objects.filter(neulhajang=neulhajang.get("id")).first()
+            if(inner_content):
+                innercontents.append(inner_content.inner_content_text)
+
+        datas = {
+            "neulhajangs" :neulhajangs,
+            "inner_contents" :innercontents,
         }
         return JsonResponse(datas)
 
