@@ -31,6 +31,7 @@ class NeulhaerangSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class NeulhaerangDonationSerializer(serializers.ModelSerializer):
+    neulhaerang_title = serializers.CharField(source='neulhaerang.neulhaerang_title',read_only=True)
     class Meta:
         model = NeulhaerangDonation
         fields = '__all__'
