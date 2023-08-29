@@ -25,7 +25,7 @@ from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, Ne
 
 class MypageBadgeView(View):
     def get(self, request):
-        member = Member.objects.get(member_email=request.session['member_email'])
+        member = Member.objects.get(member_email=request.session.get("member_email"))
         profile_badge = MemberBadge.objects.filter(member=member)
         if profile_badge:
             profile_badge = profile_badge.first().badge.badge_image
@@ -70,7 +70,11 @@ class MypageDonateView(View):
             try:
                 member = Member.objects.get(member_email=member_email)
 
-                profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+                profile_badge = MemberBadge.objects.filter(member=member).first()
+                if profile_badge:
+                    profile_badge= profile_badge.badge.badge_image
+                else :
+                    profile_badge=''
 
                 request.session['profile_badge'] = profile_badge
 
@@ -84,7 +88,7 @@ class MypageDonateView(View):
                     'donation_status': member.donation_status,
                     'total_donation_fund': member.total_donation_fund,
                     'total_donation_count': member.total_donation_count,
-
+                    'member':member,
 
                 }
 
@@ -206,7 +210,11 @@ class MypageMainView(View):
             member.total_donation_fund = '{:,}'.format(member.total_donation_fund)
             member.total_donation_count = '{:,}'.format(member.total_donation_count)
 
-            profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+            profile_badge = MemberBadge.objects.filter(member=member).first()
+            if profile_badge:
+                profile_badge=profile_badge.badge.badge_image
+            else:
+                profile_badge=''
 
             temp = Neulhaerang.objects.filter(member=member)[0:2]
             neulhajang_temp = Neulhajang.objects.filter(member=member)[0:2]
@@ -394,7 +402,7 @@ class MypageReplyView(View):
 
 class MemberChangeDonationStatusAPIView(APIView):
     def get(self, request):
-        member = Member.objects.get(id=1)
+        member = Member.objects.get(member_email=request.session.get("member_email"))
         if member.donation_status == "공개":
             member.donation_status = "비공개"
         else:
