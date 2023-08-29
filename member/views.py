@@ -80,6 +80,9 @@ class GetMemberAlarmsNotChckedAPIView(APIView):
 class LogoutView(View):
     def get(self, request):
         prev_url = request.GET.get("path")
+        print(prev_url)
+        if prev_url.split("/")[1] == "mypage":
+            prev_url = "/main/main"
         access_token = request.session['access_token']
 
         headers = {

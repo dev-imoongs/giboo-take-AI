@@ -966,7 +966,7 @@ body {
 .group_meditation .list_meditation li {
     float: left;
     width: 25%;
-    min-height: 263px;
+    min-height: 215px;
     text-align: center;
 }
 
@@ -1425,7 +1425,7 @@ body, html {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-image: url(static/image/byeoljji/image-not-found.jpg);
+    background-image: url(/static/image/byeoljji/image-not-found.jpg);
 }
 
   .group_meditation .list_meditation li {
