@@ -102,6 +102,7 @@ class LoginAPIView(APIView):
         # Member.objects.update(member_status=status)
         member.member_status = "NORMAL"
         member.save()
+        request.session['member_status'] = member.member_status
 
         return Response(True)
 

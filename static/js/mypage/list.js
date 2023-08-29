@@ -84,7 +84,7 @@ $('#op-period').on('change', function() {
   page = 1;
   const selectedText = $(this).find('option:selected').text();
   $('.select-option').text(selectedText);
-  $('.link-other2').css('display', 'inline-block');
+
   const selectedOptionValue = $(this).val();
   const selectedYear = selectedOptionValue.split(':')[0];
   initializePage();
@@ -108,11 +108,17 @@ function loadYearlyData(year) {
   fetch(apiUrl)
     .then(response => response.json())
     .then(result => {
+        console.log(result)
       let text = "";
       let lists = result.donation_list;
 
       if (!result.serialized_pagenator.has_next_data) {
         $('.link-other2').css('display', 'none');
+      }else{
+          $('.link-other2').css('display', 'inline-block');
+      }
+      if(lists.length==0){
+          $('.list-donate').append(`<div style="margin-top: 13px;">기부 내역이 없어요 기부천사님!!</div>`);
       }
 
       lists.forEach((list, i) => {
@@ -123,14 +129,14 @@ function loadYearlyData(year) {
 
         const formattedDate = formatDate(list.updated_date);
 
-        text += `<li className="item-donate">
-                     <p class="txt-sumdata"> ${formattedDate} </p>
+        text += `<li class="item-donate">
+                     <p class="txt-sumdata"> ${formattedDate.slice(0, -1)} </p>
                      <p class="tit-sum">
-                       <a class="link-sum" href="">${list.neulhaerang}</a>
+                       <a class="link-sum" href="/neulhaerang/detail/${list.neulhaerang}">${list.neulhaerang_title}</a>
                      </p>
                      <div class="donate-numinfo">
                        <strong class="num-sumprice">${list.donation_amount}원</strong>
-                       <span class="txt-sumprice">${list.donation_content}</span>
+<!--                       <span class="txt-sumprice">${list.donation_content}</span>-->
                      </div>
                      <div class="box-link"></div>
                    </li>`;

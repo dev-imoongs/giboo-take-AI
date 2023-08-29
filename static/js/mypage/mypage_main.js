@@ -52,18 +52,20 @@ $('.btn-release').on("click", () => {
     if (firstPageFlag) return
 
 
-    fetch('/mypage/change-member-donation-status/').then(response =>{
-
-
-        if ($('.btn-release').text() == '공개') {
-        $('.btn-release').text('비공개')
-        toastMsg('기부내역을 비공개 합니다.')
-    }else{
-        $totalDonation = $('.num-total').text()
-        $('.btn-release').text('공개')
-        toastMsg('기부내역을 공개 합니다.')
-        }
-    })
+    fetch('/mypage/change-member-donation-status/')
+        .then(response => response.json())
+        .then(result =>{
+            if(result){
+                if ($('.btn-release').text() == '공개') {
+                    $('.btn-release').text('비공개')
+                    toastMsg('기부내역을 비공개 합니다.')
+                } else {
+                    $totalDonation = $('.num-total').text()
+                    $('.btn-release').text('공개')
+                    toastMsg('기부내역을 공개 합니다.')
+                }
+            }
+        })
 
 })
 
