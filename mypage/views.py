@@ -266,8 +266,25 @@ class MypageOthersLinkView(View):
 
 
 class MypagePostListView(View):
-    def get(self,request):
-        return render(request, 'mypage/mypage-post-list.html')
+    def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+        neulhaerang = Neulhaerang.objects.filter(member=member)
+        member_neulhaerang_count =Neulhaerang.objects.filter(member=member).count()
+        profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+        context = {
+            'member_level': member.donation_level,
+            'profile_image': member.profile_image,
+            'member_nickname': member.member_nickname,
+            'member_email': member.member_email,
+            'member_age': member.member_age,
+            'member_gender':member.member_gender,
+            'member': member,
+            'neulhaerang':neulhaerang,
+            'member_nuelhaerang_count':member_neulhaerang_count,
+            'member_profile_badge':profile_badge,
+
+        }
+        return render(request, 'mypage/mypage-post-list.html',context)
 
 
 
@@ -414,3 +431,25 @@ class DonationListAPIView(APIView):
 
         }
         return JsonResponse(datas)
+
+
+class NeulhaerangListAPIView(APIView):
+    def get(self, request):
+        member_email = request.session.get('member_email')
+        print(member_email)
+        page = int(request.GET.get("page"))
+        member_neulhaerang_list = Neulhaerang.objects.filter(member__member_email=member_email)
+
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=5, query_set=member_neulhaerang_list)
+
+        member_nickname = NeulhaerangSerializer(pagenator.paged_models, many=True).data
+        serialized_pagenator = PagenatorSerializer(pagenator).data
+
+
+        datas = {
+            'member_nickname':member_nickname,
+            'serialized_pagenator':serialized_pagenator,
+
+        }
+        return Response(datas)

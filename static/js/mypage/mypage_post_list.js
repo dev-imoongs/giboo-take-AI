@@ -37,3 +37,59 @@ $('.lab_sort').on('click',(e)=>{
     $('.box_sorting').removeClass('sort_on')
     $target.parent().addClass('sort_on')
 })
+
+
+
+let page = 1;
+console.log(page)
+function MemberNeulhaerangList(currentPage) {
+
+  fetch(`/mypage/member_neulhaerang_list/?page=${currentPage}`)
+    .then(response => response.json())
+    .then(result => {
+      let text = "";
+      let lists = result.member_nickname;
+        console.log(result)
+      if (!result.serialized_pagenator.has_next_data) {
+        $('.link-other2').css('display', 'none');
+      }
+
+      lists.forEach((list, i) => {
+        function formatDate(dateString) {
+          const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+          return new Date(dateString).toLocaleDateString('ko-KR', options);
+        }
+
+        const formattedDate = formatDate(list.updated_date);
+
+        text += `<li>
+                   <div class="action-content-card">
+                      <a class="link-action-card"
+                         href=>
+                           <span class="thumb-action">
+                              <img alt="이미지" class="img-thumb" src="https://t1.kakaocdn.net/together_action_prod/admin/20230523/737ab5168c9d40cc9af489081c84d18d?type=thumb&amp;opt=S100x100"></span>
+                             <div class="info-action">
+                             <strong class="tit-action">${list.neulhaerang_title}</strong>
+                              <p class="desc-action">내가 입력한 인증 피드 내용</p>
+                              <span class="txt-date">${formattedDate}</span>
+                           </div>
+                        </a>
+                           <button class="btn-delete">삭제</button>
+                        </div>
+                      </li>`;
+      });
+
+      // $('.list-donate').html(text);
+      $('.list-action-card').append(text);
+      console.log(`Page: ${currentPage}`);
+    })
+}
+
+MemberNeulhaerangList(page); // 페이지 번호만 전달
+
+$('.link-other2').on("click", () => {
+    if ('click') {
+        page++;
+        MemberNeulhaerangList(page);
+    }
+});

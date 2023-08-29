@@ -2,7 +2,8 @@ from django.urls import path
 
 from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, MypageSignOutView, \
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
-    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView
+    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView,  \
+    NeulhaerangListAPIView
 
 app_name = 'mypage'
 
@@ -19,7 +20,7 @@ urlpatterns = [
     path('reply/', MypageReplyView.as_view(),name = 'reply'),
     path('save_data/', MypageProfileView.save_data, name='save_data'),
     path('donation_list/', DonationListAPIView.as_view(), name='donation_list'),
-
+    path('member_neulhaerang_list/', NeulhaerangListAPIView.as_view(), name='member_neulhaerang_list'),
 
 
 
