@@ -18,6 +18,10 @@
     {% else %}
     {% include 'header/header.html' %}
     {% endif %}
+{#    <form id="keywordForm" method="post" action='{% url 'post-list' %}'>#}
+{#    {% csrf_token %}#}
+{#    <input type="hidden" id="keywordInput" name="keyword" value="">#}
+{#    </form>#}
         <main id="root-content">
           <main-section>
             <div id="main-content" class="cont-mypage">
@@ -51,9 +55,9 @@
                             <div class="wrap_tab">
                                     <ul class="list_tab tab_type6">
                                         <li routerlinkactive="on" class="nav-top on">
-                                            <button class="link_tab">
-                                                <span class="txt_tab">전체</span>
-                                            </button>
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">전체</span>#}
+{#                                            </button>#}
                                         </li>
                                         <li routerlinkactive="on" class="nav-top">
                                             <button class="link_tab">
@@ -66,7 +70,8 @@
                                             </button>
                                         </li>
                                     </ul>
-                                </div>-->
+                                </div>
+
                             <div class="inner-myaction-section">
                                 <div id="nav-neulhaerang" class="sort_cate">
                                     <!-- 늘해랑 탭 -->
@@ -75,16 +80,16 @@
                                             <label class="lab_sort">전체</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">주최한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 주최한 행동">늘해랑 주최한 행동</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">참여한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 참여한 행동">늘해랑 참여한 행동</label>
                                         </span>
-                                        <span class="box_sorting">
-                                            <label class="lab_sort">후기</label>
-                                        </span>
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">후기</label>#}
+{#                                        </span>#}
                                          <span class="box_sorting">
-                                            <label class="lab_sort">응원한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 응원한 행동">늘해랑 응원한 행동</label>
                                         </span>
                                     </span>
                                 </div>
@@ -96,16 +101,17 @@
                                             <label class="lab_sort">전체</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">주최한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 주최한 행동">늘하장 주최한 행동</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">참여한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 참여한 행동">늘하장 참여한 행동</label>
                                         </span>
                                          <span class="box_sorting">
-                                            <label class="lab_sort">응원한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 응원한 행동">늘하장 응원한 행동</label>
                                         </span>
                                     </span>
                                 </div>
+                                </form>
                                 <h3 class="tit-section">
                                     나의 늘해랑
                                     <span class="color-g1"> {{ member_nuelhaerang_count }}</span>

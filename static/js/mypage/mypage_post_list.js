@@ -67,14 +67,14 @@ function MemberNeulhaerangList(currentPage) {
                       <a class="link-action-card"
                          href=>
                            <span class="thumb-action">
-                              <img alt="이미지" class="img-thumb" src="https://t1.kakaocdn.net/together_action_prod/admin/20230523/737ab5168c9d40cc9af489081c84d18d?type=thumb&amp;opt=S100x100"></span>
+                              <img alt="이미지" class="img-thumb" src=${list.thumbnail_image}></span>
                              <div class="info-action">
                              <strong class="tit-action">${list.neulhaerang_title}</strong>
-                              <p class="desc-action">내가 입력한 인증 피드 내용</p>
+                              <p class="desc-action">내가 입력한 인증 피드 내용(비우기?)</p>
                               <span class="txt-date">${formattedDate}</span>
                            </div>
                         </a>
-                           <button class="btn-delete">삭제</button>
+<!--                           <button class="btn-delete">삭제</button>-->
                         </div>
                       </li>`;
       });
@@ -92,4 +92,16 @@ $('.link-other2').on("click", () => {
         page++;
         MemberNeulhaerangList(page);
     }
+});
+
+const labels = document.querySelectorAll('.lab_sort');
+const keywordInput = document.getElementById('keywordInput');
+const keywordForm = document.getElementById('keywordForm');
+
+labels.forEach(label => {
+    label.addEventListener('click', () => {
+        const keyword = label.getAttribute('data-key');
+        console.log(keyword);
+
+    });
 });

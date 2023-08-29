@@ -1,0 +1,536 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>검색창 검색 결과</title>
+    <link rel="stylesheet" href="{% static 'css/common/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/neulhaerang/list.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage-new-form.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage-new-post-list.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/mypage/mypage_post_list.css'%}">
+  </head>
+  <body>
+    <div id="dkWrap">
+      {% if request.session.member_email %}
+        {% include 'header/logined-header.html' %}
+      {% else %}
+        {% include 'header/header.html' %}
+      {% endif %}
+
+            <div id="mArticle">
+            <main id="root-content">
+          <main-section>
+            <div id="main-content" class="cont-mypage">
+              <div id="article">
+                <div class="myaction-cont">
+                  <!-- 프로필 -->
+                  <div class="group-profile">
+                    <div class="area-name">
+                      <div class="link-myprofile">
+                        <strong class="txt-nick">{{ member_level }}기부천사</strong>
+                        <div class="box-name">
+                          <strong class="txt-name"> {{ member_nickname }}찐빵인형 </strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="area-thumb">
+                      <a class="link-badge" href={% url 'mypage:badge' %}>
+                        <span class="badge-thumb">
+                          <img class="img-thumb" src=/{{ member_profile_badge }}>
+                        </span>
+                      </a>
+                      <a class="link-thumb" href={% url 'mypage:profile' %}>
+                        <span class="profile-thumb">
+                          <img class="img-thumb" src=/upload/{{ profile_image }}>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!--<div class="group_teamcover">
+                    <div class="area_cover">
+                        <div class="inner_area_cover">
+                            <div class="info_pf">
+                                <div class="pf_thumb">
+                                    <img class="img_thumb" src="https://mud-kage.kakaocdn.net/dn/Pvr3s/btqcPP0eOYe/tTpiXWnD4MkI2DwiJnTCZk/c160.jpg" alt="광진노인종합복지관">
+                                </div>
+                                <div class="desc_cover">
+                                    <em class="txt_team">단체/기관</em>
+                                    <strong class="tit_cover">광진노인종합복지관</strong>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+              </div>-->
+
+
+              <div class="search_cont">
+
+
+                <div class="group_schproject">
+                  <div class="search_sort">
+                    <strong class="tit_section">늘해랑 <span class="txt_total">147</span></strong>
+
+                    <div class="box_select">
+                      <div class="opt_comm">
+                        <span class="select_option select_on">전체</span
+                        ><select id="opKinds" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="ready-fund">펀딩준비중</option>
+                          <option value="funding">모집/펀딩중</option>
+                          <option value="execution">봉사중</option>
+                          <option value="epilogue">후기</option>
+                          <option value="rejected ">미선정</option></select
+                        ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                        <div class="opt_comm">
+                        <span class="select_option select_on">전체</span
+                        ><select id="opKinds" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="ready-fund">펀딩준비중</option>
+                          <option value="funding">모집/펀딩중</option>
+                          <option value="execution">봉사중</option>
+                          <option value="epilogue">후기</option>
+                          <option value="rejected ">미선정</option></select
+                        ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                    </div>
+                    </div>
+
+                  </div>
+                  <ul class="list_fund">
+                    <!--후기-->
+                    <li>
+                      <fundraising-card
+                        ><a class="link_pack"
+                          ><span class="box_thumb"
+                            ><span
+                              kagetype="c203"
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/IIewG/btqKMO8a8aO/CRaVyoyMmy1lqpIsu6BGYK/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"
+                                  ><span class="tag_state tag_state_default">후기</span></span
+                                >
+                                지구를 지키는 환경교육, 온라인으로 만나요 </strong
+                              ><span class="txt_proposer">지구시민연합</span></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span
+                                  class="state_gage state_end"
+                                  style="width: 100%"
+                                ></span></span
+                              ><span class="txt_per">100%</span></span
+                            ><span class="price_goal"> 4,550,000원 </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+
+                    <!--미선정-->
+                    <li>
+                      <fundraising-card
+                        ><a class="link_pack"
+                          ><span class="box_thumb"
+                            ><span
+                              kagetype="c203"
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/rkWWx/btrfhIjqvpo/11vv4jqVHHLjFXB4W5dBz1/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span> 지구 공감 다큐멘터리 </strong
+                              ><span class="txt_proposer">지구시민연합</span></span
+                            ><span class="price_goal"
+                              ><span class="txt_goal">미선정</span>
+                              9,000,000원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+
+                    <!--준비중-->
+                    <li>
+                      <fundraising-card
+                        ><a class="link_pack" href="/fundraisings/102188"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/rdTNw/btrVVIh88rU/CGrdK9xFseo7Ji91w5pNY1/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span> 불타는 지구에서 청년으로 산다는 것 </strong
+                              ><span class="txt_proposer">오늘, 잇다</span></span
+                            ><span class="price_goal"
+                              ><span class="txt_goal">준비중</span>
+                              7,000,000원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+
+                    <!--봉사 진행중-->
+                    <li>
+                      <fundraising-card
+                        ><a class="link_pack" href="/fundraisings/104067"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/bSkrNV/btr5Blj0Ba4/KiW1JirlAtqwaHL05HxE90/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span> 지구 환경 위하는 함께하는 쓰담쓰담 </strong
+                              ><span class="txt_proposer"
+                                >수원시정자동장애인주간보호시설</span
+                              ></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span
+                                  class="state_gage state_end"
+                                  style="width: 100%"
+                                ></span></span
+                              ><span class="txt_per">100%</span></span
+                            ><span class="price_goal"> 288,500원 </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+
+                    <!--모집/펀딩중-->
+                    <li>
+                      <fundraising-card
+                        ><a
+                          class="link_pack"
+                          href="/fundraisings/106019"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/htilZ/btshbd2X8sp/086nhwGrgNP8eTDvbiXRhK/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span
+                                >
+                                기후우울, 채식과 심리 워크숍으로 극복해요 </strong
+                              ><span class="txt_proposer"
+                                >사단법인 여성환경연대</span
+                              ></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span class="state_gage state_ing" style="width: 21%"></span></span
+                              ><span class="txt_per">21%</span></span
+                            ><span class="price_goal"
+                              >
+                              2,059,400원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+                    <li>
+                      <fundraising-card
+                        ><a
+                          class="link_pack"
+                          href="/fundraisings/106019"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/htilZ/btshbd2X8sp/086nhwGrgNP8eTDvbiXRhK/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span
+                                >
+                                기후우울, 채식과 심리 워크숍으로 극복해요 </strong
+                              ><span class="txt_proposer"
+                                >사단법인 여성환경연대</span
+                              ></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span class="state_gage state_ing" style="width: 21%"></span></span
+                              ><span class="txt_per">21%</span></span
+                            ><span class="price_goal"
+                              >
+                              2,059,400원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+                    <li>
+                      <fundraising-card
+                        ><a
+                          class="link_pack"
+                          href="/fundraisings/106019"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/htilZ/btshbd2X8sp/086nhwGrgNP8eTDvbiXRhK/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span
+                                >
+                                기후우울, 채식과 심리 워크숍으로 극복해요 </strong
+                              ><span class="txt_proposer"
+                                >사단법인 여성환경연대</span
+                              ></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span class="state_gage state_ing" style="width: 21%"></span></span
+                              ><span class="txt_per">21%</span></span
+                            ><span class="price_goal"
+                              >
+                              2,059,400원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+                    <li>
+                      <fundraising-card
+                        ><a
+                          class="link_pack"
+                          href="/fundraisings/106019"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/htilZ/btshbd2X8sp/086nhwGrgNP8eTDvbiXRhK/c203.jpg');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"></span
+                                >
+                                기후우울, 채식과 심리 워크숍으로 극복해요 </strong
+                              ><span class="txt_proposer"
+                                >사단법인 여성환경연대</span
+                              ></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span class="state_gage state_ing" style="width: 21%"></span></span
+                              ><span class="txt_per">21%</span></span
+                            ><span class="price_goal"
+                              >
+                              2,059,400원
+                            </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>
+                  </ul>
+
+
+
+
+                  <div class="list_more">
+                    <button
+                      type="button"
+                      class="link_round link_other2"
+                    >
+                      더보기
+                    </button>
+                  </div>
+                </div>
+
+
+
+  <div class="search_cont">
+
+
+                <div class="group_schproject">
+                  <div class="search_sort">
+                    <strong class="tit_section">늘하장 <span class="txt_total">111</span></strong>
+
+                    <div class="box_select">
+                      <div class="opt_comm">
+                        <span class="select_option select_on">전체</span
+                        ><select id="opKinds" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="ready-fund">주최한 늘하장</option>
+                          <option value="funding">참여한 늘하장</option>
+                          <option value="execution">응원한 늘하장</option>
+
+                      </select><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                        <div class="opt_comm">
+                        <span class="select_option select_on">전체</span
+                        ><select id="opKinds" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="ready-fund">펀딩준비중</option>
+                          <option value="funding">모집/펀딩중</option>
+                          <option value="execution">봉사중</option>
+                          <option value="epilogue">후기</option>
+                          <option value="rejected ">미선정</option></select
+                        ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                    </div>
+                    </div>
+
+                  </div>
+
+
+
+                    <ul class="list_fund">
+                      <!--행동중-->
+                      <li>
+                        <a
+                          class="link_pack"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://t1.kakaocdn.net/together_action_prod/admin/20230707/524e91af3d734b53a65e5daebcc22f72?type=thumb&amp;opt=S600x600');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1">
+                                2023 지구를 위한 여름철 온도! 26℃ </strong
+                              ><span class="txt_proposer"
+                                >한국에너지공단
+                              </span></span
+                            ><span class="txt_participants_count"
+                              ><i class="ico_check"></i> 3,803명 행동중
+                            </span></span
+                          ></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="link_pack"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://t1.kakaocdn.net/together_action_prod/admin/20230707/524e91af3d734b53a65e5daebcc22f72?type=thumb&amp;opt=S600x600');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1">
+                                2023 지구를 위한 여름철 온도! 26℃ </strong
+                              ><span class="txt_proposer"
+                                >한국에너지공단
+                              </span></span
+                            ><span class="txt_participants_count"
+                              ><i class="ico_check"></i> 3,803명 행동중
+                            </span></span
+                          ></a
+                        >
+                      </li>
+                      <!--행동종료-->
+                      <li>
+                        <a
+                          class="link_pack"
+                          href="/actions/projects/19"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://t1.kakaocdn.net/together_action_prod/admin/20221215/43b3d239d9624e6bbd950b7b6ebf93a0?type=thumb&amp;opt=S600x600');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1">
+                                나와 지구를 지키는 슬기로운 겨울나기 </strong
+                              ><span class="txt_proposer"
+                                >한국에너지공단
+                              </span></span
+                            ><span class="txt_participants_count action_end"
+                              ><i class="ico_check"></i> 8,638명 행동종료
+                            </span></span
+                          ></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="link_pack"
+                          href="/actions/projects/19"
+                          ><span class="box_thumb"
+                            ><span
+                              class="img_thumb"
+                              style="
+                                background-image: url('https://t1.kakaocdn.net/together_action_prod/admin/20221215/43b3d239d9624e6bbd950b7b6ebf93a0?type=thumb&amp;opt=S600x600');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1">
+                                나와 지구를 지키는 슬기로운 겨울나기 </strong
+                              ><span class="txt_proposer"
+                                >한국에너지공단
+                              </span></span
+                            ><span class="txt_participants_count action_end"
+                              ><i class="ico_check"></i> 8,638명 행동종료
+                            </span></span
+                          ></a
+                        >
+                      </li>
+
+                    </ul>
+                    <div class="list_more">
+                      <button
+                        type="button"
+                        class="link_round link_other2"
+                      >
+                      더보기
+                      </button>
+                    </div>
+                  </div>
+                </search-action-projects>
+              </div>
+            </div>
+          </main-section>
+                        </main>
+          </div></search
+        ></span
+      >
+      <!--footer-->
+    </div>
+
+  </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/static/js/search/search-input.js"></script>
+{% if request.session.member_email %}
+  <script src="/static/js/header/logined-header.js"></script>
+{% else %}
+  <script src="/static/js/header/header.js"></script>
+{% endif %}
+</html>
