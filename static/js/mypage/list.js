@@ -108,6 +108,7 @@ function loadYearlyData(year) {
   fetch(apiUrl)
     .then(response => response.json())
     .then(result => {
+        console.log(result)
       let text = "";
       let lists = result.donation_list;
 
@@ -128,14 +129,14 @@ function loadYearlyData(year) {
 
         const formattedDate = formatDate(list.updated_date);
 
-        text += `<li className="item-donate">
-                     <p class="txt-sumdata"> ${formattedDate} </p>
+        text += `<li class="item-donate">
+                     <p class="txt-sumdata"> ${formattedDate.slice(0, -1)} </p>
                      <p class="tit-sum">
-                       <a class="link-sum" href="">${list.neulhaerang}</a>
+                       <a class="link-sum" href="/neulhaerang/detail/${list.neulhaerang}">${list.neulhaerang_title}</a>
                      </p>
                      <div class="donate-numinfo">
                        <strong class="num-sumprice">${list.donation_amount}원</strong>
-                       <span class="txt-sumprice">${list.donation_content}</span>
+<!--                       <span class="txt-sumprice">${list.donation_content}</span>-->
                      </div>
                      <div class="box-link"></div>
                    </li>`;
