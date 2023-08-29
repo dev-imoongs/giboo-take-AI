@@ -7,6 +7,7 @@
     <title>마이페이지:기부앤테이크</title>
     <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/mypage/mypage_main.css' %}">
+      <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
   </head>
   <body>
     <div id="whole-wrap">
@@ -33,14 +34,17 @@
                     </div>
                   </div>
                   <div class="area-thumb">
-                    <a class="link-badge-profile" href={% url 'mypage:badge' %}>
-                      <span class="badge-thumb">
-                        <img
-                          class="img-thumb"
-                          src=/{{ member_profile_badge }}
-                        />
-                      </span>
-                    </a>
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src=/{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %} 
+
                     <a class="link-thumb" href={% url 'mypage:profile' %}>
                     <span class="profile-thumb">
                         <!--  -->
@@ -49,10 +53,10 @@
                            {% if member.profile_image_choice == 'kakao' %}
                                 src="{{ member.profile_image }}"
                            {% else %}
-                               src={{ member.profile_image.url }}
+                               src="{{ member.profile_image.url }}"
                            {% endif %}
                        {% else %}
-                       src = {% static 'image/avatar.png' %}
+                            src = "{% static 'image/avatar.png' %}"
                       {% endif %}
 
                      >
@@ -76,9 +80,7 @@
                 <user-profile>
                   <div class="group-shadow group-donatedetail">
                     <h3 class="title-section section-type2">기부내역</h3>
-                    <button type="button" class="link-round btn-release">
-                      비공개
-                    </button>
+                    <button type="button" class="link-round btn-release">{{ donation_status }}</button>
                     <div class="area-donatedetail">
                       <div class="total-donate">
                         <strong class="title-total">총 기부금</strong>
@@ -489,17 +491,13 @@
   </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 {% if request.session.member_email %}
-
-    <script src="/static/js/header/logined-header.js"></script>
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}
-    <script src="/static/js/header/header.js"></script>
-
+    <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
 <script> let NeulhaerangCount = {{ member_neulhaerang_count }} </script>
 <script> let NeulhajangCount = {{ member_neulhajang_count }} </script>
-
-
-    <script src="../../static/js/mypage/mypage_main.js"></script>
+<script src="{% static 'js/mypage/mypage_main.js' %}"></script>
 
 </html>
 

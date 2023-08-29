@@ -84,7 +84,7 @@ $('#op-period').on('change', function() {
   page = 1;
   const selectedText = $(this).find('option:selected').text();
   $('.select-option').text(selectedText);
-  $('.link-other2').css('display', 'inline-block');
+
   const selectedOptionValue = $(this).val();
   const selectedYear = selectedOptionValue.split(':')[0];
   initializePage();
@@ -113,6 +113,11 @@ function loadYearlyData(year) {
 
       if (!result.serialized_pagenator.has_next_data) {
         $('.link-other2').css('display', 'none');
+      }else{
+          $('.link-other2').css('display', 'inline-block');
+      }
+      if(lists.length==0){
+          $('.list-donate').append(`<div style="margin-top: 13px;">기부 내역이 없어요 기부천사님!!</div>`);
       }
 
       lists.forEach((list, i) => {
