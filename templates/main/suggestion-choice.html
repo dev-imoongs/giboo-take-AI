@@ -33,12 +33,12 @@
                       <li>전문기관의 심사를 받습니다.</li>
                       <li>봉사활동 진행 후 결과보고는 필수!</li>
                       <li>
-                        <a routerlink="/notices/116" class="link_guide" href="/notices/116"
+                        <a  class="link_guide" href="/notice/detail/?notice_id=122"
                           >모금 제안 가이드</a
                         >
                       </li>
                     </ul>
-                    <a
+                    <a href="/mypage/neulhaerang/write-form"
                       class="link_fundmake"
                       ><span class="txt_start">제안하기</span></a
                     >
@@ -53,14 +53,14 @@
                       <p class="desc_fundmake">직접 기획한 프로젝트에 기부금을 사용할 수 있어요.</p>
                       <ul class="list_fundmake">
                         <li>전문기관의 심사를 받습니다.</li>
-                        <li>행동 종료후 결과보고는 필수!</li>
+                        <li>행동 종료후 공략 인증은 필수!</li>
                         <li>
-                          <a routerlink="/notices/116" class="link_guide" href="/notices/116"
+                          <a href="/notice/detail/?notice_id=122" class="link_guide"
                             >늘하장 제안 가이드</a
                           >
                         </li>
                       </ul>
-                      <a
+                      <a href="/mypage/neulhajang/write-form"
                         class="link_fundmake"
                         ><span class="txt_start">제안하기</span></a
                       >
@@ -79,4 +79,23 @@
 {% else %}
     <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
+
+<script>
+    let member_email = "{{ request.session.member_email }}"
+  $('.link_fundmake').each((i,value)=>{
+      $(value).on("click",e=>{
+            e.preventDefault()
+      if(!member_email){
+           $('#modalOFF').attr('id','modalON')
+        $('.dimmed_layer').css('height','100%');
+        $('.dialog-content').css('display','block');
+        $('.modal-delete').css('display','block');
+        $('.modal-policy').css('display','none');
+        return
+      }
+      location.href = $(value).attr("href")
+
+      })
+  })
+</script>
 </html>

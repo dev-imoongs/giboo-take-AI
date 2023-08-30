@@ -4,12 +4,20 @@ from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, 
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
     MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView, \
     MypageGetAthenticationFeedsByPagedAPIView, MypageDeleteAthenticationFeedAPIView, MypageGetRepliesByPagedAPIView, \
-    MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView
+    MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView, \
+    MypageNeulhaerangWriteFormView, MypageNeulhaerangReviewWriteFormView, MypageNeulhajangWriteFormView
 from mypage.views2 import NewMypagePostListView, NewMypagePostListAPIView
 
 app_name = 'mypage'
 
 urlpatterns = [
+    path('neulhaerang/write-form/', MypageNeulhaerangWriteFormView.as_view()),
+    path('neulhaerang_review/write-form/', MypageNeulhaerangReviewWriteFormView.as_view()),
+    path('neulhajang/write-form/', MypageNeulhajangWriteFormView.as_view()),
+
+
+
+
     path('badge/',MypageBadgeView.as_view(),name = 'badge'),
     path('Byeoljji/',MypageByeoljjiView.as_view(),name = 'byeoljji'),
     path('donate/',MypageDonateView.as_view(),name = 'donate'),
