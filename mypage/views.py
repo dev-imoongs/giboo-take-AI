@@ -15,7 +15,7 @@ from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
 from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
-from static_app.models import Badge, MemberBadge
+from static_app.models import Badge, MemberBadge, Category
 from workspace.pagenation import Pagenation
 from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, NeulhaerangDonationSerializer
 
@@ -682,51 +682,95 @@ class MypageNeulhaerangWriteFormView(View):
         return render(request,'mypage/write/neulhaerang-write.html')
 
     def post(self,request):
-        # category = request.POST.get("category")
-        # want_fund_duration = request.POST.get("fundraising_period")
-        # volunteer_start_date = request.POST.get("volunteer_start_date")
-        # volunteer_end_date = request.POST.get("volunteer_end_date")
-        # participants_max =request.POST.get("participants_max")
-        # use_plans = request.POST.getlist("use_plan")
-        # plan_moneys = request.POST.getlist("plan_money")
-        # plan_comment = request.POST.get("plan_comment")
-        # planDetail= request.POST.get("planDetail")
+        #늘해랑 먼저 크리에이트
+
+        member_email = request.session.get("member_email")
+        member = Member.objects.get(member_email=member_email)
+
+        #카테고리
+        category = request.POST.get("category")
+        category = Category.objects.filter(category_name=category).first()
+
+        #모금 기간
+        want_fund_duration = request.POST.get("fundraising_period")
+
+        #봉사기간
+        volunteer_start_date = request.POST.get("volunteer_start_date")
+        volunteer_start_date = datetime.strptime(volunteer_start_date, "%Y-%m-%d").date()
+        volunteer_end_date = request.POST.get("volunteer_end_date")
+        volunteer_end_date = datetime.strptime(volunteer_end_date, "%Y-%m-%d").date()
 
 
-        # title = request.POST.get("title")
-        # thumbnail= request.FILES.get("thumbnail")
 
-        # inner_titles = request.POST.getlist("inner_title")
-        # inner_title_content_orders =request.POST.getlist("inner_title_content_order")
+        #참가자 최대인원
+        participants_max =request.POST.get("participants_max")
 
-        # inner_contents = request.POST.getlist("inner_content")
-        # inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        #목표 미달시 대안
+        plan_comment = request.POST.get("plan_comment")
+
+        #관리자한테 할말
+        planDetail= request.POST.get("planDetail")
+
+        #제목
+        title = request.POST.get("title")
+        #썸네일
+        thumbnail= request.FILES.get("thumbnail")
 
 
-        tags = request.POST.getlist("tag")
-
+        #오픈챗 링크
         openchat_link = request.POST.get("openchat_link")
 
-        byeoljji_names = request.POST.getlist("byeoljji_name")
 
-        byeoljji_counts = request.POST.getlist("byeoljji_count")
+        # 펀딩 사용 계획
+        use_plans = request.POST.getlist("use_plan")
+        plan_moneys = request.POST.getlist("plan_money")
 
-        #포토텍스트는 무조건 순서대로 10개씩 옴
-        photo_texts = request.POST.getlist("caption")
-        print(photo_texts)
-
-
-
-        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+        target_amount = 0
+        for money in plan_moneys:
+            target_amount+=int(money)
 
 
+        Neulhaerang.objects.create(member=member,category=category,neulhaerang_duration=int(want_fund_duration),
+                                volunteer_duration_start_date=volunteer_start_date,volunteer_duration_end_date=volunteer_end_date,
+                               participants_max_count=participants_max, target_amount_alternatives_plan=plan_comment,
+                                  message_to_admin=planDetail,neulhaerang_title=title,thumbnail_image=thumbnail,
+                                   participants_openchat_link=openchat_link,target_amount=target_amount,neulhaerang_status="검토중"
+                                   )
 
 
-        files = request.FILES.getlist("inner_photo")
-        for file in files:
-            print(file)
-            print("1")
-
+        #소제목
+        # inner_titles = request.POST.getlist("inner_title")
+        # inner_title_content_orders =request.POST.getlist("inner_title_content_order")
+        #
+        # #본문
+        # inner_contents = request.POST.getlist("inner_content")
+        # inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        #
+        #
+        # #태그
+        # tags = request.POST.getlist("tag")
+        #
+        #
+        # #별찌 이름
+        # byeoljji_names = request.POST.getlist("byeoljji_name")
+        #
+        # #별찌 인원
+        # byeoljji_counts = request.POST.getlist("byeoljji_count")
+        #
+        # #포토텍스트는 무조건 순서대로 10개씩 옴
+        # photo_texts = request.POST.getlist("caption")
+        #
+        #
+        # #앞에는 컨텐트오더 _ 포토갯수
+        # inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+        #
+        #
+        #
+        # #포토는 무조건 순서대로 빈값없이 나옴
+        # files = request.FILES.getlist("inner_photo")
+        # for file in files:
+        #     print(file)
+        #     print("1")
 
 
 
