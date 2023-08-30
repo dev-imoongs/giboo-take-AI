@@ -12,11 +12,13 @@ from rest_framework.views import APIView
 
 
 import neulhaerang_review
+from customer_center.models import Alarm
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation, \
     BusinessPlan, NeulhaerangInnerTitle, NeulhaerangInnerContent, NeulhaerangTag, NeulhaerangInnerPhotos
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
-from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, NeulhajangMission, NeulhajangInnerTitle, \
+    NeulhajangInnerContent, NeulhajangInnerPhoto
 from static_app.models import Badge, MemberBadge, Category
 from workspace.pagenation import Pagenation
 from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, NeulhaerangDonationSerializer
@@ -807,26 +809,15 @@ class MypageNeulhaerangWriteFormView(View):
                                                       inner_photo=photos[i][j],neulhaerang_content_order=content_orders[i],
                                                       photo_order=j,photo_explanation=photo_explanations[i][j])
 
+        neulhaerang_message = f"늘해랑 제목 : {neulhaerang.neulhaerang_title}에 대한 검토가 진행중입니다.!\n" \
+                              f"검토는 최대 15일 걸릴 수 있으며 완료시 알림으로 알려드립니다! \n"
+
+        Alarm.objects.create(message=neulhaerang_message, type="neulhaerang", reference_id=neulhaerang.id,
+                             member=neulhaerang.member)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        return redirect('/mypage/neulhaerang/write-form/')
+        return redirect(f'/neulhaerang/detail/{neulhaerang.id}')
 
 
 class MypageNeulhaerangReviewWriteFormView(View):
@@ -834,12 +825,111 @@ class MypageNeulhaerangReviewWriteFormView(View):
         return render(request, 'mypage/write/neulhaerang-review-write.html')
 
 
+
+
+
+
+
+
 class MypageNeulhajangWriteFormView(View):
     def get(self, request):
         return render(request, 'mypage/write/neulhajang-write.html')
 
 
+    def post(self,request):
+        # 늘하장 먼저 크리에이트
 
+        member_email = request.session.get("member_email")
+        member = Member.objects.get(member_email=member_email)
+
+        # 카테고리
+        category = request.POST.get("category")
+        category = Category.objects.filter(category_name=category).first()
+
+        # 늘하장 기간
+        want_fund_duration = request.POST.get("fundraising_period")
+
+        # 공약실천기간
+        volunteer_start_date = request.POST.get("volunteer_start_date")
+        volunteer_start_date = datetime.strptime(volunteer_start_date, "%Y-%m-%d").date()
+        volunteer_end_date = request.POST.get("volunteer_end_date")
+        volunteer_end_date = datetime.strptime(volunteer_end_date, "%Y-%m-%d").date()
+
+        # 목표 행동자수
+        participants_max = request.POST.get("participants_max")
+
+        # 공약 내용
+        commitment_content = request.POST.get("commitment_content")
+
+        # 관리자한테 할말
+        planDetail = request.POST.get("planDetail")
+
+        # 제목
+        title = request.POST.get("title")
+        # 썸네일
+        thumbnail = request.FILES.get("thumbnail")
+
+        # 오픈챗 링크
+        openchat_link = request.POST.get("openchat_link")
+
+        # #태그
+        tag = request.POST.get("tag")
+
+
+        neulhajang = Neulhajang.objects.create(member=member, category=category,
+                                                 neulhajang_duration=int(want_fund_duration),
+                                                 commitment_duration_start_date=volunteer_start_date,
+                                                 commitment_duration_end_date=volunteer_end_date,
+                                                 participants_target_amount=participants_max,
+                                                 promise_commit_content=commitment_content,
+                                                 # message_to_admin=planDetail,
+                                               neulhajang_title=title,
+                                                 thumnail_image=thumbnail,
+                                                 participants_openchat_link=openchat_link, representing_tag=tag,
+                                                 neulhajang_status="검토중"
+                                                 )
+
+        # 미션 내용
+        mission_contents = request.POST.getlist("mission_content")
+        for i in range(len(mission_contents)):
+            NeulhajangMission.objects.create(neulhajang=neulhajang, mission_content=mission_contents[i],
+                                        mission_order=i+1)
+
+        # 소제목
+        inner_titles = request.POST.getlist("inner_title")
+        inner_title_content_orders = request.POST.getlist("inner_title_content_order")
+        for i in range(len(inner_titles)):
+            NeulhajangInnerTitle.objects.create(neulhajang=neulhajang, inner_title_text=inner_titles[i],
+                                                 neulhajang_content_order=int(inner_title_content_orders[i]))
+
+        # #본문
+        inner_contents = request.POST.getlist("inner_content")
+        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        for i in range(len(inner_contents)):
+            NeulhajangInnerContent.objects.create(neulhajang=neulhajang, inner_content_text=inner_contents[i],
+                                                   neulhajang_content_order=int(inner_content_content_orders[i]))
+
+
+
+
+
+
+        photo_texts = request.POST.getlist("caption")
+
+        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+
+        files = request.FILES.getlist("inner_photo")
+
+        for i in range(len(inner_photo_content_orders)):
+            NeulhajangInnerPhoto.objects.create(neulhajang=neulhajang,inner_photo=files[i],neulhajang_content_order=int(inner_photo_content_orders[i]),
+                                                photo_explanation=photo_texts[i])
+
+        neulhajang_message = f"늘하장 제목 : {neulhajang.neulhajang_title}에 대한 검토가 진행중입니다.!\n" \
+                             f"검토는 최대 15일 걸릴 수 있으며 완료시 알림으로 알려드립니다!"
+        Alarm.objects.create(message=neulhajang_message, type="neulhajang", reference_id=neulhajang.id,
+                             member=neulhajang.member)
+
+        return redirect(f'/neulhajang/detail/{neulhajang.id}')
 
 
 
