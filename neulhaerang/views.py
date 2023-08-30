@@ -88,7 +88,7 @@ class NeulhaerangDetailView(View):
         likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
         participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
-        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_id).filter(neulhaerang_status="모금중").order_by('-created_date')[0:4]
+        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_id).filter(neulhaerang_status="모금중").order_by('?')[0:4]
 
         neulhaerang_participants = NeulhaerangParticipants.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)
         if(neulhaerang_participants):

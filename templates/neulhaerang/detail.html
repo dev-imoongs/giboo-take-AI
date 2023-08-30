@@ -375,7 +375,7 @@
                   <ul class="list_slide" style="width: 900px">
                       {% for bottom_post in bottom_posts %}
                     <li>
-                      <a href="#" class="link_slide">
+                      <a href="{% url 'neulhaerang:detail' bottom_post.id  %}" class="link_slide">
                         <span
                           class="area_thumb"
                           style="
@@ -384,12 +384,11 @@
                         ></span>
                       </a>
                       <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >{{ bottom_post.neulhaerang_title }}</span
-                          ></a
-                        >
+                        <a class="link_slide" href="{% url 'neulhaerang:detail' bottom_post.id  %}">
+                            <span class="tit_slide">모금함</span>
+                            <span class="desc_slide ellipsis_type1">
+                            {{ bottom_post.neulhaerang_title }}
+                        </span></a>
                       </div>
                     </li>
                       {% endfor %}
