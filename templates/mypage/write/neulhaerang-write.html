@@ -597,16 +597,16 @@
                             <div class="add_link add_tag">
                               <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>
                                   <input placeholder="추가할 태그명을 입력해주세요"
-                                         type="text" autocomplete="off"
-                                         class="tf_link ng-untouched ng-pristine ng-valid"
+                                         type="text" autocomplete="off" name="tag"
+                                         class="tf_link tag ng-untouched ng-pristine ng-valid"
                                          id="relateTitle0" focus="false" blur="true">
                               </div>
-                              <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>
+{#                              <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>#}
                             </div>
                           </dd>
                           <!--해쉬 태그 -->
                           <div class="hash_group">
-                            <a href="#" class="link_hash hash_type1"></a>
+                            <a  class="link_hash hash_type1"></a>
                           </div>
                             <!-- 오픈 채팅방 링크 -->
                           <dd class="relate_url url_on">
@@ -620,7 +620,7 @@
                                          id="relateTitle0" focus="false" blur="true">
                               </div>
                               <div class="group_tf"><label class="lab_link" for="relateUrl0">URL</label><input
-                                      placeholder="http://" type="text"
+                                      placeholder="http://" type="text" name="openchat_link"
                                       class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"
                                       focus="false" autocomplete="off"
                                       blur="true"></div>
@@ -635,7 +635,7 @@
                             <div class="add_link add_byeol">
                               <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>
                                   <input placeholder="기부자에게 제공할 별찌를 입력해주세요."
-                                         type="text" autocomplete="off"
+                                         type="text" autocomplete="off" name="byeoljji_name"
                                          class="tf_link ng-untouched ng-pristine ng-valid"
                                          id="relateTitle0" focus="false" blur="true">
                               </div>
@@ -643,7 +643,7 @@
                                   <label class="lab_link" for="relateUrl0">인원
                                   </label>
                                   <input
-                                      placeholder="00명" type="text"
+                                      placeholder="00" type="number" name="byeoljji_count"
                                       class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"
                                       focus="false" autocomplete="off"
                                       blur="true">
