@@ -80,11 +80,9 @@ class NeulhaerangDetailView(View):
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id).order_by('photo_order')
 
         contents = list(inner_title_query) + list(content_query) + list(photo_query)
-
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
 
         sorted_contents = sorted(contents, key=lambda item: item.neulhaerang_content_order)
-
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
         likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
@@ -286,9 +284,11 @@ class SuccessPayment(APIView):
 
 class TestView(View):
     def get(self, request):
+        Neulhaerang.objects.filter(neulhaeranglike__member__member_email='email').annotate(member_nickname=F('member__member_nickname'))
         return render(request, 'neulhaerang/test.html')
     def post(self, request):
         file = request.FILES
+        print(file.get('file'))
         # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
         # Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
         #                            ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))

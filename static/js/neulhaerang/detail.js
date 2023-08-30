@@ -537,7 +537,7 @@ let replyPage = 1
 let replyCont = ""
 let replys = ""
 let checkMoreBtn = replyCount - 5
-console.log('들어옴')
+
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
 const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
