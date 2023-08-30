@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -33,7 +34,7 @@
             <div id="mArticle">
               <tag-home-common-header>
                 <div class="group_tagcover" style="padding-bottom: 36px">
-                  <div class="info_tag tag_img" style="background-image: url('{{ category.category_img }}');">
+                  <div class="info_tag tag_img" style="background-image: url({{img.category_image}});">
                     <div class="inner_info_tag">
                       <span class="cont_tag">
                         <h3 class="tit_tag">#{{ category_name }}</h3>
@@ -81,44 +82,34 @@
                     <div class="sort_cate">
                       <span class="inner_sort_cate">
                         <span class="box_sorting">
-                          <input
-                            type="radio"
-                            id="sortCate0"
-                            name="sortCate"
-                            class="inp_sort"/>
-                          <label for="sortCate0" class="lab_sort">전체</label></span>
+                          <input type="radio" id="sortCate0" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate0" class="lab_sort">전체</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate1"
-                            name="sortCate"
-                            class="inp_sort"/>
-                          <label for="sortCate1" class="lab_sort">모집/펀딩중</label></span>
+                          <input type="radio" id="sortCate1" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate1" class="lab_sort">모금중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate2"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate2" class="lab_sort">후기</label></span>
+                          <input type="radio" id="sortCate2" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate2" class="lab_sort">봉사중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate3"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate3" class="lab_sort">봉사중</label></span>
+                          <input type="radio" id="sortCate3" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate3" class="lab_sort">검토중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate4"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate4" class="lab_sort">준비중</label></span>
+                          <input type="radio" id="sortCate4" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate4" class="lab_sort">후기</label>
+                        </span>
+                        <span class="box_sorting">
+                          <input type="radio" id="sortCate5" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate4" class="lab_sort">미선정</label>
+                        </span>
                       </span>
-                    </div></tag-home-fundraising-list-filter
-                  >
+                    </div>
+                  </tag-home-fundraising-list-filter>
                   <ul class="list_fund">
+                    <!--미선정-->
                     <!--후기-->
                     <!--<li>
                       <fundraising-card>
@@ -229,6 +220,9 @@
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    let category_name ="{{category_name}}"
+  </script>
 <script src="/static/js/search/search-category.js"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
