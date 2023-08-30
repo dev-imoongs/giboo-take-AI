@@ -88,7 +88,32 @@ $('.link_step3').on('click',(e)=>{
         }
 
     })
-    if(innerTitFlag) return
+    if(innerTitFlag) {
+        return
+    }
+
+
+
+    //마지막 폼 되기전에 데이터들 input에 삽입하기
+    // $(".start-date span").text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 $(document).ready(function () {

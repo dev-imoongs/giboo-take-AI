@@ -19,7 +19,7 @@ $('.link-badge').each((i, value) => {
                         $(".modal-badge .txt-badge").text(`${badge.badge_content}`)
                         $(".modal-badge .link-look").text(`#${badge.category_name}봉사 둘러보기`)
 
-                        // $(".modal-badge .link-look").attr('href','')
+                        $(".modal-badge .link-look").attr('href',`/search/category/result/${badge.category_name}/`)
 
 
 

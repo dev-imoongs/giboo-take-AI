@@ -50,12 +50,12 @@ $(document).ready(function () {
     $(".pack_btn .btn_add").on('click', () => {
         $addContent = '<div class="group_tf ng-scope">\n' +
                       '  <div class="cont_tf">\n' +
-                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거"\n' +
+                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거" name="use_plan"\n' +
                       '              title="모금액 사용용도 및 산출근거" autocomplete="off"\n' +
                       '              class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
                       '  <div class="amount_tf">\n' +
-                      '      <input type="number" classoutline="" numberonly="" step="500"\n' +
+                      '      <input type="number" classoutline="" numberonly="" step="500" name="plan_money" \n' +
                       '              min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off"\n' +
                       '              class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
@@ -82,11 +82,12 @@ $(document).ready(function () {
         if ($(e.target).parent().hasClass('btn_calendar')){
             let $calendarIdx = $(e.target).parent().parent().index()
             let $buttonOffsetLeft = $(e.target).offset().left
+            console.log($calendarIdx)
             $('.my-calendar').css('left', $buttonOffsetLeft-220+"px");
             $('calendar').hide()
             $('calendar').eq($calendarIdx).show()
 
-        }else{
+        }else if(!$(e.target).hasClass("cal")){
             $('calendar').hide()
         }
 
@@ -178,8 +179,8 @@ $('.link_step2').on('click', (e) => {
     $('.link_tab').closest('li').removeClass('on')
     let $topIndex = $(e.target).closest('.form_cont').index()
     $('.form_cont').hide()
-    $('.link_tab').eq($topIndex + 1).parent().addClass('on')
-    $('.form_cont').eq($topIndex + 1).show()
+    $('.link_tab').eq($topIndex).parent().addClass('on')
+    $('.form_cont').eq($topIndex).show()
     window.scrollTo(0,0)
 
 
@@ -327,15 +328,22 @@ $('.my-calendar').on('click', (e) => {
     //형제요소의 인덱스가 2부터 시작
     $calendarIdx = $(e.target).closest('calendar').index()-2
     $inputDateSpan = $('.group_calendar').children().eq($calendarIdx).children().children().eq(0)
-
+    console.log($calendarIdx)
     $('calendar').eq($calendarIdx-2).hide()
     loadDate(day, e.target.cellIndex);
     e.target.classList.add('day-active');
     init.activeDTag = e.target;
     init.activeDate.setDate(day);
-    condition1 = init.activeDate.getMonth()<10;
+    condition1 = init.activeDate.getMonth()<9;
     condition2 = day<10;
     $inputDateSpan.text(`${init.activeDate.getFullYear()}년 ${init.activeDate.getMonth() + 1}월 ${day}일`)
+      if($calendarIdx==0){
+
+          $("input[name='volunteer_start_date']").val(`${init.activeDate.getFullYear()}-${init.activeDate.getMonth()}-${day}`)
+      }else{
+            $("input[name='volunteer_end_date']").val(`${init.activeDate.getFullYear()}-${init.activeDate.getMonth()}-${day}`)
+      }
+
 
     // $('.input')
     if(condition1&&condition2) {

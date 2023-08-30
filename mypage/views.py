@@ -668,3 +668,56 @@ class MypageGetBadgeInfoAPIView(APIView):
             "badge":badge.first()
         }
         return JsonResponse(datas)
+
+
+
+
+
+#작성폼
+
+
+class MypageNeulhaerangWriteFormView(View):
+    def get(self,request):
+
+        return render(request,'mypage/write/neulhaerang-write.html')
+
+    def post(self,request):
+        category = request.POST.get("category")
+        print(category)
+        want_fund_duration = request.POST.get("fundraising_period")
+        print(want_fund_duration)
+        use_plans = request.POST.getlist("use_plan")
+        print(use_plans)
+        plan_moneys = request.POST.getlist("plan_money")
+        print(plan_moneys)
+        plan_comment = request.POST.get("plan_comment")
+        print(plan_comment)
+        planDetail= request.POST.get("planDetail")
+        print(planDetail)
+
+
+
+
+
+
+
+        return redirect('/mypage/neulhaerang/write-form/')
+
+
+class MypageNeulhaerangReviewWriteFormView(View):
+    def get(self, request):
+        return render(request, 'mypage/write/neulhaerang-review-write.html')
+
+
+class MypageNeulhajangWriteFormView(View):
+    def get(self, request):
+        return render(request, 'mypage/write/neulhajang-write.html')
+
+
+
+
+
+
+
+
+

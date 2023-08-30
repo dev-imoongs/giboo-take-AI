@@ -206,6 +206,7 @@ body, button, input, select, td, textarea, th {
   background: none;
   -webkit-appearance: none;
   opacity: .01;
+  padding-left: 10px;
 }
 
 option {
@@ -314,7 +315,7 @@ option {
 
 .list-receipt li {
   position: relative;
-  padding: 19px 0 25px;
+  padding: 10px 0 10px;
   border-top: 1px dashed #e5e5e5;
   line-height: 24px;
   color: #444;
@@ -334,6 +335,9 @@ option {
 .list-receipt .donate-numinfo {
   overflow: hidden;
   padding-top: 6px;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
 }
 
 .list-receipt .num-sumprice {
