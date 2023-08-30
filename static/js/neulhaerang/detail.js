@@ -1,3 +1,5 @@
+let checkDonateReply = "전체"
+
 //뱃지클릭
 const $linkBadges = $(".link_badge")
 const $dimedLayer = $(".dimmed_layer")
@@ -295,10 +297,20 @@ $(document).ready(()=> {
             arrowBtnClickSlide(btn_next)
         })
     })
+    $(document).on('click', (e) => {
+        if ($(e.target).hasClass('ico_like')) {
+            $(e.target).parent().toggleClass('on')
+            reply_id = $(e.target).parent().prev().attr('id')
+        } else if ($(e.target).hasClass('btn_like')) {
+            $(e.target).toggleClass('on')
+            reply_id = $(e.target).prev().attr('id')
+        } else if ($(e.target).hasClass('num_like')) {
+            return
+        }
+        neulhaerangReviewDetailReplyLikeView(reply_id)
 
-
+    })
 })
-
 
 
 
@@ -417,6 +429,8 @@ function postContent(contents) {
     let addtext = "";
     let multiImgflag = "";
     contents.forEach((content, i) => {
+        console.log(content)
+        console.log(content.fields.neulhaerang_content_order !== multiImgflag)
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
@@ -450,9 +464,10 @@ function postContent(contents) {
             }
             $('.cont_subject').html(addtext);
        }else{
+            console.log('들어왔냐?')
             let addtext2 = `<li>
                                   <span class="img_slide"
-                                        style="background-image: url('/upload/${content.fields.inner_photo}');">
+                                        style="background-image: url('${mediaUrl}${content.fields.inner_photo}');">
                                   </span>
                                   <span class="txt_caption">${content.fields.photo_explanation}</span>
                                 </li>`;
@@ -471,22 +486,22 @@ function postContent(contents) {
     })
 }
 
-function btnLikeOn(){
-    $('.btn_like').on('click',(e)=>{
-
-        if($(e.target).hasClass('ico_like')){
-            $(e.target).parent().toggleClass('on')
-            reply_id = $(e.target).parent().prev().attr('id')
-        }else if($(e.target).hasClass('btn_like')){
-            $(e.target).toggleClass('on')
-            reply_id = $(e.target).prev().attr('id')
-        }else if($(e.target).hasClass('num_like')){
-            return
-        }
-
-        neulhaerangDetailReplyLikeView(reply_id)
-    })
-}
+// function btnLikeOn(){
+//     $('.btn_like').on('click',(e)=>{
+//
+//         if($(e.target).hasClass('ico_like')){
+//             $(e.target).parent().toggleClass('on')
+//             reply_id = $(e.target).parent().prev().attr('id')
+//         }else if($(e.target).hasClass('btn_like')){
+//             $(e.target).toggleClass('on')
+//             reply_id = $(e.target).prev().attr('id')
+//         }else if($(e.target).hasClass('num_like')){
+//             return
+//         }
+//
+//         neulhaerangDetailReplyLikeView(reply_id)
+//     })
+// }
 
 
 
@@ -522,8 +537,8 @@ let replys = ""
 let checkMoreBtn = replyCount - 5
 
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
-const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
-    fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&`)
+const neulhaerangDetailReplyView = (replyPage,btn_more,checkDonateReply)=>{
+    fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&checkDonateReply=${checkDonateReply}`)
         .then(response => response.json())
         .then(result => {
             replys = result.replys
@@ -602,11 +617,11 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             else{
                 $('.list_cmt').html(replyText)
             }
-            btnLikeOn()
+            // btnLikeOn()
             deleteReply()
         })
 }
-neulhaerangDetailReplyView(replyPage)
+neulhaerangDetailReplyView(replyPage,false,checkDonateReply)
 showMoreBtn()
 const neulhaerangDetailReplyCreate = (replyCont)=>{
     fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
@@ -623,7 +638,11 @@ $('.link_round').on('click',()=>{
     replyPage++
     checkMoreBtn -= 5
     showMoreBtn()
-    neulhaerangDetailReplyView(replyPage,'btn_more')
+    if($('.inp_sort').prop('checked')){
+        neulhaerangDetailReplyView(replyPage,true,'직접')
+    } else {
+        neulhaerangDetailReplyView(replyPage,true,'전체')
+    }
 })
 
 
@@ -688,7 +707,7 @@ const neulhaerangEndDateStatusAPIView = () =>{
             const post = result.post[0]
             // 현재 모금액, 목표 모금액, 비율
             const targetAmount = post.target_amount
-            const totalFund = post.donation_sum
+            const totalFund = post.donation_sum?post.donation_sum:0
             const percentage = Math.ceil(totalFund / targetAmount * 100)
 
             // 종료인지 유무
@@ -719,3 +738,20 @@ const neulhaerangEndDateStatusAPIView = () =>{
         })
 }
 neulhaerangEndDateStatusAPIView()
+
+// 댓글 직접기부자만 보기 버튼 이벤트
+$('.inp_sort').on('click', e=>{
+    let checkDonateReply = "전체"
+    replyPage = 1
+    // 체크 이미지 토글
+    if($('.inp_sort').prop('checked')){
+        checkDonateReply = "직접"
+        $('.ico_sort').attr('style','background-position: -492px -128px;')
+        neulhaerangDetailReplyView(1,false ,checkDonateReply)
+    }else{
+        checkDonateReply = "전체"
+        $('.ico_sort').attr('style','background-position: -468px -128px;')
+        neulhaerangDetailReplyView(1,false ,checkDonateReply)
+    }
+
+})

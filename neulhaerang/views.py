@@ -131,7 +131,12 @@ class NeulhaerangDetailReplyAPIView(APIView):
         my_email = request.session.get('member_email')
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_id = request.GET.get('neulhaerangId')
-        replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        check_donate_reply = request.GET.get('checkDonateReply')
+        print(check_donate_reply)
+        if(check_donate_reply == "전체"):
+            replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        else:
+            replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id,donation__isnull=False)
         if(replyPage==1):
             first_page_replys_id = []
             best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
@@ -291,6 +296,7 @@ class NeulhaerangEndStatusAPIView(APIView):
         }
 
         return JsonResponse(datas)
+
 
 
 class TestView(View):
