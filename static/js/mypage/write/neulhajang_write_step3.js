@@ -124,10 +124,14 @@ $(document).ready(function () {
         // 삭제버튼
         if($(e.target).hasClass('btn_del')){
             if($(e.target).parent().is('.inner_media')){
+
                 let index = $(e.target).closest('.thumb_photo').prev().find('li.on').index()
                 const addInput = `<input type="text" name="caption" autocomplete="off" classoutline="" maxlength="30" readonly
                 class="tf_write ng-dirty ng-touched" style="display: none;"
                 placeholder="이미지 설명을 입력하세요.">`
+
+                // 인풋태그 초기화
+                $(e.target).closest('dd').find('input.tf_attach').val("")
 
                 $(e.target).closest('.thumb_photo').next().find('input').eq(index).remove()
                 $(e.target).closest('.thumb_photo').next().find('.img_detail').append(addInput)
