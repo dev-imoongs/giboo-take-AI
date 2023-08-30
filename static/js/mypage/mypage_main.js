@@ -28,11 +28,28 @@ $('.btn-type2').on("click", () => {
 // 뱃지 클릭시 모달 창 띄우기
 $('.link-badge').each((i, value) => {
         $(value).on("click", () => {
-                $('#modalOFF').attr('id', 'modalON')
-                $('.dimmed_layer').css('height', '100%');
-                $('.dialog-content').css('display', 'block');
-                $('.modal-badge').css('display', 'block');
-                $('.modal-delete').css('display', 'none');
+                fetch(`/mypage/get-badge-info/?badge_id=${$(value).attr('id')}`)
+                    .then(response=> response.json())
+                    .then(result =>{
+                        console.log(result)
+                        badge = result.badge
+                        $(".modal-badge .thumb-badge").attr("src",`${staticUrl+badge.badge_image}`)
+                        $(".modal-badge .name-badge").text(`${badge.badge_name}`)
+                        $(".modal-badge .txt-badge").text(`${badge.badge_content}`)
+                        $(".modal-badge .link-look").text(`#${badge.category_name}봉사 둘러보기`)
+
+                        // $(".modal-badge .link-look").attr('href','')
+
+
+
+                         $('#modalOFF').attr('id', 'modalON')
+                        $('.dimmed_layer').css('height', '100%');
+                        $('.dialog-content').css('display', 'block');
+                        $('.modal-badge').css('display', 'block');
+                        $('.modal-delete').css('display', 'none');
+                    })
+
+
             }
         )
     }
@@ -52,18 +69,20 @@ $('.btn-release').on("click", () => {
     if (firstPageFlag) return
 
 
-    fetch('/mypage/change-member-donation-status/').then(response =>{
-
-
-        if ($('.btn-release').text() == '공개') {
-        $('.btn-release').text('비공개')
-        toastMsg('기부내역을 비공개 합니다.')
-    }else{
-        $totalDonation = $('.num-total').text()
-        $('.btn-release').text('공개')
-        toastMsg('기부내역을 공개 합니다.')
-        }
-    })
+    fetch('/mypage/change-member-donation-status/')
+        .then(response => response.json())
+        .then(result =>{
+            if(result){
+                if ($('.btn-release').text() == '공개') {
+                    $('.btn-release').text('비공개')
+                    toastMsg('기부내역을 비공개 합니다.')
+                } else {
+                    $totalDonation = $('.num-total').text()
+                    $('.btn-release').text('공개')
+                    toastMsg('기부내역을 공개 합니다.')
+                }
+            }
+        })
 
 })
 
@@ -154,11 +173,11 @@ document.addEventListener("DOMContentLoaded", function () {
 //     elementToHide3.style.display = 'block';
 // }
 
-const elementToHide = document.getElementById('aaa');
-const elementToHide2 = document.getElementById('bbb');
-const elementToHide3 = document.getElementById('ccc');
-
-// 조건에 따라 요소 숨기기/표시하기
-elementToHide.style.display = (NeulhaerangCount + NeulhajangCount >= 1) ? 'none' : 'block';
-elementToHide2.style.display = (NeulhaerangCount === 0) ? 'none' : 'block';
-elementToHide3.style.display = (NeulhajangCount === 0) ? 'none' : 'block';
+// const elementToHide = document.getElementById('aaa');
+// const elementToHide2 = document.getElementById('bbb');
+// const elementToHide3 = document.getElementById('ccc');
+//
+// // 조건에 따라 요소 숨기기/표시하기
+// elementToHide.style.display = (NeulhaerangCount + NeulhajangCount >= 1) ? 'none' : 'block';
+// elementToHide2.style.display = (NeulhaerangCount === 0) ? 'none' : 'block';
+// elementToHide3.style.display = (NeulhajangCount === 0) ? 'none' : 'block';

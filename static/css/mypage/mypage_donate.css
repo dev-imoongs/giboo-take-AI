@@ -9,7 +9,12 @@ a {
   cursor: pointer;
   color: #444;
 }
-
+.group-profile .area-thumb .link-badge, .group-profile .area-thumb .link-badge-profile {
+    position: absolute;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+}
 ul, li {
   list-style: none;
 }

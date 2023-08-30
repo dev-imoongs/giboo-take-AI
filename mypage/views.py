@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import requests
+from django.db.models import Value, Count, F
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
@@ -13,7 +14,7 @@ import neulhaerang_review
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
-from neulhajang.models import Neulhajang
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
 from static_app.models import Badge, MemberBadge
 from workspace.pagenation import Pagenation
 from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, NeulhaerangDonationSerializer
@@ -25,16 +26,15 @@ from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, Ne
 
 class MypageBadgeView(View):
     def get(self, request):
-        member = Member.objects.get(member_email=request.session['member_email'])
+        member = Member.objects.get(member_email=request.session.get("member_email"))
         profile_badge = MemberBadge.objects.filter(member=member)
         if profile_badge:
-            profile_badge = profile_badge.first().badge.badge_image
+            profile_badge = profile_badge.values('member','badge').annotate(badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by('-badge_total').first().get("badge_image")
         else:
             profile_badge = ""
-        badge_temp = MemberBadge.objects.filter(member=member).distinct()
+        badge_temp = MemberBadge.objects.filter(member=member).values('member','badge').annotate(badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).annotate(badge_id = F("badge"))
         nobadge_temp = Badge.objects.exclude(memberbadge__member = member).distinct()
-        badge_count = MemberBadge.objects.filter(member=member).count()
-
+        badge_count = MemberBadge.objects.filter(member=member).values('member','badge').annotate(badge_total=Count('id')).count()
 
         context = {
             'profile_image': member.profile_image,
@@ -49,7 +49,6 @@ class MypageBadgeView(View):
             'www_nobadge_list': nobadge_temp,
             'badge_count': badge_count,
             'modal_badge_name': Badge.badge_name,
-
         }
 
         return render(request, 'mypage/mypage-badge.html', context)
@@ -57,7 +56,44 @@ class MypageBadgeView(View):
 
 class MypageByeoljjiView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage-byeoljji.html')
+
+        member_email = request.session.get('member_email')
+
+        if member_email:
+            try:
+                member = Member.objects.get(member_email=member_email)
+
+                profile_badge = MemberBadge.objects.filter(member=member)
+                if profile_badge:
+                    profile_badge = profile_badge.values('member', 'badge').annotate(badge_total=Count('id')).annotate(
+                        badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by(
+                        '-badge_total').first().get("badge_image")
+
+                else:
+                    profile_badge = ''
+                byeoljji_count = MemberByeoljji.objects.filter(member=member).count()
+
+                context = {
+                    'member_nickname': member.member_nickname,
+                    'donation_level': member.donation_level,
+                    'member_profile_image': member.profile_image,
+                    'member_profile_badge': profile_badge,
+                    'donation_status': member.donation_status,
+                    'total_donation_fund': member.total_donation_fund,
+                    'total_donation_count': member.total_donation_count,
+                    'member': member,
+                    'byeoljji_count':byeoljji_count,
+
+                }
+
+                return render(request, 'mypage/mypage-byeoljji.html', context)
+
+            except Member.DoesNotExist:
+                # 멤버가 존재하지 않는 경우 처리
+                pass
+
+        # 멤버 이메일이 세션에 존재하지 않거나 오류 발생 시
+        return HttpResponse('잘못된 요청입니다.')
 
 
 class MypageDonateView(View):
@@ -70,9 +106,14 @@ class MypageDonateView(View):
             try:
                 member = Member.objects.get(member_email=member_email)
 
-                profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+                profile_badge = MemberBadge.objects.filter(member=member)
+                if profile_badge:
+                    profile_badge = profile_badge.values('member','badge').annotate(badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by('-badge_total').first().get("badge_image")
 
-                request.session['profile_badge'] = profile_badge
+                else :
+                    profile_badge=''
+                print(profile_badge)
+
 
                 donation_temp = NeulhaerangDonation.objects.filter(member=member)[0:20]
                 context = {
@@ -84,7 +125,7 @@ class MypageDonateView(View):
                     'donation_status': member.donation_status,
                     'total_donation_fund': member.total_donation_fund,
                     'total_donation_count': member.total_donation_count,
-
+                    'member':member,
 
                 }
 
@@ -206,22 +247,47 @@ class MypageMainView(View):
             member.total_donation_fund = '{:,}'.format(member.total_donation_fund)
             member.total_donation_count = '{:,}'.format(member.total_donation_count)
 
-            profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
+            profile_badge = MemberBadge.objects.filter(member=member)
+            if profile_badge:
+                profile_badge = profile_badge.values('member', 'badge').annotate(badge_total=Count('id')).annotate(
+                    badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by(
+                    '-badge_total').first().get("badge_image")
+            else:
+                profile_badge=''
+
+
+            feeds = NeulhajangAuthenticationFeed.objects.filter(member=member)
+            feeds_count = feeds.count()
+            feeds = feeds[0:2]
+
+
+
 
             temp = Neulhaerang.objects.filter(member=member)[0:2]
             neulhajang_temp = Neulhajang.objects.filter(member=member)[0:2]
             reply_temp = NeulhaerangReviewReply.objects.filter(member=member)[0:2]
-            badge_temp = MemberBadge.objects.filter(member=member)[0:5]
             byeoljji_temp = MemberByeoljji.objects.filter(member=member)[0:4]
 
             neulhaerang_count = Neulhaerang.objects.filter(member=member).count()
             neulhajang_count = Neulhajang.objects.filter(member=member).count()
-            reply_neulhaerang = NeulhaerangReply.objects.filter(member=member).count()
-            reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member=member).count()
             byeoljji_count = MemberByeoljji.objects.filter(member=member).count()
-            badge_count = MemberBadge.objects.filter(member=member).count()
 
-            total_reply = (reply_neulhaerang + reply_neulhaerang_review)
+            badge_temp = MemberBadge.objects.filter(member=member).values('member', 'badge').annotate(
+                badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(
+                badge_image=F("badge__badge_image")).annotate(badge_id = F("badge"))
+            nobadge_temp = Badge.objects.exclude(memberbadge__member=member).distinct()
+            badge_count = MemberBadge.objects.filter(member=member).values('member', 'badge').annotate(
+                badge_total=Count('id')).count()
+            reply_neulhaerang = NeulhaerangReply.objects.filter(member=member,donation__isnull=True).annotate(type = Value("늘해랑")).annotate(like_count=Count("replylike"))
+            reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member=member).annotate(type=Value("후기")).annotate(like_count=Count("reviewreplylike"))
+
+            total_reply = list(reply_neulhaerang) + list(reply_neulhaerang_review)
+            total_reply_sorted = sorted(total_reply, key=lambda item: item.created_date)
+            total_reply_sorted.reverse()
+
+            print(total_reply_sorted)
+            total_reply_count = (reply_neulhaerang.count() + reply_neulhaerang_review.count())
+            print(total_reply_count)
 
 
             context = {
@@ -238,6 +304,7 @@ class MypageMainView(View):
                        'member':member,
                        'neulhaerang':neulhaerang,
 
+
                        # 내가 참여한 늘해랑 게시글
 
                        'volunteer_duration_start_date': Neulhaerang.volunteer_duration_start_date,
@@ -251,10 +318,20 @@ class MypageMainView(View):
                        # 'reply_title': review_title,
 
                        # 뱃지
-                       'www_badge_content': badge_temp,
                        'www_byeoljji_content': byeoljji_temp,
                        'byeoljji_count': byeoljji_count,
-                       'badge_count': badge_count,
+
+
+                        'www_badge_list': badge_temp[0:5],
+                        'www_nobadge_list': nobadge_temp,
+                        'badge_count': badge_count,
+
+
+
+                        'feeds':feeds,
+                        'feeds_count':feeds_count,
+                        'total_reply_sorted':total_reply_sorted[:2],
+                        "total_reply_count" : total_reply_count,
 
                        }
             return render(request, 'mypage/mypage-main.html', context)
@@ -266,8 +343,38 @@ class MypageOthersLinkView(View):
 
 
 class MypagePostListView(View):
-    def get(self,request):
-        return render(request, 'mypage/mypage-post-list.html')
+    def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+        neulhaerang = Neulhaerang.objects.filter(member=member)
+        member_neulhaerang_count =Neulhaerang.objects.filter(member=member).count()
+        profile_badge = MemberBadge.objects.filter(member=member)
+        if profile_badge:
+            profile_badge = profile_badge.values('member','badge').annotate(badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by('-badge_total').first().get("badge_image")
+        else:
+            profile_badge=''
+
+        feeds = NeulhajangAuthenticationFeed.objects.filter(member=member)
+        feeds_count = feeds.count()
+
+
+
+
+
+        context = {
+            'member_level': member.donation_level,
+            'profile_image': member.profile_image,
+            'member_nickname': member.member_nickname,
+            'member_email': member.member_email,
+            'member_age': member.member_age,
+            'member_gender':member.member_gender,
+            'member': member,
+            'neulhaerang':neulhaerang,
+            'member_nuelhaerang_count':member_neulhaerang_count,
+            'member_profile_badge':profile_badge,
+            'feeds_count':feeds_count,
+
+        }
+        return render(request, 'mypage/mypage-post-list.html',context)
 
 
 
@@ -328,7 +435,59 @@ class MypageProfileView(View):
 
 class MypageReplyView(View):
     def get(self,request):
-        return render(request, 'mypage/mypage-reply.html')
+        # 세션에서 멤버 이메일을 가져옵니다.
+        member_email = request.session.get('member_email')
+
+        if member_email:
+            try:
+                member = Member.objects.get(member_email=member_email)
+
+                profile_badge = MemberBadge.objects.filter(member=member)
+                if profile_badge:
+                    profile_badge = profile_badge.values('member','badge').annotate(badge_total=Count('id')).annotate(badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by('-badge_total').first().get("badge_image")
+                else:
+                    profile_badge = ''
+
+                request.session['profile_badge'] = profile_badge
+
+                reply_neulhaerang = NeulhaerangReply.objects.filter(member=member, donation__isnull=True).annotate(
+                    type=Value("늘해랑")).annotate(like_count=Count("replylike"))
+                reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member=member).annotate(
+                    type=Value("후기")).annotate(like_count=Count("reviewreplylike"))
+
+                total_reply = list(reply_neulhaerang) + list(reply_neulhaerang_review)
+                total_reply_sorted = sorted(total_reply, key=lambda item: item.created_date)
+                total_reply_sorted.reverse()
+
+                print(total_reply_sorted)
+                total_reply_count = (reply_neulhaerang.count() + reply_neulhaerang_review.count())
+                print(total_reply_count)
+
+
+
+                donation_temp = NeulhaerangDonation.objects.filter(member=member)[0:20]
+                context = {
+                    'www_donation_list': donation_temp,
+                    'member_nickname': member.member_nickname,
+                    'donation_level': member.donation_level,
+                    'member_profile_image': member.profile_image,
+                    'member_profile_badge': profile_badge,
+                    'donation_status': member.donation_status,
+                    'total_donation_fund': member.total_donation_fund,
+                    'total_donation_count': member.total_donation_count,
+                    'member': member,
+                    'total_reply_count': total_reply_count,
+
+                }
+
+                return render(request, 'mypage/mypage-reply.html', context)
+
+            except Member.DoesNotExist:
+                # 멤버가 존재하지 않는 경우 처리
+                pass
+
+        # 멤버 이메일이 세션에 존재하지 않거나 오류 발생 시
+        return HttpResponse('잘못된 요청입니다.')
 
 
 class MypageServiceSettingView(View):
@@ -371,13 +530,11 @@ class MypageSignOutView(View):
         return redirect('main:main')
 
 
-class MypageReplyView(View):
-    def get(self, request):
-        return render(request, 'mypage/mypage-reply.html')
+
 
 class MemberChangeDonationStatusAPIView(APIView):
     def get(self, request):
-        member = Member.objects.get(id=1)
+        member = Member.objects.get(member_email=request.session.get("member_email"))
         if member.donation_status == "공개":
             member.donation_status = "비공개"
         else:
@@ -412,5 +569,102 @@ class DonationListAPIView(APIView):
             'donation_list':donation_list,
             'serialized_pagenator':serialized_pagenator,
 
+        }
+        return JsonResponse(datas)
+
+
+class MypageGetAthenticationFeedsByPagedAPIView(APIView):
+    def get(self, request):
+        member_email = request.session.get('member_email')
+        page = int(request.GET.get("page"))
+        feeds = NeulhajangAuthenticationFeed.objects.filter(member__member_email=member_email).annotate(neulhajang_title=F('neulhajang__neulhajang_title')).values()
+
+
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=5, query_set=feeds)
+
+        serialized_pagenator = PagenatorSerializer(pagenator).data
+
+
+        datas = {
+            'feeds':pagenator.paged_models,
+            'serialized_pagenator':serialized_pagenator,
+
+        }
+        return Response(datas)
+
+class MypageDeleteAthenticationFeedAPIView(APIView):
+    def get(self,request):
+        feed_id = request.GET.get("feed_id")
+        NeulhajangAuthenticationFeed.objects.filter(id=feed_id).delete()
+
+        return Response(True)
+
+class MypageDeleteReplyAPIView(APIView):
+    def get(self,request):
+        reply_id = request.GET.get("reply_id")
+        type = request.GET.get("type")
+
+        if type=="늘해랑":
+            NeulhaerangReply.objects.filter(id=reply_id).delete()
+        else:
+            NeulhaerangReviewReply.objects.filter(id=reply_id).delete()
+
+        return Response(True)
+
+
+class MypageGetRepliesByPagedAPIView(APIView):
+    def get(self,request):
+        member_email = request.session.get('member_email')
+        page = int(request.GET.get("page"))
+
+        reply_neulhaerang = NeulhaerangReply.objects.filter(member__member_email=member_email, donation__isnull=True).annotate(
+            type=Value("늘해랑")).annotate(like_count=Count("replylike")).annotate(title=F("neulhaerang__neulhaerang_title")).values()
+        reply_neulhaerang_review = NeulhaerangReviewReply.objects.filter(member__member_email=member_email).annotate(
+            type=Value("후기")).annotate(like_count=Count("reviewreplylike")).annotate(title=F("neulhaerang_review__review_title")).values()
+
+        total_reply = list(reply_neulhaerang) + list(reply_neulhaerang_review)
+        total_reply_sorted = sorted(total_reply, key=lambda item: item.get("created_date"))
+        total_reply_sorted.reverse()
+
+        total_reply_count = (reply_neulhaerang.count() + reply_neulhaerang_review.count())
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=5, query_set=total_reply_sorted)
+
+        serialized_pagenator = PagenatorSerializer(pagenator).data
+
+        datas = {
+            'total_reply_sorted': pagenator.paged_models,
+            'serialized_pagenator': serialized_pagenator,
+        }
+        return Response(datas)
+
+class MypageGetByeoljjisByPagedAPIView(APIView):
+    def get(self,request):
+        member_email = request.session.get('member_email')
+        page = int(request.GET.get("page"))
+
+        byeoljjis = Byeoljji.objects.filter(memberbyeoljji__member__member_email=member_email).annotate(review_id=F("neulhaerang__neulhaerangreview")).values()
+
+
+
+
+        pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=byeoljjis)
+
+        serialized_pagenator = PagenatorSerializer(pagenator).data
+
+        datas = {
+            'byeoljjis': list(pagenator.paged_models),
+            'serialized_pagenator': serialized_pagenator,
+        }
+        return Response(datas)
+
+class MypageGetBadgeInfoAPIView(APIView):
+    def get(self,request):
+        badge_id = int(request.GET.get("badge_id"))
+        badge = Badge.objects.filter(id=badge_id).annotate(category_name=F("category__category_name")).values()
+
+        datas={
+            "badge":badge.first()
         }
         return JsonResponse(datas)

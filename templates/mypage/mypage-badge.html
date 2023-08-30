@@ -7,7 +7,7 @@
   <title>뱃지:기부앤테이크</title>
   <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
   <link rel="stylesheet" href="{% static 'css/mypage/mypage_badge.css'%}">
-  <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
+  <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
 </head>
 <body>
   <div id="whole-wrap">
@@ -24,29 +24,53 @@
             <div class="mybadge-cont">
             <!-- 프로필 -->
               <div class="group-profile">
-                <div class="area-name">
-                  <div class="link-myprofile">
-                    <strong class="txt-nick">{{ donation_level }}기부천사</strong>
-                    <div class="box-name">
-                      <strong class="txt-name"> {{ member_nickname }} </strong>
+                    <div class="area-name">
+                      <div class="link-myprofile">
+                        <strong class="txt-nick">{{ member_level }}기부천사</strong>
+                        <div class="box-name">
+                          <strong class="txt-name"> {{ member_nickname }} </strong>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="area-thumb">
-                    {% if member_profile_badge %}
-                  <a class="link-badge" href="javascript:void(0)">
-                    <span class="badge-thumb">
-                      <img class="img-thumb" src=/{{ member_profile_badge }}>
-                    </span>
-                  </a>
-                    {% endif %}
-                  <a class="link-thumb" href="javascript:void(0)">
+                     <div class="area-thumb">
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %}
+
+                    <a class="link-thumb" href={% url 'mypage:profile' %}>
                     <span class="profile-thumb">
-                      <img class="img-thumb" src=/upload/{{ profile_image }}>
-                    </span>
-                  </a>
-                </div>
-              </div>
+                        <!--  -->
+                     <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src="{{ member.profile_image.url }}"
+                           {% endif %}
+                       {% else %}
+                            src = "{% static 'image/avatar.png' %}"
+                      {% endif %}
+
+                     >
+                        <!--  -->
+
+                  <!--  <img
+                          alt="프로필 사진"
+                          class="img-thumb"
+                          src=/{{ member_profile_image }}
+                        />
+                        -->
+                      </span>
+                    </a>
+                  </div>
+                  </div>
 
               <!-- 뱃지 목록 -->
               <component-section>
@@ -57,19 +81,19 @@
                   <div class="area-badge">
                     <!-- 스탬프 리스트 -->
                     <ul class="list-badge">
-                        {% for badges in www_badge_list %}
+                        {% for badge in www_badge_list %}
                       <li class="my-badge">
-                        <a class="link-badge">
-                          <img class="thumb-badge" alt="진짜 나를 발견왕" src=/{{ badges.badge.badge_image }}>
-                          <strong class="name-badge">{{ badges.badge.badge_name }}</strong>
-                          <span class="num-badge">{{ badge_count }}</span>
+                        <a class="link-badge" id="{{ badge.badge_id }}">
+                          <img class="thumb-badge" alt="진짜 나를 발견왕" src={% get_static_prefix %}{{ badge.badge_image }}>
+                          <strong class="name-badge">{{ badge.badge_name }}</strong>
+                          <span class="num-badge" style="font-size: 13px">{{ badge.badge_total }}회</span>
                         </a>
                       </li>
                         {% endfor %}
                     {% for nobadges in www_nobadge_list %}
                       <li>
-                        <a class="link-badge">
-                          <img class="thumb-badge" alt="그냥 응원하는 그냥이" src=/{{ nobadges.badge_image }}>
+                        <a class="link-badge" id="{{ nobadges.id }}" >
+                          <img class="thumb-badge" alt="그냥 응원하는 그냥이" src={% get_static_prefix %}{{ nobadges.badge_image }}>
                           <strong class="name-badge">{{ nobadges.badge_name }}</strong>
                           <span class="num-badge"></span>
                         </a>
@@ -383,7 +407,7 @@
       <!-- 모달창 보류 -->
       <div tabindex="0" role="dialog" class="dialog-content opened-modal" id="modalOFF"
            style="display: none;">
-          <modal-content>
+          <modal-content class="modal-badge">
               <div class="inner-together-layer inner-together-layer2">
                   <div class="layer-body">
                       <div class="wrap-badge">
@@ -405,11 +429,15 @@
                       </button>
                   </div>
               </div>
-          </modal-content>
+            </modal-content>
       </div>
   </modal>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
 <script src="{% static 'js/mypage/mypage_badge.js'%}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>

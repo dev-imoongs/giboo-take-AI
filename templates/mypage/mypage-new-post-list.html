@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>검색창 검색 결과</title>
+    <title>마이페이지 글 쓴 목록</title>
     <link rel="stylesheet" href="{% static 'css/common/common.css' %}" />
     <link rel="stylesheet" href="{% static 'css/neulhaerang/list.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/search/search-form.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/search/search-input.css' %}" />
-    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage-new-form.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mypage/mypage-new-post-list.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/mypage/mypage_post_list.css'%}">
   </head>
   <body>
     <div id="dkWrap">
@@ -19,69 +19,79 @@
       {% else %}
         {% include 'header/header.html' %}
       {% endif %}
-      <span id="rootContent"
-        ><search
-          ><div id="dkContent" class="cont_search">
-            <div id="mArticle">
-              <div class="group_schkeyword">
-                <form class="form_search ng-untouched ng-pristine ng-valid">
-                  <fieldset>
-                    <div class="box_search">
-                      <input
-                        placeholder="{{ keyword }}"
-                        name="q"
-                        type="text"
-                        id="schKeyword"
-                        class="tf_keyword ng-untouched ng-pristine ng-valid"
-                      />
-                    </div>
-                    <button type="button" class="btn_delete">
-                      <span class="ico_together ico_delete">삭제</span></button
-                    ><button type="submit" class="btn_search">
-                      <span class="ico_together ico_search">검색</span>
-                    </button>
-                  </fieldset>
-                </form>
-              </div>
 
-              <div class="search_cont">
-                <div class="group_schtag">
-                  <strong class="tit_section">태그 <span class="txt_total">3</span></strong>
-                  <div class="hash_group">
-                    <tag-card><a class="link_hash hash_type7">#지구온난화예방</a></tag-card
-                    ><tag-card><a class="link_hash hash_type7">#지구의벗</a></tag-card
-                    ><tag-card><a class="link_hash hash_type3">#지구촌</a></tag-card>
+            <div id="mArticle">
+            <main id="root-content">
+          <main-section>
+            <div id="main-content" class="cont-mypage">
+              <div id="article">
+                <div class="myaction-cont">
+                  <!-- 프로필 -->
+                  <div class="group-profile">
+                    <div class="area-name">
+                      <div class="link-myprofile">
+                        <strong class="txt-nick">{{ member_level }}기부천사</strong>
+                        <div class="box-name">
+                          <strong class="txt-name"> {{ member_nickname }} </strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="area-thumb">
+                      <a class="link-badge" href={% url 'mypage:badge' %}>
+                        <span class="badge-thumb">
+                          <img class="img-thumb" src=/{{ member_profile_badge }}>
+                        </span>
+                      </a>
+                      <a class="link-thumb" href={% url 'mypage:profile' %}>
+                        <span class="profile-thumb">
+                          <img class="img-thumb" src=/upload/{{ profile_image }}>
+                        </span>
+                      </a>
+                    </div>
                   </div>
                 </div>
+
+
+                <!--<div class="group_teamcover">
+                    <div class="area_cover">
+                        <div class="inner_area_cover">
+                            <div class="info_pf">
+                                <div class="pf_thumb">
+                                    <img class="img_thumb" src="https://mud-kage.kakaocdn.net/dn/Pvr3s/btqcPP0eOYe/tTpiXWnD4MkI2DwiJnTCZk/c160.jpg" alt="광진노인종합복지관">
+                                </div>
+                                <div class="desc_cover">
+                                    <em class="txt_team">단체/기관</em>
+                                    <strong class="tit_cover">광진노인종합복지관</strong>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+              </div>-->
+
+
+              <div class="search_cont">
+
 
                 <div class="group_schproject">
                   <div class="search_sort">
                     <strong class="tit_section">늘해랑 <span class="txt_total">147</span></strong>
-                    <div class="sort_cate">
-                      <span class="inner_sort_cate"
-                        ><span class="box_sorting"
-                          ><input
-                            type="radio"
-                            id="sortCate0"
-                            name="sortCate"
-                            value="y"
-                            class="inp_sort ng-untouched ng-pristine ng-valid"
-                          /><label for="sortCate0" class="lab_sort">제목+본문 검색</label></span
-                        ><span class="box_sorting"
-                          ><input
-                            type="radio"
-                            id="sortCate1"
-                            name="sortCate"
-                            value="n"
-                            class="inp_sort ng-untouched ng-pristine ng-valid"
-                          /><label for="sortCate1" class="lab_sort">제목 검색</label></span
-                        ></span
-                      >
-                    </div>
+
                     <div class="box_select">
                       <div class="opt_comm">
-                        <span class="select_option select_on">전체</span
-                        ><select id="opKinds" class="opt_select ng-untouched ng-pristine ng-valid">
+                        <span class="select_option select_on1">전체</span
+                        ><select id="opKinds1" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="ready-fund">펀딩준비중</option>
+                          <option value="funding">모집/펀딩중</option>
+                          <option value="execution">봉사중</option>
+                          <option value="epilogue">후기</option>
+                          <option value="rejected ">미선정</option></select
+                        ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                        <div class="opt_comm">
+                        <span class="select_option select_on2">전체</span
+                        ><select id="opKinds2" class="opt_select ng-untouched ng-pristine ng-valid">
                           <option value="">전체</option>
                           <option value="ready-fund">펀딩준비중</option>
                           <option value="funding">모집/펀딩중</option>
@@ -91,6 +101,8 @@
                         ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                     </div>
+                    </div>
+
                   </div>
                   <ul class="list_fund">
                     <!--후기-->
@@ -358,14 +370,43 @@
 
 
 
-                <search-action-projects
-                  ><div data-tiara-layer="search" class="group_schactions">
-                    <strong class="tit_section"
-                      >모두의 행동 <span class="txt_total">5</span></strong
-                    >
-                    <ul class="list_fund">
+  <div class="search_cont">
+
+
+                <div class="group_schproject">
+                  <div class="search_sort">
+                    <strong class="tit_section">늘하장 <span class="txt_total">{{ total_neulhajang_count }}</span></strong>
+
+                    <div class="box_select">
+                      <div class="opt_comm">
+                        <span class="select_option select_on3">전체</span
+                        ><select id="opKinds3" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="creat-jang">주최한 늘하장</option>
+                          <option value="au-jang">참여한 늘하장</option>
+                          <option value="like-jang">응원한 늘하장</option>
+
+                      </select><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                        <div class="opt_comm">
+                        <span class="select_option select_on4">전체</span
+                        ><select id="opKinds4" class="opt_select ng-untouched ng-pristine ng-valid">
+                          <option value="">전체</option>
+                          <option value="active-jang">행동중인 늘하장</option>
+                          <option value="end-jang">종료된 늘하장</option>
+                          <option value="rejected-jang">미선정된 늘하장</option>
+                        </select><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
+                      </div>
+                    </div>
+                    </div>
+
+                  </div>
+
+
+
+                    <ul class="list_fund ul-data">
                       <!--행동중-->
-                      <li>
+                      <!--<li>
                         <a
                           class="link_pack"
                           ><span class="box_thumb"
@@ -410,9 +451,9 @@
                             </span></span
                           ></a
                         >
-                      </li>
+                      </li>-->
                       <!--행동종료-->
-                      <li>
+                      <!--<li>
                         <a
                           class="link_pack"
                           href="/actions/projects/19"
@@ -459,8 +500,8 @@
                             </span></span
                           ></a
                         >
-                      </li>
-                     
+                      </li>-->
+
                     </ul>
                     <div class="list_more">
                       <button
@@ -474,15 +515,17 @@
                 </search-action-projects>
               </div>
             </div>
+          </main-section>
+                        </main>
           </div></search
         ></span
       >
       <!--footer-->
-      {% include "footer/footer.html" %}
     </div>
+
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/static/js/search/search-input.js"></script>
+<script src="/static/js/mypage/new_mypage_post_list.js"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
 {% else %}

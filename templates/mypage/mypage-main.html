@@ -7,6 +7,7 @@
     <title>마이페이지:기부앤테이크</title>
     <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/mypage/mypage_main.css' %}">
+      <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
   </head>
   <body>
     <div id="whole-wrap">
@@ -33,14 +34,17 @@
                     </div>
                   </div>
                   <div class="area-thumb">
-                    <a class="link-badge-profile" href={% url 'mypage:badge' %}>
-                      <span class="badge-thumb">
-                        <img
-                          class="img-thumb"
-                          src=/{{ member_profile_badge }}
-                        />
-                      </span>
-                    </a>
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %} 
+
                     <a class="link-thumb" href={% url 'mypage:profile' %}>
                     <span class="profile-thumb">
                         <!--  -->
@@ -49,10 +53,10 @@
                            {% if member.profile_image_choice == 'kakao' %}
                                 src="{{ member.profile_image }}"
                            {% else %}
-                               src={{ member.profile_image.url }}
+                               src="{{ member.profile_image.url }}"
                            {% endif %}
                        {% else %}
-                       src = {% static 'image/avatar.png' %}
+                            src = "{% static 'image/avatar.png' %}"
                       {% endif %}
 
                      >
@@ -76,9 +80,7 @@
                 <user-profile>
                   <div class="group-shadow group-donatedetail">
                     <h3 class="title-section section-type2">기부내역</h3>
-                    <button type="button" class="link-round btn-release">
-                      비공개
-                    </button>
+                    <button type="button" class="link-round btn-release">{{ donation_status }}</button>
                     <div class="area-donatedetail">
                       <div class="total-donate">
                         <strong class="title-total">총 기부금</strong>
@@ -126,185 +128,120 @@
                   </div>
                       <!-- 늘해랑/늘하장 -->
                   <!-- 행동을 안했을때 -->
-                  <user-actions>
+                    {% if not feeds %}
+                        <user-actions>
                     <span id="aaa" class="group-shadow group-action-before" >
                       <strong class="title-action">
                         더 나은 세상을 위해<br />
                         함께 할 수 있는 일이 있어요!
                       </strong>
-                      <p class="desc-action">지금 늘해랑/늘하장이 진행중입니다.</p>
+                      <p class="desc-action">지금 늘하장이 진행중입니다.</p>
                       <span class="box-thumbnail">
                         <img
                           src="//t1.kakaocdn.net/together_image/my_action.png"
                           class="img-thumb"
                         />
                       </span>
-                      <a class="link-round" href= {% url 'neulhaerang:list' %} >늘해랑 둘러보기</a>
                         <a class="link-round" href= {% url 'neulhajang:list' %} >늘하장 둘러보기</a>
                     </span>
                   </user-actions>
-                  <!-- /행동을 안했을때 -->
-                  <!-- 행동 내역이 있을때 -->
-                <div id="bbb">
+                    {% else %}
+                         <div id="bbb">
                   <user-actions>
                     <div class="group-shadow group-action-attend">
-                      <h3 class="title-section section-type2"> 나의 늘해랑 목록
-                        <span class="color-g1">{{ member_neulhaerang_count }}</span>
+                      <h3 class="title-section section-type2"> 늘하장 인증피드
+                        <span class="color-g1">{{ feeds_count }}</span>
                       </h3>
                       <actions-list>
                         <ul class="list-actions">
-                                  {% for neulhaerang in www_neulhaerang %}
-                          <li>
+                        {% for feed in feeds %}
+                        <li>
                             <div class="action-content-card">
-                              <a class="link-action-card" href= >
-                                <span class="thumb-action">
-                                  <img alt="이미지" class="img-thumb" 
-                                  src='/upload/{{ neulhaerang.thumbnail_image }}'>
-                                </span>
-                                <div class="info-action">
-                                  <strong class="title-action">{{ neulhaerang.neulhaerang_title }}</strong>
-                                  <p class="desc-action"></p>
-                                  <span class="txt-date">{{ neulhaerang.volunteer_duration_start_date | date:'Y.m.d'}}</span>
-                                </div>
-                              </a>
-                              <button type="button" class="btn-delete"> 삭제 </button>
-                            </div>
-                          </li>
-                            {% endfor %}
-
-{#                          <li>#}
-{#                            <div class="action-content-card">#}
-{#                              <a class="link-action-card" href=" ">#}
-{#                                <span class="thumb-action">#}
-{#                                  <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">#}
-{#                                </span>#}
-{#                                <div class="info-action">#}
-{#                                  <strong class="title-action">게시글 제목</strong>#}
-{#                                  <p class="desc-action"></p>#}
-{#                                  <span class="txt-date">(행동한날짜)2023.00.00</span>#}
-{#                                </div>#}
-{#                              </a>#}
-{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
-{#                            </div>#}
-{#                          </li>#}
-                        </ul>
-                      </actions-list>
-                      <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:post-list' %}> 모든 글 보러가기 </a>
-                      </div>
-                    </div>
-                  </user-actions>
-                </div>
-
-                <!--늘하장--><div id="ccc">
-                  <user-actions>
-                    <div class="group-shadow group-action-attend">
-                      <h3 class="title-section section-type2"> 나의 늘하장 목록
-                        <span class="color-g1">{{ member_neulhajang_count }}</span>
-                      </h3>
-                      <actions-list>
-                        <ul class="list-actions">
-                                  {% for neulhajang in www_neulhajang %}
-                          <li>
-                            <div class="action-content-card">
-                              <a class="link-action-card" href= >
+                              <a class="link-action-card" href="/neulhajang/detail/{{ feed.neulhajang.id }}" >
                                 <span class="thumb-action">
                                   <img alt="이미지" class="img-thumb"
-                                  src='/upload/{{ neulhajang.thumnail_image }}'>
+                                  src='{% get_media_prefix %}{{ feed.feedPhoto }}'>
                                 </span>
                                 <div class="info-action">
-                                  <strong class="title-action">{{ neulhajang.neulhajang_title }}</strong>
-                                  <p class="desc-action">{{ neulhajang.neulhajang_status }}</p>
-                                  <span class="txt-date">{{ neulhajang.neulhajang_duration_start_date | date:'Y.m.d'}}</span>
+                                  <strong class="title-action">{{ feed.neulhajang.neulhajang_title }}</strong>
+                                  <p class="desc-action">{{ feed.feedContent }}</p>
+                                  <span class="txt-date">{{ feed.created_date | date:'Y.m.d'}}</span>
                                 </div>
                               </a>
-                              <button type="button" class="btn-delete"> 삭제 </button>
+{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
                             </div>
                           </li>
-                            {% endfor %}
-
-{#                          <li>#}
-{#                            <div class="action-content-card">#}
-{#                              <a class="link-action-card" href=" ">#}
-{#                                <span class="thumb-action">#}
-{#                                  <img alt="이미지" class="img-thumb" src="../../static/image/mypage/nelhajang_thumbnail01.png">#}
-{#                                </span>#}
-{#                                <div class="info-action">#}
-{#                                  <strong class="title-action">게시글 제목</strong>#}
-{#                                  <p class="desc-action"></p>#}
-{#                                  <span class="txt-date">(행동한날짜)2023.00.00</span>#}
-{#                                </div>#}
-{#                              </a>#}
-{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
-{#                            </div>#}
-{#                          </li>#}
-                        </ul>
+                        {% endfor %}
+                         </ul>
                       </actions-list>
-                      <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:post-list' %}> 모든 글 보러가기 </a>
+                        <div class="list-more">
+                        <a class="link-round" href={% url 'mypage:post-list' %}> 모든 피드 보러가기 </a>
                       </div>
+
                     </div>
                   </user-actions>
                 </div>
+
+                    {% endif %}
+
+                  <!-- /행동을 안했을때 -->
+                  <!-- 행동 내역이 있을때 -->
+
+
                   <!-- /행동 내역이 있을때 -->
                   <!-- 내가 쓴 댓글 -->
-                  <user-comments>
+                {% if total_reply_sorted %}
+                    <user-comments>
                     <div class="group-shadow group-comment comment-type3">
                       <h3 class="title-section section-type2"> 댓글
-                        <span class="color-g1">{{ member_reply_count }}</span>
+                        <span class="color-g1">{{ total_reply_count }}</span>
                       </h3>
                       <ul class="list-comment">
-                          {% for reply_content in www_reply_content %}
+                          {% for reply in total_reply_sorted %}
                         <li>
                           <div class="comment-info">
                             <span class="info-append">
-                              <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href= > {{ reply_content.neulhaerang_review.review_title }} </a>
+                              <em class="emph-sign">{{ reply.type }}</em>
+                                {% if reply.type == "늘해랑" %}
+                                    <a class="link-fund" href= "/neulhaerang/detail/{{ reply.neulhaerang.id }}"> {{ reply.neulhaerang.neulhaerang_title }} </a>
+                                    {% else %}
+                                     <a class="link-fund" href= "/neulhaerang_review/review/detail/{{ reply.neulhaerang_review.id }}"> {{ reply.neulhaerang_review.review_title }} </a>
+                                {% endif %}
+
                             </span>
                             <span class="txt-comment">
-                              <span class="desc-comment">{{ reply_content.reply_content }}</span>
+                              <span class="desc-comment">{{ reply.reply_content }}</span>
                             </span>
                             <span class="info-append">
-                               <span class="txt-time" data-timestamp="{{ reply_content.updated_date|date:"U" }}"></span>
-                              <!--<like-comment>
-                                <button type="button" class="btn-like" >
+
+                                <span class="txt-time" data-timestamp="{{ reply.created_date|date:"U" }}"></span>
+                              <like-comment>
+                                <button style="cursor: default" type="button" class="btn-like" >
                                   <span class="ico-together ico-like"></span>&nbsp;좋아요&nbsp;
-                                  <span class="num-like">2</span>
+                                  <span class="num-like">{{ reply.like_count }}</span>
                                 </button>
-                              </like-comment> -->
-                              <button type="button" class="btn-delete"> 삭제 </button>
+                              </like-comment>
+
+{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
                             </span>
                           </div>
                         </li>
                           {% endfor %}
-                       <!-- <li>
-                          <div class="comment-info">
-                            <span class="info-append">
-                              <em class="emph-sign">모금함</em>
-                              <a class="link-fund" href= > 게시글 제목</a>
-                            </span>
-                            <span class="txt-comment">
-                              <span class="desc-comment">댓글 내용</span>
-                            </span>
-                            <span class="info-append">
-                              <span class="txt-time">방금 전</span>
-                              <like-comment>
-                                <button type="button" class="btn-like on">
-                                  <span class="ico-together ico-like"></span>
-                                  &nbsp;좋아요&nbsp;
-                                  <span class="num-like">1</span>
-                                </button>
-                              </like-comment>
-                              <button type="button" class="btn-delete"> 삭제 </button>
-                            </span>
-                          </div>
-                        </li>-->
+
                       </ul>
-                      <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:reply' %}> 더보기 </a>
+
+                        <div class="list-more">
+                        <a class="link-round" href={% url 'mypage:reply' %}> 모든 댓글 보기 </a>
                       </div>
+
+
                     </div>
                   </user-comments>
+
+                {% endif %}
+
+
+
                   <!-- 뱃지리스트 -->
                   <user-badge-list>
                     <div class="group-shadow group-badge group-badge-type02">
@@ -313,15 +250,15 @@
                         <span class="color-g1">{{ badge_count }}</span>
                       </h3>
                       <ul class="list-badge">
-                          {% for badge in www_badge_content %}
+
+                          {% for badge in www_badge_list %}
                         <li class="my-badge">
-                          <a class="link-badge">
-                            <img class="thumb-badge" src=/{{ badge.badge.badge_image }}
-                            />
-                            <strong class="name-badge">{{ badge.badge.badge_name }}</strong>
-                            <span class="num-badge">1회</span>
-                          </a>
-                        </li>
+                        <a class="link-badge" id="{{ badge.badge_id }}">
+                          <img class="thumb-badge" alt="진짜 나를 발견왕" src={% get_static_prefix %}{{ badge.badge_image }}>
+                          <strong class="name-badge">{{ badge.badge_name }}</strong>
+                          <span class="num-badge" style="font-size: 13px">{{ badge.badge_total }}회</span>
+                        </a>
+                      </li>
                           {% endfor %}
                         <!--<li class="my-badge">
                           <a class="link-badge">
@@ -361,7 +298,7 @@
                         </li> -->
                       </ul>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:badge' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:badge' %}> 모든 뱃지 보기 </a>
                       </div>
                     </div>
                   </user-badge-list>
@@ -376,14 +313,19 @@
                     <ul class="list_meditation">
                         {% for byeoljji_contents in www_byeoljji_content %}
                       <li>
-                          <a class="link_meditation" href= >
+                          <a class="link_meditation" href="/neulhaerang_review/review/detail/{{ byeoljji_contents.byeoljji.neulhaerang.neulhaerangreview_set.first.id  }}" >
                               <span>
-                                  <img class="thumb_img" src=/{{ byeoljji_contents.byeoljji.byeoljji_img }}>
+                                  <img class="thumb_img" src={% get_media_prefix %}{{ byeoljji_contents.byeoljji.byeoljji_img }}>
                               </span>
                               <strong class="tit_meditation">{{ byeoljji_contents.byeoljji.byeoljji_name}}</strong>
                               <span class="txt_option">
-                                  명상가 유정은
-                                  3분
+                                  {% if byeoljji_contents.byeoljji.byeoljji_rank == 1 %}
+                                        최고의 기부천사
+                                      {% elif byeoljji_contents.byeoljji.byeoljji_rank == 2 %}
+                                        감동의 기부천사
+                                      {% else %}
+                                      은은한 기부천사
+                                  {% endif %}
                               </span>
                           </a>
                       </li>
@@ -419,7 +361,7 @@
                   </div>
                 </div>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:byeoljji' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:byeoljji' %}> 모든 별찌 보기 </a>
                       </div>
                     </div>
                   </user-byeoljii-list>
@@ -429,7 +371,7 @@
           </div>
         </main-section>
       </main>
-      <footer></footer>
+      {% include 'footer/footer.html' %}
       <!-- height 100%시 모달 등장 -->
       <div class="dimmed_layer"></div>
     </div>
@@ -489,17 +431,15 @@
   </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 {% if request.session.member_email %}
-
-    <script src="/static/js/header/logined-header.js"></script>
+    <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}
-    <script src="/static/js/header/header.js"></script>
-
+    <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
-<script> let NeulhaerangCount = {{ member_neulhaerang_count }} </script>
-<script> let NeulhajangCount = {{ member_neulhajang_count }} </script>
-
-
-    <script src="../../static/js/mypage/mypage_main.js"></script>
+<script>
+    let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
+<script src="{% static 'js/mypage/mypage_main.js' %}"></script>
 
 </html>
 

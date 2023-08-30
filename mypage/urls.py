@@ -2,7 +2,10 @@ from django.urls import path
 
 from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, MypageSignOutView, \
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
-    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView
+    MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView, \
+    MypageGetAthenticationFeedsByPagedAPIView, MypageDeleteAthenticationFeedAPIView, MypageGetRepliesByPagedAPIView, \
+    MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView
+from mypage.views2 import NewMypagePostListView, NewMypagePostListAPIView
 
 app_name = 'mypage'
 
@@ -19,9 +22,19 @@ urlpatterns = [
     path('reply/', MypageReplyView.as_view(),name = 'reply'),
     path('save_data/', MypageProfileView.save_data, name='save_data'),
     path('donation_list/', DonationListAPIView.as_view(), name='donation_list'),
+    path('get-feeds/', MypageGetAthenticationFeedsByPagedAPIView.as_view(), name='get-feeds'),
+    path('delete-feed/', MypageDeleteAthenticationFeedAPIView.as_view(), name='delete-feed'),
 
+    path('get-replies/', MypageGetRepliesByPagedAPIView.as_view(), name='get-replies'),
 
+    path('delete-reply/', MypageDeleteReplyAPIView.as_view(), name='delete-reply'),
 
+    path('get-byeoljjis/', MypageGetByeoljjisByPagedAPIView.as_view(), name='get-byeoljjis'),
+    path('get-badge-info/', MypageGetBadgeInfoAPIView.as_view(), name='get-badge-info'),
+
+# new post
+    path('new-post-list/', NewMypagePostListView.as_view(), name='new-post-list'),
+    path('new-post-list-api/', NewMypagePostListAPIView.as_view(), name='new-post-list-api'),
 
     # APIView 연결하는곳
     path('change-member-donation-status/',MemberChangeDonationStatusAPIView.as_view(),name= 'change-member-donation-status')

@@ -9,7 +9,7 @@
     <title>작성글 목록:기부앤테이크</title>
     <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
     <link rel="stylesheet" href="{% static 'css/mypage/mypage_post_list.css'%}">
-    <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
 </head>
 <body>
     <div id="whole-wrap">
@@ -18,6 +18,10 @@
     {% else %}
     {% include 'header/header.html' %}
     {% endif %}
+{#    <form id="keywordForm" method="post" action='{% url 'post-list' %}'>#}
+{#    {% csrf_token %}#}
+{#    <input type="hidden" id="keywordInput" name="keyword" value="">#}
+{#    </form>#}
         <main id="root-content">
           <main-section>
             <div id="main-content" class="cont-mypage">
@@ -27,33 +31,59 @@
                   <div class="group-profile">
                     <div class="area-name">
                       <div class="link-myprofile">
-                        <strong class="txt-nick">기부천사</strong>
+                        <strong class="txt-nick">{{ member_level }}기부천사</strong>
                         <div class="box-name">
-                          <strong class="txt-name"> (계정ID) ***** </strong>
+                          <strong class="txt-name"> {{ member_nickname }} </strong>
                         </div>
                       </div>
                     </div>
-                    <div class="area-thumb">
-                      <a class="link-badge" href={% url 'mypage:badge' %}>
-                        <span class="badge-thumb">
-                          <img class="img-thumb" src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png">
-                        </span>
-                      </a>
-                      <a class="link-thumb" href={% url 'mypage:profile' %}>
-                        <span class="profile-thumb">
-                          <img class="img-thumb" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png">
-                        </span>
-                      </a>
-                    </div>
+                     <div class="area-thumb">
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %}
+
+                    <a class="link-thumb" href={% url 'mypage:profile' %}>
+                    <span class="profile-thumb">
+                        <!--  -->
+                     <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src="{{ member.profile_image.url }}"
+                           {% endif %}
+                       {% else %}
+                            src = "{% static 'image/avatar.png' %}"
+                      {% endif %}
+
+                     >
+                        <!--  -->
+
+                  <!--  <img
+                          alt="프로필 사진"
+                          class="img-thumb"
+                          src=/{{ member_profile_image }}
+                        />
+                        -->
+                      </span>
+                    </a>
+                  </div>
                   </div>
                     <div class="myaction-section">
                         <div class="myaction-content">
                             <div class="wrap_tab">
                                     <ul class="list_tab tab_type6">
                                         <li routerlinkactive="on" class="nav-top on">
-                                            <button class="link_tab">
-                                                <span class="txt_tab">전체</span>
-                                            </button>
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">전체</span>#}
+{#                                            </button>#}
                                         </li>
                                         <li routerlinkactive="on" class="nav-top">
                                             <button class="link_tab">
@@ -67,6 +97,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             <div class="inner-myaction-section">
                                 <div id="nav-neulhaerang" class="sort_cate">
                                     <!-- 늘해랑 탭 -->
@@ -75,16 +106,16 @@
                                             <label class="lab_sort">전체</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">주최한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 주최한 행동">늘해랑 주최한 행동</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">참여한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 참여한 행동">늘해랑 참여한 행동</label>
                                         </span>
-                                        <span class="box_sorting">
-                                            <label class="lab_sort">후기</label>
-                                        </span>
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">후기</label>#}
+{#                                        </span>#}
                                          <span class="box_sorting">
-                                            <label class="lab_sort">응원한 행동</label>
+                                            <label class="lab_sort" data-key="늘해랑 응원한 행동">늘해랑 응원한 행동</label>
                                         </span>
                                     </span>
                                 </div>
@@ -96,24 +127,83 @@
                                             <label class="lab_sort">전체</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">주최한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 주최한 행동">늘하장 주최한 행동</label>
                                         </span>
                                         <span class="box_sorting">
-                                            <label class="lab_sort">참여한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 참여한 행동">늘하장 참여한 행동</label>
                                         </span>
                                          <span class="box_sorting">
-                                            <label class="lab_sort">응원한 행동</label>
+                                            <label class="lab_sort" data-key="늘하장 응원한 행동">늘하장 응원한 행동</label>
                                         </span>
                                     </span>
                                 </div>
+                                </form>
+{#                            <div class="wrap_tab">#}
+{#                                    <ul class="list_tab tab_type6">#}
+{#                                           <li routerlinkactive="on" class="nav-top on">#}
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">전체</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                        <li routerlinkactive="on" class="nav-top">#}
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">늘해랑</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                        <li routerlinkactive="on" class="nav-top">#}
+{#                                            <button class="link_tab ">#}
+{#                                                <span class="txt_tab">늘하장</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                </div>-->#}
+                            <div class="inner-myaction-section">
+{#                                <div id="nav-neulhaerang" class="sort_cate">#}
+{#                                    <!-- 늘해랑 탭 -->#}
+{#                                    <span class="inner_sort_cate">#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">전체</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">주최한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">참여한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">후기</label>#}
+{#                                        </span>#}
+{#                                         <span class="box_sorting">#}
+{#                                            <label class="lab_sort">응원한 행동</label>#}
+{#                                        </span>#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                                <!-- 늘해랑 누르면 늘하장탭 hide -->#}
+{#                                <div id="nav-neulhajang" class="sort_cate">#}
+{#                                    <!-- 늘하장 탭 -->#}
+{#                                    <span class="inner_sort_cate">#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">전체</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">주최한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">참여한 행동</label>#}
+{#                                        </span>#}
+{#                                         <span class="box_sorting">#}
+{#                                            <label class="lab_sort">응원한 행동</label>#}
+{#                                        </span>#}
+{#                                    </span>#}
+{#                                </div>#}
                                 <h3 class="tit-section">
-                                    내가 참여한 행동
-                                    <span class="color-g1">5</span>
+                                    인증 피드
+                                    <span class="color-g1"> {{ feeds_count }}</span>
                                 </h3>
                                 <div class="myaction-card-list">
                                     <user-action-list>
                                         <ul class="list-action-card">
-                                            <li>
+                                           <!-- <li>
                                                 <div class="action-content-card">
                                                     <a class="link-action-card"
                                                        href=>
@@ -187,10 +277,10 @@
                                                     </a>
                                                     <button type="button" class="btn-delete"> 삭제 </button>
                                                 </div>
-                                            </li>
+                                            </li>-->
                                         </ul>
-                                        <div class="list-more">
-                                            <button type="button" class="link-round link-other2">더보기</button>
+                                        <div class="list-more" >
+                                            <button type="button" class="link-round link-other2" style="display: none">더보기</button>
                                         </div>
                                     </user-action-list>
                                 </div>
@@ -230,6 +320,10 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+     let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
 <script src="{% static 'js/mypage/mypage_post_list.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
