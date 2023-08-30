@@ -299,7 +299,7 @@ class AdminNeulhajangDetailView(View):
             neulhajang.neulhajang_duration_start_date = timezone.now().date()
             neulhajang.neulhajang_duration_end_date = timezone.now() + timedelta(days=neulhajang.neulhajang_duration)
             neulhajang.save()
-            neulhajang_message = f"늘해랑 제목 : {neulhajang.neulhajang_title}에 대한 검토가 완료되었습니다.!\n" \
+            neulhajang_message = f"늘하장 제목 : {neulhajang.neulhajang_title}에 대한 검토가 완료되었습니다.!\n" \
                                  f"지금 부터 참가자들의 행동이 시작됩니다!"
             Alarm.objects.create(message=neulhajang_message, type="neulhajang", reference_id=neulhajang.id,
                                  member=neulhajang.member)

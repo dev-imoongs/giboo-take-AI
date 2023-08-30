@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core import serializers
-from django.db.models import Sum, F, Count, Value
+from django.db.models import Sum, F, Count, Value, Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -14,7 +14,7 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangInne
     NeulhaerangInnerPhotos, BusinessPlan, NeulhaerangTag, NeulhaerangLike, Byeoljji, NeulhaerangParticipants, \
     NeulhaerangReply, ReplyLike
 from neulhaerang_review.models import NeulhaerangReview
-from static_app.models import Badge
+from static_app.models import Badge, MemberBadge
 from workspace.pagenation import Pagenation, Pagenation
 from workspace.serializers import NeulhaerangSerializer, PagenatorSerializer, NeulhaerangReplySerializer
 
@@ -37,16 +37,16 @@ class NeulhaerangAPIView(APIView):
         sort = request.GET.get("sort")
 
         if(category != '전체'):
-            neulhaerang = Neulhaerang.objects.all().filter(category__category_name=category)
+            neulhaerang = Neulhaerang.objects.all().filter(category__category_name=category,neulhaerang_status="모금중")
         else:
-            neulhaerang = Neulhaerang.objects.all()
+            neulhaerang = Neulhaerang.objects.all().filter(neulhaerang_status="모금중")
 
         if(sort == '추천순'):
-            neulhaerang = neulhaerang.annotate(neulhaerang=Count('neulhaeranglike')).order_by('-neulhaerang','-created_date')
+            neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").annotate(neulhaerang=Count('neulhaeranglike')).order_by('-neulhaerang','-created_date')
         elif(sort == '최신순'):
-            neulhaerang = neulhaerang.order_by('-created_date')
+            neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").order_by('-created_date')
         else:
-            neulhaerang = neulhaerang.order_by('-fund_duration_end_date','-created_date')
+            neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").order_by('-fund_duration_end_date','-created_date')
 
         pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
@@ -62,10 +62,12 @@ class NeulhaerangAPIView(APIView):
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
         my_email = request.session.get('member_email')
+        #이메일 검사
         if(my_email):
             my_member = Member.objects.get(member_email=my_email)
         else:
             my_member = ""
+
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         post_badge = Badge.objects.filter(category_id=post.category_id)[0]
@@ -80,17 +82,15 @@ class NeulhaerangDetailView(View):
         photo_query = NeulhaerangInnerPhotos.objects.filter(neulhaerang_id=neulhaerang_id).order_by('photo_order')
 
         contents = list(inner_title_query) + list(content_query) + list(photo_query)
-
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
 
         sorted_contents = sorted(contents, key=lambda item: item.neulhaerang_content_order)
-
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
         likes_count = NeulhaerangLike.objects.filter(neulhaerang_id=neulhaerang_id).count()
         participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
-        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_id).order_by('-created_date')[0:4]
+        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_id).filter(neulhaerang_status="모금중").order_by('?')[0:4]
 
         neulhaerang_participants = NeulhaerangParticipants.objects.filter(member__member_email=my_email, neulhaerang_id=neulhaerang_id)
         if(neulhaerang_participants):
@@ -104,6 +104,7 @@ class NeulhaerangDetailView(View):
             cheer_status = ''
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
+
         context = {
             'my_member': my_member,
             'post_badge': post_badge,
@@ -124,6 +125,7 @@ class NeulhaerangDetailView(View):
             'post': post,
             'contents': serializers.serialize("json",sorted_contents),
         }
+
         return render(request,'neulhaerang/detail.html', context)
 
 # 댓글
@@ -133,7 +135,14 @@ class NeulhaerangDetailReplyAPIView(APIView):
         my_email = request.session.get('member_email')
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_id = request.GET.get('neulhaerangId')
-        replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        check_donate_reply = request.GET.get('checkDonateReply')
+
+        if(check_donate_reply == "전체"):
+            replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
+        else:
+            replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id,donation__isnull=False)
+        replys_count = replys_queryset.count()
+        print(replys_count)
         if(replyPage==1):
             first_page_replys_id = []
             best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
@@ -152,20 +161,24 @@ class NeulhaerangDetailReplyAPIView(APIView):
             NeulhaerangDetailReplyAPIView.exclude_id_list = first_page_replys_id
             total_replys = list(best_replys)+list(normal_replys)
             replys = NeulhaerangReplySerializer(total_replys, many=True, context={'request': request}).data
-
+            pagenator = Pagenation(page=replyPage, page_count=5, row_count=5, query_set=replys_queryset)
+            serialized_pagenator = PagenatorSerializer(pagenator).data
             datas = {
                 'replys':replys,
-                'replys_count':replys_queryset.count(),
+                'replys_count':replys_count,
+                'serialized_pagenator':serialized_pagenator,
             }
             return Response(datas)
         else:
             replys_queryset = replys_queryset.exclude(id__in=NeulhaerangDetailReplyAPIView.exclude_id_list)
             pagenator = Pagenation(page=replyPage-1, page_count=5, row_count=5, query_set=replys_queryset)
             replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
-
+            serialized_pagenator = PagenatorSerializer(pagenator).data
             datas = {
                 'replys':replys,
-                'replys_count':replys_queryset.count(),
+                'replys_count':replys_count,
+                'serialized_pagenator':serialized_pagenator
+
             }
 
             return Response(datas)
@@ -252,43 +265,59 @@ class NeulhaerangDetailRealtimeFundAmountAPIView(APIView):
             'post':post[0],
             'post_donation_sum':post_donation_sum['sum'],
         }
-        print(datas['post'])
         return JsonResponse(datas)
 
 
 class SuccessPayment(APIView):
     def get(self, request):
-        print('들어왔음')
         my_email = request.session.get('member_email')
         neulhaerang_id = int(request.GET.get('neulhaerangId'))
+        category_id = Neulhaerang.objects.get(id=neulhaerang_id).category_id
         donation_content = request.GET.get('donationContent')
         donation_amount = int(request.GET.get('donationAmount'))
         donation_anonymous = request.GET.get('donationAnonymous')
         member = Member.objects.get(member_email=my_email)
         member_nickname = member.member_nickname
+
         if(donation_anonymous == '비공개'):
             member_nickname = '익명의 기부천사'
 
         if(not donation_content):
-            donation_content='응원합니다'
-        donation = NeulhaerangDonation.objects.create(member=member, donation_amount=donation_amount, donation_content=donation_content,donation_anonymous=donation_anonymous, neulhaerang_id=neulhaerang_id)
+            donation_content = '응원합니다'
+        donation = NeulhaerangDonation.objects.create(member=member, donation_amount=donation_amount,
+                                                      donation_content=donation_content,donation_anonymous=donation_anonymous,
+                                                      neulhaerang_id=neulhaerang_id)
         NeulhaerangReply.objects.create(reply_content=donation_content, member=member, donation=donation, neulhaerang_id=neulhaerang_id)
+        MemberBadge.objects.create(member=member,badge_id=category_id)
         neulhaerang = Neulhaerang.objects.get(id=neulhaerang_id)
         message = f'회원님이 작성한 늘해랑:{neulhaerang.neulhaerang_title}에 \n' \
                   f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
         Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
+        member.update(total_donation_fund=donation_amount, total_donation_count=member.total_donation_count+1)
 
 
         return Response(True)
 
+class NeulhaerangEndStatusAPIView(APIView):
+    def get(self, request):
+        neulhaerang_id = request.GET.get('neulhaerangId')
+        post = Neulhaerang.objects.filter(id=neulhaerang_id,).annotate(donation_sum=Sum('neulhaerangdonation__donation_amount')).values()
+
+        datas = {
+            'post': list(post),
+        }
+
+        return JsonResponse(datas)
 
 
 
 class TestView(View):
     def get(self, request):
+        Neulhaerang.objects.filter(neulhaeranglike__member__member_email='email').annotate(member_nickname=F('member__member_nickname'))
         return render(request, 'neulhaerang/test.html')
     def post(self, request):
         file = request.FILES
+        print(file.get('file'))
         # NeulhaerangInnerPhotos.objects.create(inner_photo=file.get('file'), neulhaerang_content_order=1, photo_order=1, photo_explanation='설명1',neulhaerang_id=7)
         # Neulhaerang.objects.create(member_id=1,neulhaerang_title=f"이미지 테스트",volunteer_duration_start_date=datetime.now()
         #                            ,volunteer_duration_end_date=datetime.now(),category_id=1, thumbnail_image=file.get('file'))

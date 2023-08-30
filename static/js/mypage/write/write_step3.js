@@ -1,3 +1,7 @@
+
+let order = 3
+
+
 function randMintoMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -88,7 +92,54 @@ $('.link_step3').on('click',(e)=>{
         }
 
     })
-    if(innerTitFlag) return
+    if(innerTitFlag) {
+        return
+    }
+
+
+
+
+    //마지막 폼 되기전에 데이터들 input에 삽입하기
+    // $(".start-date span").text
+    $("input[name='title']").val($(".inner_tit").text())
+
+
+    //사진 갯수구하기
+    $("input[name='inner_photo_content_order']").each((i,order)=>{
+        console.log("들어옴")
+        let count =$(order).closest("dd").find("input[name='inner_photo']").length
+        console.log(count)
+        $(order).val($(order).val()+`_${count}`)
+    })
+
+    //태그 필수
+    if($(".tag").filter((i,v)=>!$(v).val()).length!=0){
+        toastMsg("태그 갯수대로 모두 입력해주세요")
+        return;
+    }
+
+
+
+
+    $("form").eq(0).submit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 $(document).ready(function () {
@@ -104,7 +155,7 @@ $(document).ready(function () {
         $txtLength = $(e.target).parent().parent().next()
         $imgdescLength = $(e.target).parent().next()
 
-        if($(e.target).hasClass('tf_link')){
+        if($(e.target).hasClass('tag')){
             $index = $(e.target).parent().parent().index()
             $('.link_hash').eq($index-1).text(`#${$(e.target).val()}`)
         }
@@ -203,7 +254,8 @@ $('.btn-subhead').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <input type="text" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  '      <input type="text"  name="inner_title" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  ` <input type="hidden" name="inner_title_content_order" value="${order++}">\n` +
                   '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
                   '    </div>\n' +
                   '  </div>\n' +
@@ -218,7 +270,9 @@ $('.btn-maintext').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <textarea cols="30" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
+                  '      <textarea cols="30" name="inner_content" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea>' +
+        `<input type="hidden" name="inner_content_content_order" value="${order++}">` +
+        '<button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
                   '  </div>\n' +
                   '  <div class="info_append"><span class="txt_num">0 /</span>1000 </div>\n' +
                   '</dd>'
@@ -227,6 +281,7 @@ $('.btn-maintext').on('click',()=>{
 // 이미지 추가
 $('.btn-addimg').on('click',()=>{
     $addContent = `<dd class="desc_media desc_photo">
+            <input type="hidden" name="inner_photo_content_order" value="${order++}">
     <photo-box>
       <div class="info_group">
         <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
@@ -254,7 +309,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">1</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -262,7 +316,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">2</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -270,7 +323,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">3</span>
               <button type="button" class="btn_photo">
-                
               </button>
             </div>
           </li>
@@ -285,7 +337,8 @@ $('.btn-addimg').on('click',()=>{
           <li>
             <div class="ico_together photo_preview">
               <span class="txt_num">5</span>
-              <button type="button" class="btn_photo"></button>
+              <button type="button" class="btn_photo">
+</button>
             </div>
           </li>
           <li>
@@ -382,14 +435,14 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
     $addContent = '<div class="add_link add_tag">\n' +
                     '  <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>\n' +
                     '      <input placeholder="추가할 태그명을 입력해주세요"\n' +
-                    '             type="text" autocomplete="off"\n' +
-                    '             class="tf_link ng-untouched ng-pristine ng-valid"\n' +
+                    '             type="text" autocomplete="off" name="tag" \n' +
+                    '             class="tf_link tag ng-untouched ng-pristine ng-valid"\n' +
                     '             id="relateTitle0" focus="false" blur="true">\n' +
                     '  </div>\n' +
                     '  <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>\n' +
                     '</div>'
     // 해쉬태그
-    $addContent2 = '<a href="#" class="link_hash"></a>'
+    $addContent2 = '<a class="link_hash"></a>'
     i = randMintoMax(1,10)
 
 
@@ -413,7 +466,7 @@ $('.box_open .list_write .relate_url').last().find('button.box_add').on('click',
     $addContent = '<div class="add_link add_byeol">\n' +
                     '  <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>\n' +
                     '      <input placeholder="기부자에게 제공할 별찌를 입력해주세요."\n' +
-                    '              type="text" autocomplete="off"\n' +
+                    '              type="text" autocomplete="off" name="byeoljji_name"\n' +
                     '              class="tf_link ng-untouched ng-pristine ng-valid"\n' +
                     '              id="relateTitle0" focus="false" blur="true">\n' +
                     '  </div>\n' +
@@ -421,7 +474,7 @@ $('.box_open .list_write .relate_url').last().find('button.box_add').on('click',
                     '      <label class="lab_link" for="relateUrl0">인원\n' +
                     '      </label>\n' +
                     '      <input\n' +
-                    '          placeholder="00명" type="text"\n' +
+                    '          placeholder="00명" type="text" name="byeoljji_count"\n' +
                     '          class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"\n' +
                     '          focus="false" autocomplete="off"\n' +
                     '          blur="true">\n' +

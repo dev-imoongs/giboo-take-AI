@@ -559,7 +559,8 @@ a {
     overflow: hidden;
     position: fixed;
     z-index: 999999;
-    top: 100px;
+    top: 50% !important;
+  transform: translateY(-50%);
     left: 50%;
     margin-left: -205px;
     display: none;
@@ -1001,7 +1002,7 @@ input:checked[type=checkbox] {
   position: absolute;
   width: 360px;
   margin: 15px;
-  top: 482px;
+  top: 554px;
   left: 1px;
   padding: 10px 10px 10px;
   text-align: center;
