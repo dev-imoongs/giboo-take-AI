@@ -62,10 +62,12 @@ class NeulhaerangAPIView(APIView):
 class NeulhaerangDetailView(View):
     def get(self, request, neulhaerang_id):
         my_email = request.session.get('member_email')
+        #이메일 검사
         if(my_email):
             my_member = Member.objects.get(member_email=my_email)
         else:
             my_member = ""
+
         post = Neulhaerang.objects.get(id=neulhaerang_id)
         post_writer_thumb = Neulhaerang.objects.filter(id=neulhaerang_id).values('member__profile_image')[0]
         post_badge = Badge.objects.filter(category_id=post.category_id)[0]
@@ -102,6 +104,7 @@ class NeulhaerangDetailView(View):
             cheer_status = ''
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
+
         context = {
             'my_member': my_member,
             'post_badge': post_badge,
@@ -122,6 +125,7 @@ class NeulhaerangDetailView(View):
             'post': post,
             'contents': serializers.serialize("json",sorted_contents),
         }
+
         return render(request,'neulhaerang/detail.html', context)
 
 # 댓글
@@ -132,11 +136,13 @@ class NeulhaerangDetailReplyAPIView(APIView):
         replyPage = int(request.GET.get('replyPage'))
         neulhaerang_id = request.GET.get('neulhaerangId')
         check_donate_reply = request.GET.get('checkDonateReply')
-        print(check_donate_reply)
+
         if(check_donate_reply == "전체"):
             replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id)
         else:
             replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id,donation__isnull=False)
+        replys_count = replys_queryset.count()
+        print(replys_count)
         if(replyPage==1):
             first_page_replys_id = []
             best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
@@ -155,20 +161,24 @@ class NeulhaerangDetailReplyAPIView(APIView):
             NeulhaerangDetailReplyAPIView.exclude_id_list = first_page_replys_id
             total_replys = list(best_replys)+list(normal_replys)
             replys = NeulhaerangReplySerializer(total_replys, many=True, context={'request': request}).data
-
+            pagenator = Pagenation(page=replyPage, page_count=5, row_count=5, query_set=replys_queryset)
+            serialized_pagenator = PagenatorSerializer(pagenator).data
             datas = {
                 'replys':replys,
-                'replys_count':replys_queryset.count(),
+                'replys_count':replys_count,
+                'serialized_pagenator':serialized_pagenator,
             }
             return Response(datas)
         else:
             replys_queryset = replys_queryset.exclude(id__in=NeulhaerangDetailReplyAPIView.exclude_id_list)
             pagenator = Pagenation(page=replyPage-1, page_count=5, row_count=5, query_set=replys_queryset)
             replys = NeulhaerangReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
-
+            serialized_pagenator = PagenatorSerializer(pagenator).data
             datas = {
                 'replys':replys,
-                'replys_count':replys_queryset.count(),
+                'replys_count':replys_count,
+                'serialized_pagenator':serialized_pagenator
+
             }
 
             return Response(datas)
@@ -268,6 +278,7 @@ class SuccessPayment(APIView):
         donation_anonymous = request.GET.get('donationAnonymous')
         member = Member.objects.get(member_email=my_email)
         member_nickname = member.member_nickname
+
         if(donation_anonymous == '비공개'):
             member_nickname = '익명의 기부천사'
 
@@ -282,6 +293,7 @@ class SuccessPayment(APIView):
         message = f'회원님이 작성한 늘해랑:{neulhaerang.neulhaerang_title}에 \n' \
                   f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
         Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
+        member.update(total_donation_fund=donation_amount, total_donation_count=member.total_donation_count+1)
 
 
         return Response(True)

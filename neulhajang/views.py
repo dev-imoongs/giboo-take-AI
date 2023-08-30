@@ -38,7 +38,7 @@ class NeulhajangListAPIView(APIView):
     def get(self, request):
         page = int(request.GET.get("Page"))
         # 전체
-        neulhajang = Neulhajang.objects.all()
+        neulhajang = Neulhajang.objects.filter(neulhajang_status='행동중')
 
         pagenator = Pagenation(page=page, page_count=5, row_count=7, query_set=neulhajang)
         posts = NeulhajangSerializer(pagenator.paged_models, many=True).data
@@ -59,7 +59,7 @@ class NeulhajangDetailView(View):
         inner_title_query = NeulhajangInnerTitle.objects.filter(neulhajang_id=neulhajang_id)
         content_query = NeulhajangInnerContent.objects.filter(neulhajang_id=neulhajang_id)
         photo_query = NeulhajangInnerPhoto.objects.filter(neulhajang_id=neulhajang_id)
-        bottom_posts = Neulhajang.objects.exclude(id=neulhajang_id).order_by('-id')[0:6]
+        bottom_posts = Neulhajang.objects.exclude(id=neulhajang_id).order_by('?')[0:6]
         # 남은 일자 구하기
         end_date = Neulhajang.objects.filter(id=neulhajang_id).values()[0]['neulhajang_duration_end_date']
         if end_date:
