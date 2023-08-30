@@ -25,7 +25,7 @@
                 <div class="project-detail-information">
                     <div class="project-cover-story">
                         <div class="project-cover-story-label-container">
-                            <em class="remain-date-label"><svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>283일 남음</em>
+                            <em class="remain-date-label"><svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>{{ period_to_end }}일 남음</em>
                             <a href="" class="tag-label-link">
                                 <div class="tag-label-text"># {{ post.representing_tag }}</div>
                             </a>
@@ -60,10 +60,14 @@
                     <!--- 제안자 프로필 부분 --->
                     <div class="provider-information">
                         <div class="provider-profile">
-                            {% if post.member.profile_image_choice == 'user' %}
-                            <div class="provider-profile-image" style="background: url('/upload/{{ post.member.profile_image }}') 50% 50% / cover no-repeat";></div>
+                            {% if not post.member.profile_image %}
+                                <div class="provider-profile-image" style="background: url('{% get_static_prefix %}image/avatar.png') 50% 50% / cover no-repeat";></div>
                             {% else %}
-                             <div class="provider-profile-image" style="background: url('{{ post.member.kakao_profile_image }}') 50% 50% / cover no-repeat";></div>
+                                {% if post.member.profile_image_choice == 'user' %}
+                                    <div class="provider-profile-image" style="background: url('{% get_media_prefix %}{{ post.member.profile_image }}') 50% 50% / cover no-repeat";></div>
+                                {% else %}
+                                    <div class="provider-profile-image" style="background: url('{{ post.member.kakao_profile_image }}') 50% 50% / cover no-repeat";></div>
+                                {% endif %}
                             {% endif %}
                             <div>
                                 <strong class="provider-name-text">{{ post.member.member_nickname }}</strong>
@@ -83,7 +87,7 @@
                                     <path d="M18.02 9.62a1 1 0 0 1 1.677 1.082l-.068.106-6.066 8.21a1 1 0 0 1-1.443.175l-.09-.085-3.506-3.73a1 1 0 0 1 1.366-1.456l.091.086 2.685 2.857 5.354-7.246z" fill="#fff" fill-rule="nonzero"></path>
                                 </g>
                             </svg>
-                            자전거로 탄소 감축 인증
+                            행동 인증
                         </strong>
                         <ul class="action-image-list">
                <!--             <li class="action-image-list-item">
@@ -395,7 +399,7 @@
                         </g>
                     </svg>
                     <div role="text">행동 인증
-                        <span padding="[object Object]" class="sc-8aeb359-0 dxHAmn sc-5dc55ca7-0 jhsjgK">26,209</span>
+                        <span padding="[object Object]" class="sc-8aeb359-0 dxHAmn sc-5dc55ca7-0 jhsjgK">{{ authentication_feed_count }}</span>
                         <span class="sc-695c2ba5-0 WfZZU">개</span>
                     </div>
                 </h5>
@@ -442,20 +446,41 @@
                     <div class="action-image-wrap">
                     </div>
                 </div>
+                <div class="more_action_list_button">
+                    <button type="button" color="transparent" class="more_list_button">
+                        <span class="WfZZU">더보기</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 80" width="40" height="40" opacity="1" class="sc-62ee9b1b-0 cNedZj">
+                            <g fill="none" fill-rule="evenodd">
+                                <g transform="translate(6 4)">
+                                    <use fill="#000" filter="url(#a)" xlink:href="#b"></use>
+                                    <circle stroke="#E1E1E1" stroke-width="2" stroke-linejoin="round" fill="#FFF" cx="34" cy="34" r="33"></circle>
+                                </g>
+                                <g stroke="#202020" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M40.648 24.625v26M30 41.828 40.648 52.11l10.205-10.28"></path>
+                                </g>
+                                <g fill="#202020" fill-rule="nonzero">
+                                    <path d="M40.648 23.625a1 1 0 0 1 .994.883l.006.117v26a1 1 0 0 1-1.993.117l-.007-.117v-26a1 1 0 0 1 1-1z"></path>
+                                    <path d="M29.28 41.134a1 1 0 0 1 1.319-.107l.096.082 9.938 9.595 9.51-9.58a1 1 0 0 1 1.32-.088l.095.082a1 1 0 0 1 .088 1.32l-.083.095-10.205 10.28a1 1 0 0 1-1.31.097l-.094-.081-10.649-10.281a1 1 0 0 1-.024-1.414z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
             </div>
                 <!--작성하기 모달창-->
                 <div class="action-write-modal-base">
                     <div class="action-write-modal-container">
                         <h5 class="action-write-modal-title">행동하기</h5>
                         <div class="action-write-modal-body">
-                            <form class="multi-action-form">
+                            <form class="multi-action-form" action="{% url 'neulhajang:detail' post.id %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 <div class="project-simple-information">
                                     <div class="project-simple-information-thumbnail" style="background-image: url('/upload/{{ post.thumnail_image }}')"></div>
                                     <strong class="project-simple-information-title">{{ post.neulhajang_title }}</strong>
                                 </div>
                                 <div class="image-file-attach-container">
                                     <button type="button" class="image-file-upload-button">
-                                        <input accept="image/*,.jpeg,.png" style="display: none">
+                                        <input id="file-input" name="upload_file" type="file" accept="image/*,.jpeg,.png" style="display: none">
                                         <svg class="image-file-upload-button-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 42 40">
                                             <g transform="translate(0 4.051)" fill="#202020" fill-rule="evenodd">
                                                 <path d="M24.734 0h-7.48a4.5 4.5 0 0 0-3.15 1.286l-2.57 2.52a.5.5 0 0 1-.35.143H4.5a4.5 4.5 0 0 0-4.5 4.5v20a4.5 4.5 0 0 0 4.5 4.5h33a4.5 4.5 0 0 0 4.5-4.5v-20a4.5 4.5 0 0 0-4.5-4.5h-6.65a.5.5 0 0 1-.348-.14l-2.646-2.55A4.5 4.5 0 0 0 24.734 0zm-7.48 3h7.48a1.5 1.5 0 0 1 1.04.42l2.647 2.55a3.5 3.5 0 0 0 2.428.979H37.5a1.5 1.5 0 0 1 1.5 1.5v20a1.5 1.5 0 0 1-1.5 1.5h-33a1.5 1.5 0 0 1-1.5-1.5v-20a1.5 1.5 0 0 1 1.5-1.5h6.683a3.5 3.5 0 0 0 2.45-1l2.572-2.52A1.5 1.5 0 0 1 17.255 3z" fill-rule="nonzero"></path>
@@ -468,7 +493,7 @@
                                     <!--첨부파일 리스트 첨부파일을 등록하면 ul 안에 li가 생김-->
                                     <ul class="image-file-upload-list">
                                         <li class="image-file-upload-item">
-                                            <img src="" class="upload-image">
+                                            <!-- img 태그 생성되는 위치-->
                                             <button type="button" class="image-file-delete-button">
                                                 <svg class="image-file-delete-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
                                                     <g fill="none" fill-rule="evenodd">
@@ -492,7 +517,7 @@
                                     </div>
                                 </div>
                                 <ul class="action-form-guide-list">
-                                    <li class="action-form-guide-item">사진은 10MB 이내, 최대 5장까지 첨부 가능합니다.</li>
+                                    <li class="action-form-guide-item">사진은 10MB 이내, 최대 1장까지 첨부 가능합니다.</li>
                                     <li class="action-form-guide-item">미션 내용이 맞지 않거나 게시글 정책을 위반한 경우 삭제됩니다.</li>
                                 </ul>
                                 <div class="action-write-form-button-group-container">
@@ -5465,7 +5490,7 @@
                         {% for bottom_post in bottom_posts %}
                         <div class="content-card-base">
                             <a href="{% url 'neulhajang:detail' bottom_post.id %}" class="content-card-inner">
-                                <div class="content-card-thumbnail"></div>
+                                <div class="content-card-thumbnail" style="background-image: url({% get_media_prefix %}{{ bottom_post.thumnail_image }})"></div>
                                 <div class="content-card-content">
                                     <strong class="content-card-title">{{ bottom_post.neulhajang_title }}</strong>
                                     <div class="active-action-section-participants-count">
@@ -5633,10 +5658,14 @@
     </div>
 {% include 'footer/footer.html' %}
 </body>
-<script> let email = "{{ request.session.member_email }}"</script>
 <script>
-    let participateTargetAmount = "{{ participate_target_amount }}";
-    let authenticationFeedCount = "{{ authentication_feed_count }}";
+    let email = "{{ request.session.member_email }}"
+    const staticUrl = "{% get_static_prefix %}"
+    const mediaUrl = "{% get_media_prefix %}"
+</script>
+<script>
+//    let participateTargetAmount = "{{ participate_target_amount }}";
+//    let authenticationFeedCount = "{{ authentication_feed_count }}";
     let innerContents = "{{ inner_contents|escapejs }}";
     const neulhajangId = "{{ neulhajang_id }}"
     const parsedInnerContents = JSON.parse(innerContents)

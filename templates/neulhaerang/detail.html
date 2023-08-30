@@ -33,7 +33,7 @@
                     <div class="badge_group">
                       <button type="button" class="link_badge">
                         <img class="thumb_badge"
-                          src="/{{ post_badge.badge_image }}"
+                          src="{% get_static_prefix %}{{ post_badge.badge_image }}"
                           alt="{{ post_badge.badge_name }}"/>
                       </button>
                     </div>
@@ -444,7 +444,7 @@
                     >당신은 같이가치의 히어로!<br />기부하고 다양한 스탬프를 모아보세요.</strong
                   ><img
                     class="thumb_badge"
-                    src="/{{ post_badge.badge_image }}"
+                    src="{% get_static_prefix %}{{ post_badge.badge_image }}"
                   /><strong class="name_badge">{{ post_badge.badge_name }}</strong>
                   <p class="txt_badge">
                       {{ post_badge.badge_content }}

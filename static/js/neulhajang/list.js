@@ -1,5 +1,4 @@
 let page = 1
-
 const showNeulhajangList = (page) => {
         fetch(`/neulhajang/neulhajang-list-api-view/?Page=${page}`)
         .then(response => response.json())
@@ -8,12 +7,12 @@ const showNeulhajangList = (page) => {
             let posts = result.posts
             posts.forEach((post,i)=>{
                 console.log(post)
-                let percentage = post.authentication_count/post.participants_target_amount * 100
+                let percentage = Math.ceil(post.authentication_count/post.participants_target_amount * 100);
                 if(!percentage) percentage=0
                 const post_url = baseUrl.replace(0, neulhajang_id=post.id);
                 addText += `<div class="card-base">
                               <div class="card-header">
-                                <div class="card-thumbnail" style="background-image: url(${post.thumnail_image})"></div>
+                                <div class="card-thumbnail" style="background-image: url(${mediaUrl}${post.thumnail_image})"></div>
                                 <div class="card-top-label" aria-hidden="true">
                                   <em type="circle" class="top-label-text">${percentage}% 달성</em>
                                 </div>
@@ -32,7 +31,7 @@ const showNeulhajangList = (page) => {
                                     후손에게 마음을 전하는 태극기 달기! 함께 행동해 볼까요?
                                   </p>
                                   <div class="card-proposer-container">
-                                    <div class="card-proposer-profile" style="background-image: url('/upload/${post.member_profile_image}')"></div>
+                                    <div class="card-proposer-profile" style="background-image: url('${mediaUrl}${post.member_profile_image}')"></div>
                                     <strong class="card-proposer-name">${post.member_nickname}</strong>
                                   </div>
                                 </div>

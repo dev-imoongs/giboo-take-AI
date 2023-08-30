@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models import Sum, Count
 from rest_framework import serializers
 
@@ -8,9 +9,8 @@ from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangRepl
 
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation
 from neulhaerang_review.models import NeulhaerangReview, NeulhaerangReviewReply, ReviewReplyLike
-from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, AuthenticationFeedLike
 from notice.models import Notice
-
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -124,6 +124,31 @@ class NeulhajangSerializer(serializers.ModelSerializer):
     class Meta:
         model = Neulhajang
         fields = '__all__'
+
+class AuthenticationFeedSerializer(serializers.ModelSerializer):
+    member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
+    feed_like_count = serializers.SerializerMethodField(method_name='action_feed_like_count',read_only=True)
+    my_like = serializers.SerializerMethodField(method_name='check_my_like',read_only=True)
+    image_url = serializers.SerializerMethodField()
+    def action_feed_like_count(self, authenticationfeed):
+        authentication_feed_like_count = AuthenticationFeedLike.objects.filter(authentication_feed=authenticationfeed).aggregate(Count('id'))
+        return format(authentication_feed_like_count['id__count'],",")
+    def check_my_like(self, authenticationfeed):
+        request = self.context.get('request')
+        my_email = request.session.get('member_email', None)
+        my_feed_like = AuthenticationFeedLike.objects.filter(member__member_email=my_email, authentication_feed=authenticationfeed)
+        if (my_feed_like):
+            return True
+        return False
+    class Meta:
+        model = NeulhajangAuthenticationFeed
+        fields = '__all__'
+
+    def get_image_url(self, obj):
+        # 이미지 필드에 대한 경로 생성 시, MEDIA_URL 제외
+        return obj.feedPhoto.url[len(settings.MEDIA_URL):]
+
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='neulhaerang.member.member_nickname', read_only=True)

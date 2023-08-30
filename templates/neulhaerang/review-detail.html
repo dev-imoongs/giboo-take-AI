@@ -35,7 +35,7 @@
                       <button type="button" class="link_badge">
                         <img
                           class="thumb_badge"
-                          src="/{{ post_badge.badge_image }}"
+                          src="{% get_static_prefix %}{{ post_badge.badge_image }}"
                           alt="{{ post_badge.badge_name }}"/>
                       </button>
                     </div>
@@ -635,8 +635,8 @@
                     >당신은 같이가치의 히어로!<br />기부하고 다양한 스탬프를 모아보세요.</strong
                   ><img
                     class="thumb_badge"
-                    src="https://mud-kage.kakaocdn.net/dn/bzTQmA/btqcJUAvEOE/wH8jPKYXKobYQDkuLdeTt1/img.png"
-                  /><strong class="name_badge">힘내라 힘</strong>
+                    src="{% get_static_prefix %}{{ post_badge.badge_image }}"
+                  /><strong class="name_badge">{{ post_badge.badge_name }}</strong>
                   <p class="txt_badge">
                     의식주 걱정없이 살아가는 세상을 만들어요. '기본 생활 지원' 프로젝트에
                     기부해보세요.
