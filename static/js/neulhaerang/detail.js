@@ -433,16 +433,18 @@ function postContent(contents) {
         console.log(content.fields.neulhaerang_content_order !== multiImgflag)
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang.neulhaeranginnertitle') {
-                addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
+                addtext = `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
+                $('.cont_subject').append(addtext);
             } else if (content.model == 'neulhaerang.neulhaeranginnercontent') {
-                addtext += `<p class="desc_subject">${content.fields.inner_content_text}</p>`;
+                addtext = `<p class="desc_subject">${content.fields.inner_content_text}</p>`;
+                $('.cont_subject').append(addtext);
             } else {
-                addtext += `<div class="photo_slide">
+                addtext = `<div class="photo_slide">
                               <div class="inner_photo">
                                 <ul class="list_photo">
                                   <li>
                                     <span class="img_slide"
-                                          style="background-image: url('/upload/${content.fields.inner_photo}');">
+                                          style="background-image: url('${mediaUrl}${content.fields.inner_photo}');">
                                     </span>
                                     <span class="txt_caption">${content.fields.photo_explanation}</span>
                                   </li>
@@ -461,8 +463,9 @@ function postContent(contents) {
                               </button>
                             </div>
                             </div>`;
+                $('.cont_subject').append(addtext);
             }
-            $('.cont_subject').html(addtext);
+
        }else{
             console.log('들어왔냐?')
             let addtext2 = `<li>
