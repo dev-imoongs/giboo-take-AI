@@ -48,9 +48,6 @@ $btn_participate.on("click", e => {
     if($('.ico_share').hasClass('on'))
     {
         neulhaerangDetailParticipateView()
-        $('.ico_share').removeClass('on');
-        $('.txt_share').removeClass('on');
-        $('.txt_share .num_active').removeClass('on');
     }
     else{
         $dimedLayer.css('height', "100%");
@@ -142,6 +139,7 @@ $(".btn_give").on("click", e => {
     $fund_modal.css("display", "flex")
     $dimedLayer.css("height", "100%")
     $fund_modal.addClass("opend_modal")
+
 })
 
 $(".btn_close").on("click",e=>{
@@ -414,21 +412,6 @@ function Function3(plans) {
 }
 Function3(parsedPlan)
 
-function Function2(target_amounts, total_fund){
-    const formattedAmount = target_amounts[0].fields.target_amount.toLocaleString('ko-KR');
-    $('.txt_goal').text(`${formattedAmount}원 목표`)
-    $('.num_goal').text(`${formattedAmount}원`)
-    $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
-    let percentage = Math.ceil(total_fund / target_amounts[0].fields.target_amount * 100)
-    $('.mark_point').attr('style',`left:${percentage}%`)
-    $('.sign_graph').attr('style',`width:${percentage}%`)
-    $('.num_per').text(percentage)
-    if(percentage == 100){
-        $('.chart_fund').addClass('fund_end')
-    }
-}
-
-Function2(parsedAmount,parsedAmountSum)
 
 function postContent(contents) {
     let addtext = "";
@@ -547,38 +530,29 @@ const neulhaerangDetailReplyView = (replyPage,btn_more)=>{
             reply_count = result.replys_count
             let replyText = ""
             replys.forEach((reply,i)=>{
-                console.log(reply)
             replyText += `<li>
                           <button class="link_profile">`
                             if(!reply.check_anonymous){
                                 if(reply.member_profile_choice == 'user'){
-                                replyText += `<img
-                                src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
-                                class="img_thumb"
-                                />`
+                                    replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}member/profile/08/28/avatar_angel.png`}"
+                                        class="img_thumb"/>`
                                 }
                                 else{
-                                    replyText += `<img
-                                    src="${reply.member_kakao_profile}"
-                                    class="img_thumb"/>`
+                                    replyText += `<img src="${reply.member_kakao_profile}" class="img_thumb"/>`
                                 }
                             }else{
                                 if(reply.check_anonymous == '공개'){
                                     if(reply.member_profile_choice == 'user'){
-                                      replyText += `<img
-                                    src="${reply.reply_member_thumbnail?`/upload/${reply.reply_member_thumbnail}`:'https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'}"
-                                    class="img_thumb"/>`
+                                      replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}member/profile/08/28/avatar_angel.png`}"
+                                                    class="img_thumb"/>`
                                     }
                                     else{
-                                    replyText += `<img
-                                    src="${reply.member_kakao_profile}"
-                                    class="img_thumb"/>`
+                                        replyText += `<img src="${reply.member_kakao_profile}" class="img_thumb"/>`
                                     }
                                 }else{
                                       replyText += `<img
-                                    src='https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png'
-                                    class="img_thumb"
-                                    />`
+                                    src="${mediaUrl}member/profile/2023/08/28/avatar_angel.png"
+                                    class="img_thumb"/>`
                                 }
                             }
 
@@ -689,6 +663,7 @@ const neulhaerangDetailParticipateView = () => {
         .then(result => {
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
+            console.log(result.check_toast)
             if (result.check_toast) {
                 toastMsg('최대 동참 인원을 초과하였습니다.')
                 $('.ico_share').removeClass('on');
@@ -696,12 +671,51 @@ const neulhaerangDetailParticipateView = () => {
                 $('.txt_share .num_active').removeClass('on');
             }
             else{
-                $('.ico_share').addClass('on');
-                $('.txt_share').addClass('on');
-                $('.txt_share .num_active').addClass('on');
+                $('.ico_share').toggleClass('on');
+                $('.txt_share').toggleClass('on');
+                $('.txt_share .num_active').toggleClass('on');
             }
             $(`.txt_share .num_active`).text(`${participate_count}/${participate_max.participants_max_count}`)
 
 
         })
 }
+
+const neulhaerangEndDateStatusAPIView = () =>{
+    fetch(`/neulhaerang/detail-enddate/?neulhaerangId=${neulhaerangId}`)
+        .then(response => response.json())
+        .then(result => {
+            const post = result.post[0]
+            // 현재 모금액, 목표 모금액, 비율
+            const targetAmount = post.target_amount
+            const totalFund = post.donation_sum
+            const percentage = Math.ceil(totalFund / targetAmount * 100)
+
+            // 종료인지 유무
+            const endDateString = post.fund_duration_end_date;
+            const endDate = new Date(endDateString);
+            const currentDate = new Date();
+            const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
+            const exceptTimeCurrentDate = new Date(currentDateString)
+
+            // 두 날짜 객체 간의 시간 차이 계산 (밀리초 단위)
+            let timeDifference = endDate - exceptTimeCurrentDate;
+            // 시간 차이를 일 단위로 변환
+            // datefield로 보낸날짜 endDate는 9시간이 추가되어있음 9시간 차이는 0.375 차이
+            let daysDifference = timeDifference / (1000 * 60 * 60 * 24) - 0.375;
+
+            // 현재 모금액, 목표 모금액, 비율 입력
+            $('.txt_goal').text(`${targetAmount.toLocaleString()}원 목표`)
+            $('.num_goal').text(`${targetAmount.toLocaleString()}원`)
+            $('.total_fund').html(`${totalFund.toLocaleString()}<span class="txt_won">원</span>`)
+            $('.mark_point').attr('style',`left:${percentage}%`)
+            $('.sign_graph').attr('style',`width:${percentage}%`)
+            $('.num_per').text(percentage)
+            if(percentage == 100){
+                $('.chart_fund').addClass('fund_end')
+            } else if(daysDifference <= 0) {
+                $('.chart_fund').addClass('fund_fail')
+            }
+        })
+}
+neulhaerangEndDateStatusAPIView()

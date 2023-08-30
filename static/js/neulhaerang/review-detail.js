@@ -269,6 +269,19 @@ $(document).ready(()=> {
             arrowBtnClickSlide(btn_next)
         })
     })
+    $(document).on('click',(e)=>{
+        if ($(e.target).hasClass('ico_like')) {
+            $(e.target).parent().toggleClass('on')
+            reply_id = $(e.target).parent().prev().attr('id')
+        } else if ($(e.target).hasClass('btn_like')) {
+            $(e.target).toggleClass('on')
+            reply_id = $(e.target).prev().attr('id')
+        } else if ($(e.target).hasClass('num_like')) {
+            return
+        }
+        neulhaerangReviewDetailReplyLikeView(reply_id)
+    })
+
 })
 reviewInnerContent(parsedReviewInnerContents);
 
@@ -444,22 +457,12 @@ function fundUsage(histories) {
 }
 fundUsage(parsedUsageHistory)
 
-function btnLikeOn(){
-    $('.btn_like').on('click',(e)=>{
-
-        if($(e.target).hasClass('ico_like')){
-            $(e.target).parent().toggleClass('on')
-            reply_id = $(e.target).parent().prev().attr('id')
-        }else if($(e.target).hasClass('btn_like')){
-            $(e.target).toggleClass('on')
-            reply_id = $(e.target).prev().attr('id')
-        }else if($(e.target).hasClass('num_like')){
-            return
-        }
-
-        neulhaerangReviewDetailReplyLikeView(reply_id)
-    })
-}
+// function btnLikeOn(){
+//     $('.btn_like').on('click',(e)=>{
+//
+//
+//     })
+// }
 
 function elapsedTime(date) {
   const start = new Date(date);
@@ -497,7 +500,7 @@ const neulhaerangReviewDetailReplyView = (replyPage, btn_more)=> {
         .then(result => {
             replys = result.replys
             reply_count = result.replys_count
-            console.log(replys)
+
             let replyText = ""
             replys.forEach((reply,i)=>{
             replyText += `<li>
@@ -550,7 +553,7 @@ const neulhaerangReviewDetailReplyView = (replyPage, btn_more)=> {
             else{
                 $('.list_cmt').html(replyText)
             }
-            btnLikeOn()
+            // btnLikeOn()
             deleteReply()
             $('.inner_info .emph_sign').html(reply_count)
         })
@@ -585,7 +588,6 @@ const neulhaerangReviewDetailReplyLikeView = (reply_id) => {
         .then(result => {
             console.log('사용됐나?')
             $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
-
         })
 
 }

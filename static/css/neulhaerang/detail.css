@@ -1759,6 +1759,10 @@ button {
     background-color: #dc287c;
 }
 
+.fund_float .btn_end_give {
+    background-color: #666;
+}
+
 .fund_float .btn_g:last-of-type {
     width: 50%;
     border-radius: 0 4px 4px 0;
@@ -2741,6 +2745,9 @@ button {
     text-align: left;
 }
 .fund_float .btn_give .txt_float {
+    padding-top: 20px;
+}
+.fund_float .btn_end_give .txt_float {
     padding-top: 20px;
 }
 .info_state .ico_chart {
