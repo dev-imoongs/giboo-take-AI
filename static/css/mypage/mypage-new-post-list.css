@@ -734,3 +734,7 @@
     height: 100%;
     border-radius: 50%;
 }
+
+.myaction-cont {
+    background-color: #efefef;
+}
