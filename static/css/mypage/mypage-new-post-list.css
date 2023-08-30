@@ -1,0 +1,740 @@
+.group_schproject {
+    padding-top: 47px;
+}
+
+.group_schproject .search_sort {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin: 8px auto -5px;
+    vertical-align: top;
+}
+
+.search_sort {
+    height: 44px;
+}
+
+.tit_section {
+    display: block;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    box-sizing: border-box;
+}
+.search_cont .tit_section {
+    font-size: 20px;
+}
+
+.group_schproject .search_sort .tit_section {
+    float: left;
+    padding-top: 10px;
+}
+
+.search_cont .tit_section .txt_total {
+    color: #dc287c;
+}
+
+.sort_cate {
+    overflow: hidden;
+    width: 1000px;
+    height: 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.group_schproject .search_sort .sort_cate {
+    float: left;
+    width: auto;
+    height: auto;
+    margin-top: 0;
+    padding: 9px 0 0 30px;
+    text-align: left;
+}
+.sort_cate .inner_sort_cate {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+}
+
+.cont_search .sort_cate .inner_sort_cate {
+    padding: 0 18px;
+}
+
+.sort_cate .box_sorting {
+    float: left;
+    position: relative;
+}
+
+.box_sorting .inp_sort {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: .01;
+}
+
+.box_sorting .lab_sort {
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.box_sorting .inp_sort:checked+.lab_sort {
+    font-family: KakaoBig Bold;
+    color: #444;
+}
+
+.box_sorting .inp_sort:checked+.lab_sort:before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: #444;
+    content: "";
+}
+
+.group_schproject .box_sorting .inp_sort:checked+.lab_sort:before, .group_schproject .sort_on .inp_sort+.lab_sort:before {
+    background-color: #dc287c;
+}
+.box_sorting .inp_sort:checked+.lab_sort:before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: #444;
+    content: "";
+}
+
+.sort_cate .box_sorting {
+    float: left;
+    position: relative;
+}
+
+.cont_search .box_sorting+.box_sorting {
+    margin-left: 30px;
+}
+
+.box_sorting .inp_sort {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: .01;
+}
+
+.box_sorting .lab_sort {
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.search_sort .box_select {
+    float: right;
+    width: 262px;
+    height: 44px;
+}
+.group_schproject .box_select {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    width: 300px;
+    height: 32px;
+    display: flex;
+}
+
+.opt_comm {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    font-size: 12px;
+    line-height: 44px;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.group_schproject .opt_comm {
+    border-radius: 5px;
+    height: 100%;
+    line-height: 32px;
+    margin: 3px 3px 3px 3px;
+}
+
+.opt_comm .select_option {
+    overflow: hidden;
+    right: 0;
+    margin: 0 30px 0 12px;
+    padding: 0;
+    line-height: 44px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.opt_comm .opt_select, .opt_comm .select_option {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.group_schproject .opt_comm .select_option {
+    margin-left: 10px;
+    font-size: 15px;
+    line-height: 32px;
+}
+
+.opt_comm .opt_select, .opt_comm .select_option {
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.opt_comm .opt_select {
+    display: block;
+    z-index: 10;
+    top: 0;
+    height: 44px;
+    width: 100%;
+    border: 0;
+    background: none;
+    -webkit-appearance: none;
+    opacity: .01;
+    filter: alpha(opacity=0);
+}
+
+
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+
+.opt_comm .box_arrow {
+    position: absolute;
+    right: 0;
+    width: 29px;
+    height: 44px;
+    background-color: #fff;
+}
+
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+
+.opt_comm .ico_arrow {
+    width: 12px;
+    height: 8px;
+    margin: 17px 0 0 7px;
+    background-position: -236px -116px;
+}
+
+.group_schproject .opt_comm .ico_arrow {
+    width: 20px;
+    height: 10px;
+    margin-top: 12px;
+    margin-left: 0;
+    background-position: -116px -52px;
+    transform: scale(.8);
+}
+
+.tag_bundle {
+    position: absolute;
+    top: -123px;
+    left: 10px;
+    max-width: 200px;
+}
+
+.cont_mypage .list_fund .tag_bundle, .cont_search .list_fund .tag_bundle {
+    display: flex;
+    top: -32px;
+    left: 12px;
+    grid-gap: 2px;
+    gap: 2px;
+}
+
+.tag_state {
+    display: inline-block;
+    float: left;
+    height: 24px;
+    margin-right: 2px;
+    padding: 0 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #fff;
+}
+
+.tag_state_default {
+    background-color: #444;
+}
+.list_fund .tag_state {
+    overflow: hidden;
+    border-radius: 12px;
+    line-height: 23px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.cont_mypage .list_fund .tag_state, .cont_search .list_fund .tag_state {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    border-radius: 6px;
+}
+
+.list_fund .wrap_state .txt_per {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: -27px;
+    font-size: 13px;
+    line-height: 0;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    text-align: right;
+    text-indent: -99999px;
+}
+
+.list_more {
+    padding: 23px 0 0;
+    text-align: center;
+}
+
+.group_schproject .list_more {
+    padding-top: 22px;
+}
+
+.link_round {
+    display: inline-block;
+    height: 40px;
+    padding: 0 17px;
+    border: 1px solid #e7e7e7;
+    border-radius: 20px;
+    font-size: 13px;
+    line-height: 38px;
+    font-family: KakaoBig Regular,sans-serif;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.link_round.link_other2 {
+    padding: 0 20px;
+    font-size: 15px;
+    line-height: 38px;
+}
+
+.group_schactions {
+    padding-top: 48px;
+}
+
+.list_fund .txt_participants_count {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #444;
+    font-family: KakaoBig Bold;
+}
+
+.list_fund .txt_participants_count .ico_check {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+    vertical-align: top;
+    background: url(//t1.kakaocdn.net/together_image/svg/ico_checks.svg) no-repeat 0 0/contain;
+}
+
+.list_fund .txt_participants_count.action_end .ico_check {
+    background-image: url(//t1.kakaocdn.net/together_image/svg/ico_checks_end.svg);
+}
+
+.list_fund .price_goal .txt_goal {
+    float: left;
+}
+
+.list_fund .wrap_state {
+    float: left;
+    position: relative;
+    width: calc(100% - 132px);
+    height: 2px;
+    margin-top: 22px;
+}
+
+.cont_mypage .list_fund .wrap_state, .cont_search .list_fund .wrap_state {
+    display: block;
+    float: none;
+    width: 100%;
+    height: 3px;
+    margin-top: 10px;
+}
+
+.list_fund .wrap_state .state_bar {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #ebebeb;
+}
+
+.cont_mypage .list_fund .wrap_state .state_bar, .cont_search .list_fund .wrap_state .state_bar {
+    height: 3px;
+    border-radius: 999px;
+    background-color: #e5e5e5;
+}
+
+.list_fund .wrap_state .state_gage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    border-radius: 1px;
+}
+
+.list_fund .wrap_state .state_end {
+    background-color: #999;
+}
+
+
+@media (max-width: 767px){
+#dkContent {
+    margin-bottom: -150px;
+}
+#mArticle {
+    padding: 0 0 200px;
+}
+.cont_search #mArticle {
+    margin-bottom: 60px;
+    padding-bottom: 219px;
+}
+.group_schkeyword .form_search {
+    width: auto;
+}
+
+.group_schkeyword .box_search {
+    height: 50px;
+    margin: 0 14px;
+    padding: 0 51px;
+}
+.group_schkeyword .box_search .tf_keyword {
+    height: 26px;
+    margin-top: 10px;
+    font-size: 19px;
+    line-height: 30px;
+    color: #444;
+    background-color: initial;
+    outline: none;
+    -webkit-appearance: none;
+}
+.group_schkeyword .btn_delete {
+    right: 29px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+}
+.group_schkeyword .ico_delete {
+    width: 18px;
+    height: 18px;
+    background-position: -110px -462px;
+}
+.group_schkeyword .btn_search {
+    top: 0;
+    width: 34px;
+    height: 50px;
+}
+.group_schkeyword .ico_search {
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 6px;
+    background-position: -242px -64px;
+}
+.ico_together {
+    background-image: url(//t1.kakaocdn.net/together_image/m320/ico_together_201008.png);
+}
+.search_cont {
+    width: auto;
+    padding-bottom: 0;
+}
+.group_schtag {
+    padding-top: 39px;
+}
+.cont_search .tit_section {
+    padding: 0 14px;
+    font-size: 17px;
+}
+.cont_search .group_schtag .tit_section {
+    padding: 0 16px;
+}
+.group_schtag .hash_group {
+    margin: 0;
+    padding: 12px 13px 0;
+    box-sizing: border-box;
+}
+.link_hash {
+    margin: 2px 1px 2px 2px;
+    padding: 5px 12px 8px;
+    font-size: 13px;
+}
+.group_schtag .link_hash {
+    margin-bottom: 6px;
+}
+.group_schproject {
+    padding-top: 20px;
+}
+.search_sort {
+    height: auto;
+    min-height: 40px;
+}
+.cont_search .search_sort {
+    padding: 0 14px;
+}
+.group_schproject .search_sort {
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+.group_schproject .search_sort .tit_section {
+    float: none;
+    width: auto;
+    padding: 6px 0 0;
+}
+.cont_search .sort_cate {
+    width: auto;
+    margin: 25px 0 0;
+}
+.group_schproject .search_sort .sort_cate {
+    float: none;
+    padding-left: 0;
+    padding-top: 16px;
+}
+.cont_search .sort_cate .inner_sort_cate {
+    margin-top: -2px;
+    padding: 0 20px;
+}
+.cont_search .group_schproject .sort_cate .inner_sort_cate {
+    padding: 0;
+}
+
+.group_schproject .sort_cate .box_sorting:first-child {
+    margin-left: 0;
+}
+.box_sorting .lab_sort {
+    padding-left: 10px;
+    font-size: 14px;
+}
+.box_sorting .inp_sort:checked+.lab_sort:before, .sort_on .inp_sort+.lab_sort:before {
+    top: 8px;
+    width: 4px;
+    height: 4px;
+}
+.cont_search .group_schproject .box_sorting+.box_sorting {
+    margin-left: 10px;
+}
+.search_sort .box_select {
+    overflow: hidden;
+    float: right;
+    width: 50%;
+    height: 40px;
+}
+
+
+.opt_comm .select_option {
+    margin-right: 23px;
+    font-size: 14px;
+    color: #444;
+    line-height: 39px;
+}
+.group_schproject .opt_comm .select_option {
+    margin-left: 9px;
+    font-size: 13px;
+    line-height: 27px;
+}
+
+.opt_comm .opt_select {
+    padding: 0 26px 0 10px;
+    font-size: 14px;
+}
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+.opt_comm .box_arrow {
+    height: 40px;
+    background: none;
+}
+.group_schproject .opt_comm .box_arrow, .opt_comm .opt_select {
+    height: 100%;
+}
+.group_schproject .opt_comm .ico_arrow {
+    width: 14px;
+    height: 8px;
+    margin-top: 10px;
+    margin-left: 6px;
+    background-position: -68px -9px;
+    transform: scale(1);
+}
+.list_fund {
+    margin: -10px 7px 0;
+}
+.group_schproject .list_fund {
+    margin-top: -4px;
+}
+.list_fund li {
+    width: 50%;
+    margin: 0;
+}
+.list_fund li:nth-child(2n-1) {
+    clear: both;
+}
+.list_fund .link_pack {
+    width: auto;
+    margin: 22px 7px 12px;
+}
+.list_fund .box_thumb {
+    border-radius: 10px;
+}
+.list_fund .img_thumb {
+    height: 94px;
+    border-radius: 10px;
+}
+.list_fund .box_together {
+    height: auto;
+    padding-top: 9px;
+    line-height: 20px;
+}
+.list_fund .box_together .bundle_tit {
+    height: 62px;
+    padding: 0;
+}
+.list_fund .box_together .tit_together {
+    max-height: 42px;
+    font-size: 14px;
+    line-height: 20px;
+}
+.cont_mypage .list_fund .tag_bundle, .cont_search .list_fund .tag_bundle {
+    top: -27px;
+    left: 5px;
+}
+.tag_state {
+    height: 22px;
+    margin-right: 1px;
+    padding: 0 7px;
+    font-size: 11px;
+    line-height: 22px;
+}
+.list_fund .tag_state {
+    line-height: 22px;
+}
+.cont_mypage .list_fund .tag_state, .cont_search .list_fund .tag_state {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 6px;
+}
+.list_fund .box_together .txt_proposer {
+    margin-top: 4px;
+    font-size: 11px;
+}
+.list_fund .wrap_state {
+    width: calc(100% - 108px);
+    height: 4px;
+    margin-top: 15px;
+    margin-left: 1px;
+}
+.cont_mypage .list_fund .wrap_state, .cont_search .list_fund .wrap_state {
+    width: 100%;
+    height: 2px;
+    margin-top: 8px;
+}
+.cont_mypage .list_fund .wrap_state .state_bar, .cont_search .list_fund .wrap_state .state_bar {
+    height: 2px;
+}
+.list_fund .wrap_state .txt_per {
+    left: 0;
+    top: 5px;
+    font-size: 12px;
+}
+.list_fund .price_goal {
+    margin: 7px 1px 0 0;
+    font-size: 12px;
+}
+.cont_mypage .list_fund .price_goal, .cont_search .list_fund .price_goal {
+    margin-top: 14px;
+}
+.group_schactions, .group_schanniversaries {
+    padding-top: 40px;
+}
+.list_fund .txt_participants_count {
+    margin-top: 6px;
+    font-size: 12px;
+}
+.list_fund .txt_participants_count .ico_check {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+}
+
+}
+
+.area_cover {
+    height: 210px;
+    background-color: #f7f8f9;
+}
+
+.area_cover .inner_area_cover {
+    position: relative;
+    display: table;
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.area_cover .info_pf {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.area_cover .info_pf .pf_thumb {
+    overflow: hidden;
+    float: left;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.area_cover .pf_thumb .img_thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.myaction-cont {
+    background-color: #efefef;
+}
