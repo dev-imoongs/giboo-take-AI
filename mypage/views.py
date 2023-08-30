@@ -682,18 +682,51 @@ class MypageNeulhaerangWriteFormView(View):
         return render(request,'mypage/write/neulhaerang-write.html')
 
     def post(self,request):
-        category = request.POST.get("category")
-        print(category)
-        want_fund_duration = request.POST.get("fundraising_period")
-        print(want_fund_duration)
-        use_plans = request.POST.getlist("use_plan")
-        print(use_plans)
-        plan_moneys = request.POST.getlist("plan_money")
-        print(plan_moneys)
-        plan_comment = request.POST.get("plan_comment")
-        print(plan_comment)
-        planDetail= request.POST.get("planDetail")
-        print(planDetail)
+        # category = request.POST.get("category")
+        # want_fund_duration = request.POST.get("fundraising_period")
+        # volunteer_start_date = request.POST.get("volunteer_start_date")
+        # volunteer_end_date = request.POST.get("volunteer_end_date")
+        # participants_max =request.POST.get("participants_max")
+        # use_plans = request.POST.getlist("use_plan")
+        # plan_moneys = request.POST.getlist("plan_money")
+        # plan_comment = request.POST.get("plan_comment")
+        # planDetail= request.POST.get("planDetail")
+
+
+        title = request.POST.get("title")
+        print(title)
+        thumbnail= request.FILES.get("thumbnail")
+        print(thumbnail)
+
+        inner_titles = request.POST.getlist("inner_title")
+        inner_title_content_orders =request.POST.getlist("inner_title_content_order")
+        print(inner_title_content_orders)
+        print(inner_titles)
+
+        inner_contents = request.POST.getlist("inner_content")
+        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+
+        print(inner_content_content_orders)
+        print(inner_contents)
+
+
+
+
+        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+        print(inner_photo_content_orders)
+
+
+
+
+        files = request.FILES.getlist("inner_photo")
+        for file in files:
+            print(file)
+            print("1")
+
+
+
+
+
 
 
 

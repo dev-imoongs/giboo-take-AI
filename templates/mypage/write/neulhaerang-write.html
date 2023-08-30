@@ -27,17 +27,17 @@
                     <div class="wrap_tab">
                         <ul class="list_tab">
                             <li class="on">
-                                <a href="#" class="link_tab">
+                                <a  class="link_tab">
                                     <span class="txt_tab">1. 나의 다짐</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="link_tab">
+                                <a  class="link_tab">
                                     <span class="txt_tab"> 2. 사업계획</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="link_tab">
+                                <a  class="link_tab">
                                     <span class="txt_tab">3. 모금스토리</span>
                                 </a>
                             </li>
@@ -46,7 +46,6 @@
                     <ng-component>
                         <div class="wrap_suggest">
                             <form action="/mypage/neulhaerang/write-form/" name="form" class="form_project ng-invalid ng-touched ng-dirty" method="post" enctype="multipart/form-data" >
-{#                                <button class="form-btn">폼 전달</button>#}
                                 <!-- step1 -->
                                 {% csrf_token %}
                                 <div class="form_cont form_cont1">
@@ -145,7 +144,7 @@
                     <fieldset>
                       <div class="group_apply">
                         <div class="area_form">
-                            <button>폼 시키기</button>
+
                           <strong class="tit_head">희망모금기간
                             <span class="ico_new">new</span>
                           </strong>
@@ -266,7 +265,7 @@
                           <div class="desc_form pack_plan">
                             <div class="group_tf" id="planBox0">
                               <div class="participants_count_tf">
-                                  <input type="text" classoutline="" numberonly=""
+                                  <input type="number" classoutline="" numberonly="" name="participants_max"
                                          min="0" placeholder="모집 인원 설정" title="모집 인원" autocomplete="off"
                                          class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">
                               </div>
@@ -385,11 +384,12 @@
                               <span class="box_tit">
                                 <span contenteditable="true" ignoreenter=""
                                       class="inner_tit" style="white-space: pre-line;">제목(필수)</span>
+                                  <input type="hidden" name="title">
                               </span>
                             </h4>
                             <span class="txt_sponsor ellipsis_g">by. 기부자명</span>
                             <div class="btn_group">
-                              <input type="file" id="attachImage" ngfileselect="" maxsize="10MB"
+                              <input type="file" id="attachImage" ngfileselect="" maxsize="10MB" name="thumbnail"
                                      hidden="" accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">
                               <button type="button" class="btn_select">
                                 <span class="ico_together2 ico_select">대표 이미지 등록</span>
@@ -410,9 +410,10 @@
                             <dd>
                               <div class="group_tf">
                                 <div class="inner_group">
-                                  <input type="text" classoutline="" multibyte=""
+                                  <input type="text" classoutline="" multibyte="" name="inner_title"
                                          class="tf_write ng-valid ng-touched ng-dirty" id="subTitle0"
                                          placeholder="소제목" autocomplete="off">
+                                    <input type="hidden" name="inner_title_content_order" value="1">
                                     <!-- 소제목 : 첫문장이 가장 중요! 계속 읽고 싶게 쓰기 -->
                                 </div>
                               </div>
@@ -424,9 +425,10 @@
                               <div class="group_tf">
                                 <div class="inner_group">
                                   <!-- 본문: 이 내용을 모르는 사람도 공감할수 있게 -->
-                                  <textarea cols="30" rows="10" multibyte="" expandabletextarea=""
+                                  <textarea cols="30" rows="10" multibyte="" expandabletextarea="" name="inner_content"
                                             class="tf_write tf_intro ng-valid ng-touched ng-dirty" id="tfIntro1"
                                             placeholder="본문"></textarea>
+                                    <input type="hidden" name="inner_content_content_order" value="2">
                                 </div>
                               </div>
                               <div class="info_append">
@@ -434,154 +436,154 @@
                                 </span>1000 </div>
                             </dd>
                               <!-- thumb photo 이미지가 업로드 되어있는걸 선택했을시 media_on 없으면 제거 -->
-                            <dd class="desc_media desc_photo">
-                              <photo-box>
-                                <div class="info_group">
-                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
-                                       alt=""
-                                       class="img_blank mo_show">
-                                  <div class="media_info">
-                                    <div class="inner_info">
-                                      <p class="txt_size"> 이미지 사이즈
-                                        <br>최소 : 가로 640px, 세로 360px
-                                      </p>
-                                      <div class="info_attach">
-                                        <label for="attachImage">
-                                          <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>
-                                        </label>
-                                        <input type="file" id="attachImage" ngfileselect=""
-                                               maxsize="10MB" class="tf_attach"
-                                               accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="photo_gallery">
-                                  <ul class="list_photo">
-                                    <li class="on">
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">1</span>
-                                        <button type="button" class="btn_photo">
- 
-                                        </button>
-                                      </div>
-                                    </li>
-                                    <li class="">
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">2</span>
-                                        <button type="button" class="btn_photo">
-
-                                        </button>
-                                      </div>
-                                    </li>
-                                    <li class="">
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">3</span>
-                                        <button type="button" class="btn_photo">
-                                          
-                                        </button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">4</span>
-                                        <button type="button" class="btn_photo">
-                                          <!-- 이 안에 img 태그로 들어감 -->
-                                        </button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">5</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">6</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">7</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">8</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">9</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                    <li>
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">10</span>
-                                        <button type="button" class="btn_photo"></button>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="thumb_photo">
-                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
-                                       class="img_blank mo_show">
-                                  <div class="inner_media">
-                                    <!-- src경로에 click한 이미지 경로로 바꿔줘야함 -->
-                                    <img alt="1번째 이미지 확대보기" class="img_photo"
-                                         src="">
-                                    <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="area_caption">
-                                  <div class="group_tf">
-                                     <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                          <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                          
-                                                        
-                                  </div>
-                                  <div class="info_append">
-                                    <span class="txt_num">0/</span>
-                                    30
-                                  </div>
-                                  <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>
-                                </div>
-                              </photo-box>
-                            </dd>
+{#                            <dd class="desc_media desc_photo">#}
+{#                              <photo-box>#}
+{#                                <div class="info_group">#}
+{#                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"#}
+{#                                       alt=""#}
+{#                                       class="img_blank mo_show">#}
+{#                                  <div class="media_info">#}
+{#                                    <div class="inner_info">#}
+{#                                      <p class="txt_size"> 이미지 사이즈#}
+{#                                        <br>최소 : 가로 640px, 세로 360px#}
+{#                                      </p>#}
+{#                                      <div class="info_attach">#}
+{#                                        <label for="attachImage">#}
+{#                                          <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>#}
+{#                                        </label>#}
+{#                                        <input type="file" id="attachImage" ngfileselect="" name="copy"#}
+{#                                               maxsize="10MB" class="tf_attach"#}
+{#                                               accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">#}
+{#                                      </div>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="photo_gallery">#}
+{#                                  <ul class="list_photo">#}
+{#                                    <li class="on">#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">1</span>#}
+{#                                        <button type="button" class="btn_photo">#}
+{# #}
+{#                                        </button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li class="">#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">2</span>#}
+{#                                        <button type="button" class="btn_photo">#}
+{##}
+{#                                        </button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li class="">#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">3</span>#}
+{#                                        <button type="button" class="btn_photo">#}
+{#                                          #}
+{#                                        </button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">4</span>#}
+{#                                        <button type="button" class="btn_photo">#}
+{#                                          <!-- 이 안에 img 태그로 들어감 -->#}
+{#                                        </button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">5</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">6</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">7</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">8</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">9</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">10</span>#}
+{#                                        <button type="button" class="btn_photo"></button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                  </ul>#}
+{#                                </div>#}
+{#                                <div class="thumb_photo">#}
+{#                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"#}
+{#                                       class="img_blank mo_show">#}
+{#                                  <div class="inner_media">#}
+{#                                    <!-- src경로에 click한 이미지 경로로 바꿔줘야함 -->#}
+{#                                    <img alt="1번째 이미지 확대보기" class="img_photo"#}
+{#                                         src="">#}
+{#                                    <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제#}
+{#                                    </button>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="area_caption">#}
+{#                                  <div class="group_tf">#}
+{#                                     <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                          <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                           <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" style="display: none;" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                          #}
+{#                                                        #}
+{#                                  </div>#}
+{#                                  <div class="info_append">#}
+{#                                    <span class="txt_num">0/</span>#}
+{#                                    30#}
+{#                                  </div>#}
+{#                                  <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>#}
+{#                                </div>#}
+{#                              </photo-box>#}
+{#                            </dd>#}
                             
                           </content-component-form></dl>
                       </div><!---->
