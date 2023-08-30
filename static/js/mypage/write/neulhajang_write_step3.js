@@ -1,3 +1,5 @@
+let order = 3
+
 function randMintoMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -40,7 +42,7 @@ $('.btn_close').on("click", () => {
 })
 
 // 개설 완료 버튼 눌렀을 때 이벤트
-$('.link_step3').on('click',(e)=>{                    
+$('.link_step3').on('click',(e)=>{
     if($('.front_pack').find('.txt_num').text() == 0){
         toastMsg('제목을 입력해주세요.')
         $('span.inner_tit').focus()
@@ -88,8 +90,50 @@ $('.link_step3').on('click',(e)=>{
         }
 
     })
-    if(innerTitFlag) return
+    if(innerTitFlag) {
+        return
+    }
+
+
+    //마지막 폼 되기전에 데이터들 input에 삽입하기
+    // $(".start-date span").text
+    $("input[name='title']").val($(".inner_tit").text())
+
+
+    //태그 필수
+    if($(".tag").filter((i,v)=>!$(v).val()).length!=0){
+        toastMsg("태그 갯수대로 모두 입력해주세요")
+        return;
+    }
+
+    $("form").eq(0).submit()
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).ready(function () {
     function updateIDs(e) {
@@ -124,10 +168,14 @@ $(document).ready(function () {
         // 삭제버튼
         if($(e.target).hasClass('btn_del')){
             if($(e.target).parent().is('.inner_media')){
+
                 let index = $(e.target).closest('.thumb_photo').prev().find('li.on').index()
                 const addInput = `<input type="text" name="caption" autocomplete="off" classoutline="" maxlength="30" readonly
                 class="tf_write ng-dirty ng-touched" style="display: none;"
                 placeholder="이미지 설명을 입력하세요.">`
+
+                // 인풋태그 초기화
+                $(e.target).closest('dd').find('input.tf_attach').val("")
 
                 $(e.target).closest('.thumb_photo').next().find('input').eq(index).remove()
                 $(e.target).closest('.thumb_photo').next().find('.img_detail').append(addInput)
@@ -206,6 +254,7 @@ $('.btn-subhead').on('click',()=>{
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
                   '      <input type="text" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  `      <input type="hidden" name="inner_title_content_order" value="${order++}">\n` +
                   '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
                   '    </div>\n' +
                   '  </div>\n' +
@@ -221,6 +270,7 @@ $('.btn-maintext').on('click',()=>{
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
                   '      <textarea cols="30" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
+                  `<input type="hidden" name="inner_content_content_order" value="${order++}">` +
                   '  </div>\n' +
                   '  <div class="info_append"><span class="txt_num">0 /</span>1000 </div>\n' +
                   '</dd>'
@@ -229,6 +279,7 @@ $('.btn-maintext').on('click',()=>{
 // 이미지 추가
 $('.btn-addimg').on('click',()=>{
     $addContent = `<dd class="desc_media desc_photo">
+                    <input type="hidden" name="inner_photo_content_order" value="${order++}">
     <photo-box>
       <div class="info_group">
         <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"

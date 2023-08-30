@@ -67,7 +67,7 @@ $(document).ready(function () {
 
     // 추가버튼을 눌렀을때 동적으로 생성된 태그들? $addContent를 불러오기 위해 document를 불러옴
     $(document).on('click', (e) => {
-        //
+        console.log($(e.target))
         if ($(e.target).attr('class') == 'btn_line_txt') {
             if ($('.ng-scope').length !== 1) {
                 $(e.target).parent().remove()

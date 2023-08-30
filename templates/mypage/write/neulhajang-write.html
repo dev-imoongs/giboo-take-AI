@@ -60,7 +60,7 @@
                                                 <div class="desc_form box_select">
                                                     <div class="opt_comm">
                                                         <span class="select_option select_on">카테고리</span>
-                                                        <select name="target_tag_id" id="selectTarget" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
+                                                        <select name="category" id="selectTarget" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
                                                             <option value="">카테고리</option>
                                                             <option value="10"> 아동|청소년 </option>
                                                             <option value="11"> 청년 </option>
@@ -121,7 +121,8 @@
                                                             <span class="ico_together ico_warn">미입력 경고</span>
                                                         </label>
                                                     </span>
-                                                    <span class="choice_comm2"><input id="agree3" name="chk" required="" type="checkbox" class="inp_comm ng-untouched ng-pristine ng-invalid">
+                                                    <span class="choice_comm2">
+                                                        <input id="agree3" name="chk" required="" type="checkbox" class="inp_comm ng-untouched ng-pristine ng-invalid">
                                                         <label for="agree3" class="lab_comm">
                                                             <span class="ico_together2 ico_checkbox"></span>
                                                             투명한 기부금 집행을 위한 모금심사를 받겠습니다.
@@ -151,7 +152,7 @@
                           </p>
                           <div class="desc_form pack_radio">
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="30"
                                 class="inp_comm" id="checkPeriod0">
                               <label class="lab_comm" for="checkPeriod0">
                                 <span class="ico_together2 ico_radio"></span>
@@ -159,7 +160,7 @@
                               </label>
                             </span>
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="60"
                                 class="inp_comm" id="checkPeriod1">
                               <label class="lab_comm" for="checkPeriod1">
                                 <span class="ico_together2 ico_radio"></span>
@@ -167,7 +168,7 @@
                               </label>
                             </span>
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="90"
                                 class="inp_comm" id="checkPeriod2">
                               <label class="lab_comm" for="checkPeriod2">
                                 <span class="ico_together2 ico_radio"></span>
@@ -190,12 +191,14 @@
                               <div class="group_tf">
                                 <button cancel-bubble="" type="button" class="start-date btn_calendar">
                                   <span>시작일 설정</span>
+                                    <input type="hidden" name="volunteer_start_date" value="">
                                   <span class="ico_together">캘린더 레이어 펼치기</span>
                                 </button>
                               </div>
                               <div class="group_tf">
                                 <button cancel-bubble="" type="button" class="end-date btn_calendar">
                                   <span>종료일 설정</span>
+                                    <input type="hidden" name="volunteer_end_date" value="">
                                   <span class="ico_together">캘린더 레이어 펼치기</span>
                                 </button>
                               </div>
@@ -212,7 +215,7 @@
                           <div class="desc_form pack_plan">
                             <div class="group_tf ng-scope" id="planBox0">
                               <div class="cont_tf">
-                                  <input type="text" classoutline="" placeholder="미션 내용"
+                                  <input type="text" classoutline="" placeholder="미션 내용" name="mission_content"
                                          title="미션 내용" autocomplete="off"
                                          class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">
                               </div>
@@ -237,7 +240,7 @@
                           <div class="desc_form pack_plan">
                             <div class="group_tf" id="planBox0">
                               <div class="participants_count_tf">
-                                  <input type="text" classoutline="" numberonly=""
+                                  <input type="number" name="participants_max"
                                          min="0" placeholder="모집 인원 설정" title="모집 인원" autocomplete="off"
                                          class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">
                               </div>
@@ -251,7 +254,7 @@
                           <div class="desc_form info_description">
                             <div class="group_tf">
                               <div class="inner_group">
-                                <textarea id="planDetail" name="planDetail" classoutline=""
+                                <textarea id="planDetail" name="commitment_content" classoutline=""
                                   title="공약 내용" class="tf_write ng-untouched ng-pristine ng-valid"></textarea>
                               </div>
                             </div>
@@ -350,11 +353,12 @@
                               <span class="box_tit">
                                 <span contenteditable="true" ignoreenter=""
                                       class="inner_tit" style="white-space: pre-line;">제목(필수)</span>
+                                  <input type="hidden" name="title">
                               </span>
                             </h4>
                             <span class="txt_sponsor ellipsis_g">by. 기부자명</span>
                             <div class="btn_group">
-                              <input type="file" id="attachImage" ngfileselect="" maxsize="10MB"
+                              <input type="file" id="attachImage" ngfileselect="" maxsize="10MB" name="thumbnail"
                                      hidden="" accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">
                               <button type="button" class="btn_select">
                                 <span class="ico_together2 ico_select">대표 이미지 등록</span>
@@ -374,9 +378,10 @@
                             <dd>
                               <div class="group_tf">
                                 <div class="inner_group">
-                                  <input type="text" classoutline="" multibyte=""
+                                  <input type="text" classoutline="" multibyte="" name="inner_title"
                                          class="tf_write ng-valid ng-touched ng-dirty" id="subTitle0"
                                          placeholder="소제목" autocomplete="off">
+                                    <input type="hidden" name="inner_title_content_order" value="1">
                                     <!-- 소제목 : 첫문장이 가장 중요! 계속 읽고 싶게 쓰기 -->
                                 </div>
                               </div>
@@ -388,9 +393,10 @@
                               <div class="group_tf">
                                 <div class="inner_group">
                                   <!-- 본문: 이 내용을 모르는 사람도 공감할수 있게 -->
-                                  <textarea cols="30" rows="10" multibyte="" expandabletextarea=""
+                                  <textarea cols="30" rows="10" multibyte="" expandabletextarea="" name="inner_content"
                                             class="tf_write tf_intro ng-valid ng-touched ng-dirty" id="tfIntro1"
                                             placeholder="본문"></textarea>
+                                    <input type="hidden" name="inner_content_content_order" value="2">
                                 </div>
                               </div>
                               <div class="info_append">
@@ -398,65 +404,65 @@
                                 </span>1000 </div>
                             </dd>
                               <!-- thumb photo 이미지가 업로드 되어있는걸 선택했을시 media_on 없으면 제거 -->
-                            <dd class="desc_media desc_photo">
-                              <photo-box>
-                                <div class="info_group">
-                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
-                                       alt=""
-                                       class="img_blank mo_show">
-                                  <div class="media_info">
-                                    <div class="inner_info">
-                                      <p class="txt_size"> 이미지 사이즈
-                                        <br>최소 : 가로 640px, 세로 360px
-                                      </p>
-                                      <div class="info_attach">
-                                        <label for="attachImage">
-                                          <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>
-                                        </label>
-                                        <input type="file" id="attachImage" ngfileselect=""
-                                               maxsize="10MB" class="tf_attach"
-                                               accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="photo_gallery">
-                                  <ul class="list_photo">
-                                    <li class="on">
-                                      <div class="ico_together photo_preview">
-                                        <span class="txt_num">1</span>
-                                        <button type="button" class="btn_photo">
- 
-                                        </button>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="thumb_photo">
-                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
-                                       class="img_blank mo_show">
-                                  <div class="inner_media">
-                                    <!-- src경로에 click한 이미지 경로로 바꿔줘야함 -->
-                                    <img alt="1번째 이미지 확대보기" class="img_photo"
-                                         src="">
-                                    <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="area_caption">
-                                  <div class="group_tf img_detail">
-                                     <input type="text" name="caption" classoutline="" maxlength="30" readonly
-                                           class="tf_write ng-dirty ng-touched ng-valid" autocomplete="off"
-                                           placeholder="이미지 설명을 입력하세요.">
-                                  </div>
-                                  <div class="info_append">
-                                    <span class="txt_num">0/</span>
-                                    30
-                                  </div>
-                                  <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>
-                                </div>
-                              </photo-box>
-                            </dd>
+{#                            <dd class="desc_media desc_photo">#}
+{#                              <photo-box>#}
+{#                                <div class="info_group">#}
+{#                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"#}
+{#                                       alt=""#}
+{#                                       class="img_blank mo_show">#}
+{#                                  <div class="media_info">#}
+{#                                    <div class="inner_info">#}
+{#                                      <p class="txt_size"> 이미지 사이즈#}
+{#                                        <br>최소 : 가로 640px, 세로 360px#}
+{#                                      </p>#}
+{#                                      <div class="info_attach">#}
+{#                                        <label for="attachImage">#}
+{#                                          <span class="ico_together2 ico_photo">관련이미지 추가하기 (최대 10장)</span>#}
+{#                                        </label>#}
+{#                                        <input type="file" id="attachImage" ngfileselect=""#}
+{#                                               maxsize="10MB" class="tf_attach"#}
+{#                                               accept="image/*, .jpg, .jpeg, .png, .gif, .bmp">#}
+{#                                      </div>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="photo_gallery">#}
+{#                                  <ul class="list_photo">#}
+{#                                    <li class="on">#}
+{#                                      <div class="ico_together photo_preview">#}
+{#                                        <span class="txt_num">1</span>#}
+{#                                        <button type="button" class="btn_photo">#}
+{# #}
+{#                                        </button>#}
+{#                                      </div>#}
+{#                                    </li>#}
+{#                                  </ul>#}
+{#                                </div>#}
+{#                                <div class="thumb_photo">#}
+{#                                  <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"#}
+{#                                       class="img_blank mo_show">#}
+{#                                  <div class="inner_media">#}
+{#                                    <!-- src경로에 click한 이미지 경로로 바꿔줘야함 -->#}
+{#                                    <img alt="1번째 이미지 확대보기" class="img_photo"#}
+{#                                         src="">#}
+{#                                    <button type="button" class="ico_together2 btn_del"> 선택된 사진 삭제#}
+{#                                    </button>#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                                <div class="area_caption">#}
+{#                                  <div class="group_tf img_detail">#}
+{#                                     <input type="text" name="caption" classoutline="" maxlength="30" readonly#}
+{#                                           class="tf_write ng-dirty ng-touched ng-valid" autocomplete="off"#}
+{#                                           placeholder="이미지 설명을 입력하세요.">#}
+{#                                  </div>#}
+{#                                  <div class="info_append">#}
+{#                                    <span class="txt_num">0/</span>#}
+{#                                    30#}
+{#                                  </div>#}
+{#                                  <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>#}
+{#                                </div>#}
+{#                              </photo-box>#}
+{#                            </dd>#}
                             
                           </content-component-form></dl>
                       </div><!---->
@@ -470,7 +476,7 @@
                             <div class="add_link add_tag">
                               <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>
                                   <input placeholder="추가할 태그명을 입력해주세요"
-                                         type="text" autocomplete="off"
+                                         type="text" autocomplete="off" name="tag"
                                          class="tf_link ng-untouched ng-pristine ng-valid"
                                          id="relateTitle0" focus="false" blur="true">
                               </div>
@@ -478,7 +484,7 @@
                           </dd>
                           <!--해쉬 태그 -->
                           <div class="hash_group">
-                            <a href="#" class="link_hash hash_type1"></a>
+                            <a  class="link_hash hash_type1">#</a>
                           </div>
                             <!-- 오픈 채팅방 링크 -->
                           <dd class="relate_url url_on">
@@ -492,7 +498,7 @@
                                          id="relateTitle0" focus="false" blur="true">
                               </div>
                               <div class="group_tf"><label class="lab_link" for="relateUrl0">URL</label><input
-                                      placeholder="http://" type="text"
+                                      placeholder="http://" type="text" name="openchat_link"
                                       class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"
                                       focus="false" autocomplete="off"
                                       blur="true"></div>
@@ -838,7 +844,7 @@
     <div class="dimmed_layer"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="{% static 'js/mypage/write/write_step1.js'%}"></script>
+<script src="{% static 'js/mypage/write/neulhajang_write_step1.js'%}"></script>
 <script src="{% static 'js/mypage/write/neulhajang_write_step2.js'%}"></script>
 <script src="{% static 'js/mypage/write/neulhajang_write_step3.js'%}"></script>
 <script src="{% static 'js/mypage/write/addfile.js' %}"></script>

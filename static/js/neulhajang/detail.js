@@ -1,5 +1,8 @@
 // 글작성 버튼
     const writeBtn = document.querySelector(".project-active-button");
+    const endDateDisplayBtn = document.querySelector(".project-end-display")
+    const writeBtn2 = document.querySelector(".floating-action-button")
+    const endDateDisplayBtn2 = document.querySelector(".floating-end-button")
     // 글작성모달
     const writeModal = document.querySelector(".action-write-modal-base");
     const writeCancelBtn = document.querySelector(".cancel-button");
@@ -11,9 +14,9 @@
     const $confirmCancelBtn = $('.confirm-cancel-button');
     // 글작성 모달 사진 첨부
     const inputFile = document.querySelector("#file-input")
-    const displyFile = document.querySelector('.upload-image')
     const $deleteImageButton = $('.image-file-delete-button')
-    const $ = document.querySelector('.image-file-upload-item')
+    const $displayImg = $('.image-file-upload-item')
+
 
     let page = 1
     let sort = '최신순'
@@ -48,12 +51,11 @@
       writeModalOn();
     });
     // 2번째 행동하기 버튼
-    $('.floating-action-button').on("click", e=>{
+    writeBtn2.addEventListener("click", e=>{
         writeBtn.click()
     })
 
     writeCancelBtn.addEventListener("click", e => {
-        console.log(displyFile.src.length)
         confirmModalOn();
     });
 
@@ -173,23 +175,24 @@ $('.image-file-upload-button').on("click", () => {
 });
 // 업로드한 file의 url을 가져오는 과정
 inputFile.addEventListener("change", (e) => {
-    if($('.image-file-upload-item').children())
-    $('.image-file-upload-item').prepend()
-
+    addHtml = '<img src="" class="upload-image">'
+    if($displayImg.find("img").length === 0){
+        $displayImg.prepend(addHtml)
+    }
+    const displayFile = document.querySelector('.upload-image')
     // 파일이 선택되면 원하는 작업을 수행
-    console.log("파일 선택됨:", inputFile.files[0]);
     $deleteImageButton.show();
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0])
     reader.onload = e => {
-        displyFile.src = `${e.target.result}`
-        console.log(e.target.result)
+        displayFile.src = `${e.target.result}`
     }
 });
 // 업로드한 사진 취소 버튼
 $deleteImageButton.on("click",(e)=>{
+    const displayFile = document.querySelector('.upload-image')
     inputFile.value = "";
-    displyFile.src = "";
+    displayFile.remove()
     $deleteImageButton.hide();
 })
 
@@ -201,9 +204,12 @@ $('.textarea-field').on("input",()=>{
 
 formSubmitBtn.addEventListener("submit",(e )=>{
     if($('.textarea-field').val().length>300){
-        console.log($('.textarea-field').val().length>300)
         toastMsg('피드의 내용은 최대 300자까지 입니다.')
-        return
+        e.preventDefault()
+    }
+    if($displayImg.find("img").length === 0){
+        toastMsg('인증 사진을 꼭 첨부해야 등록이 가능합니다.')
+        e.preventDefault()
     }
 
 })
@@ -335,29 +341,33 @@ const authenFeedApplyAPIView = () => {
             // 인원 관련
             const participants_count = result.participants_count
             const participants_target_amount = post.participants_target_amount
-            const participantsRatio = Math.ceil(participants_count/participants_target_amount*100)
+            const participantsRatio = Math.ceil(participants_count / participants_target_amount * 100)
 
             $('.participants-count-textline').text(participants_count.toLocaleString())
-            $('.participants-ratio-count').text(participantsRatio+'%')
-            $('.participants-goal-count').text(participants_target_amount.toLocaleString()+'명')
-            $('.current-progress-bar').attr('style',`width:${participantsRatio}%`)
+            $('.participants-ratio-count').text(participantsRatio + '%')
+            $('.participants-goal-count').text(participants_target_amount.toLocaleString() + '명')
+            $('.current-progress-bar').attr('style', `width:${participantsRatio}%`)
 
             // 시간 관련
-            let currentDate = new Date();
             const endDateString = post.neulhajang_duration_end_date;
-            console.log(currentDate)
-            const endDate = new Date(endDateString)
-            console.log(endDate)
-            // 두 날짜 객체 간의 시간 차이 계산 (밀리초 단위)
-            let timeDifference = endDate - currentDate;
-            console.log(timeDifference)
+            const endDate = new Date(endDateString);
+            const currentDate = new Date();
+            const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
+            const exceptTimeCurrentDate = new Date(currentDateString)
 
+            // 두 날짜 객체 간의 시간 차이 계산 (밀리초 단위)
+            let timeDifference = endDate - exceptTimeCurrentDate;
             // 시간 차이를 일 단위로 변환
-            let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-            console.log(daysDifference)
-            // 시간 차이가 0이하가 되면 종료
-            if(daysDifference<=0){
-                daysDifference = "종료"
+            // datefield로 보낸날짜 endDate는 9시간이 추가되어있음 9시간 차이는 0.375 차이
+            let daysDifference = timeDifference / (1000 * 60 * 60 * 24) - 0.375;
+            if(daysDifference <= 0){
+                $('.remain-date-label').text('종료')
+                writeBtn.style.display = "none";
+                endDateDisplayBtn.style.display = "inline-flex";
+                writeBtn2.style.display = "none";
+                endDateDisplayBtn2.style.display = "inline-flex";
+            } else{
+                $('.remain-date-label').text(`${inputDay}일 남음`)
             }
         })
 }
