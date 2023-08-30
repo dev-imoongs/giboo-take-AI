@@ -7,6 +7,7 @@ $(".btn_select").on('click',(e)=>{
 })
  
 $representingImgInput.on('change',(eChange)=>{
+
   const reader = new FileReader();
 
   reader.readAsDataURL(eChange.target.files[0])
@@ -24,6 +25,9 @@ $representingImgInput.on('change',(eChange)=>{
  
 
   $(document).on('change',(eChange)=>{
+     let clonedFileInput = eChange.target.cloneNode(true)
+  console.log(clonedFileInput.files)
+  console.log("들")
     const reader = new FileReader();
 
     reader.readAsDataURL(eChange.target.files[0]);
@@ -41,6 +45,14 @@ $representingImgInput.on('change',(eChange)=>{
         $(eChange.target).closest('.info_group').next().next().find('.img_photo').attr("src",`${path}`)
         $(eChange.target).closest('.info_group').next().next().find('.img_photo').show()
         $(eChange.target).closest('dd').addClass('media_on')
+
+
+        //파일태그추가
+        $(clonedFileInput).attr("name",'inner_photo')
+
+        $(eChange.target).closest('.info_group').next().find('li').eq(photoCount).addClass('on').find('button').append(clonedFileInput)
+
+
       }else{
         eChange.target.value = "";
         toastMsg('이미지 파일만 업로드 가능합니다.')

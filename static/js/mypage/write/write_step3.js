@@ -1,3 +1,7 @@
+
+let order = 3
+
+
 function randMintoMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -94,8 +98,22 @@ $('.link_step3').on('click',(e)=>{
 
 
 
+
     //마지막 폼 되기전에 데이터들 input에 삽입하기
     // $(".start-date span").text
+    $("input[name='title']").val($(".inner_tit").text())
+
+
+    //사진 갯수구하기
+    $("input[name='inner_photo_content_order']").each((i,order)=>{
+        console.log("들어옴")
+        let count =$(order).closest("dd").find("input[name='inner_photo']").length
+        console.log(count)
+        $(order).val($(order).val()+`_${count}`)
+    })
+
+
+    $("form").eq(0).submit()
 
 
 
@@ -228,7 +246,8 @@ $('.btn-subhead').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <input type="text" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  '      <input type="text"  name="inner_title" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  ` <input type="hidden" name="inner_title_content_order" value="${order++}">\n` +
                   '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
                   '    </div>\n' +
                   '  </div>\n' +
@@ -243,7 +262,9 @@ $('.btn-maintext').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <textarea cols="30" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
+                  '      <textarea cols="30" name="inner_content" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea>' +
+        `<input type="hidden" name="inner_content_content_order" value="${order++}">` +
+        '<button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
                   '  </div>\n' +
                   '  <div class="info_append"><span class="txt_num">0 /</span>1000 </div>\n' +
                   '</dd>'
@@ -252,6 +273,7 @@ $('.btn-maintext').on('click',()=>{
 // 이미지 추가
 $('.btn-addimg').on('click',()=>{
     $addContent = `<dd class="desc_media desc_photo">
+            <input type="hidden" name="inner_photo_content_order" value="${order++}">
     <photo-box>
       <div class="info_group">
         <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
@@ -279,7 +301,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">1</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -287,7 +308,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">2</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -295,7 +315,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">3</span>
               <button type="button" class="btn_photo">
-                
               </button>
             </div>
           </li>
@@ -310,7 +329,8 @@ $('.btn-addimg').on('click',()=>{
           <li>
             <div class="ico_together photo_preview">
               <span class="txt_num">5</span>
-              <button type="button" class="btn_photo"></button>
+              <button type="button" class="btn_photo">
+</button>
             </div>
           </li>
           <li>
