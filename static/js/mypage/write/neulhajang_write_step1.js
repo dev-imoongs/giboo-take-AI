@@ -46,8 +46,8 @@ $('.link_step1').on('click', (e) => {
     let $topIndex = $(e.target).closest('.form_cont').index()
     console.log($topIndex+1)
     $('.form_cont').hide()
-    $('.link_tab').eq($topIndex+1).parent().addClass('on')
-    $('.form_cont').eq($topIndex+1).show()
+    $('.link_tab').eq($topIndex).parent().addClass('on')
+    $('.form_cont').eq($topIndex).show()
 
     window.scrollTo(0,0)
 
