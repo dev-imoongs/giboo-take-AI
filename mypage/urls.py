@@ -3,7 +3,8 @@ from django.urls import path
 from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, MypageSignOutView, \
     MypageServiceSettingView, MypageProfileView, MypagePostListView, MypageOthersLinkView, MypageMainView, \
     MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView, \
-    NeulhaerangListAPIView, NewMypagePostListView
+    NeulhaerangListAPIView
+from mypage.views2 import NewMypagePostListView, NewMypagePostListAPIView
 
 app_name = 'mypage'
 
@@ -24,6 +25,8 @@ urlpatterns = [
 
     # new post
     path('new-post-list/', NewMypagePostListView.as_view(), name='new-post-list'),
+    path('new-post-list-api/', NewMypagePostListAPIView.as_view(), name='new-post-list-api'),
+
 
     # APIView 연결하는곳
     path('change-member-donation-status/',MemberChangeDonationStatusAPIView.as_view(),name= 'change-member-donation-status')
