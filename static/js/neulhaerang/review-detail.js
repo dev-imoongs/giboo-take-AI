@@ -586,7 +586,6 @@ const neulhaerangReviewDetailReplyLikeView = (reply_id) => {
     fetch(`/neulhaerang_review/review-detail-reply-like/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
-            console.log('사용됐나?')
             $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
         })
 

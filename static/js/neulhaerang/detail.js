@@ -87,11 +87,11 @@ const show_need_login_modal = function (){
 //     show_need_login_modal()
 // })
 //
-const showMoreBtn = () => {
-    if (checkMoreBtn <= 0) {
-        $('.link_round').hide()
-    }
-}
+// const showMoreBtn = () => {
+//     if (checkMoreBtn <= 0) {
+//         $('.link_round').hide()
+//     }
+// }
 
 
 $(".need_login_modal .btn_type2").on("click",e=>{
@@ -281,36 +281,7 @@ $btn_comment.on("click", (e) => {
     }
 })
 
-$(document).ready(()=> {
-    //왼쪽 클릭
-    const $btn_prevs = $(".btn_prev")
-    $btn_prevs.each((idx, btn_prev) => {
-        $(btn_prev).on("click", e => {
-            arrowBtnClickSlide(btn_prev, "prev")
-        })
-    })
-    //오른쪽 클릭
 
-    const $btn_nexts = $(".btn_next")
-    $btn_nexts.each((idx, btn_next) => {
-        $(btn_next).on("click", e => {
-            arrowBtnClickSlide(btn_next)
-        })
-    })
-    $(document).on('click', (e) => {
-        if ($(e.target).hasClass('ico_like')) {
-            $(e.target).parent().toggleClass('on')
-            reply_id = $(e.target).parent().prev().attr('id')
-        } else if ($(e.target).hasClass('btn_like')) {
-            $(e.target).toggleClass('on')
-            reply_id = $(e.target).prev().attr('id')
-        } else if ($(e.target).hasClass('num_like')) {
-            return
-        }
-        neulhaerangReviewDetailReplyLikeView(reply_id)
-
-    })
-})
 
 
 
@@ -429,8 +400,6 @@ function postContent(contents) {
     let addtext = "";
     let multiImgflag = "";
     contents.forEach((content, i) => {
-        console.log(content)
-        console.log(content.fields.neulhaerang_content_order !== multiImgflag)
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang.neulhaeranginnertitle') {
                 addtext = `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
@@ -467,7 +436,6 @@ function postContent(contents) {
             }
 
        }else{
-            console.log('들어왔냐?')
             let addtext2 = `<li>
                                   <span class="img_slide"
                                         style="background-image: url('${mediaUrl}${content.fields.inner_photo}');">
@@ -537,15 +505,23 @@ function elapsedTime(date) {
 let replyPage = 1
 let replyCont = ""
 let replys = ""
-let checkMoreBtn = replyCount - 5
+// let checkMoreBtn = replyCount - 5
 
 // neulhaerangId는 html 스크립트에서 neulhaerang_id를 받아서 이미 저장하였음
-const neulhaerangDetailReplyView = (replyPage,btn_more,checkDonateReply)=>{
+const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
     fetch(`/neulhaerang/detail-reply-view/?replyPage=${replyPage}&neulhaerangId=${neulhaerangId}&checkDonateReply=${checkDonateReply}`)
         .then(response => response.json())
         .then(result => {
             replys = result.replys
-            reply_count = result.replys_count
+            $('.emph_sign').text(result.replys_count)
+            let serialized_pagenator = result.serialized_pagenator
+            console.log(serialized_pagenator)
+            if (!serialized_pagenator.has_next_data) {
+                $('.link_round.link_other2').hide()
+            } else {
+                $('.link_round.link_other2').show();
+            }
+
             let replyText = ""
             replys.forEach((reply,i)=>{
             replyText += `<li>
@@ -625,12 +601,16 @@ const neulhaerangDetailReplyView = (replyPage,btn_more,checkDonateReply)=>{
         })
 }
 neulhaerangDetailReplyView(replyPage,false,checkDonateReply)
-showMoreBtn()
+// showMoreBtn()
 const neulhaerangDetailReplyCreate = (replyCont)=>{
     fetch(`/neulhaerang/detail-write-view/?replyCont=${replyCont}&neulhaerangId=${neulhaerangId}`)
         .then(response => response.json())
         .then(result => {
-            neulhaerangDetailReplyView(replyPage)
+    if($('.inp_sort').prop('checked')){
+        neulhaerangDetailReplyView(replyPage,false,'직접')
+    } else {
+        neulhaerangDetailReplyView(replyPage,false,'전체')
+    }
         })
 }
 
@@ -639,8 +619,8 @@ const neulhaerangDetailReplyCreate = (replyCont)=>{
 // 더보기 버튼 누를 시에 실행되는 이벤트
 $('.link_round').on('click',()=>{
     replyPage++
-    checkMoreBtn -= 5
-    showMoreBtn()
+    // checkMoreBtn -= 5
+    // showMoreBtn()
     if($('.inp_sort').prop('checked')){
         neulhaerangDetailReplyView(replyPage,true,'직접')
     } else {
@@ -667,6 +647,7 @@ const neulhaerangDetailReplyDeleteView = (reply_id) => {
         .then(response => response.json())
         .then(result => {
 
+
         })
 }
 // 늘해랑 응원하기
@@ -685,7 +666,6 @@ const neulhaerangDetailParticipateView = () => {
         .then(result => {
             let participate_count = result.neulhaerang_participate_count
             let participate_max = result.neulhaerang_participate_max
-            console.log(result.check_toast)
             if (result.check_toast) {
                 toastMsg('최대 동참 인원을 초과하였습니다.')
                 $('.ico_share').removeClass('on');
@@ -757,4 +737,38 @@ $('.inp_sort').on('click', e=>{
         neulhaerangDetailReplyView(1,false ,checkDonateReply)
     }
 
+})
+
+
+$(document).ready(()=> {
+    //왼쪽 클릭
+    const $btn_prevs = $(".btn_prev")
+    $btn_prevs.each((idx, btn_prev) => {
+        $(btn_prev).on("click", e => {
+            arrowBtnClickSlide(btn_prev, "prev")
+        })
+    })
+    //오른쪽 클릭
+
+    const $btn_nexts = $(".btn_next")
+    $btn_nexts.each((idx, btn_next) => {
+        $(btn_next).on("click", e => {
+            arrowBtnClickSlide(btn_next)
+        })
+    })
+    $(document).on('click', (e) => {
+        if ($(e.target).hasClass('ico_like')) {
+            $(e.target).parent().toggleClass('on')
+            reply_id = $(e.target).parent().prev().attr('id')
+            neulhaerangDetailReplyLikeView(reply_id)
+        } else if ($(e.target).hasClass('btn_like')) {
+            $(e.target).toggleClass('on')
+            reply_id = $(e.target).prev().attr('id')
+            neulhaerangDetailReplyLikeView(reply_id)
+        } else if ($(e.target).hasClass('num_like')) {
+            return
+        }
+
+
+    })
 })
