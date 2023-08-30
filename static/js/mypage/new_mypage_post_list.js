@@ -106,7 +106,7 @@ function MemberNeulhajangList(currentPage, sort, opK3, opK4) {
     })
 }
 
-MemberNeulhajangList(page); // 페이지 번호만 전달
+MemberNeulhajangList(page, opK3, opK4); // 페이지 번호만 전달
 
 $('.link-other2').on("click", () => {
     if ('click') {
@@ -306,7 +306,9 @@ console.log(opK1)
 
       $('.ul-data1').html(text);
       //$('.ul-data1').append(text);
+
     })
+
 }
 //
 MemberNeulhaerangList(page, opK1, opK2); // 페이지 번호만 전달
