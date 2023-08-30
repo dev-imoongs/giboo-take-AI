@@ -129,15 +129,15 @@ function loadYearlyData(year) {
 
         const formattedDate = formatDate(list.updated_date);
 
-        text += `<li class="item-donate">
-                     <p class="txt-sumdata"> ${formattedDate.slice(0, -1)} </p>
-                     <p class="tit-sum">
-                       <a class="link-sum" href="/neulhaerang/detail/${list.neulhaerang}">${list.neulhaerang_title}</a>
+          text += `<li class="item-donate">
+                     <p style="padding-top: 10px;">
+                       <a style="font-size: 18px;font-weight: bold;" href="/neulhaerang/detail/${list.neulhaerang}">${list.neulhaerang_title}</a>
                      </p>
                      <div class="donate-numinfo">
-                       <strong class="num-sumprice">${list.donation_amount}원</strong>
-<!--                       <span class="txt-sumprice">${list.donation_content}</span>-->
+                       <strong class="num-sumprice">${list.donation_amount.toLocaleString()}원</strong>
                      </div>
+                     <p style="font-size: 15px;padding-top: 7px;">${list.donation_content}</p>
+                      <p style="font-size: 13px;color: #999;"> ${formattedDate.slice(0, -1)} </p>
                      <div class="box-link"></div>
                    </li>`;
       });

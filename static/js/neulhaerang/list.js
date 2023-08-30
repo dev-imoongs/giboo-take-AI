@@ -52,6 +52,7 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
     fetch(`/neulhaerang/list-api-view/?page=${page}&category=${category}&sort=${sort}`)
         .then(response => response.json())
         .then(result =>{
+            console.log(result)
           let text = ""
           let posts= result.posts
           let pagenator= result.pagenator

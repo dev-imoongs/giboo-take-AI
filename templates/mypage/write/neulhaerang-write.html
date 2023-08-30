@@ -45,8 +45,10 @@
                     </div>
                     <ng-component>
                         <div class="wrap_suggest">
-                            <form novalidate="" name="form" class="form_project ng-invalid ng-touched ng-dirty">
+                            <form action="/mypage/neulhaerang/write-form/" name="form" class="form_project ng-invalid ng-touched ng-dirty" method="post" enctype="multipart/form-data" >
+{#                                <button class="form-btn">폼 전달</button>#}
                                 <!-- step1 -->
+                                {% csrf_token %}
                                 <div class="form_cont form_cont1">
                                     <fieldset>
                                         <div class="group_apply">
@@ -58,19 +60,18 @@
                                                 <div class="desc_form box_select">
                                                     <div class="opt_comm">
                                                         <span class="select_option select_on">카테고리</span>
-                                                        <select name="target_tag_id" id="selectTarget" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
+                                                        <select name="category" id="selectTarget" selectaccessibility="" class="opt_select ng-untouched ng-pristine ng-valid">
                                                             <option value="">카테고리</option>
-                                                            <option value="10"> 아동|청소년 </option>
-                                                            <option value="11"> 청년 </option>
-                                                            <option value="12"> 여성 </option>
-                                                            <option value="13"> 실버세대 </option>
-                                                            <option value="14"> 장애인 </option>
-                                                            <option value="15"> 이주민|다문화 </option>
-                                                            <option value="16"> 지구촌 </option>
-                                                            <option value="17"> 어려운이웃 </option>
-                                                            <option value="18"> 우리사회 </option>
-                                                            <option value="19"> 유기동물 </option>
-                                                            <option value="97"> 야생동물 </option>
+                                                            <option value="어린이"> 어린이 </option>
+                                                            <option value="청년"> 청년 </option>
+                                                            <option value="여성"> 여성 </option>
+                                                            <option value="어르신"> 어르신 </option>
+                                                            <option value="장애인"> 장애인 </option>
+                                                            <option value="우리사회"> 우리사회 </option>
+                                                            <option value="지구촌"> 지구촌 </option>
+                                                            <option value="어려운이웃"> 어려운이웃 </option>
+                                                            <option value="동물"> 동물 </option>
+                                                            <option value="환경"> 환경 </option>
                                                         </select>
                                                         <span class="box_arrow">
                                                             <span class="ico_together ico_arrow"></span>
@@ -144,6 +145,7 @@
                     <fieldset>
                       <div class="group_apply">
                         <div class="area_form">
+                            <button>폼 시키기</button>
                           <strong class="tit_head">희망모금기간
                             <span class="ico_new">new</span>
                           </strong>
@@ -152,7 +154,7 @@
                           </p>
                           <div class="desc_form pack_radio">
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="30"
                                 class="inp_comm" id="checkPeriod0">
                               <label class="lab_comm" for="checkPeriod0">
                                 <span class="ico_together2 ico_radio"></span>
@@ -160,7 +162,7 @@
                               </label>
                             </span>
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="60"
                                 class="inp_comm" id="checkPeriod1">
                               <label class="lab_comm" for="checkPeriod1">
                                 <span class="ico_together2 ico_radio"></span>
@@ -168,7 +170,7 @@
                               </label>
                             </span>
                             <span class="choice_comm2 choice2_radio">
-                              <input type="radio" name="fundraising_period"
+                              <input type="radio" name="fundraising_period" value="90"
                                 class="inp_comm" id="checkPeriod2">
                               <label class="lab_comm" for="checkPeriod2">
                                 <span class="ico_together2 ico_radio"></span>
@@ -193,12 +195,14 @@
                               <div class="group_tf">
                                 <button cancel-bubble="" type="button" class="start-date btn_calendar">
                                   <span>시작일 설정</span>
+                                    <input type="hidden" name="volunteer_start_date" value="">
                                   <span class="ico_together">캘린더 레이어 펼치기</span>
                                 </button>
                               </div>
                               <div class="group_tf">
                                 <button cancel-bubble="" type="button" class="end-date btn_calendar">
                                   <span>종료일 설정</span>
+                                    <input type="hidden" name="volunteer_end_date" value="">
                                   <span class="ico_together">캘린더 레이어 펼치기</span>
                                 </button>
                               </div>
@@ -226,12 +230,12 @@
                           <div class="desc_form pack_plan">
                             <div class="group_tf ng-scope" id="planBox0">
                               <div class="cont_tf">
-                                  <input type="text" classoutline="" placeholder="사용용도 및 산출근거"
+                                  <input type="text" classoutline="" placeholder="사용용도 및 산출근거" name="use_plan"
                                          title="모금액 사용용도 및 산출근거" autocomplete="off"
                                          class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">
                               </div>
                               <div class="amount_tf">
-                                  <input type="number" classoutline="" numberonly="" step="500"
+                                  <input type="number" classoutline="" numberonly="" step="500" name="plan_money"
                                          min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off"
                                          class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">
                               </div>
@@ -899,7 +903,7 @@
                     </hint-project-content>
                   </div>
             </modal>
-            <calendar id="calendar1" style="display:none;">
+            <calendar id="calendar1 cal" style="display:none;">
               <div class="container">
                 <div class="my-calendar clearfix">
                   <div class="clicked-date">
@@ -934,7 +938,7 @@
                 <!-- // .my-calendar -->
               </div>
               </calendar>
-              <calendar id="calendar2" style="display:none;">
+              <calendar id="calendar2 cal" style="display:none;">
                   <div class="container">
                     <div class="my-calendar clearfix">
                       <div class="clicked-date">
@@ -986,6 +990,13 @@
     <div class="dimmed_layer"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".form-btn").on("click",e=>{
+        $("form[name='form']").submit()
+    })
+
+</script>
+
 <script src="{% static 'js/mypage/write/write_step1.js'%}"></script>
 <script src="{% static 'js/mypage/write/write_step2.js'%}"></script>
 <script src="{% static 'js/mypage/write/write_step3.js'%}"></script>
