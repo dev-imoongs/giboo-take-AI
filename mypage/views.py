@@ -693,27 +693,31 @@ class MypageNeulhaerangWriteFormView(View):
         # planDetail= request.POST.get("planDetail")
 
 
-        title = request.POST.get("title")
-        print(title)
-        thumbnail= request.FILES.get("thumbnail")
-        print(thumbnail)
+        # title = request.POST.get("title")
+        # thumbnail= request.FILES.get("thumbnail")
 
-        inner_titles = request.POST.getlist("inner_title")
-        inner_title_content_orders =request.POST.getlist("inner_title_content_order")
-        print(inner_title_content_orders)
-        print(inner_titles)
+        # inner_titles = request.POST.getlist("inner_title")
+        # inner_title_content_orders =request.POST.getlist("inner_title_content_order")
 
-        inner_contents = request.POST.getlist("inner_content")
-        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        # inner_contents = request.POST.getlist("inner_content")
+        # inner_content_content_orders = request.POST.getlist("inner_content_content_order")
 
-        print(inner_content_content_orders)
-        print(inner_contents)
 
+        tags = request.POST.getlist("tag")
+
+        openchat_link = request.POST.get("openchat_link")
+
+        byeoljji_names = request.POST.getlist("byeoljji_name")
+
+        byeoljji_counts = request.POST.getlist("byeoljji_count")
+
+        #포토텍스트는 무조건 순서대로 10개씩 옴
+        photo_texts = request.POST.getlist("caption")
+        print(photo_texts)
 
 
 
         inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
-        print(inner_photo_content_orders)
 
 
 

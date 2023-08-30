@@ -112,6 +112,14 @@ $('.link_step3').on('click',(e)=>{
         $(order).val($(order).val()+`_${count}`)
     })
 
+    //태그 필수
+    if($(".tag").filter((i,v)=>!$(v).val()).length!=0){
+        toastMsg("태그 갯수대로 모두 입력해주세요")
+        return;
+    }
+
+
+
 
     $("form").eq(0).submit()
 
@@ -147,7 +155,7 @@ $(document).ready(function () {
         $txtLength = $(e.target).parent().parent().next()
         $imgdescLength = $(e.target).parent().next()
 
-        if($(e.target).hasClass('tf_link')){
+        if($(e.target).hasClass('tag')){
             $index = $(e.target).parent().parent().index()
             $('.link_hash').eq($index-1).text(`#${$(e.target).val()}`)
         }
@@ -427,14 +435,14 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
     $addContent = '<div class="add_link add_tag">\n' +
                     '  <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>\n' +
                     '      <input placeholder="추가할 태그명을 입력해주세요"\n' +
-                    '             type="text" autocomplete="off"\n' +
-                    '             class="tf_link ng-untouched ng-pristine ng-valid"\n' +
+                    '             type="text" autocomplete="off" name="tag" \n' +
+                    '             class="tf_link tag ng-untouched ng-pristine ng-valid"\n' +
                     '             id="relateTitle0" focus="false" blur="true">\n' +
                     '  </div>\n' +
                     '  <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>\n' +
                     '</div>'
     // 해쉬태그
-    $addContent2 = '<a href="#" class="link_hash"></a>'
+    $addContent2 = '<a class="link_hash"></a>'
     i = randMintoMax(1,10)
 
 
@@ -458,7 +466,7 @@ $('.box_open .list_write .relate_url').last().find('button.box_add').on('click',
     $addContent = '<div class="add_link add_byeol">\n' +
                     '  <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>\n' +
                     '      <input placeholder="기부자에게 제공할 별찌를 입력해주세요."\n' +
-                    '              type="text" autocomplete="off"\n' +
+                    '              type="text" autocomplete="off" name="byeoljji_name"\n' +
                     '              class="tf_link ng-untouched ng-pristine ng-valid"\n' +
                     '              id="relateTitle0" focus="false" blur="true">\n' +
                     '  </div>\n' +
@@ -466,7 +474,7 @@ $('.box_open .list_write .relate_url').last().find('button.box_add').on('click',
                     '      <label class="lab_link" for="relateUrl0">인원\n' +
                     '      </label>\n' +
                     '      <input\n' +
-                    '          placeholder="00명" type="text"\n' +
+                    '          placeholder="00명" type="text" name="byeoljji_count"\n' +
                     '          class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"\n' +
                     '          focus="false" autocomplete="off"\n' +
                     '          blur="true">\n' +
