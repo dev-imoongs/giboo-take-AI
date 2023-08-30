@@ -148,7 +148,7 @@ $(document).ready(function () {
         $txtLength = $(e.target).parent().parent().next()
         $imgdescLength = $(e.target).parent().next()
 
-        if($(e.target).hasClass('tf_link')){
+        if($(e.target).hasClass('tag')){
             $index = $(e.target).parent().parent().index()
             $('.link_hash').eq($index-1).text(`#${$(e.target).val()}`)
         }

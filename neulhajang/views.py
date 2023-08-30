@@ -62,9 +62,13 @@ class NeulhajangDetailView(View):
         bottom_posts = Neulhajang.objects.exclude(id=neulhajang_id).order_by('?')[0:6]
         # 남은 일자 구하기
         end_date = Neulhajang.objects.filter(id=neulhajang_id).values()[0]['neulhajang_duration_end_date']
-        trans_end_date = datetime.combine(end_date, datetime.min.time())
-        date_difference = trans_end_date-datetime.now()
-        days_difference = date_difference.days
+        if end_date:
+            trans_end_date = datetime.combine(end_date, datetime.min.time())
+            date_difference = trans_end_date - datetime.now()
+            days_difference = date_difference.days
+        else:
+            days_difference =''
+
         if(my_email):
             check_my_like = NeulhajangLike.objects.filter(member__member_email=my_email)
         else:
