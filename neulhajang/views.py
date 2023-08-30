@@ -90,6 +90,7 @@ class NeulhajangDetailView(View):
         member = Member.objects.get(member_email=my_email)
         file = request.FILES
         datas = request.POST
+        print(datas)
         NeulhajangAuthenticationFeed.objects.create(feedContent=datas['text-form'], feedPhoto=file.get('upload_file'), member=member, neulhajang_id=neulhajang_id)
 
         return redirect(f'/neulhajang/detail/{neulhajang_id}/')

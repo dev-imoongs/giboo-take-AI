@@ -23,7 +23,7 @@
             <article id="mArticle" class="mArticle">
               <!--상단 타이틀 부분-->
               <div class="wrap_visual">
-                <div class="cont_visual" style="background-image: url('/upload/{{ post.thumbnail_image }}')">
+                <div class="cont_visual" style="background-image: url('{% get_media_prefix %}{{ post.thumbnail_image }}')">
                   <div class="front_pack">
                     <!--타이틀-->
                     <h4 class="tit_visual ellipsis_type1">{{ post.neulhaerang_title }}</h4>
@@ -47,19 +47,23 @@
                 <div class="box_info">
                   <p class="desc_info">
                     <em class="emph_give">{{ post.neulhaerang_status }}</em>
-                    <span class="txt_g" style="white-space: pre-line"
-                      >이 모금은 심사파트너 기관에서 검토중입니다. 모금이 시작되면
-                      응원해주세요!</span
-                    >
+                    <span class="txt_g" style="white-space: pre-line">이 모금은 심사파트너 기관에서 검토중입니다.
+                        모금이 시작되면 응원해주세요!</span>
                   </p>
                 </div>
                 {% elif post.neulhaerang_status == '미선정' %}
                 <div class="box_info">
                   <p class="desc_info">
                     <em class="emph_give">{{ post.neulhaerang_status }}</em>
-                    <span class="txt_g" style="white-space: pre-line"
-                      >{{ post.rejected_message }}</span
-                    >
+                    <span class="txt_g" style="white-space: pre-line">{{ post.rejected_message }}</span>
+                  </p>
+                </div>
+                {% endif %}
+                {% if post.neulhaerang_status == '종료' %}
+                 <div class="box_info">
+                  <p class="desc_info">
+                    <em class="emph_give">{{ post.neulhaerang_status }}</em>
+                    <span class="txt_g" style="white-space: pre-line">이미 종료된 늘해랑입니다.</span>
                   </p>
                 </div>
                 {% endif %}
@@ -166,7 +170,7 @@
                             <img
                               alt="대표 섬네일"
                               class="img_logo"
-                              src="/upload/{{ post.member.profile_image }}"
+                              src="{% get_media_prefix %}{{ post.member.profile_image }}"
                             />
                           </span>
                           <span class="info_suggester">
@@ -257,12 +261,12 @@
                         {% if not my_member%}
                         <img alt="프로필사진"
                             class="img_thumb"
-                            src='/upload/member/profile/2023/08/28/avatar_angel.png'/>
+                            src='{% get_media_prefix %}member/profile/2023/08/28/avatar_angel.png'/>
                         {% else %}
                         {% if my_member.profile_image_choice == 'user' %}
                         <img alt="프로필사진"
                             class="img_thumb"
-                            src='/upload/{{ my_member.profile_image }}'/>
+                            src='{% get_media_prefix %}{{ my_member.profile_image }}'/>
                         {% else %}
                         <img alt="프로필사진"
                             class="img_thumb"
@@ -371,21 +375,20 @@
                   <ul class="list_slide" style="width: 900px">
                       {% for bottom_post in bottom_posts %}
                     <li>
-                      <a href="#" class="link_slide">
+                      <a href="{% url 'neulhaerang:detail' bottom_post.id  %}" class="link_slide">
                         <span
                           class="area_thumb"
                           style="
-                            background-image: url('/upload/{{ bottom_post.thumbnail_image }}');
+                            background-image: url('{% get_media_prefix %}{{ bottom_post.thumbnail_image }}');
                           "
                         ></span>
                       </a>
                       <div class="area_cont">
-                        <a class="link_slide" href="#"
-                          ><span class="tit_slide">모금함</span
-                          ><span class="desc_slide ellipsis_type1"
-                            >{{ bottom_post.neulhaerang_title }}</span
-                          ></a
-                        >
+                        <a class="link_slide" href="{% url 'neulhaerang:detail' bottom_post.id  %}">
+                            <span class="tit_slide">모금함</span>
+                            <span class="desc_slide ellipsis_type1">
+                            {{ bottom_post.neulhaerang_title }}
+                        </span></a>
                       </div>
                     </li>
                       {% endfor %}
@@ -396,29 +399,36 @@
               <!-- btn_static 추가시 밑에 붙음-->
               <div class="fund_float">
                 <button type="button" class="btn_g btn_cheer">
-                  <span class="ico_together {{ cheer_status }} ico_cheer"></span
-                  ><span class="txt_float txt_cheer"
-                    >응원<span class="num_active">{{ likes_count }}</span></span
-                  ></button
-                ><button type="button" class="btn_g btn_participate">
-                  <span class="ico_together {{ check_my_participate }} ico_share"></span
-                  ><span class="txt_float {{ check_my_participate }} txt_share"
-                    >동참<span class="{{ check_my_participate }} num_active">{{ participants_count }}/{{ post.participants_max_count }}</span></span
-                  >
+                  <span class="ico_together {{ cheer_status }} ico_cheer"></span>
+                    <span class="txt_float txt_cheer">응원<span class="num_active">{{ likes_count }}</span>
+                    </span>
                 </button>
+
+                {% if post.neulhaerang_status == "모금중" %}
+                <button type="button" class="btn_g btn_participate">
+                {% else %}
+                <button type="button" class="btn_g">
+                {% endif %}
+
+                  <span class="ico_together {{ check_my_participate }} ico_share"></span>
+                    <span class="txt_float {{ check_my_participate }} txt_share">동참
+                        <span class="{{ check_my_participate }} num_active">{{ participants_count }}/{{ post.participants_max_count }}</span>
+                    </span>
+                </button>
+
+                {% if post.neulhaerang_status == "모금중" %}
                 <!--기부 가능-->
                 <button type="button" class="btn_g btn_give">
                   <span class="ico_give"></span><span class="txt_float txt_give">기부하기</span>
                 </button>
-
+                {% else %}
                 <!--기부 종료료-->
-                <!-- <button
-                  type="button"
-                  class="btn_g btn_off"
-                >
-                  <span><span class="txt_float txt_end"> 기부종료 </span></span>
-                </button> -->
-
+                <button type="button" class="btn_g btn_off">
+                  <span>
+                      <span class="txt_float txt_end"> 기부종료 </span>
+                  </span>
+                </button>
+                {% endif %}
 
 
               </div>
@@ -688,12 +698,8 @@
   <script>
       let innerContents = "{{ contents|escapejs }}"
       let businessPlan = "{{ business_plan|escapejs }}"
-      let amount ="{{ target_amount|escapejs }}"
-      let amountSum = "{{ amount_sum }}"
       let neulhaerangId = "{{ neulhaerang_id }}"
       let replyCount = "{{ reply_count }}"
-      const parsedAmount = JSON.parse(amount)
-      const parsedAmountSum = JSON.parse(amountSum)
       let parsedInnerContents = JSON.parse(innerContents)
       const parsedPlan = JSON.parse(businessPlan)
 
@@ -703,6 +709,8 @@
   <script src="{% static 'js/neulhaerang/bootpay.js' %}"></script>
   <script>
       email = "{{ request.session.member_email }}"
+      staticUrl = {% get_static_prefix %}
+      mediaUrl = {% get_media_prefix %}
   </script>
   <script src="{% static 'js/neulhaerang/detail.js' %}"></script>
 {% if request.session.member_email %}

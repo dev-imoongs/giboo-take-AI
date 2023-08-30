@@ -333,6 +333,31 @@ a {
     font-size: 16px;
 }
 
+.project-end-display {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    font-weight: 600;
+    box-sizing: border-box;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid #666;
+    border-radius: 6px;
+    margin: 0px;
+    font-family: "KakaoBig Bold";
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: #666;
+    width: 100%;
+    height: 46px;
+    padding: 0px 20px;
+    font-size: 16px;
+}
+
 .provider-information {
     order: 1;
     flex-direction: column;
@@ -529,6 +554,28 @@ a {
     color: rgb(255, 255, 255);
     background-color: rgb(173, 76, 254);
     cursor: pointer;
+    width: 100%;
+    height: 46px;
+    padding: 0px 20px;
+    font-size: 16px;
+}
+.floating-end-button {
+    font-weight: 600;
+    box-sizing: border-box;
+    display: none;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid #666;
+    border-radius: 6px;
+    margin: 0px;
+    font-family: "KakaoBig Bold";
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: #666;
     width: 100%;
     height: 46px;
     padding: 0px 20px;
@@ -2225,4 +2272,49 @@ a {
     margin-right: 7px;
     vertical-align: top;
     background-color: rgb(211, 211, 211);
+}
+
+/*  토스트 */
+
+#toast-container {
+    position: fixed;
+    z-index: 100000002;
+    width: 100%;
+}
+.toast-bottom-center {
+    bottom: 76px;
+}
+.toast {
+    position: relative;
+    left: 50%;
+    z-index: 100;
+    margin-left: -400px;
+    margin-top: 10px;
+}
+
+.toaster-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 400;
+    color: #fff;
+}
+
+.toast-title {
+    font-weight: 700;
+}
+.toast .toast-message {
+    width: 760px;
+    padding: 13px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #000000b3;
+    text-align: center;
+    letter-spacing: -.05em;
+}
+
+
+.toast .toast-message>div {
+    white-space: pre-line;
 }

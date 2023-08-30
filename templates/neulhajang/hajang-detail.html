@@ -21,12 +21,12 @@
         <div>
             <section class="project-information-section">
                 <div class="project-cover">
-                    <div class="project-image" style="background-image: url('/upload/{{ post.thumnail_image }}')"></div>
+                    <div class="project-image" style="background-image: url('{% get_media_prefix %}{{ post.thumnail_image }}')"></div>
                 </div>
                 <div class="project-detail-information">
                     <div class="project-cover-story">
                         <div class="project-cover-story-label-container">
-                            <em class="remain-date-label"><svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>{{ period_to_end }}일 남음</em>
+                            <em class="remain-date-label"><svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg></em>
                             <a href="" class="tag-label-link">
                                 <div class="tag-label-text"># {{ post.representing_tag }}</div>
                             </a>
@@ -57,17 +57,18 @@
                     </div>
                     <div class="project-active-button-container">
                         <button type="button" class="project-active-button">행동하기</button>
+                        <div class="project-end-display" style="display: none">종료</div>
                     </div>
                     <!--- 제안자 프로필 부분 --->
                     <div class="provider-information">
                         <div class="provider-profile">
                             {% if not post.member.profile_image %}
-                                <div class="provider-profile-image" style="background: url('{% get_static_prefix %}image/avatar.png') 50% 50% / cover no-repeat";></div>
+                                <div class="provider-profile-image" style="background: url('{% get_static_prefix %}image/avatar.png') 50% 50% / cover no-repeat"></div>
                             {% else %}
                                 {% if post.member.profile_image_choice == 'user' %}
                                     <div class="provider-profile-image" style="background: url('{% get_media_prefix %}{{ post.member.profile_image }}') 50% 50% / cover no-repeat";></div>
                                 {% else %}
-                                    <div class="provider-profile-image" style="background: url('{{ post.member.kakao_profile_image }}') 50% 50% / cover no-repeat";></div>
+                                    <div class="provider-profile-image" style="background: url('{{ post.member.kakao_profile_image }}') 50% 50% / cover no-repeat"></div>
                                 {% endif %}
                             {% endif %}
                             <div>
@@ -245,6 +246,7 @@
                         </ul>
                         <div class="floating-action-button-container">
                             <button type="button" class="floating-action-button">행동하기</button>
+                            <div class="floating-end-button">종료</div>
                             <div class="neulhajang-like-container">
                                 <button class="action-like-button">
                                     <!--- 버튼이 비어있다가 누른걸 완료하는 사이에 action-animated가 생겼다가 사라짐 --->
@@ -476,7 +478,7 @@
                             <form class="multi-action-form" action="{% url 'neulhajang:detail' post.id %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="project-simple-information">
-                                    <div class="project-simple-information-thumbnail" style="background-image: url('/upload/{{ post.thumnail_image }}')"></div>
+                                    <div class="project-simple-information-thumbnail" style="background-image: url('{% get_media_prefix %}{{ post.thumnail_image }}')"></div>
                                     <strong class="project-simple-information-title">{{ post.neulhajang_title }}</strong>
                                 </div>
                                 <div class="image-file-attach-container">
@@ -495,6 +497,7 @@
                                     <ul class="image-file-upload-list">
                                         <li class="image-file-upload-item">
                                             <!-- img 태그 생성되는 위치-->
+
                                             <button type="button" class="image-file-delete-button">
                                                 <svg class="image-file-delete-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
                                                     <g fill="none" fill-rule="evenodd">
@@ -5626,13 +5629,24 @@
                 </section>
                 <section class="active-action-section-buttom-banner-container">
                     <span>
-                        <a href="" class="active-action-section-buttom-banner-link">
+                        <a href="/introduce/statistics/" class="active-action-section-buttom-banner-link">
                             <img src="https://t1.kakaocdn.net/together_action_prod/admin/20221213/243c5c57b73e4032bb298157644c745e" class="active-action-section-buttom-banner-image">
                         </a>
                     </span>
                 </section>
             </div>
         </div>
+        <div id="toast-container" class="toast-bottom-center" style="display: none">
+        <div class="toast toast-success">
+            <div class="toaster-icon icon-success"></div>
+            <div class="toast-content">
+                <div class="toast-title"></div>
+                <div class="toast-message">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
     <!--<footer></footer>-->
     <!--글작성 확인모달-->
@@ -5665,12 +5679,12 @@
     const mediaUrl = "{% get_media_prefix %}"
 </script>
 <script>
-//    let participateTargetAmount = "{{ participate_target_amount }}";
-//    let authenticationFeedCount = "{{ authentication_feed_count }}";
     let innerContents = "{{ inner_contents|escapejs }}";
     const neulhajangId = "{{ neulhajang_id }}"
     const parsedInnerContents = JSON.parse(innerContents)
 </script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://js.bootpay.co.kr/bootpay-4.3.1.min.js" type="application/javascript"></script>
 <script src="{% static 'js/neulhajang/detail.js'%}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
