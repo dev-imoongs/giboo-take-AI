@@ -3,7 +3,12 @@ body, html {
     margin: 0;
     padding: 0;
 }
-
+.group-profile .area-thumb .link-badge, .group-profile .area-thumb .link-badge-profile {
+    position: absolute;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+}
 a {
   text-decoration: none;
   cursor: pointer;
@@ -27,10 +32,13 @@ button {
 
 .group_meditation {
     width: 700px;
-    padding: 66px 0 30px;
     margin: 0 auto;
 }
 
+.inner_meditation{
+        padding-top: 30px;
+        padding-bottom: 90px;
+}
 .group_meditation .list_meditation {
     overflow: hidden;
 }
@@ -55,7 +63,7 @@ button {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-image: url(https://mud-kage.kakaocdn.net/dn/Crllp/btqjOcIpRXr/FFk4V6wJ4skkgYDQIBeOSk/c360.jpg);
+    background-image: url(/static/image/byeoljji/image-not-found.jpg);
 }
 
 .group_meditation .list_meditation .tit_meditation {
@@ -178,3 +186,26 @@ button {
   font-size: 15px;
   line-height: 38px;
 }
+
+
+.tit-section.section-type6 {
+    padding-top: 26px;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.tit-section {
+    display: block;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    color: #444;
+    font-family: KakaoBig Bold,sans-serif;
+    box-sizing: border-box;
+}
+.tit-section .color-g1 {
+    padding-left: 5px;
+    color: #dc287c;
+}
+
+

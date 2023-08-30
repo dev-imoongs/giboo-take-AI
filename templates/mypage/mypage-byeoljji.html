@@ -24,150 +24,176 @@
             <div class="happy_cont">
               <!-- 프로필 -->
               <div class="group-profile">
-                <div class="area-name">
-                  <div class="link-myprofile">
-                    <strong class="txt-nick">기부천사</strong>
-                    <div class="box-name">
-                      <strong class="txt-name"> (계정ID) b73** </strong>
+                    <div class="area-name">
+                      <div class="link-myprofile">
+                        <strong class="txt-nick">{{ member_level }}기부천사</strong>
+                        <div class="box-name">
+                          <strong class="txt-name"> {{ member_nickname }} </strong>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="area-thumb">
-                  <a class="link-badge" href="javascript:void(0)">
-                    <span class="badge-thumb">
-                      <img class="img-thumb"
-                        src="https://mud-kage.kakaocdn.net/dn/bCLr4s/btqza7sfp3R/WxdDJXdeicgPOs1M1EAO00/img.png">
-                    </span>
-                  </a>
-                  <a class="link-thumb" href="javascript:void(0)">
+                     <div class="area-thumb">
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %}
+
+                    <a class="link-thumb" href={% url 'mypage:profile' %}>
                     <span class="profile-thumb">
-                      <img class="img-thumb" src="https://t1.kakaocdn.net/together_image/common/avatar/avatar02.png">
-                    </span>
-                  </a>
-                </div>
-              </div>
+                        <!--  -->
+                     <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src="{{ member.profile_image.url }}"
+                           {% endif %}
+                       {% else %}
+                            src = "{% static 'image/avatar.png' %}"
+                      {% endif %}
+
+                     >
+                        <!--  -->
+
+                  <!--  <img
+                          alt="프로필 사진"
+                          class="img-thumb"
+                          src=/{{ member_profile_image }}
+                        />
+                        -->
+                      </span>
+                    </a>
+                  </div>
+                  </div>
               <div class="group_meditation">
+                  <h3 class="tit-section section-type6">별찌
+                    <span class="color-g1">{{ byeoljji_count }}</span>
+                  </h3>
                   <div class="inner_meditation">
                     <ul class="list_meditation">
-                      <li>
-                          <a class="link_meditation"
-                          href="/mind/110">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">기쁨에 접속하는 3단계 호흡법</strong>
-                              <span class="txt_option">
-                                  명상가 유정은
-                                  3분
-                              </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호(ex.1등 최고의 기부천사, 2등 감동의 기부천사, 3등 은은한 기부천사)</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a class="link_meditation" href="javascript:void(0)">
-                              <span>
-                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">
-                              </span>
-                              <strong class="tit_meditation">별찌 이름</strong>
-                              <span class="txt_option">별찌 칭호</span>
-                          </a>
-                      </li>
+{#                      <li>#}
+{#                          <a class="link_meditation"#}
+{#                          href="/mind/110">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">기쁨에 접속하는 3단계 호흡법</strong>#}
+{#                              <span class="txt_option">#}
+{#                                  명상가 유정은#}
+{#                                  3분#}
+{#                              </span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호(ex.1등 최고의 기부천사, 2등 감동의 기부천사, 3등 은은한 기부천사)</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
+{#                      <li>#}
+{#                          <a class="link_meditation" href="javascript:void(0)">#}
+{#                              <span>#}
+{#                                  <img class="thumb_img" src="https://mud-kage.kakaocdn.net/dn/bJoYbt/btqhc8WXQAd/36fmf5Y1bqkFKhEf5oTm1k/c360.jpg&quot">#}
+{#                              </span>#}
+{#                              <strong class="tit_meditation">별찌 이름</strong>#}
+{#                              <span class="txt_option">별찌 칭호</span>#}
+{#                          </a>#}
+{#                      </li>#}
 
                     </ul>
-                    <div class="list-more">
-                        <button type="button" class="link-round">
-                            더보기
-                        </button>
-                    </div>
+                    <div class="list-more" >
+                                            <button type="button" class="link-round link-other2" style="display: none">더보기</button>
+                                        </div>
                   </div>
                 </div>
             </div>
@@ -175,7 +201,7 @@
         </div>
       </main-section>
       <!-- 푸터 -->
-      <footer></footer>
+      {% include 'footer/footer.html' %}
       <!-- height 100%시 모달 등장 -->
       <div class="dimmed_layer"></div>
     </main>
@@ -201,7 +227,12 @@
   </modal>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="{% static 'js/mypage/mypage_reply.js' %}"></script>
+<script>
+     let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+
+</script>
+<script src="{% static 'js/mypage/byeoljji.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}

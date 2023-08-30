@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/neulhaerang/list.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search/search-form.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search/search-input.css' %}" />
-      <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
   </head>
   <body>
     <div id="dkWrap">
@@ -28,7 +28,7 @@
                   <fieldset>
                     <div class="box_search">
                       <input
-                        placeholder="검색어를 입력하세요"
+                        placeholder="{{ keyword }}"
                         name="q"
                         type="text"
                         id="schKeyword"
@@ -478,6 +478,7 @@
         ></span
       >
       <!--footer-->
+      {% include "footer/footer.html" %}
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

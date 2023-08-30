@@ -37,18 +37,44 @@
                         </div>
                       </div>
                     </div>
-                    <div class="area-thumb">
-                      <a class="link-badge" href={% url 'mypage:badge' %}>
-                        <span class="badge-thumb">
-                          <img class="img-thumb" src=/{{ member_profile_badge }}>
-                        </span>
-                      </a>
-                      <a class="link-thumb" href={% url 'mypage:profile' %}>
-                        <span class="profile-thumb">
-                          <img class="img-thumb" src=/upload/{{ profile_image }}>
-                        </span>
-                      </a>
-                    </div>
+                     <div class="area-thumb">
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %}
+
+                    <a class="link-thumb" href={% url 'mypage:profile' %}>
+                    <span class="profile-thumb">
+                        <!--  -->
+                     <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src="{{ member.profile_image.url }}"
+                           {% endif %}
+                       {% else %}
+                            src = "{% static 'image/avatar.png' %}"
+                      {% endif %}
+
+                     >
+                        <!--  -->
+
+                  <!--  <img
+                          alt="프로필 사진"
+                          class="img-thumb"
+                          src=/{{ member_profile_image }}
+                        />
+                        -->
+                      </span>
+                    </a>
+                  </div>
                   </div>
                     <div class="myaction-section">
                         <div class="myaction-content">
@@ -112,9 +138,67 @@
                                     </span>
                                 </div>
                                 </form>
+{#                            <div class="wrap_tab">#}
+{#                                    <ul class="list_tab tab_type6">#}
+{#                                           <li routerlinkactive="on" class="nav-top on">#}
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">전체</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                        <li routerlinkactive="on" class="nav-top">#}
+{#                                            <button class="link_tab">#}
+{#                                                <span class="txt_tab">늘해랑</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                        <li routerlinkactive="on" class="nav-top">#}
+{#                                            <button class="link_tab ">#}
+{#                                                <span class="txt_tab">늘하장</span>#}
+{#                                            </button>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                </div>-->#}
+                            <div class="inner-myaction-section">
+{#                                <div id="nav-neulhaerang" class="sort_cate">#}
+{#                                    <!-- 늘해랑 탭 -->#}
+{#                                    <span class="inner_sort_cate">#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">전체</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">주최한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">참여한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">후기</label>#}
+{#                                        </span>#}
+{#                                         <span class="box_sorting">#}
+{#                                            <label class="lab_sort">응원한 행동</label>#}
+{#                                        </span>#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                                <!-- 늘해랑 누르면 늘하장탭 hide -->#}
+{#                                <div id="nav-neulhajang" class="sort_cate">#}
+{#                                    <!-- 늘하장 탭 -->#}
+{#                                    <span class="inner_sort_cate">#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">전체</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">주최한 행동</label>#}
+{#                                        </span>#}
+{#                                        <span class="box_sorting">#}
+{#                                            <label class="lab_sort">참여한 행동</label>#}
+{#                                        </span>#}
+{#                                         <span class="box_sorting">#}
+{#                                            <label class="lab_sort">응원한 행동</label>#}
+{#                                        </span>#}
+{#                                    </span>#}
+{#                                </div>#}
                                 <h3 class="tit-section">
-                                    나의 늘해랑
-                                    <span class="color-g1"> {{ member_nuelhaerang_count }}</span>
+                                    인증 피드
+                                    <span class="color-g1"> {{ feeds_count }}</span>
                                 </h3>
                                 <div class="myaction-card-list">
                                     <user-action-list>
@@ -195,8 +279,8 @@
                                                 </div>
                                             </li>-->
                                         </ul>
-                                        <div class="list-more">
-                                            <button type="button" class="link-round link-other2">더보기</button>
+                                        <div class="list-more" >
+                                            <button type="button" class="link-round link-other2" style="display: none">더보기</button>
                                         </div>
                                     </user-action-list>
                                 </div>
@@ -236,6 +320,10 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+     let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
 <script src="{% static 'js/mypage/mypage_post_list.js' %}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>

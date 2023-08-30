@@ -39,7 +39,7 @@
                           <span class="badge-thumb">
                             <img
                               class="img-thumb"
-                              src=/{{ member_profile_badge }}
+                              src={% get_static_prefix %}{{ member_profile_badge }}
                             />
                           </span>
                         </a>
@@ -168,17 +168,15 @@
                                   <span class="txt-date">{{ feed.created_date | date:'Y.m.d'}}</span>
                                 </div>
                               </a>
-                              <button type="button" class="btn-delete"> 삭제 </button>
+{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
                             </div>
                           </li>
                         {% endfor %}
                          </ul>
                       </actions-list>
-                    {% if feeds_count > 2 %}
                         <div class="list-more">
                         <a class="link-round" href={% url 'mypage:post-list' %}> 모든 피드 보러가기 </a>
                       </div>
-                    {% endif %}
 
                     </div>
                   </user-actions>
@@ -224,23 +222,25 @@
                                 </button>
                               </like-comment>
 
-                              <button type="button" class="btn-delete"> 삭제 </button>
+{#                              <button type="button" class="btn-delete"> 삭제 </button>#}
                             </span>
                           </div>
                         </li>
                           {% endfor %}
 
                       </ul>
-                    {% if total_reply_count > 2 %}
+
                         <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:reply' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:reply' %}> 모든 댓글 보기 </a>
                       </div>
-                    {% endif %}
+
 
                     </div>
                   </user-comments>
 
                 {% endif %}
+
+
 
                   <!-- 뱃지리스트 -->
                   <user-badge-list>
@@ -250,15 +250,15 @@
                         <span class="color-g1">{{ badge_count }}</span>
                       </h3>
                       <ul class="list-badge">
-                          {% for badge in www_badge_content %}
+
+                          {% for badge in www_badge_list %}
                         <li class="my-badge">
-                          <a class="link-badge">
-                            <img class="thumb-badge" src=/{{ badge.badge.badge_image }}
-                            />
-                            <strong class="name-badge">{{ badge.badge.badge_name }}</strong>
-                            <span class="num-badge">1회</span>
-                          </a>
-                        </li>
+                        <a class="link-badge" id="{{ badge.badge_id }}">
+                          <img class="thumb-badge" alt="진짜 나를 발견왕" src={% get_static_prefix %}{{ badge.badge_image }}>
+                          <strong class="name-badge">{{ badge.badge_name }}</strong>
+                          <span class="num-badge" style="font-size: 13px">{{ badge.badge_total }}회</span>
+                        </a>
+                      </li>
                           {% endfor %}
                         <!--<li class="my-badge">
                           <a class="link-badge">
@@ -298,7 +298,7 @@
                         </li> -->
                       </ul>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:badge' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:badge' %}> 모든 뱃지 보기 </a>
                       </div>
                     </div>
                   </user-badge-list>
@@ -313,14 +313,19 @@
                     <ul class="list_meditation">
                         {% for byeoljji_contents in www_byeoljji_content %}
                       <li>
-                          <a class="link_meditation" href= >
+                          <a class="link_meditation" href="/neulhaerang_review/review/detail/{{ byeoljji_contents.byeoljji.neulhaerang.neulhaerangreview_set.first.id  }}" >
                               <span>
-                                  <img class="thumb_img" src=/{{ byeoljji_contents.byeoljji.byeoljji_img }}>
+                                  <img class="thumb_img" src={% get_media_prefix %}{{ byeoljji_contents.byeoljji.byeoljji_img }}>
                               </span>
                               <strong class="tit_meditation">{{ byeoljji_contents.byeoljji.byeoljji_name}}</strong>
                               <span class="txt_option">
-                                  명상가 유정은
-                                  3분
+                                  {% if byeoljji_contents.byeoljji.byeoljji_rank == 1 %}
+                                        최고의 기부천사
+                                      {% elif byeoljji_contents.byeoljji.byeoljji_rank == 2 %}
+                                        감동의 기부천사
+                                      {% else %}
+                                      은은한 기부천사
+                                  {% endif %}
                               </span>
                           </a>
                       </li>
@@ -356,7 +361,7 @@
                   </div>
                 </div>
                       <div class="list-more">
-                        <a class="link-round" href={% url 'mypage:byeoljji' %}> 더보기 </a>
+                        <a class="link-round" href={% url 'mypage:byeoljji' %}> 모든 별찌 보기 </a>
                       </div>
                     </div>
                   </user-byeoljii-list>
@@ -366,7 +371,7 @@
           </div>
         </main-section>
       </main>
-      <footer></footer>
+      {% include 'footer/footer.html' %}
       <!-- height 100%시 모달 등장 -->
       <div class="dimmed_layer"></div>
     </div>
@@ -430,8 +435,10 @@
 {% else %}
     <script src="{% static 'js/header/header.js' %}"></script>
 {% endif %}
-<script> let NeulhaerangCount = {{ member_neulhaerang_count }} </script>
-<script> let NeulhajangCount = {{ member_neulhajang_count }} </script>
+<script>
+    let staticUrl = "{% get_static_prefix %}"
+    let mediaUrl = "{% get_media_prefix %}"
+</script>
 <script src="{% static 'js/mypage/mypage_main.js' %}"></script>
 
 </html>
