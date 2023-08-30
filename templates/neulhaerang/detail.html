@@ -84,10 +84,10 @@
                         ><span class="inner_tab"><span class="txt_tab">모금후기</span></span></a
                       >
                     </li>
-                  {% endif %}
+
                   </ul>
                 </div>
-
+                {% endif %}
                 <div class="cont_subject">
 
                 </div>
@@ -167,14 +167,26 @@
                       <div class="group_suggester">
                         <a href="#" class="link_suggester">
                           <span class="wrap_thumb">
+                            {% if not post.member.profile_image %}
                             <img
                               alt="대표 섬네일"
                               class="img_logo"
-                              src="{% get_media_prefix %}{{ post.member.profile_image }}"
-                            />
+                              src="{% get_static_prefix %}image/avatar.png"/>
+                            {% endif %}
+                            {% if post.member.profile_image_choice == 'user' %}
+                            <img
+                              alt="대표 섬네일"
+                              class="img_logo"
+                              src="{% get_media_prefix %}{{ post.member.profile_image }}"/>
+                            {% else %}
+                            <img
+                              alt="대표 섬네일"
+                              class="img_logo"
+                              src="{{ post.member.kakao_profile_image }}"/>
+                            {% endif %}
                           </span>
                           <span class="info_suggester">
-                            <span class="txt_suggester">프로젝트 주최자</span>
+                            <span class="txt_suggester">늘해랑 주최자</span>
                             <span class="name_suggester">{{ post.member.member_nickname }}</span>
                           </span>
                         </a>
