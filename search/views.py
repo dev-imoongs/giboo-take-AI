@@ -1,12 +1,13 @@
 import json
 
+from django.db.models import Sum
 from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import neulhaerang
-from neulhaerang.models import NeulhaerangTag, Neulhaerang
+from neulhaerang.models import NeulhaerangTag, Neulhaerang, NeulhaerangDonation, NeulhaerangParticipants
 from neulhajang.models import Neulhajang
 from static_app.models import Category
 
@@ -32,6 +33,8 @@ class SearchInputView(View):
         return render(request, 'search/search-input.html')
 
 
+
+# 최신태그 가져오기
 class ShowTagAPIView(APIView):
     def get(self, request):
         tags = NeulhaerangTag.objects.all().order_by("-id")[:10].values()
@@ -42,6 +45,7 @@ class ShowTagAPIView(APIView):
         return Response(datas)
 
 
+# 카테고리 가져오기
 class ShowCategoryAPIView(APIView):
     def get(self, request):
         categories = Category.objects.all().values()
@@ -52,29 +56,66 @@ class ShowCategoryAPIView(APIView):
         return Response(datas)
 
 
+# 태그 검색 결과페이지로 이동하기
 class ShowSearchListOfTagView(View):
-    def get(self, request, tag_name):
-        tag_posts = Neulhaerang.objects.filter(neulhaerangtag__tag_name=tag_name).values()
+    def get(self, request, tag_name, tag_type):
+        posts = Neulhaerang.objects.filter(neulhaerangtag__tag_name=tag_name).values()
+        amount = NeulhaerangDonation.objects.filter(neulhaerang__neulhaerangtag__tag_name=tag_name).aggregate(Sum('donation_amount'))['donation_amount__sum']
+        participants = NeulhaerangParticipants.objects.filter(neulhaerang__neulhaerangtag__tag_name=tag_name).count()
         print("태그검색 뷰")
-        print(list(tag_posts.values()))
+        print(list(posts))
+        print(amount)
+        print(participants)
 
-        context = {
-            "posts": tag_posts
+        datas = {
+            "tag": tag_name,
+            "type": tag_type,
+            "amount": '{:,}'.format(amount),
+            "participants": '{:,}'.format(participants),
+            "posts": posts
         }
-        return render(request, 'search/search-click.html', context)
+        return render(request, 'search/search-click.html', datas)
 
 
+# 태그 검색 결과 리스트 API View
+class ShowSearchListOfTagAPIView(APIView):
+    def get(self, request, tag_name):
+        pass
+
+
+
+# 카테고리 검색결과 페이지로 이동하기
 class ShowSearchListOfCategoryView(View):
     def get(self, request, category_name):
+        amount = NeulhaerangDonation.objects.filter(neulhaerang__category__category_name=category_name).aggregate(Sum('donation_amount'))['donation_amount__sum']
+        participants = NeulhaerangParticipants.objects.filter(neulhaerang__category__category_name=category_name).count()
         category_posts = Neulhaerang.objects.filter(category__category_name=category_name).values()
         print("카테고리검색 뷰")
         print(list(category_posts.values()))
 
         context = {
-            "posts": category_posts
+            "category_name": category_name,
+            "amount": '{:,}'.format(amount),
+            "participants": '{:,}'.format(participants),
         }
-        return render(request, 'search/search-click.html', context)
+        return render(request, 'search/search-category.html', context)
 
+
+# 카테고리 검색결과 리스트 API View
+class ShowSearchListOfCategoryAPIView(APIView):
+    def get(self, request, category_name):
+        print("카테고리 검색결과 리스트 뷰")
+        posts = NeulhaerangTag.objects.filter(neulhaerang__category__category_name=category_name).values()
+        print(list(posts.values()))
+        datas = {
+            "category_name": category_name,
+            "posts": posts
+        }
+
+        return Response(datas)
+
+
+# 키워드 검색결과 페이지로 이동하기
 class ShowSearchListOfKeywordView(View):
     def get(self, request, *args, **kwargs):
         keyword = request.GET.get('keyword')
@@ -95,5 +136,3 @@ class ShowSearchListOfKeywordView(View):
         }
 
         return render(request, 'search/search-input.html', context)
-
-

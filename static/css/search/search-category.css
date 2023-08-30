@@ -39,8 +39,8 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: initial;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#30000000,endColorstr=#30000000);
+    background-color: #0000004d;
 }
 
 .group_tagcover .info_tag .cont_tag {
@@ -342,54 +342,4 @@ address, caption, cite, code, dfn, em, var {
     clear: both;
 }
 
-}
-
-.hash_type1 {
-    color: #6e7abd;
-    background-color: #f0f1f8
-}
-
-.hash_type2 {
-    color: #b67a69;
-    background-color: #f8f1f0
-}
-
-.hash_type3 {
-    color: #678c3f;
-    background-color: #f2f7ed
-}
-
-.hash_type4 {
-    color: #b77d00;
-    background-color: #fdf8ea
-}
-
-.hash_type5 {
-    color: #3888bb;
-    background-color: #ebf3f8
-}
-
-.hash_type6 {
-    color: #d36a54;
-    background-color: #fbf0ee
-}
-
-.hash_type7 {
-    color: #48af71;
-    background-color: #ecf7f1
-}
-
-.hash_type8 {
-    color: #bc77a9;
-    background-color: #f8f1f6
-}
-
-.hash_type9 {
-    color: #6c6c6c;
-    background-color: #f4f4f4
-}
-
-.hash_type10 {
-    color: #48a2ab;
-    background-color: #eff8f9
 }

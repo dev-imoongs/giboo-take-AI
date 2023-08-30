@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{% static 'css/common/common.css' %}" />
     <link rel="stylesheet" href="{% static 'css/neulhaerang/list.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search/search-input.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/search/search-click.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search/search-category.css' %}" />
     <link rel="shortcut icon" href="{% static 'image/favicon_Test.png' %}">
-    <title>클릭 검색</title>
+    <title>카테고리 검색</title>
   </head>
   <body>
     <div
@@ -33,10 +33,10 @@
             <div id="mArticle">
               <tag-home-common-header>
                 <div class="group_tagcover" style="padding-bottom: 36px">
-                  <div class="info_tag tag_img hash_type{{ type }}">
+                  <div class="info_tag tag_img" style="background-image: url('{{ category.category_img }}');">
                     <div class="inner_info_tag">
                       <span class="cont_tag">
-                        <h3 class="tit_tag hash_type{{ type }}">#{{ tag }}</h3>
+                        <h3 class="tit_tag">#{{ category_name }}</h3>
                         <span class="txt_tag"></span>
                       </span>
                     </div>
@@ -120,74 +120,59 @@
                   >
                   <ul class="list_fund">
                     <!--후기-->
-                    <li>
-                      <fundraising-card
-                        ><a class="link_pack"
-                          ><span class="box_thumb"
-                            ><span
-                              kagetype="c203"
-                              class="img_thumb"
-                              style="
+                    <!--<li>
+                      <fundraising-card>
+                        <a class="link_pack">
+                          <span class="box_thumb">
+                            <span kagetype="c203" class="img_thumb" style="
                                 background-image: url('https://mud-kage.kakaocdn.net/dn/IIewG/btqKMO8a8aO/CRaVyoyMmy1lqpIsu6BGYK/c203.jpg');
-                              "
-                            ></span></span
-                          ><span class="box_together"
-                            ><span class="bundle_tit"
-                              ><strong class="tit_together ellipsis_type1"
-                                ><span class="tag_bundle"
-                                  ><span class="tag_state tag_state_default">후기</span></span
-                                >
-                                지구를 지키는 환경교육, 온라인으로 만나요 </strong
-                              ><span class="txt_proposer">지구시민연합</span></span
-                            ><span class="wrap_state"
-                              ><span class="state_bar"
-                                ><span
-                                  class="state_gage state_end"
-                                  style="width: 100%"
-                                ></span></span
-                              ><span class="txt_per">100%</span></span
-                            ><span class="price_goal"> 4,550,000원 </span></span
-                          ></a
-                        ></fundraising-card
-                      >
-                    </li>
-                    <!--준비중-->
-                    <li>
-                      <fundraising-card
-                        >
-                        <a class="link_pack" href="/fundraisings/102188"
-                          >
-                          <span class="box_thumb"
-                            >
-                            <span
-                              class="img_thumb"
-                              style="
+                              "></span>
+                          </span>
+                          <span class="box_together">
+                            <span class="bundle_tit">
+                              <strong class="tit_together ellipsis_type1">
+                                <span class="tag_bundle">
+                                  <span class="tag_state tag_state_default">후기</span>
+                                </span>
+                                지구를 지키는 환경교육, 온라인으로 만나요 </strong>
+                              <span class="txt_proposer">지구시민연합</span>
+                            </span>
+                            <span class="wrap_state">
+                              <span class="state_bar">
+                                <span class="state_gage state_end" style="width: 100%"></span>
+                              </span>
+                              <span class="txt_per">100%</span>
+                            </span>
+                            <span class="price_goal"> 4,550,000원 </span>
+                          </span>
+                        </a>
+                      </fundraising-card>
+                    </li>-->
+                    <!--검토중-->
+                    <!--<li>
+                      <fundraising-card>
+                        <a class="link_pack" href="/fundraisings/102188">
+                          <span class="box_thumb">
+                            <span class="img_thumb" style="
                                 background-image: url('https://mud-kage.kakaocdn.net/dn/rdTNw/btrVVIh88rU/CGrdK9xFseo7Ji91w5pNY1/c203.jpg');
-                              "
-                            ></span>
-                          </span
-                          >
-                          <span class="box_together"
-                            >
-                            <span class="bundle_tit"
-                              >
-                              <strong class="tit_together ellipsis_type1"
-                                >
-                                <span class="tag_bundle"></span> 불타는 지구에서 청년으로 산다는 것 </strong
-                              >
-                              <span class="txt_proposer">오늘, 잇다</span></span
-                            >
-                            <span class="price_goal"
-                              ><span class="txt_goal">준비중</span>
+                              "></span>
+                          </span>
+                          <span class="box_together">
+                            <span class="bundle_tit">
+                              <strong class="tit_together ellipsis_type1">
+                                <span class="tag_bundle"></span> 불타는 지구에서 청년으로 산다는 것 </strong>
+                              <span class="txt_proposer">오늘, 잇다</span>
+                            </span>
+                            <span class="price_goal">
+                              <span class="txt_goal">준비중</span>
                               7,000,000원
-                            </span></span
-                          ></a
-                        ></fundraising-card
-                      >
-                    </li>
-
-                    <!--봉사 진행중-->
-                    <li>
+                            </span>
+                          </span>
+                        </a>
+                      </fundraising-card>
+                    </li>-->
+                    <!--봉사중-->
+                    <!--<li>
                       <fundraising-card>
                         <a class="link_pack" href="/fundraisings/104067">
                           <span class="box_thumb">
@@ -209,9 +194,9 @@
                             <span class="price_goal"> 288,500원 </span></span>
                         </a>
                       </fundraising-card>
-                    </li>
-                    <!--모집/펀딩중-->
-                    <li>
+                    </li>-->
+                    <!--모금중-->
+                    <!--<li>
                       <fundraising-card>
                         <a class="link_pack" href="">
                           <span class="box_thumb">
@@ -233,18 +218,18 @@
                           </span>
                         </a>
                       </fundraising-card>
-                    </li>
+                    </li>-->
                   </ul>
-                </div></tag-home-fundraising-list
-              >
+                </div>
+              </tag-home-fundraising-list>
             </div>
-          </div></ng-component
-        ></span
-      >
+          </div>
+        </ng-component>
+      </span>
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/static/js/search/serach-click.js"></script>
+<script src="/static/js/search/search-category.js"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
 {% else %}
