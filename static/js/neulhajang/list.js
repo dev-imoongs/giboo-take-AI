@@ -12,7 +12,7 @@ const showNeulhajangList = (page) => {
                 const post_url = baseUrl.replace(0, neulhajang_id=post.id);
                 addText += `<div class="card-base">
                               <div class="card-header">
-                                <div class="card-thumbnail" style="background-image: url(${mediaUrl}${post.thumnail_image})"></div>
+                                <div class="card-thumbnail" style="background-image: url(${post.thumnail_image})"></div>
                                 <div class="card-top-label" aria-hidden="true">
                                   <em type="circle" class="top-label-text">${percentage}% 달성</em>
                                 </div>
@@ -31,7 +31,7 @@ const showNeulhajangList = (page) => {
                                     후손에게 마음을 전하는 태극기 달기! 함께 행동해 볼까요?
                                   </p>
                                   <div class="card-proposer-container">
-                                    <div class="card-proposer-profile" style="background-image: url('${mediaUrl}${post.member_profile_image}')"></div>
+                                    <div class="card-proposer-profile" style="background-image: url('${post.member_profile_image?post.member_profile_choice == "user"?`${mediaUrl}${post.member_profile_image}`:post.member_kakao_image:`${staticUrl}image/avatar.png`}')"></div>
                                     <strong class="card-proposer-name">${post.member_nickname}</strong>
                                   </div>
                                 </div>

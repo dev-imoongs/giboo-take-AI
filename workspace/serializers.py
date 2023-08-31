@@ -117,6 +117,8 @@ class NeulhaerangReviewReplySerializer(serializers.ModelSerializer):
 class NeulhajangSerializer(serializers.ModelSerializer):
     member_nickname = serializers.CharField(source='member.member_nickname', read_only=True)
     member_profile_image = serializers.CharField(source='member.profile_image', read_only=True)
+    member_profile_choice = serializers.CharField(source='member.profile_image_choice', read_only=True)
+    member_kakao_image = serializers.CharField(source='member.kakao_profile_image', read_only=True)
     authentication_count = serializers.SerializerMethodField(method_name='get_authentication_feed_sum',read_only=True)
     def get_authentication_feed_sum(self, neulhajang):
         authentication_feed_count = NeulhajangAuthenticationFeed.objects.filter(neulhajang=neulhajang.id).aggregate(Count('id'))

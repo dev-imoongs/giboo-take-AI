@@ -350,6 +350,7 @@ const authenFeedApplyAPIView = () => {
 
             // 시간 관련
             const endDateString = post.neulhajang_duration_end_date;
+
             const endDate = new Date(endDateString);
             const currentDate = new Date();
             const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
@@ -367,7 +368,11 @@ const authenFeedApplyAPIView = () => {
                 writeBtn2.style.display = "none";
                 endDateDisplayBtn2.style.display = "inline-flex";
             } else{
-                $('.remain-date-label').text(`${inputDay}일 남음`)
+                if(post.neulhajang_status == '행동중')
+                    $('.remain-date-label').text(`${daysDifference}일 남음`)
+                else{
+                    $('.remain-date-label').text(post.neulhajang_status)
+                }
             }
         })
 }
