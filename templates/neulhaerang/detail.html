@@ -271,10 +271,14 @@
                       ><span class="emph_sign">149,800원</span> -->
                     </div>
                     <a class="link_profile" href="#">
-                        {% if not my_member%}
+                        {% if my_member == ""%}
                         <img alt="프로필사진"
                             class="img_thumb"
-                            src='{% get_media_prefix %}member/profile/2023/08/28/avatar_angel.png'/>
+                            src='{% get_static_prefix %}image/avatar.png'/>
+                        {% elif  my_member.profile_image == "" %}
+                         <img alt="프로필사진"
+                            class="img_thumb"
+                            src='{% get_static_prefix %}image/avatar.png'/>
                         {% else %}
                         {% if my_member.profile_image_choice == 'user' %}
                         <img alt="프로필사진"
@@ -283,7 +287,7 @@
                         {% else %}
                         <img alt="프로필사진"
                             class="img_thumb"
-                            src='{{ my_member.kakao_profile_image }}'/>
+                            src='{{ my_member.profile_image }}'/>
                         {% endif %}
                         {% endif %}
                     </a>
@@ -671,8 +675,8 @@
                             ></span>
                           </div>
                           <ul class="list_msg">
-                            <li>결제 수수료는 카카오가 대신 부담합니다.</li>
-                            <li>기부 완료 알림은 카카오톡으로 발송해드려요.</li>
+                            <li>결제 수수료는 기부&테이크가 대신 부담합니다.</li>
+                            <li>기부가 완료되면 주최자한테 알림이 보내집니다!</li>
                           </ul>
                         </div>
                         <div class="wrap_btns">

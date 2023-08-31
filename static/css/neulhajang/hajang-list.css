@@ -8,6 +8,10 @@
     }
 }
 
+a {
+   text-decoration: none;
+}
+
 @media only screen and (min-width: 768px) {
   .mobile-branding-introduce-container {
     display: none !important;
@@ -127,6 +131,7 @@
 }
 
 .branding-introduce-link-text {
+
   color: rgb(136, 136, 136);
   font-size: 15px;
   font-style: normal;
