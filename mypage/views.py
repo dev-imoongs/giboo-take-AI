@@ -1009,7 +1009,7 @@ class MypageNeulhajangWriteFormView(View):
                                                  commitment_duration_end_date=volunteer_end_date,
                                                  participants_target_amount=participants_max,
                                                  promise_commit_content=commitment_content,
-                                                 # message_to_admin=planDetail,
+                                                 message_to_admin=planDetail,
                                                neulhajang_title=title,
                                                  thumnail_image=thumbnail,
                                                  participants_openchat_link=openchat_link, representing_tag=tag,
