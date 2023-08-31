@@ -33,16 +33,16 @@ $(document).ready(function () {
             $(value).attr('id', `planBox${i}`)
         })
     }
-
     function updateAmount() {
         let total = 0
+
         $('.amount_tf').each((i, v) => {
             let inputValue = $(v).children().val()
             if(inputValue !== "")
                 total += parseInt(inputValue)
         })
         // toLocaleString 나라별 금액 단위 표시 ex) 1,000
-        let amount = 5000000-total
+        let amount = donation_sum-total
         $('.total_sum').children().text(`-${amount.toLocaleString("ko-KR")}원`)
     }
 
@@ -50,13 +50,13 @@ $(document).ready(function () {
     $(".pack_btn .btn_add").on('click', () => {
         $addContent = '<div class="group_tf ng-scope">\n' +
                       '  <div class="cont_tf">\n' +
-                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거"\n' +
+                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거" name="history"\n' +
                       '              title="모금액 사용용도 및 산출근거" autocomplete="off"\n' +
                       '              class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
                       '  <div class="amount_tf">\n' +
                       '      <input type="number" classoutline="" numberonly="" step="500"\n' +
-                      '              min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off"\n' +
+                      '              min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off" name="history_money"\n' +
                       '              class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
                       '    <button type="button" class="btn_line_txt"> 삭제 </button>\n' +
@@ -106,11 +106,10 @@ $('.link_step2').on('click', (e) => {
     if(calendarFlag) return;
 
     if($('.ng-scope input').filter((i,v)=>!$(v).val()).length >0 ){
-        toastMsg('모금액 사용 계획을 빈칸 없이 작성해주세요.')
+        toastMsg('모금액 사용 내역을 빈칸 없이 작성해주세요.')
         return
     }
-    console.log(updateAmount.amount)
-    if(updateAmount.amount !==0){
+    if($(".ng-binding").text() !=='-0원'){
         toastMsg('모금액의 사용내역을 전부 기입하세요.')
         return
     }
@@ -125,9 +124,10 @@ $('.link_step2').on('click', (e) => {
     // 상단 탭 현재 위치 강조 및 다음 폼 show 나머지 hide
     $('.link_tab').closest('li').removeClass('on')
     let $topIndex = $(e.target).closest('.form_cont').index()
+    console.log($topIndex)
     $('.form_cont').hide()
-    $('.link_tab').eq($topIndex + 1).parent().addClass('on')
-    $('.form_cont').eq($topIndex + 1).show()
+    $('.link_tab').eq($topIndex-1).parent().addClass('on')
+    $('.form_cont').eq($topIndex-1).show()
     window.scrollTo(0,0)
 
 

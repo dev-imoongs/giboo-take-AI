@@ -62,7 +62,7 @@
               <tag-home-fundraising-list>
                 <div class="group_taglist">
                   <h3 class="tit_section section_type5">
-                    늘해랑 <span class="emph_sign">48</span>
+                    늘해랑 <span class="emph_sign"></span>
                   </h3>
                   <tag-home-fundraising-list-filter>
                     <div class="sort_cate">
@@ -90,6 +90,10 @@
                         <span class="box_sorting">
                           <input type="radio" id="sortCate5" name="sortCate" class="inp_sort"/>
                           <label for="sortCate5" class="lab_sort">미선정</label>
+                        </span>
+                           <span class="box_sorting">
+                          <input type="radio" id="sortCate6" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate6" class="lab_sort">종료</label>
                         </span>
                       </span>
                     </div>
@@ -210,6 +214,9 @@
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+      let tag_name ="{{tag}}"
+  </script>
 <script src="/static/js/search/serach-click.js"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>

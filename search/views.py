@@ -84,8 +84,8 @@ class ShowSearchListOfTagView(View):
 
 # 태그 검색 결과 리스트 API View
 class ShowSearchListOfTagAPIView(APIView):
-    def get(self, request, tag_name):
-        print("태그 검색결과 리스트 뷰")
+    def get(self, request):
+        print("카테고리 검색결과 리스트 뷰")
         page = int(request.GET.get("page"))
         tag_name = request.GET.get("tag_name")
         status = request.GET.get("status")
@@ -100,8 +100,13 @@ class ShowSearchListOfTagAPIView(APIView):
             neulhaerang = neulhaerang.filter(neulhaerang_status='봉사중')
         elif (status == '검토중'):
             neulhaerang = neulhaerang.filter(neulhaerang_status='검토중')
+        elif (status == '종료'):
+            print("들")
+            neulhaerang = neulhaerang.filter(neulhaerang_status='종료')
         elif (status == '후기'):
             neulhaerang = neulhaerang_reviews
+        elif (status == '미선정'):
+            neulhaerang = neulhaerang.filter(neulhaerang_status='미선정')
 
         pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
         if (status == '후기'):
@@ -160,8 +165,13 @@ class ShowSearchListOfCategoryAPIView(APIView):
             neulhaerang = neulhaerang.filter(neulhaerang_status='봉사중')
         elif(status == '검토중'):
             neulhaerang = neulhaerang.filter(neulhaerang_status='검토중')
+        elif (status == '종료'):
+            print("들")
+            neulhaerang = neulhaerang.filter(neulhaerang_status='종료')
         elif(status == '후기'):
             neulhaerang = neulhaerang_reviews
+        elif (status == '미선정'):
+            neulhaerang = neulhaerang.filter(neulhaerang_status='미선정')
 
         pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
         if(status == '후기'):
