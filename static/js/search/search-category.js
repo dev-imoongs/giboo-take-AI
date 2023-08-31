@@ -243,7 +243,6 @@ const ShowSearchListOfCategory = (category_name, post_status, scroll) => {
                     `
                  }
             })
-            console.log(text)
             scroll? $('.list_fund').append(text): $('.list_fund').html(text)
 
 
