@@ -18,15 +18,15 @@ class NoticeTest(TestCase):
     #     Member(member_age=20,member_email='admin',member_status='NORMAL',member_role="ADMIN",member_nickname="admin1",member_gender="M")
     # ])
 
-    # for i in range(100):
-    #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
+    for i in range(100):
+        Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
 
-    member = Member.objects.get(id=1)
-    for i in range(20):
-        Notice.objects.create(admin=member,notice_title=f"주최자 안내 공지사항{i}",notice_content=f"주최자 안내 공지사항{i}",notice_status="NORMAL",type="주최자안내")
-        Notice.objects.create(admin=member,notice_title=f"참가자 안내 공지사항{i}",notice_content=f"참가자 안내 공지사항{i}",notice_status="NORMAL",type="참가자안내")
-        Notice.objects.create(admin=member,notice_title=f"서비스 안내 공지사항{i}",notice_content=f"서비스 안내 공지사항{i}",notice_status="NORMAL",type="서비스안내")
+    # member = Member.objects.get(id=1)
+    # for i in range(20):
+    #     Notice.objects.create(admin=member,notice_title=f"주최자 안내 공지사항{i}",notice_content=f"주최자 안내 공지사항{i}",notice_status="NORMAL",type="주최자안내")
+    #     Notice.objects.create(admin=member,notice_title=f"참가자 안내 공지사항{i}",notice_content=f"참가자 안내 공지사항{i}",notice_status="NORMAL",type="참가자안내")
+    #     Notice.objects.create(admin=member,notice_title=f"서비스 안내 공지사항{i}",notice_content=f"서비스 안내 공지사항{i}",notice_status="NORMAL",type="서비스안내")
     #
     # for i in range(20):
     #    Alarm.objects.create(
