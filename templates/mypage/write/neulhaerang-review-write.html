@@ -417,7 +417,7 @@
 
                           <dd id="byeoljji-list" class="relate_url url_on">
                             <div class="group_tf"><button type="button" class="box_add btn_add"><span
-                                    class="ico_together ico_link"></span>별찌 사진 추가(최소 1개, 최대 3개)</button></div>
+                                    class="ico_together ico_link"></span>약속했던 별찌를 모두 넣어주세요!!</button></div>
                           </dd>
                           <dd class="desc_media desc_photo">
                               <photo-box>
@@ -442,7 +442,7 @@
                                   </div>
                                 </div>
                                 <div class="photo_gallery">
-                                  <ul class="list_photo">
+                                  <ul class="list_photo byeoljji_list">
 {#                                    <li class="on">#}
 {#                                      <div class="ico_together photo_preview">#}
 {#                                        <span class="txt_num">1</span>#}
@@ -841,6 +841,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+    let by_count=0
     let donation_sum = "{{ fund_total }}"
     let neulhaerang_id = "{{ neulhaerang_id }}"
     console.log(neulhaerang_id)
@@ -851,6 +852,7 @@
             let text =''
             let text2 = ''
             result.byeoljjiss.forEach((by,i)=>{
+                by_count++;
                 text2 +=`<li class="">
                                       <div class="ico_together photo_preview">
                                         <span class="txt_num">2</span>
