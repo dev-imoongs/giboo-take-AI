@@ -299,22 +299,46 @@ class NewMypageNeulhajangPostListAPIView(APIView):
         if (opk4 == '주최한 늘하장'):
             member_neulhajang_list_sorted = sorted(list(member_neulhajang_list), key=lambda item: item['created_date'])
             member_neulhajang_list_sorted.reverse()
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_neulhajang_list_sorted)
+            for item in member_neulhajang_list_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             neulhajang_count_json = list(neulhajang_count)
 ########참여한
         elif (opk4 == '참여한 늘하장'):
             au_list_element_sorted = sorted(list(au_list_element), key=lambda item: item['created_date'])
             au_list_element_sorted.reverse()
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=au_list_element_sorted)
+            for item in au_list_element_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             neulhajang_count_json = list(neulhajang_count)
 ########응원한
         elif (opk4 == '응원한 늘하장'):
             member_likes_sorted = sorted(list(member_likes), key=lambda item: item['created_date'])
             member_likes_sorted.reverse()
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_likes_sorted)
+            for item in member_likes_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             neulhajang_count_json = list(neulhajang_count)
 ########
         # member_nickname = NeulhajangSerializer(pagenator.paged_models, many=True).data
@@ -323,7 +347,7 @@ class NewMypageNeulhajangPostListAPIView(APIView):
 
         datas = {
             # 'member_nickname':member_nickname,
-            # 'serialized_pagenator':serialized_pagenator,
+            'serialized_pagenator':serialized_pagenator,
             'neulhajang_posts': pagenator.paged_models,
             'neulhajang_count_json':neulhajang_count_json,
 
