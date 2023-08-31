@@ -292,17 +292,15 @@ class SuccessPayment(APIView):
                   f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
         Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
 
-        print(member.total_donation_fund)
-        print(type(member.total_donation_fund))
 
-        if(member.total_donation_fund>2000):
+        if(member.total_donation_fund<2000):
             member.donation_level = 'silver'
-            print('실버')
-            print(member.total_donation_fund>2000)
-        elif(member.total_donation_fund>5000):
+        elif(member.total_donation_fund<5000):
             member.donation_level = 'gold'
-            print('골드')
-            print(member.total_donation_fund>5000)
+        elif(member.total_donation_fund<150000):
+            member.donation_level = 'platinum'
+        elif(member.total_donation_fund<500000):
+            member.donation_level = 'diamond'
 
 
         member.total_donation_fund += donation_amount
