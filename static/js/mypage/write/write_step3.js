@@ -461,33 +461,8 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
     }
 })
 
-// 별찌목록 추가 기능
-$('.box_open .list_write .relate_url').last().find('button.box_add').on('click',(e)=>{
-    $addContent = '<div class="add_link add_byeol">\n' +
-                    '  <div class="group_tf"><label class="lab_link" for="relateTitle0">별찌</label>\n' +
-                    '      <input placeholder="기부자에게 제공할 별찌를 입력해주세요."\n' +
-                    '              type="text" autocomplete="off" name="byeoljji_name"\n' +
-                    '              class="tf_link ng-untouched ng-pristine ng-valid"\n' +
-                    '              id="relateTitle0" focus="false" blur="true">\n' +
-                    '  </div>\n' +
-                    '  <div class="group_tf">\n' +
-                    '      <label class="lab_link" for="relateUrl0">인원\n' +
-                    '      </label>\n' +
-                    '      <input\n' +
-                    '          placeholder="00명" type="text" name="byeoljji_count"\n' +
-                    '          class="tf_link tf_url ng-untouched ng-pristine ng-valid" id="relateUrl0"\n' +
-                    '          focus="false" autocomplete="off"\n' +
-                    '          blur="true">\n' +
-                    '  </div>\n' +
-                    ' <button type="button" class="ico_together2 btn_del byeol_del"> 내용삭제 </button>\n' +
-                    '</div>'
 
-    if($('#byeoljji-list .add_link').length < 3){
-        $($addContent).insertAfter($('.box_open .list_write .relate_url').last().children().last())
-    }else{
-        toastMsg('별찌를 3개 이상 추가할 수 없습니다.')
-    }
-})
+
 
 
 // line:264 아래로 갈 시에 btn_static 클래스 추가 (소제목, 본문, 이미지추가 버튼 fixed 위치)

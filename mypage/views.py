@@ -1,8 +1,9 @@
+import json
 from datetime import datetime
 import random
 
 import requests
-from django.db.models import Value, Count, F
+from django.db.models import Value, Count, F, Sum
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
@@ -16,7 +17,8 @@ from customer_center.models import Alarm
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation, \
     BusinessPlan, NeulhaerangInnerTitle, NeulhaerangInnerContent, NeulhaerangTag, NeulhaerangInnerPhotos
-from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
+from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview, FundUsageHistory, ReviewInnerTitle, \
+    ReviewInnerContent, NeulhaerangReviewTag, ReviewInnerPhotos
 from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, NeulhajangMission, NeulhajangInnerTitle, \
     NeulhajangInnerContent, NeulhajangInnerPhoto
 from static_app.models import Badge, MemberBadge, Category
@@ -820,10 +822,135 @@ class MypageNeulhaerangWriteFormView(View):
         return redirect(f'/neulhaerang/detail/{neulhaerang.id}')
 
 
+
+class getByeoljjiNameAPIView(APIView):
+    def get(self,request):
+        neulhaerang_id = request.GET.get("neulhaerang_id")
+        byeoljjiss = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank').values(
+            "byeoljji_name")
+        datas = {
+            "byeoljjiss":list(byeoljjiss)
+        }
+        return JsonResponse(datas)
+
 class MypageNeulhaerangReviewWriteFormView(View):
     def get(self, request):
-        return render(request, 'mypage/write/neulhaerang-review-write.html')
+        neulhaerang_id = request.GET.get("neulhaerang_id")
+        fund_total = Neulhaerang.objects.filter(id=neulhaerang_id).annotate(fund_total=Sum('neulhaerangdonation__donation_amount')).values().first()['fund_total']
 
+        datas = {
+            "fund_total" : fund_total,
+            "neulhaerang_id":neulhaerang_id
+        }
+        return render(request, 'mypage/write/neulhaerang-review-write.html',datas)
+
+    def post(self,request):
+        #늘해랑 먼저 크리에이트
+
+        member_email = request.session.get("member_email")
+        member = Member.objects.get(member_email=member_email)
+
+        neulhaerang_id = int(request.POST.get("neulhaerang_id"))
+
+
+        #제목
+        title = request.POST.get("title")
+        #썸네일
+        thumbnail= request.FILES.get("thumbnail")
+
+        openchat_link = request.POST.get("openchat_link")
+
+        neulhaerang_review= NeulhaerangReview.objects.create(neulhaerang_id=neulhaerang_id,review_title=title,thumbnail_image=thumbnail,byeoljji_receiver_openchat_link=openchat_link)
+
+
+        historys= request.POST.getlist("history")
+        history_moneys = request.POST.getlist("history_money")
+
+        for i in range(len(historys)):
+            FundUsageHistory.objects.create(neulhaerang_review=neulhaerang_review,history_name=historys[i],history_amount=int(history_moneys[i]))
+
+        # 소제목
+        inner_titles = request.POST.getlist("inner_title")
+        inner_title_content_orders =request.POST.getlist("inner_title_content_order")
+        for i in range(len(inner_titles)):
+            ReviewInnerTitle.objects.create(neulhaerang_review=neulhaerang_review,inner_title_text=inner_titles[i],neulhaerang_content_order=int(inner_title_content_orders[i]))
+
+        # #본문
+        inner_contents = request.POST.getlist("inner_content")
+        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        for i in range(len(inner_contents)):
+            ReviewInnerContent.objects.create(neulhaerang_review=neulhaerang_review,inner_content_text=inner_contents[i],neulhaerang_content_order=int(inner_content_content_orders[i]))
+
+        # #태그
+        tags = request.POST.getlist("tag")
+        for tag in tags :
+            NeulhaerangReviewTag.objects.create(neulhaerang_review=neulhaerang_review,tag_name=tag,tag_type=random.randint(1, 10))
+
+
+
+
+        # #포토텍스트는 무조건 순서대로 10개씩 옴
+        photo_texts = request.POST.getlist("caption")
+        #
+        #
+        # #앞에는 컨텐트오더 _ 포토갯수
+        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+        #
+        #
+        #
+        # #포토는 무조건 순서대로 빈값없이 나옴
+        files = request.FILES.getlist("inner_photo")
+
+        photos= []
+        content_orders = []
+        photo_explanations = []
+        count = 0
+        text_count =0
+
+        for order in inner_photo_content_orders:
+            inner_photo_content_order = int(order.split("_")[0])
+            photo_count = int(order.split("_")[1])
+
+            content_orders.append(inner_photo_content_order)
+            photos.append(files[count:count+photo_count])
+            count+=photo_count
+            photo_explanations.append(photo_texts[text_count:text_count+photo_count])
+            text_count+=10
+        byeoljjis = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by("byeoljji_rank")
+
+        for byeoljji in byeoljjis:
+            byeoljji.byeoljji_img = files[count]
+            count = count+1
+
+
+        for i in range(len(content_orders)):
+            for j in range(len(photos[i])):
+                ReviewInnerPhotos.objects.create(neulhaerang_review=neulhaerang_review,
+                                                      inner_photo=photos[i][j],neulhaerang_content_order=content_orders[i],
+                                                      photo_order=j,photo_explanation=photo_explanations[i][j])
+
+
+
+        review_message = f"늘해랑 리뷰 제목 : {neulhaerang_review.review_title}이(가) 작성되었어요.!\n" \
+                              f"얼른 가서 봉사활동 리뷰를 확인해보세요! \n"
+
+        members = Neulhaerang.objects.filter(id=neulhaerang_id).values("neulhaerangparticipants__member_id")
+        print(members)
+        members2 = Neulhaerang.objects.filter(id=neulhaerang_id).values("neulhaerangdonation__member_id")
+        print(members2)
+
+        for mem in members:
+            Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
+                                 member_id=mem.get("neulhaerangparticipants__member_id"))
+
+
+        for memm in members2:
+           Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
+                                  member_id=memm.get("neulhaerangdonation__member_id"))
+
+
+
+        return redirect(f'/neulhaerang_review/review/detail/{neulhaerang_review.id}')
 
 
 
