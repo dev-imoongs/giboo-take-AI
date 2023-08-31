@@ -23,7 +23,10 @@ class IntroduceAboutView(View):
         donation_total = NeulhaerangDonation.objects.aggregate(total = Sum("donation_amount"))["total"]
         project_total = neulhajang_count+neulhaerang_count
         like_total = neulhajang_like_count+neulhaerang_like_count
-        average = donation_total//project_total
+        if donation_total:
+             average = donation_total//project_total
+        else:
+            average = 0
 
         datas = {
             "project_total":project_total,
@@ -53,7 +56,12 @@ class IntroduceStatisticsView(View):
         donation_total = NeulhaerangDonation.objects.aggregate(total=Sum("donation_amount"))["total"]
         project_total = neulhajang_count + neulhaerang_count
         like_total = neulhajang_like_count + neulhaerang_like_count
-        average = donation_total // project_total
+
+        if donation_total:
+            average = donation_total // project_total
+        else:
+            average = 0
+
 
         donation_count = NeulhaerangDonation.objects.all().count()
         reply_count = NeulhaerangReply.objects.all().count() + NeulhaerangReviewReply.objects.all().count()

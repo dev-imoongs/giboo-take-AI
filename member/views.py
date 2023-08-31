@@ -52,7 +52,7 @@ class LoginView(View):
 
 
         request.session['member_status'] = member.member_status
-
+        print(member.member_role)
         if member.member_role == 'ADMIN':
             prev_url= '/admin/main/'
 
