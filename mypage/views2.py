@@ -1,7 +1,7 @@
 from django.core import serializers
 from django.db.models import F, Count, Sum
 from django.forms import model_to_dict
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from requests import Response
@@ -17,31 +17,47 @@ from workspace.serializers import PagenatorSerializer, NeulhajangSerializer
 
 
 class NewMypagePostListView(View):
-    def get(self, request):
-        member = Member.objects.get(member_email=request.session['member_email'])
-        neulhaerang = Neulhaerang.objects.filter(member=member)
-        member_neulhaerang_count =Neulhaerang.objects.filter(member=member).count()
-        profile_badge = MemberBadge.objects.filter(member=member)[0:1].get().badge.badge_image
-        neulhajang_count = Neulhajang.objects.filter(member=member).count()
-        neulhajang_au_count = NeulhajangAuthenticationFeed.objects.filter(member=member).count()
-        neulhajang_li_count = AuthenticationFeedLike.objects.filter(member=member).count()
-        total_neulhajang_count = neulhajang_count + neulhajang_au_count + neulhajang_li_count
-        print(total_neulhajang_count)
-        context = {
-            'member_level': member.donation_level,
-            'profile_image': member.profile_image,
-            'member_nickname': member.member_nickname,
-            'member_email': member.member_email,
-            'member_age': member.member_age,
-            'member_gender':member.member_gender,
-            'member': member,
-            'neulhaerang':neulhaerang,
-            'member_nuelhaerang_count':member_neulhaerang_count,
-            'member_profile_badge':profile_badge,
-            'total_neulhajang_count':total_neulhajang_count,
+    def get(self,request):
+        member_email = request.session.get('member_email')
 
-        }
-        return render(request, 'mypage/mypage-new-post-list.html', context)
+        if member_email:
+            try:
+                member = Member.objects.get(member_email=member_email)
+
+                profile_badge = MemberBadge.objects.filter(member=member)
+                if profile_badge:
+                    profile_badge = profile_badge.values('member', 'badge').annotate(badge_total=Count('id')).annotate(
+                        badge_name=F("badge__badge_name")).annotate(badge_image=F("badge__badge_image")).order_by(
+                        '-badge_total').first().get("badge_image")
+                else:
+                    profile_badge = ''
+
+                request.session['profile_badge'] = profile_badge
+
+
+                donation_temp = NeulhaerangDonation.objects.filter(member=member)[0:20]
+                context = {
+                    'www_donation_list': donation_temp,
+                    'member_nickname': member.member_nickname,
+                    'donation_level': member.donation_level,
+                    'member_profile_image': member.profile_image,
+                    'member_profile_badge': profile_badge,
+                    'donation_status': member.donation_status,
+                    'total_donation_fund': member.total_donation_fund,
+                    'total_donation_count': member.total_donation_count,
+                    'member': member,
+    
+                }
+
+                return render(request, 'mypage/mypage-new-post-list.html', context)
+
+            except Member.DoesNotExist:
+                # 멤버가 존재하지 않는 경우 처리
+                pass
+
+        # 멤버 이메일이 세션에 존재하지 않거나 오류 발생 시
+        return HttpResponse('잘못된 요청입니다.')
+
 
 class NewMypageNeulhaerangPostListAPIView(APIView):
     def get(self, request):
