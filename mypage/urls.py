@@ -7,7 +7,7 @@ from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, 
     MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView, \
     MypageNeulhaerangWriteFormView, MypageNeulhaerangReviewWriteFormView, MypageNeulhajangWriteFormView, \
     getByeoljjiNameAPIView
-from mypage.views2 import NewMypagePostListView, NewMypagePostListAPIView
+from mypage.views2 import NewMypagePostListView
 
 app_name = 'mypage'
 
@@ -44,7 +44,6 @@ urlpatterns = [
 
 # new post
     path('new-post-list/', NewMypagePostListView.as_view(), name='new-post-list'),
-    path('new-post-list-api/', NewMypagePostListAPIView.as_view(), name='new-post-list-api'),
 
     # APIView 연결하는곳
     path('change-member-donation-status/',MemberChangeDonationStatusAPIView.as_view(),name= 'change-member-donation-status')
