@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="group-banner">
-          <a class="link-banner" href="javascript:void(0);">
+          <a class="link-banner" href="">
             <img class="img-banner" style="max-width: 100%;"
                  src="https://mud-kage.kakaocdn.net/dn/AQse3/btso927mBuT/7koV3SZxS7GaRKQ7FJaXiK/img.png"></a>
           </div>
@@ -88,5 +88,20 @@
             $(tab).closest("li").addClass("on")
         }
     })
+
+    $(".link-banner").on("click",e=>{
+    e.preventDefault()
+    let tag_name ="여름나기"
+    fetch(`/main/get-random-tag-one-neulhaerang/?tag=${tag_name}`)
+        .then(response=>response.json())
+        .then(result=>{
+            if(result){
+                location.href = `/neulhaerang/detail/${result}`
+            }else{
+
+            }
+        })
+
+})
 </script>
 </html>
