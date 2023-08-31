@@ -836,7 +836,12 @@ class getByeoljjiNameAPIView(APIView):
 class MypageNeulhaerangReviewWriteFormView(View):
     def get(self, request):
         neulhaerang_id = request.GET.get("neulhaerang_id")
-        fund_total = Neulhaerang.objects.filter(id=neulhaerang_id).annotate(fund_total=Sum('neulhaerangdonation__donation_amount')).values().first()['fund_total']
+        print(neulhaerang_id)
+        fund_total = Neulhaerang.objects.filter(id=neulhaerang_id).annotate(fund_total=Sum('neulhaerangdonation__donation_amount')).values().first()
+        if fund_total :
+            fund_total = fund_total['fund_total']
+        else :
+            fund_total=0
 
         datas = {
             "fund_total" : fund_total,

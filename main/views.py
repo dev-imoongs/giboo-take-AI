@@ -25,6 +25,8 @@ class MainView(View):
         if total_donation:
             total_donation =format(total_donation,",")
 
+        neulhajang = Neulhajang.objects.filter(id=1).annotate(feed_sum=Count("neulhajangauthenticationfeed")).values().first()
+        print(neulhajang)
 
 
         datas ={
