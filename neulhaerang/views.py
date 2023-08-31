@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core import serializers
-from django.db.models import Sum, F, Count, Value, Q
+from django.db.models import Sum, F, Count, Value, Q, ExpressionWrapper
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -46,8 +46,7 @@ class NeulhaerangAPIView(APIView):
         elif(sort == '최신순'):
             neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").order_by('-created_date')
         else:
-            neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").order_by('-fund_duration_end_date','-created_date')
-
+            neulhaerang = neulhaerang.filter(neulhaerang_status="모금중").order_by('fund_duration_end_date')
         pagenator = Pagenation(page=page, page_count=5, row_count=8, query_set=neulhaerang)
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
