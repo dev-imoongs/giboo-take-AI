@@ -939,9 +939,10 @@ class MypageNeulhaerangReviewWriteFormView(View):
             print(byeoljji_files[i])
             count = count + 1
             for j in range(byeoljjis[i].byeoljji_count):
-                member_id = member_donation[tt].get("member")
-                MemberByeoljji.objects.create(member_id=member_id,byeoljji=byeoljjis[i])
-                tt = tt+1
+                if len(member_donation)>tt:
+                    member_id = member_donation[tt].get("member")
+                    MemberByeoljji.objects.create(member_id=member_id,byeoljji=byeoljjis[i])
+                    tt = tt+1
 
 
 
