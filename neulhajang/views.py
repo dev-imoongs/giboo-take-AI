@@ -38,7 +38,7 @@ class NeulhajangListAPIView(APIView):
     def get(self, request):
         page = int(request.GET.get("Page"))
         # 전체
-        neulhajang = Neulhajang.objects.filter(neulhajang_status='행동중')
+        neulhajang = Neulhajang.objects.filter(neulhajang_status='행동중').order_by('id')
 
         pagenator = Pagenation(page=page, page_count=5, row_count=7, query_set=neulhajang)
         posts = NeulhajangSerializer(pagenator.paged_models, many=True).data
