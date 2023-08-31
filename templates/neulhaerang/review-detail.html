@@ -65,9 +65,10 @@
                 </div>
 
                 <div class="cont_subject">
-                  <!--소제목-->
-                  <span class="tit_subject"> 어르신들에게 가혹한 폭염... </span>
-                  <!--내용-->
+
+                  <!--소제목
+                  <span class="tit_subject"> 어르신들에게 가혹한 폭염... </span>-->
+                  <!--내용
                   <p class="desc_subject">
                     평년 대비 여름철 기온이 높아지며 전국적으로 무더위를 대비하고 있는 가운데, 다른
                     지역보다 유난히 덥고 습한 대구의 올해 여름 날씨는 작년 8월의 최고치인 36.2℃를
@@ -77,10 +78,10 @@
                     먹습니다. 그중에서도 대표격인 삼계탕은 평소 고기를 섭취하지 못하는 어르신들의
                     기운을 북돋아 줄 수 있으며 인삼, 마늘, 대추 등의 부재료는 각각 원기 회복, 면역
                     체계 향상 등의 효능을 가지고 있어 노인에게 안성맞춤인 보양식입니다.
-                  </p>
-                  <!--사진 슬라이드-->
-                  <div class="photo_slide">
-                    <!--사진들-->
+                  </p>-->
+                  <!--사진 슬라이드
+                  <div class="photo_slide">-->
+                    <!--사진들
                     <div class="inner_photo">
                       <ul class="list_photo">
                         <li>
@@ -120,8 +121,8 @@
                           ><span class="txt_caption">내용</span>
                         </li>
                       </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
+                    </div>-->
+                    <!--페이징 버튼과 이전 다음 버튼
                     <div class="paging_slide">
                       <span class="num_paging">
                         <span class="num_page">1</span>
@@ -151,8 +152,8 @@
                     대표 보양식 삼계탕은 보통 15,000원 정도에 사 먹을 수 있는데, 적을 때는
                     1,300원으로 한 끼를 드시는 어르신들에게 너무도 큰 금액입니다.
                   </p>
-                  <div class="photo_slide">
-                    <!--사진들-->
+                  <div class="photo_slide">-->
+                    <!--사진들
                     <div class="inner_photo">
                       <ul class="list_photo">
                         <li>
@@ -183,8 +184,8 @@
                           ><span class="txt_caption">사진한개</span>
                         </li>
                       </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
+                    </div>-->
+                    <!--페이징 버튼과 이전 다음 버튼
                     <div class="paging_slide">
                       <span class="num_paging">
                         <span class="num_page">1</span>
@@ -205,17 +206,17 @@
                     카카오같이가치 기부자 여러분의 따스한 마음을, 따뜻한 반계탕을 드시게 될
                     어르신들에게 온전히 전달할 수 있도록 하겠습니다. 뜨거운 여름, 어르신들의 한 끼
                     식사에 풍요로움 '한 움큼' 어떠신가요?
-                  </p>
+                  </p>-->
 
 
-                  <!--별찌모음-->
+                  <!--별찌모음
                   <div class="reward">기부 펀딩 별찌</div>
 
 
 
 
-                  <div class="photo_slide">
-                    <!--사진들-->
+                  <div class="photo_slide">-->
+                    <!--사진들
                     <div class="inner_photo">
                       <ul class="list_photo">
                         <li>
@@ -282,8 +283,8 @@
                           ><span class="txt_caption">내용</span>
                         </li>
                       </ul>
-                    </div>
-                    <!--페이징 버튼과 이전 다음 버튼-->
+                    </div>-->
+                    <!--페이징 버튼과 이전 다음 버튼
                     <div class="paging_slide">
                       <span class="num_paging">
                         <span class="num_page">1</span>
@@ -297,8 +298,8 @@
                       </button>
                     </div>
                   </div>
+                </div>-->
                 </div>
-
                 <div class="info_story">
                   <!--오픈카톡 링크-->
                   <div class="story_rellink">
@@ -314,7 +315,7 @@
                   <!--해시태그, 랜던값으로 색깔 지정-->
                   <div class="hash_group">
                     {% for tag in tags %}
-                    <a href="#" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
+                    <a href="/search/tag/result/{{ tag.tag_name }}/{{ tag.tag_type }}/" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
                     {% endfor %}
                   </div>
                 </div>
@@ -333,7 +334,7 @@
                           <!--left로 퍼센트조정-->
                           <span class="mark_point" style="left: 90%">
                             <span class="ico_chart txt_result"
-                              ><span class="num_per"> 90 </span><span class="txt_per">%</span>
+                              ><span class="num_per"></span><span class="txt_per">%</span>
                             </span>
                           </span>
                         </div>
@@ -376,11 +377,17 @@
                             <img
                               alt="대표 섬네일"
                               class="img_logo"
-                              src="{% get_media_prefix %}{{ review_post.neulhaerang.member.profile_image }}"
+                              {% if not review_post.neulhaerang.member.profile_image %}
+                               src="{% get_static_prefix %}image/avatar.png"
+                              {% elif review_post.neulhaerang.member.profile_image_choice == 'user' %}
+                               src="{% get_media_prefix %}{{ review_post.neulhaerang.member.profile_image }}"
+                              {% else %}
+                               src="{{ review_post.neulhaerang.member.kakao_profile_image }}"
+                              {% endif %}
                             />
                           </span>
                           <span class="info_suggester">
-                            <span class="txt_suggester">프로젝트 주최자</span>
+                            <span class="txt_suggester">늘해랑 주최자</span>
                             <span class="name_suggester">{{ review_post.neulhaerang.member.member_nickname }}</span>
                           </span>
                         </a>
@@ -569,7 +576,7 @@
                   <ul class="list_slide" style="width: 900px">
                       {% for bottom_post in bottom_posts %}
                     <li>
-                      <a href="#" class="link_slide">
+                      <a href="/neulhaerang_review/review/detail/{{ bottom_post.id }}/" class="link_slide">
                         <span
                           class="area_thumb"
                           style="
@@ -880,21 +887,19 @@
   </body>
   <script>
     let reviewInnerContents = "{{ review_inner_contents|escapejs }}"
-    let amount ="{{ target_amount|escapejs }}"
-    let amountSum = "{{ amount_sum }}"
     let fundUsageHistory = "{{ fund_usage_history|escapejs }}"
     let replyCount = "{{ reply_count }}"
     let neulhaerangReviewId = "{{ neulhaerang_review_id }}"
     const parsedReviewInnerContents = JSON.parse(reviewInnerContents)
-    const parsedAmount = JSON.parse(amount)
-    const parsedAmountSum = JSON.parse(amountSum)
     const parsedUsageHistory = JSON.parse(fundUsageHistory)
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="{% static '/js/neulhaerang/review-detail.js'%}"></script>
   <script>
-      email = "{{ request.session.member_email }}"
+    let email = "{{ request.session.member_email }}"
+    const mediaUrl = "{% get_media_prefix %}"
+    const staticUrl = "{% get_static_prefix %}"
   </script>
+  <script src="{% static '/js/neulhaerang/review-detail.js'%}"></script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>
 {% else %}

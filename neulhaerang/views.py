@@ -278,7 +278,7 @@ class SuccessPayment(APIView):
         donation_anonymous = request.GET.get('donationAnonymous')
         member = Member.objects.get(member_email=my_email)
         member_nickname = member.member_nickname
-
+        #
         if(donation_anonymous == '비공개'):
             member_nickname = '익명의 기부천사'
 
@@ -293,8 +293,16 @@ class SuccessPayment(APIView):
         message = f'회원님이 작성한 늘해랑:{neulhaerang.neulhaerang_title}에 \n' \
                   f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
         Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
-        member.update(total_donation_fund=donation_amount, total_donation_count=member.total_donation_count+1)
 
+        if(member.total_donation_fund>2000):
+            member.donation_level = 'silver'
+        elif(member.total_donation_fund>5000):
+            member.donation_level = 'gold'
+
+
+        member.total_donation_fund += donation_amount
+        member.total_donation_count += 1
+        member.save()
 
         return Response(True)
 
