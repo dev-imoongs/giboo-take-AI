@@ -52,12 +52,15 @@ class LoginView(View):
 
 
         request.session['member_status'] = member.member_status
-        print(member.member_role)
+
+        go_to_prev = prev_url
+
         if member.member_role == 'ADMIN':
-            prev_url= '/admin/main/'
+            go_to_prev= '/admin/main/'
 
 
-        return redirect(prev_url)
+
+        return redirect(go_to_prev)
 
 class GetMemberProfileAPIView(APIView):
     def get(self,request):

@@ -52,7 +52,7 @@ $(document).ready(function () {
                         '  <div class="group_tf ng-scope" id="planBox0">\n' +
                         '    <div class="cont_tf">\n' +
                         '        <input type="text" classoutline="" placeholder="미션 내용"\n' +
-                        '                title="미션 내용" autocomplete="off"\n' +
+                        '                title="미션 내용" autocomplete="off" name="mission_content" \n' +
                         '                class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
                         '    </div>\n' +
                         '      <button type="button" class="btn_line_txt"> 삭제 </button>\n' +

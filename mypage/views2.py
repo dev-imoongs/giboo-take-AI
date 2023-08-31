@@ -46,7 +46,7 @@ class NewMypagePostListView(View):
                     'total_donation_fund': member.total_donation_fund,
                     'total_donation_count': member.total_donation_count,
                     'member': member,
-    
+
                 }
 
                 return render(request, 'mypage/mypage-new-post-list.html', context)
@@ -308,8 +308,17 @@ class NewMypageNeulhajangPostListAPIView(APIView):
         total_neulhajang_sorted = sorted(total_neulhajang_list, key=lambda item: item['created_date'])
         total_neulhajang_sorted.reverse()
 
+        unique_list = []
+        seen = set()
 
-        pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=total_neulhajang_sorted)
+        for item in total_neulhajang_sorted:
+            item_tuple = tuple(item.items())
+            if item_tuple not in seen:
+                seen.add(item_tuple)
+                unique_list.append(item)
+
+
+        pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
         neulhajang_count_json = list(neulhajang_count)
 ########주최한
         if (opk4 == '주최한 늘하장'):

@@ -63,6 +63,7 @@ function MemberNeulhajangList(currentPage, opK3, opK4, click) {
   fetch(`/mypage/new-post-neulhajang-list-api/?page=${currentPage}&opK3=${opK3}&opK4=${opK4}`)
     .then(response => response.json())
     .then(result => {
+        console.log(result)
       let text = "";
       let pagenator = result.serialized_pagenator
       let lists = result.neulhajang_posts;

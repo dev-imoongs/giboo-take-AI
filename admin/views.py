@@ -386,9 +386,10 @@ class AdminGetNoticesByPagedAPIView(APIView):
 
 
         if search :
-           notices_query_set = Notice.objects.filter(notice_title=search).all()
+           notices_query_set = Notice.objects.filter(notice_title__contains=search).all()
         else:
             notices_query_set = Notice.objects.all()
+
 
         pagenator = Pagenation(page=page, page_count=5, row_count=10,query_set=notices_query_set)
 

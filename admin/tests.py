@@ -22,15 +22,17 @@ class NoticeTest(TestCase):
     #     Member.objects.create(member_age=20,member_email=f'member{i}',member_status='NORMAL',member_role="MEMBER",member_nickname=f"member{i}",member_gender="M")
 
 
-    admin = Member.objects.get(id=6)
-
+    member = Member.objects.get(id=1)
+    for i in range(20):
+        Notice.objects.create(admin=member,notice_title=f"주최자 안내 공지사항{i}",notice_content=f"주최자 안내 공지사항{i}",notice_status="NORMAL",type="주최자안내")
+        Notice.objects.create(admin=member,notice_title=f"참가자 안내 공지사항{i}",notice_content=f"참가자 안내 공지사항{i}",notice_status="NORMAL",type="참가자안내")
+        Notice.objects.create(admin=member,notice_title=f"서비스 안내 공지사항{i}",notice_content=f"서비스 안내 공지사항{i}",notice_status="NORMAL",type="서비스안내")
     #
-    for i in range(10):
-       Alarm.objects.create(
-           message=f"알람{i}",member_id=209,reference_id=i,type="neulhaerang"
-           )
+    # for i in range(20):
+    #    Alarm.objects.create(
+    #        message=f"알람{i}",member_id=209,reference_id=i,type="neulhaerang"
+    #        )
 
-    member = Member.objects.get(id=10)
 
     # for i in range(10):
     #     Inquery.objects.create(inquery_content=f"질문내용 {i}",inquery_title=f"질문제목 {i}",member=member)
