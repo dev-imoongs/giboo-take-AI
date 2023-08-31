@@ -73,8 +73,17 @@
        confirmModalOff()
     });
 
+// window.onload = function calHeight () {
+//     // HTML상단에서 해당 클래스 요소까지의 거리 계산
+//     let limitHeight = $('.tag-cloud-container').offsetHeight;
+//     // 높이 적용
+//     $('.project-detail-information').css('height', limitHeight- 250 + 'px')
+// };
+
 
     $(document).ready(()=>{
+
+
 
 
         $(document).on("click", e => {
@@ -95,11 +104,14 @@
                 $('#action-board').hide()
                 $('#mission-tab').show()
                 missionTab(parsedInnerContents)
+
             } else if (tabIndex == 1) {
                 $('#mission-tab').hide()
                 $('#action-board').show()
+
             } else if (tabIndex ==2) {
                 newsAPIView()
+
             }
 
             // 행동보드에 동적으로 생성된 좋아요 버튼 클릭 위함
@@ -304,12 +316,7 @@ function missionTab(contents) {
 
 missionTab(parsedInnerContents)
 
-window.onload = function () {
-    // HTML상단에서 해당 클래스 요소까지의 거리 계산
-    let limitHeight = $('.tag-cloud-container').offset().top;
-    // 높이 적용
-    $('.project-detail-information').css('height', limitHeight + 'px')
-};
+
 
 
 
@@ -350,28 +357,33 @@ const authenFeedApplyAPIView = () => {
 
             // 시간 관련
             const endDateString = post.neulhajang_duration_end_date;
-
+            console.log(post)
             const endDate = new Date(endDateString);
             const currentDate = new Date();
             const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
             const exceptTimeCurrentDate = new Date(currentDateString)
-
             // 두 날짜 객체 간의 시간 차이 계산 (밀리초 단위)
             let timeDifference = endDate - exceptTimeCurrentDate;
             // 시간 차이를 일 단위로 변환
             // datefield로 보낸날짜 endDate는 9시간이 추가되어있음 9시간 차이는 0.375 차이
             let daysDifference = timeDifference / (1000 * 60 * 60 * 24) - 0.375;
+
             if(daysDifference <= 0){
-                $('.remain-date-label').text('종료')
+                $('.remain-date-label').text(post.neulhajang_status)
                 writeBtn.style.display = "none";
                 endDateDisplayBtn.style.display = "inline-flex";
                 writeBtn2.style.display = "none";
                 endDateDisplayBtn2.style.display = "inline-flex";
+                $('.endDateDisplayBtn').text(post.neulhajang_status)
+                $('.floating-end-button').text(post.neulhajang_status)
             } else{
                 if(post.neulhajang_status == '행동중')
-                    $('.remain-date-label').text(`${daysDifference}일 남음`)
+                    $('.remain-date-label').html(`<svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>${daysDifference}일 남음`)
                 else{
+                    console.log(post.neulhajang_status)
                     $('.remain-date-label').text(post.neulhajang_status)
+                    $('.endDateDisplayBtn').text(post.neulhajang_status)
+                    $('.floating-end-button').text(post.neulhajang_status)
                 }
             }
         })

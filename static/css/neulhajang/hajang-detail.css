@@ -46,7 +46,7 @@ a {
     flex-direction: column;
     width: calc(100% - 760px);
     min-height: 1500px;
-    height: 5940.61px;
+    height: 100%;
 }
 
 .project-cover-story {
@@ -107,7 +107,6 @@ a {
     padding: 0px 10px;
     color: rgb(235, 200, 255);
     text-decoration: none;
-    cursor: pointer;
     font-size: 12px;
     font-style: normal;
     font-family: "KakaoBig Regular", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
