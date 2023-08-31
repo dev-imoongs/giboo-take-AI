@@ -24,7 +24,7 @@ class MainView(View):
 
         if total_donation:
             total_donation =format(total_donation,",")
-        
+
 
 
         datas ={
