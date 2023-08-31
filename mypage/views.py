@@ -928,8 +928,12 @@ class MypageNeulhaerangReviewWriteFormView(View):
 
 
         byeoljji_files = request.FILES.getlist("byeoljji")
+        print(request.FILES.getlist("inner_photo"))
+
         print(byeoljji_files)
         for i in range(len(byeoljjis)):
+            print(byeoljjis[i])
+            print(byeoljji_files[i])
             byeoljjis[i].byeoljji_img = byeoljji_files[i]
             byeoljjis[i].save()
             print(byeoljji_files[i])
@@ -938,6 +942,7 @@ class MypageNeulhaerangReviewWriteFormView(View):
                 member_id = member_donation[tt].get("member")
                 MemberByeoljji.objects.create(member_id=member_id,byeoljji=byeoljjis[i])
                 tt = tt+1
+
 
 
 
