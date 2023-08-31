@@ -103,7 +103,7 @@ class NeulhaerangDetailView(View):
             cheer_status = ''
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = {'donation_amount__sum': 0}
-
+        print(post.neulhaerang_status)
         context = {
             'my_member': my_member,
             'post_badge': post_badge,
@@ -141,7 +141,6 @@ class NeulhaerangDetailReplyAPIView(APIView):
         else:
             replys_queryset = NeulhaerangReply.objects.all().filter(neulhaerang_id=neulhaerang_id,donation__isnull=False)
         replys_count = replys_queryset.count()
-        print(replys_count)
         if(replyPage==1):
             first_page_replys_id = []
             best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 3).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
@@ -293,10 +292,17 @@ class SuccessPayment(APIView):
                   f'{member_nickname}님이 {donation_amount:,}원을 기부했어요.'
         Alarm.objects.create(member=neulhaerang.member, type='neulhaerang', reference_id=neulhaerang_id, message=message)
 
+        print(member.total_donation_fund)
+        print(type(member.total_donation_fund))
+
         if(member.total_donation_fund>2000):
             member.donation_level = 'silver'
+            print('실버')
+            print(member.total_donation_fund>2000)
         elif(member.total_donation_fund>5000):
             member.donation_level = 'gold'
+            print('골드')
+            print(member.total_donation_fund>5000)
 
 
         member.total_donation_fund += donation_amount
