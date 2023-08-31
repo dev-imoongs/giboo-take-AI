@@ -22,10 +22,13 @@ class MainView(View):
         total_donation_count = NeulhaerangDonation.objects.all().count()
         now = datetime.now()
 
+        if total_donation:
+            total_donation =format(total_donation,",")
+        
 
 
         datas ={
-            "total_donation":format(total_donation,","),
+            "total_donation":total_donation,
             "total_donation_count":total_donation_count,
             "now":now,
         }
