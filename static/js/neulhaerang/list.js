@@ -62,6 +62,7 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
               let fund_end_date = new Date(post.fund_duration_end_date)
               let timeDifference = Math.abs(fund_end_date.getTime() - now_date.getTime())
               let dayDifference = Math.ceil(timeDifference / (1000*3600*24))
+              console.log(dayDifference)
 
               let percentage = Math.ceil(post.donation_amount_sum / post.target_amount *100)
 

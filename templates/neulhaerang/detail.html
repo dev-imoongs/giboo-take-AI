@@ -63,7 +63,9 @@
                  <div class="box_info">
                   <p class="desc_info">
                     <em class="emph_give">{{ post.neulhaerang_status }}</em>
-                    <span class="txt_g" style="white-space: pre-line">이미 종료된 늘해랑입니다.</span>
+                    <span class="txt_g" style="white-space: pre-line; padding-bottom: 10px">
+                        <a href="/mypage/neulhaerang_review/write-form/">늘해랑 후기 작성하러 가기</a>
+                    </span>
                   </p>
                 </div>
                 {% endif %}
@@ -108,7 +110,7 @@
                   <!--해시태그, 랜던값으로 색깔 지정-->
                   <div class="hash_group">
                     {% for tag in tags %}
-                    <a href="#" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
+                    <a href="/search/tag/result/{{ tag.tag_name }}/{{ tag.tag_type }}" class="link_hash hash_type{{ tag.tag_type }}">#{{ tag.tag_name }}</a>
                     {% endfor %}
                   </div>
                 </div>
@@ -172,8 +174,7 @@
                               alt="대표 섬네일"
                               class="img_logo"
                               src="{% get_static_prefix %}image/avatar.png"/>
-                            {% endif %}
-                            {% if post.member.profile_image_choice == 'user' %}
+                            {% elif post.member.profile_image_choice == 'user' %}
                             <img
                               alt="대표 섬네일"
                               class="img_logo"

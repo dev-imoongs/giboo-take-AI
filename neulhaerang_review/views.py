@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.db.models import Count, Sum, Value
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
@@ -68,11 +69,15 @@ class NeulhaerangReviewDetailView(View):
         sorted_inner_contents = sorted(review_inner_contents, key=lambda item: item.neulhaerang_content_order)
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
         target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
+
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
+        if(amount_sum['donation_amount__sum'] is None):
+            amount_sum = 0
+
         likes_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
         # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReviewReply.objects.filter(neulhaerang_review_id=neulhaerang_review_id)
-        bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_review_id).order_by('-created_date')[0:4]
+        bottom_posts = NeulhaerangReview.objects.exclude(id=neulhaerang_review_id).order_by('?')[0:4]
         #
         if (NeulhaerangReviewLike.objects.filter(member__member_email=my_email, neulhaerang_review_id=neulhaerang_review_id)):
             cheer_status = 'on'
@@ -81,7 +86,6 @@ class NeulhaerangReviewDetailView(View):
 
         # if(amount_sum['donation_amount__sum'] is None):
         #     amount_sum = {'donation_amount__sum': 0}
-
         context = {
             'review_post': review_post,
             'post_badge': post_badge,
@@ -94,9 +98,10 @@ class NeulhaerangReviewDetailView(View):
             'reply_count': reply.count(),
             # 'participants_count' : participants_count,
             'likes_count' : likes_count,
+            # 'js_byeoljjies' : serializers.serialize("json",byeoljji),
             'byeoljjies': byeoljji,
-            'amount_sum': amount_sum['donation_amount__sum'],
-            'target_amount': serializers.serialize("json", target_amount),
+            # 'amount_sum': amount_sum,
+            # 'target_amount': serializers.serialize("json", target_amount),
             'tags': tags,
             # 'business_plan': serializers.serialize("json",business_plan),
             'fund_usage_history': serializers.serialize("json", fund_usage_history),
@@ -170,21 +175,19 @@ class NeulhaerangReviewDetailReplyDeleteAPIview(APIView):
 class NeulhaerangReviewDetailReplyLikeAPIView(APIView):
     def get(self, request):
         my_email = request.session.get('member_email')
-        review_reply_id = request.GET.get('reply_id')
+        review_reply_id = int(request.GET.get('reply_id'))
         member = Member.objects.get(member_email=my_email)
-        review_reply = NeulhaerangReviewReply.objects.get(id=review_reply_id)
-        review_reply_like = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id, member=member)
+        # review_reply = NeulhaerangReviewReply.objects.get(id=review_reply_id)
+        if(review_reply_id is not None):
+            review_reply_like = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id, member=member)
         if review_reply_like:
             review_reply_like.delete()
         else:
             ReviewReplyLike.objects.create(review_reply_id=review_reply_id, member=member)
         reply_like_count = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id).count()
 
-        datas = {
-            'reply_like_count': reply_like_count
-        }
 
-        return Response(datas)
+        return Response(reply_like_count)
 
 class NeulhaerangReviewDetailLikeAPIView(APIView):
     def get(self, request):
@@ -200,3 +203,31 @@ class NeulhaerangReviewDetailLikeAPIView(APIView):
         neulhaerang_review_like_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
 
         return Response(neulhaerang_review_like_count)
+
+class NeulhaerangReviewDetailFundraisingAPIView(APIView):
+    def get(self, request):
+        neulhaerang_review_id = request.GET.get('neulhaerangReviewId')
+        neulhaerang_review = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
+        neulhaerang = Neulhaerang.objects.filter(neulhaerangreview=neulhaerang_review).values()
+        donation_amount_sum = NeulhaerangDonation.objects.filter(neulhaerang__neulhaerangreview=neulhaerang_review).values()
+
+        datas = {
+            'neulhaerang':list(neulhaerang),
+            'donation_amount_sum':list(donation_amount_sum),
+        }
+
+        return JsonResponse(datas)
+
+class NeulhaerangReviewDetailInputByeoljjiAPIView(APIView):
+    def get(self, request):
+        neulhaerang_review_id = request.GET.get('neulhaerangReviewId')
+        neulhaerang_review = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
+        neulhaerang = Neulhaerang.objects.filter(neulhaerangreview=neulhaerang_review).values()
+        byeoljji = Byeoljji.objects.filter(neulhaerang__neulhaerangreview=neulhaerang_review).values().order_by('id')
+
+        datas = {
+            'neulhaerang': list(neulhaerang),
+            'byeoljji':list(byeoljji)
+        }
+
+        return JsonResponse(datas)

@@ -513,7 +513,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
         .then(response => response.json())
         .then(result => {
             replys = result.replys
-            $('.emph_sign').text(result.replys_count)
+            $('.txt_cmt .emph_sign').text(result.replys_count)
             let serialized_pagenator = result.serialized_pagenator
             console.log(serialized_pagenator)
             if (!serialized_pagenator.has_next_data) {
@@ -528,7 +528,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
                           <button class="link_profile">`
                             if(!reply.check_anonymous){
                                 if(reply.member_profile_choice == 'user'){
-                                    replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}member/profile/08/28/avatar_angel.png`}"
+                                    replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}image/avatar_angel.png`}"
                                         class="img_thumb"/>`
                                 }
                                 else{
@@ -537,7 +537,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
                             }else{
                                 if(reply.check_anonymous == '공개'){
                                     if(reply.member_profile_choice == 'user'){
-                                      replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}member/profile/08/28/avatar_angel.png`}"
+                                      replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}image/avatar_angel.png`}"
                                                     class="img_thumb"/>`
                                     }
                                     else{
@@ -545,7 +545,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
                                     }
                                 }else{
                                       replyText += `<img
-                                    src="${mediaUrl}member/profile/2023/08/28/avatar_angel.png"
+                                    src="${staticUrl}image/avatar_angel.png"
                                     class="img_thumb"/>`
                                 }
                             }
@@ -688,6 +688,7 @@ const neulhaerangEndDateStatusAPIView = () =>{
         .then(response => response.json())
         .then(result => {
             const post = result.post[0]
+            console.log(post)
             // 현재 모금액, 목표 모금액, 비율
             const targetAmount = post.target_amount
             const totalFund = post.donation_sum?post.donation_sum:0
@@ -715,7 +716,7 @@ const neulhaerangEndDateStatusAPIView = () =>{
             $('.num_per').text(percentage)
             if(percentage == 100){
                 $('.chart_fund').addClass('fund_end')
-            } else if(daysDifference <= 0) {
+            } else if(!post.neulhaerang_status == "행동중"){
                 $('.chart_fund').addClass('fund_fail')
             }
         })
