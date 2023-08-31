@@ -121,6 +121,17 @@ $('.link_step3').on('click',(e)=>{
 
 
 
+
+    console.log($(".byeoljji_list input").length)
+    console.log(by_count)
+
+      if($(".byeoljji_list input").length!=by_count){
+        toastMsg("별찌를 모두 추가해주세요")
+        return;
+    }
+      $(".byeoljji_list input").attr("name","byeoljji")
+
+
     $("form").eq(0).submit()
 
 

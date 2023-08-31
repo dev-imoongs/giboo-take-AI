@@ -922,13 +922,25 @@ class MypageNeulhaerangReviewWriteFormView(View):
             photo_explanations.append(photo_texts[text_count:text_count+photo_count])
             text_count+=10
         byeoljjis = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by("byeoljji_rank")
+        member_donation = NeulhaerangDonation.objects.filter(neulhaerang__neulhaerangreview=neulhaerang_review).values(
+            "member").annotate(donation_sum=Sum("donation_amount")).order_by("-donation_sum").values("member")
+        tt=0
 
-        # member_donation = NeulhaerangDonation.objects.filter(neulhaerang__neulhaerangreview=neulhaerang_review).order_by("-donation_amount").values("member")
-        # tt= 0
-        # for byeoljji in byeoljjis:
-        #     byeoljji.byeoljji_img = files[count]
-        #     count = count+1
-        #     member_donation[tt]
+
+        byeoljji_files = request.FILES.getlist("byeoljji")
+        print(byeoljji_files)
+        for i in range(len(byeoljjis)):
+            byeoljjis[i].byeoljji_img = byeoljji_files[i]
+            byeoljjis[i].save()
+            print(byeoljji_files[i])
+            count = count + 1
+            for j in range(byeoljjis[i].byeoljji_count):
+                member_id = member_donation[tt].get("member")
+                MemberByeoljji.objects.create(member_id=member_id,byeoljji=byeoljjis[i])
+                tt = tt+1
+
+
+
 
 
         for i in range(len(content_orders)):
@@ -947,13 +959,16 @@ class MypageNeulhaerangReviewWriteFormView(View):
 
 
         for mem in members:
-            Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
-                                 member_id=mem.get("neulhaerangparticipants__member_id"))
+            print(mem)
+            if mem.get("neulhaerangparticipants__member_id") :
+                Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
+                                     member_id=mem.get("neulhaerangparticipants__member_id"))
 
 
         for memm in members2:
-           Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
-                                  member_id=memm.get("neulhaerangdonation__member_id"))
+            if memm.get("neulhaerangdonation__member_id"):
+                Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
+                                      member_id=memm.get("neulhaerangdonation__member_id"))
 
 
 
