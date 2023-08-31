@@ -5,7 +5,9 @@ from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, 
     MypageReplyView, MemberChangeDonationStatusAPIView, TimeReplyTimeView, DonationListAPIView, \
     MypageGetAthenticationFeedsByPagedAPIView, MypageDeleteAthenticationFeedAPIView, MypageGetRepliesByPagedAPIView, \
     MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView, \
-    MypageNeulhaerangWriteFormView, MypageNeulhaerangReviewWriteFormView, MypageNeulhajangWriteFormView
+    MypageNeulhaerangWriteFormView, MypageNeulhaerangReviewWriteFormView, MypageNeulhajangWriteFormView, \
+    getByeoljjiNameAPIView
+from mypage.views2 import NewMypagePostListView
 from mypage.views2 import NewMypagePostListView, NewMypageNeulhaerangPostListAPIView, \
     NewMypageNeulhajangPostListAPIView
 
@@ -40,6 +42,7 @@ urlpatterns = [
 
     path('get-byeoljjis/', MypageGetByeoljjisByPagedAPIView.as_view(), name='get-byeoljjis'),
     path('get-badge-info/', MypageGetBadgeInfoAPIView.as_view(), name='get-badge-info'),
+    path('get-byeoljji/', getByeoljjiNameAPIView.as_view(), name='get-byeoljji'),
 
 # new post
     path('new-post-list/', NewMypagePostListView.as_view(), name='new-post-list'),

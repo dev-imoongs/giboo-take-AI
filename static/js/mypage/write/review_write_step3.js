@@ -1,3 +1,7 @@
+
+let order = 3
+
+
 function randMintoMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -40,7 +44,7 @@ $('.btn_close').on("click", () => {
 })
 
 // 개설 완료 버튼 눌렀을 때 이벤트
-$('.link_step3').on('click',(e)=>{                    
+$('.link_step3').on('click',(e)=>{
     if($('.front_pack').find('.txt_num').text() == 0){
         toastMsg('제목을 입력해주세요.')
         $('span.inner_tit').focus()
@@ -49,7 +53,7 @@ $('.link_step3').on('click',(e)=>{
 
     if($('.cont_visual').hasClass('no_img')){
         toastMsg('대표사진을 선택해주세요.')
-        return 
+        return
     }
 
     let innerTitFlag = false
@@ -58,22 +62,22 @@ $('.link_step3').on('click',(e)=>{
             $(v).focus()
             innerTitFlag =true
         }
-    
+
     })
-    if(innerTitFlag){ 
-        toastMsg('소제목을 입력해주세요.')    
+    if(innerTitFlag){
+        toastMsg('소제목을 입력해주세요.')
         return
     }
-  
+
     $('textarea[placeholder="본문"]').each((i,v)=>{
         if(!$(v).val()){
             $(v).focus()
             innerTitFlag =true
         }
-    
+
     })
-    if(innerTitFlag){ 
-        toastMsg('본문을 입력해주세요.')    
+    if(innerTitFlag){
+        toastMsg('본문을 입력해주세요.')
         return
     }
     if(!$('input[placeholder="http://"]').val()){
@@ -88,7 +92,54 @@ $('.link_step3').on('click',(e)=>{
         }
 
     })
-    if(innerTitFlag) return
+    if(innerTitFlag) {
+        return
+    }
+
+
+
+
+    //마지막 폼 되기전에 데이터들 input에 삽입하기
+    // $(".start-date span").text
+    $("input[name='title']").val($(".inner_tit").text())
+
+
+    //사진 갯수구하기
+    $("input[name='inner_photo_content_order']").each((i,order)=>{
+        console.log("들어옴")
+        let count =$(order).closest("dd").find("input[name='inner_photo']").length
+        console.log(count)
+        $(order).val($(order).val()+`_${count}`)
+    })
+
+    //태그 필수
+    if($(".tag").filter((i,v)=>!$(v).val()).length!=0){
+        toastMsg("태그 갯수대로 모두 입력해주세요")
+        return;
+    }
+
+
+
+
+    $("form").eq(0).submit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 $(document).ready(function () {
@@ -98,13 +149,13 @@ $(document).ready(function () {
     }
     //최대 최소 범위 내 난수 생성하는 함수
 
-// input 되었을때 textarea 글자 수 계산
+// keyup 되었을때 textarea 글자 수 계산
     $(document).on('input', (e) => {
         $titLength = $(e.target).parent().parent().prev()
         $txtLength = $(e.target).parent().parent().next()
         $imgdescLength = $(e.target).parent().next()
 
-        if($(e.target).hasClass('tf_link')){
+        if($(e.target).hasClass('tag')){
             $index = $(e.target).parent().parent().index()
             $('.link_hash').eq($index-1).text(`#${$(e.target).val()}`)
         }
@@ -131,7 +182,7 @@ $(document).ready(function () {
 
                 $(e.target).closest('.thumb_photo').next().find('input').eq(index).remove()
                 $(addInput).insertAfter($(e.target).closest('.thumb_photo').next().find('input').last())
-                
+
                 $(e.target).closest('.thumb_photo').next().find('input').last().show()
                 $(e.target).closest('.thumb_photo').prev().find('li.on').remove()
                 $addContent = '<li>\n' +
@@ -147,19 +198,17 @@ $(document).ready(function () {
 
 
             // 별찌목록에 있는 삭제버튼을 눌렀을 경우 (별찌목록 부모가 add_byeol을 갖고있음)
-            if($(e.target).parent().hasClass('byeoljji_count')){
-                let index = $(e.target).closest('.byeoljji_count').prev().prev().find('li.on').index()
-                if($('.photo_gallery .list_photo li').length > 1) {
-
+            if($(e.target).parent().hasClass('add_byeol')){
+                if($('#byeoljji-list .add_byeol').length > 1) {
+                    $(e.target).parent().remove()
                 }else{
                     toastMsg('기부자에게 제공 할 별찌 목록을 최소 1개 이상 입력해야합니다.')
                     return
                 }
             }
-
             // 태그목록에 있는 삭제버튼을 눌렀을 경우 (태그목록 부모가 add_tag을 갖고있음)
             if($(e.target).parent().hasClass('add_tag')){
-                let index = $(e.target).parent().index()
+                index = $(e.target).parent().index()
                 $('.list_write .hash_group').children().eq(index-1).remove()
                 $(e.target).parent().remove()
             }
@@ -183,7 +232,7 @@ $(document).ready(function () {
 
             if ($(e.target).is('button')) {
                 $(e.target).closest('.desc_photo').removeClass('media_on')
-            }else if($(e.target).is('img')) { 
+            }else if($(e.target).is('img')) {
                 $thumbImg = $(e.target).attr('src')
                 $(e.target).closest('.desc_photo').addClass('media_on')
                 $(e.target).closest('.photo_gallery').next().find('.img_photo').attr("src", $thumbImg)
@@ -205,7 +254,8 @@ $('.btn-subhead').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <input type="text" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  '      <input type="text"  name="inner_title" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  ` <input type="hidden" name="inner_title_content_order" value="${order++}">\n` +
                   '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
                   '    </div>\n' +
                   '  </div>\n' +
@@ -220,7 +270,9 @@ $('.btn-maintext').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <textarea cols="30" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
+                  '      <textarea cols="30" name="inner_content" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea>' +
+        `<input type="hidden" name="inner_content_content_order" value="${order++}">` +
+        '<button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
                   '  </div>\n' +
                   '  <div class="info_append"><span class="txt_num">0 /</span>1000 </div>\n' +
                   '</dd>'
@@ -229,6 +281,7 @@ $('.btn-maintext').on('click',()=>{
 // 이미지 추가
 $('.btn-addimg').on('click',()=>{
     $addContent = `<dd class="desc_media desc_photo">
+            <input type="hidden" name="inner_photo_content_order" value="${order++}">
     <photo-box>
       <div class="info_group">
         <img src="//t1.kakaocdn.net/together_image/m640/bg_suggest_media_170327.png"
@@ -256,7 +309,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">1</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -264,7 +316,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">2</span>
               <button type="button" class="btn_photo">
-
               </button>
             </div>
           </li>
@@ -272,7 +323,6 @@ $('.btn-addimg').on('click',()=>{
             <div class="ico_together photo_preview">
               <span class="txt_num">3</span>
               <button type="button" class="btn_photo">
-                
               </button>
             </div>
           </li>
@@ -287,7 +337,8 @@ $('.btn-addimg').on('click',()=>{
           <li>
             <div class="ico_together photo_preview">
               <span class="txt_num">5</span>
-              <button type="button" class="btn_photo"></button>
+              <button type="button" class="btn_photo">
+</button>
             </div>
           </li>
           <li>
@@ -384,14 +435,14 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
     $addContent = '<div class="add_link add_tag">\n' +
                     '  <div class="group_tf"><label class="lab_link" for="relateTitle0">태그</label>\n' +
                     '      <input placeholder="추가할 태그명을 입력해주세요"\n' +
-                    '             type="text" autocomplete="off"\n' +
-                    '             class="tf_link ng-untouched ng-pristine ng-valid"\n' +
+                    '             type="text" autocomplete="off" name="tag" \n' +
+                    '             class="tf_link tag ng-untouched ng-pristine ng-valid"\n' +
                     '             id="relateTitle0" focus="false" blur="true">\n' +
                     '  </div>\n' +
                     '  <button type="button" class="ico_together2 btn_del tag_del"> 내용삭제 </button>\n' +
                     '</div>'
     // 해쉬태그
-    $addContent2 = '<a href="#" class="link_hash"></a>'
+    $addContent2 = '<a class="link_hash"></a>'
     i = randMintoMax(1,10)
 
 
@@ -409,6 +460,7 @@ $('.box_open .list_write .relate_url').first().find('button.box_add').on('click'
         toastMsg('태그는 최대 10개까지만 가능합니다.')
     }
 })
+
 
 
 

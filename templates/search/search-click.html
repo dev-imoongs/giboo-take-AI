@@ -10,26 +10,19 @@
     <link rel="stylesheet" href="{% static 'css/search/search-input.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search/search-click.css' %}" />
     <link rel="shortcut icon" href="{% static 'image/favicon.png' %}">
-    <title>클릭 검색</title>
+    <title>태그 검색</title>
   </head>
   <body>
-    <div
-      id="dkWrap"
-      scrollheaderfixed=""
-      fixedreachedelementid="btnSearch"
-      fixeddirection="bottom"
-      fixedclass="header_fixed"
-      class="together_top"
-    >
+    <div id="dkWrap" scrollheaderfixed="" fixedreachedelementid="btnSearch" fixeddirection="bottom" fixedclass="header_fixed" class="together_top">
       <!--header-->
       {% if request.session.member_email %}
         {% include 'header/logined-header.html' %}
       {% else %}
         {% include 'header/header.html' %}
       {% endif %}
-      <span id="rootContent"
-        ><ng-component
-          ><div id="dkContent" class="cont_search">
+      <span id="rootContent">
+        <ng-component>
+          <div id="dkContent" class="cont_search">
             <div id="mArticle">
               <tag-home-common-header>
                 <div class="group_tagcover" style="padding-bottom: 36px">
@@ -53,14 +46,8 @@
                       <div class="join_state">
                         <tag-home-profile-box>
                           <div class="box_profiles">
-                            <img
-                              src="https://t1.kakaocdn.net/together_image/common/avatar/avatar04.png"
-                              alt="프로필사진"
-                            />
-                            <img
-                              src="https://t1.kakaocdn.net/together_image/common/avatar/avatar01.png"
-                              alt="프로필사진"
-                            />
+                            <img src="https://t1.kakaocdn.net/together_image/common/avatar/avatar04.png" alt="프로필사진"/>
+                            <img src="https://t1.kakaocdn.net/together_image/common/avatar/avatar01.png" alt="프로필사진"/>
                           </div>
                         </tag-home-profile-box>
                         <span class="txt_fund_conut">
@@ -72,146 +59,127 @@
                 </tag-home-common-stats>
               </div>
 
-              <tag-home-fundraising-list
-                ><div class="group_taglist">
+              <tag-home-fundraising-list>
+                <div class="group_taglist">
                   <h3 class="tit_section section_type5">
-                    늘해랑 <span class="emph_sign">48</span>
+                    늘해랑 <span class="emph_sign"></span>
                   </h3>
                   <tag-home-fundraising-list-filter>
                     <div class="sort_cate">
                       <span class="inner_sort_cate">
                         <span class="box_sorting">
-                          <input
-                            type="radio"
-                            id="sortCate0"
-                            name="sortCate"
-                            class="inp_sort"/>
-                          <label for="sortCate0" class="lab_sort">전체</label></span>
+                          <input type="radio" id="sortCate0" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate0" class="lab_sort">전체</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate1"
-                            name="sortCate"
-                            class="inp_sort"/>
-                          <label for="sortCate1" class="lab_sort">모집/펀딩중</label></span>
+                          <input type="radio" id="sortCate1" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate1" class="lab_sort">모금중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate2"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate2" class="lab_sort">후기</label></span>
+                          <input type="radio" id="sortCate2" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate2" class="lab_sort">봉사중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate3"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate3" class="lab_sort">봉사중</label></span>
+                          <input type="radio" id="sortCate3" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate3" class="lab_sort">검토중</label>
+                        </span>
                         <span class="box_sorting">
-                        <input
-                            type="radio"
-                            id="sortCate4"
-                            name="sortCate"
-                            class="inp_sort"/>
-                        <label for="sortCate4" class="lab_sort">준비중</label></span>
+                          <input type="radio" id="sortCate4" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate4" class="lab_sort">후기</label>
+                        </span>
+                        <span class="box_sorting">
+                          <input type="radio" id="sortCate5" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate5" class="lab_sort">미선정</label>
+                        </span>
+                           <span class="box_sorting">
+                          <input type="radio" id="sortCate6" name="sortCate" class="inp_sort"/>
+                          <label for="sortCate6" class="lab_sort">종료</label>
+                        </span>
                       </span>
-                    </div></tag-home-fundraising-list-filter
-                  >
+                    </div>
+                  </tag-home-fundraising-list-filter>
                   <ul class="list_fund">
                     <!--후기-->
-                    <li>
-                      <fundraising-card
-                        ><a class="link_pack"
-                          ><span class="box_thumb"
-                            ><span
-                              kagetype="c203"
-                              class="img_thumb"
-                              style="
-                                background-image: url('https://mud-kage.kakaocdn.net/dn/IIewG/btqKMO8a8aO/CRaVyoyMmy1lqpIsu6BGYK/c203.jpg');
-                              "
-                            ></span></span
-                          ><span class="box_together"
-                            ><span class="bundle_tit"
-                              ><strong class="tit_together ellipsis_type1"
-                                ><span class="tag_bundle"
-                                  ><span class="tag_state tag_state_default">후기</span></span
-                                >
-                                지구를 지키는 환경교육, 온라인으로 만나요 </strong
-                              ><span class="txt_proposer">지구시민연합</span></span
-                            ><span class="wrap_state"
-                              ><span class="state_bar"
-                                ><span
-                                  class="state_gage state_end"
-                                  style="width: 100%"
-                                ></span></span
-                              ><span class="txt_per">100%</span></span
-                            ><span class="price_goal"> 4,550,000원 </span></span
-                          ></a
-                        ></fundraising-card
-                      >
-                    </li>
-                    <!--준비중-->
-                    <li>
-                      <fundraising-card
-                        >
-                        <a class="link_pack" href="/fundraisings/102188"
-                          >
-                          <span class="box_thumb"
-                            >
-                            <span
-                              class="img_thumb"
-                              style="
-                                background-image: url('https://mud-kage.kakaocdn.net/dn/rdTNw/btrVVIh88rU/CGrdK9xFseo7Ji91w5pNY1/c203.jpg');
-                              "
-                            ></span>
-                          </span
-                          >
-                          <span class="box_together"
-                            >
-                            <span class="bundle_tit"
-                              >
-                              <strong class="tit_together ellipsis_type1"
-                                >
-                                <span class="tag_bundle"></span> 불타는 지구에서 청년으로 산다는 것 </strong
-                              >
-                              <span class="txt_proposer">오늘, 잇다</span></span
-                            >
-                            <span class="price_goal"
-                              ><span class="txt_goal">준비중</span>
-                              7,000,000원
-                            </span></span
-                          ></a
-                        ></fundraising-card
-                      >
-                    </li>
-
-                    <!--봉사 진행중-->
-                    <li>
+                    <!--<li>
                       <fundraising-card>
-                        <a class="link_pack" href="/fundraisings/104067">
+                          <a class="link_pack">
+                              <span class="box_thumb">
+                                  <span kagetype="c203" class="img_thumb" style="
+                                background-image: url('https://mud-kage.kakaocdn.net/dn/IIewG/btqKMO8a8aO/CRaVyoyMmy1lqpIsu6BGYK/c203.jpg');"></span>
+                              </span>
+                              <span class="box_together">
+                                  <span class="bundle_tit">
+                                      <strong class="tit_together ellipsis_type1">
+                                          <span class="tag_bundle">
+                                              <span class="tag_state tag_state_default">후기</span>
+                                          </span>
+                                          지구를 지키는 환경교육, 온라인으로 만나요
+                                      </strong>
+                                      <span class="txt_proposer">지구시민연합</span>
+                                  </span>
+                                  <span class="wrap_state">
+                                      <span class="state_bar">
+                                          <span class="state_gage state_end" style="width: 100%"></span>
+                                      </span>
+                                      <span class="txt_per">100%</span>
+                                  </span>
+                                  <span class="price_goal"> 4,550,000원 </span>
+                              </span>
+                          </a>
+                      </fundraising-card>
+                    </li>-->
+                    <!--검토중/미선정-->
+                    <!--<li>
+                      <fundraising-card>
+                        <a class="link_pack" href="/fundraisings/102188">
                           <span class="box_thumb">
-                            <span class="img_thumb" style="
-                                background-image: url('https://mud-kage.kakaocdn.net/dn/bSkrNV/btr5Blj0Ba4/KiW1JirlAtqwaHL05HxE90/c203.jpg');
-                              "></span>
+                            <span class="img_thumb" style="background-image: url('https://mud-kage.kakaocdn.net/dn/rdTNw/btrVVIh88rU/CGrdK9xFseo7Ji91w5pNY1/c203.jpg');"></span>
                           </span>
                           <span class="box_together">
                             <span class="bundle_tit">
                               <strong class="tit_together ellipsis_type1">
-                                <span class="tag_bundle"></span> 지구 환경 위하는 함께하는 쓰담쓰담 </strong>
+                                <span class="tag_bundle"></span>
+                                불타는 지구에서 청년으로 산다는 것
+                              </strong>
+                              <span class="txt_proposer">오늘, 잇다</span>
+                            </span>
+                            <span class="price_goal">
+                                <span class="txt_goal">준비중</span>
+                                7,000,000원
+                            </span>
+                          </span>
+                        </a>
+                      </fundraising-card>
+                    </li>-->
+
+                    <!--봉사중-->
+                    <!--<li>
+                      <fundraising-card>
+                        <a class="link_pack" href="/fundraisings/104067">
+                          <span class="box_thumb">
+                            <span class="img_thumb" style="background-image: url('');"></span>
+                          </span>
+                          <span class="box_together">
+                            <span class="bundle_tit">
+                              <strong class="tit_together ellipsis_type1">
+                                <span class="tag_bundle"></span>
+                                지구 환경 위하는 함께하는 쓰담쓰담
+                              </strong>
                               <span class="txt_proposer">수원시정자동장애인주간보호시설</span>
                             </span>
                             <span class="wrap_state">
                               <span class="state_bar">
                                 <span class="state_gage state_end" style="width: 100%"></span>
                               </span>
-                              <span class="txt_per">100%</span></span>
-                            <span class="price_goal"> 288,500원 </span></span>
+                              <span class="txt_per">100%</span>
+                            </span>
+                            <span class="price_goal"> 288,500원 </span>
+                          </span>
                         </a>
                       </fundraising-card>
-                    </li>
-                    <!--모집/펀딩중-->
-                    <li>
+                    </li>-->
+                    <!--모금중-->
+                    <!--<li>
                       <fundraising-card>
                         <a class="link_pack" href="">
                           <span class="box_thumb">
@@ -220,7 +188,9 @@
                           <span class="box_together">
                             <span class="bundle_tit">
                               <strong class="tit_together ellipsis_type1">
-                                <span class="tag_bundle"></span> {{ post.neulhaerang_title }} </strong>
+                                <span class="tag_bundle"></span>
+                                {{ post.neulhaerang_title }}
+                              </strong>
                               <span class="txt_proposer">사단법인 여성환경연대</span>
                             </span>
                             <span class="wrap_state">
@@ -233,17 +203,20 @@
                           </span>
                         </a>
                       </fundraising-card>
-                    </li>
+                    </li>-->
                   </ul>
-                </div></tag-home-fundraising-list
-              >
+                </div>
+              </tag-home-fundraising-list>
             </div>
-          </div></ng-component
-        ></span
-      >
+          </div>
+        </ng-component>
+      </span>
     </div>
   </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+      let tag_name ="{{tag}}"
+  </script>
 <script src="/static/js/search/serach-click.js"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
