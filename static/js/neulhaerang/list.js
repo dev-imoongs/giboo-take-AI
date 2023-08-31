@@ -75,7 +75,7 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
                       <span class="box_together">
                       <span class="bundle_tit">
                         <strong class="tit_together ellipsis_type1">
-                          ${dayDifference<=3 ?
+                          ${dayDifference<=10 ?
                   '<span class="tag_bundle"><span class="tag_state tag_state_default">종료임박</span></span>':''}
                             ${post.neulhaerang_title}
                         </strong>
