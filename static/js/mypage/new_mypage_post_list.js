@@ -59,12 +59,12 @@ $selectBox4.on("change",e=>{
 //NeulhajangAPIView JS
 
 let page = 1;
-function MemberNeulhajangList(currentPage, opK3, opK4,click) {
+function MemberNeulhajangList(currentPage, opK3, opK4, click) {
   fetch(`/mypage/new-post-neulhajang-list-api/?page=${currentPage}&opK3=${opK3}&opK4=${opK4}`)
     .then(response => response.json())
     .then(result => {
       let text = "";
-      // let pagenator = result.serialized_pagenator
+      let pagenator = result.serialized_pagenator
       let lists = result.neulhajang_posts;
       let neulhajangCountJson = result.neulhajang_count_json;
       // console.log(JSON.parse(lists))
@@ -78,7 +78,7 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
         if (neulhajang_status === '행동중'){
             text += `<li>
                             <a
-                              class="link_pack"
+                              class="link_pack" href="/neulhajang/detail/${jlist.id}"
                               ><span class="box_thumb"
                                 ><span
                                   class="img_thumb"
@@ -102,7 +102,7 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
         else if (neulhajang_status === '행동종료'){
             text += `<li>
                         <a
-                          class="link_pack"
+                          class="link_pack" href="/neulhajang/detail/${jlist.id}"
                           href="/actions/projects/19"
                           ><span class="box_thumb"
                             ><span
@@ -128,8 +128,8 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
         else if (neulhajang_status === '검토중'){
             text += `<li>
                         <a
-                          class="link_pack"
-                          href="/actions/projects/19"
+                          class="link_pack" 
+                          href="/neulhajang/detail/${jlist.id}"
                           ><span class="box_thumb"
                             ><span
                               class="img_thumb"
@@ -155,7 +155,7 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
             text += `<li>
                         <a
                           class="link_pack"
-                          href="/actions/projects/19"
+                          href="/neulhajang/detail/${jlist.id}"
                           ><span class="box_thumb"
                             ><span
                               class="img_thumb"
@@ -181,8 +181,19 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
         if(click){
 
         }
-      $('.ul-data2').html(text);
-      //$('.ul-data2').append(text);
+        if(click){
+            $('.ul-data2').append(text);
+        }else{
+
+            $('.ul-data2').html(text);
+        }
+
+        $(".txt_total").eq(1).text(pagenator.total)
+         if (!pagenator.has_next_data) {
+        $('.link_other4').css('display', 'none');
+      }else{
+            $('.link_other4').css('display', 'inline-block');
+      }
     })
 }
 
@@ -211,7 +222,7 @@ labels.forEach(label => {
 
 // let page = 1;
 // console.log(page)
-function MemberNeulhaerangList(currentPage, opK1, opK2,click) {
+function MemberNeulhaerangList(currentPage, opK1, opK2, click) {
 
 
   fetch(`/mypage/new-post-neulhaerang-list-api/?page=${currentPage}&opK1=${opK1}&opK2=${opK2}`)
