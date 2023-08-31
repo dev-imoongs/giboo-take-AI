@@ -78,11 +78,13 @@ class NeulhaerangReviewDetailView(View):
         # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReviewReply.objects.filter(neulhaerang_review_id=neulhaerang_review_id)
         bottom_posts = NeulhaerangReview.objects.exclude(id=neulhaerang_review_id).order_by('?')[0:4]
+
         #
         if (NeulhaerangReviewLike.objects.filter(member__member_email=my_email, neulhaerang_review_id=neulhaerang_review_id)):
             cheer_status = 'on'
         else:
             cheer_status = ''
+
 
         # if(amount_sum['donation_amount__sum'] is None):
         #     amount_sum = {'donation_amount__sum': 0}
