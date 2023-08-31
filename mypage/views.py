@@ -918,9 +918,12 @@ class MypageNeulhaerangReviewWriteFormView(View):
             text_count+=10
         byeoljjis = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by("byeoljji_rank")
 
-        for byeoljji in byeoljjis:
-            byeoljji.byeoljji_img = files[count]
-            count = count+1
+        # member_donation = NeulhaerangDonation.objects.filter(neulhaerang__neulhaerangreview=neulhaerang_review).order_by("-donation_amount").values("member")
+        # tt= 0
+        # for byeoljji in byeoljjis:
+        #     byeoljji.byeoljji_img = files[count]
+        #     count = count+1
+        #     member_donation[tt]
 
 
         for i in range(len(content_orders)):
@@ -935,9 +938,8 @@ class MypageNeulhaerangReviewWriteFormView(View):
                               f"얼른 가서 봉사활동 리뷰를 확인해보세요! \n"
 
         members = Neulhaerang.objects.filter(id=neulhaerang_id).values("neulhaerangparticipants__member_id")
-        print(members)
         members2 = Neulhaerang.objects.filter(id=neulhaerang_id).values("neulhaerangdonation__member_id")
-        print(members2)
+
 
         for mem in members:
             Alarm.objects.create(message=review_message, type="review", reference_id=neulhaerang_review.id,
