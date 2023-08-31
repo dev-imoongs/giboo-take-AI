@@ -2,7 +2,7 @@
 const $linkBadges = $(".link_badge")
 const $dimedLayer = $(".dimmed_layer")
 const $badgeModal = $(".badge-modal")
-
+let reply_id = ""
 //클릭했을시 뱃지정보 가져와서 모달 안에 컨텐츠로 삽입
 $linkBadges.each((i, link) => {
     $(link).on("click", e => {
@@ -253,8 +253,31 @@ $btn_comment.on("click",(e)=>{
     }
 })
 
-$(document).ready(()=> {
-    //왼쪽 클릭
+
+const neulhaerangReviewDetailByeoljjiAPIView = () => {
+    fetch(`/neulhaerang_review/review-detail-byeoljji/?neulhaerangReviewId=${neulhaerangReviewId}`)
+        .then(response => response.json())
+        .then(result => {
+            byeoljjies = result.byeoljji
+            byeolAddtext2 = ""
+
+    byeoljjies.forEach((byeoljji)=>{
+            byeolAddtext2 = `<li>
+                                <span class="img_slide"
+                                      style="background-image: url('${mediaUrl}${byeoljji.byeoljji_img}');">
+                                </span>
+                                <span class="txt_caption">${byeoljji.byeoljji_name}</span>
+                              </li>`
+            $('.list_photo').last().append(byeolAddtext2);
+    })
+    $('.list_photo').each((i, v) => {
+
+        let first = $(v).children().first().clone()
+        let last = $(v).children().last().clone()
+        $(v).append(first)
+        $(v).prepend(last)
+    })
+        photoSlide()
     const $btn_prevs = $(".btn_prev")
     $btn_prevs.each((idx, btn_prev) => {
         $(btn_prev).on("click", e => {
@@ -269,23 +292,17 @@ $(document).ready(()=> {
             arrowBtnClickSlide(btn_next)
         })
     })
-    $(document).on('click',(e)=>{
-        if ($(e.target).hasClass('ico_like')) {
-            $(e.target).parent().toggleClass('on')
-            reply_id = $(e.target).parent().prev().attr('id')
-        } else if ($(e.target).hasClass('btn_like')) {
-            $(e.target).toggleClass('on')
-            reply_id = $(e.target).prev().attr('id')
-        } else if ($(e.target).hasClass('num_like')) {
-            return
-        }
-        neulhaerangReviewDetailReplyLikeView(reply_id)
-    })
 
-})
+    })
+}
+
+
+
+
 reviewInnerContent(parsedReviewInnerContents);
 
 //사진 무한 슬라이드 1.셋팅
+const photoSlide = () =>{
 const $photoUls = $("ul.list_photo")
 $photoUls.each((idx, photoul) => {
     $photos = $(photoul).children("li")
@@ -306,6 +323,7 @@ $photoUls.each((idx, photoul) => {
 
 })
 
+}
 //2.버튼 클릭
 //버튼 플래그
 let isClicked = false;
@@ -361,24 +379,28 @@ const arrowBtnClickSlide = function (btn, prev) {
     })
 
 }
-
 // inner content 순서에 맞게 출력
 function reviewInnerContent(contents) {
     let addtext = "";
+    let addtext2 = "";
+    let byeolAddtext1 = "";
+    let byeolAddtext2 = "";
     let multiImgflag = "";
     contents.forEach((content, i) => {
         if (content.fields.neulhaerang_content_order !== multiImgflag) {
             if (content.model == 'neulhaerang_review.reviewinnertitle') {
-                addtext += `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
+                addtext = `<span class="tit_subject">${content.fields.inner_title_text}</span>`;
+                $('.cont_subject').append(addtext);
             } else if (content.model == 'neulhaerang_review.reviewinnercontent') {
-                addtext += `<p class="desc_subject">${content.fields.inner_content_text}</p>`;
+                addtext = `<p class="desc_subject">${content.fields.inner_content_text}</p>`;
+                $('.cont_subject').append(addtext);
             } else {
-                addtext += `<div class="photo_slide">
+                addtext = `<div class="photo_slide">
                                           <div class="inner_photo">
                                             <ul class="list_photo">
                                               <li>
                                                 <span class="img_slide"
-                                                      style="background-image: url('/upload/${content.fields.inner_photo}');">
+                                                      style="background-image: url('${mediaUrl}${content.fields.inner_photo}');">
                                                 </span>
                                                 <span class="txt_caption">${content.fields.photo_explanation}</span>
                                               </li>
@@ -387,7 +409,7 @@ function reviewInnerContent(contents) {
                                         <div class="paging_slide">
                                           <span class="num_paging">
                                             <span class="num_page">1</span>
-                                            / 4
+                                            / 1
                                           </span>
                                           <button class="btn_prev" type="button">
                                             <span class="ico_together2 ico_prev">이전버튼</span>
@@ -397,47 +419,65 @@ function reviewInnerContent(contents) {
                                           </button>
                                         </div>
                                         </div>`;
+                $('.cont_subject').append(addtext);
             }
-            $('.cont_subject').html(addtext);
+
         } else {
-            let addtext2 = `<li>
-                                              <span class="img_slide"
-                                                    style="background-image: url('/upload/${content.fields.inner_photo}');">
-                                              </span>
-                                              <span class="txt_caption">${content.fields.photo_explanation}</span>
-                                            </li>`;
+            addtext2 = `<li>
+                          <span class="img_slide"
+                                style="background-image: url('/upload/${content.fields.inner_photo}');">
+                          </span>
+                          <span class="txt_caption">${content.fields.photo_explanation}</span>
+                        </li>`;
             $('.list_photo').last().append(addtext2)
         }
-
         multiImgflag = content.fields.neulhaerang_content_order;
+
     });
+    byeolAddtext1 = `<div class="reward">기부 펀딩 별찌</div>
+                              <div class="photo_slide">
+                                <!--사진들-->
+                                <div class="inner_photo">
+                                  <ul class="list_photo">
+                                </ul>
+                                </div>
+                                <!--페이징 버튼과 이전 다음 버튼-->
+                                <div class="paging_slide">
+                                  <span class="num_paging"> <span class="num_page">1</span> / 1</span>
+                                  <button class="btn_prev" type="button">
+                                    <span class="ico_together2 ico_prev">이전버튼</span>
+                                  </button>
+                                  <button class="btn_next" type="button">
+                                    <span class="ico_together2 ico_next">다음버튼</span>
+                                  </button>
+                                </div>
+                              </div>`
 
-    $('.list_photo').each((i, v) => {
+    $('.cont_subject').append(byeolAddtext1)
+    neulhaerangReviewDetailByeoljjiAPIView()
 
-        let first = $(v).children().first().clone()
-        let last = $(v).children().last().clone()
-        $(v).append(first)
-        $(v).prepend(last)
+    $("ul.list_photo").each((idx, photoul) => {
+        console.log($(photoul).children("li").length)
     })
 }
 
 
 
-function fundraisedRatio(target_amounts, total_fund){
-    const formattedAmount = target_amounts[0].fields.target_amount.toLocaleString('ko-KR');
-    $('.txt_goal').text(`${formattedAmount}원 목표`)
-    $('.num_goal').text(`${total_fund.toLocaleString()}원`)
-    $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
-    let percentage = Math.ceil(total_fund / target_amounts[0].fields.target_amount * 100)
-    $('.mark_point').attr('style',`left:${percentage}%`)
-    $('.sign_graph').attr('style',`width:${percentage}%`)
-    $('.num_per').text(percentage)
-    if(percentage == 100){
-        $('.chart_fund').addClass('fund_end')
-    }
-}
-
-fundraisedRatio(parsedAmount,parsedAmountSum);
+// function fundraisedRatio(target_amounts, total_fund){
+//     const formattedAmount = target_amounts[0].fields.target_amount.toLocaleString('ko-KR');
+//     $('.txt_goal').text(`${formattedAmount}원 목표`)
+//     $('.num_goal').text(`${total_fund.toLocaleString()}원`)
+//     $('.total_fund').html(`${total_fund.toLocaleString('ko-KR')}<span class="txt_won">원</span>`)
+//     let percentage = Math.ceil(total_fund / target_amounts[0].fields.target_amount * 100)
+//     $('.mark_point').attr('style',`left:${percentage}%`)
+//     $('.sign_graph').attr('style',`width:${percentage}%`)
+//     $('.num_per').text(percentage)
+//     if(percentage == 100){
+//         $('.chart_fund').addClass('fund_end')
+//     }
+// }
+//
+// fundraisedRatio(parsedAmount,parsedAmountSum);
 
 function fundUsage(histories) {
     addText = ""
@@ -581,11 +621,12 @@ $('.link_round').on('click',()=>{
 
 
 // 댓글 좋아요
-let reply_id = ""
+
 const neulhaerangReviewDetailReplyLikeView = (reply_id) => {
     fetch(`/neulhaerang_review/review-detail-reply-like/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
+            console.log('들어오면 알려주세여')
             $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
         })
 
@@ -608,3 +649,57 @@ const neulhaerangReviewDetailLikeView = () => {
 
         })
 }
+
+// 모금 관련 정보 출력
+const neulhaerangReviewDetailFundraisingAPIView = () => {
+    fetch(`/neulhaerang_review/review-detail-fundraising/?neulhaerangReviewId=${neulhaerangReviewId}`)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            donations = result.donation_amount_sum
+            target_amount = result.neulhaerang[0].target_amount
+            donation_sum = 0
+            donations.forEach(donation=>{
+                donation_sum += donation.donation_amount
+            })
+            console.log(target_amount)
+            console.log(donation_sum)
+            fundRatio = Math.ceil(donation_sum/target_amount*100)
+            console.log(fundRatio)
+            $('.txt_goal').text(target_amount.toLocaleString()+"원 목표")
+            $('.num_goal').text(target_amount.toLocaleString()+"원")
+            $('.total_fund').text(donation_sum.toLocaleString()+"원")
+            $('.num_per').text(fundRatio)
+            $('.sign_graph').attr('style',`width: ${fundRatio}%;`)
+            $('.mark_point').attr('style',`left: ${fundRatio}%`)
+        })
+}
+neulhaerangReviewDetailFundraisingAPIView()
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(()=> {
+    //왼쪽 클릭
+
+    $(document).on('click',(e)=>{
+        if ($(e.target).hasClass('ico_like')) {
+            $(e.target).parent().toggleClass('on')
+            reply_id = $(e.target).parent().prev().attr('id')
+            neulhaerangReviewDetailReplyLikeView(reply_id)
+        } else if ($(e.target).hasClass('btn_like')) {
+            $(e.target).toggleClass('on')
+            reply_id = $(e.target).prev().attr('id')
+            neulhaerangReviewDetailReplyLikeView(reply_id)
+        } else if ($(e.target).hasClass('num_like')) {
+            return
+        }
+    })
+})
