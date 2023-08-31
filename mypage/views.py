@@ -432,7 +432,7 @@ class MypageProfileView(View):
                 member.member_gender = member_gender
                 member.save()
 
-                return redirect('mypage:profile')
+                return redirect('mypage:main')
 
         return JsonResponse({'error': '잘못된 요청입니다.'})
 
