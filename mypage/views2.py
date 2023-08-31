@@ -76,6 +76,9 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             # print(member_neulhaerang_do_list)
             # 도네이션 참여한 늘해랑
             member_do_list = Neulhaerang.objects.filter(neulhaerangdonation__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
+            print('12354')
+            print(member_do_list)
+            print('12344')
             # 봉사 참여한 늘해랑
             member_pa_list = Neulhaerang.objects.filter(neulhaerangparticipants__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
             # 응원한 늘해랑
