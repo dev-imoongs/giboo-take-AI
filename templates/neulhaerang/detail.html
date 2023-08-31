@@ -64,7 +64,7 @@
                   <p class="desc_info">
                     <em class="emph_give">{{ post.neulhaerang_status }}</em>
                     <span class="txt_g" style="white-space: pre-line; padding-bottom: 10px">
-                        <a href="/mypage/neulhaerang_review/write-form/?neulharerang_id={{ neulhaerang_id }}">늘해랑 후기 작성하러 가기</a>
+                        <a href="/mypage/neulhaerang_review/write-form/?neulhaerang_id={{ neulhaerang_id }}">늘해랑 후기 작성하러 가기</a>
                     </span>
                   </p>
                 </div>
@@ -438,11 +438,11 @@
                 <button type="button" class="btn_g btn_give">
                   <span class="ico_give"></span><span class="txt_float txt_give">기부하기</span>
                 </button>
-                {% elif psot.neulhaerang_status == "종료" or "진행중" %}
+                {% elif post.neulhaerang_status == "종료" or "진행중" %}
                 <!--기부 종료료-->
                 <button type="button" class="btn_g btn_off">
                   <span>
-                      <span class="txt_float txt_end"> 기부종료 </span>
+                      <span class="txt_float txt_end"> 기부불가 </span>
                   </span>
                 </button>
                 {% else %}
