@@ -64,6 +64,7 @@ function MemberNeulhajangList(currentPage, opK3, opK4,click) {
     .then(response => response.json())
     .then(result => {
       let text = "";
+      // let pagenator = result.serialized_pagenator
       let lists = result.neulhajang_posts;
       let neulhajangCountJson = result.neulhajang_count_json;
       // console.log(JSON.parse(lists))
@@ -210,13 +211,13 @@ labels.forEach(label => {
 
 // let page = 1;
 // console.log(page)
-function MemberNeulhaerangList(currentPage, opK1, opK2) {
+function MemberNeulhaerangList(currentPage, opK1, opK2,click) {
 
 
   fetch(`/mypage/new-post-neulhaerang-list-api/?page=${currentPage}&opK1=${opK1}&opK2=${opK2}`)
     .then(response => response.json())
     .then(result => {
-
+        let pagenator = result.serialized_pagenator
         console.log(result)
       let text = "";
       let lists = result.neulhaerang_posts;
@@ -229,6 +230,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
       // }
 
       lists.forEach((rlist, i) => {
+          let percentage = Math.ceil((rlist.donation_sum / rlist.target_amount) * 100)
         let neulhaerang_status = rlist.neulhaerang_status
 
         let countInfo = neulhaerangCountJson[i];
@@ -237,7 +239,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                       <fundraising-card
                         ><a
                           class="link_pack"
-                          href="/fundraisings/106019"
+                          href="/neulhaerang/detail/${rlist.id}"
                           ><span class="box_thumb"
                             ><span
                           class="img_thumb"
@@ -256,11 +258,11 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                               ></span
                       ><span class="wrap_state"
                       ><span class="state_bar"
-                                ><span class="state_gage state_ing" style="width: 21%"></span></span
+                                ><span class="state_gage state_ing" style="width: ${rlist.donation_sum ? percentage : 0}%"></span></span
                               ><span class="txt_per">21%</span></span
                             ><span class="price_goal"
                               >
-                              ${rlist.target_amount.toLocaleString()}원
+                             ${rlist.donation_sum ? rlist.donation_sum.toLocaleString() : 0}원
                             </span></span
                           ></a
                         ></fundraising-card
@@ -270,7 +272,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
         else if (neulhaerang_status === '봉사중'){
                     text +=`<li>
                       <fundraising-card
-                        ><a class="link_pack" href="/fundraisings/104067"
+                        ><a class="link_pack" href="/neulhaerang/detail/${rlist.id}"
                           ><span class="box_thumb"
                       ><span
                           class="img_thumb"
@@ -289,10 +291,10 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                               ><span class="state_bar"
                                 ><span
                           class="state_gage state_end"
-                          style="width: 100%"
+                          style="width: ${rlist.donation_sum ? percentage : 0}%"
                                 ></span></span
                               ><span class="txt_per">100%</span></span
-                            ><span class="price_goal"> ${rlist.target_amount.toLocaleString()}원 </span></span
+                            ><span class="price_goal"> ${rlist.donation_sum ? rlist.donation_sum.toLocaleString() : 0}원 </span></span
                           ></a
                         ></fundraising-card
                       >
@@ -301,7 +303,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
         else if (neulhaerang_status === '검토중'){
                     text +=`<li>
                       <fundraising-card
-                        ><a class="link_pack" href="/fundraisings/102188"
+                        ><a class="link_pack" href="/neulhaerang/detail/${rlist.id}"
                           ><span class="box_thumb"
                             ><span
                               class="img_thumb"
@@ -326,7 +328,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
         else if (neulhaerang_status === '종료'){
                     text += `<li>
                       <fundraising-card
-                        ><a class="link_pack"
+                        ><a class="link_pack" href="/neulhaerang/detail/${rlist.id}"
                           ><span class="box_thumb"
                             ><span
                               kagetype="c203"
@@ -339,7 +341,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                             ><span class="bundle_tit"
                               ><strong class="tit_together ellipsis_type1"
                                 ><span class="tag_bundle"
-                                  ><span class="tag_state tag_state_default">후기</span></span
+                                  ><span class="tag_state tag_state_default">종료</span></span
                                 >
                                 ${rlist.neulhaerang_title} </strong
                               ><span class="txt_proposer">${rlist.member_nickname}</span></span
@@ -347,10 +349,10 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                               ><span class="state_bar"
                                 ><span
                                   class="state_gage state_end"
-                                  style="width: 100%"
+                                  style="width: ${rlist.donation_sum ? percentage : 0}%"
                                 ></span></span
                               ><span class="txt_per">100%</span></span
-                            ><span class="price_goal"> ${rlist.target_amount.toLocaleString()}원 </span></span
+                            ><span class="price_goal"> ${rlist.donation_sum ? rlist.donation_sum.toLocaleString() : 0}원 </span></span
                           ></a
                         ></fundraising-card
                       >
@@ -359,7 +361,7 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
         else if (neulhaerang_status === '미선정'){
                     text +=`<li>
                       <fundraising-card
-                        ><a class="link_pack"
+                        ><a class="link_pack" href="/neulhaerang/detail/${rlist.id}"
                           ><span class="box_thumb"
                             ><span
                               kagetype="c203"
@@ -382,11 +384,55 @@ function MemberNeulhaerangList(currentPage, opK1, opK2) {
                       >
                     </li>`
           }
+        else{
+              text += `<li>
+                      <fundraising-card
+                        ><a class="link_pack" href="/neulhaerang_review/review/detail/${rlist.id}"
+                          ><span class="box_thumb"
+                            ><span
+                              kagetype="c203"
+                              class="img_thumb"
+                              style="
+                                background-image: url('${mediaUrl}${rlist.thumbnail_image}');
+                              "
+                            ></span></span
+                          ><span class="box_together"
+                            ><span class="bundle_tit"
+                              ><strong class="tit_together ellipsis_type1"
+                                ><span class="tag_bundle"
+                                  ><span class="tag_state tag_state_default">후기</span></span
+                                >
+                                ${rlist.review_title} </strong
+                              ><span class="txt_proposer">${rlist.member_nickname}</span></span
+                            ><span class="wrap_state"
+                              ><span class="state_bar"
+                                ><span
+                                  class="state_gage state_end"
+                                  style="width: ${rlist.donation_sum ? percentage : 0}%"
+                                ></span></span
+                              ><span class="txt_per">100%</span></span
+                            ><span class="price_goal"> ${rlist.donation_sum ? rlist.donation_sum.toLocaleString() : 0}원 </span></span
+                          ></a
+                        ></fundraising-card
+                      >
+                    </li>`;
+        }
 
       });
+        if(click){
+            $('.ul-data1').append(text);
+        }else{
 
-      $('.ul-data1').html(text);
-      //$('.ul-data1').append(text);
+            $('.ul-data1').html(text);
+        }
+
+        $(".txt_total").eq(0).text(pagenator.total)
+         if (!pagenator.has_next_data) {
+        $('.link_other3').css('display', 'none');
+      }else{
+            $('.link_other3').css('display', 'inline-block');
+      }
+
 
     })
 

@@ -105,7 +105,9 @@
                           <option value="봉사중">봉사중</option>
                           <option value="검토중">검토중</option>
                           <option value="종료">종료</option>
-                          <option value="미선정">미선정</option></select
+                          <option value="미선정">미선정</option>
+                          <option value="후기">후기</option>
+                      </select
                         ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                         <div class="opt_comm">
@@ -549,7 +551,7 @@
     const mediaUrl = {% get_media_prefix %}
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/static/js/mypage/new_mypage_post_list.js"></script>
+<script src="{% static 'js/mypage/new_mypage_post_list.js' %}"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
 {% else %}

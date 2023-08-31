@@ -1,5 +1,5 @@
 from django.core import serializers
-from django.db.models import F, Count
+from django.db.models import F, Count, Sum
 from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 
 from member.models import Member
 from neulhaerang.models import Neulhaerang, NeulhaerangDonation, NeulhaerangLike
+from neulhaerang_review.models import NeulhaerangReview
 from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, AuthenticationFeedLike, NeulhajangLike
 from static_app.models import MemberBadge
 from workspace.pagenation import Pagenation
@@ -47,25 +48,23 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
         opk1 =request.GET.get('opK1')
         opk2 =request.GET.get('opK2')
 
-        print('늘해랑')
         member_email = request.session.get('member_email')
-        print(member_email)
-        print('늘해랑 이메일')
         page = int(request.GET.get("page"))
         if (opk1 == '전체'):
             # 주최한 늘해랑
-            member_neulhaerang_list = Neulhaerang.objects.filter(member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).values()
-
+            member_neulhaerang_list = Neulhaerang.objects.filter(member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print(member_neulhaerang_list)
             # # 주최한 늘해랑
             # member_neulhaerang_do_list = Neulhaerang.objects.filter(member__member_email=member_email)
             # print(member_neulhaerang_do_list)
             # 도네이션 참여한 늘해랑
-            member_do_list = Neulhaerang.objects.filter(neulhaerangdonation__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).values()
+            member_do_list = Neulhaerang.objects.filter(neulhaerangdonation__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
             # 봉사 참여한 늘해랑
-            member_pa_list = Neulhaerang.objects.filter(neulhaerangparticipants__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).values()
+            member_pa_list = Neulhaerang.objects.filter(neulhaerangparticipants__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
             # 응원한 늘해랑
             likes = NeulhaerangLike.objects.filter(member__member_email=member_email)
-            member_likes = Neulhaerang.objects.filter(neulhaeranglike__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).values()
+            member_likes = Neulhaerang.objects.filter(neulhaeranglike__member__member_email=member_email).annotate(member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
 
 
             # member_au_count = neulhaerang.objects.filter(member__member_email=member_email).annotate(
@@ -74,22 +73,53 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             neulhaerang_count = NeulhaerangDonation.objects.values('neulhaerang').annotate(
                 neulhaerang_count=Count('neulhaerang'))
 
+        elif (opk1 == '후기'):
+            # 주최한 늘해랑
+            member_neulhaerang_list = NeulhaerangReview.objects.filter(neulhaerang__member__member_email=member_email).annotate(
+                member_nickname=F('neulhaerang__member__member_nickname')).annotate(donation_sum = Sum("neulhaerang__neulhaerangdonation__donation_amount")).values()
+
+            # # 주최한 늘해랑
+            # member_neulhaerang_do_list = Neulhaerang.objects.filter(member__member_email=member_email)
+            # print(member_neulhaerang_do_list)
+            # 도네이션 참여한 늘해랑
+            member_do_list = NeulhaerangReview.objects.filter(
+                neulhaerang__neulhaerangdonation__member__member_email=member_email).annotate(
+                member_nickname=F('neulhaerang__member__member_nickname')).annotate(donation_sum = Sum("neulhaerang__neulhaerangdonation__donation_amount")).values()
+            # 봉사 참여한 늘해랑
+            member_pa_list = NeulhaerangReview.objects.filter(
+                neulhaerang__neulhaerangparticipants__member__member_email=member_email).annotate(
+                member_nickname=F('neulhaerang__member__member_nickname')).annotate(donation_sum = Sum("neulhaerang__neulhaerangdonation__donation_amount")).values()
+            # 응원한 늘해랑
+            likes = NeulhaerangLike.objects.filter(member__member_email=member_email)
+            member_likes = NeulhaerangReview.objects.filter(neulhaerang__neulhaeranglike__member__member_email=member_email).annotate(
+                member_nickname=F('neulhaerang__member__member_nickname')).annotate(donation_sum = Sum("neulhaerang__neulhaerangdonation__donation_amount")).values()
+
+            # member_au_count = neulhaerang.objects.filter(member__member_email=member_email).annotate(
+            #     neulhaerang_id=F('member__id'))
+            # print(member_au_count)
+            neulhaerang_count = NeulhaerangDonation.objects.values('neulhaerang').annotate(
+                neulhaerang_count=Count('neulhaerang'))
+
+
+
+
+
         else:
             # 주최한 늘해랑
             member_neulhaerang_list = Neulhaerang.objects.filter(member__member_email=member_email,neulhaerang_status=opk1).annotate(
-                member_nickname=F('member__member_nickname')).values()
+                member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
 
             member_do_list = Neulhaerang.objects.filter(neulhaerangdonation__member__member_email=member_email,
                                                         neulhaerang_status=opk1).annotate(
-                member_nickname=F('member__member_nickname')).values()
+                member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
             # 봉사 참여한 늘해랑
             member_pa_list = Neulhaerang.objects.filter(
                 neulhaerangparticipants__member__member_email=member_email,neulhaerang_status=opk1).annotate(
-                member_nickname=F('member__member_nickname')).values()
+                member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
             # 응원한 늘해랑
             likes = NeulhaerangLike.objects.filter(member__member_email=member_email)
             member_likes = Neulhaerang.objects.filter(neulhaeranglike__member__member_email=member_email,neulhaerang_status=opk1).annotate(
-                member_nickname=F('member__member_nickname')).values()
+                member_nickname=F('member__member_nickname')).annotate(donation_sum = Sum("neulhaerangdonation__donation_amount")).values()
 
             # member_au_count = neulhaerang.objects.filter(member__member_email=member_email).annotate(
             #     neulhaerang_id=F('member__id'))
@@ -112,7 +142,16 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
         total_neulhaerang_sorted = sorted(total_neulhaerang_list, key=lambda item: item['created_date'])
         total_neulhaerang_sorted.reverse()
 
-        pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=total_neulhaerang_sorted)
+        unique_list = []
+        seen = set()
+
+        for item in total_neulhaerang_sorted:
+            item_tuple = tuple(item.items())
+            if item_tuple not in seen:
+                seen.add(item_tuple)
+                unique_list.append(item)
+
+        pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
         print(pagenator.paged_models)
         neulhaerang_count_json = list(neulhaerang_count)
 #######주최한
@@ -125,8 +164,16 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             # print(total_neulhaerang_sorted)
 
             print("후후")
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_neulhaerang_list_sorted)
+            for item in member_neulhaerang_list_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             print(pagenator.paged_models)
             neulhaerang_count_json = list(neulhaerang_count)
 #######참여한
@@ -135,8 +182,16 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             member_pa_list_sorted = sorted(list(member_pa_list), key=lambda item: item['created_date'])
             member_pa_list_sorted.reverse()
             print(member_pa_list_sorted)
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_pa_list_sorted)
+            for item in member_pa_list_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             print(pagenator.paged_models)
             neulhaerang_count_json = list(neulhaerang_count)
 #######기부한
@@ -144,8 +199,16 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             member_do_list_sorted = sorted(list(member_do_list), key=lambda item: item['created_date'])
             member_do_list_sorted.reverse()
             print(member_do_list_sorted)
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_do_list_sorted)
+            for item in member_do_list_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             print(pagenator.paged_models)
             neulhaerang_count_json = list(neulhaerang_count)
 #######응원한
@@ -153,8 +216,16 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
             member_likes_sorted = sorted(list(member_likes), key=lambda item: item['created_date'])
             member_likes_sorted.reverse()
             print(member_likes_sorted)
+            unique_list = []
+            seen = set()
 
-            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=member_likes_sorted)
+            for item in member_likes_sorted:
+                item_tuple = tuple(item.items())
+                if item_tuple not in seen:
+                    seen.add(item_tuple)
+                    unique_list.append(item)
+
+            pagenator = Pagenation(page=page, page_count=8, row_count=8, query_set=unique_list)
             print(pagenator.paged_models)
             neulhaerang_count_json = list(neulhaerang_count)
 #######
@@ -164,7 +235,7 @@ class NewMypageNeulhaerangPostListAPIView(APIView):
 
         datas = {
             # 'member_nickname':member_nickname,
-            # 'serialized_pagenator':serialized_pagenator,
+            'serialized_pagenator':serialized_pagenator,
             'neulhaerang_posts': pagenator.paged_models,
             'neulhaerang_count_json':neulhaerang_count_json,
 

@@ -20,7 +20,7 @@ button, input, select, textarea {
 #dkWrap {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     position: relative;
     min-height: 100vh;
 }
