@@ -60,7 +60,7 @@ class LoginView(View):
 
 
 
-        return redirect(go_to_prev)
+        return redirect("/main/main")
 
 class GetMemberProfileAPIView(APIView):
     def get(self,request):
