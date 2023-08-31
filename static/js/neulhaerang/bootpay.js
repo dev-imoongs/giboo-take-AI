@@ -8,7 +8,26 @@ $('.wrap_btns .btn_set').on('click',async (e) => {
 
     // 현재 금액을 확인 할 수 있는 API뷰가 필요, 지금은 DetailView에서 렌더했을때 기준
        await reciveRealtimeFundAmount(inputPrice)
-    if (flag){
+
+
+})
+
+// $(document).on('click',(e)=> {
+//     if($(e.target).hasClass('success-btn')) {
+//         $('.fund_float').show()
+//     }
+// })
+const reciveRealtimeFundAmount = async (inputPrice) => {
+    fetch(`/neulhaerang/detail-realtime-fundamount/?neulhaerangId=${neulhaerangId}&`)
+        .then(response => response.json())
+        .then(async result => {
+            let post = result.post
+            let post_donation_sum = result.post_donation_sum
+            if (post.target_amount - post_donation_sum < inputPrice) {
+                toastMsg('기부 금액이 현재 남아있는 목표 금액보다 높습니다.')
+                flag = true
+            }else{
+                 if (flag){
       return
     }
     $('.btn_close').trigger('click')
@@ -71,24 +90,8 @@ $('.wrap_btns .btn_set').on('click',async (e) => {
             break
     }
 }
-})
-
-// $(document).on('click',(e)=> {
-//     if($(e.target).hasClass('success-btn')) {
-//         $('.fund_float').show()
-//     }
-// })
-const reciveRealtimeFundAmount = async (inputPrice) => {
-    fetch(`/neulhaerang/detail-realtime-fundamount/?neulhaerangId=${neulhaerangId}&`)
-        .then(response => response.json())
-        .then(result => {
-            let post = result.post
-            let post_donation_sum = result.post_donation_sum
-            if (post.target_amount - post_donation_sum < inputPrice) {
-                toastMsg('기부 금액이 현재 남아있는 목표 금액보다 높습니다.')
-                flag = true
+                flag = false
             }
-            flag = false
         })
 
 }

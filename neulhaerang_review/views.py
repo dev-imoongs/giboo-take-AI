@@ -90,7 +90,7 @@ class NeulhaerangReviewDetailView(View):
             'review_post': review_post,
             'post_badge': post_badge,
             'cheer_status': cheer_status,
-            # 'neulhaerang_id': neulhaerang_id,
+            'neulhaerang_id': neulhaerang_id,
             'neulhaerang_review_id': neulhaerang_review_id,
             # 'post_writer_thumb':post_writer_thumb,
             # 'neulhaerang_review':neulhaerang_review,

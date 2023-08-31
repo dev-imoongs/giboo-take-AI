@@ -144,7 +144,7 @@ class NeulhaerangDetailReplyAPIView(APIView):
         print(replys_count)
         if(replyPage==1):
             first_page_replys_id = []
-            best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 10).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
+            best_replys = replys_queryset.annotate(reply_count=Count('replylike')).filter(reply_count__gt = 3).order_by('-reply_count','-created_date').annotate(best_reply=Value(True))
             best_replys_count = best_replys.count()
 
             if(best_replys_count>3):
