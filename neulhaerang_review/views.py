@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from member.models import Member
-from neulhaerang.models import Byeoljji, Neulhaerang, NeulhaerangDonation, BusinessPlan
+from neulhaerang.models import Byeoljji, Neulhaerang, NeulhaerangDonation, BusinessPlan, NeulhaerangParticipants
 from neulhaerang_review.models import NeulhaerangReview, NeulhaerangReviewTag, ReviewInnerTitle, ReviewInnerContent, \
     ReviewInnerPhotos, FundUsageHistory, NeulhaerangReviewReply, ReviewReplyLike, NeulhaerangReviewLike
 from static_app.models import Badge
@@ -71,7 +71,7 @@ class NeulhaerangReviewDetailView(View):
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
         likes_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
         # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
-        # reply = NeulhaerangReply.objects.filter(neulhaerang_id=neulhaerang_id)
+        reply = NeulhaerangReviewReply.objects.filter(neulhaerang_review_id=neulhaerang_review_id)
         bottom_posts = Neulhaerang.objects.exclude(id=neulhaerang_review_id).order_by('-created_date')[0:4]
         #
         if (NeulhaerangReviewLike.objects.filter(member__member_email=my_email, neulhaerang_review_id=neulhaerang_review_id)):
@@ -91,7 +91,7 @@ class NeulhaerangReviewDetailView(View):
             # 'post_writer_thumb':post_writer_thumb,
             # 'neulhaerang_review':neulhaerang_review,
             'bottom_posts': bottom_posts,
-            # 'reply_count': reply.count(),
+            'reply_count': reply.count(),
             # 'participants_count' : participants_count,
             'likes_count' : likes_count,
             'byeoljjies': byeoljji,
@@ -141,10 +141,11 @@ class NeulhaerangReviewDetailReplyAPIView(APIView):
             replys_queryset = replys_queryset.exclude(id__in=NeulhaerangReviewDetailReplyAPIView.exclude_id_list)
             pagenator = Pagenation(page=replyPage-1, page_count=5, row_count=5, query_set=replys_queryset)
             replys = NeulhaerangReviewReplySerializer(pagenator.paged_models, many=True, context={'request': request}).data
-
+            serialized_pagenator = PagenatorSerializer(pagenator).data
             datas = {
                 'replys':replys,
                 'replys_count':replys_queryset.count(),
+                'serialized_pagenator':serialized_pagenator
             }
 
             return Response(datas)
@@ -179,7 +180,11 @@ class NeulhaerangReviewDetailReplyLikeAPIView(APIView):
             ReviewReplyLike.objects.create(review_reply_id=review_reply_id, member=member)
         reply_like_count = ReviewReplyLike.objects.filter(review_reply_id=review_reply_id).count()
 
-        return Response(reply_like_count)
+        datas = {
+            'reply_like_count': reply_like_count
+        }
+
+        return Response(datas)
 
 class NeulhaerangReviewDetailLikeAPIView(APIView):
     def get(self, request):

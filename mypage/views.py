@@ -1,4 +1,5 @@
 from datetime import datetime
+import random
 
 import requests
 from django.db.models import Value, Count, F
@@ -11,11 +12,14 @@ from rest_framework.views import APIView
 
 
 import neulhaerang_review
+from customer_center.models import Alarm
 from member.models import Member
-from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation
+from neulhaerang.models import Neulhaerang, NeulhaerangReply, MemberByeoljji, Byeoljji, NeulhaerangDonation, \
+    BusinessPlan, NeulhaerangInnerTitle, NeulhaerangInnerContent, NeulhaerangTag, NeulhaerangInnerPhotos
 from neulhaerang_review.models import NeulhaerangReviewReply, NeulhaerangReview
-from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed
-from static_app.models import Badge, MemberBadge
+from neulhajang.models import Neulhajang, NeulhajangAuthenticationFeed, NeulhajangMission, NeulhajangInnerTitle, \
+    NeulhajangInnerContent, NeulhajangInnerPhoto
+from static_app.models import Badge, MemberBadge, Category
 from workspace.pagenation import Pagenation
 from workspace.serializers import PagenatorSerializer, NeulhaerangSerializer, NeulhaerangDonationSerializer
 
@@ -668,3 +672,267 @@ class MypageGetBadgeInfoAPIView(APIView):
             "badge":badge.first()
         }
         return JsonResponse(datas)
+
+
+
+
+
+#작성폼
+
+
+class MypageNeulhaerangWriteFormView(View):
+    def get(self,request):
+
+        return render(request,'mypage/write/neulhaerang-write.html')
+
+    def post(self,request):
+        #늘해랑 먼저 크리에이트
+
+        member_email = request.session.get("member_email")
+        member = Member.objects.get(member_email=member_email)
+
+        #카테고리
+        category = request.POST.get("category")
+        category = Category.objects.filter(category_name=category).first()
+
+        #모금 기간
+        want_fund_duration = request.POST.get("fundraising_period")
+
+        #봉사기간
+        volunteer_start_date = request.POST.get("volunteer_start_date")
+        volunteer_start_date = datetime.strptime(volunteer_start_date, "%Y-%m-%d").date()
+        volunteer_end_date = request.POST.get("volunteer_end_date")
+        volunteer_end_date = datetime.strptime(volunteer_end_date, "%Y-%m-%d").date()
+
+
+
+        #참가자 최대인원
+        participants_max =request.POST.get("participants_max")
+
+        #목표 미달시 대안
+        plan_comment = request.POST.get("plan_comment")
+
+        #관리자한테 할말
+        planDetail= request.POST.get("planDetail")
+
+        #제목
+        title = request.POST.get("title")
+        #썸네일
+        thumbnail= request.FILES.get("thumbnail")
+
+
+        #오픈챗 링크
+        openchat_link = request.POST.get("openchat_link")
+
+
+
+        plan_moneys = request.POST.getlist("plan_money")
+
+        target_amount = 0
+        for money in plan_moneys:
+            target_amount+=int(money)
+
+
+
+
+        neulhaerang = Neulhaerang.objects.create(member=member,category=category,neulhaerang_duration=int(want_fund_duration),
+                    volunteer_duration_start_date=volunteer_start_date,volunteer_duration_end_date=volunteer_end_date,
+                   participants_max_count=participants_max, target_amount_alternatives_plan=plan_comment,
+                      message_to_admin=planDetail,neulhaerang_title=title,thumbnail_image=thumbnail,
+                       participants_openchat_link=openchat_link,target_amount=target_amount,neulhaerang_status="검토중"
+                       )
+
+        # 펀딩 사용 계획
+        use_plans = request.POST.getlist("use_plan")
+        for i in range(len(use_plans)):
+            BusinessPlan.objects.create(neulhaerang=neulhaerang, plan_name=use_plans[i],plan_amount=int(plan_moneys[i]))
+
+
+
+        # 소제목
+        inner_titles = request.POST.getlist("inner_title")
+        inner_title_content_orders =request.POST.getlist("inner_title_content_order")
+        for i in range(len(inner_titles)):
+            NeulhaerangInnerTitle.objects.create(neulhaerang=neulhaerang,inner_title_text=inner_titles[i],neulhaerang_content_order=int(inner_title_content_orders[i]))
+
+        # #본문
+        inner_contents = request.POST.getlist("inner_content")
+        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        for i in range(len(inner_contents)):
+            NeulhaerangInnerContent.objects.create(neulhaerang=neulhaerang,inner_content_text=inner_contents[i],neulhaerang_content_order=int(inner_content_content_orders[i]))
+
+        # #태그
+        tags = request.POST.getlist("tag")
+        for tag in tags :
+            NeulhaerangTag.objects.create(neulhaerang=neulhaerang,tag_name=tag,tag_type=random.randint(1, 10))
+
+        # #별찌 이름
+        byeoljji_names = request.POST.getlist("byeoljji_name")
+         #별찌 인원
+        byeoljji_counts = request.POST.getlist("byeoljji_count")
+        for i in range(len(byeoljji_names)):
+            Byeoljji.objects.create(neulhaerang=neulhaerang,byeoljji_name=byeoljji_names[i],byeoljji_count=int(byeoljji_counts[i]),byeoljji_rank=i+1)
+
+
+        # #포토텍스트는 무조건 순서대로 10개씩 옴
+        photo_texts = request.POST.getlist("caption")
+        #
+        #
+        # #앞에는 컨텐트오더 _ 포토갯수
+        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+        #
+        #
+        #
+        # #포토는 무조건 순서대로 빈값없이 나옴
+        files = request.FILES.getlist("inner_photo")
+
+        photos= []
+        content_orders = []
+        photo_explanations = []
+        count = 0
+        text_count =0
+
+        for order in inner_photo_content_orders:
+            inner_photo_content_order = int(order.split("_")[0])
+            photo_count = int(order.split("_")[1])
+
+            content_orders.append(inner_photo_content_order)
+            photos.append(files[count:count+photo_count])
+            count+=photo_count
+            photo_explanations.append(photo_texts[text_count:text_count+photo_count])
+            text_count+=10
+
+
+        for i in range(len(content_orders)):
+            for j in range(len(photos[i])):
+                NeulhaerangInnerPhotos.objects.create(neulhaerang=neulhaerang,
+                                                      inner_photo=photos[i][j],neulhaerang_content_order=content_orders[i],
+                                                      photo_order=j,photo_explanation=photo_explanations[i][j])
+
+        neulhaerang_message = f"늘해랑 제목 : {neulhaerang.neulhaerang_title}에 대한 검토가 진행중입니다.!\n" \
+                              f"검토는 최대 15일 걸릴 수 있으며 완료시 알림으로 알려드립니다! \n"
+
+        Alarm.objects.create(message=neulhaerang_message, type="neulhaerang", reference_id=neulhaerang.id,
+                             member=neulhaerang.member)
+
+
+
+        return redirect(f'/neulhaerang/detail/{neulhaerang.id}')
+
+
+class MypageNeulhaerangReviewWriteFormView(View):
+    def get(self, request):
+        return render(request, 'mypage/write/neulhaerang-review-write.html')
+
+
+
+
+
+
+
+
+class MypageNeulhajangWriteFormView(View):
+    def get(self, request):
+        return render(request, 'mypage/write/neulhajang-write.html')
+
+
+    def post(self,request):
+        # 늘하장 먼저 크리에이트
+
+        member_email = request.session.get("member_email")
+        member = Member.objects.get(member_email=member_email)
+
+        # 카테고리
+        category = request.POST.get("category")
+        category = Category.objects.filter(category_name=category).first()
+
+        # 늘하장 기간
+        want_fund_duration = request.POST.get("fundraising_period")
+
+        # 공약실천기간
+        volunteer_start_date = request.POST.get("volunteer_start_date")
+        volunteer_start_date = datetime.strptime(volunteer_start_date, "%Y-%m-%d").date()
+        volunteer_end_date = request.POST.get("volunteer_end_date")
+        volunteer_end_date = datetime.strptime(volunteer_end_date, "%Y-%m-%d").date()
+
+        # 목표 행동자수
+        participants_max = request.POST.get("participants_max")
+
+        # 공약 내용
+        commitment_content = request.POST.get("commitment_content")
+
+        # 관리자한테 할말
+        planDetail = request.POST.get("planDetail")
+
+        # 제목
+        title = request.POST.get("title")
+        # 썸네일
+        thumbnail = request.FILES.get("thumbnail")
+
+        # 오픈챗 링크
+        openchat_link = request.POST.get("openchat_link")
+
+        # #태그
+        tag = request.POST.get("tag")
+
+
+        neulhajang = Neulhajang.objects.create(member=member, category=category,
+                                                 neulhajang_duration=int(want_fund_duration),
+                                                 commitment_duration_start_date=volunteer_start_date,
+                                                 commitment_duration_end_date=volunteer_end_date,
+                                                 participants_target_amount=participants_max,
+                                                 promise_commit_content=commitment_content,
+                                                 # message_to_admin=planDetail,
+                                               neulhajang_title=title,
+                                                 thumnail_image=thumbnail,
+                                                 participants_openchat_link=openchat_link, representing_tag=tag,
+                                                 neulhajang_status="검토중"
+                                                 )
+
+        # 미션 내용
+        mission_contents = request.POST.getlist("mission_content")
+        for i in range(len(mission_contents)):
+            NeulhajangMission.objects.create(neulhajang=neulhajang, mission_content=mission_contents[i],
+                                        mission_order=i+1)
+
+        # 소제목
+        inner_titles = request.POST.getlist("inner_title")
+        inner_title_content_orders = request.POST.getlist("inner_title_content_order")
+        for i in range(len(inner_titles)):
+            NeulhajangInnerTitle.objects.create(neulhajang=neulhajang, inner_title_text=inner_titles[i],
+                                                 neulhajang_content_order=int(inner_title_content_orders[i]))
+
+        # #본문
+        inner_contents = request.POST.getlist("inner_content")
+        inner_content_content_orders = request.POST.getlist("inner_content_content_order")
+        for i in range(len(inner_contents)):
+            NeulhajangInnerContent.objects.create(neulhajang=neulhajang, inner_content_text=inner_contents[i],
+                                                   neulhajang_content_order=int(inner_content_content_orders[i]))
+
+
+
+
+
+
+        photo_texts = request.POST.getlist("caption")
+
+        inner_photo_content_orders = request.POST.getlist("inner_photo_content_order")
+
+        files = request.FILES.getlist("inner_photo")
+
+        for i in range(len(inner_photo_content_orders)):
+            NeulhajangInnerPhoto.objects.create(neulhajang=neulhajang,inner_photo=files[i],neulhajang_content_order=int(inner_photo_content_orders[i]),
+                                                photo_explanation=photo_texts[i])
+
+        neulhajang_message = f"늘하장 제목 : {neulhajang.neulhajang_title}에 대한 검토가 진행중입니다.!\n" \
+                             f"검토는 최대 15일 걸릴 수 있으며 완료시 알림으로 알려드립니다!"
+        Alarm.objects.create(message=neulhajang_message, type="neulhajang", reference_id=neulhajang.id,
+                             member=neulhajang.member)
+
+        return redirect(f'/neulhajang/detail/{neulhajang.id}')
+
+
+
+
+
+

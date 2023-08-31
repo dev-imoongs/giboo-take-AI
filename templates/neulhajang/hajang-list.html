@@ -56,9 +56,12 @@
     </main>
   {% include 'footer/footer.html' %}
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="{% static 'js/neulhajang/list.js' %}"></script>
   <script>
-      const baseUrl = "{% url 'neulhajang:detail' 0 %}"
+      const baseUrl = "{% url 'neulhajang:detail' 0 %}";
+      const staticUrl = "{% get_static_prefix %}"
+      const mediaUrl = "{% get_media_prefix %}"
   </script>
 {% if request.session.member_email %}
     <script src="{% static 'js/header/logined-header.js' %}"></script>

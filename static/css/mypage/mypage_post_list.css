@@ -129,7 +129,6 @@ body, button, input, select, td, textarea, th {
 /* 게시글 목록 */
 .myaction-section {
     padding: 0;
-    background-color: #f8f8f8;
 }
 
 .myaction-section .myaction-content {
@@ -173,7 +172,7 @@ body, button, input, select, td, textarea, th {
     border-radius: 8px;
     margin-top: 20px;
     padding: 26px 20px;
-    box-shadow: 0 5px 12px 0 #0000000a;
+    box-shadow: 0 5px 12px 0 #0000001a;
     background-color: #fff;
 }
 

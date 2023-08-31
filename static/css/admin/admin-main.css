@@ -11,7 +11,7 @@ select, input, li, img {
     vertical-align: top;
 }
 
-* {
+.index * {
     margin: 0;
     padding: 0;
         overflow: hidden;
@@ -19,7 +19,7 @@ select, input, li, img {
     white-space: nowrap;
 }
 
-li {
+.index li {
     display: list-item;
     text-align: -webkit-match-parent;
 }

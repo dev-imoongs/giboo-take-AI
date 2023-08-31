@@ -50,12 +50,12 @@ $(document).ready(function () {
     $(".pack_btn .btn_add").on('click', () => {
         $addContent = '<div class="group_tf ng-scope">\n' +
                       '  <div class="cont_tf">\n' +
-                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거"\n' +
+                      '      <input type="text" classoutline="" placeholder="사용용도 및 산출근거" name="use_plan"\n' +
                       '              title="모금액 사용용도 및 산출근거" autocomplete="off"\n' +
                       '              class="tf_write ng-valid ng-dirty ng-valid-parse ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
                       '  <div class="amount_tf">\n' +
-                      '      <input type="number" classoutline="" numberonly="" step="500"\n' +
+                      '      <input type="number" classoutline="" numberonly="" step="500" name="plan_money" \n' +
                       '              min="0" placeholder="금액(원)" title="모금액 산출 금액(원)" autocomplete="off"\n' +
                       '              class="tf_write ng-valid ng-valid-min ng-dirty ng-valid-number ng-touched ng-untouched ng-pristine">\n' +
                       '  </div>\n' +
@@ -67,7 +67,7 @@ $(document).ready(function () {
 
     // 추가버튼을 눌렀을때 동적으로 생성된 태그들? $addContent를 불러오기 위해 document를 불러옴
     $(document).on('click', (e) => {
-        //
+        console.log($(e.target))
         if ($(e.target).attr('class') == 'btn_line_txt') {
             if ($('.ng-scope').length !== 1) {
                 $(e.target).parent().remove()
@@ -82,11 +82,13 @@ $(document).ready(function () {
         if ($(e.target).parent().hasClass('btn_calendar')){
             let $calendarIdx = $(e.target).parent().parent().index()
             let $buttonOffsetLeft = $(e.target).offset().left
+            console.log($calendarIdx)
             $('.my-calendar').css('left', $buttonOffsetLeft-220+"px");
             $('calendar').hide()
             $('calendar').eq($calendarIdx).show()
 
-        }else{
+        }else if($(e.target).closest(".cal").length==0){
+            console.log($(e.target).closest(".cal"))
             $('calendar').hide()
         }
 
@@ -142,6 +144,17 @@ $('.link_step2').on('click', (e) => {
 
     if(calendarFlag) return;
 
+    let fund_date = $("input[name='fundraising_period']").filter((i,check)=>$(check).prop("checked")).eq(0).val()
+
+    let now = new Date()
+    let start = new Date($startDate.text().replace("년","").replace("월","").replace("일",""))
+    if((start - now)/(1000 * 60 * 60 * 24)<15+Number(fund_date)){
+        toastMsg(`시작 날짜는 모금기간(${fund_date}일) + 검토기간(15일) 보다 이후로 설정해 주세요`)
+            calendarFlag = true;
+    }
+
+    if(calendarFlag) return;
+
     if($startResult >= $endResult) {
         toastMsg("종료일이 시작일보다 빠릅니다.")
         return
@@ -174,12 +187,17 @@ $('.link_step2').on('click', (e) => {
         return
     }
 
+
+
+
+
+
     // 상단 탭 현재 위치 강조 및 다음 폼 show 나머지 hide
     $('.link_tab').closest('li').removeClass('on')
     let $topIndex = $(e.target).closest('.form_cont').index()
     $('.form_cont').hide()
-    $('.link_tab').eq($topIndex + 1).parent().addClass('on')
-    $('.form_cont').eq($topIndex + 1).show()
+    $('.link_tab').eq($topIndex).parent().addClass('on')
+    $('.form_cont').eq($topIndex).show()
     window.scrollTo(0,0)
 
 
@@ -217,7 +235,8 @@ const init = {
     return d;
   },
   addZero: (num) => (num < 10) ? '0' + num : num,
-  activeDTag: null,
+  activeDTag1: null,
+  activeDTag2: null,
   getIndex: function (node) {
     let index = 0;
     while (node = node.previousElementSibling) {
@@ -235,9 +254,9 @@ const $btnPrev = $('.btn-cal.prev');
  * @param {number} date
  * @param {number} dayIn
 */
-function loadDate (date, dayIn) {
-  $('.cal-date').text(date)
-  $('.cal-day').text(init.dayList[dayIn])
+function loadDate (date, dayIn,index) {
+  $('.cal-date').eq(index).text(date)
+  $('.cal-day').eq(index).text(init.dayList[dayIn])
 }
 
 /**
@@ -312,7 +331,8 @@ function createNewList (val) {
 }
 
 loadYYMM(init.today);
-loadDate(init.today.getDate(), init.today.getDay());
+loadDate(init.today.getDate(), init.today.getDay(),0);
+loadDate(init.today.getDate(), init.today.getDay(),1);
 
 $btnNext.on('click', () => loadYYMM(init.nextMonth()));
 $btnPrev.on('click', () => loadYYMM(init.prevMonth()));
@@ -320,22 +340,39 @@ $btnPrev.on('click', () => loadYYMM(init.prevMonth()));
 //$calBody.addEventListener('click', (e) => {
 $('.my-calendar').on('click', (e) => {
   if (e.target.classList.contains('day')) {
-    if (init.activeDTag) {
-      init.activeDTag.classList.remove('day-active');
-    }
+      if($(e.target).closest(".cal").hasClass("cal1")){
+           if (init.activeDTag1) {
+      init.activeDTag1.classList.remove('day-active');
+         }
+           init.activeDTag1 = e.target;
+      }else{
+           if (init.activeDTag2) {
+      init.activeDTag2.classList.remove('day-active');
+         }
+           init.activeDTag2 = e.target;
+      }
+
     let day = Number(e.target.textContent);
     //형제요소의 인덱스가 2부터 시작
     $calendarIdx = $(e.target).closest('calendar').index()-2
     $inputDateSpan = $('.group_calendar').children().eq($calendarIdx).children().children().eq(0)
-
+    console.log($calendarIdx)
     $('calendar').eq($calendarIdx-2).hide()
-    loadDate(day, e.target.cellIndex);
+    loadDate(day, e.target.cellIndex,$calendarIdx);
     e.target.classList.add('day-active');
-    init.activeDTag = e.target;
+
+
     init.activeDate.setDate(day);
-    condition1 = init.activeDate.getMonth()<10;
+    condition1 = init.activeDate.getMonth()<9;
     condition2 = day<10;
     $inputDateSpan.text(`${init.activeDate.getFullYear()}년 ${init.activeDate.getMonth() + 1}월 ${day}일`)
+      if($calendarIdx==0){
+
+          $("input[name='volunteer_start_date']").val(`${init.activeDate.getFullYear()}-${init.activeDate.getMonth()+1}-${day}`)
+      }else{
+            $("input[name='volunteer_end_date']").val(`${init.activeDate.getFullYear()}-${init.activeDate.getMonth()+1}-${day}`)
+      }
+
 
     // $('.input')
     if(condition1&&condition2) {
