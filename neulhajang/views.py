@@ -70,7 +70,7 @@ class NeulhajangDetailView(View):
             days_difference =''
 
         if(my_email):
-            check_my_like = NeulhajangLike.objects.filter(member__member_email=my_email)
+            check_my_like = NeulhajangLike.objects.filter(member__member_email=my_email, neulhajang=post)
         else:
             check_my_like = False
         inner_contents = list(inner_title_query) + list(content_query) + list(photo_query)
