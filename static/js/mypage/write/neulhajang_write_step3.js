@@ -253,7 +253,7 @@ $('.btn-subhead').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <input type="text" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
+                  '      <input type="text" name="inner_title" classoutline="" multibyte="" autocomplete="off" class="tf_write ng-valid ng-touched ng-dirty" id="subTitle3" placeholder="소제목">\n' +
                   `      <input type="hidden" name="inner_title_content_order" value="${order++}">\n` +
                   '      <button type="button" class="ico_together2 btn_del"> 내용삭제 </button>\n' +
                   '    </div>\n' +
@@ -269,7 +269,7 @@ $('.btn-maintext').on('click',()=>{
     $addContent = '<dd>\n' +
                   '  <div class="group_tf">\n' +
                   '    <div class="inner_group">\n' +
-                  '      <textarea cols="30" rows="10" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
+                  '      <textarea cols="30" rows="10" name="inner_content" multibyte="" autocomplete="off" expandabletextarea="" class="tf_write tf_intro ng-valid ng-dirty ng-touched" id="tfIntro4" placeholder="본문" style="height: 80px; overflow: hidden;"></textarea><button type="button" class="ico_together2 btn_del"> 내용삭제 </button><!----></div><!---->\n' +
                   `<input type="hidden" name="inner_content_content_order" value="${order++}">` +
                   '  </div>\n' +
                   '  <div class="info_append"><span class="txt_num">0 /</span>1000 </div>\n' +

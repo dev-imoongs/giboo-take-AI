@@ -22,7 +22,7 @@ const getAlarmsByPaged = (page)=>{
                 }
 
                 text+=` <li>
-                    <a  ${alarm.type =="inquery"? '' : `href='/${alarm.type}/detail/${alarm.reference_id}'`}
+                    <a  ${alarm.type =="inquery"? '' : alarm.type=="review" ?`href='/${alarm.type}/review/detail/${alarm.reference_id}'` :`href='/${alarm.type}/detail/${alarm.reference_id}'`}
                             class="link_inform"
                     ><span class="thumb_inform"
                     ><span class="ico_together ico_declare"></span

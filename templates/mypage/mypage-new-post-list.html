@@ -37,14 +37,33 @@
                       </div>
                     </div>
                     <div class="area-thumb">
-                      <a class="link-badge" href={% url 'mypage:badge' %}>
-                        <span class="badge-thumb">
-                          <img class="img-thumb" src=/{{ member_profile_badge }}>
-                        </span>
-                      </a>
+                  {% if member_profile_badge %}
+                      <a class="link-badge-profile" href={% url 'mypage:badge' %}>
+                          <span class="badge-thumb">
+                            <img
+                              class="img-thumb"
+                              src={% get_static_prefix %}{{ member_profile_badge }}
+                            />
+                          </span>
+                        </a>
+                  {% endif %}
+
+
+
                       <a class="link-thumb" href={% url 'mypage:profile' %}>
                         <span class="profile-thumb">
-                          <img class="img-thumb" src=/upload/{{ profile_image }}>
+                       <img alt="프로필" class="img-thumb" id="checkProfileImg"
+                      {% if member.profile_image %}
+                           {% if member.profile_image_choice == 'kakao' %}
+                                src="{{ member.profile_image }}"
+                           {% else %}
+                               src="{{ member.profile_image.url }}"
+                           {% endif %}
+                       {% else %}
+                            src = "{% static 'image/avatar.png' %}"
+                      {% endif %}
+
+                     >
                         </span>
                       </a>
                     </div>
@@ -81,32 +100,34 @@
                       <div class="opt_comm">
                         <span class="select_option select_on1">전체</span
                         ><select id="opKinds1" class="opt_select ng-untouched ng-pristine ng-valid">
-                          <option value="">전체</option>
-                          <option value="ready-fund">펀딩준비중</option>
-                          <option value="funding">모집/펀딩중</option>
-                          <option value="execution">봉사중</option>
-                          <option value="epilogue">후기</option>
-                          <option value="rejected ">미선정</option></select
+                          <option value="전체">전체</option>
+                          <option value="모금중">모금중</option>
+                          <option value="봉사중">봉사중</option>
+                          <option value="검토중">검토중</option>
+                          <option value="종료">종료</option>
+                          <option value="미선정">미선정</option>
+                          <option value="후기">후기</option>
+                      </select
                         ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                         <div class="opt_comm">
                         <span class="select_option select_on2">전체</span
                         ><select id="opKinds2" class="opt_select ng-untouched ng-pristine ng-valid">
-                          <option value="">전체</option>
-                          <option value="ready-fund">펀딩준비중</option>
-                          <option value="funding">모집/펀딩중</option>
-                          <option value="execution">봉사중</option>
-                          <option value="epilogue">후기</option>
-                          <option value="rejected ">미선정</option></select
+                          <option value="전체">전체</option>
+                          <option value="주최한 늘해랑">주최한 늘해랑</option>
+                          <option value="참여한 늘해랑">참여한 늘해랑</option>
+                          <option value="기부한 늘해랑">기부한 늘해랑</option>
+                          <option value="응원한 늘해랑">응원한 늘해랑</option>
+                          </select
                         ><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                     </div>
                     </div>
 
                   </div>
-                  <ul class="list_fund">
+                  <ul class="list_fund ul-data1">
                     <!--후기-->
-                    <li>
+                    <!--<li>
                       <fundraising-card
                         ><a class="link_pack"
                           ><span class="box_thumb"
@@ -136,10 +157,10 @@
                           ></a
                         ></fundraising-card
                       >
-                    </li>
+                    </li>-->
 
                     <!--미선정-->
-                    <li>
+                    <!--<li>
                       <fundraising-card
                         ><a class="link_pack"
                           ><span class="box_thumb"
@@ -162,10 +183,10 @@
                           ></a
                         ></fundraising-card
                       >
-                    </li>
+                    </li>-->
 
                     <!--준비중-->
-                    <li>
+                    <!--<li>
                       <fundraising-card
                         ><a class="link_pack" href="/fundraisings/102188"
                           ><span class="box_thumb"
@@ -187,10 +208,10 @@
                           ></a
                         ></fundraising-card
                       >
-                    </li>
+                    </li>-->
 
                     <!--봉사 진행중-->
-                    <li>
+                    <!--<li>
                       <fundraising-card
                         ><a class="link_pack" href="/fundraisings/104067"
                           ><span class="box_thumb"
@@ -218,10 +239,10 @@
                           ></a
                         ></fundraising-card
                       >
-                    </li>
+                    </li>-->
 
                     <!--모집/펀딩중-->
-                    <li>
+                    <!--<li>
                       <fundraising-card
                         ><a
                           class="link_pack"
@@ -352,7 +373,7 @@
                           ></a
                         ></fundraising-card
                       >
-                    </li>
+                    </li>-->
                   </ul>
 
 
@@ -361,7 +382,7 @@
                   <div class="list_more">
                     <button
                       type="button"
-                      class="link_round link_other2"
+                      class="link_round link_other2 link_other3"
                     >
                       더보기
                     </button>
@@ -381,20 +402,21 @@
                       <div class="opt_comm">
                         <span class="select_option select_on3">전체</span
                         ><select id="opKinds3" class="opt_select ng-untouched ng-pristine ng-valid">
-                          <option value="">전체</option>
-                          <option value="creat-jang">주최한 늘하장</option>
-                          <option value="au-jang">참여한 늘하장</option>
-                          <option value="like-jang">응원한 늘하장</option>
+                          <option value="전체">전체</option>
+                          <option value="행동중">행동중</option>
+                          <option value="행동종료">행동종료</option>
+                          <option value="검토중">검토중</option>
+                          <option value="미선정">미선정</option>
 
                       </select><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                         <div class="opt_comm">
                         <span class="select_option select_on4">전체</span
                         ><select id="opKinds4" class="opt_select ng-untouched ng-pristine ng-valid">
-                          <option value="">전체</option>
-                          <option value="active-jang">행동중인 늘하장</option>
-                          <option value="end-jang">종료된 늘하장</option>
-                          <option value="rejected-jang">미선정된 늘하장</option>
+                          <option value="전체">전체</option>
+                          <option value="주최한 늘하장">주최한 늘하장</option>
+                          <option value="참여한 늘하장">참여한 늘하장</option>
+                          <option value="응원한 늘하장">응원한 늘하장</option>
                         </select><span class="box_arrow"><span class="ico_together ico_arrow"></span></span>
                       </div>
                     </div>
@@ -404,7 +426,7 @@
 
 
 
-                    <ul class="list_fund ul-data">
+                    <ul class="list_fund ul-data2">
                       <!--행동중-->
                       <!--<li>
                         <a
@@ -506,7 +528,7 @@
                     <div class="list_more">
                       <button
                         type="button"
-                        class="link_round link_other2"
+                        class="link_round link_other2 link_other4"
                       >
                       더보기
                       </button>
@@ -524,8 +546,12 @@
     </div>
 
   </body>
+<script>
+    const staticUrl = {% get_static_prefix %}
+    const mediaUrl = {% get_media_prefix %}
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="/static/js/mypage/new_mypage_post_list.js"></script>
+<script src="{% static 'js/mypage/new_mypage_post_list.js' %}"></script>
 {% if request.session.member_email %}
   <script src="/static/js/header/logined-header.js"></script>
 {% else %}
