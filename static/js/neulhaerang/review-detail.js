@@ -667,7 +667,7 @@ const neulhaerangReviewDetailFundraisingAPIView = () => {
             fundRatio = Math.ceil(donation_sum/target_amount*100)
             console.log(fundRatio)
             $('.txt_goal').text(target_amount.toLocaleString()+"원 목표")
-            $('.num_goal').text(target_amount.toLocaleString()+"원")
+            $('.num_goal').text(donation_sum.toLocaleString()+"원")
             $('.total_fund').text(donation_sum.toLocaleString()+"원")
             $('.num_per').text(fundRatio)
             $('.sign_graph').attr('style',`width: ${fundRatio}%;`)
