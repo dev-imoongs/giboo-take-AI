@@ -524,6 +524,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
 
             let replyText = ""
             replys.forEach((reply,i)=>{
+                console.log(reply)
             replyText += `<li>
                           <button class="link_profile">`
                             if(!reply.check_anonymous){
