@@ -19,7 +19,7 @@ const showNeulhajangsByPaged =  (page,search)=>{
                                 </th>
                                 <th>No</th>
                                 <th>작성자</th>
-                                <th style="font-weight: bold">늘해랑 제목</th>
+                                <th style="font-weight: bold">늘하장 제목</th>
                                 <th>작성 날짜</th>
                                 <th>상태</th>
                             </tr>

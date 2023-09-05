@@ -532,7 +532,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
                                         class="img_thumb"/>`
                                 }
                                 else{
-                                    replyText += `<img src="${reply.member_kakao_profile}" class="img_thumb"/>`
+                                    replyText += `<img src="${reply.reply_member_thumbnail}" class="img_thumb"/>`
                                 }
                             }else{
                                 if(reply.check_anonymous == '공개'){
@@ -541,7 +541,7 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
                                                     class="img_thumb"/>`
                                     }
                                     else{
-                                        replyText += `<img src="${reply.member_kakao_profile}" class="img_thumb"/>`
+                                        replyText += `<img src="${reply.reply_member_thumbnail}" class="img_thumb"/>`
                                     }
                                 }else{
                                       replyText += `<img
