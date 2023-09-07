@@ -19,7 +19,7 @@ class LoginView(View):
         query_string = '?Content-type: application/x-www-form-urlencoded;charset=utf-8&' \
                        'grant_type=authorization_code&' \
                        'client_id=4026e9a3108be3903a5b5e255d4c1f06&' \
-                       'redirect_uri=http://localhost:10000/member/login&' \
+                       'redirect_uri=http://www.giboontake.site/member/login&' \
                        f'code={code}'
 
 
