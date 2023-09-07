@@ -162,3 +162,8 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'service.center.12342@gmail.com'
 EMAIL_HOST_PASSWORD = 'sikltcmonprcmfdm'
+
+# CORS 설정 추가
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # 허용하려는 클라이언트 주소 (React 앱 주소)
+]
