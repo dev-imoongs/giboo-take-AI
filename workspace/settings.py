@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-fqrt8pb0$&!l20k8$8(+fx7zg&d@u59ja5q-1lr(ac+*ik4#z)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    ".gibooNtake.site",
+    ".ap-northeast-2.compute.amazonaws.com"
+]
 
 
 
