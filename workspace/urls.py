@@ -33,7 +33,8 @@ urlpatterns = [
     path('customer_center/', include('customer_center.urls')),
     path('static_app/', include('static_app.urls')),
     path('neulhaerang_review/', include('neulhaerang_review.urls')),
-    path('introduce/', include('introduce.urls'))
+    path('introduce/', include('introduce.urls')),
+    path('', MainView.as_view())
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
