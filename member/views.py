@@ -45,7 +45,7 @@ class LoginView(View):
             gender = "선택 안함"
 
         if not age :
-            age = "선택 안함"
+            age = 0
 
         member = Member.objects.filter(member_email=email).first()
         if not member:
