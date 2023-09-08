@@ -31,7 +31,7 @@ const showNeulhajangList = (page) => {
                                     후손에게 마음을 전하는 태극기 달기! 함께 행동해 볼까요?
                                   </p>
                                   <div class="card-proposer-container">
-                                    <div class="card-proposer-profile" style="background-image: url('${post.member_profile_image?post.member_profile_choice == "user"?`${mediaUrl}${post.member_profile_image}`:post.member_kakao_image:`${staticUrl}image/avatar.png`}')"></div>
+                                    <div class="card-proposer-profile" style="background-image: url('${post.member_profile_image?post.member_profile_choice == "user"?`${mediaUrl}${post.member_profile_image}`:post.member_profile_image:`${staticUrl}image/avatar.png`}')"></div>
                                     <strong class="card-proposer-name">${post.member_nickname}</strong>
                                   </div>
                                 </div>
