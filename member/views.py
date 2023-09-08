@@ -41,6 +41,12 @@ class LoginView(View):
         request.session['kakao_image_url'] = kakao_image_url
         request.session['access_token'] = access_token
 
+        if not gender:
+            gender = "선택 안함"
+
+        if not age :
+            age = "선택 안함"
+
         member = Member.objects.filter(member_email=email).first()
         if not member:
             member = Member.objects.create(member_email=email, member_nickname=nickname, member_gender=gender, member_age=age)
