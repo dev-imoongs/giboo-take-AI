@@ -51,6 +51,7 @@ class NeulhaerangAPIView(APIView):
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
+        print(category)
         datas = {
             "posts":posts,
             "pagenator" : serialized_pagenator
