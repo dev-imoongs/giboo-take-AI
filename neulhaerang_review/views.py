@@ -58,8 +58,6 @@ class NeulhaerangReviewDetailView(View):
         review_post = NeulhaerangReview.objects.get(id=neulhaerang_review_id)
         neulhaerang_id = review_post.neulhaerang_id
         post_badge = Badge.objects.filter(category_id=review_post.neulhaerang.category_id)[0]
-        # post_writer_thumb = NeulhaerangReview.objects.filter(id=neulhaerang_review_id).values('member__profile_image')[0]
-        # business_plan = BusinessPlan.objects.filter(neulhaerang_id=neulhaerang_id).order_by('-created_date')
         fund_usage_history = FundUsageHistory.objects.filter(neulhaerang_review=review_post).order_by('id')
         tags = NeulhaerangReviewTag.objects.filter(neulhaerang_review_id=neulhaerang_review_id).order_by('id')
         inner_title_query = ReviewInnerTitle.objects.filter(neulhaerang_review_id=neulhaerang_review_id)
@@ -68,14 +66,13 @@ class NeulhaerangReviewDetailView(View):
         review_inner_contents = list(inner_title_query) + list(content_query) + list(photo_query)
         sorted_inner_contents = sorted(review_inner_contents, key=lambda item: item.neulhaerang_content_order)
         byeoljji = Byeoljji.objects.filter(neulhaerang_id=neulhaerang_id).order_by('byeoljji_rank')
-        target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
+        # target_amount = Neulhaerang.objects.filter(id=neulhaerang_id)
 
         amount_sum = NeulhaerangDonation.objects.filter(neulhaerang=neulhaerang_id).aggregate(Sum('donation_amount'))
         if(amount_sum['donation_amount__sum'] is None):
             amount_sum = 0
 
         likes_count = NeulhaerangReviewLike.objects.filter(neulhaerang_review_id=neulhaerang_review_id).count()
-        # participants_count = NeulhaerangParticipants.objects.filter(neulhaerang_id=neulhaerang_id).count()
         reply = NeulhaerangReviewReply.objects.filter(neulhaerang_review_id=neulhaerang_review_id)
         bottom_posts = NeulhaerangReview.objects.exclude(id=neulhaerang_review_id).order_by('?')[0:4]
 
@@ -85,27 +82,17 @@ class NeulhaerangReviewDetailView(View):
         else:
             cheer_status = ''
 
-
-        # if(amount_sum['donation_amount__sum'] is None):
-        #     amount_sum = {'donation_amount__sum': 0}
         context = {
             'review_post': review_post,
             'post_badge': post_badge,
             'cheer_status': cheer_status,
             'neulhaerang_id': neulhaerang_id,
             'neulhaerang_review_id': neulhaerang_review_id,
-            # 'post_writer_thumb':post_writer_thumb,
-            # 'neulhaerang_review':neulhaerang_review,
             'bottom_posts': bottom_posts,
             'reply_count': reply.count(),
-            # 'participants_count' : participants_count,
             'likes_count' : likes_count,
-            # 'js_byeoljjies' : serializers.serialize("json",byeoljji),
             'byeoljjies': byeoljji,
-            # 'amount_sum': amount_sum,
-            # 'target_amount': serializers.serialize("json", target_amount),
             'tags': tags,
-            # 'business_plan': serializers.serialize("json",business_plan),
             'fund_usage_history': serializers.serialize("json", fund_usage_history),
             'review_inner_contents': serializers.serialize("json", sorted_inner_contents),
         }

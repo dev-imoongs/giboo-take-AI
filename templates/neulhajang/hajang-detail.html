@@ -68,7 +68,7 @@
                                 {% if post.member.profile_image_choice == 'user' %}
                                     <div class="provider-profile-image" style="background: url('{% get_media_prefix %}{{ post.member.profile_image }}') 50% 50% / cover no-repeat";></div>
                                 {% else %}
-                                    <div class="provider-profile-image" style="background: url('{{ post.member.kakao_profile_image }}') 50% 50% / cover no-repeat"></div>
+                                    <div class="provider-profile-image" style="background: url('{{ post.member.profile_image }}') 50% 50% / cover no-repeat"></div>
                                 {% endif %}
                             {% endif %}
                             <div>
