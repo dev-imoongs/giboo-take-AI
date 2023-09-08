@@ -56,6 +56,7 @@ class NeulhaerangAPIView(APIView):
             "posts":posts,
             "pagenator" : serialized_pagenator
         }
+
         return Response(datas)
 
 # 상세보기
