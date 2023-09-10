@@ -61,7 +61,7 @@ const getNeulhajangSlide = ()=>{
         .then(result =>{
             let text=``
             let text1=''
-                console.log(result)
+                // console.log(result)
             result.neulhajangs.forEach((neulhajang,i)=>{
                 text+=`<div class="slide">
                                 <div class="slide-card-wrap">
@@ -104,7 +104,7 @@ const getNeulhajangSlide = ()=>{
                                 </li>`
                 }
 
-                console.log(slide_text)
+                // console.log(slide_text)
             $(".neulhajang-slide").append(slide_text)
             $(".neulhajang-slide li").eq(0).addClass("active")
 
@@ -166,7 +166,7 @@ const getTagNeulhaerangs = ()=>{
     fetch("/main/get-tag-neulhaerangs")
         .then(response => response.json())
         .then(result=>{
-            console.log(result)
+            // console.log(result)
             let text =''
             result.random_tags.forEach((tag,i)=>{
                 text+=`<button id="totalTab${i+1}" class="tab-button ${i==0?'active':''}"># ${tag.tag_name}</button>`
@@ -193,7 +193,7 @@ const showTagNeulhaerangs = (tag,btn)=>{
     fetch(`/main/get-click-tag-neulhaerangs/?tag=${tag}`)
         .then(response => response.json())
         .then(result =>{
-            console.log(result)
+            // console.log(result)
             let text =''
 
             result.random_neulhaerangs.forEach((neulhaerang,i)=>{
@@ -221,7 +221,7 @@ const getReviewSlide = ()=>{
         .then(result=>{
             let text=''
             let text1 =''
-            console.log(result)
+            // console.log(result)
             result.reviews.forEach((review,i)=>{
                 text+=`<div class="neulhearang-review-slide">
                                         <a href="/neulhaerang_review/review/detail/${review.id}" class="neulhearang-review-slide-link">
@@ -332,7 +332,7 @@ const showDonationRanking = ()=>{
     fetch("/main/get-member-ranking")
         .then(response => response.json())
         .then(result =>{
-            console.log(result)
+            // console.log(result)
             let text=''
             result.members.forEach((member,i)=>{
                 text+=`<li class="aside-list-item">
