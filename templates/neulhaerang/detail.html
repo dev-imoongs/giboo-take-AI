@@ -598,14 +598,14 @@
                         kagetype="c360"
                         class="thumb_img"
                         style="
-                          background-image: url('https://mud-kage.kakaocdn.net/dn/bHhaxG/btsmGgN5xJu/kr3waBaWbEkCER8fswpA41/c360.jpg');
+                          background-image: url('{% get_media_prefix %}{{ post.thumbnail_image }}');
                         "
                       ></div>
                       <div class="area_info">
                         <strong class="tit_info"
-                          >‘라면 한 끼’가 전부인 어르신에게 '한 끼'의 의미</strong
+                          >{{ post.neulhaerang_title }}</strong
                         >
-                        <p class="txt_sponsor">(복) 불국토 수영구 노인복지관</p>
+                        <p class="txt_sponsor">{{ post.member.member_nickname }}</p>
                       </div>
                     </div>
                     <form

@@ -224,7 +224,6 @@ const toastMsg = function (text) {
 
 //댓글 최소 길이 제한
 $tf_cmt.on("input",e=>{
-    // console.log($tf_cmt.text())
     $comment_num.text($tf_cmt.val().length + "/")
 })
 
@@ -456,9 +455,9 @@ function reviewInnerContent(contents) {
     $('.cont_subject').append(byeolAddtext1)
     neulhaerangReviewDetailByeoljjiAPIView()
 
-    $("ul.list_photo").each((idx, photoul) => {
-        console.log($(photoul).children("li").length)
-    })
+    // $("ul.list_photo").each((idx, photoul) => {
+    //     console.log($(photoul).children("li").length)
+    // })
 }
 
 
@@ -626,7 +625,6 @@ const neulhaerangReviewDetailReplyLikeView = (reply_id) => {
     fetch(`/neulhaerang_review/review-detail-reply-like/?reply_id=${reply_id}`)
         .then(response => response.json())
         .then(result => {
-            console.log('들어오면 알려주세여')
             $(`span[id='${reply_id}']`).next().find('.num_like').text(result)
         })
 
@@ -655,17 +653,13 @@ const neulhaerangReviewDetailFundraisingAPIView = () => {
     fetch(`/neulhaerang_review/review-detail-fundraising/?neulhaerangReviewId=${neulhaerangReviewId}`)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             donations = result.donation_amount_sum
             target_amount = result.neulhaerang[0].target_amount
             donation_sum = 0
             donations.forEach(donation=>{
                 donation_sum += donation.donation_amount
             })
-            console.log(target_amount)
-            console.log(donation_sum)
             fundRatio = Math.ceil(donation_sum/target_amount*100)
-            console.log(fundRatio)
             $('.txt_goal').text(target_amount.toLocaleString()+"원 목표")
             $('.num_goal').text(donation_sum.toLocaleString()+"원")
             $('.total_fund').text(donation_sum.toLocaleString()+"원")

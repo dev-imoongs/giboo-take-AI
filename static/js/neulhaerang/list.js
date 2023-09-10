@@ -52,7 +52,6 @@ const showNeulhaerang =  (page, category, sort, scroll)=>{
     fetch(`/neulhaerang/list-api-view/?page=${page}&category=${category}&sort=${sort}`)
         .then(response => response.json())
         .then(result =>{
-            console.log(result)
           let text = ""
           let posts= result.posts
           let pagenator= result.pagenator
@@ -108,7 +107,6 @@ showNeulhaerang(page, category, sort)
 let timeoutId
 window.addEventListener("scroll", ()=>{
     clearTimeout(timeoutId)
-    console.log(page)
             timeoutId = setTimeout(()=>{
          if (window.innerHeight + window.scrollY + 500>= document.body.offsetHeight) {
     page++

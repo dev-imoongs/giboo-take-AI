@@ -6,7 +6,6 @@ const showNeulhajangList = (page) => {
             let addText = ""
             let posts = result.posts
             posts.forEach((post,i)=>{
-                console.log(post)
                 let percentage = Math.ceil(post.authentication_count/post.participants_target_amount * 100);
                 if(!percentage) percentage=0
                 const post_url = baseUrl.replace(0, neulhajang_id=post.id);
@@ -50,7 +49,6 @@ showNeulhajangList(page)
 let timeoutId
 window.addEventListener("scroll", ()=>{
     clearTimeout(timeoutId)
-    console.log(page)
             timeoutId = setTimeout(()=>{
          if (window.innerHeight + window.scrollY +600>= document.body.offsetHeight) {
     page++

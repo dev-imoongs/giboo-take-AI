@@ -357,7 +357,6 @@ const authenFeedApplyAPIView = () => {
 
             // 시간 관련
             const endDateString = post.neulhajang_duration_end_date;
-            console.log(post)
             const endDate = new Date(endDateString);
             const currentDate = new Date();
             const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
@@ -380,7 +379,6 @@ const authenFeedApplyAPIView = () => {
                 if(post.neulhajang_status == '행동중')
                     $('.remain-date-label').html(`<svg class="remain-date-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="#fff" fill-rule="nonzero" opacity=".7"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M11.999 4.999a1 1 0 0 1 .994.882l.007.117.006 6.001a1 1 0 0 1-.883.994l-.117.007H6a1 1 0 0 1-.117-1.993L6 11h5.006L11 6a1 1 0 0 1 .882-.995L12 5z"></path></g></svg>${daysDifference}일 남음`)
                 else{
-                    console.log(post.neulhajang_status)
                     $('.remain-date-label').text(post.neulhajang_status)
                     $('.endDateDisplayBtn').text(post.neulhajang_status)
                     $('.floating-end-button').text(post.neulhajang_status)

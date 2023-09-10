@@ -515,7 +515,6 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
             replys = result.replys
             $('.txt_cmt .emph_sign').text(result.replys_count)
             let serialized_pagenator = result.serialized_pagenator
-            console.log(serialized_pagenator)
             if (!serialized_pagenator.has_next_data) {
                 $('.link_round.link_other2').hide()
             } else {
@@ -524,7 +523,6 @@ const neulhaerangDetailReplyView = (replyPage, btn_more, checkDonateReply)=>{
 
             let replyText = ""
             replys.forEach((reply,i)=>{
-                console.log(reply)
             replyText += `<li>
                           <button class="link_profile">`
                             if(!reply.check_anonymous){
@@ -689,7 +687,6 @@ const neulhaerangEndDateStatusAPIView = () =>{
         .then(response => response.json())
         .then(result => {
             const post = result.post[0]
-            console.log(post)
             // 현재 모금액, 목표 모금액, 비율
             const targetAmount = post.target_amount
             const totalFund = post.donation_sum?post.donation_sum:0

@@ -31,7 +31,6 @@ let sort = "추천순"
 $('.lab_sort').each((i,v)=>{
     $(v).on('click',()=>{
         sort = $(v).text()
-        console.log(sort)
         page=1
         showNeulhaerangReviewList(page, sort)
     })
@@ -90,7 +89,6 @@ showNeulhaerangReviewList(page, sort)
 let timeoutId
 window.addEventListener("scroll", ()=>{
     clearTimeout(timeoutId)
-    console.log(page)
             timeoutId = setTimeout(()=>{
          if (window.innerHeight + window.scrollY + 500>= document.body.offsetHeight) {
     page++

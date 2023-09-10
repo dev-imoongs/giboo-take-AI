@@ -47,13 +47,13 @@ const reciveRealtimeFundAmount = async (inputPrice) => {
             // 가상계좌 입금 완료 처리
             break
         case 'done':
-            console.log(response)
+            // console.log(response)
                successPayment(donationContent, inputPrice, donationAnonymous)
                $('.fund_float').show()
 
             break
         case 'confirm': //payload.extra.separately_confirmed = true; 일 경우 승인  전 해당 이벤트가호출됨
-            console.log(response.receipt_id)
+            // console.log(response.receipt_id)
             /**
              * 1. 클라이언트 승인을 하고자 할때
              * // validationQuantityFromServer(); //예시) 재고확인과 같은 내부 로직을 처리하기 한다.
@@ -76,16 +76,16 @@ const reciveRealtimeFundAmount = async (inputPrice) => {
     // e.error_code - 부트페이 오류 코드
     // e.pg_error_code - PG 오류 코드
     // e.message - 오류 내용
-    console.log(e.message)
+    // console.log(e.message)
     switch (e.event) {
         case 'cancel':
             // 사용자가 결제창을 닫을때 호출
-            console.log(e.message);
+            // console.log(e.message);
             $('.fund_float').show()
             break
         case 'error':
             // 결제 승인 중 오류 발생시 호출
-            console.log(e.error_code);
+            // console.log(e.error_code);
             $('.fund_float').show()
             break
     }
