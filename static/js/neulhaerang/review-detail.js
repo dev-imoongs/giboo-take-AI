@@ -543,13 +543,16 @@ const neulhaerangReviewDetailReplyView = (replyPage, btn_more)=> {
             let replyText = ""
             replys.forEach((reply,i)=>{
             replyText += `<li>
-                          <button class="link_profile">
-                            <img
-                              src="https://t1.kakaocdn.net/together_image/common/avatar/avatar_angel.png"
-                              class="img_thumb"
-                            />
+                          <button class="link_profile">`
+                            if(reply.member_profile_choice == 'user'){
+                                replyText += `<img src="${reply.reply_member_thumbnail?`${mediaUrl}${reply.reply_member_thumbnail}`:`${staticUrl}image/avatar.png`}"
+                                    class="img_thumb"/>`
+                            }
+                            else{
+                                replyText += `<img src="${reply.reply_member_thumbnail}" class="img_thumb"/>`
+                            }
                             <!--베뎃-->
-                            ${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
+                            replyText += `${reply.best_reply ? '<span class="ico_together2 ico_best"></span>':''}    
                             
                           </button>
                           <div class="cmt_info">
