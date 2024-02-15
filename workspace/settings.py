@@ -94,10 +94,11 @@ DATABASES = {
         # DATABASE 이름
         "NAME": "django",
         # 계정 이름
-        "USER": "ubuntu",
+        "USER": "Giboo",
         # 비밀번호
         "PASSWORD": "1234",
         # MySQL 서버가 실행 중인 서버 IP 또는 도메인
+        # "HOST": "127.0.0.1",
         "HOST": "43.203.16.105",
         # 포트번호
         "PORT": "3306"
