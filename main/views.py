@@ -27,7 +27,7 @@ class MainView(View):
 
         neulhajang = Neulhajang.objects.filter(id=1).annotate(feed_sum=Count("neulhajangauthenticationfeed")).values().first()
         print(neulhajang)
-        count= neulhajang.get("feed_sum")
+        count = neulhajang.get("feed_sum")
 
 
 
