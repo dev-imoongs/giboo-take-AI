@@ -5,6 +5,11 @@ const showNeulhajangList = (page) => {
         .then(result => {
             let addText = ""
             let posts = result.posts
+            let existsPost = result.existsPost
+
+          if (!existsPost) {
+            addText = "<div class='no_post'>늘하장 게시물이 없습니다.</div>";
+          } else {
             posts.forEach((post,i)=>{
                 let percentage = Math.ceil(post.authentication_count/post.participants_target_amount * 100);
                 if(!percentage) percentage=0
@@ -39,8 +44,11 @@ const showNeulhajangList = (page) => {
                             </div>`
 
             })
+          }
             $('.action-card-section').append(addText)
-        })
+        }).catch((error) => {
+      console.log("에러 발생:", error); // fetch 호출 자체에서 오류가 날 경우 여기에 로그가 찍힘
+    });
 }
 
 

@@ -11,19 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(DEBUG=(bool,False))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fqrt8pb0$&!l20k8$8(+fx7zg&d@u59ja5q-1lr(ac+*ik4#z)'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,23 +92,21 @@ WSGI_APPLICATION = 'workspace.wsgi.application'
 
 DATABASES = {
     "default": {
-        # MySQL 모듈 경로
-        "ENGINE": "django.db.backends.mysql",
-        # DATABASE 이름
-        "NAME": "django",
-        # 계정 이름
-        "USER": "Giboo",
-        # 비밀번호
-        "PASSWORD": "1234",
-        # MySQL 서버가 실행 중인 서버 IP 또는 도메인
-        # "HOST": "127.0.0.1",
-        "HOST": "43.203.16.105",
-        # 포트번호
-        "PORT": "3306"
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
 }
 
-
+# Session settings
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'  # Lax는 크로스 사이트에서 쿠키를 허용하는 설정
+SESSION_COOKIE_SAMESITE = 'Lax'  # 기본값 'Lax'로 설정
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -139,7 +140,7 @@ USE_TZ = False
 
 
 # {% static '경로' %}로 사용하면 경로 앞에 /static을 붙인다.
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 # /static으로 요청이 들어오면 실제 static 경로를 찾아준다.
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
@@ -165,6 +166,6 @@ EMAIL_HOST_USER = 'service.center.12342@gmail.com'
 EMAIL_HOST_PASSWORD = 'sikltcmonprcmfdm'
 
 # CORS 설정 추가
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # 허용하려는 클라이언트 주소 (React 앱 주소)
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",  # 허용하려는 클라이언트 주소 (React 앱 주소)
+# ]

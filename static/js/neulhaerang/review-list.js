@@ -43,9 +43,12 @@ const showNeulhaerangReviewList = (page, sort, scroll)=>{
         let text = ""
         let posts= result.posts
         let pagenator= result.pagenator
+        let existsPost = result.existsPost
 
+      if (!existsPost) {
+        text = "<div class='no_post'>늘해랑 모금후기가 없습니다.</div>";
+      } else {
         posts.forEach((post,i)=> {
-
               let percentage = Math.ceil(post.donation_amount_sum / post.target_amount *100)
               const post_url2 = baseUrl2.replace(0, neulhaerang_review_id=post.id);
               text += `<li class="listcard">
@@ -78,10 +81,11 @@ const showNeulhaerangReviewList = (page, sort, scroll)=>{
               </li>`
                       }
           })
-            scroll? $('.list_fund').append(text): $('.list_fund').html(text)
-
-
-      })
+        }
+        scroll? $('.list_fund').append(text): $('.list_fund').html(text)
+      }).catch((error) => {
+      console.log("에러 발생:", error); // fetch 호출 자체에서 오류가 날 경우 여기에 로그가 찍힘
+    });
 
 }
 showNeulhaerangReviewList(page, sort)

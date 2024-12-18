@@ -9,6 +9,12 @@
     background-color: #999;
 }
 
+.list_fund .no_post {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px auto;
+}
+
 .group_givetop .tit_givetop {
     display: block;
     font-weight: 400;

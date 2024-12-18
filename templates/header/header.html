@@ -240,39 +240,8 @@
             $(".list-item-container").eq(2).removeClass("header-menu")
         }
 
-
-
-    // javascript APP KEY 설정
-    Kakao.init('c6fc16cf77bad1b72762e026c2fbf9fd');
-
   function loginWithKakao() {
-    Kakao.Auth.authorize({
-        //
-      redirectUri: `http://www.giboontake.site/member/login`,
-        state: path,
-         scope: 'account_email, profile_image',
-        prompt:'consent'
-    });
-  }
-
-  // 아래는 데모를 위한 UI 코드입니다.
-  displayToken()
-  function displayToken() {
-    var token = getCookie('authorize-access-token');
-
-    if(token) {
-      Kakao.Auth.setAccessToken(token);
-      Kakao.Auth.getStatusInfo()
-        .then(function(res) {
-          if (res.status === 'connected') {
-            document.getElementById('token-result').innerText
-              = 'login success, token: ' + Kakao.Auth.getAccessToken();
-          }
-        })
-        .catch(function(err) {
-          Kakao.Auth.setAccessToken(null);
-        });
-    }
+    window.location.href = `http://localhost:8000/member/login?path=${path}`;
   }
 
   function getCookie(name) {
