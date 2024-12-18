@@ -1,4 +1,5 @@
 from datetime import datetime
+from os.path import exists
 
 from django.core import serializers
 from django.db.models import Sum, F, Count, Value, Q, ExpressionWrapper
@@ -51,10 +52,15 @@ class NeulhaerangAPIView(APIView):
         posts = NeulhaerangSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator= PagenatorSerializer(pagenator).data
 
-        print(category)
+
+        existsPost = False
+        if(posts):
+            existsPost = True
+
         datas = {
             "posts":posts,
-            "pagenator" : serialized_pagenator
+            "pagenator" : serialized_pagenator,
+            "existsPost" : existsPost
         }
 
         return Response(datas)

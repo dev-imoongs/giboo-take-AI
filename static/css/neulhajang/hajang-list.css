@@ -810,3 +810,9 @@ a {
   letter-spacing: -0.3px;
   line-height: 1.18;
 }
+
+.no_post {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px auto;
+}

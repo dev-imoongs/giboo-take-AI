@@ -12,24 +12,21 @@ from neulhaerang.models import NeulhaerangDonation, Neulhaerang, NeulhaerangInne
 from neulhaerang_review.models import NeulhaerangReview, ReviewInnerContent
 from neulhajang.models import Neulhajang, NeulhajangInnerContent
 
-
-# Create your views here.
-
-
 class MainView(View):
     def get(self, request):
         total_donation = NeulhaerangDonation.objects.aggregate(total_donation = Sum('donation_amount')).get("total_donation")
         total_donation_count = NeulhaerangDonation.objects.all().count()
+        neulhajang = Neulhajang.objects.filter(id=1).annotate(feed_sum=Count("neulhajangauthenticationfeed")).values().first()
         now = datetime.now()
 
         if total_donation:
             total_donation =format(total_donation,",")
+        else:
+            total_donation = 0
 
-        neulhajang = Neulhajang.objects.filter(id=1).annotate(feed_sum=Count("neulhajangauthenticationfeed")).values().first()
-        print(neulhajang)
-        count = neulhajang.get("feed_sum")
-
-
+        count = 0
+        if neulhajang:
+            count = neulhajang.get("feed_sum")
 
         datas ={
             "count":format(count,","),

@@ -225,6 +225,11 @@ ul.list-cate svg img{
     margin-left: -19px;
 }
 
+.list_fund .no_post {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px auto;
+}
 
 .list_fund li {
     float: left;

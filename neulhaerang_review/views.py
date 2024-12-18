@@ -41,10 +41,14 @@ class NeulhaerangReviewListAPIView(APIView):
         posts = NeulhaerangReviewSerializer(pagenator.paged_models, many=True).data
         serialized_pagenator = PagenatorSerializer(pagenator).data
 
+        existsPost = False
+        if(posts):
+            existsPost = True
 
         datas = {
             "posts": posts,
-            "pagenator": serialized_pagenator
+            "pagenator": serialized_pagenator,
+            "existsPost": existsPost
         }
 
         return Response(datas)
