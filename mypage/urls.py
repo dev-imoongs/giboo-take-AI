@@ -7,7 +7,6 @@ from mypage.views import MypageBadgeView, MypageByeoljjiView, MypageDonateView, 
     MypageDeleteReplyAPIView, MypageGetByeoljjisByPagedAPIView, MypageGetBadgeInfoAPIView, \
     MypageNeulhaerangWriteFormView, MypageNeulhaerangReviewWriteFormView, MypageNeulhajangWriteFormView, \
     getByeoljjiNameAPIView
-from mypage.views2 import NewMypagePostListView
 from mypage.views2 import NewMypagePostListView, NewMypageNeulhaerangPostListAPIView, \
     NewMypageNeulhajangPostListAPIView
 

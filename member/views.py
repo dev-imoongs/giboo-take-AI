@@ -1,5 +1,6 @@
 import requests
 import environ
+from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -102,7 +103,6 @@ class GetMemberAlarmsNotChckedAPIView(APIView):
 class LogoutView(View):
     def get(self, request):
         prev_url = request.GET.get("path")
-        print('로그아웃뷰', prev_url)
         if prev_url.split("/")[1] == "mypage":
             prev_url = "/main/main"
         access_token = request.session['access_token']
@@ -113,7 +113,8 @@ class LogoutView(View):
         }
 
         response = requests.post('https://kapi.kakao.com/v1/user/logout', headers=headers)
-        request.session.clear()
+        if(response.status_code == 200):
+            logout(request)
         return redirect(prev_url)
 
 
