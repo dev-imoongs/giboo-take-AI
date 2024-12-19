@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql  # MySQL 데이터 지속성을 위한 볼륨
+    networks:
+      - django-network
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_web
+    command: >
+      sh -c "
+        python manage.py makemigrations && 
+        python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - .:/app  # 코드 변경 시 자동 반영
+    ports:
+      - "8000:8000"  # 로컬 포트 8000에서 접근 가능
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - KAKAO_REST_API_KEY=${KAKAO_REST_API_KEY}
+    depends_on:
+      - db  # MySQL이 먼저 시작되어야 Django가 시작됨
+    networks:
+      - django-network
+
+volumes:
+  mysql_data:  # MySQL 데이터 지속성을 위한 볼륨 정의
+
+networks:
+  django-network:
+    driver: bridge
